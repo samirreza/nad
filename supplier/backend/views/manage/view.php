@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'index' => ['label' => 'لیست تامین کنندگان'],
             'phonebook' => [
                 'label' => 'دفترچه تلفن',
-                'url' => ['/supplier/phonebook/list', 'supplierId' => $model->id],
+                'url' => ['phonebook/manage/list', 'supplierId' => $model->id],
                 'icon' => 'phone',
                 'type' => 'success',
             ],

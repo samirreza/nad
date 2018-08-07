@@ -19,7 +19,6 @@ class JobController extends AdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['index','view','update','delete'],
                             'roles' => [
                                 'supplier.create',
                                 'supplier.update',

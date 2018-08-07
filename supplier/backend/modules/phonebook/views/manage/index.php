@@ -19,13 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'buttons' => [
             'addPhone' => [
                 'label' => 'افزودن شماره تماس',
-                'url' => ['/supplier/phonebook/create', 'supplierId' => $supplierId],
+                'url' => ['create', 'supplierId' => $supplierId],
                 'icon' => 'plus',
                 'type' => 'success',
             ],
             'job' => [
                 'label' => 'مدیریت سمت ها',
-                'url' => ['/supplier/job/index'],
+                'url' => ['job/index'],
                 'icon' => 'male',
                 'type' => 'warning',
             ],
