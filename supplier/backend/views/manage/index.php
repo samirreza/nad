@@ -62,10 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {phonebook}',
                 'buttons' => [
                     'phonebook' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-phone-alt"></span>',
-                            '/admin/supplier/phonebook/manage/list?supplierId=' . $model->id, [
-                                'title' => Yii::t('app', 'lead-update'),
-                            ]);
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-phone-alt"></span>',
+                            ['/supplier/phonebook/manage/list', 'supplierId' => $model->id],
+                            ['title' => 'دفترچه تلفن']
+                        );
                     }
                 ]
             ],
