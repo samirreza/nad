@@ -2,6 +2,8 @@
 
 namespace modules\nad\supplier\backend\models;
 
+use modules\nad\supplier\backend\modules\phonebook\models\Phonebook;
+
 class Supplier extends \modules\nad\supplier\common\models\Supplier
 {
     public function behaviors()
@@ -18,7 +20,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                 [
                     'name',
                     'isForeign',
-                    'kind',
+                    'type',
                     'shopAddress',
                     'factoryAddress',
                     'paymentType',
@@ -38,6 +40,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             ['name', 'string', 'max' => 255],
             ['email', 'email'],
             ['website', 'url'],
+            [['description','website','email'], 'default', 'value' => null],
             ['description', 'safe']
         ];
     }
@@ -48,7 +51,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'id' => 'شناسه',
             'name' => 'نام تامین کننده',
             'isForeign' => 'داخلی / خارجی',
-            'kind' => ' نوع تامین کننده',
+            'type' => ' نوع تامین کننده',
             'email' => 'پست الکترونیکی',
             'website' => 'ادرس وبسایت',
             'shopAddress' => 'آدرس مغازه / دفتر',
@@ -60,31 +63,13 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         ];
     }
 
-    public function beforeSave($insert)
+    public function getType()
     {
-        if (parent::beforeSave($insert)) {
-            if ($this->website == '') {
-                $this->website = null;
-            }
-            if ($this->email == '') {
-                $this->email = null;
-            }
-            if ($this->description == '') {
-                $this->description = null;
-            }
-            return true;
-        } else {
-            return false;
-        }
+        $types = self::getTypesList();
+        return isset($types[$this->type]) ? $types[$this->type] : null;
     }
 
-    public function getKind()
-    {
-        $kinds = self::getKindsList();
-        return isset($kinds[$this->kind]) ? $kinds[$this->kind] : null;
-    }
-
-    public static function getKindsList()
+    public static function getTypesList()
     {
         return [
             0 => 'سازنده',
@@ -94,20 +79,43 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         ];
     }
 
-    public function setPaymentType()
+    public function getPaymentType()
     {
-        switch ($this->paymentType) {
-            case 0:
-                return 'نقدی';
-            case 1:
-                return 'شرایطی';
-            case 2:
-                return 'هردو';
-        }
+        $paymentType = self::getPaymentTypeList();
+        return isset($paymentType[$this->paymentType]) ? $paymentType[$this->paymentType] : null;
+    }
+
+    public static function getPaymentTypeList()
+    {
+        return [
+            0 => 'نقدی',
+            1 => 'شرایطی',
+            2 => 'هردو',
+        ];
     }
 
     public function getPhones()
     {
         return $this->hasMany(Phonebook::class, ['supplierId' => 'id']);
+    }
+
+    public function getPhonesAsArray()
+    {
+        $values = [];
+        $index = 0;
+
+        $phones = Phonebook::find()
+            ->andWhere(['supplierId' => $this->id])
+            ->orderBy('id')
+            ->all();
+
+        foreach ($phones as $phone) {
+            $values[$index]['phone'] = $phone->phone;
+            $values[$index]['job'] = $phone->job->title;
+            $values[$index]['name'] = $phone->name;
+            $index++;
+        }
+
+        return $values;
     }
 }

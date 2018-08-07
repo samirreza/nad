@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'buttons' => [
             'create' => ['label' => 'افزودن سمت'],
             'supplierList' => [
-                'label' => 'لیست نمایندگان',
+                'label' => 'لیست تامین کنندگان',
                 'url' => ['/supplier/manage/index'],
                 'icon' => 'list',
                 'type' => 'info',

@@ -39,10 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'kind',
-                'filter' => Supplier::getKindsList(),
+                'attribute' => 'type',
+                'filter' => Supplier::getTypesList(),
                 'value' => function ($model) {
-                    return $model->getKind();
+                    return $model->getType();
                 }
             ],
             [
@@ -58,12 +58,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'farsiNumber',
             ],
             [
-                'class' => 'core\grid\ActionColumn',
-                'visibleButtons' => [
-                    'update' => Yii::$app->user->can('supplier.update'),
-                    'delete' => Yii::$app->user->can('supplier.delete')
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {phonebook}',
+                'buttons' => [
+                    'phonebook' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-phone-alt"></span>',
+                            '/admin/supplier/phonebook/manage/list?supplierId=' . $model->id, [
+                                'title' => Yii::t('app', 'lead-update'),
+                            ]);
+                    }
                 ]
-            ]
+            ],
         ]
     ]); ?>
     <?php Pjax::end(); ?>

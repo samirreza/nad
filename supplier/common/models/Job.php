@@ -8,6 +8,6 @@ class Job extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'jobs';
+        return 'nad_supplier_phonebook_jobs';
     }
 }

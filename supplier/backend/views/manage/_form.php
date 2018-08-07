@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
-use yii\widgets\ActiveForm;
+use themes\admin360\widgets\editor\Editor;
 use modules\nad\supplier\backend\models\Supplier;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -62,9 +63,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             ?>
 
             <?=
-            $form->field($model, 'kind')
+            $form->field($model, 'type')
                 ->dropDownList(
-                    Supplier::getKindsList(),
+                    Supplier::getTypesList(),
                     [
                         'class' => 'form-control input-large',
                         'prompt' => 'انتخاب کنید...'
@@ -75,11 +76,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?=
             $form->field($model, 'paymentType')
                 ->dropDownList(
-                    [
-                        'نقدی',
-                        'شرایطی',
-                        'هردو',
-                    ],
+                    Supplier::getPaymentTypeList(),
                     [
                         'class' => 'form-control input-large',
                         'prompt' => 'انتخاب کنید...'
@@ -115,11 +112,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             ?>
             <?=
             $form->field($model, 'description')
-                ->textarea(
-                    [
-                        'class' => 'form-control input-large',
-                        'style' => 'width:475px;height:85px;resize: none;'
-                    ]
+                ->widget(
+                    Editor::className(),
+                    ['preset' => 'advanced']
                 )
             ?>
             <?php Panel::end() ?>

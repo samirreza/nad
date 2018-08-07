@@ -10,7 +10,7 @@ class m180428_053001_create_phonebook_table extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('phonebook', [
+        $this->createTable('nad_supplier_phonebook', [
             'id' => $this->primaryKey(),
             'supplierId' => $this->integer()->notNull(),
             'jobId' => $this->integer()->notNull(),
@@ -43,7 +43,7 @@ class m180428_053001_create_phonebook_table extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('phonebook');
+        $this->dropTable('nad_supplier_phonebook');
         $this->dropForeignKey('FK_supplier_phone');
         $this->dropForeignKey('FK_job_phone');
     }

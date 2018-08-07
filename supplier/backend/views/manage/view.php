@@ -1,7 +1,8 @@
 <?php
 
-use themes\admin360\widgets\Panel;
+use yii\helpers\Html;
 use yii\widgets\DetailView;
+use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 
 $this->title = $model->name;
@@ -25,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]) ?>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <?php Panel::begin([
                 'title' => 'اطلاعات تامین کننده',
             ]) ?>
@@ -42,12 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
-                        'attribute' => 'kind',
-                        'value' => $model->getKind()
+                        'attribute' => 'type',
+                        'value' => $model->getType()
                     ],
                     [
                         'attribute' => 'paymentType',
-                        'value' => $model->setPaymentType()
+                        'value' => $model->getPaymenttype()
 
                     ],
                     'createdAt:date',
@@ -55,14 +56,51 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'شماره تماس های تامین کننده',
+            ]) ?>
+            <?php
+            if (count($model->phonesAsArray) != 0) {
+                foreach ($model->phonesAsArray as $phone) {
+                    echo DetailView::widget([
+                        'model' => $phone,
+                        'attributes' => [
+                            [
+                                'attribute' => 'نام',
+                                'value' => $phone['name'],
+                            ],
+                            [
+                                'attribute' => 'سمت',
+                                'value' => $phone['job'],
+                            ],
+                            [
+                                'attribute' => 'شماره تماس',
+                                'value' => $phone['phone'],
+                            ],
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز شماره تماسی برای این تامین کننده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+            <?php Panel::end() ?>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
             <?php Panel::begin(['title' => 'آدرس مغازه / دفتر']) ?>
             <div class="well">
                 <?= $model->shopAddress ?>
             </div>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <?php Panel::begin(['title' => 'ادرس کارخانه']) ?>
             <div class="well">
                 <?= $model->factoryAddress ?>

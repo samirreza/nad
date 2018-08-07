@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'ویرایش';
         'buttons' => [
             'phonebook' => [
                 'label' => 'دفترچه تلفن',
-                'url' => ['/supplier/phonebook/list', 'id' => $supplierId],
+                'url' => ['/supplier/phonebook/list', 'supplierId' => $supplierId],
                 'icon' => 'phone',
                 'type' => 'info',
             ],

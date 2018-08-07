@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
-use modules\nad\supplier\backend\models\Job;
+use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
@@ -70,7 +70,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     'options' => ['class' => 'btn-lg'],
                     'type' => 'warning',
                     'icon' => 'undo',
-                    'url' => ['/supplier/phonebook/list', 'id' => $supplierId],
+                    'url' => ['/supplier/phonebook/list', 'supplierId' => $supplierId],
                 ])
                 ?>
             </div>

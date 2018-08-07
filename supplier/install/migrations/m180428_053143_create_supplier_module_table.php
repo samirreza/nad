@@ -10,11 +10,11 @@ class m180428_053143_create_supplier_module_table extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('supplier', [
+        $this->createTable('nad_supplier', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
             'isForeign' => $this->boolean()->notNull(),
-            'kind' => $this->string()->notNull(),
+            'type' => $this->string()->notNull(),
             'email' => $this->string()->null(),
             'website' => $this->string()->null(),
             'shopAddress' => $this->text()->notNull(),
@@ -28,6 +28,6 @@ class m180428_053143_create_supplier_module_table extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('delivery');
+        $this->dropTable('nad_supplier');
     }
 }

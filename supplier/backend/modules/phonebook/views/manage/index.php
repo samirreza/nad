@@ -6,9 +6,11 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
-use modules\nad\supplier\backend\models\Job;
+use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
 $this->title = 'لیست شماره تماس ها';
+$this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['/supplier/manage/index']];
+$this->params['breadcrumbs'][] = ['label' => $supplier->name, 'url' => ['/supplier/manage/view','id' => $supplier->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="phonebook-manage-list">
@@ -17,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'buttons' => [
             'addPhone' => [
                 'label' => 'افزودن شماره تماس',
-                'url' => ['/supplier/phonebook/create', 'id' => $supplierId],
+                'url' => ['/supplier/phonebook/create', 'supplierId' => $supplierId],
                 'icon' => 'plus',
                 'type' => 'success',
             ],
@@ -39,12 +41,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Panel::begin([
         'title' => Html::encode($this->title)
     ]) ?>
-    
+    <?php Pjax::begin([
+        'id' => 'phoebook-gridviewpjax',
+        'enablePushState' => false,
+    ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'core\grid\IDColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
             'name',
             [
                 'attribute' => 'jobId',
@@ -84,5 +89,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]
     ]); ?>
+    <?php Pjax::end(); ?>
     <?php Panel::end() ?>
 </div>

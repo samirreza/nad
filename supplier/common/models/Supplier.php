@@ -8,6 +8,6 @@ class Supplier extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'supplier';
+        return 'nad_supplier';
     }
 }

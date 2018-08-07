@@ -1,0 +1,41 @@
+<?php
+
+namespace modules\nad\supplier\backend\modules\phonebook\controllers;
+
+use yii\filters\AccessControl;
+use core\controllers\AdminController;
+use modules\nad\supplier\backend\modules\phonebook\models\Job;
+use modules\nad\supplier\backend\modules\phonebook\models\JobSearch;
+
+class JobController extends AdminController
+{
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index','view','update','delete'],
+                            'roles' => [
+                                'supplier.create',
+                                'supplier.update',
+                                'supplier.delete'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        );
+    }
+
+    public function init()
+    {
+        $this->modelClass = Job::class;
+        $this->searchClass = JobSearch::class;
+        parent::init();
+    }
+}

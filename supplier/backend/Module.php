@@ -12,6 +12,11 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+        $this->modules = [
+            'attribute' => [
+                'class' => 'modules\nad\supplier\backend\modules\phonebook\Module',
+            ],
+        ];
         \Yii::configure($this, require(__DIR__ . '/config.php'));
     }
 }
