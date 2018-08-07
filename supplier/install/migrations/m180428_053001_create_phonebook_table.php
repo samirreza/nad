@@ -22,9 +22,9 @@ class m180428_053001_create_phonebook_table extends Migration
 
         $this->addForeignKey(
             'FK_supplier_phone',
-            'phonebook',
+            'nad_supplier_phonebook',
             'supplierId',
-            'supplier',
+            'nad_supplier',
             'id',
             'CASCADE',
             'CASCADE'
@@ -32,9 +32,9 @@ class m180428_053001_create_phonebook_table extends Migration
 
         $this->addForeignKey(
             'FK_job_phone',
-            'phonebook',
+            'nad_supplier_phonebook',
             'jobId',
-            'jobs',
+            'nad_supplier_phonebook_jobs',
             'id',
             'RESTRICT',
             'CASCADE'
@@ -43,8 +43,8 @@ class m180428_053001_create_phonebook_table extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('nad_supplier_phonebook');
         $this->dropForeignKey('FK_supplier_phone');
         $this->dropForeignKey('FK_job_phone');
+        $this->dropTable('nad_supplier_phonebook');
     }
 }

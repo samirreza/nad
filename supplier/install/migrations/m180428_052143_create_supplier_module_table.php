@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m180428_053143_create_supplier_module_table extends Migration
+class m180428_052143_create_supplier_module_table extends Migration
 {
     public function safeUp()
     {
