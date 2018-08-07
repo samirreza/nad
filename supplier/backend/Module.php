@@ -13,7 +13,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
         $this->modules = [
-            'attribute' => [
+            'phonebook' => [
                 'class' => 'modules\nad\supplier\backend\modules\phonebook\Module',
             ],
         ];
