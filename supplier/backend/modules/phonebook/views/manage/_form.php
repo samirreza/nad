@@ -51,7 +51,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 ->textInput(
                     [
                         'maxlength' => 11,
-                        'class' => 'form-control input-large'
+                        'class' => 'form-control input-large',
+                        'style' => 'direction: ltr;'
                     ]
                 )
             ?>

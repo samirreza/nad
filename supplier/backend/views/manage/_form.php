@@ -29,7 +29,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             $form->field($model, 'email')
                 ->textInput(
                     [
-                        'class' => 'form-control input-large'
+                        'class' => 'form-control input-large',
+                        'style' => 'direction: ltr;'
                     ]
                 )
             ?>
@@ -37,7 +38,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             $form->field($model, 'website')
                 ->textInput(
                     [
-                        'class' => 'form-control input-large'
+                        'class' => 'form-control input-large',
+                        'style' => 'direction: ltr;'
                     ]
                 )
             ?>
