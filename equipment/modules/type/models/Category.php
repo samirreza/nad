@@ -30,9 +30,14 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
         $this->code = strtoupper($this->code);
-        return parent::beforeSave($insert);
+        return parent::beforeValidate();
+    }
+
+    public function getCodedTitle()
+    {
+        return $this->code .  ' - ' . $this->title;
     }
 }
