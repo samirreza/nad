@@ -7,6 +7,7 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 
 $this->title = 'سمت ها';
+$this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['/supplier/manage/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-manage-index">

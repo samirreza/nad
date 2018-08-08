@@ -52,6 +52,8 @@ class ManageController extends Controller
     public function actionCreate()
     {
         $supplierId = Yii::$app->request->get('supplierId');
+        $supplier = Supplier::findOne($supplierId);
+
         $model = new Phonebook();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->addFlash(
@@ -62,7 +64,8 @@ class ManageController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'supplierId' => $supplierId
+                'supplierId' => $supplierId,
+                'supplier' => $supplier,
             ]);
         }
     }
@@ -71,6 +74,7 @@ class ManageController extends Controller
     {
         $supplierId = Yii::$app->request->get('supplierId');
         $model = $this->findModel($id);
+        $supplier = Supplier::findOne($supplierId);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->addFlash(
@@ -81,7 +85,8 @@ class ManageController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'supplierId' => $supplierId
+                'supplierId' => $supplierId,
+                'supplier' => $supplier
             ]);
         }
     }

@@ -4,6 +4,7 @@ use themes\admin360\widgets\ActionButtons;
 
 $this->title = 'ویرایش تامین کننده';
 $this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $supplier->name, 'url' => ['/supplier/manage/view','id' => $supplier->id]];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'ویرایش';
 

@@ -6,6 +6,7 @@ use themes\admin360\widgets\ActionButtons;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'لیست سمت ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
