@@ -16,35 +16,72 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::begin([
                 'title' => 'اطلاعات تامین کننده'
             ]) ?>
-            <?=
-            $form->field($model, 'name')
-                ->textInput(
-                    [
-                        'maxlength' => 255,
-                        'class' => 'form-control input-large'
-                    ]
-                )
-            ?>
-            <?=
-            $form->field($model, 'email')
-                ->textInput(
-                    [
-                        'class' => 'form-control input-large',
-                        'style' => 'direction: ltr;'
-                    ]
-                )
-            ?>
-            <?=
-            $form->field($model, 'website')
-                ->textInput(
-                    [
-                        'class' => 'form-control input-large',
-                        'style' => 'direction: ltr;'
-                    ]
-                )
-            ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?=
+                    $form->field($model, 'name')
+                        ->textInput(
+                            [
+                                'maxlength' => 255,
+                                'class' => 'form-control input-large'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'phone')
+                        ->textInput(
+                            [
+                                'maxlength' => 11,
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'fax')
+                        ->textInput(
+                            [
+                                'maxlength' => 11,
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'email')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'website')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
             <?php Panel::end() ?>
         </div>
+
         <div class="col-md-4">
             <?php Panel::begin([
                 'title' => 'نوع تامین کننده و نحوه پرداخت'
