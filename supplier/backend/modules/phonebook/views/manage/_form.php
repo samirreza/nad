@@ -70,7 +70,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     'options' => ['class' => 'btn-lg'],
                     'type' => 'warning',
                     'icon' => 'undo',
-                    'url' => ['/supplier/phonebook/list', 'supplierId' => $supplierId],
+                    'url' => ['/supplier/phonebook/manage/list', 'supplierId' => $supplierId],
                 ])
                 ?>
             </div>

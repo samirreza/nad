@@ -69,23 +69,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                            'title' => Yii::t('app', 'lead-update'),
-                        ]);
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-pencil"></span>',
+                            ['/supplier/phonebook/manage/update',
+                                'supplierId' => $model->supplierId,
+                                'id' => $model->id,
+                            ],
+                            ['title' => 'ویرایش']
+                        );
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-trash"></span>',
+                            ['/supplier/phonebook/manage/delete',
+                                'supplierId' => $model->supplierId,
+                                'id' => $model->id,
+                            ],
+                            ['title' => 'حذف']
+                        );
                     }
-                ],
-                'urlCreator' => function ($action, $model) {
-                    if ($action === 'delete') {
-                        $url = '/admin/supplier/phonebook/delete?id=' . $model->id .
-                            '&supplierId=' . $model->supplierId;
-                        return $url;
-                    }
-                    if ($action === 'update') {
-                        $url = '/admin/supplier/phonebook/update?id=' . $model->id .
-                            '&supplierId=' . $model->supplierId;
-                        return $url;
-                    }
-                }
+                ]
             ],
         ]
     ]); ?>
