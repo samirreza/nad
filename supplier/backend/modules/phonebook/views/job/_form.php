@@ -8,12 +8,18 @@ use yii\widgets\ActiveForm;
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 <div class="job-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'enctype' => 'multipart/form-data',
+            'class' => 'sliding-form'
+        ]
+    ]); ?>
+    <?php Panel::begin([
+        'title' => 'اطلاعات سمت'
+    ]) ?>
     <div class="row">
         <div class="col-md-8">
-            <?php Panel::begin([
-                'title' => 'اطلاعات سمت'
-            ]) ?>
+            <?php Panel::begin() ?>
             <?=
             $form->field($model, 'title')
                 ->textInput(
@@ -36,7 +42,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 ]) ?>
                 <?= Button::widget([
                     'label' => 'انصراف',
-                    'options' => ['class' => 'btn-lg'],
+                    'options' => ['class' => 'btn-lg close-sliding-form-button'],
                     'type' => 'warning',
                     'icon' => 'undo',
                     'url' => $backLink,
@@ -46,6 +52,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::end() ?>
         </div>
     </div>
+    <?php Panel::end() ?>
     <?php ActiveForm::end(); ?>
 </div>
 

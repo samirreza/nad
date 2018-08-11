@@ -11,15 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="job-view">
-    <?= ActionButtons::widget([
-        'modelID' => $model->id,
-        'buttons' => [
-            'create' => ['label' => 'افزودن سمت'],
-            'update' => ['label' => 'ویرایش'],
-            //'delete' => ['label' => 'حذف'],
-            'index' => ['label' => 'لیست سمت ها'],
-        ]
-    ]) ?>
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([

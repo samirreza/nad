@@ -3,11 +3,11 @@
 namespace modules\nad\supplier\backend\modules\phonebook\controllers;
 
 use yii\filters\AccessControl;
-use core\controllers\AdminController;
+use core\controllers\AjaxAdminController;
 use modules\nad\supplier\backend\modules\phonebook\models\Job;
 use modules\nad\supplier\backend\modules\phonebook\models\JobSearch;
 
-class JobController extends AdminController
+class JobController extends AjaxAdminController
 {
     public function behaviors()
     {
