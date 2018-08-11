@@ -22,6 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'url' => ['create', 'supplierId' => $supplierId],
                 'icon' => 'plus',
                 'type' => 'success',
+                'options' => [
+                    'class' => 'ajaxcreate',
+                    'data-gridpjaxid' => 'phoebook-gridviewpjax'
+                ]
             ],
             'job' => [
                 'label' => 'مدیریت سمت ها',
@@ -37,6 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]
     ]) ?>
+
+    <div class="sliding-form-wrapper"></div>
 
     <?php Panel::begin([
         'title' => Html::encode($this->title)
@@ -65,30 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'phone',
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'core\grid\AjaxActionColumn',
                 'template' => '{update} {delete}',
-                'buttons' => [
-                    'update' => function ($url, $model) {
-                        return Html::a(
-                            '<span class="glyphicon glyphicon-pencil"></span>',
-                            ['/supplier/phonebook/manage/update',
-                                'supplierId' => $model->supplierId,
-                                'id' => $model->id,
-                            ],
-                            ['title' => 'ویرایش']
-                        );
-                    },
-                    'delete' => function ($url, $model) {
-                        return Html::a(
-                            '<span class="glyphicon glyphicon-trash"></span>',
-                            ['/supplier/phonebook/manage/delete',
-                                'supplierId' => $model->supplierId,
-                                'id' => $model->id,
-                            ],
-                            ['title' => 'حذف']
-                        );
-                    }
-                ]
             ],
         ]
     ]); ?>

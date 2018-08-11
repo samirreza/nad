@@ -3,6 +3,7 @@
 namespace modules\nad\supplier\backend\modules\phonebook\controllers;
 
 use Yii;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
@@ -22,7 +23,7 @@ class ManageController extends Controller
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['list','create','update','delete'],
+                            'actions' => ['list', 'create', 'update', 'delete'],
                             'roles' => [
                                 'supplier.create',
                                 'supplier.update',
@@ -52,54 +53,56 @@ class ManageController extends Controller
     public function actionCreate()
     {
         $supplierId = Yii::$app->request->get('supplierId');
-        $supplier = Supplier::findOne($supplierId);
-
         $model = new Phonebook();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->addFlash(
-                'success',
-                'شماره تماس با موفقیت در سیستم درج شد.'
+            echo Json::encode(
+                [
+                    'status' => 'success',
+                    'message' => 'شماره تماس با موفقیت در سیستم درج شد.'
+                ]
             );
-            return $this->redirect(['list', 'supplierId' => $supplierId]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'supplierId' => $supplierId,
-                'supplier' => $supplier,
-            ]);
+            exit;
         }
+        echo Json::encode(
+            [
+                'content' => $this->renderAjax('_form', ['model' => $model, 'supplierId' => $supplierId])
+            ]
+        );
+        exit;
     }
 
     public function actionUpdate($id)
     {
         $supplierId = Yii::$app->request->get('supplierId');
         $model = $this->findModel($id);
-        $supplier = Supplier::findOne($supplierId);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->addFlash(
-                'success',
-                'شماره تماس ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+            echo Json::encode(
+                [
+                    'status' => 'success',
+                    'message' => 'شماره تماس ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+                ]
             );
-            return $this->redirect(['list', 'supplierId' => $supplierId]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'supplierId' => $supplierId,
-                'supplier' => $supplier
-            ]);
+            exit;
         }
+        echo Json::encode(
+            [
+                'content' => $this->renderAjax('_form', ['model' => $model, 'supplierId' => $supplierId])
+            ]
+        );
+        exit;
     }
 
     public function actionDelete($id)
     {
-        $supplierId = Yii::$app->request->get('supplierId');
         $this->findModel($id)->delete();
-        Yii::$app->session->addFlash(
-            'success',
-            'شماره تماس با موفقیت از سیستم حذف شد.'
+        echo Json::encode(
+            [
+                'status' => 'success',
+                'message' => 'شماره تماس با موفقیت از سیستم حذف شد.'
+            ]
         );
-        return $this->redirect(['list', 'supplierId' => $supplierId]);
+        exit;
     }
 
     protected function findModel($id)
