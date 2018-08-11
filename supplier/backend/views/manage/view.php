@@ -90,6 +90,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'شماره تماس',
                                 'value' => $phone['phone'],
                             ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'table-layout: fixed'
                         ]
                     ]);
                 }
