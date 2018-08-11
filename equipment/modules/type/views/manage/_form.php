@@ -41,7 +41,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <div class="col-md-3">
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr', 'maxlength' => 1]
-                    ) ?>
+                    )->hint('تنها یک کاراکتر لاتین') ?>
                 </div>
             </div>
             <?=

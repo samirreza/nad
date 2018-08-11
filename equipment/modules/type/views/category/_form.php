@@ -23,7 +23,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <div class="col-md-3">
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr']
-                    ) ?>
+                    )->hint('۳ کاراکتر بزرگ لاتین به فرمت AAA') ?>
                 </div>
             </div>
             <?php Panel::end() ?>
