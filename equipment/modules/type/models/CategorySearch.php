@@ -18,7 +18,10 @@ class CategorySearch extends Category
     {
         $query = Category::find();
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => ['id' => SORT_DESC]
+            ]
         ]);
         $this->load($params);
         if (!$this->validate()) {

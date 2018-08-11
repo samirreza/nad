@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 use modules\nad\equipment\modules\type\models\Category;
 use modules\nad\equipment\modules\type\models\CategorySearch;
 
-class CategoryController extends \core\controllers\AdminController
+class CategoryController extends \core\controllers\AjaxAdminController
 {
     public function behaviors()
     {

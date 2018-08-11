@@ -14,7 +14,13 @@ $this->params['breadcrumbs'] = [
 <div class="categories-index">
 <?= ActionButtons::widget([
     'buttons' => [
-        'create' => ['label' => 'دسته جدید'],
+        'create' => [
+            'label' => 'دسته جدید',
+            'options' => [
+                'class' => 'ajaxcreate',
+                'data-gridpjaxid' => 'categories-gridviewpjax'
+            ]
+        ],
         'equipments' => [
             'label' => 'انواع تجهیزات',
             'url' => ['manage/index'],
@@ -23,6 +29,9 @@ $this->params['breadcrumbs'] = [
         ],
     ],
 ]); ?>
+
+<div class="sliding-form-wrapper"></div>
+
 <?php Panel::begin([
     'title' => 'لیست دسته ها'
 ]) ?>
@@ -36,9 +45,12 @@ $this->params['breadcrumbs'] = [
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'code',
-            ['class' => 'core\grid\TitleColumn'],
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'core\grid\TitleColumn',
+                'isAjaxGrid' => true
+            ],
+            [
+                'class' => 'core\grid\AjaxActionColumn',
                 'template' => '{view} {update}'
             ]
         ],
