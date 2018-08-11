@@ -1,7 +1,6 @@
 <?php
 namespace modules\nad\equipment\modules\type\controllers;
 
-use Yii;
 use yii\filters\AccessControl;
 use modules\nad\equipment\modules\type\models\Category;
 use modules\nad\equipment\modules\type\models\CategorySearch;

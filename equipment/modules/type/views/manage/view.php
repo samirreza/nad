@@ -6,9 +6,10 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = 'تجهیزات';
 $this->params['breadcrumbs'] = [
+    'تجهیزات',
     ['label' => 'انواع', 'url' => ['index']],
+    $model->category->title,
     $model->title
 ];
 ?>
@@ -18,8 +19,13 @@ $this->params['breadcrumbs'] = [
         'buttons' => [
             'update' => ['label' => 'ویرایش'],
             'delete' => ['label' => 'حذف'],
-            'create' => ['label' => 'نوع تجهیز جدید'],
-            'index' => ['label' => 'انواع تجهیزات']
+            'index' => ['label' => 'انواع تجهیزات'],
+            'parts' => [
+                'label' => 'لیست قطعات',
+                'url' => ['details/part/index', 'typeId' => $model->id],
+                'type' => 'warning',
+                'icon' => 'cog'
+            ]
         ],
     ]); ?>
     <div class="row">
@@ -33,6 +39,11 @@ $this->params['breadcrumbs'] = [
                     'compositeCode',
                     'category.title',
                     'title',
+                    [
+                        'label' => 'تعداد قطعات',
+                        'value' => $model->getParts()->count(),
+                        'format' => 'farsiNumber'
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

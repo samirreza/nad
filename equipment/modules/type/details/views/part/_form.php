@@ -14,8 +14,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             'class' => 'sliding-form'
         ]
     ]); ?>
+    <?= Html::activeHiddenInput($model, 'typeId', ['id' => 'hidden-typeid']) ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات دسته'
+        'title' => 'اطلاعات قطعه'
     ]) ?>
     <div class="row">
         <div class="col-md-8">
@@ -24,7 +25,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <div class="col-md-3">
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr', 'maxlength' => 3]
-                    )->hint('۳ کاراکتر بزرگ لاتین به فرمت AAA') ?>
+                    )->hint('۳ عدد لاتین به فرمت 000') ?>
                 </div>
                 <div class="col-md-6">
                     <?= $form->field($model, 'title')->textInput() ?>
@@ -56,3 +57,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
     <?php Panel::end() ?>
     <?php ActiveForm::end(); ?>
 </div>
+
+<?php $this->registerJs('
+    $("#hidden-typeid").val($(".ajaxcreate").attr("data-typeId"));
+');
