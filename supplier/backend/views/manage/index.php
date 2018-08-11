@@ -14,7 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= ActionButtons::widget([
         'buttons' => [
-            'create' => ['label' => 'افزودن تامین کننده'],
+            'create' => [
+                'label' => 'افزودن تامین کننده',
+                'visibleFor' => ['supplier.create']
+            ]
         ],
     ]); ?>
 
@@ -68,6 +71,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['title' => 'دفترچه تلفن']
                         );
                     }
+                ],
+                'visibleButtons' => [
+                    'view' => \Yii::$app->user->can('supplier.create'),
+                    'update' => \Yii::$app->user->can('supplier.update'),
+                    'phonebook' => \Yii::$app->user->can('supplier.create')
                 ]
             ],
         ]

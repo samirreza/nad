@@ -8,7 +8,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="supplier-create">
     <?= ActionButtons::widget([
         'buttons' => [
-            'index' => ['label' => 'لیست تامین کنندگان'],
+            'index' => [
+                'label' => 'لیست تامین کنندگان',
+                'visibleFor' => ['supplier.create']
+            ]
         ],
     ]); ?>
 

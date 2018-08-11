@@ -14,15 +14,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'update' => ['label' => 'ویرایش'],
-            'delete' => ['label' => 'حذف'],
-            'index' => ['label' => 'لیست تامین کنندگان'],
+            'update' => [
+                'label' => 'ویرایش',
+                'visibleFor' => ['supplier.update']
+            ],
+            'delete' => [
+                'label' => 'حذف',
+                'visibleFor' => ['supplier.delete']
+            ],
+            'index' => [
+                'label' => 'لیست تامین کنندگان',
+                'visibleFor' => ['supplier.create']
+            ],
             'phonebook' => [
                 'label' => 'دفترچه تلفن',
                 'url' => ['phonebook/manage/list', 'supplierId' => $model->id],
                 'icon' => 'phone',
                 'type' => 'success',
-            ],
+                'visibleFor' => ['supplier.create']
+            ]
         ]
     ]) ?>
     <div class="row">
