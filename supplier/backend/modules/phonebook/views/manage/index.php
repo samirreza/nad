@@ -9,22 +9,26 @@ use themes\admin360\widgets\ActionButtons;
 use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
 $this->title = 'لیست شماره تماس ها';
-$this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['/supplier/manage/index']];
-$this->params['breadcrumbs'][] = ['label' => $supplier->name, 'url' => ['/supplier/manage/view','id' => $supplier->id]];
+$this->params['breadcrumbs'][] = [
+    'label' => 'لیست تامین کنندگان',
+    'url' => ['/supplier/manage/index']
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $supplier->name,
+    'url' => ['/supplier/manage/view', 'id' => $supplier->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="phonebook-manage-list">
 
     <?= ActionButtons::widget([
         'buttons' => [
-            'addPhone' => [
+            'create' => [
                 'label' => 'افزودن شماره تماس',
-                'url' => ['create', 'supplierId' => $supplierId],
-                'icon' => 'plus',
-                'type' => 'success',
                 'options' => [
                     'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'phoebook-gridviewpjax'
+                    'data-gridpjaxid' => 'phoebook-gridviewpjax',
+                    'data-supplierId' => $supplierId
                 ]
             ],
             'job' => [
