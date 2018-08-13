@@ -46,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان دسته'
+                        'label' => 'عنوان دسته',
+                        'value' => function ($model) {
+                            return $model->category->withParentsTitle;
+                        }
                     ],
                     'titleEn',
                     [

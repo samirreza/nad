@@ -87,4 +87,28 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->compositeCode .  ' - ' . $this->title;
     }
+
+    public function getParentsTitle()
+    {
+        if ($this->isRoot()) {
+            return;
+        }
+
+        $parents = $this->parents()->all();
+        $fatherId = $this->parents(1)->one()->id;
+        $title = '';
+        foreach ($parents as $parent) {
+            $title .= $parent->title;
+            if ($parent->id != $fatherId) {
+                $title .= ' -> ';
+            }
+        }
+
+        return $title;
+    }
+
+    public function getWithParentsTitle()
+    {
+        return $this->parentsTitle .' -> '. $this->title;
+    }
 }

@@ -44,6 +44,7 @@ class Type extends \modules\nad\material\models\Type
             'description' => 'توضیحات',
             'categoryId' => 'دسته',
             'category.title' => 'دسته',
+            'category.withParentsTitle' => 'دسته',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];

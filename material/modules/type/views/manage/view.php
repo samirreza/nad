@@ -19,7 +19,7 @@ use themes\admin360\widgets\ActionButtons;
                     'compositeCode',
                     'title',
                     'titleEn',
-                    'category.title',
+                    'category.withParentsTitle',
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],
