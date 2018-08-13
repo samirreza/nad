@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
-use yii\widgets\ActiveForm;
+use themes\admin360\widgets\editor\Editor;
 use modules\nad\supplier\backend\models\Supplier;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -15,33 +16,72 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::begin([
                 'title' => 'اطلاعات تامین کننده'
             ]) ?>
-            <?=
-            $form->field($model, 'name')
-                ->textInput(
-                    [
-                        'maxlength' => 255,
-                        'class' => 'form-control input-large'
-                    ]
-                )
-            ?>
-            <?=
-            $form->field($model, 'email')
-                ->textInput(
-                    [
-                        'class' => 'form-control input-large'
-                    ]
-                )
-            ?>
-            <?=
-            $form->field($model, 'website')
-                ->textInput(
-                    [
-                        'class' => 'form-control input-large'
-                    ]
-                )
-            ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?=
+                    $form->field($model, 'name')
+                        ->textInput(
+                            [
+                                'maxlength' => 255,
+                                'class' => 'form-control input-large'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'phone')
+                        ->textInput(
+                            [
+                                'maxlength' => 11,
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'fax')
+                        ->textInput(
+                            [
+                                'maxlength' => 11,
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'email')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'website')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
             <?php Panel::end() ?>
         </div>
+
         <div class="col-md-4">
             <?php Panel::begin([
                 'title' => 'نوع تامین کننده و نحوه پرداخت'
@@ -62,9 +102,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             ?>
 
             <?=
-            $form->field($model, 'kind')
+            $form->field($model, 'type')
                 ->dropDownList(
-                    Supplier::getKindsList(),
+                    Supplier::getTypesList(),
                     [
                         'class' => 'form-control input-large',
                         'prompt' => 'انتخاب کنید...'
@@ -75,11 +115,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?=
             $form->field($model, 'paymentType')
                 ->dropDownList(
-                    [
-                        'نقدی',
-                        'شرایطی',
-                        'هردو',
-                    ],
+                    Supplier::getPaymentTypeList(),
                     [
                         'class' => 'form-control input-large',
                         'prompt' => 'انتخاب کنید...'
@@ -115,11 +151,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             ?>
             <?=
             $form->field($model, 'description')
-                ->textarea(
-                    [
-                        'class' => 'form-control input-large',
-                        'style' => 'width:475px;height:85px;resize: none;'
-                    ]
+                ->widget(
+                    Editor::className(),
+                    ['preset' => 'advanced']
                 )
             ?>
             <?php Panel::end() ?>

@@ -7,20 +7,32 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 
 $this->title = 'سمت ها';
+$this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['/supplier/manage/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-manage-index">
     <?= ActionButtons::widget([
         'buttons' => [
-            'create' => ['label' => 'افزودن سمت'],
+            'create' => [
+                'label' => 'افزودن سمت',
+                'options' => [
+                    'class' => 'ajaxcreate',
+                    'data-gridpjaxid' => 'job-gridviewpjax'
+                ]
+            ],
+
             'supplierList' => [
-                'label' => 'لیست نمایندگان',
+                'label' => 'لیست تامین کنندگان',
                 'url' => ['/supplier/manage/index'],
                 'icon' => 'list',
                 'type' => 'info',
             ],
         ]
     ]) ?>
+
+
+    <div class="sliding-form-wrapper"></div>
+
 
     <?php Panel::begin([
         'title' => Html::encode($this->title)
@@ -34,16 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'core\grid\IDColumn'],
-            'title',
+            [
+                'class' => 'core\grid\TitleColumn',
+                'isAjaxGrid' => true
+            ],
             [
                 'attribute' => 'createdAt',
                 'format' => 'date',
                 'filter' => false
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}',
-            ],
+                'class' => 'core\grid\AjaxActionColumn',
+                'template' => '{view} {update}'
+            ]
         ]
     ]); ?>
     <?php Pjax::end(); ?>

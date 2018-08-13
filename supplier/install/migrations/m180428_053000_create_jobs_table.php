@@ -10,7 +10,7 @@ class m180428_053000_create_jobs_table extends Migration
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('jobs', [
+        $this->createTable('nad_supplier_phonebook_jobs', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
             'createdAt' => $this->integer()->notNull(),
@@ -20,6 +20,6 @@ class m180428_053000_create_jobs_table extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('jobs');
+        $this->dropTable('nad_supplier_phonebook_jobs');
     }
 }

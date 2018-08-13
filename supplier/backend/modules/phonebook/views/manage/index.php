@@ -6,24 +6,34 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
-use modules\nad\supplier\backend\models\Job;
+use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
 $this->title = 'لیست شماره تماس ها';
+$this->params['breadcrumbs'][] = [
+    'label' => 'لیست تامین کنندگان',
+    'url' => ['/supplier/manage/index']
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $supplier->name,
+    'url' => ['/supplier/manage/view', 'id' => $supplier->id]
+];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="phonebook-manage-list">
 
     <?= ActionButtons::widget([
         'buttons' => [
-            'addPhone' => [
+            'create' => [
                 'label' => 'افزودن شماره تماس',
-                'url' => ['/supplier/phonebook/create', 'id' => $supplierId],
-                'icon' => 'plus',
-                'type' => 'success',
+                'options' => [
+                    'class' => 'ajaxcreate',
+                    'data-gridpjaxid' => 'phoebook-gridviewpjax',
+                    'data-supplierId' => $supplierId
+                ]
             ],
             'job' => [
                 'label' => 'مدیریت سمت ها',
-                'url' => ['/supplier/job/index'],
+                'url' => ['job/index'],
                 'icon' => 'male',
                 'type' => 'warning',
             ],
@@ -36,15 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
     ]) ?>
 
+    <div class="sliding-form-wrapper"></div>
+
     <?php Panel::begin([
         'title' => Html::encode($this->title)
     ]) ?>
-    
+    <?php Pjax::begin([
+        'id' => 'phoebook-gridviewpjax',
+        'enablePushState' => false,
+    ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'core\grid\IDColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
             'name',
             [
                 'attribute' => 'jobId',
@@ -60,29 +75,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'phone',
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'core\grid\AjaxActionColumn',
                 'template' => '{update} {delete}',
-                'buttons' => [
-                    'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                            'title' => Yii::t('app', 'lead-update'),
-                        ]);
-                    }
-                ],
-                'urlCreator' => function ($action, $model) {
-                    if ($action === 'delete') {
-                        $url = '/admin/supplier/phonebook/delete?id=' . $model->id .
-                            '&supplierId=' . $model->supplierId;
-                        return $url;
-                    }
-                    if ($action === 'update') {
-                        $url = '/admin/supplier/phonebook/update?id=' . $model->id .
-                            '&supplierId=' . $model->supplierId;
-                        return $url;
-                    }
-                }
             ],
         ]
     ]); ?>
+    <?php Pjax::end(); ?>
     <?php Panel::end() ?>
 </div>

@@ -12,8 +12,10 @@ $this->params['breadcrumbs'][] = 'ویرایش';
     <?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'delete' => ['label' => 'حذف'],
-            'index' => ['label' => 'لیست تامین کنندگان'],
+            'index' => [
+                'label' => 'لیست تامین کنندگان',
+                'visibleFor' => ['supplier.create']
+            ]
         ],
     ]); ?>
     <?= $this->render('_form', [

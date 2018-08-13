@@ -9,7 +9,7 @@ class SupplierSearch extends Supplier
     public function rules()
     {
         return [
-            [['name','isForeign','kind'], 'safe'],
+            [['name','isForeign','type'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SupplierSearch extends Supplier
         $query->andFilterWhere([
             'id' => $this->id,
             'isForeign' => $this->isForeign,
-            'kind' => $this->kind,
+            'type' => $this->type,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

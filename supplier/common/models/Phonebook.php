@@ -8,6 +8,6 @@ class Phonebook extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'phonebook';
+        return 'nad_supplier_phonebook';
     }
 }

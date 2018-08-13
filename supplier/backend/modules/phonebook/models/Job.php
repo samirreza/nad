@@ -1,6 +1,6 @@
 <?php
 
-namespace modules\nad\supplier\backend\models;
+namespace modules\nad\supplier\backend\modules\phonebook\models;
 
 class Job extends \modules\nad\supplier\common\models\Job
 {

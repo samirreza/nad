@@ -1,15 +1,15 @@
 <?php
-namespace modules\nad\supplier\backend\models;
+namespace modules\nad\supplier\backend\modules\phonebook\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class JobSearch extends Job
+class PhonebookSearch extends Phonebook
 {
     public function rules()
     {
         return [
-            [['title'], 'safe'],
+            [['name', 'phone', 'jobId'], 'safe'],
         ];
     }
 
@@ -20,8 +20,7 @@ class JobSearch extends Job
 
     public function search($params)
     {
-        $query = Job::find();
-
+        $query = Phonebook::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -38,7 +37,13 @@ class JobSearch extends Job
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere([
+            'jobId' => $this->jobId,
+            'supplierId' => $params['supplierId'],
+        ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }

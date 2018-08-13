@@ -6,19 +6,11 @@ use themes\admin360\widgets\ActionButtons;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'لیست سمت ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="job-view">
-    <?= ActionButtons::widget([
-        'modelID' => $model->id,
-        'buttons' => [
-            'create' => ['label' => 'افزودن سمت'],
-            'update' => ['label' => 'ویرایش'],
-            //'delete' => ['label' => 'حذف'],
-            'index' => ['label' => 'لیست سمت ها'],
-        ]
-    ]) ?>
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
