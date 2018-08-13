@@ -82,4 +82,9 @@ class Category extends \yii\db\ActiveRecord
         return ['آیتم سطح نخست است'] +
             ArrayHelper::map($this->possibleParents(), 'id', 'nestedTitle');
     }
+
+    public function getCodedTitle()
+    {
+        return $this->compositeCode .  ' - ' . $this->title;
+    }
 }
