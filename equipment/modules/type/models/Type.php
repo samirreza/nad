@@ -67,6 +67,6 @@ class Type extends \modules\nad\equipment\models\Type
 
     public function getCompositeCode()
     {
-        return $this->category->code . '.' . $this->code;
+        return $this->category->code . '. ' . $this->code;
     }
 }

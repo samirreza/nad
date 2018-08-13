@@ -25,6 +25,12 @@ $this->params['breadcrumbs'] = [
                 'url' => ['details/part/index', 'typeId' => $model->id],
                 'type' => 'warning',
                 'icon' => 'cog'
+            ],
+            'fittings' => [
+                'label' => 'لیست اتصالات',
+                'url' => ['details/fitting/index', 'typeId' => $model->id],
+                'type' => 'success',
+                'icon' => 'chain'
             ]
         ],
     ]); ?>

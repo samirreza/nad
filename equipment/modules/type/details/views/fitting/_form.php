@@ -5,15 +5,13 @@ use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 ?>
-<div class="parts-form">
+<div class="fittings-form">
     <?php $form = ActiveForm::begin([
-        'options'=>[
-            'class' => 'sliding-form'
-        ]
+        'options' => ['class' => 'sliding-form']
     ]); ?>
     <?= Html::activeHiddenInput($model, 'typeId', ['id' => 'hidden-typeid']) ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات قطعه'
+        'title' => 'اطلاعات اتصال'
     ]) ?>
     <div class="row">
         <div class="col-md-8">

@@ -4,11 +4,11 @@ namespace modules\nad\equipment\modules\type\details\models;
 use modules\nad\equipment\modules\type\models\Type;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Part extends \yii\db\ActiveRecord
+class Fitting extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'nad_equipment_type_part';
+        return 'nad_equipment_type_fitting';
     }
 
     public function rules()
@@ -35,7 +35,7 @@ class Part extends \yii\db\ActiveRecord
         return [
             'title' => 'عنوان',
             'code' => 'شماره قطعه',
-            'compositeCode' => 'شناسه قطعه',
+            'compositeCode' => 'شناسه اتصال',
         ];
     }
 
@@ -46,6 +46,6 @@ class Part extends \yii\db\ActiveRecord
 
     public function getCompositeCode()
     {
-        return $this->type->getCompositeCode() . '. S. ' . $this->code;
+        return $this->type->getCompositeCode() . '. F. ' . $this->code;
     }
 }
