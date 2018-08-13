@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
     $this->title
 ];
 ?>
-<div class="categories-index">
+<div class="parts-index">
 <?= ActionButtons::widget([
     'buttons' => [
         'create' => [
@@ -30,6 +30,12 @@ $this->params['breadcrumbs'] = [
             'url' => ['../manage/view', 'id' => $type->id],
             'type' => 'info',
             'icon' => 'info'
+        ],
+        'models' => [
+            'label' => 'مدل های قطعات',
+            'url' => ['model/index', 'typeId' => $type->id],
+            'type' => 'warning',
+            'icon' => 'codepen'
         ],
     ],
 ]); ?>

@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
     $this->title
 ];
 ?>
-<div class="categories-index">
+<div class="fittings-index">
 <?= ActionButtons::widget([
     'buttons' => [
         'create' => [

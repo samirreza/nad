@@ -25,7 +25,7 @@ class Fitting extends \yii\db\ActiveRecord
                 'code',
                 'unique',
                 'targetAttribute' => ['code', 'typeId'],
-                'message' => 'این شماره قطعه پیش تر ثبت شده است.'
+                'message' => 'این شماره اتصال پیش تر ثبت شده است.'
             ],
         ];
     }
@@ -34,7 +34,7 @@ class Fitting extends \yii\db\ActiveRecord
     {
         return [
             'title' => 'عنوان',
-            'code' => 'شماره قطعه',
+            'code' => 'شماره اتصال',
             'compositeCode' => 'شناسه اتصال',
         ];
     }
