@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => ['label' => 'نوع تجهیز جدید'],
-            'categoriesIndex' => ['label' => 'دسته ها'],
+            'categoriesIndex' => ['label' => 'گروه ها'],
         ],
     ]); ?>
     <?php Panel::begin([
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'compositeCode',
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان دسته'
+                        'label' => 'عنوان گروه'
                     ],
                     ['class' => 'core\grid\TitleColumn'],
                     [

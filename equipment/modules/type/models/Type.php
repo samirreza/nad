@@ -42,8 +42,8 @@ class Type extends \modules\nad\equipment\models\Type
             'compositeCode' => 'شناسه نوع تجهیز',
             'title' => 'عنوان',
             'description' => 'توضیحات',
-            'categoryId' => 'دسته',
-            'category.title' => 'دسته',
+            'categoryId' => 'گروه',
+            'category.title' => 'گروه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
