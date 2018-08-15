@@ -40,9 +40,9 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'شناسه',
             'title' => 'عنوان',
             'nestedTitle' => 'عنوان',
-            'code' => 'شناسه دسته',
+            'code' => 'شناسه گروه',
             'compositeCode' => 'شناسه یکتا',
-            'parentId' => 'دسته پدر',
+            'parentId' => 'گروه پدر',
         ];
     }
 

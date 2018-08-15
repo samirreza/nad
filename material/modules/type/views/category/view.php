@@ -10,7 +10,7 @@ use themes\admin360\widgets\ActionButtons;
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
-                'title' => 'اطلاعات دسته',
+                'title' => 'اطلاعات گروه',
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,

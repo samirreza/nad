@@ -4,7 +4,7 @@ use yii\grid\GridView;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 
-$this->title = 'لیست دسته ها';
+$this->title = 'لیست گروه ها';
 $this->params['breadcrumbs'] = [
     'مواد',
     ['label' => 'انواع مواد', 'url' => ['manage/index']],
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'] = [
 <?= ActionButtons::widget([
     'buttons' => [
         'create' => [
-            'label' => 'دسته جدید',
+            'label' => 'گروه جدید',
             'options' => [
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'] = [
 <div class="sliding-form-wrapper"></div>
 
 <?php Panel::begin([
-    'title' => 'لیست دسته ها'
+    'title' => 'لیست گروه ها'
 ]) ?>
 <?php Pjax::begin([
     'id' => 'categories-gridviewpjax',

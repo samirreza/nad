@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data-gridpjaxid' => 'material-gridviewpjax'
                 ]
             ],
-            'categoriesIndex' => ['label' => 'دسته ها'],
+            'categoriesIndex' => ['label' => 'گروه ها'],
         ],
     ]); ?>
 
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان دسته',
+                        'label' => 'عنوان گروه',
                         'value' => function ($model) {
                             return $model->category->withParentsTitle;
                         }

@@ -11,7 +11,7 @@ use themes\admin360\widgets\Button;
         'options'=>['class' => 'sliding-form']
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات دسته'
+        'title' => 'اطلاعات گروه'
     ]) ?>
     <div class="row">
         <div class="col-md-8">
