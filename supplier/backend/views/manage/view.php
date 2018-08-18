@@ -48,12 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'fax',
                     'email',
                     'website',
-                    [
-                        'attribute' => 'isActive',
-                        'value' => function ($model) {
-                            return $model->isActive ? 'فعال' : 'غیرفعال';
-                        }
-                    ],
+                    'isActive:boolean',
                     [
                         'attribute' => 'isForeign',
                         'value' => function ($model) {

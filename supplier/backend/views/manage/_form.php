@@ -161,19 +161,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::begin([
                 'title' => 'وضعیت تامین کننده'
             ]) ?>
-            <?=
-            $form->field($model, 'isActive')
-                ->dropDownList(
-                    [
-                        'غیرفعال',
-                        'فعال'
-                    ],
-                    [
-                        'class' => 'form-control input-large',
-                        'prompt' => 'انتخاب کنید...'
-                    ]
-                )
-            ?>
+            <?= $form->field($model, 'isActive')->checkbox(); ?>
+
             <?php Panel::end() ?>
         </div>
         <div class="col-md-4">

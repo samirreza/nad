@@ -54,7 +54,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'id' => 'شناسه',
             'name' => 'نام تامین کننده',
             'isForeign' => 'داخلی / خارجی',
-            'isActive' => 'وضعیت',
+            'isActive' => 'نماینده فعال است',
             'type' => ' نوع تامین کننده',
             'email' => 'پست الکترونیکی',
             'website' => 'ادرس وبسایت',

@@ -35,13 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'name',
             [
-                'attribute' => 'isActive',
-                'filter' => ['غیرفعال', 'فعال'],
-                'value' => function ($model) {
-                    return $model->isActive ? 'فعال' : 'غیرفعال';
-                }
-            ],
-            [
                 'attribute' => 'isForeign',
                 'filter' => ['داخلی', 'خارجی'],
                 'value' => function ($model) {
@@ -67,6 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'farsiNumber',
             ],
+            ['class' => 'core\grid\ActiveColumn'],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {phonebook}',
