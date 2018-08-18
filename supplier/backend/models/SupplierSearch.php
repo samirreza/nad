@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\supplier\backend\models;
 
 use yii\base\Model;
@@ -9,7 +10,7 @@ class SupplierSearch extends Supplier
     public function rules()
     {
         return [
-            [['name','isForeign','type'], 'safe'],
+            [['name', 'isForeign', 'type', 'isActive'], 'safe'],
         ];
     }
 
@@ -41,6 +42,7 @@ class SupplierSearch extends Supplier
         $query->andFilterWhere([
             'id' => $this->id,
             'isForeign' => $this->isForeign,
+            'isActive' => $this->isActive,
             'type' => $this->type,
         ]);
 

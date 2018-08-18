@@ -15,9 +15,11 @@ class Phonebook extends \modules\nad\supplier\common\models\Phonebook
     {
         return [
             [['name', 'phone', 'jobId'], 'required',],
-            [['name',], 'trim'],
+            [['name', 'email'], 'trim'],
             ['name', 'string', 'max' => 255],
             ['phone', 'integer'],
+            ['email', 'email'],
+            [['email', 'phone'], 'unique'],
             [['supplierId', 'jobId'], 'safe'],
         ];
     }
@@ -28,6 +30,7 @@ class Phonebook extends \modules\nad\supplier\common\models\Phonebook
             'id' => 'شناسه',
             'name' => 'نام',
             'phone' => 'شماره تماس',
+            'email' => 'پست الکترونیکی',
             'jobId' => 'سمت',
             'createdAt' => 'تاریخ ثبت',
         ];

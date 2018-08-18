@@ -74,6 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'phone',
+            'email',
             [
                 'class' => 'core\grid\AjaxActionColumn',
                 'template' => '{update} {delete}',

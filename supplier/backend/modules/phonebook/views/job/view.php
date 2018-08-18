@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-6">
             <?php Panel::begin([
                 'title' => 'اطلاعات سمت',
+                'showCloseButton' => true
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,
