@@ -5,6 +5,7 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 use yii\widgets\ActiveForm;
 
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 <div class="job-form">

@@ -7,6 +7,7 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
     <div class="phonebook-form">
