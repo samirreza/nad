@@ -1,7 +1,10 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
+use core\widgets\select2\Select2;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 use themes\admin360\widgets\editor\Editor;
@@ -99,7 +102,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ]
                 )
             ?>
-
             <?=
             $form->field($model, 'type')
                 ->dropDownList(
@@ -110,7 +112,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ]
                 )
             ?>
-
             <?=
             $form->field($model, 'paymentType')
                 ->dropDownList(
@@ -121,7 +122,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ]
                 )
             ?>
-
             <?php Panel::end() ?>
         </div>
     </div>
@@ -159,6 +159,33 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         </div>
         <div class="col-md-4">
             <?php Panel::begin([
+                'title' => 'تجهیزات و مواد تامین کننده'
+            ]) ?>
+            <?= $form->field($model, 'equipments')->widget(
+                Select2::class,
+                [
+                    'options' => [
+                        'multiple' => true,
+                        'placeholder' => 'انتخاب کنید ...',
+                        'value' => $model->getEquipmentsAsArray()
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'minimumInputLength' => 2,
+                        'ajax' => [
+                            'url' => Url::to(['/equipment/type/manage/ajax-find-equipments']),
+                            'dataType' => 'json',
+                            'delay' => 1000,
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'templateResult' => new JsExpression('function(equipment) { return equipment.text; }'),
+                    ],
+                ]
+            ) ?>
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-4">
+            <?php Panel::begin([
                 'title' => 'وضعیت تامین کننده'
             ]) ?>
             <?= $form->field($model, 'isActive')->checkbox(); ?>
@@ -174,7 +201,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <?= Html::submitButton('<i class="fa fa-save"></i> ذخیره', [
                     'class' => 'btn btn-lg btn-success'
                 ]) ?>
-
                 <?= Button::widget([
                     'label' => 'انصراف',
                     'options' => ['class' => 'btn-lg'],

@@ -34,7 +34,7 @@ class ManageController extends AdminController
                         ],
                         [
                             'allow' => true,
-                            'actions' => ['index', 'view','phonebook'],
+                            'actions' => ['index', 'view', 'phonebook'],
                             'roles' => [
                                 'supplier.create',
                                 'supplier.update',

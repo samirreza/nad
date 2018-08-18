@@ -2,15 +2,16 @@
 
 namespace modules\nad\supplier\backend\models;
 
+use modules\nad\equipment\modules\type\models\Type;
 use modules\nad\supplier\backend\modules\phonebook\models\Phonebook;
 
 class Supplier extends \modules\nad\supplier\common\models\Supplier
 {
     public function behaviors()
     {
-        return [
-            'core\behaviors\TimestampBehavior',
-        ];
+        $behaviors = parent::behaviors();
+        $behaviors[] = 'core\behaviors\TimestampBehavior';
+        return $behaviors;
     }
 
     public function rules()
@@ -26,6 +27,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'factoryAddress',
                     'paymentType',
                     'isActive',
+                    'equipments'
                 ],
                 'required',
             ],
@@ -66,6 +68,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'description' => 'توضیحات',
             'createdAt' => 'تاریخ ثبت',
             'phoneCount' => 'تعداد شماره تماس',
+            'equipments' => 'تجهیزات',
         ];
     }
 
@@ -123,5 +126,13 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         }
 
         return $values;
+    }
+
+    public function getEquips()
+    {
+        return $this->hasMany(
+            Type::class,
+            ['id' => 'equipmentId']
+        )->viaTable('nad_supplier_equipment_relation', ['supplierId' => 'id']);
     }
 }

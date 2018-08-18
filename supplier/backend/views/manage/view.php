@@ -35,6 +35,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ]
     ]) ?>
+
+    <div class="row">
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'تجهیزات تامین کننده',
+            ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    [
+                        'attribute' => 'equipments',
+                        'value' => function ($model) {
+                            return $model->getEquipments() > 0 ? $model->getEquipments() : 'ثبت نشده';
+                        },
+                    ]
+                ],
+            ]) ?>
+            <?php Panel::end() ?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
@@ -137,5 +158,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endif ?>
         </div>
     </div>
+
 
 </div>
