@@ -86,7 +86,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::begin([
                 'title' => 'نوع تامین کننده و نحوه پرداخت'
             ]) ?>
-
             <?=
             $form->field($model, 'isForeign')
                 ->dropDownList(
@@ -154,6 +153,25 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 ->widget(
                     Editor::className(),
                     ['preset' => 'advanced']
+                )
+            ?>
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-4">
+            <?php Panel::begin([
+                'title' => 'وضعیت تامین کننده'
+            ]) ?>
+            <?=
+            $form->field($model, 'isActive')
+                ->dropDownList(
+                    [
+                        'غیرفعال',
+                        'فعال'
+                    ],
+                    [
+                        'class' => 'form-control input-large',
+                        'prompt' => 'انتخاب کنید...'
+                    ]
                 )
             ?>
             <?php Panel::end() ?>

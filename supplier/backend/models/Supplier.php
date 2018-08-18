@@ -25,6 +25,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'shopAddress',
                     'factoryAddress',
                     'paymentType',
+                    'isActive',
                 ],
                 'required',
             ],
@@ -41,8 +42,8 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             ['name', 'string', 'max' => 255],
             ['email', 'email'],
             ['website', 'url'],
-            [['phone','fax'], 'integer'],
-            [['description','website','email','fax'], 'default', 'value' => null],
+            [['phone', 'fax'], 'integer'],
+            [['description', 'website', 'email', 'fax'], 'default', 'value' => null],
             ['description', 'safe']
         ];
     }
@@ -53,6 +54,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'id' => 'شناسه',
             'name' => 'نام تامین کننده',
             'isForeign' => 'داخلی / خارجی',
+            'isActive' => 'وضعیت',
             'type' => ' نوع تامین کننده',
             'email' => 'پست الکترونیکی',
             'website' => 'ادرس وبسایت',

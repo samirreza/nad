@@ -55,6 +55,15 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         ]
                     )
                 ?>
+                <?=
+                $form->field($model, 'email')
+                    ->textInput(
+                        [
+                            'class' => 'form-control input-large',
+                            'style' => 'direction: ltr;'
+                        ]
+                    )
+                ?>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">

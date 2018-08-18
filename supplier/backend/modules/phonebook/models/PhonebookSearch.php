@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\supplier\backend\modules\phonebook\models;
 
 use yii\base\Model;
@@ -9,7 +10,7 @@ class PhonebookSearch extends Phonebook
     public function rules()
     {
         return [
-            [['name', 'phone', 'jobId'], 'safe'],
+            [['name', 'phone', 'email', 'jobId'], 'safe'],
         ];
     }
 
@@ -43,7 +44,8 @@ class PhonebookSearch extends Phonebook
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }

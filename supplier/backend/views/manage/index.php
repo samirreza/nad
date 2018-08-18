@@ -32,8 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'core\grid\IDColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
             'name',
+            [
+                'attribute' => 'isActive',
+                'filter' => ['غیرفعال', 'فعال'],
+                'value' => function ($model) {
+                    return $model->isActive ? 'فعال' : 'غیرفعال';
+                }
+            ],
             [
                 'attribute' => 'isForeign',
                 'filter' => ['داخلی', 'خارجی'],
