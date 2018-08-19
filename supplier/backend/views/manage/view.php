@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'equipments',
                         'value' => function ($model) {
-                            return $model->getEquipments() > 0 ? $model->getEquipments() : 'ثبت نشده';
+                            return !empty($model->getEquipments()) ? $model->getEquipments() : 'ثبت نشده';
                         },
                     ]
                 ],
