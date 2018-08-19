@@ -27,7 +27,8 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'factoryAddress',
                     'paymentType',
                     'isActive',
-                    'equipments'
+                    'equipments',
+                    'materials',
                 ],
                 'required',
             ],
@@ -69,6 +70,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'createdAt' => 'تاریخ ثبت',
             'phoneCount' => 'تعداد شماره تماس',
             'equipments' => 'تجهیزات',
+            'materials' => 'مواد',
         ];
     }
 
@@ -134,5 +136,13 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             Type::class,
             ['id' => 'equipmentId']
         )->viaTable('nad_supplier_equipment_relation', ['supplierId' => 'id']);
+    }
+
+    public function getMats()
+    {
+        return $this->hasMany(
+            \modules\nad\material\modules\type\models\Type::class,
+            ['id' => 'materialId']
+        )->viaTable('nad_supplier_material_relation', ['supplierId' => 'id']);
     }
 }

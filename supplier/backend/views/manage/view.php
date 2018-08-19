@@ -54,6 +54,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
             <?php Panel::end() ?>
         </div>
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'مواد تامین کننده',
+            ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    [
+                        'attribute' => 'materials',
+                        'value' => function ($model) {
+                            return !empty($model->getMaterials()) ? $model->getMaterials() : 'ثبت نشده';
+                        },
+                    ]
+                ],
+            ]) ?>
+            <?php Panel::end() ?>
+        </div>
     </div>
 
     <div class="row">

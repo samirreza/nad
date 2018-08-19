@@ -182,6 +182,27 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ],
                 ]
             ) ?>
+            <?= $form->field($model, 'materials')->widget(
+                Select2::class,
+                [
+                    'options' => [
+                        'multiple' => true,
+                        'placeholder' => 'انتخاب کنید ...',
+                        'value' => $model->getMaterialsAsArray()
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'minimumInputLength' => 2,
+                        'ajax' => [
+                            'url' => Url::to(['/material/type/manage/ajax-find-materials']),
+                            'dataType' => 'json',
+                            'delay' => 1000,
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'templateResult' => new JsExpression('function(material) { return material.text; }'),
+                    ],
+                ]
+            ) ?>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-4">
