@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?= $this->render('_search', ['model' => $searchModel]) ?>
+
     <?php Panel::begin([
         'title' => Html::encode($this->title)
     ]) ?>
