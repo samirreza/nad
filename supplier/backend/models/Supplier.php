@@ -2,7 +2,8 @@
 
 namespace modules\nad\supplier\backend\models;
 
-use modules\nad\equipment\modules\type\models\Type;
+use modules\nad\equipment\modules\type\models\Type as EquipmentType;
+use modules\nad\material\modules\type\models\Type as MaterialType;
 use modules\nad\supplier\backend\modules\phonebook\models\Phonebook;
 
 class Supplier extends \modules\nad\supplier\common\models\Supplier
@@ -133,7 +134,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
     public function getEquips()
     {
         return $this->hasMany(
-            Type::class,
+            EquipmentType::class,
             ['id' => 'equipmentId']
         )->viaTable('nad_supplier_equipment_relation', ['supplierId' => 'id']);
     }
@@ -141,7 +142,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
     public function getMats()
     {
         return $this->hasMany(
-            \modules\nad\material\modules\type\models\Type::class,
+            MaterialType::class,
             ['id' => 'materialId']
         )->viaTable('nad_supplier_material_relation', ['supplierId' => 'id']);
     }
