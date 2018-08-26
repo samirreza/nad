@@ -61,8 +61,14 @@ $this->params['breadcrumbs'] = [
                 'isAjaxGrid' => true
             ],
             [
-                'class' => 'core\grid\AjaxActionColumn',
-                'template' => '{view} {update}'
+                'label' => 'تعداد مدل ها',
+                'format' => 'farsiNumber',
+                'value' => function ($model) {
+                    return $model->getModels()->count();
+                }
+            ],
+            [
+                'class' => 'core\grid\AjaxActionColumn'
             ]
         ],
     ]); ?>

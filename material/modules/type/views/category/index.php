@@ -51,10 +51,7 @@ $this->params['breadcrumbs'] = [
                 'isAjaxGrid' => true
             ],
             'code',
-            [
-                'class' => 'core\grid\AjaxActionColumn',
-                'template' => '{view} {update}'
-            ]
+            ['class' => 'core\grid\AjaxActionColumn']
         ],
     ]); ?>
 <?php Pjax::end(); ?>

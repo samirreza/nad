@@ -1,6 +1,7 @@
 <?php
 namespace modules\nad\equipment\modules\type\details\models;
 
+use core\behaviors\PreventDeleteBehavior;
 use modules\nad\equipment\modules\type\models\Type;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
@@ -9,6 +10,21 @@ class Part extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'nad_equipment_type_part';
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => PreventDeleteBehavior::class,
+                'relations' => [
+                    [
+                        'relationMethod' => 'getModels',
+                        'relationName' => 'مدل'
+                    ]
+                ]
+            ]
+        ];
     }
 
     public function rules()
@@ -42,6 +58,11 @@ class Part extends \yii\db\ActiveRecord
     public function getType()
     {
         return $this->hasOne(Type::className(), ['id' => 'typeId']);
+    }
+
+    public function getModels()
+    {
+        return $this->hasMany(Model::className(), ['partId' => 'id']);
     }
 
     public function getCompositeCode()

@@ -50,6 +50,11 @@ $this->params['breadcrumbs'] = [
                         'value' => $model->getParts()->count(),
                         'format' => 'farsiNumber'
                     ],
+                    [
+                        'label' => 'تعداد اتصالات',
+                        'value' => $model->getFittings()->count(),
+                        'format' => 'farsiNumber'
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

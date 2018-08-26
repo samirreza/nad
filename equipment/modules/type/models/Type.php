@@ -1,6 +1,7 @@
 <?php
 namespace modules\nad\equipment\modules\type\models;
 
+use core\behaviors\PreventDeleteBehavior;
 use modules\nad\equipment\modules\type\details;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
@@ -11,7 +12,20 @@ class Type extends \modules\nad\equipment\models\Type
         return array_merge(
             parent::behaviors(),
             [
-                'core\behaviors\TimestampBehavior'
+                'core\behaviors\TimestampBehavior',
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getParts',
+                            'relationName' => 'قطعه'
+                        ],
+                        [
+                            'relationMethod' => 'getFittings',
+                            'relationName' => 'اتصال'
+                        ]
+                    ]
+                ]
             ]
         );
     }
@@ -56,7 +70,18 @@ class Type extends \modules\nad\equipment\models\Type
 
     public function getParts()
     {
-        return $this->hasMany(details\models\Part::className(), ['typeId' => 'id']);
+        return $this->hasMany(
+            details\models\Part::className(),
+            ['typeId' => 'id']
+        );
+    }
+
+    public function getFittings()
+    {
+        return $this->hasMany(
+            details\models\Fitting::className(),
+            ['typeId' => 'id']
+        );
     }
 
     public function beforeValidate()
