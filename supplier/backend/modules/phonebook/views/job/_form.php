@@ -16,7 +16,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         ]
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات سمت'
+        'title' => 'اطلاعات سمت',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">

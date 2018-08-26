@@ -22,7 +22,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         <?= Html::activeHiddenInput($model, 'supplierId', ['id' => 'hidden-supplierId']) ?>
 
         <?php Panel::begin([
-            'title' => 'اطلاعات تماس'
+            'title' => 'اطلاعات تماس',
+            'showCloseButton' => true
         ]) ?>
         <div class="row">
             <div class="col-md-8">
