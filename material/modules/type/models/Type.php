@@ -44,7 +44,7 @@ class Type extends \modules\nad\material\models\Type
             'description' => 'توضیحات',
             'categoryId' => 'گروه',
             'category.title' => 'گروه',
-            'category.withParentsTitle' => 'گروه',
+            'category.familyTreeTitle' => 'گروه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
