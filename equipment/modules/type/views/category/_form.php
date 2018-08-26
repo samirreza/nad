@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 
-$backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
 <div class="category-form">
     <?php $form = ActiveForm::begin([
@@ -15,7 +15,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         ]
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات گروه'
+        'title' => 'اطلاعات گروه',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">
@@ -46,8 +47,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'label' => 'انصراف',
                         'options' => ['class' => 'btn-lg close-sliding-form-button'],
                         'type' => 'warning',
-                        'icon' => 'undo',
-                        'url' => $backLink,
+                        'icon' => 'undo'
                     ])
                 ?>
             <?php Panel::end() ?>

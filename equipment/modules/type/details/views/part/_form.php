@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
+
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
 <div class="parts-form">
     <?php $form = ActiveForm::begin([
@@ -13,7 +15,8 @@ use themes\admin360\widgets\Button;
     ]); ?>
     <?= Html::activeHiddenInput($model, 'typeId', ['id' => 'hidden-typeid']) ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات قطعه'
+        'title' => 'اطلاعات قطعه',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">

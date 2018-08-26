@@ -5,13 +5,16 @@ use yii\widgets\ActiveForm;
 use core\widgets\select2\Select2;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
+
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
 <div class="category-form">
     <?php $form = ActiveForm::begin([
         'options'=>['class' => 'sliding-form']
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات گروه'
+        'title' => 'اطلاعات گروه',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">

@@ -7,11 +7,14 @@ use themes\admin360\widgets\ActionButtons;
 
 ?>
 <div class="page-view">
-
+<?php Panel::begin([
+    'title' => 'مشاهده جزئیات',
+    'showCloseButton' => true
+]) ?>
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin([
-                'title' => 'اطلاعات اصلی',
+                'title' => 'اطلاعات اصلی'
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,
@@ -19,7 +22,7 @@ use themes\admin360\widgets\ActionButtons;
                     'compositeCode',
                     'title',
                     'titleEn',
-                    'category.withParentsTitle',
+                    'category.familyTreeTitle',
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],
@@ -36,4 +39,5 @@ use themes\admin360\widgets\ActionButtons;
             <?php Panel::end() ?>
         </div>
     </div>
+<?php Panel::end() ?>
 </div>

@@ -8,16 +8,18 @@ use themes\admin360\widgets\Button;
 use core\widgets\select2\Select2;
 use modules\nad\material\modules\type\models\Category;
 
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
 <div class="faq-form">
     <?php $form = ActiveForm::begin([
         'options'=>['class' => 'sliding-form']
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات اصلی'
+        'title' => 'اطلاعات اصلی',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <?php Panel::begin() ?>
             <div class="row">
                 <div class="col-md-3">
@@ -50,7 +52,7 @@ use modules\nad\material\modules\type\models\Category;
             ?>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?php Panel::begin() ?>
                 <?=
                     Html::submitButton(

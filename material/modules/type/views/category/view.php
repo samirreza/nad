@@ -7,6 +7,10 @@ use themes\admin360\widgets\ActionButtons;
 
 ?>
 <div class="page-view">
+<?php Panel::begin([
+    'title' => 'مشاهده جزئیات',
+    'showCloseButton' => true
+]) ?>
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
@@ -44,4 +48,5 @@ use themes\admin360\widgets\ActionButtons;
             <?php Panel::end() ?>
         </div>
     </div>
+<?php Panel::end() ?>
 </div>

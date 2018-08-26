@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'category.title',
                         'label' => 'عنوان گروه',
                         'value' => function ($model) {
-                            return $model->category->withParentsTitle;
+                            return $model->category->familyTreeTitle;
                         }
                     ],
                     'titleEn',

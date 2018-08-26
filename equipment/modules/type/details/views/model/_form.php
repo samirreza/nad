@@ -8,6 +8,8 @@ use themes\admin360\widgets\Button;
 use core\widgets\select2\Select2;
 use modules\nad\equipment\modules\type\details\models\Part;
 
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
+
 if (!isset($type)) {
     $type = $model->type;
 }
@@ -18,7 +20,8 @@ if (!isset($type)) {
     ]); ?>
     <?= Html::activeHiddenInput($model, 'typeId', ['id' => 'hidden-typeid']) ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات مدل'
+        'title' => 'اطلاعات مدل',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">
