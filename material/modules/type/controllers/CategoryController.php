@@ -14,6 +14,13 @@ class CategoryController extends \core\controllers\AjaxAdminController
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => \yii\filters\ContentNegotiator::className(),
+                    'only' => ['get-json-tree'],
+                    'formats' => [
+                        'application/json' => \yii\web\Response::FORMAT_JSON,
+                    ]
+                ],
                 'access' => [
                     'class' => AccessControl::className(),
                     'rules' => [
@@ -87,5 +94,15 @@ class CategoryController extends \core\controllers\AjaxAdminController
             'content' => $this->renderAjax('_form', ['model' => $category])
         ]);
         exit;
+    }
+
+    public function actionGetJsonTree($id)
+    {
+        if ($id == '0') {
+            $root = Category::find()->roots()->one();
+        } else {
+            $root = $this->findModel($id);
+        }
+        return [$root->getFamilyTreeArray()];
     }
 }

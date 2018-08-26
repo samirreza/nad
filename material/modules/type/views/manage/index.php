@@ -21,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data-gridpjaxid' => 'material-gridviewpjax'
                 ]
             ],
-            'categoriesIndex' => ['label' => 'گروه ها'],
+            'categoriesIndex' => [
+                'label' => 'رده های مواد',
+                'icon' => 'sitemap'
+            ],
         ],
     ]); ?>
 

@@ -104,6 +104,15 @@ class Category extends \yii\db\ActiveRecord
 
     public function getCodedTitle()
     {
-        return $this->compositeCode .  ' - ' . $this->title;
+        return $this->title .  '<small> [' . $this->compositeCode . '] </small>';
+    }
+
+    public function getFamilyTreeAttributes()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->codedTitle,
+            'code' => $this->compositeCode
+        ];
     }
 }
