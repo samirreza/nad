@@ -4,7 +4,6 @@ namespace modules\nad\material\modules\type\models;
 use yii\helpers\ArrayHelper;
 use core\behaviors\NestedSetsBehavior;
 use core\behaviors\PreventDeleteBehavior;
-use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Category extends \yii\db\ActiveRecord
@@ -22,10 +21,10 @@ class Category extends \yii\db\ActiveRecord
                 'relations' => [
                     [
                         'relationMethod' => 'children',
-                        'relationName' => 'زیر دسته'
+                        'relationName' => 'زیر گروه'
                     ],
                     [
-                        'relationMethod' => 'getMaterialTypes',
+                        'relationMethod' => 'getTypes',
                         'relationName' => 'نوع ماده'
                     ]
                 ]
@@ -84,7 +83,7 @@ class Category extends \yii\db\ActiveRecord
         return parent::beforeValidate();
     }
 
-    public function getMaterialTypes()
+    public function getTypes()
     {
         return $this->hasMany(Type::className(), ['categoryId' => 'id']);
     }

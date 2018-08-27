@@ -56,8 +56,9 @@ class Type extends \modules\nad\equipment\models\Type
             'compositeCode' => 'شناسه نوع تجهیز',
             'title' => 'عنوان',
             'description' => 'توضیحات',
-            'categoryId' => 'گروه',
-            'category.title' => 'گروه',
+            'categoryId' => 'شاخه',
+            'category.title' => 'شاخه',
+            'category.familyTreeTitle' => 'شاخه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
@@ -92,6 +93,6 @@ class Type extends \modules\nad\equipment\models\Type
 
     public function getCompositeCode()
     {
-        return $this->category->code . '. ' . $this->code;
+        return $this->category->compositeCode . '. ' . $this->code;
     }
 }

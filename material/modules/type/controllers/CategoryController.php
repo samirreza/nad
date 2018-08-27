@@ -105,4 +105,18 @@ class CategoryController extends \core\controllers\AjaxAdminController
         }
         return [$root->getFamilyTreeArray()];
     }
+
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        $deletion = $model->deleteWithChildren();
+        echo Json::encode(
+            [
+                'status' => ($deletion) ? 'success' : 'danger',
+                'message' => ($deletion) ? 'داده مورد نظر با موفقیت از سیستم حذف شد.'
+                    : $model->getErrors('id')
+            ]
+        );
+        exit;
+    }
 }

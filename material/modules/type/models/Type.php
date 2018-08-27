@@ -42,9 +42,9 @@ class Type extends \modules\nad\material\models\Type
             'title' => 'عنوان',
             'titleEn' => 'عنوان لاتین',
             'description' => 'توضیحات',
-            'categoryId' => 'گروه',
-            'category.title' => 'گروه',
-            'category.familyTreeTitle' => 'گروه',
+            'categoryId' => 'شاخه',
+            'category.title' => 'شاخه',
+            'category.familyTreeTitle' => 'شاخه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];

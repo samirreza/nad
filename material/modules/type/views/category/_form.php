@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 use core\widgets\select2\Select2;
 use themes\admin360\widgets\Panel;
@@ -14,7 +13,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
         'options'=>['class' => 'sliding-form']
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات گروه',
+        'title' => 'اطلاعات رده',
         'showCloseButton' => true
     ]) ?>
     <div class="row">

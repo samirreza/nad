@@ -49,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان گروه',
                         'value' => function ($model) {
                             return $model->category->familyTreeTitle;
                         }
