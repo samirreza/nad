@@ -27,9 +27,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'shopAddress',
                     'factoryAddress',
                     'paymentType',
-                    'isActive',
-                    'equipments',
-                    'materials',
+                    'isActive'
                 ],
                 'required',
             ],
