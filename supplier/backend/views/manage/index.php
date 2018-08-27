@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?= $this->render('_search', ['model' => $searchModel]) ?>
+
     <?php Panel::begin([
         'title' => Html::encode($this->title)
     ]) ?>
@@ -34,13 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            [
-                'attribute' => 'isActive',
-                'filter' => ['غیرفعال', 'فعال'],
-                'value' => function ($model) {
-                    return $model->isActive ? 'فعال' : 'غیرفعال';
-                }
-            ],
             [
                 'attribute' => 'isForeign',
                 'filter' => ['داخلی', 'خارجی'],
@@ -67,6 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'farsiNumber',
             ],
+            ['class' => 'core\grid\ActiveColumn'],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {phonebook}',

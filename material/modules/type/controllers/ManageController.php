@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\material\modules\type\controllers;
 
 use Yii;
@@ -31,5 +32,27 @@ class ManageController extends \core\controllers\AjaxAdminController
         $this->modelClass = Type::className();
         $this->searchClass = TypeSearch::className();
         parent::init();
+    }
+
+    public function actionAjaxFindMaterials($q = null)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $materials['results'] = [];
+        $index = 0;
+
+        $types = Type::find()
+            ->where(['like', 'title', $q])
+            ->all();
+
+        foreach ($types as $type) {
+            $materials['results'][$index] =
+                [
+                    'id' => $type->title,
+                    'text' => $type->category->compositeCode . '. ' . $type->code . ' ( ' . $type->title . ' ) ',
+                ];
+            $index++;
+        }
+        return $materials;
     }
 }

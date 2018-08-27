@@ -6,7 +6,7 @@ class m180522_055306_add_isActive_to_supplier extends Migration
 {
     public function up()
     {
-        $this->addColumn('nad_supplier', 'isActive', $this->boolean()->notNull());
+        $this->addColumn('nad_supplier', 'isActive', $this->boolean()->notNull()->defaultValue(1));
     }
 
     public function down()

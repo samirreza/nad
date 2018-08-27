@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\equipment\modules\type\controllers;
 
 use yii\filters\AccessControl;
@@ -30,5 +31,27 @@ class ManageController extends \core\controllers\AdminController
         $this->modelClass = Type::className();
         $this->searchClass = TypeSearch::className();
         parent::init();
+    }
+
+    public function actionAjaxFindEquipments($q = null)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $equipments['results'] = [];
+        $index = 0;
+
+        $types = Type::find()
+            ->where(['like', 'title', $q])
+            ->all();
+
+        foreach ($types as $type) {
+            $equipments['results'][$index] =
+                [
+                    'id' => $type->title,
+                    'text' => $type->category->code . '. ' .$type->code . ' ( ' . $type->title . ' ) ',
+                ];
+            $index++;
+        }
+        return $equipments;
     }
 }

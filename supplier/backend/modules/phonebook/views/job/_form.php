@@ -5,6 +5,7 @@ use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 use yii\widgets\ActiveForm;
 
+Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 <div class="job-form">
@@ -15,7 +16,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         ]
     ]); ?>
     <?php Panel::begin([
-        'title' => 'اطلاعات سمت'
+        'title' => 'اطلاعات سمت',
+        'showCloseButton' => true
     ]) ?>
     <div class="row">
         <div class="col-md-8">
