@@ -55,10 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'date',
                 'filter' => false
             ],
-            [
-                'class' => 'core\grid\AjaxActionColumn',
-                'template' => '{view} {update}'
-            ]
+            ['class' => 'core\grid\AjaxActionColumn']
         ]
     ]); ?>
     <?php Pjax::end(); ?>

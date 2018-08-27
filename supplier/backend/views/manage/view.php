@@ -35,6 +35,44 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ]
     ]) ?>
+
+    <div class="row">
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'تجهیزات تامین کننده',
+            ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    [
+                        'attribute' => 'equipments',
+                        'value' => function ($model) {
+                            return !empty($model->getEquipments()) ? $model->getEquipments() : 'ثبت نشده';
+                        },
+                    ]
+                ],
+            ]) ?>
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'مواد تامین کننده',
+            ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    [
+                        'attribute' => 'materials',
+                        'value' => function ($model) {
+                            return !empty($model->getMaterials()) ? $model->getMaterials() : 'ثبت نشده';
+                        },
+                    ]
+                ],
+            ]) ?>
+            <?php Panel::end() ?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
@@ -48,12 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'fax',
                     'email',
                     'website',
-                    [
-                        'attribute' => 'isActive',
-                        'value' => function ($model) {
-                            return $model->isActive ? 'فعال' : 'غیرفعال';
-                        }
-                    ],
+                    'isActive:boolean',
                     [
                         'attribute' => 'isForeign',
                         'value' => function ($model) {
@@ -142,5 +175,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endif ?>
         </div>
     </div>
+
 
 </div>

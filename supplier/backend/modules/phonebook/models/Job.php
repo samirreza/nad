@@ -2,12 +2,23 @@
 
 namespace modules\nad\supplier\backend\modules\phonebook\models;
 
+use core\behaviors\PreventDeleteBehavior;
+
 class Job extends \modules\nad\supplier\common\models\Job
 {
     public function behaviors()
     {
         return [
             'core\behaviors\TimestampBehavior',
+            [
+                'class' => PreventDeleteBehavior::class,
+                'relations' => [
+                    [
+                        'relationMethod' => 'getPhones',
+                        'relationName' => 'شماره تماس ها'
+                    ]
+                ]
+            ]
         ];
     }
 
@@ -27,5 +38,10 @@ class Job extends \modules\nad\supplier\common\models\Job
             'title' => 'سمت',
             'createdAt' => 'تاریخ ثبت',
         ];
+    }
+
+    public function getPhones()
+    {
+        return $this->hasMany(Phonebook::class, ['jobId' => 'id']);
     }
 }

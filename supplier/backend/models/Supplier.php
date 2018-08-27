@@ -2,15 +2,17 @@
 
 namespace modules\nad\supplier\backend\models;
 
+use modules\nad\equipment\modules\type\models\Type as EquipmentType;
+use modules\nad\material\modules\type\models\Type as MaterialType;
 use modules\nad\supplier\backend\modules\phonebook\models\Phonebook;
 
 class Supplier extends \modules\nad\supplier\common\models\Supplier
 {
     public function behaviors()
     {
-        return [
-            'core\behaviors\TimestampBehavior',
-        ];
+        $behaviors = parent::behaviors();
+        $behaviors[] = 'core\behaviors\TimestampBehavior';
+        return $behaviors;
     }
 
     public function rules()
@@ -26,6 +28,8 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'factoryAddress',
                     'paymentType',
                     'isActive',
+                    'equipments',
+                    'materials',
                 ],
                 'required',
             ],
@@ -54,7 +58,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'id' => 'شناسه',
             'name' => 'نام تامین کننده',
             'isForeign' => 'داخلی / خارجی',
-            'isActive' => 'وضعیت',
+            'isActive' => 'نماینده فعال است',
             'type' => ' نوع تامین کننده',
             'email' => 'پست الکترونیکی',
             'website' => 'ادرس وبسایت',
@@ -66,6 +70,8 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'description' => 'توضیحات',
             'createdAt' => 'تاریخ ثبت',
             'phoneCount' => 'تعداد شماره تماس',
+            'equipments' => 'تجهیزات',
+            'materials' => 'مواد',
         ];
     }
 
@@ -123,5 +129,21 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         }
 
         return $values;
+    }
+
+    public function getEquips()
+    {
+        return $this->hasMany(
+            EquipmentType::class,
+            ['id' => 'equipmentId']
+        )->viaTable('nad_supplier_equipment_relation', ['supplierId' => 'id']);
+    }
+
+    public function getMats()
+    {
+        return $this->hasMany(
+            MaterialType::class,
+            ['id' => 'materialId']
+        )->viaTable('nad_supplier_material_relation', ['supplierId' => 'id']);
     }
 }

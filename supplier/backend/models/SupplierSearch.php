@@ -48,6 +48,16 @@ class SupplierSearch extends Supplier
 
         $query->andFilterWhere(['like', 'name', $this->name]);
 
+        if (!empty($params['SupplierSearch']['equipments'])) {
+            $query->joinWith('equips as equipment');
+            $query->andFilterWhere(['like', 'equipment.title', $params['SupplierSearch']['equipments']]);
+        }
+        if (!empty($params['SupplierSearch']['materials'])) {
+            $query->joinWith('mats as material');
+            $query->andFilterWhere(['like', 'material.title', $params['SupplierSearch']['materials']]);
+        }
+
+
         return $dataProvider;
     }
 }
