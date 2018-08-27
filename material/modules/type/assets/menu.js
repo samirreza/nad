@@ -1,16 +1,11 @@
 $(function() {
     fillTree(0);
-    $(document).on('click', '.reload-tree', function(event){
+    $(document).on('click', '.reload-tree, .refresh-tree', function(event){
         event.preventDefault();
         $('#cats-tree').tree('destroy');
         $('#loading').removeClass('hidden');
-        fillTree($(this).data('rootid'));
+        fillTree($(this).attr('data-rootid'));
     });
-    $(document).on('click', '.refresh-tree', function(event){
-        event.preventDefault();
-        $('#loading').removeClass('hidden');
-        fillTree($('#cats-tree').data('rootid'));
-    })
 });
 
 function fillTree(rootId) {
@@ -18,8 +13,8 @@ function fillTree(rootId) {
         'get-json-tree',
         'id='+rootId,
         function(data) {
+            $('.refresh-tree').attr('data-rootid', rootId);
             $('#loading').addClass('hidden');
-            $('#cats-tree').attr('data-rootid', rootId);
             $('#cats-tree').tree({
                 autoOpen: 1,
                 autoEscape: false,

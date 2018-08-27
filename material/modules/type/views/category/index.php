@@ -4,6 +4,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
+use modules\nad\material\modules\type\models\Category;
 use modules\nad\material\modules\type\assetbundles\TreeAssetBundle;
 
 TreeAssetBundle::register($this);
@@ -52,8 +53,14 @@ $this->params['breadcrumbs'] = [
                         'compositeCode',
                         [
                             'class' => 'core\grid\TitleColumn',
-                            'attribute' => 'nestedTitle',
                             'isAjaxGrid' => true
+                        ],
+                        [
+                            'attribute' => 'depth',
+                            'filter' => Category::getDepthList(),
+                            'value' => function ($model) {
+                                return $model->getDepthTitle();
+                            }
                         ],
                         [
                             'class' => 'core\grid\AjaxActionColumn',
@@ -88,7 +95,8 @@ $this->params['breadcrumbs'] = [
                     '<span class="glyphicon glyphicon-refresh"></span>',
                     null,
                     [
-                        'class' => 'refresh-tree'
+                        'class' => 'refresh-tree',
+                        'data-rootid' => 0
                     ]
                 )
             ]) ?>
@@ -96,7 +104,7 @@ $this->params['breadcrumbs'] = [
                     <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                     <span class="sr-only">Loading...</span>
                 </div>
-                <div id="cats-tree" data-rootid=0></div>
+                <div id="cats-tree"></div>
             <?php Panel::end() ?>
         </div>
     </div>

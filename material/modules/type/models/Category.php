@@ -52,11 +52,12 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'شناسه',
+            'depth' => 'رده',
             'title' => 'عنوان',
             'nestedTitle' => 'عنوان',
-            'code' => 'شناسه گروه',
+            'code' => 'شناسه رده',
             'compositeCode' => 'شناسه یکتا',
-            'parentId' => 'گروه پدر',
+            'parentId' => 'رده پدر',
         ];
     }
 
@@ -98,21 +99,57 @@ class Category extends \yii\db\ActiveRecord
 
     public function getParentsForSelect2()
     {
-        return ['آیتم سطح نخست است'] +
-            ArrayHelper::map($this->possibleParents(), 'id', 'nestedTitle');
+        return ['درج به عنوان گروه'] +
+            ArrayHelper::map($this->possibleParents(), 'id', 'codedTitle');
+    }
+
+    public function getHtmlCodedTitle()
+    {
+        return $this->title .  '<small> [' . $this->compositeCode . '] </small>';
     }
 
     public function getCodedTitle()
     {
-        return $this->title .  '<small> [' . $this->compositeCode . '] </small>';
+        return $this->title .  ' - ' . $this->compositeCode;
     }
 
     public function getFamilyTreeAttributes()
     {
         return [
             'id' => $this->id,
-            'name' => $this->codedTitle,
+            'name' => $this->htmlCodedTitle,
             'code' => $this->compositeCode
         ];
+    }
+
+    public static function getDepthList()
+    {
+        return [
+            0 => 'گروه',
+            1 => 'دسته',
+            2 => 'شاخه'
+        ];
+    }
+
+    public function getDepthTitle()
+    {
+        $list = self::getDepthList();
+        return isset($list[$this->depth]) ? $list[$this->depth] : '-';
+    }
+
+    public function possibleParents()
+    {
+        $family=[];
+        if (!$this->owner->isNewRecord) {
+            $family[] = $this->owner->id;
+            $children = $this->owner->children()->select('id')->all();
+            foreach ($children as $child) {
+                $family[] =  $child->id ;
+            }
+        }
+        return $this->owner->find()
+            ->andWhere(['not in', 'id', $family])
+            ->andWhere(['in', 'depth', [0,1]])
+            ->all();
     }
 }
