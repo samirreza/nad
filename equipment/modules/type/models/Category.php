@@ -105,21 +105,13 @@ class Category extends \yii\db\ActiveRecord
 
     public function getHtmlCodedTitle()
     {
-        return $this->title .  '<small> [' . $this->compositeCode . '] </small>';
+        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
+            . $this->compositeCode . '] </small>';
     }
 
     public function getCodedTitle()
     {
         return $this->title .  ' - ' . $this->compositeCode;
-    }
-
-    public function getFamilyTreeAttributes()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->htmlCodedTitle,
-            'code' => $this->compositeCode
-        ];
     }
 
     public static function getDepthList()
@@ -151,5 +143,32 @@ class Category extends \yii\db\ActiveRecord
             ->andWhere(['not in', 'id', $family])
             ->andWhere(['in', 'depth', [0,1]])
             ->all();
+    }
+
+    public function getFamilyTreeArray()
+    {
+        $attributes = [
+            'id' => $this->id,
+            'name' => $this->htmlCodedTitle,
+            'code' => $this->compositeCode
+        ];
+        if ($this->children(1)->count() != 0) {
+            $children = [];
+            foreach ($this->children(1)->all() as $child) {
+                $children[] = $child->getFamilyTreeArray();
+            }
+        } elseif ($this->getTypes()->count() != 0) {
+            foreach ($this->types as $type) {
+                $children[] = [
+                    'id' => $type->id,
+                    'name' => $type->code .' - '. $type->title,
+                    'code' => $type->compositeCode
+                ];
+            }
+        }
+        if (!empty($children)) {
+            $attributes['children'] = $children;
+        }
+        return $attributes;
     }
 }
