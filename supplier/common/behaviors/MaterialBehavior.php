@@ -5,7 +5,7 @@ use creocoder\taggable\TaggableBehavior;
 
 class MaterialBehavior extends TaggableBehavior
 {
-    public $materialRelation = 'mats';
+    public $materialRelation = 'matTypes';
     public $materialValueAttribute = 'title';
     public $materialValuesAsArray = false;
     public $materialFrequencyAttribute = false;

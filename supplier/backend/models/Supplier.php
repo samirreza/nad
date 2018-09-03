@@ -25,7 +25,6 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
                     'isForeign',
                     'type',
                     'shopAddress',
-                    'factoryAddress',
                     'paymentType',
                     'isActive',
                     'equipments',
@@ -47,7 +46,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             ['email', 'email'],
             ['website', 'url'],
             [['phone', 'fax'], 'integer'],
-            [['description', 'website', 'email', 'fax'], 'default', 'value' => null],
+            [['description', 'website', 'email', 'fax','factoryAddress'], 'default', 'value' => null],
             ['description', 'safe']
         ];
     }
@@ -131,7 +130,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         return $values;
     }
 
-    public function getEquips()
+    public function getEquipTypes()
     {
         return $this->hasMany(
             EquipmentType::class,
@@ -139,7 +138,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
         )->viaTable('nad_supplier_equipment_relation', ['supplierId' => 'id']);
     }
 
-    public function getMats()
+    public function getMatTypes()
     {
         return $this->hasMany(
             MaterialType::class,

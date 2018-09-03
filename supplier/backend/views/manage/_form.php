@@ -33,24 +33,11 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <?=
                     $form->field($model, 'phone')
                         ->textInput(
                             [
-                                'maxlength' => 11,
-                                'class' => 'form-control input-large',
-                                'style' => 'direction: ltr;'
-                            ]
-                        )
-                    ?>
-                </div>
-                <div class="col-md-6">
-                    <?=
-                    $form->field($model, 'fax')
-                        ->textInput(
-                            [
-                                'maxlength' => 11,
                                 'class' => 'form-control input-large',
                                 'style' => 'direction: ltr;'
                             ]
@@ -59,7 +46,20 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
+                    <?=
+                    $form->field($model, 'fax')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <?=
                     $form->field($model, 'email')
                         ->textInput(
@@ -70,7 +70,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         )
                     ?>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <?=
                     $form->field($model, 'website')
                         ->textInput(
@@ -84,6 +86,28 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             </div>
             <?php Panel::end() ?>
         </div>
+
+        <div class="col-md-4">
+            <?php Panel::begin([
+                'title' => 'ذخیره اطلاعات'
+            ]) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('<i class="fa fa-save"></i> ذخیره', [
+                    'class' => 'btn btn-lg btn-success'
+                ]) ?>
+                <?= Button::widget([
+                    'label' => 'انصراف',
+                    'options' => ['class' => 'btn-lg'],
+                    'type' => 'warning',
+                    'icon' => 'undo',
+                    'url' => $backLink,
+                ])
+                ?>
+            </div>
+            <?php Panel::end() ?>
+        </div>
+
 
         <div class="col-md-4">
             <?php Panel::begin([
@@ -211,26 +235,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             ]) ?>
             <?= $form->field($model, 'isActive')->checkbox(); ?>
 
-            <?php Panel::end() ?>
-        </div>
-        <div class="col-md-4">
-            <?php Panel::begin([
-                'title' => 'ذخیره اطلاعات'
-            ]) ?>
-
-            <div class="form-group">
-                <?= Html::submitButton('<i class="fa fa-save"></i> ذخیره', [
-                    'class' => 'btn btn-lg btn-success'
-                ]) ?>
-                <?= Button::widget([
-                    'label' => 'انصراف',
-                    'options' => ['class' => 'btn-lg'],
-                    'type' => 'warning',
-                    'icon' => 'undo',
-                    'url' => $backLink,
-                ])
-                ?>
-            </div>
             <?php Panel::end() ?>
         </div>
     </div>

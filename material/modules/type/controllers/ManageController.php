@@ -49,7 +49,7 @@ class ManageController extends \core\controllers\AjaxAdminController
             $materials['results'][$index] =
                 [
                     'id' => $type->title,
-                    'text' => $type->category->compositeCode . '. ' . $type->code . ' ( ' . $type->title . ' ) ',
+                    'text' => $type->compositeCode . ' ( ' . $type->title . ' ) ',
                 ];
             $index++;
         }
