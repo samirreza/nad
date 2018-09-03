@@ -50,7 +50,11 @@ $this->params['breadcrumbs'] = [
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'compositeCode',
+                    [
+                        'class' => 'modules\nad\common\grid\CodeColumn',
+                        'options' => ['style' => 'width:30%'],
+                        'isAjaxGrid' => true
+                    ],
                     [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
@@ -67,7 +71,7 @@ $this->params['breadcrumbs'] = [
                         'template' => '{view} {update} {delete} {tree}',
                         'buttons' => [
                             'tree' => function ($url, $model, $key) {
-                                if (!$model->isRoot()) {
+                                if (!in_array($model->depth, [0, 1])) {
                                     return;
                                 }
                                 return Html::a(

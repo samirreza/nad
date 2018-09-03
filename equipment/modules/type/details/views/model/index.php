@@ -58,7 +58,11 @@ $this->params['breadcrumbs'] = [
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'compositeCode',
+            [
+                'class' => 'modules\nad\common\grid\CodeColumn',
+                'options' => ['style' => 'width:30%'],
+                'isAjaxGrid' => true
+            ],
             'code',
             [
                 'attribute' => 'partId',
