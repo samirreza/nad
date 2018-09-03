@@ -45,7 +45,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             ['website', 'url'],
             [['phone', 'fax'], 'integer'],
             [['description', 'website', 'email', 'fax','factoryAddress'], 'default', 'value' => null],
-            ['description', 'safe']
+            [['description', 'materials', 'equipments'], 'safe']
         ];
     }
 
