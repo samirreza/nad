@@ -19,7 +19,6 @@ class Phonebook extends \modules\nad\supplier\common\models\Phonebook
             ['name', 'string', 'max' => 255],
             ['phone', 'integer'],
             ['email', 'email'],
-            [['email', 'phone'], 'unique'],
             [['supplierId', 'jobId'], 'safe'],
         ];
     }

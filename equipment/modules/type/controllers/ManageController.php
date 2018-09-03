@@ -48,7 +48,7 @@ class ManageController extends \core\controllers\AdminController
             $equipments['results'][$index] =
                 [
                     'id' => $type->title,
-                    'text' => $type->category->code . '. ' .$type->code . ' ( ' . $type->title . ' ) ',
+                    'text' => $type->compositeCode . ' ( ' . $type->title . ' ) ',
                 ];
             $index++;
         }

@@ -41,34 +41,67 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php Panel::begin([
                 'title' => 'تجهیزات تامین کننده',
             ]) ?>
-            <?= DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                    [
-                        'attribute' => 'equipments',
-                        'value' => function ($model) {
-                            return !empty($model->getEquipments()) ? $model->getEquipments() : 'ثبت نشده';
-                        },
-                    ]
-                ],
-            ]) ?>
+            <?php
+            if (count($model->equipTypes) != 0) {
+                foreach ($model->equipTypes as $equipment) {
+                    echo DetailView::widget([
+                        'model' => $equipment,
+                        'attributes' => [
+                            [
+                                'attribute' => 'عنوان',
+                                'value' => $equipment->title,
+                            ],
+                            [
+                                'attribute' => 'کد',
+                                'value' => $equipment->compositeCode,
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'table-layout: fixed; font-size:14px;'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز تجهیزاتی برای این تامین کننده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-6">
             <?php Panel::begin([
                 'title' => 'مواد تامین کننده',
             ]) ?>
-            <?= DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                    [
-                        'attribute' => 'materials',
-                        'value' => function ($model) {
-                            return !empty($model->getMaterials()) ? $model->getMaterials() : 'ثبت نشده';
-                        },
-                    ]
-                ],
-            ]) ?>
+            <?php
+            if (count($model->matTypes) != 0) {
+                foreach ($model->matTypes as $material) {
+                    echo DetailView::widget([
+                        'model' => $material,
+                        'attributes' => [
+                            [
+                                'attribute' => 'عنوان',
+                                'value' => $material->title,
+                            ],
+                            [
+                                'attribute' => 'کد',
+                                'value' => $material->compositeCode,
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'table-layout: fixed; font-size:14px;'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز موادی برای این تامین کننده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+
             <?php Panel::end() ?>
         </div>
     </div>
@@ -156,11 +189,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php Panel::end() ?>
         </div>
         <div class="col-md-6">
-            <?php Panel::begin(['title' => 'ادرس کارخانه']) ?>
-            <div class="well">
-                <?= $model->factoryAddress ?>
-            </div>
-            <?php Panel::end() ?>
+            <?php if ($model->factoryAddress != null) : ?>
+                <?php Panel::begin(['title' => 'ادرس کارخانه']) ?>
+                <div class="well">
+                    <?= $model->factoryAddress ?>
+                </div>
+                <?php Panel::end() ?>
+            <?php endif ?>
         </div>
     </div>
 

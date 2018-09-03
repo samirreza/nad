@@ -5,7 +5,7 @@ use creocoder\taggable\TaggableBehavior;
 
 class EquipmentsBehavior extends TaggableBehavior
 {
-    public $equipmentRelation = 'equips';
+    public $equipmentRelation = 'equipTypes';
     public $equipmentValueAttribute = 'title';
     public $equipmentValuesAsArray = false;
     public $equipmentFrequencyAttribute = false;
