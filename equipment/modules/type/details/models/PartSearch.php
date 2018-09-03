@@ -9,7 +9,7 @@ class PartSearch extends Part
     public function rules()
     {
         return [
-            [['title', 'code'], 'safe'],
+            [['title', 'code', 'kind'], 'safe'],
         ];
     }
 
@@ -28,6 +28,7 @@ class PartSearch extends Part
             return $dataProvider;
         }
         $query->andFilterWhere(['typeId' => $params['typeId']]);
+        $query->andFilterWhere(['kind' => $this->kind]);
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'code', $this->code]);
         return $dataProvider;

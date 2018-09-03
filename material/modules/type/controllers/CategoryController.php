@@ -14,6 +14,13 @@ class CategoryController extends \core\controllers\AjaxAdminController
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => \yii\filters\ContentNegotiator::className(),
+                    'only' => ['get-json-tree'],
+                    'formats' => [
+                        'application/json' => \yii\web\Response::FORMAT_JSON,
+                    ]
+                ],
                 'access' => [
                     'class' => AccessControl::className(),
                     'rules' => [
@@ -86,6 +93,30 @@ class CategoryController extends \core\controllers\AjaxAdminController
         echo Json::encode([
             'content' => $this->renderAjax('_form', ['model' => $category])
         ]);
+        exit;
+    }
+
+    public function actionGetJsonTree($id)
+    {
+        if ($id == '0') {
+            $root = Category::find()->roots()->one();
+        } else {
+            $root = $this->findModel($id);
+        }
+        return [$root->getFamilyTreeArray()];
+    }
+
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        $deletion = $model->deleteWithChildren();
+        echo Json::encode(
+            [
+                'status' => ($deletion) ? 'success' : 'danger',
+                'message' => ($deletion) ? 'داده مورد نظر با موفقیت از سیستم حذف شد.'
+                    : $model->getErrors('id')
+            ]
+        );
         exit;
     }
 }

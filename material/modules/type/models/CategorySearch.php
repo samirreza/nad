@@ -6,12 +6,10 @@ use yii\data\ActiveDataProvider;
 
 class CategorySearch extends Category
 {
-    public $nestedTitle;
-
     public function rules()
     {
         return [
-            [['nestedTitle', 'code'], 'safe'],
+            [['title', 'code', 'depth'], 'safe'],
         ];
     }
 
@@ -34,9 +32,10 @@ class CategorySearch extends Category
         }
         $query->andFilterWhere([
             'id' => $this->id,
-            'code' => $this->code
+            'code' => $this->code,
+            'depth' => $this->depth,
         ]);
-        $query->andFilterWhere(['like', 'title', $this->nestedTitle]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
         return $dataProvider;
     }
 }

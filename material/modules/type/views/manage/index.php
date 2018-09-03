@@ -21,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data-gridpjaxid' => 'material-gridviewpjax'
                 ]
             ],
-            'categoriesIndex' => ['label' => 'گروه ها'],
+            'categoriesIndex' => [
+                'label' => 'رده های مواد',
+                'icon' => 'sitemap'
+            ],
         ],
     ]); ?>
 
@@ -39,14 +42,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'compositeCode',
+                    [
+                        'class' => 'modules\nad\common\grid\CodeColumn',
+                        'isAjaxGrid' => true
+                    ],
                     [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
                     ],
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان گروه',
                         'value' => function ($model) {
                             return $model->category->familyTreeTitle;
                         }

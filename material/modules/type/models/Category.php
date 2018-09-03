@@ -4,7 +4,6 @@ namespace modules\nad\material\modules\type\models;
 use yii\helpers\ArrayHelper;
 use core\behaviors\NestedSetsBehavior;
 use core\behaviors\PreventDeleteBehavior;
-use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Category extends \yii\db\ActiveRecord
@@ -22,10 +21,10 @@ class Category extends \yii\db\ActiveRecord
                 'relations' => [
                     [
                         'relationMethod' => 'children',
-                        'relationName' => 'زیر دسته'
+                        'relationName' => 'زیر گروه'
                     ],
                     [
-                        'relationMethod' => 'getMaterialTypes',
+                        'relationMethod' => 'getTypes',
                         'relationName' => 'نوع ماده'
                     ]
                 ]
@@ -52,11 +51,12 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'شناسه',
+            'depth' => 'رده',
             'title' => 'عنوان',
             'nestedTitle' => 'عنوان',
-            'code' => 'شناسه گروه',
+            'code' => 'شناسه رده',
             'compositeCode' => 'شناسه یکتا',
-            'parentId' => 'گروه پدر',
+            'parentId' => 'رده پدر',
         ];
     }
 
@@ -83,7 +83,7 @@ class Category extends \yii\db\ActiveRecord
         return parent::beforeValidate();
     }
 
-    public function getMaterialTypes()
+    public function getTypes()
     {
         return $this->hasMany(Type::className(), ['categoryId' => 'id']);
     }
@@ -98,12 +98,76 @@ class Category extends \yii\db\ActiveRecord
 
     public function getParentsForSelect2()
     {
-        return ['آیتم سطح نخست است'] +
-            ArrayHelper::map($this->possibleParents(), 'id', 'nestedTitle');
+        return ['درج به عنوان گروه'] +
+            ArrayHelper::map($this->possibleParents(), 'id', 'codedTitle');
+    }
+
+    public function getHtmlCodedTitle()
+    {
+        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
+            . $this->compositeCode . '] </small>';
     }
 
     public function getCodedTitle()
     {
-        return $this->compositeCode .  ' - ' . $this->title;
+        return $this->title .  ' - ' . $this->compositeCode;
+    }
+
+    public static function getDepthList()
+    {
+        return [
+            0 => 'گروه',
+            1 => 'دسته',
+            2 => 'شاخه'
+        ];
+    }
+
+    public function getDepthTitle()
+    {
+        $list = self::getDepthList();
+        return isset($list[$this->depth]) ? $list[$this->depth] : '-';
+    }
+
+    public function possibleParents()
+    {
+        $family=[];
+        if (!$this->owner->isNewRecord) {
+            $family[] = $this->owner->id;
+            $children = $this->owner->children()->select('id')->all();
+            foreach ($children as $child) {
+                $family[] =  $child->id ;
+            }
+        }
+        return $this->owner->find()
+            ->andWhere(['not in', 'id', $family])
+            ->andWhere(['in', 'depth', [0,1]])
+            ->all();
+    }
+
+    public function getFamilyTreeArray()
+    {
+        $attributes = [
+            'id' => $this->id,
+            'name' => $this->htmlCodedTitle,
+            'code' => $this->compositeCode
+        ];
+        if ($this->children(1)->count() != 0) {
+            $children = [];
+            foreach ($this->children(1)->all() as $child) {
+                $children[] = $child->getFamilyTreeArray();
+            }
+        } elseif ($this->getTypes()->count() != 0) {
+            foreach ($this->types as $type) {
+                $children[] = [
+                    'id' => $type->id,
+                    'name' => $type->code .' - '. $type->title,
+                    'code' => $type->compositeCode
+                ];
+            }
+        }
+        if (!empty($children)) {
+            $attributes['children'] = $children;
+        }
+        return $attributes;
     }
 }

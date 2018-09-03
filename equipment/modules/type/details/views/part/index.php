@@ -4,6 +4,7 @@ use yii\grid\GridView;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\ActionButtons;
 use modules\nad\equipment\modules\type\models\Type;
+use modules\nad\equipment\modules\type\details\models\Part;
 
 $type = Type::findOne(Yii::$app->request->get('typeId'));
 $this->title = 'قطعات تجهیز - '. $type->compositeCode ;
@@ -54,11 +55,21 @@ $this->params['breadcrumbs'] = [
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'compositeCode',
+            [
+                'class' => 'modules\nad\common\grid\CodeColumn',
+                'isAjaxGrid' => true
+            ],
             'code',
             [
                 'class' => 'core\grid\TitleColumn',
                 'isAjaxGrid' => true
+            ],
+            [
+                'attribute' => 'kind',
+                'filter' => Part::getKindsList(),
+                'value' => function ($model) {
+                    return $model->getkindLabel();
+                }
             ],
             [
                 'label' => 'تعداد مدل ها',

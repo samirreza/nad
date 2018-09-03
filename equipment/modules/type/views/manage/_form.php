@@ -15,24 +15,22 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         'options'=>['enctype'=>'multipart/form-data']
     ]); ?>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <?php Panel::begin([
                 'title' => 'اطلاعات اصلی'
             ]) ?>
             <div class="row">
-                <div class="col-md-5">
-                    <?= $form->field($model, 'title')->textInput() ?>
-                </div>
                 <div class="col-md-4">
                     <?=
                     $form->field($model, 'categoryId')
                         ->widget(
                             Select2::class,
                             [
-                                'data' => ArrayHelper::map(Category::find()->all(), 'id', 'codedTitle'),
-                                'options' => [
-                                    'class' => 'form-control input-large'
-                                ]
+                                'data' => ArrayHelper::map(
+                                    Category::find()->where(['depth' => 2])->all(),
+                                    'id',
+                                    'codedTitle'
+                                ),
                             ]
                         );
                     ?>
@@ -42,13 +40,16 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         ['style' => 'direction:ltr', 'maxlength' => 1]
                     )->hint('تنها یک کاراکتر لاتین') ?>
                 </div>
+                <div class="col-md-5">
+                    <?= $form->field($model, 'title')->textInput() ?>
+                </div>
             </div>
             <?=
                 $form->field($model, 'description')->textarea([])
             ?>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?php Panel::begin() ?>
                 <?=
                     Html::submitButton(

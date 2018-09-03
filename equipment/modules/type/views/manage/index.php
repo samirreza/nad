@@ -15,7 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => ['label' => 'نوع تجهیز جدید'],
-            'categoriesIndex' => ['label' => 'گروه ها'],
+            'categoriesIndex' => [
+                'label' => 'رده های تجهیزات',
+                'icon' => 'sitemap'
+            ]
         ],
     ]); ?>
     <?php Panel::begin([
@@ -30,12 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'compositeCode',
+                    ['class' => 'modules\nad\common\grid\CodeColumn'],
+                    ['class' => 'core\grid\TitleColumn'],
                     [
                         'attribute' => 'category.title',
-                        'label' => 'عنوان گروه'
+                        'value' => function ($model) {
+                            return $model->category->familyTreeTitle;
+                        }
                     ],
-                    ['class' => 'core\grid\TitleColumn'],
                     [
                         'attribute' => 'createdAt',
                         'format' =>'date',
