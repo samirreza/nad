@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
+use modules\nad\equipment\modules\type\details\models\Part;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
@@ -19,7 +20,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
         'showCloseButton' => true
     ]) ?>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <?php Panel::begin() ?>
             <div class="row">
                 <div class="col-md-3">
@@ -30,10 +31,15 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                 <div class="col-md-6">
                     <?= $form->field($model, 'title')->textInput() ?>
                 </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'kind')->dropDownList(
+                        Part::getKindsList()
+                    ) ?>
+                </div>
             </div>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?php Panel::begin() ?>
                 <?=
                     Html::submitButton(

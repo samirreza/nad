@@ -23,7 +23,11 @@ $this->params['breadcrumbs'] = [
                 'model' => $model,
                 'attributes' => [
                     'title',
-                    'code'
+                    'code',
+                    [
+                        'attribute' => 'kind',
+                        'value' => $model->getkindLabel()
+                    ]
                 ],
             ]) ?>
             <?php Panel::end() ?>

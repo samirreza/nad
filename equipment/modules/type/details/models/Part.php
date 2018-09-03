@@ -32,7 +32,7 @@ class Part extends \yii\db\ActiveRecord
         return [
             [['code'], 'required'],
             [['title', 'code'], 'trim'],
-            [['typeId'], 'integer'],
+            [['typeId', 'kind'], 'integer'],
             ['title', 'string', 'max' => 255],
             ['code', 'string', 'min' => 3, 'max' => 3],
             ['code', 'match', 'pattern' => '/^[0-9]{3}$/'],
@@ -51,6 +51,7 @@ class Part extends \yii\db\ActiveRecord
         return [
             'title' => 'عنوان',
             'code' => 'شماره قطعه',
+            'kind' => 'نوع قطعه',
             'compositeCode' => 'شناسه قطعه',
         ];
     }
@@ -68,5 +69,20 @@ class Part extends \yii\db\ActiveRecord
     public function getCompositeCode()
     {
         return $this->type->getCompositeCode() . '. S. ' . $this->code;
+    }
+
+    public static function getKindsList()
+    {
+        return [
+            1 => 'استاندارد',
+            2 => 'در دسترس',
+            3 => 'خود ساخته'
+        ];
+    }
+
+    public function getKindLabel()
+    {
+        $list = self::getKindsList();
+        return isset($list[$this->kind]) ? $list[$this->kind] : null;
     }
 }
