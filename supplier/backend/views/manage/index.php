@@ -21,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $this->render('_search', ['model' => $searchModel]) ?>
-
     <?php Panel::begin([
         'title' => Html::encode($this->title)
     ]) ?>
@@ -30,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'product-gridviewpjax',
         'enablePushState' => false,
     ]); ?>
+
+    <?= $this->render('_search', ['model' => $searchModel]) ?>
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
