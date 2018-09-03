@@ -7,9 +7,9 @@ class TreeAssetBundle extends AssetBundle
 {
     public $sourcePath = '@modules/nad/equipment/modules/type/assets';
 
-    public $css = ['menu.css'];
+    public $css = ['tree.css'];
 
-    public $js = ['menu.js'];
+    public $js = ['tree.js'];
 
     public $depends = [
         'core\assets\JqTreeAssetBundle'
