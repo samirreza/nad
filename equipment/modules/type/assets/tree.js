@@ -20,7 +20,10 @@ function fillTree(rootId) {
                 autoEscape: false,
                 selectable: false,
                 data: data,
-                rtl: true
+                rtl: true,
+                onCreateLi: function(node, $li, is_selected) {
+                    $li.addClass('depth-' + node.depth);
+                }
             });
         }
     );

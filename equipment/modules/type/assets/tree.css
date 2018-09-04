@@ -5,3 +5,15 @@ ul.jqtree-tree .jqtree-element {
     border-radius: 3px;
     background-color: #f9f9f9;
 }
+li.depth-0 > div.jqtree-element {
+    background-color: #d4b6d8;
+}
+li.depth-1 > div.jqtree-element {
+    background-color: #e7b7cb;
+}
+li.depth-2 > div.jqtree-element {
+    background-color: #f4cdcc;
+}
+li.depth-3 > div.jqtree-element {
+    background-color: #ffdecd;
+}

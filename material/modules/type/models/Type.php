@@ -65,4 +65,10 @@ class Type extends \modules\nad\material\models\Type
     {
         return $this->category->compositeCode . '. ' . $this->code;
     }
+
+    public function getHtmlCodedTitle()
+    {
+        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
+            . $this->compositeCode . '] </small>';
+    }
 }

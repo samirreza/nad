@@ -150,7 +150,8 @@ class Category extends \yii\db\ActiveRecord
         $attributes = [
             'id' => $this->id,
             'name' => $this->htmlCodedTitle,
-            'code' => $this->compositeCode
+            'code' => $this->compositeCode,
+            'depth' => $this->depth
         ];
         if ($this->children(1)->count() != 0) {
             $children = [];
@@ -161,8 +162,9 @@ class Category extends \yii\db\ActiveRecord
             foreach ($this->types as $type) {
                 $children[] = [
                     'id' => $type->id,
-                    'name' => $type->code .' - '. $type->title,
-                    'code' => $type->compositeCode
+                    'name' => $type->htmlCodedTitle,
+                    'code' => $type->compositeCode,
+                    'depth' => 3
                 ];
             }
         }

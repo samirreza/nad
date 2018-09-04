@@ -57,11 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'titleEn',
-                    [
-                        'attribute' => 'createdAt',
-                        'format' =>'date',
-                        'filter' =>false
-                    ],
                     ['class' => 'core\grid\AjaxActionColumn'],
                 ],
             ]); ?>

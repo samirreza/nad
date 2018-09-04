@@ -71,9 +71,6 @@ $this->params['breadcrumbs'] = [
                         'template' => '{view} {update} {delete} {tree}',
                         'buttons' => [
                             'tree' => function ($url, $model, $key) {
-                                if (!in_array($model->depth, [0, 1])) {
-                                    return;
-                                }
                                 return Html::a(
                                     '<span class="fa fa-tree"></span>',
                                     '#',

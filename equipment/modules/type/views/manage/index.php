@@ -41,11 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->category->familyTreeTitle;
                         }
                     ],
-                    [
-                        'attribute' => 'createdAt',
-                        'format' =>'date',
-                        'filter' =>false
-                    ],
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
