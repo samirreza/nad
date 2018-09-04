@@ -7,14 +7,11 @@ use themes\admin360\widgets\ActionButtons;
 
 ?>
 <div class="page-view">
-<?php Panel::begin([
-    'title' => 'مشاهده جزئیات',
-    'showCloseButton' => true
-]) ?>
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
                 'title' => 'اطلاعات گروه',
+                'showCloseButton' => true
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,
@@ -23,7 +20,7 @@ use themes\admin360\widgets\ActionButtons;
                     'code',
                     'title',
                     [
-                        'label' => "دسته پدر",
+                        'label' => "رده پدر",
                         'visible' => !$model->isRoot(),
                         'value' => $model->isRoot() ?: $model->getParent()->title,
                         'format' => 'raw'
@@ -32,21 +29,5 @@ use themes\admin360\widgets\ActionButtons;
             ]) ?>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-6">
-            <?php Panel::begin([
-                'title' => 'زیرمجموعه ها',
-            ]) ?>
-                <?php if ($model->children(1)->count() > 0) : ?>
-                    <ul class="children" style="list-style:none; font-size:115%">
-                        <?php foreach ($model->children()->all() as $child) : ?>
-                            <li><?= $child->nestedTitle ?></li>
-                        <?php endforeach ?>
-                    </ul>
-                <?php else : ?>
-                    این دسته زیر مجموعه ای ندارد.
-                <?php endif ?>
-            <?php Panel::end() ?>
-        </div>
     </div>
-<?php Panel::end() ?>
 </div>
