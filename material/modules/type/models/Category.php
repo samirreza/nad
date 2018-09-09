@@ -93,7 +93,7 @@ class Category extends \yii\db\ActiveRecord
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getCompositeCode().'. '.$this->code;
+        return $this->parent->getCompositeCode().'.'.$this->code;
     }
 
     public function getParentsForSelect2()
@@ -162,7 +162,7 @@ class Category extends \yii\db\ActiveRecord
                 $children[] = [
                     'id' => $type->id,
                     'name' => $type->htmlCodedTitle,
-                    'code' => $type->compositeCode,
+                    'code' => $type->uniqueCode,
                     'depth' => 3
                 ];
             }

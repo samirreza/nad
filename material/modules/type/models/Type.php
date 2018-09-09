@@ -38,7 +38,7 @@ class Type extends \modules\nad\material\models\Type
     {
         return [
             'code' => 'شناسه نوع ماده',
-            'compositeCode' => 'شناسه نوع ماده',
+            'uniqueCode' => 'شناسه نوع ماده',
             'title' => 'عنوان',
             'titleEn' => 'عنوان لاتین',
             'description' => 'توضیحات',
@@ -61,14 +61,14 @@ class Type extends \modules\nad\material\models\Type
         return parent::beforeValidate();
     }
 
-    public function getCompositeCode()
+    public function beforeSave($insert)
     {
-        return $this->category->compositeCode . '. ' . $this->code;
+        $this->setUniqueCode();
+        return parent::beforeSave($insert);
     }
 
-    public function getHtmlCodedTitle()
+    public function setUniqueCode()
     {
-        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
-            . $this->compositeCode . '] </small>';
+        $this->uniqueCode = $this->category->compositeCode . '.' . $this->code;
     }
 }
