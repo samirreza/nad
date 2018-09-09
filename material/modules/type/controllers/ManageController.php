@@ -38,20 +38,17 @@ class ManageController extends \core\controllers\AjaxAdminController
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $materials['results'] = [];
-        $index = 0;
-
         $types = Type::find()
-            ->where(['like', 'title', $q])
+            ->select(['id', 'title', 'uniqueCode'])
+            ->where(['or', ['like', 'title', $q], ['like', 'uniqueCode', $q]])
             ->all();
 
+        $materials['results'] = [];
         foreach ($types as $type) {
-            $materials['results'][$index] =
-                [
-                    'id' => $type->title,
-                    'text' => $type->compositeCode . ' ( ' . $type->title . ' ) ',
-                ];
-            $index++;
+            $materials['results'][] = [
+                'id' => $type->title,
+                'text' => $type->uniqueCode . ' (' . $type->title . ') ',
+            ];
         }
         return $materials;
     }
