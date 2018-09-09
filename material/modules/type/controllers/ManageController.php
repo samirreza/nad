@@ -19,7 +19,7 @@ class ManageController extends \core\controllers\AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['it.depot']
+                            'roles' => ['material.type']
                         ],
                     ],
                 ],
