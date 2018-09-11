@@ -6,7 +6,7 @@ use modules\nad\equipment\modules\type\details\models\Part;
 use modules\nad\equipment\modules\type\models\Type as EquipmentType;
 use modules\nad\maker\backend\modules\phonebook\models\Phonebook;
 
-class Maker extends \modules\nad\maker\common\models\maker
+class Maker extends \modules\nad\maker\common\models\Maker
 {
     public function behaviors()
     {
