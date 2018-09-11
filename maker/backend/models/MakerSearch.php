@@ -10,7 +10,7 @@ class MakerSearch extends Maker
     public function rules()
     {
         return [
-            [['title', 'isLegal', 'isActive'], 'safe'],
+            [['title', 'isLegal', 'isActive','equipments','parts'], 'safe'],
         ];
     }
 
@@ -46,6 +46,15 @@ class MakerSearch extends Maker
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        if (!empty($this->equipments)) {
+            $query->joinWith('equipTypes as equipment');
+            $query->andFilterWhere(['like', 'equipment.title', $this->equipments]);
+        }
+        if (!empty($this->parts)) {
+            $query->joinWith('partsRelation as part');
+            $query->andFilterWhere(['like', 'part.title', $this->parts]);
+        }
 
         return $dataProvider;
     }
