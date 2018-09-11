@@ -32,6 +32,76 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
+                'title' => 'تجهیزات سازنده',
+            ]) ?>
+            <?php
+            if (count($model->equipTypes) != 0) {
+                foreach ($model->equipTypes as $equipment) {
+                    echo DetailView::widget([
+                        'model' => $equipment,
+                        'attributes' => [
+                            [
+                                'attribute' => 'عنوان',
+                                'value' => $equipment->title,
+                            ],
+                            [
+                                'attribute' => 'شناسه یکتا',
+                                'value' => $equipment->uniqueCode,
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'table-layout: fixed; font-size:14px;'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز تجهیزاتی برای این سازنده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'قطعات سازنده',
+            ]) ?>
+            <?php
+            if (count($model->partsRelation) != 0) {
+                foreach ($model->partsRelation as $part) {
+                    echo DetailView::widget([
+                        'model' => $part,
+                        'attributes' => [
+                            [
+                                'attribute' => 'عنوان',
+                                'value' => $part->title,
+                            ],
+                            [
+                                'attribute' => 'شناسه یکتا',
+                                'value' => $part->uniqueCode,
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'font-size:14px;'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز قطعه ای برای این سازنده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+
+            <?php Panel::end() ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <?php Panel::begin([
                 'title' => 'اطلاعات سازنده',
             ]) ?>
             <?= DetailView::widget([

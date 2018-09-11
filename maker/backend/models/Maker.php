@@ -2,6 +2,9 @@
 
 namespace modules\nad\maker\backend\models;
 
+use modules\nad\equipment\modules\type\details\models\Part;
+use modules\nad\equipment\modules\type\models\Type as EquipmentType;
+
 class Maker extends \modules\nad\maker\common\models\maker
 {
     public function behaviors()
@@ -56,7 +59,7 @@ class Maker extends \modules\nad\maker\common\models\maker
                 'default',
                 'value' => null
             ],
-            [['description'], 'safe']
+            [['description','equipments','parts'], 'safe']
         ];
     }
 
@@ -80,6 +83,8 @@ class Maker extends \modules\nad\maker\common\models\maker
             'isActive' => 'سازنده فعال است',
             'createdAt' => 'تاریخ ثبت',
             'works' => 'نوع کار و حرفه',
+            'equipments' => 'تجهیزات',
+            'parts' => 'قطعات'
         ];
     }
 
@@ -113,5 +118,21 @@ class Maker extends \modules\nad\maker\common\models\maker
             $result .= $work->title.' - ';
         }
         return rtrim($result,'- ');
+    }
+
+    public function getEquipTypes()
+    {
+        return $this->hasMany(
+            EquipmentType::class,
+            ['id' => 'equipmentId']
+        )->viaTable('nad_maker_equipment_relation', ['makerId' => 'id']);
+    }
+
+    public function getPartsRelation()
+    {
+        return $this->hasMany(
+            Part::class,
+            ['id' => 'partId']
+        )->viaTable('nad_maker_part_relation', ['makerId' => 'id']);
     }
 }

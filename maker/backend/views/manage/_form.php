@@ -3,6 +3,8 @@
 use core\widgets\select2\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
@@ -61,32 +63,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <div class="row">
                 <div class="col-md-12">
                     <?=
-                    $form->field($model, 'mobile')
-                        ->textInput(
-                            [
-                                'class' => 'form-control input-large',
-                                'style' => 'direction: ltr;'
-                            ]
-                        )
-                    ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <?=
-                    $form->field($model, 'fax')
-                        ->textInput(
-                            [
-                                'class' => 'form-control input-large',
-                                'style' => 'direction: ltr;'
-                            ]
-                        )
-                    ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <?=
                     $form->field($model, 'email')
                         ->textInput(
                             [
@@ -101,6 +77,30 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <div class="col-md-12">
                     <?=
                     $form->field($model, 'website')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'mobile')
+                        ->textInput(
+                            [
+                                'class' => 'form-control input-large',
+                                'style' => 'direction: ltr;'
+                            ]
+                        )
+                    ?>
+                </div>
+                <div class="col-md-6">
+                    <?=
+                    $form->field($model, 'fax')
                         ->textInput(
                             [
                                 'class' => 'form-control input-large',
@@ -227,6 +227,54 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ]
                 )
             ?>
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-4">
+            <?php Panel::begin([
+                'title' => 'تجهیزات و قطعات سازنده'
+            ]) ?>
+            <?= $form->field($model, 'equipments')->widget(
+                Select2::class,
+                [
+                    'options' => [
+                        'multiple' => true,
+                        'placeholder' => 'انتخاب کنید ...',
+                        'value' => $model->getEquipmentsAsArray()
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'minimumInputLength' => 2,
+                        'ajax' => [
+                            'url' => Url::to(['/equipment/type/manage/ajax-find-equipments']),
+                            'dataType' => 'json',
+                            'delay' => 1000,
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'templateResult' => new JsExpression('function(equipment) { return equipment.text; }'),
+                    ],
+                ]
+            ) ?>
+            <?= $form->field($model, 'parts')->widget(
+                Select2::class,
+                [
+                    'options' => [
+                        'multiple' => true,
+                        'placeholder' => 'انتخاب کنید ...',
+                        'value' => $model->getPartsAsArray()
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'minimumInputLength' => 2,
+                        'ajax' => [
+                            'url' => Url::to(['/equipment/type/details/part/ajax-find-parts']),
+                            'dataType' => 'json',
+                            'delay' => 1000,
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'templateResult' => new JsExpression('function(part) { return part.text; }'),
+                    ],
+                ]
+            ) ?>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-4">
