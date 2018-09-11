@@ -35,7 +35,7 @@ class Fitting extends \yii\db\ActiveRecord
         return [
             'title' => 'عنوان',
             'code' => 'شماره اتصال',
-            'compositeCode' => 'شناسه اتصال',
+            'uniqueCode' => 'شناسه اتصال',
         ];
     }
 
@@ -44,8 +44,14 @@ class Fitting extends \yii\db\ActiveRecord
         return $this->hasOne(Type::className(), ['id' => 'typeId']);
     }
 
-    public function getCompositeCode()
+    public function beforeSave($insert)
     {
-        return $this->type->getCompositeCode() . '. F. ' . $this->code;
+        $this->setUniqueCode();
+        return parent::beforeSave($insert);
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->type->uniqueCode . '.F.' . $this->code;
     }
 }

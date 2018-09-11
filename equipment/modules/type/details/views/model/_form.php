@@ -36,7 +36,7 @@ if (!isset($type)) {
                                 'data' => ArrayHelper::map(
                                     Part::find()->where(['typeId' => $type->id])->all(),
                                     'id',
-                                    'compositeCode'
+                                    'uniqueCode'
                                 )
                             ]
                         );

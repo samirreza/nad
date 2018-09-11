@@ -101,4 +101,29 @@ class Type extends \modules\nad\equipment\models\Type
     {
         $this->uniqueCode = $this->category->compositeCode . '.' . $this->code;
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert && isset($changedAttributes['uniqueCode'])) {
+            $this->updatePartCodes();
+            $this->updateFittingCodes();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function updatePartCodes()
+    {
+        foreach ($this->parts as $part) {
+            $part->setUniqueCode();
+            $part->save(false);
+        }
+    }
+
+    private function updateFittingCodes()
+    {
+        foreach ($this->fittings as $fitting) {
+            $fitting->setUniqueCode();
+            $fitting->save(false);
+        }
+    }
 }

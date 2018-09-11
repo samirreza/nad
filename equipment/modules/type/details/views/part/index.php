@@ -7,11 +7,11 @@ use modules\nad\equipment\modules\type\models\Type;
 use modules\nad\equipment\modules\type\details\models\Part;
 
 $type = Type::findOne(Yii::$app->request->get('typeId'));
-$this->title = 'قطعات تجهیز - '. $type->compositeCode ;
+$this->title = 'قطعات تجهیز - '. $type->uniqueCode ;
 $this->params['breadcrumbs'] = [
     'تجهیزات',
     ['label' => 'انواع', 'url' => ['../manage/index']],
-    ['label' => $type->compositeCode, 'url' => ['../manage/view', 'id' => $type->id]],
+    ['label' => $type->uniqueCode, 'url' => ['../manage/view', 'id' => $type->id]],
     $this->title
 ];
 ?>

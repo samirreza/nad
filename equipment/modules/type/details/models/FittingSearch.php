@@ -9,7 +9,7 @@ class FittingSearch extends Fitting
     public function rules()
     {
         return [
-            [['title', 'code'], 'safe'],
+            [['title', 'code', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -29,7 +29,8 @@ class FittingSearch extends Fitting
         }
         $query->andFilterWhere(['typeId' => $params['typeId']]);
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'code', $this->code]);
+            ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         return $dataProvider;
     }
 }

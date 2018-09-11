@@ -8,11 +8,11 @@ use modules\nad\equipment\modules\type\models\Type;
 use modules\nad\equipment\modules\type\details\models\Part;
 
 $type = Type::findOne(Yii::$app->request->get('typeId'));
-$this->title = 'مدل های قطعات - '. $type->compositeCode ;
+$this->title = 'مدل های قطعات - '. $type->uniqueCode ;
 $this->params['breadcrumbs'] = [
     'تجهیزات',
     ['label' => 'انواع', 'url' => ['../manage/index']],
-    ['label' => $type->compositeCode, 'url' => ['../manage/view', 'id' => $type->id]],
+    ['label' => $type->uniqueCode, 'url' => ['../manage/view', 'id' => $type->id]],
     ['label' => 'قطعات', 'url' => ['part/index', 'typeId' => $type->id]],
     $this->title
 ];
@@ -69,10 +69,10 @@ $this->params['breadcrumbs'] = [
                 'filter' => ArrayHelper::map(
                     Part::find()->where(['typeId' => $type->id])->all(),
                     'id',
-                    'compositeCode'
+                    'uniqueCode'
                 ),
                 'value' => function ($model) {
-                    return $model->part->compositeCode;
+                    return $model->part->uniqueCode;
                 }
             ],
             [

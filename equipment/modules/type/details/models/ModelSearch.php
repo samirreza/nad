@@ -9,7 +9,7 @@ class ModelSearch extends Model
     public function rules()
     {
         return [
-            [['title', 'code', 'partId'], 'safe'],
+            [['title', 'code', 'partId', 'uniqueCode'], 'safe'],
             ['partId', 'integer'],
         ];
     }
@@ -36,7 +36,8 @@ class ModelSearch extends Model
             'partId' => $this->partId,
         ]);
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'code', $this->code]);
+            ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         return $dataProvider;
     }
 }

@@ -20,7 +20,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
         <div class="col-md-8">
             <?php Panel::begin() ?>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr', 'maxlength' => 3]
                     )->hint('۳ عدد لاتین به فرمت 000') ?>
