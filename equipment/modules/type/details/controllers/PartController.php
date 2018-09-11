@@ -49,21 +49,18 @@ class PartController extends \core\controllers\AjaxAdminController
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $parts['results'] = [];
-        $index = 0;
-
         $parts = Part::find()
-            ->where(['like', 'title', $q])
+            ->select(['id', 'title', 'uniqueCode'])
+            ->where(['or', ['like', 'title', $q], ['like', 'uniqueCode', $q]])
             ->all();
 
+        $output['results'] = [];
         foreach ($parts as $part) {
-            $parts['results'][$index] =
-                [
-                    'id' => $part->title,
-                    'text' => $part->compositeCode . ' ( ' . $part->title . ' ) ',
-                ];
-            $index++;
+            $output['results'][] = [
+                'id' => $part->title,
+                'text' => $part->uniqueCode . ' (' . $part->title . ') ',
+            ];
         }
-        return $parts;
+        return $output;
     }
 }

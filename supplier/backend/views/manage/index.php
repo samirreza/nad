@@ -37,7 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'class' => 'core\grid\TitleColumn',
+                'attribute' => 'name'
+            ],
             [
                 'attribute' => 'isForeign',
                 'filter' => ['داخلی', 'خارجی'],

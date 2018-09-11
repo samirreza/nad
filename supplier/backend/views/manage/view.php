@@ -52,8 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'value' => $equipment->title,
                             ],
                             [
-                                'attribute' => 'کد',
-                                'value' => $equipment->compositeCode,
+                                'attribute' => 'شناسه یکتا',
+                                'value' => $equipment->uniqueCode,
                             ],
                         ],
                         'options' => [
@@ -85,8 +85,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'value' => $material->title,
                             ],
                             [
-                                'attribute' => 'کد',
-                                'value' => $material->compositeCode,
+                                'attribute' => 'شناسه یکتا',
+                                'value' => $material->uniqueCode,
                             ],
                         ],
                         'options' => [
@@ -119,8 +119,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'value' => $part->title,
                             ],
                             [
-                                'attribute' => 'کد',
-                                'value' => $part->compositeCode,
+                                'attribute' => 'شناسه یکتا',
+                                'value' => $part->uniqueCode,
                             ],
                         ],
                         'options' => [
