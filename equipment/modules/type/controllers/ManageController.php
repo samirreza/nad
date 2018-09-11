@@ -2,6 +2,7 @@
 
 namespace modules\nad\equipment\modules\type\controllers;
 
+use modules\nad\equipment\modules\type\details\models\Part;
 use yii\filters\AccessControl;
 use modules\nad\equipment\modules\type\models\Type;
 use modules\nad\equipment\modules\type\models\TypeSearch;

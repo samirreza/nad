@@ -2,6 +2,7 @@
 
 namespace modules\nad\supplier\backend\models;
 
+use modules\nad\equipment\modules\type\details\models\Part;
 use modules\nad\equipment\modules\type\models\Type as EquipmentType;
 use modules\nad\material\modules\type\models\Type as MaterialType;
 use modules\nad\supplier\backend\modules\phonebook\models\Phonebook;
@@ -45,7 +46,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             ['website', 'url'],
             [['phone', 'fax'], 'integer'],
             [['description', 'website', 'email', 'fax','factoryAddress'], 'default', 'value' => null],
-            [['description', 'materials', 'equipments'], 'safe']
+            [['description', 'materials', 'equipments','parts'], 'safe']
         ];
     }
 
@@ -69,6 +70,7 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             'phoneCount' => 'تعداد شماره تماس',
             'equipments' => 'تجهیزات',
             'materials' => 'مواد',
+            'parts' => 'قطعات',
         ];
     }
 
@@ -142,5 +144,13 @@ class Supplier extends \modules\nad\supplier\common\models\Supplier
             MaterialType::class,
             ['id' => 'materialId']
         )->viaTable('nad_supplier_material_relation', ['supplierId' => 'id']);
+    }
+
+    public function getPartsRelation()
+    {
+        return $this->hasMany(
+            Part::class,
+            ['id' => 'partId']
+        )->viaTable('nad_supplier_part_relation', ['supplierId' => 'id']);
     }
 }

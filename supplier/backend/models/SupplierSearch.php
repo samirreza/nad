@@ -10,7 +10,7 @@ class SupplierSearch extends Supplier
     public function rules()
     {
         return [
-            [['name', 'isForeign', 'type', 'isActive', 'equipments', 'materials'], 'safe'],
+            [['name', 'isForeign', 'type', 'isActive', 'equipments', 'materials','parts'], 'safe'],
         ];
     }
 
@@ -55,6 +55,10 @@ class SupplierSearch extends Supplier
         if (!empty($this->materials)) {
             $query->joinWith('matTypes as material');
             $query->andFilterWhere(['like', 'material.title', $this->materials]);
+        }
+        if (!empty($this->parts)) {
+            $query->joinWith('partsRelation as part');
+            $query->andFilterWhere(['like', 'part.title', $this->parts]);
         }
 
         return $dataProvider;
