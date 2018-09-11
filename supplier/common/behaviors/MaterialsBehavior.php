@@ -3,7 +3,7 @@ namespace modules\nad\supplier\common\behaviors;
 
 use creocoder\taggable\TaggableBehavior;
 
-class MaterialBehavior extends TaggableBehavior
+class MaterialsBehavior extends TaggableBehavior
 {
     public $materialRelation = 'matTypes';
     public $materialValueAttribute = 'title';

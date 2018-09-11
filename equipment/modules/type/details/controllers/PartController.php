@@ -44,4 +44,26 @@ class PartController extends \core\controllers\AjaxAdminController
         }
         return parent::beforeAction($action);
     }
+
+    public function actionAjaxFindParts($q = null)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $parts['results'] = [];
+        $index = 0;
+
+        $parts = Part::find()
+            ->where(['like', 'title', $q])
+            ->all();
+
+        foreach ($parts as $part) {
+            $parts['results'][$index] =
+                [
+                    'id' => $part->title,
+                    'text' => $part->compositeCode . ' ( ' . $part->title . ' ) ',
+                ];
+            $index++;
+        }
+        return $parts;
+    }
 }

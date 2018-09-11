@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?php Panel::begin([
                 'title' => 'تجهیزات تامین کننده',
             ]) ?>
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             <?php Panel::end() ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?php Panel::begin([
                 'title' => 'مواد تامین کننده',
             ]) ?>
@@ -97,6 +97,40 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             } else {
                 echo Html::tag('p', 'هنوز موادی برای این تامین کننده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+
+            <?php Panel::end() ?>
+        </div>
+        <div class="col-md-4">
+            <?php Panel::begin([
+                'title' => 'قطعات تامین کننده',
+            ]) ?>
+            <?php
+            if (count($model->partsRelation) != 0) {
+                foreach ($model->partsRelation as $part) {
+                    echo DetailView::widget([
+                        'model' => $part,
+                        'attributes' => [
+                            [
+                                'attribute' => 'عنوان',
+                                'value' => $part->title,
+                            ],
+                            [
+                                'attribute' => 'کد',
+                                'value' => $part->compositeCode,
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'font-size:14px;'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز قطعه ای برای این تامین کننده ثبت نگردیده است.', [
                     'style' => 'font-weight: bold; text-align: center'
                 ]);
             }

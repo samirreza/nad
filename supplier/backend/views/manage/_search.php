@@ -19,11 +19,11 @@ use themes\admin360\widgets\Button;
     <div class="row">
         <div class="col-md-12">
             <?php Panel::begin([
-                'title' => 'جستجوی تامین کننده بر اساس تجهیزات و مواد'
+                'title' => 'جستجوی تامین کننده بر اساس تجهیزات، مواد و قطعات'
             ]) ?>
 
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <?= $form->field($model, 'equipments')->widget(
                         Select2::class,
                         [
@@ -46,7 +46,7 @@ use themes\admin360\widgets\Button;
                         ]
                     ) ?>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <?= $form->field($model, 'materials')->widget(
                         Select2::class,
                         [
@@ -69,8 +69,31 @@ use themes\admin360\widgets\Button;
                         ]
                     ) ?>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group" style="margin-top: 20%;">
+                <div class="col-md-3">
+                    <?= $form->field($model, 'parts')->widget(
+                        Select2::class,
+                        [
+                            'options' => [
+                                'multiple' => true,
+                                'placeholder' => 'انتخاب کنید ...',
+                                'value' => $model->getPartsAsArray()
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true,
+                                'minimumInputLength' => 2,
+                                'ajax' => [
+                                    'url' => Url::to(['/equipment/type/details/part/ajax-find-parts']),
+                                    'dataType' => 'json',
+                                    'delay' => 1000,
+                                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                                ],
+                                'templateResult' => new JsExpression('function(part) { return part.text; }'),
+                            ],
+                        ]
+                    ) ?>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-top: 12%;">
                         <?= Html::submitButton(
                             '<i class="fa fa-search"></i>',
                             ['class' => 'btn btn-success']
