@@ -53,7 +53,7 @@ class Type extends \modules\nad\equipment\models\Type
     {
         return [
             'code' => 'شناسه نوع تجهیز',
-            'compositeCode' => 'شناسه نوع تجهیز',
+            'uniqueCode' => 'شناسه نوع تجهیز',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'شاخه',
@@ -91,14 +91,14 @@ class Type extends \modules\nad\equipment\models\Type
         return parent::beforeValidate();
     }
 
-    public function getCompositeCode()
+    public function beforeSave($insert)
     {
-        return $this->category->compositeCode . '. ' . $this->code;
+        $this->setUniqueCode();
+        return parent::beforeSave($insert);
     }
 
-    public function getHtmlCodedTitle()
+    public function setUniqueCode()
     {
-        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
-            . $this->compositeCode . '] </small>';
+        $this->uniqueCode = $this->category->compositeCode . '.' . $this->code;
     }
 }

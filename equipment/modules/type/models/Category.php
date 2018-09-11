@@ -94,7 +94,7 @@ class Category extends \yii\db\ActiveRecord
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getCompositeCode().'. '.$this->code;
+        return $this->parent->getCompositeCode().'.'.$this->code;
     }
 
     public function getParentsForSelect2()
@@ -163,7 +163,7 @@ class Category extends \yii\db\ActiveRecord
                 $children[] = [
                     'id' => $type->id,
                     'name' => $type->htmlCodedTitle,
-                    'code' => $type->compositeCode,
+                    'code' => $type->uniqueCode,
                     'depth' => 3
                 ];
             }
@@ -172,5 +172,27 @@ class Category extends \yii\db\ActiveRecord
             $attributes['children'] = $children;
         }
         return $attributes;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert && isset($changedAttributes['code'])) {
+            $this->updateTypeCodes();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function updateTypeCodes()
+    {
+        if ($this->children(1)->count() != 0) {
+            foreach ($this->children(1)->all() as $child) {
+                $child->updateTypeCodes();
+            }
+        } elseif ($this->getTypes()->count() != 0) {
+            foreach ($this->types as $type) {
+                $type->setUniqueCode();
+                $type->save(false);
+            }
+        }
     }
 }

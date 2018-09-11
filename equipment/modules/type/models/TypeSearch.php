@@ -14,7 +14,7 @@ class TypeSearch extends Type
     public function rules()
     {
         return [
-            [['title', 'code', 'category.title'], 'safe'],
+            [['title', 'code', 'category.title', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -32,6 +32,7 @@ class TypeSearch extends Type
         $query->joinWith('category AS category');
         $query->andFilterWhere(['like', 'nad_equipment_type.title', $this->title]);
         $query->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]
         );

@@ -7,4 +7,15 @@ class Type extends \yii\db\ActiveRecord
     {
         return 'nad_equipment_type';
     }
+
+    public function getHtmlCodedTitle()
+    {
+        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
+            . $this->uniqueCode . '] </small>';
+    }
+
+    public function getCodedTitle()
+    {
+        return $this->title .  ' - ' . $this->uniqueCode;
+    }
 }
