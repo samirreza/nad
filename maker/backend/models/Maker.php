@@ -4,6 +4,7 @@ namespace modules\nad\maker\backend\models;
 
 use modules\nad\equipment\modules\type\details\models\Part;
 use modules\nad\equipment\modules\type\models\Type as EquipmentType;
+use modules\nad\maker\backend\modules\phonebook\models\Phonebook;
 
 class Maker extends \modules\nad\maker\common\models\maker
 {
@@ -25,7 +26,6 @@ class Maker extends \modules\nad\maker\common\models\maker
                     'shopAddress',
                     'paymentType',
                     'isActive',
-                    'works'
                 ],
                 'required',
             ],
@@ -59,7 +59,7 @@ class Maker extends \modules\nad\maker\common\models\maker
                 'default',
                 'value' => null
             ],
-            [['description','equipments','parts'], 'safe']
+            [['description','equipments','parts','works'], 'safe']
         ];
     }
 
@@ -84,7 +84,8 @@ class Maker extends \modules\nad\maker\common\models\maker
             'createdAt' => 'تاریخ ثبت',
             'works' => 'نوع کار و حرفه',
             'equipments' => 'تجهیزات',
-            'parts' => 'قطعات'
+            'parts' => 'قطعات',
+            'phoneCount' => 'تعداد شماره تماس'
         ];
     }
 
@@ -101,6 +102,31 @@ class Maker extends \modules\nad\maker\common\models\maker
             1 => 'شرایطی',
             2 => 'هردو',
         ];
+    }
+
+    public function getPhones()
+    {
+        return $this->hasMany(Phonebook::class, ['makerId' => 'id']);
+    }
+
+    public function getPhonesAsArray()
+    {
+        $values = [];
+        $index = 0;
+
+        $phones = Phonebook::find()
+            ->andWhere(['makerId' => $this->id])
+            ->orderBy('id')
+            ->all();
+
+        foreach ($phones as $phone) {
+            $values[$index]['phone'] = $phone->phone;
+            $values[$index]['job'] = $phone->job->title;
+            $values[$index]['name'] = $phone->name;
+            $index++;
+        }
+
+        return $values;
     }
 
     public function getWorks()

@@ -51,13 +51,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'date',
                 'filter' => false
             ],
+            [
+                'attribute' => 'phoneCount',
+                'value' => function ($model) {
+                    return count($model->phones);
+                },
+                'format' => 'farsiNumber',
+            ],
             ['class' => 'core\grid\ActiveColumn'],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update}',
+                'template' => '{view} {update} {phonebook}',
+                'buttons' => [
+                    'phonebook' => function ($url, $model) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-phone-alt"></span>',
+                            ['/maker/phonebook/manage/list', 'makerId' => $model->id],
+                            ['title' => 'دفترچه تلفن']
+                        );
+                    }
+                ],
                 'visibleButtons' => [
                     'view' => \Yii::$app->user->can('maker.create'),
                     'update' => \Yii::$app->user->can('maker.update'),
+                    'phonebook' => \Yii::$app->user->can('maker.create')
                 ]
             ],
         ]

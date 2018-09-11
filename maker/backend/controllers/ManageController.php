@@ -34,7 +34,7 @@ class ManageController extends AdminController
                         ],
                         [
                             'allow' => true,
-                            'actions' => ['index', 'view'],
+                            'actions' => ['index', 'view', 'phonebook'],
                             'roles' => [
                                 'maker.create',
                                 'maker.update',

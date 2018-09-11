@@ -25,6 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'index' => [
                 'label' => 'لیست سازندگان',
                 'visibleFor' => ['maker.create']
+            ],
+            'phonebook' => [
+                'label' => 'دفترچه تلفن',
+                'url' => ['phonebook/manage/list', 'makerId' => $model->id],
+                'icon' => 'phone',
+                'type' => 'success',
+                'visibleFor' => ['maker.create']
             ]
         ]
     ]) ?>
@@ -135,7 +142,43 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
             <?php Panel::end() ?>
         </div>
-
+        <div class="col-md-6">
+            <?php Panel::begin([
+                'title' => 'شماره تماس های سازنده',
+            ]) ?>
+            <?php
+            if (count($model->phonesAsArray) != 0) {
+                foreach ($model->phonesAsArray as $phone) {
+                    echo DetailView::widget([
+                        'model' => $phone,
+                        'attributes' => [
+                            [
+                                'attribute' => 'نام',
+                                'value' => $phone['name'],
+                            ],
+                            [
+                                'attribute' => 'سمت',
+                                'value' => $phone['job'],
+                            ],
+                            [
+                                'attribute' => 'شماره تماس',
+                                'value' => $phone['phone'],
+                            ],
+                        ],
+                        'options' => [
+                            'class' => 'table table-striped table-bordered detail-view',
+                            'style' => 'table-layout: fixed'
+                        ]
+                    ]);
+                }
+            } else {
+                echo Html::tag('p', 'هنوز شماره تماسی برای این سازنده ثبت نگردیده است.', [
+                    'style' => 'font-weight: bold; text-align: center'
+                ]);
+            }
+            ?>
+            <?php Panel::end() ?>
+        </div>
     </div>
 
     <div class="row">
