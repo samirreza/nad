@@ -11,7 +11,7 @@ class CodeColumn extends DataColumn
     public function init()
     {
         if (!isset($this->attribute)) {
-            $this->attribute = 'compositeCode';
+            $this->attribute = 'uniqueCode';
         }
         if (empty($this->options)) {
             $this->options = ['style' => 'width:20%'];

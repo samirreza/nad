@@ -1,11 +1,11 @@
 <?php
-namespace modules\nad\material\models;
+namespace modules\nad\equipment\models;
 
-class Type extends \yii\db\ActiveRecord
+class Part extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'nad_material_type';
+        return 'nad_equipment_type_part';
     }
 
     public function getHtmlCodedTitle()

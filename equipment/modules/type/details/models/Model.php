@@ -36,7 +36,7 @@ class Model extends \yii\db\ActiveRecord
             'title' => 'عنوان',
             'code' => 'شماره مدل',
             'partId' => 'شناسه قطعه',
-            'compositeCode' => 'شناسه مدل',
+            'uniqueCode' => 'شناسه مدل',
         ];
     }
 
@@ -50,8 +50,14 @@ class Model extends \yii\db\ActiveRecord
         return $this->hasOne(Part::className(), ['id' => 'partId']);
     }
 
-    public function getCompositeCode()
+    public function beforeSave($insert)
     {
-        return $this->part->getCompositeCode() . '. M. ' . $this->code;
+        $this->setUniqueCode();
+        return parent::beforeSave($insert);
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->part->uniqueCode . '.M.' . $this->code;
     }
 }

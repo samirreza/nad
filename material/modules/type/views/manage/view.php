@@ -19,7 +19,7 @@ use themes\admin360\widgets\ActionButtons;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'compositeCode',
+                    'uniqueCode',
                     'title',
                     'titleEn',
                     'category.familyTreeTitle',

@@ -5,13 +5,8 @@ use core\behaviors\PreventDeleteBehavior;
 use modules\nad\equipment\modules\type\models\Type;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Part extends \yii\db\ActiveRecord
+class Part extends \modules\nad\equipment\models\Part
 {
-    public static function tableName()
-    {
-        return 'nad_equipment_type_part';
-    }
-
     public function behaviors()
     {
         return [
@@ -52,7 +47,7 @@ class Part extends \yii\db\ActiveRecord
             'title' => 'عنوان',
             'code' => 'شماره قطعه',
             'kind' => 'نوع قطعه',
-            'compositeCode' => 'شناسه قطعه',
+            'uniqueCode' => 'شناسه قطعه',
         ];
     }
 
@@ -66,9 +61,15 @@ class Part extends \yii\db\ActiveRecord
         return $this->hasMany(Model::className(), ['partId' => 'id']);
     }
 
-    public function getCompositeCode()
+    public function beforeSave($insert)
     {
-        return $this->type->getCompositeCode() . '. S. ' . $this->code;
+        $this->setUniqueCode();
+        return parent::beforeSave($insert);
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->type->uniqueCode . '.S.' . $this->code;
     }
 
     public static function getKindsList()
@@ -84,5 +85,21 @@ class Part extends \yii\db\ActiveRecord
     {
         $list = self::getKindsList();
         return isset($list[$this->kind]) ? $list[$this->kind] : null;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert && isset($changedAttributes['uniqueCode'])) {
+            $this->updateModelCodes();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    private function updateModelCodes()
+    {
+        foreach ($this->models as $model) {
+            $model->setUniqueCode();
+            $model->save(false);
+        }
     }
 }

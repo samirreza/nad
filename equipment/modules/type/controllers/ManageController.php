@@ -38,20 +38,17 @@ class ManageController extends \core\controllers\AdminController
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $equipments['results'] = [];
-        $index = 0;
-
         $types = Type::find()
-            ->where(['like', 'title', $q])
+            ->select(['id', 'title', 'uniqueCode'])
+            ->where(['or', ['like', 'title', $q], ['like', 'uniqueCode', $q]])
             ->all();
 
+        $equipments['results'] = [];
         foreach ($types as $type) {
-            $equipments['results'][$index] =
-                [
-                    'id' => $type->title,
-                    'text' => $type->compositeCode . ' ( ' . $type->title . ' ) ',
-                ];
-            $index++;
+            $equipments['results'][] = [
+                'id' => $type->title,
+                'text' => $type->uniqueCode . ' (' . $type->title . ') ',
+            ];
         }
         return $equipments;
     }

@@ -23,6 +23,7 @@ $this->params['breadcrumbs'] = [
                 'model' => $model,
                 'attributes' => [
                     'title',
+                    'uniqueCode',
                     'code',
                     [
                         'attribute' => 'kind',

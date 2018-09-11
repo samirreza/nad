@@ -22,9 +22,9 @@ $this->params['breadcrumbs'] = [
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'compositeCode',
+                    'uniqueCode',
                     'code',
-                    'part.compositeCode',
+                    'part.uniqueCode',
                     'title',
                 ],
             ]) ?>
