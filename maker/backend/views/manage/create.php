@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'buttons' => [
             'index' => [
                 'label' => 'لیست سازندگان',
-                'visibleFor' => ['supplier.create']
+                'visibleFor' => ['maker.create']
             ]
         ],
     ]); ?>

@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 use themes\admin360\widgets\Panel;
 use themes\admin360\widgets\Button;
 use modules\nad\repairer\backend\models\WorkType;
-use modules\nad\supplier\backend\models\Supplier;
+use modules\nad\repairer\backend\models\Repairer;
 
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -176,7 +176,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?=
             $form->field($model, 'paymentType')
                 ->dropDownList(
-                    Supplier::getPaymentTypeList(),
+                    Repairer::getPaymentTypeList(),
                     [
                         'class' => 'form-control input-large',
                         'prompt' => 'انتخاب کنید...'

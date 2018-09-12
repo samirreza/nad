@@ -121,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ],
                     'phone',
+                    'mobile',
                     'fax',
                     'email',
                     'website',
