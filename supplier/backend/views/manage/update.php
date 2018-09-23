@@ -1,6 +1,6 @@
 <?php
 
-use themes\admin360\widgets\ActionButtons;
+use theme\widgets\ActionButtons;
 
 $this->title = 'ویرایش تامین کننده';
 $this->params['breadcrumbs'][] = ['label' => 'لیست تامین کنندگان', 'url' => ['index']];

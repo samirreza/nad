@@ -1,6 +1,6 @@
 <?php
 
-use themes\admin360\widgets\ActionButtons;
+use theme\widgets\ActionButtons;
 
 $this->title = 'تامین کننده جدید';
 $this->params['breadcrumbs'][] = $this->title;
