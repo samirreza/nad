@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use themes\admin360\widgets\Panel;
-use themes\admin360\widgets\Button;
+use theme\widgets\Panel;
+use theme\widgets\Button;
 use modules\nad\supplier\backend\modules\phonebook\models\Job;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;

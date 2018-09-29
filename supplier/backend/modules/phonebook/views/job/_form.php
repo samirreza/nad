@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use themes\admin360\widgets\Panel;
-use themes\admin360\widgets\Button;
+use theme\widgets\Panel;
+use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
