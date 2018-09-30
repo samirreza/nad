@@ -1,13 +1,10 @@
 <?php
-
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
-use core\widgets\select2\Select2;
 use theme\widgets\Panel;
 use theme\widgets\Button;
-
+use modules\nad\equipment\widgets\EquipmentsSelect2;
+use modules\nad\equipment\widgets\EquipmentPartsSelect2;
 ?>
 
 <div class="repairer-search">
@@ -24,53 +21,13 @@ use theme\widgets\Button;
 
             <div class="row">
                 <div class="col-md-5">
-                    <?= $form->field($model, 'equipments')->widget(
-                        Select2::class,
-                        [
-                            'options' => [
-                                'multiple' => true,
-                                'placeholder' => 'انتخاب کنید ...',
-                                'value' => $model->getEquipmentsAsArray()
-                            ],
-                            'pluginOptions' => [
-                                'allowClear' => true,
-                                'minimumInputLength' => 2,
-                                'ajax' => [
-                                    'url' => Url::to(['/equipment/type/manage/ajax-find-equipments']),
-                                    'dataType' => 'json',
-                                    'delay' => 1000,
-                                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                                ],
-                                'templateResult' => new JsExpression('function(equipment) { return equipment.text; }'),
-                            ],
-                        ]
-                    ) ?>
+                    <?= $form->field($model, 'equipments')->widget(EquipmentsSelect2::class) ?>
                 </div>
                 <div class="col-md-5">
-                    <?= $form->field($model, 'parts')->widget(
-                        Select2::class,
-                        [
-                            'options' => [
-                                'multiple' => true,
-                                'placeholder' => 'انتخاب کنید ...',
-                                'value' => $model->getPartsAsArray()
-                            ],
-                            'pluginOptions' => [
-                                'allowClear' => true,
-                                'minimumInputLength' => 2,
-                                'ajax' => [
-                                    'url' => Url::to(['/equipment/type/details/part/ajax-find-parts']),
-                                    'dataType' => 'json',
-                                    'delay' => 1000,
-                                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                                ],
-                                'templateResult' => new JsExpression('function(part) { return part.text; }'),
-                            ],
-                        ]
-                    ) ?>
+                    <?= $form->field($model, 'parts')->widget(EquipmentPartsSelect2::class) ?>
                 </div>
                 <div class="col-md-2">
-                    <div class="form-group" style="margin-top: 20%;">
+                    <div class="form-group" style="margin-top: 25px;">
                         <?= Html::submitButton(
                             '<i class="fa fa-search"></i>',
                             ['class' => 'btn btn-success']
