@@ -2,6 +2,7 @@
 namespace modules\nad\equipment\modules\type\models;
 
 use core\behaviors\PreventDeleteBehavior;
+use modules\nad\equipment\modules\document\models\Document;
 use modules\nad\equipment\modules\type\details;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
@@ -81,6 +82,14 @@ class Type extends \modules\nad\equipment\models\Type
     {
         return $this->hasMany(
             details\models\Fitting::className(),
+            ['typeId' => 'id']
+        );
+    }
+
+    public function getDocuments()
+    {
+        return $this->hasMany(
+            Document::className(),
             ['typeId' => 'id']
         );
     }

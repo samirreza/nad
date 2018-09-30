@@ -31,6 +31,13 @@ $this->params['breadcrumbs'] = [
                 'url' => ['details/fitting/index', 'typeId' => $model->id],
                 'type' => 'success',
                 'icon' => 'chain'
+            ],
+            'Document' => [
+                'label' => 'بارگذاری اسناد',
+                'color' => 'blue',
+                'icon' => 'upload',
+                'url' => ['/equipment/document/manage/list', 'typeId' => $model->id],
+                'visibleFor' => ['equipment.document']
             ]
         ],
     ]); ?>
@@ -55,6 +62,11 @@ $this->params['breadcrumbs'] = [
                         'value' => $model->getFittings()->count(),
                         'format' => 'farsiNumber'
                     ],
+                    [
+                        'label' => 'تعداد اسناد',
+                        'value' => $model->getDocuments()->count(),
+                        'format' => 'farsiNumber'
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],
@@ -65,9 +77,9 @@ $this->params['breadcrumbs'] = [
             <?php Panel::begin([
                 'title' => 'توضیحات',
             ]) ?>
-                <div class="well">
-                    <?= $model->description ?>
-                </div>
+            <div class="well">
+                <?= $model->description ?>
+            </div>
             <?php Panel::end() ?>
         </div>
     </div>

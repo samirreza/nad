@@ -13,6 +13,9 @@ class Module extends \yii\base\Module
             'type' => [
                 'class' => 'modules\nad\equipment\modules\type\Module',
             ],
+            'document' => [
+                'class' => 'modules\nad\equipment\modules\document\Module',
+            ],
         ];
         \Yii::configure($this, require(__DIR__ . '/config.php'));
     }
