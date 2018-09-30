@@ -12,7 +12,7 @@ use modules\nad\equipment\modules\document\models\DocumentType;
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
-    <div class="phonebook-form">
+    <div class="document-form">
 
         <?php $form = ActiveForm::begin([
             'options' => [
@@ -28,7 +28,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             'showCloseButton' => true
         ]) ?>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" dir="rtl">
                 <?php Panel::begin() ?>
                 <?= $form->field($model, 'documentId')->widget(
                     Select2::class,
