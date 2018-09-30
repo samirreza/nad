@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
+use kartik\select2\Select2;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use extensions\file\widgets\singleupload\SingleFileUpload;
@@ -29,16 +30,16 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         <div class="row">
             <div class="col-md-8">
                 <?php Panel::begin() ?>
-                <?=
-                $form->field($model, 'documentId')
-                    ->dropDownList(
-                        ArrayHelper::map(DocumentType::find()->all(), 'id', 'title'),
-                        [
+                <?= $form->field($model, 'documentId')->widget(
+                    Select2::class,
+                    [
+                        'data' => ArrayHelper::map(DocumentType::find()->all(), 'id', 'title'),
+                        'options' => [
+                            'placeholder' => 'انتخاب کنید ...',
                             'class' => 'form-control input-large',
-                            'prompt' => 'انتخاب کنید...'
-                        ]
-                    )
-                ?>
+                        ],
+                    ]
+                ) ?>
                 <br/>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="margin-right: -3%;">
                     <label>فایل سند</label>
