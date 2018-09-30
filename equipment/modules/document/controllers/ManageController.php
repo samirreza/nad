@@ -2,9 +2,9 @@
 
 namespace modules\nad\equipment\modules\document\controllers;
 
+use Yii;
 use yii\filters\AccessControl;
 use core\controllers\AjaxAdminController;
-use modules\nad\equipment\modules\type\models\Type;
 use modules\nad\equipment\modules\document\models\Document;
 use modules\nad\equipment\modules\document\models\DocumentSearch;
 
@@ -35,17 +35,17 @@ class ManageController extends AjaxAdminController
         parent::init();
     }
 
-    public function actionList($typeId)
+    public function actionIndex()
     {
         $searchModel = new DocumentSearch();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
-        $type = Type::findOne($typeId);
+        $params = Yii::$app->request->queryParams;
+        $params[$searchModel->formName()]['equipmentTypeId'] =
+            Yii::$app->request->get('equipmentTypeId');
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'typeId' => $typeId,
-            'type' => $type,
+            'dataProvider' => $dataProvider
         ]);
     }
 }

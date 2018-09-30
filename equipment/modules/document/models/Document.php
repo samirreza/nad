@@ -6,23 +6,16 @@ use extensions\file\behaviors\FileBehavior;
 
 class Document extends \yii\db\ActiveRecord
 {
-    public static function tableName()
-    {
-        return 'nad_equipment_document';
-    }
-
     public function behaviors()
     {
         return [
-            'core\behaviors\TimestampBehavior',
             [
-                'class' => FileBehavior::className(),
+                'class' => FileBehavior::class,
                 'groups' => [
                     'file' => [
                         'type' => FileBehavior::TYPE_FILE,
                         'rules' => [
-                            'extensions' =>
-                                [
+                            'extensions' => [
                                     'png',
                                     'jpg',
                                     'jpeg',
@@ -32,11 +25,11 @@ class Document extends \yii\db\ActiveRecord
                                     'xls',
                                     'xlsx',
                                     'ppt',
-                                    'pptx',
+                                    'pptx'
                                 ],
-                            'maxSize' => 5 * 1024 * 1024,
+                            'maxSize' => 5 * 1024 * 1024
                         ]
-                    ],
+                    ]
                 ]
             ]
         ];
@@ -45,8 +38,8 @@ class Document extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['documentId'], 'required',],
-            [['typeId', 'documentId'], 'safe'],
+            ['documentTypeId', 'required'],
+            [['equipmentTypeId', 'documentTypeId'], 'safe']
         ];
     }
 
@@ -54,14 +47,17 @@ class Document extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'شناسه',
-            'documentId' => 'نوع سند',
-            'document' => 'سند',
-            'createdAt' => 'تاریخ ثبت',
+            'documentTypeId' => 'نوع سند'
         ];
     }
 
-    public function getDocType()
+    public function getDocumentType()
     {
-        return $this->hasOne(DocumentType::class, ['id' => 'documentId']);
+        return $this->hasOne(DocumentType::class, ['id' => 'documentTypeId']);
+    }
+
+    public static function tableName()
+    {
+        return 'nad_equipment_type_document';
     }
 }

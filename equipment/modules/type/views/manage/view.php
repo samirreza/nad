@@ -1,8 +1,7 @@
 <?php
-use yii\helpers\Html;
-use yii\bootstrap\Alert;
-use yii\widgets\DetailView;
+
 use theme\widgets\Panel;
+use yii\widgets\DetailView;
 use theme\widgets\ActionButtons;
 
 $this->title = $model->title;
@@ -12,7 +11,9 @@ $this->params['breadcrumbs'] = [
     $model->category->title,
     $model->title
 ];
+
 ?>
+
 <div class="page-view">
     <?= ActionButtons::widget([
         'modelID' => $model->id,
@@ -33,14 +34,17 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'chain'
             ],
             'Document' => [
-                'label' => 'بارگذاری اسناد',
+                'label' => 'لیست اسناد',
                 'color' => 'blue',
                 'icon' => 'upload',
-                'url' => ['/equipment/document/manage/list', 'typeId' => $model->id],
+                'url' => [
+                    '/equipment/document/manage/index',
+                    'equipmentTypeId' => $model->id
+                ],
                 'visibleFor' => ['equipment.document']
             ]
-        ],
-    ]); ?>
+        ]
+    ]) ?>
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin([
