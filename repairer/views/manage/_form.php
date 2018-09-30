@@ -1,16 +1,14 @@
 <?php
-
-use core\widgets\select2\Select2;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\web\JsExpression;
-use yii\widgets\ActiveForm;
 use theme\widgets\Panel;
 use theme\widgets\Button;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use core\widgets\select2\Select2;
 use modules\nad\repairer\models\WorkType;
 use modules\nad\repairer\models\Repairer;
-
+use modules\nad\equipment\widgets\EquipmentsSelect2;
+use modules\nad\equipment\widgets\EquipmentPartsSelect2;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
@@ -233,48 +231,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <?php Panel::begin([
                 'title' => 'تجهیزات و قطعات تعمیرکار'
             ]) ?>
-            <?= $form->field($model, 'equipments')->widget(
-                Select2::class,
-                [
-                    'options' => [
-                        'multiple' => true,
-                        'placeholder' => 'انتخاب کنید ...',
-                        'value' => $model->getEquipmentsAsArray()
-                    ],
-                    'pluginOptions' => [
-                        'allowClear' => true,
-                        'minimumInputLength' => 2,
-                        'ajax' => [
-                            'url' => Url::to(['/equipment/type/manage/ajax-find-equipments']),
-                            'dataType' => 'json',
-                            'delay' => 1000,
-                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                        ],
-                        'templateResult' => new JsExpression('function(equipment) { return equipment.text; }'),
-                    ],
-                ]
-            ) ?>
-            <?= $form->field($model, 'parts')->widget(
-                Select2::class,
-                [
-                    'options' => [
-                        'multiple' => true,
-                        'placeholder' => 'انتخاب کنید ...',
-                        'value' => $model->getPartsAsArray()
-                    ],
-                    'pluginOptions' => [
-                        'allowClear' => true,
-                        'minimumInputLength' => 2,
-                        'ajax' => [
-                            'url' => Url::to(['/equipment/type/details/part/ajax-find-parts']),
-                            'dataType' => 'json',
-                            'delay' => 1000,
-                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                        ],
-                        'templateResult' => new JsExpression('function(part) { return part.text; }'),
-                    ],
-                ]
-            ) ?>
+                <?= $form->field($model, 'equipments')->widget(EquipmentsSelect2::class) ?>
+                <?= $form->field($model, 'parts')->widget(EquipmentPartsSelect2::class) ?>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-4">
