@@ -37,7 +37,10 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                             ),
                             'options' => [
                                 'placeholder' => 'انتخاب کنید ...',
-                                'class' => 'form-control input-large'
+                                'class' => 'form-control input-large',
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
                             ]
                         ]
                     ) ?>
