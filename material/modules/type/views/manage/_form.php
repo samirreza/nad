@@ -7,6 +7,7 @@ use theme\widgets\Panel;
 use theme\widgets\Button;
 use core\widgets\select2\Select2;
 use modules\nad\material\modules\type\models\Category;
+use extensions\file\widgets\singleupload\SingleFileUpload;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
@@ -47,9 +48,18 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     <?= $form->field($model, 'titleEn')->textInput(['style' => 'direction:ltr']) ?>
                 </div>
             </div>
-            <?=
-                $form->field($model, 'description')->textarea([])
-            ?>
+            <div class="row">
+                <div class="col-md-9">
+                    <?= $form->field($model, 'description')->textarea([]) ?>
+                </div>
+                <div class="col-md-3">
+                    <label>فایل مستندات</label>
+                    <?= SingleFileUpload::widget([
+                        'model' => $model,
+                        'group' => 'file',
+                    ]) ?>
+                </div>
+            </div>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-3">

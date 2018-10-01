@@ -70,6 +70,7 @@ $this->params['breadcrumbs'] = [
                     [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {tree}',
+                        'options' => ['style' => 'width:20%'],
                         'buttons' => [
                             'tree' => function ($url, $model, $key) {
                                 return Html::a(

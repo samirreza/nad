@@ -56,11 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'createdAt',
-                'format' => 'date',
-                'filter' => false
-            ],
-            [
                 'attribute' => 'phoneCount',
                 'value' => function ($model) {
                     return count($model->phones);

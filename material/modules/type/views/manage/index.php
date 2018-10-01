@@ -57,7 +57,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'titleEn',
-                    ['class' => 'core\grid\AjaxActionColumn'],
+                    [
+                        'class' => 'core\grid\AjaxActionColumn',
+                        'template' => '{view} {update} {delete} {download}',
+                        'buttons' => [
+                            'download' => function ($url, $model, $key) {
+                                if (!$model->hasFile('file')) {
+                                    return;
+                                }
+                                return Html::a(
+                                    '<span class="fa fa-download"></span>',
+                                    $model->getFile('file')->getUrl(),
+                                    [
+                                        'title' => 'دریافت سند',
+                                        'data-pjax' => 0
+                                    ]
+                                );
+                            },
+                        ],
+                    ]
                 ],
             ]); ?>
         <?php Pjax::end(); ?>

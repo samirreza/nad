@@ -33,10 +33,10 @@ $this->params['breadcrumbs'] = [
                 'type' => 'success',
                 'icon' => 'chain'
             ],
-            'Document' => [
+            'documents' => [
                 'label' => 'لیست اسناد',
                 'color' => 'blue',
-                'icon' => 'upload',
+                'icon' => 'file',
                 'url' => [
                     '/equipment/document/manage/index',
                     'equipmentTypeId' => $model->id

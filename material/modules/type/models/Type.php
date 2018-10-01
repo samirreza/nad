@@ -1,6 +1,7 @@
 <?php
 namespace modules\nad\material\modules\type\models;
 
+use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Type extends \modules\nad\material\models\Type
@@ -10,7 +11,19 @@ class Type extends \modules\nad\material\models\Type
         return array_merge(
             parent::behaviors(),
             [
-                'core\behaviors\TimestampBehavior'
+                'core\behaviors\TimestampBehavior',
+                [
+                    'class' => FileBehavior::className(),
+                    'groups' => [
+                        'file' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'doc', 'xlsx'],
+                                'maxSize' => 5*1024*1024,
+                            ]
+                        ],
+                    ]
+                ]
             ]
         );
     }
