@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\equipment;
 
 class Module extends \yii\base\Module
@@ -11,8 +12,11 @@ class Module extends \yii\base\Module
         parent::init();
         $this->modules = [
             'type' => [
-                'class' => 'modules\nad\equipment\modules\type\Module',
+                'class' => 'modules\nad\equipment\modules\type\Module'
             ],
+            'document' => [
+                'class' => 'modules\nad\equipment\modules\document\Module'
+            ]
         ];
         \Yii::configure($this, require(__DIR__ . '/config.php'));
     }

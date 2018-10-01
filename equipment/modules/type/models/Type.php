@@ -4,6 +4,7 @@ namespace modules\nad\equipment\modules\type\models;
 use core\behaviors\PreventDeleteBehavior;
 use modules\nad\equipment\modules\type\details;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use modules\nad\equipment\modules\document\models\Document;
 
 class Type extends \modules\nad\equipment\models\Type
 {
@@ -109,6 +110,11 @@ class Type extends \modules\nad\equipment\models\Type
             $this->updateFittingCodes();
         }
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getDocuments()
+    {
+        return $this->hasMany(Document::class, ['equipmentTypeId' => 'id']);
     }
 
     private function updatePartCodes()
