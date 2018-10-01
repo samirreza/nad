@@ -88,6 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         );
                     }
                 ],
+                'createdAt:date',
+                'updatedAt:date',
                 [
                     'class' => 'core\grid\AjaxActionColumn',
                     'template' => '{update} {delete}'

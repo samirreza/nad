@@ -9,6 +9,7 @@ class Document extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            'core\behaviors\TimestampBehavior',
             [
                 'class' => FileBehavior::class,
                 'groups' => [
@@ -47,7 +48,9 @@ class Document extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'شناسه',
-            'documentTypeId' => 'نوع سند'
+            'documentTypeId' => 'نوع سند',
+            'createdAt' => 'تاریخ بارگذاری',
+            'updatedAt' => 'آخرین بروزرسانی'
         ];
     }
 

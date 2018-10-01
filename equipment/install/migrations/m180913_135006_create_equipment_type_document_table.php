@@ -13,7 +13,9 @@ class m180913_135006_create_equipment_type_document_table extends Migration
         $this->createTable('nad_equipment_type_document', [
             'id' => $this->primaryKey(),
             'equipmentTypeId' => $this->integer()->notNull(),
-            'documentTypeId' => $this->integer()->notNull()
+            'documentTypeId' => $this->integer()->notNull(),
+            'createdAt' => $this->integer()->notNull(),
+            'updatedAt' => $this->integer()->notNull()
         ], $tableOptions);
 
         $this->addForeignKey(
