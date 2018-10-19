@@ -82,6 +82,6 @@ class Type extends \modules\nad\material\models\Type
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->category->compositeCode . '.' . $this->code;
+        $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
     }
 }

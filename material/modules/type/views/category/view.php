@@ -16,7 +16,7 @@ use theme\widgets\ActionButtons;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'compositeCode',
+                    'uniqueCode',
                     'code',
                     'title',
                     [

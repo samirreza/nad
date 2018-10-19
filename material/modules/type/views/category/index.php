@@ -52,7 +52,7 @@ $this->params['breadcrumbs'] = [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
                         'class' => 'modules\nad\common\grid\CodeColumn',
-                        'attribute' => 'compositeCode',
+                        'attribute' => 'uniqueCode',
                         'options' => ['style' => 'width:30%'],
                         'isAjaxGrid' => true
                     ],
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     [
                         'attribute' => 'depth',
-                        'filter' => Category::getDepthList(),
+                        'filter' => $searchModel->getDepthList(),
                         'value' => function ($model) {
                             return $model->getDepthTitle();
                         }
