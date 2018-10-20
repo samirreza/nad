@@ -6,6 +6,8 @@ use yii\helpers\ArrayHelper;
 
 class CodableCategoryBehavior extends \yii\base\Behavior
 {
+    public $leafsDepth = 2;
+
     public function events()
     {
         return [
@@ -38,7 +40,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
 
     public function getDepthTitle()
     {
-        $list = $this->getDepthList();
+        $list = $this->owner->getDepthList();
         return isset($list[$this->owner->depth]) ? $list[$this->owner->depth] : '-';
     }
 
@@ -55,8 +57,16 @@ class CodableCategoryBehavior extends \yii\base\Behavior
         }
         return $owner->find()
             ->andWhere(['not in', 'id', $family])
-            ->andWhere(['in', 'depth', [0,1]])
+            ->andWhere(['in', 'depth', $this->possibleParentsDepths()])
             ->all();
+    }
+
+    private function possibleParentsDepths()
+    {
+        for ($i=0; $i < $this->leafsDepth; $i++) {
+            $depths[] = $i;
+        }
+        return $depths;
     }
 
     public function getFamilyTreeArray()
@@ -79,7 +89,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
                     'id' => $type->id,
                     'name' => $type->htmlCodedTitle,
                     'code' => $type->uniqueCode,
-                    'depth' => 3
+                    'depth' => $this->leafsDepth + 1
                 ];
             }
         }

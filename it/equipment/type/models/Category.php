@@ -20,7 +20,10 @@ class Category extends \yii\db\ActiveRecord implements Codable
     public function behaviors()
     {
         return [
-            CodableCategoryBehavior::class,
+            [
+                'class' => CodableCategoryBehavior::class,
+                'leafsDepth' => 3
+            ],
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -93,5 +96,15 @@ class Category extends \yii\db\ActiveRecord implements Codable
     public function getTypes()
     {
         return $this->hasMany(Type::className(), ['categoryId' => 'id']);
+    }
+
+    public function getDepthList()
+    {
+        return [
+            0 => 'گروه',
+            1 => 'دسته',
+            2 => 'شاخه',
+            3 => 'زیر شاخه',
+        ];
     }
 }

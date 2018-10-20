@@ -17,3 +17,6 @@ li.depth-2 > div.jqtree-element {
 li.depth-3 > div.jqtree-element {
     background-color: #ffdecd;
 }
+li.depth-4 > div.jqtree-element {
+    background-color: #fcefde;
+}

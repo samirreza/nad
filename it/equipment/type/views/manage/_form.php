@@ -32,7 +32,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         ->widget(
                             Select2::class,
                             ['data' => ArrayHelper::map(
-                                Category::find()->where(['depth' => 2])->all(),
+                                Category::find()->where(['depth' => 3])->all(),
                                 'id',
                                 'codedTitle'
                             )]
