@@ -1,6 +1,9 @@
 <?php
 namespace modules\nad\equipment\modules\type\models;
 
+use nad\common\code\Codable;
+use nad\common\code\CodableTrait;
+use nad\common\code\CodableCategoryBehavior;
 use yii\helpers\ArrayHelper;
 use core\behaviors\NestedSetsBehavior;
 use core\behaviors\PreventDeleteBehavior;
@@ -8,6 +11,8 @@ use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Category extends \yii\db\ActiveRecord
 {
+    use CodableTrait;
+
     public static function tableName()
     {
         return 'nad_equipment_type_category';
@@ -16,6 +21,7 @@ class Category extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            CodableCategoryBehavior::class,
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -78,121 +84,16 @@ class Category extends \yii\db\ActiveRecord
         return $query->orderBy(['tree' => SORT_DESC,'lft' => SORT_ASC]);
     }
 
-    public function beforeValidate()
-    {
-        $this->code = strtoupper($this->code);
-        return parent::beforeValidate();
-    }
-
     public function getTypes()
     {
         return $this->hasMany(Type::className(), ['categoryId' => 'id']);
     }
 
-    public function getCompositeCode()
+    public function getUniqueCode()
     {
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getCompositeCode().'.'.$this->code;
-    }
-
-    public function getParentsForSelect2()
-    {
-        return ['درج به عنوان گروه'] +
-            ArrayHelper::map($this->possibleParents(), 'id', 'codedTitle');
-    }
-
-    public function getHtmlCodedTitle()
-    {
-        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
-            . $this->compositeCode . '] </small>';
-    }
-
-    public function getCodedTitle()
-    {
-        return $this->title .  ' - ' . $this->compositeCode;
-    }
-
-    public static function getDepthList()
-    {
-        return [
-            0 => 'گروه',
-            1 => 'دسته',
-            2 => 'شاخه'
-        ];
-    }
-
-    public function getDepthTitle()
-    {
-        $list = self::getDepthList();
-        return isset($list[$this->depth]) ? $list[$this->depth] : '-';
-    }
-
-    public function possibleParents()
-    {
-        $family=[];
-        if (!$this->owner->isNewRecord) {
-            $family[] = $this->owner->id;
-            $children = $this->owner->children()->select('id')->all();
-            foreach ($children as $child) {
-                $family[] =  $child->id ;
-            }
-        }
-        return $this->owner->find()
-            ->andWhere(['not in', 'id', $family])
-            ->andWhere(['in', 'depth', [0,1]])
-            ->all();
-    }
-
-    public function getFamilyTreeArray()
-    {
-        $attributes = [
-            'id' => $this->id,
-            'name' => $this->htmlCodedTitle,
-            'code' => $this->compositeCode,
-            'depth' => $this->depth
-        ];
-        if ($this->children(1)->count() != 0) {
-            $children = [];
-            foreach ($this->children(1)->all() as $child) {
-                $children[] = $child->getFamilyTreeArray();
-            }
-        } elseif ($this->getTypes()->count() != 0) {
-            foreach ($this->types as $type) {
-                $children[] = [
-                    'id' => $type->id,
-                    'name' => $type->htmlCodedTitle,
-                    'code' => $type->uniqueCode,
-                    'depth' => 3
-                ];
-            }
-        }
-        if (!empty($children)) {
-            $attributes['children'] = $children;
-        }
-        return $attributes;
-    }
-
-    public function afterSave($insert, $changedAttributes)
-    {
-        if (!$insert && isset($changedAttributes['code'])) {
-            $this->updateTypeCodes();
-        }
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    private function updateTypeCodes()
-    {
-        if ($this->children(1)->count() != 0) {
-            foreach ($this->children(1)->all() as $child) {
-                $child->updateTypeCodes();
-            }
-        } elseif ($this->getTypes()->count() != 0) {
-            foreach ($this->types as $type) {
-                $type->setUniqueCode();
-                $type->save(false);
-            }
-        }
+        return $this->parent->getUniqueCode().'.'.$this->code;
     }
 }

@@ -1,21 +1,20 @@
 <?php
 namespace modules\nad\equipment\models;
 
-class Part extends \yii\db\ActiveRecord
+use nad\common\code\Codable;
+use nad\common\code\CodableTrait;
+
+class Part extends \yii\db\ActiveRecord implements Codable
 {
+    use CodableTrait;
+
     public static function tableName()
     {
         return 'nad_equipment_type_part';
     }
 
-    public function getHtmlCodedTitle()
+    public function getUniqueCode() : string
     {
-        return '<span style="display: inline-block">' . $this->title . '</span><small> ['
-            . $this->uniqueCode . '] </small>';
-    }
-
-    public function getCodedTitle()
-    {
-        return $this->title .  ' - ' . $this->uniqueCode;
+        return $this->uniqueCode;
     }
 }

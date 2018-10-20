@@ -100,7 +100,7 @@ class Type extends \modules\nad\equipment\models\Type
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->category->compositeCode . '.' . $this->code;
+        $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
     }
 
     public function afterSave($insert, $changedAttributes)

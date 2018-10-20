@@ -1,11 +1,15 @@
 <?php
 namespace modules\nad\equipment\modules\type\details\models;
 
+use nad\common\code\Codable;
+use nad\common\code\CodableTrait;
 use modules\nad\equipment\modules\type\models\Type;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Fitting extends \yii\db\ActiveRecord
+class Fitting extends \yii\db\ActiveRecord implements Codable
 {
+    use CodableTrait;
+
     public static function tableName()
     {
         return 'nad_equipment_type_fitting';
@@ -53,5 +57,10 @@ class Fitting extends \yii\db\ActiveRecord
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->type->uniqueCode . '.F.' . $this->code;
+    }
+
+    public function getUniqueCode() : string
+    {
+        return $this->uniqueCode;
     }
 }

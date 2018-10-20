@@ -52,7 +52,6 @@ $this->params['breadcrumbs'] = [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
                         'class' => 'modules\nad\common\grid\CodeColumn',
-                        'attribute' => 'uniqueCode',
                         'options' => ['style' => 'width:30%'],
                         'isAjaxGrid' => true
                     ],
