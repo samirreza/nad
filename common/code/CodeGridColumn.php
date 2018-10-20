@@ -1,10 +1,10 @@
 <?php
-namespace modules\nad\common\grid;
+namespace nad\common\code;
 
 use yii\helpers\Html;
 use yii\grid\DataColumn;
 
-class CodeColumn extends DataColumn
+class CodeGridColumn extends DataColumn
 {
     public $isAjaxGrid = false;
 

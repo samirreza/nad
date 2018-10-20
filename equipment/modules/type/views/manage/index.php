@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    ['class' => 'modules\nad\common\grid\CodeColumn'],
+                    ['class' => 'nad\common\code\CodeGridColumn'],
                     ['class' => 'core\grid\TitleColumn'],
                     [
                         'attribute' => 'category.title',
