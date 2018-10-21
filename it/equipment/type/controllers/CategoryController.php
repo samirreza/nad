@@ -41,59 +41,25 @@ class CategoryController extends \core\controllers\AjaxAdminController
         parent::init();
     }
 
-    public function actionCreate()
+    public function actions()
     {
-        $category = new Category();
-        $category->loadDefaultValues();
-        if ($category->load(Yii::$app->request->post())) {
-            if ($category->parentId != 0) {
-                $parent =  Category::findOne($category->parentId);
-                $success = $category->appendTo($parent);
-            } else {
-                $success = $category->makeRoot();
-            }
-            if ($success) {
-                echo Json::encode([
-                    'status' => 'success',
-                    'message' => 'داده مورد نظر با موفقیت در سیستم درج شد.'
-                ]);
-                exit;
-            }
-        }
-        echo Json::encode([
-            'content' => $this->renderAjax('_form', ['model' => $category])
-        ]);
-        exit;
-    }
-
-    public function actionUpdate($id)
-    {
-        $category = $this->findModel($id);
-        if ($category->load(Yii::$app->request->post())) {
-            if ($category->parentId != '0') {
-                $parent = $category->parents(1)->one();
-                if (!isset($parent) or $parent->id != $category->parentId) {
-                    $newParent = Category::findOne($category->parentId);
-                    $success = $category->appendTo($newParent);
-                } else {
-                    $success = $category->save();
-                }
-            } else {
-                $success = $category->isRoot() ? $category->save()
-                    : $category->makeRoot();
-            }
-            if ($success) {
-                echo Json::encode([
-                    'status' => 'success',
-                    'message' => 'داده مورد نظر با موفقیت در سیستم ویرایش شد.'
-                ]);
-                exit;
-            }
-        }
-        echo Json::encode([
-            'content' => $this->renderAjax('_form', ['model' => $category])
-        ]);
-        exit;
+        return [
+            'create' => [
+                'class' => 'core\tree\actions\CreateAction',
+                'modelClass' => Category::className(),
+                'isAjax' => true
+            ],
+            'update' => [
+                'class' => 'core\tree\actions\UpdateAction',
+                'modelClass' => Category::className(),
+                'isAjax' => true
+            ],
+            'delete' => [
+                'class' => 'core\tree\actions\DeleteAction',
+                'modelClass' => Category::className(),
+                'isAjax' => true
+            ]
+        ];
     }
 
     public function actionGetJsonTree($id)
@@ -104,19 +70,5 @@ class CategoryController extends \core\controllers\AjaxAdminController
             $root = $this->findModel($id);
         }
         return [$root->getFamilyTreeArray()];
-    }
-
-    public function actionDelete($id)
-    {
-        $model = $this->findModel($id);
-        $deletion = $model->deleteWithChildren();
-        echo Json::encode(
-            [
-                'status' => ($deletion) ? 'success' : 'danger',
-                'message' => ($deletion) ? 'داده مورد نظر با موفقیت از سیستم حذف شد.'
-                    : $model->getErrors('id')
-            ]
-        );
-        exit;
     }
 }

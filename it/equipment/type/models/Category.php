@@ -4,7 +4,7 @@ namespace nad\it\equipment\type\models;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use nad\common\code\CodableCategoryBehavior;
-use core\behaviors\NestedSetsBehavior;
+use core\tree\NestedSetsBehavior;
 use core\behaviors\PreventDeleteBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
