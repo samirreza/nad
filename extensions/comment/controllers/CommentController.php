@@ -40,4 +40,24 @@ class CommentController extends AjaxAdminController
         ]);
         exit;
     }
+
+    public function actionUpdate($id)
+    {
+        $comment = $this->findModel($id);
+        if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
+            echo Json::encode([
+                'status' => 'success',
+                'message' => 'نظر مورد نظر با موفقیت در سیستم بروزرسانی شد.'
+            ]);
+            exit;
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax(
+                '@nad/extensions/comment/views/_form', [
+                    'comment' => $comment
+                ]
+            )
+        ]);
+        exit;
+    }
 }

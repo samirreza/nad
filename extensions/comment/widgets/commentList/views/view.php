@@ -47,7 +47,7 @@ $model = $this->context->model;
                         </p>
                         <div class="comment-delete">
                             <?php if (
-                                $this->context->showDeleteButton &&
+                                $this->context->showEditDeleteButton &&
                                 $comment->isSentByThisUser()
                             ) {
                                 echo Html::a(
@@ -60,6 +60,17 @@ $model = $this->context->model;
                                         'title' => 'حذف نظر',
                                         'data-pjax' => '0',
                                         'class' => 'ajaxrequest'
+                                    ]
+                                ) . ' ' . Html::a(
+                                    '<i class="glyphicon glyphicon-pencil"></i>',
+                                    [
+                                        'comment/update',
+                                        'id' => $comment->id
+                                    ],
+                                    [
+                                        'title' => 'ویرایش نظر',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate'
                                     ]
                                 );
                             } ?>
