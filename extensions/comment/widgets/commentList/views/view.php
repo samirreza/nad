@@ -18,7 +18,7 @@ $model = $this->context->model;
                     'label' => 'درج نظر',
                     'url' => [
                         'comment/create',
-                        'moduleId' => Yii::$app->controller->module->id,
+                        'moduleId' => $this->context->moduleId,
                         'modelClassName' => get_class($model),
                         'modelId' => $model->id
                     ],
