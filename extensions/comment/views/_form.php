@@ -1,0 +1,44 @@
+<?php
+
+use yii\helpers\Html;
+use theme\widgets\Panel;
+use theme\widgets\Button;
+use yii\widgets\ActiveForm;
+use core\widgets\editor\Editor;
+
+?>
+
+<div class="comment-form">
+    <div class="row">
+        <div class="col-md-12">
+            <?php Panel::begin() ?>
+                <?php $form = ActiveForm::begin([
+                    'enableClientValidation' => true,
+                    'options' => [
+                        'class' => 'sliding-form'
+                    ]
+                ]) ?>
+                    <?= $form->field($comment, 'content')
+                        ->widget(
+                            Editor::class,
+                            ['preset' => 'simple']
+                        )
+                    ?>
+                    <?= Html::submitButton(
+                        '<i class="fa fa-save"></i> ذخیره',
+                        [
+                            'class' => 'btn btn-lg btn-success'
+                        ]
+                    ) ?>
+                    <?= Button::widget([
+                            'label' => 'انصراف',
+                            'options' => ['class' => 'btn-lg close-sliding-form-button'],
+                            'type' => 'warning',
+                            'icon' => 'undo'
+                        ])
+                    ?>
+                <?php ActiveForm::end() ?>
+            <?php Panel::end() ?>
+        </div>
+    </div>
+</div>
