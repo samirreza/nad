@@ -15,7 +15,8 @@ use core\widgets\editor\Editor;
                 <?php $form = ActiveForm::begin([
                     'enableClientValidation' => true,
                     'options' => [
-                        'class' => 'sliding-form'
+                        'class' => 'sliding-form',
+                        'data-sliding-form-id' => 'comment-sliding-form'
                     ]
                 ]) ?>
                     <?= $form->field($comment, 'content')
@@ -32,7 +33,10 @@ use core\widgets\editor\Editor;
                     ) ?>
                     <?= Button::widget([
                             'label' => 'انصراف',
-                            'options' => ['class' => 'btn-lg close-sliding-form-button'],
+                            'options' => [
+                                'class' => 'btn-lg close-sliding-form-button',
+                                'data-sliding-form-id' => 'comment-sliding-form'
+                            ],
                             'type' => 'warning',
                             'icon' => 'undo'
                         ])

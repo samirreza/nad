@@ -15,23 +15,24 @@ $model = $this->context->model;
     <div class="row">
         <div class="comments col-md-12">
             <?= Button::widget([
-                    'label' => 'درج نظر',
-                    'url' => [
-                        'comment/create',
-                        'moduleId' => $this->context->moduleId,
-                        'modelClassName' => get_class($model),
-                        'modelId' => $model->id
-                    ],
-                    'options' => [
-                        'class' => 'ajaxcreate',
-                        'data-gridpjaxid' => 'comment-list-gridviewpjax'
-                    ],
-                    'icon' => 'comment',
-                    'type' => 'success',
-                    'visible' => $this->context->showCreateButton
+                'label' => 'درج نظر',
+                'url' => [
+                    '/comment/create',
+                    'moduleId' => $this->context->moduleId,
+                    'modelClassName' => get_class($model),
+                    'modelId' => $model->id
+                ],
+                'options' => [
+                    'class' => 'ajaxcreate',
+                    'data-sliding-form-id' => 'comment-sliding-form',
+                    'data-gridpjaxid' => 'comment-list-gridviewpjax'
+                ],
+                'icon' => 'comment',
+                'type' => 'success',
+                'visible' => $this->context->showCreateButton
             ]) ?>
             <br><br>
-            <div class="sliding-form-wrapper"></div>
+            <div class="sliding-form-wrapper" id="comment-sliding-form"></div>
             <?php Pjax::begin([
                 'id' => 'comment-list-gridviewpjax'
             ]) ?>
@@ -53,24 +54,26 @@ $model = $this->context->model;
                                 echo Html::a(
                                     '<i class="glyphicon glyphicon-trash"></i>',
                                     [
-                                        'comment/delete',
+                                        '/comment/delete',
                                         'id' => $comment->id
                                     ],
                                     [
                                         'title' => 'حذف نظر',
                                         'data-pjax' => '0',
-                                        'class' => 'ajaxrequest'
+                                        'class' => 'ajaxrequest',
+                                        'data-sliding-form-id' => 'comment-sliding-form'
                                     ]
                                 ) . ' ' . Html::a(
                                     '<i class="glyphicon glyphicon-pencil"></i>',
                                     [
-                                        'comment/update',
+                                        '/comment/update',
                                         'id' => $comment->id
                                     ],
                                     [
                                         'title' => 'ویرایش نظر',
                                         'data-pjax' => '0',
-                                        'class' => 'ajaxupdate'
+                                        'class' => 'ajaxupdate',
+                                        'data-sliding-form-id' => 'comment-sliding-form'
                                     ]
                                 );
                             } ?>

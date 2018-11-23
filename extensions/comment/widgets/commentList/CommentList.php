@@ -11,6 +11,7 @@ class CommentList extends \yii\base\Widget
     public $showEditDeleteButton = true;
     public $showCreateButton = true;
     public $sort = SORT_DESC;
+    public $visible = true;
 
     public function init()
     {
@@ -25,6 +26,9 @@ class CommentList extends \yii\base\Widget
 
     public function run()
     {
+        if (!$this->visible) {
+            return;
+        }
         return $this->render('view');
     }
 }
