@@ -32,7 +32,7 @@ $model = $this->context->model;
                 'visible' => $this->context->showCreateButton
             ]) ?>
             <br><br>
-            <div class="sliding-form-wrapper" id="comment-sliding-form"></div>
+            <div id="comment-sliding-form"></div>
             <?php Pjax::begin([
                 'id' => 'comment-list-gridviewpjax'
             ]) ?>
