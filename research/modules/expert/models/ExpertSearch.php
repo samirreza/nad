@@ -21,8 +21,7 @@ class ExpertSearch extends Expert
             'sort' => [
                 'attributes' => [
                     'id',
-                    'createdAt',
-                    'updatedAt'
+                    'createdAt'
                 ],
                 'defaultOrder' => [
                     'createdAt' => SORT_DESC

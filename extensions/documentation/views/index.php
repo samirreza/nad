@@ -32,7 +32,7 @@ use theme\widgets\ActionButtons;
                 ]
             ],
             'delete-file' => [
-                'label' => 'حذف مستندات',
+                'label' => 'حذف',
                 'icon' => 'trash',
                 'type' => 'danger',
                 'visible' => isset($modelId),

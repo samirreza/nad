@@ -5,35 +5,26 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\research\modules\expert\models\Expert;
-use nad\research\modules\source\models\Source;
+use nad\research\modules\proposal\models\Proposal;
 
-$this->title = 'لیست منشاها';
+$this->title = 'لیست پروپوزال ها';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="source-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'create' => [
-                'label' => 'درج منشا',
-                'visibleFor' => ['research.createSource']
-            ]
-        ]
-    ]) ?>
+<div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
-        <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
+        <?php Pjax::begin(['id' => 'proposal-index-gridviewpjax']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'core\grid\IDColumn'],
                     'title',
-                    'recommenderName',
-                    'recommendationDate:date',
+                    'researcherName',
+                    'presentationDate:date',
                     'deliverToManagerDate:date',
                     'sessionDate:dateTime',
                     [
@@ -74,40 +65,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'status',
-                        'filter' => Source::getStatusLables(),
+                        'filter' => Proposal::getStatusLables(),
                         'value' => function ($model) {
-                            return Source::getStatusLables()[$model->status];
+                            return Proposal::getStatusLables()[$model->status];
                         }
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {delete} {proposals}',
+                        'template' => '{view} {update} {delete} {projects}',
                         'buttons' => [
-                            'proposals' => function ($url, $model, $key) {
+                            'projects' => function ($url, $model, $key) {
                                 return Html::a(
-                                    'پروپوزال ها',
+                                    'پروژه ها',
                                     [
-                                        '/research/proposal/manage/index',
-                                        'ProposalSearch[sourceId]' => $model->id
+                                        '/research/project/manage/index',
+                                        'ProjectSearch[proposalId]' => $model->id
                                     ]
                                 );
                             }
                         ],
                         'visibleButtons' => [
-                            'delete' => Yii::$app->user->canAccessAny([
-                                'research.createSource',
-                                'research.manageSources'
-                            ]),
                             'update' => function ($model, $key, $index) {
-                                return $model->status != Source::STATUS_REJECTED &&
-                                    Yii::$app->user->canAccessAny([
-                                        'research.createSource',
-                                        'research.manageSources'
-                                    ]);
+                                return $model->canUserManipulateProposal();
                             },
-                            'proposals' => Yii::$app->user->canAccessAny([
+                            'delete' => function ($model, $key, $index) {
+                                return $model->canUserManipulateProposal();
+                            },
+                            'projects' => Yii::$app->user->canAccessAny([
                                 'expert',
-                                'research.manageSources'
+                                'research.manageProject'
                             ])
                         ]
                     ]

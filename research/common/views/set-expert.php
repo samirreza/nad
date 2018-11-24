@@ -27,7 +27,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
-                    <?= $form->field($source, 'expertId')->widget(
+                    <?= $form->field($model, 'expertId')->widget(
                         Select2::class,
                         [
                             'data' => ArrayHelper::map(

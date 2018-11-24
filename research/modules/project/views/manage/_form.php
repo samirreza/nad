@@ -4,31 +4,33 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use theme\widgets\editor\Editor;
-use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
-use nad\research\modules\source\models\SourceReason;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use extensions\file\widgets\singleupload\SingleFileUpload;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
 ?>
 
-<div class="source-form">
-    <?php $form = ActiveForm::begin() ?>
+<div class="project-form">
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'enctype' => 'multipart/form-data'
+        ]
+    ]) ?>
         <div class="row">
             <div class="col-md-8">
-            <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
+            <?php Panel::begin(['title' => 'مشخصات پروژه']) ?>
                     <?= $form->field($model, 'title')->textInput([
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'recommenderName')->textInput([
+                    <?= $form->field($model, 'researcherName')->textInput([
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'recommendationDate')->widget(
+                    <?= $form->field($model, 'complationDate')->widget(
                         JalaliDatePicker::class,
                         [
                             'options' => [
@@ -37,33 +39,22 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             ]
                         ]
                     ) ?>
-                    <?= $form->field($model, 'reason')->widget(
-                        Editor::class,
-                        ['preset' => 'advanced']
-                    ) ?>
-                    <?= $form->field($model, 'necessity')->widget(
+                    <br>
+                    <div class="input-small">
+                        <?= SingleFileUpload::widget([
+                            'model' => $model,
+                            'group' => 'report'
+                        ]) ?>
+                    </div>
+                    <br>
+                    <?= $form->field($model, 'abstract')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
                     ) ?>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">
-                <?php Panel::begin(['title' => 'سایر اطلاعات منشا']) ?>
-                    <?= $form->field($model, 'reasons')->widget(
-                        Select2::class,
-                        [
-                            'data' => ArrayHelper::map(
-                                SourceReason::find()->all(),
-                                'title',
-                                'title'
-                            ),
-                            'options' => [
-                                'multiple' => true,
-                                'prompt' => 'علل را انتخاب کنید ...',
-                                'value' => $model->getReasonsAsArray()
-                            ]
-                        ]
-                    ) ?>
+                <?php Panel::begin(['title' => 'سایر اطلاعات پروژه']) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

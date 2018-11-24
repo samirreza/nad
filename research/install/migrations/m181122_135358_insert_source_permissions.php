@@ -9,7 +9,7 @@ class m181122_135358_insert_source_permissions extends Migration
         $authManager = Yii::$app->authManager;
         $authItems = [
             'research.createSource' => 'درج منشا',
-            'research.manageSource' => 'مدیریت منشا'
+            'research.manageSources' => 'مدیریت منشاها'
         ];
         foreach ($authItems as $authItem => $description) {
             if (!$authManager->getPermission($authItem)) {

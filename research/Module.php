@@ -19,6 +19,12 @@ class Module extends \yii\base\Module
             ],
             'source' => [
                 'class' => 'nad\research\modules\source\Module'
+            ],
+            'proposal' => [
+                'class' => 'nad\research\modules\proposal\Module'
+            ],
+            'project' => [
+                'class' => 'nad\research\modules\project\Module'
             ]
         ];
         parent::init();

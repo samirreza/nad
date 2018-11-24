@@ -4,31 +4,28 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use theme\widgets\editor\Editor;
-use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
-use nad\research\modules\source\models\SourceReason;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
 ?>
 
-<div class="source-form">
+<div class="proposal-form">
     <?php $form = ActiveForm::begin() ?>
         <div class="row">
             <div class="col-md-8">
-            <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
+            <?php Panel::begin(['title' => 'مشخصات پروپوزال']) ?>
                     <?= $form->field($model, 'title')->textInput([
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'recommenderName')->textInput([
+                    <?= $form->field($model, 'researcherName')->textInput([
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'recommendationDate')->widget(
+                    <?= $form->field($model, 'presentationDate')->widget(
                         JalaliDatePicker::class,
                         [
                             'options' => [
@@ -37,33 +34,22 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             ]
                         ]
                     ) ?>
-                    <?= $form->field($model, 'reason')->widget(
+                    <?= $form->field($model, 'necessity')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
                     ) ?>
-                    <?= $form->field($model, 'necessity')->widget(
+                    <?= $form->field($model, 'mainPurpose')->widget(
+                        Editor::class,
+                        ['preset' => 'advanced']
+                    ) ?>
+                    <?= $form->field($model, 'secondaryPurpose')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
                     ) ?>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">
-                <?php Panel::begin(['title' => 'سایر اطلاعات منشا']) ?>
-                    <?= $form->field($model, 'reasons')->widget(
-                        Select2::class,
-                        [
-                            'data' => ArrayHelper::map(
-                                SourceReason::find()->all(),
-                                'title',
-                                'title'
-                            ),
-                            'options' => [
-                                'multiple' => true,
-                                'prompt' => 'علل را انتخاب کنید ...',
-                                'value' => $model->getReasonsAsArray()
-                            ]
-                        ]
-                    ) ?>
+                <?php Panel::begin(['title' => 'سایر اطلاعات پروپوزال']) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

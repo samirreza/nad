@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use core\widgets\editor\Editor;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -12,9 +12,9 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <?php Panel::begin([
-            'title' => 'تعیین زمان جلسه توجیهی',
+            'title' => 'ثبت صورت جلسه',
             'showCloseButton' => true
         ]) ?>
             <div class="expert-form">
@@ -25,13 +25,9 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
-                    <?= $form->field($source, 'sessionDate')->widget(
-                        JalaliDatePicker::class,
-                        [
-                            'options' => [
-                                'class' => 'form-control input-medium'
-                            ]
-                        ]
+                    <?= $form->field($model, 'proceedings')->widget(
+                        Editor::class,
+                        ['preset' => 'advanced']
                     ) ?>
                     <br>
                     <?= Html::submitButton(

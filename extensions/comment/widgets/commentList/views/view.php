@@ -24,15 +24,14 @@ $model = $this->context->model;
                 ],
                 'options' => [
                     'class' => 'ajaxcreate',
-                    'data-sliding-form-id' => 'comment-sliding-form',
-                    'data-gridpjaxid' => 'comment-list-gridviewpjax'
+                    'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
                 ],
                 'icon' => 'comment',
                 'type' => 'success',
                 'visible' => $this->context->showCreateButton
             ]) ?>
             <br><br>
-            <div id="comment-sliding-form"></div>
+            <div id="comment-sliding-form-wrapper"></div>
             <?php Pjax::begin([
                 'id' => 'comment-list-gridviewpjax'
             ]) ?>
@@ -61,7 +60,7 @@ $model = $this->context->model;
                                         'title' => 'حذف نظر',
                                         'data-pjax' => '0',
                                         'class' => 'ajaxrequest',
-                                        'data-sliding-form-id' => 'comment-sliding-form'
+                                        'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper',
                                     ]
                                 ) . ' ' . Html::a(
                                     '<i class="glyphicon glyphicon-pencil"></i>',
@@ -73,7 +72,7 @@ $model = $this->context->model;
                                         'title' => 'ویرایش نظر',
                                         'data-pjax' => '0',
                                         'class' => 'ajaxupdate',
-                                        'data-sliding-form-id' => 'comment-sliding-form'
+                                        'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper',
                                     ]
                                 );
                             } ?>

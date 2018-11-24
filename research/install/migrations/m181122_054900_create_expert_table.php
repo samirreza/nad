@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m181122_054900_create_nad_research_expert_table extends Migration
+class m181122_054900_create_expert_table extends Migration
 {
     public function up()
     {

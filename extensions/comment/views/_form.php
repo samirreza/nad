@@ -16,7 +16,7 @@ use core\widgets\editor\Editor;
                     'enableClientValidation' => true,
                     'options' => [
                         'class' => 'sliding-form',
-                        'data-sliding-form-id' => 'comment-sliding-form'
+                        'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper',
                     ]
                 ]) ?>
                     <?= $form->field($comment, 'content')
@@ -35,7 +35,7 @@ use core\widgets\editor\Editor;
                             'label' => 'انصراف',
                             'options' => [
                                 'class' => 'btn-lg close-sliding-form-button',
-                                'data-sliding-form-id' => 'comment-sliding-form'
+                                'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
                             ],
                             'type' => 'warning',
                             'icon' => 'undo'

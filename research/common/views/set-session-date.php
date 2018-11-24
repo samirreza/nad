@@ -4,9 +4,7 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use core\widgets\select2\Select2;
-use modules\user\backend\models\User;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -16,27 +14,23 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 <div class="row">
     <div class="col-md-6">
         <?php Panel::begin([
-            'title' => 'درج کارشناس',
+            'title' => 'تعیین زمان جلسه توجیهی',
             'showCloseButton' => true
         ]) ?>
             <div class="expert-form">
                 <?php $form = ActiveForm::begin([
                     'enableClientValidation' => true,
                     'options' => [
+                        'enctype' => 'multipart/form-data',
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
-                    <?= $form->field($model, 'userId')->widget(
-                        Select2::class,
+                    <?= $form->field($model, 'sessionDate')->widget(
+                        JalaliDatePicker::class,
                         [
-                            'data' => ArrayHelper::map(
-                                User::find()->all(),
-                                'id',
-                                'email'
-                            ),
                             'options' => [
-                                'placeholder' => 'لطفا ایمیل کاربر مورد نظر را وارد کنید ...',
-                                'multiple' => false
+                                'class' => 'form-control input-medium',
+                                'autocomplete' => 'off'
                             ]
                         ]
                     ) ?>

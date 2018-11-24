@@ -4,27 +4,28 @@ use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
 use theme\widgets\ActionButtons;
-use nad\research\modules\source\models\Source;
+use nad\research\modules\proposal\models\Proposal;
 use nad\extensions\comment\widgets\commentList\CommentList;
+use yii\helpers\Html;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'لیست منشاها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'لیست پروپوژال ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<a class="ajaxcreate" data-gridpjaxid="source-view-detailviewpjax"></a>
-<div class="source-view">
-    <?php Pjax::begin(['id' => 'source-view-detailviewpjax']) ?>
+<a class="ajaxcreate" data-gridpjaxid="proposal-view-detailviewpjax"></a>
+<div class="proposal-view">
+    <?php Pjax::begin(['id' => 'proposal-view-detailviewpjax']) ?>
         <?= ActionButtons::widget([
             'buttons' => [
                 'deliver-to-manager' => [
                     'label' => 'ارسال به مدیر',
                     'icon' => 'send',
                     'type' => 'info',
-                    'visibleFor' => ['research.createSource'],
-                    'visible' => $model->status == Source::STATUS_INPROGRESS ||
-                        $model->status == Source::STATUS_NEED_CORRECTION,
+                    'visibleFor' => ['expert'],
+                    'visible' => $model->status == Proposal::STATUS_INPROGRESS ||
+                        $model->status == Proposal::STATUS_NEED_CORRECTION,
                     'url' => ['deliver-to-manager', 'id' => $model->id],
                     'options' => [
                         'class' => 'ajaxrequest'
@@ -34,9 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'تعیین زمان جلسه توجیحی',
                     'icon' => 'clock-o',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_DELIVERED_TO_MANAGER ||
-                        $model->status == Source::STATUS_WAITING_FOR_MEETING,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_DELIVERED_TO_MANAGER ||
+                        $model->status == Proposal::STATUS_WAITING_FOR_MEETING,
                     'url' => ['set-session-date', 'id' => $model->id],
                     'options' => [
                         'class' => 'ajaxupdate'
@@ -46,12 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'جلسه برگزار شد',
                     'icon' => 'check',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_WAITING_FOR_MEETING,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_WAITING_FOR_MEETING,
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Source::STATUS_MEETING_HELD
+                        'newStatus' => Proposal::STATUS_MEETING_HELD
                     ],
                     'options' => [
                         'class' => 'ajaxrequest'
@@ -61,8 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'ثبت صورت جلسه',
                     'icon' => 'file-word-o',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
                     'url' => ['write-proceedings', 'id' => $model->id],
                     'options' => [
                         'class' => 'ajaxupdate'
@@ -72,12 +73,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'تایید',
                     'icon' => 'check',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Source::STATUS_ACCEPTED
+                        'newStatus' => Proposal::STATUS_ACCEPTED
                     ],
                     'options' => [
                         'class' => 'ajaxrequest'
@@ -87,27 +88,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'نیازمند اصلاح',
                     'icon' => 'refresh',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Source::STATUS_NEED_CORRECTION
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'reject' => [
-                    'label' => 'رد',
-                    'icon' => 'times',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_REJECTED
+                        'newStatus' => Proposal::STATUS_NEED_CORRECTION
                     ],
                     'options' => [
                         'class' => 'ajaxrequest'
@@ -117,38 +103,38 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'تعیین کارشناس',
                     'icon' => 'graduation-cap',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_ACCEPTED,
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_ACCEPTED,
                     'url' => ['set-expert', 'id' => $model->id],
                     'options' => [
                         'class' => 'ajaxupdate'
                     ]
                 ],
-                'send-for-proposal' => [
-                    'label' => 'ارسال برای نگارش پروپوزال',
+                'send-for-project' => [
+                    'label' => 'ارسال برای تهیه پروژه',
                     'icon' => 'clone',
                     'type' => 'success',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_ACCEPTED &&
+                    'visibleFor' => ['research.manageProposals'],
+                    'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
                         $model->expertId,
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Source::STATUS_READY_FOR_PROPOSAL
+                        'newStatus' => Proposal::STATUS_READY_FOR_PROJECT
                     ],
                     'options' => [
                         'class' => 'ajaxrequest'
                     ]
                 ],
-                'create-proposal' => [
-                    'label' => 'درج پروپوزال',
+                'create-project' => [
+                    'label' => 'درج پروژه',
                     'icon' => 'plus',
                     'type' => 'success',
-                    'visible' => $model->canUserCreateProposal() &&
-                        $model->status == Source::STATUS_READY_FOR_PROPOSAL,
+                    'visible' => $model->canUserCreateProject() &&
+                        $model->status == Proposal::STATUS_READY_FOR_PROJECT,
                     'url' => [
-                        '/research/proposal/manage/create',
-                        'sourceId' => $model->id
+                        '/research/project/manage/create',
+                        'proposalId' => $model->id
                     ]
                 ]
             ]
@@ -164,38 +150,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'update' => [
                     'label' => 'ویرایش',
-                    'visibleFor' => [
-                        'research.createSource',
-                        'research.manageSources'
-                    ],
-                    'visible' => $model->status != Source::STATUS_REJECTED
+                    'visible' => $model->canUserManipulateProposal()
                 ],
                 'delete' => [
                     'label' => 'حذف',
-                    'visibleFor' => [
-                        'research.createSource',
-                        'research.manageSources'
-                    ]
+                    'visible' => $model->canUserManipulateProposal()
                 ],
-                'create' => [
-                    'label' => 'درج منشا',
-                    'visibleFor' => ['research.createSource']
-                ],
-                'index' => ['label' => 'لیست منشاها']
+                'index' => ['label' => 'لیست پروپوزال ها']
             ]
         ]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">
-                <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
+                <?php Panel::begin(['title' => 'مشخصات پروپوزال']) ?>
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
                             'id:farsiNumber',
                             'title',
-                            'recommenderName',
-                            'recommendationDate:date',
-                            'reasons',
+                            'researcherName',
+                            'presentationDate:date',
                             'deliverToManagerDate:boolean',
                             'sessionDate:dateTime',
                             [
@@ -210,13 +184,30 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'attribute' => 'status',
                                 'value' => function ($model) {
-                                    return Source::getStatusLables()[$model->status];
+                                    return Proposal::getStatusLables()[$model->status];
                                 }
                             ],
                             [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {
                                     return $model->getTagsAsString();
+                                }
+                            ],
+                            [
+                                'attribute' => 'sourceId',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return Html::a(
+                                        $model->source->title,
+                                        [
+                                            '/research/source/manage/view',
+                                            'id' => $model->sourceId
+                                        ],
+                                        [
+                                            'target' => '_blank',
+                                            'data-pjax' => '0'
+                                        ]
+                                    );
                                 }
                             ],
                             'createdAt:dateTime',
@@ -228,29 +219,38 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-6">
                 <?= CommentList::widget([
                     'model' => $model,
-                    'moduleId' => 'source',
+                    'moduleId' => 'proposal',
                     'showCreateButton' => Yii::$app->user->can(
-                        'research.manageSources'
-                    ) && $model->status == Source::STATUS_MEETING_HELD
+                        'research.manageProposals'
+                    ) && $model->status == Proposal::STATUS_MEETING_HELD
                 ]) ?>
             </div>
         </div>
         <div class="row">
             <div class="col-ms-12">
                 <?php Panel::begin([
-                    'title' => 'دلایل طرح موضوع'
+                    'title' => 'ضرورت اجرای طرح'
                 ]) ?>
                     <div class="well">
-                        <?= $model->reason ?>
+                        <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-ms-12">
                 <?php Panel::begin([
-                    'title' => 'ضرورت های طرح موضوع'
+                    'title' => 'هدف اصلی'
                 ]) ?>
                     <div class="well">
-                        <?= $model->necessity ?>
+                        <?= $model->mainPurpose ?>
+                    </div>
+                <?php Panel::end() ?>
+            </div>
+            <div class="col-ms-12">
+                <?php Panel::begin([
+                    'title' => 'هدف فرعی'
+                ]) ?>
+                    <div class="well">
+                        <?= $model->secondaryPurpose ?>
                     </div>
                 <?php Panel::end() ?>
             </div>

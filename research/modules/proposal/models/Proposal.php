@@ -1,35 +1,34 @@
 <?php
 
-namespace nad\research\modules\source\models;
+namespace nad\research\modules\proposal\models;
 
 use Yii;
 use core\behaviors\TimestampBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\expert\models\Expert;
+use nad\research\modules\source\models\Source;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\research\modules\source\behaviors\ReasonsBehavior;
 use nad\extensions\documentation\behaviors\DocumentationBehavior;
 
-class Source extends BaseReasearch
+class Proposal extends BaseReasearch
 {
-    const STATUS_READY_FOR_PROPOSAL = 7;
+    const STATUS_READY_FOR_PROJECT = 7;
 
     public function behaviors()
     {
         return [
             TimestampBehavior::class,
-            'Reasons' => ReasonsBehavior::class,
             'Documentation' => DocumentationBehavior::class,
             'Tags' => [
                 'class' => TaggableBehavior::class,
-                'moduleId' => 'source'
+                'moduleId' => 'proposal'
             ],
             'Comments' => [
                 'class' => CommentBehavior::class,
-                'moduleId' => 'source'
+                'moduleId' => 'proposal'
             ]
         ];
     }
@@ -40,17 +39,17 @@ class Source extends BaseReasearch
             [
                 [
                     'title',
-                    'recommenderName',
-                    'recommendationDate',
-                    'reason',
+                    'researcherName',
+                    'presentationDate',
                     'necessity',
-                    'reasons'
+                    'mainPurpose',
+                    'secondaryPurpose'
                 ],
                 'required'
             ],
             [
                 [
-                    'recommendationDate',
+                    'presentationDate',
                     'sessionDate'
                 ],
                 JalaliDateToTimestamp::class,
@@ -58,20 +57,37 @@ class Source extends BaseReasearch
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
             ],
-            [['title', 'recommenderName'], 'string', 'max' => 255],
-            [['reason', 'necessity', 'proceedings'], 'string'],
+            [['title', 'researcherName'], 'string', 'max' => 255],
+            [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
             [
-                ['reason', 'necessity', 'proceedings'],
+                ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
             ['tags', 'safe'],
+            ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             [
                 'expertId',
                 'exist',
                 'targetClass' => Expert::class,
                 'targetAttribute' => ['expertId' => 'id']
+            ],
+            [
+                'sourceId',
+                'exist',
+                'targetClass' => Source::class,
+                'targetAttribute' => ['sourceId' => 'id']
             ]
         ];
+    }
+
+    public function validateTagsCount($model, $attribute)
+    {
+        if (count($this->tags) < 3) {
+            $this->addError(
+                'tags',
+                'تعداد کلید واژه ها باید حداقل ۳ عدد باشد.'
+            );
+        }
     }
 
     public function attributeLabels()
@@ -79,10 +95,11 @@ class Source extends BaseReasearch
         return [
             'id' => 'شناسه',
             'title' => 'عنوان',
-            'recommenderName' => 'نام پیشنهاد دهنده',
-            'recommendationDate' => 'تاریخ پیشنهاد',
-            'reason' => 'دلایل طرح موضوع',
-            'necessity' => 'ضرورت های طرح موضوع',
+            'researcherName' => 'نام محقق',
+            'presentationDate' => 'تاریخ ارائه',
+            'necessity' => 'ضرورت اجرای طرح',
+            'mainPurpose' => 'هدف اصلی',
+            'secondaryPurpose' => 'هدف فرعی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'صورت جلسه',
@@ -90,8 +107,8 @@ class Source extends BaseReasearch
             'status' => 'وضعیت',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی',
-            'reasons' => 'علل پیدایش',
-            'tags' => 'کلید واژه ها'
+            'tags' => 'کلید واژه ها',
+            'sourceId' => 'منشا'
         ];
     }
 
@@ -100,13 +117,19 @@ class Source extends BaseReasearch
         return $this->hasOne(Expert::class, ['id' => 'expertId']);
     }
 
-    public function getReasonsQuery()
+    public function getSource()
     {
-        return $this->hasMany(SourceReason::class, ['id' => 'reasonId'])
-            ->viaTable('nad_research_source_reason_relation', ['sourceId' => 'id']);
+        return $this->hasOne(Source::class, ['id' => 'sourceId']);
     }
 
-    public function canUserCreateProposal()
+    public function canUserManipulateProposal()
+    {
+        return $this->source->canUserCreateProposal() || Yii::$app->user->can(
+            'research.manageProposals'
+        );
+    }
+
+    public function canUserCreateProject()
     {
         if (!$this->expertId) {
             return false;
@@ -116,16 +139,18 @@ class Source extends BaseReasearch
 
     public static function tableName()
     {
-        return 'nad_research_source';
+        return 'nad_research_proposal';
     }
 
     public static function getStatusLables()
     {
-        return array_merge(
+        $statusLabels = array_merge(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROPOSAL => 'آماده برای تهیه پروپوزال'
+                self::STATUS_READY_FOR_PROJECT => 'آماده برای انجام پروژه'
             ]
         );
+        unset($statusLabels[self::STATUS_REJECTED]);
+        return $statusLabels;
     }
 }
