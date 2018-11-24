@@ -2,7 +2,6 @@
 
 namespace nad\research\modules\proposal\models;
 
-use Yii;
 use core\behaviors\TimestampBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
@@ -120,21 +119,6 @@ class Proposal extends BaseReasearch
     public function getSource()
     {
         return $this->hasOne(Source::class, ['id' => 'sourceId']);
-    }
-
-    public function canUserManipulateProposal()
-    {
-        return $this->source->canUserCreateProposal() || Yii::$app->user->can(
-            'research.manageProposals'
-        );
-    }
-
-    public function canUserCreateProject()
-    {
-        if (!$this->expertId) {
-            return false;
-        }
-        return Yii::$app->user->id == $this->expert->userId;
     }
 
     public static function tableName()

@@ -18,6 +18,12 @@ class BaseReasearch extends \yii\db\ActiveRecord
         $this->save();
     }
 
+    public function canDeliverToManager()
+    {
+        return $this->status == self::STATUS_INPROGRESS ||
+            $this->status == self::STATUS_NEED_CORRECTION;
+    }
+
     public function canSetSessionDate()
     {
         return $this->status == self::STATUS_DELIVERED_TO_MANAGER ||

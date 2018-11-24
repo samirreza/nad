@@ -30,19 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Project::getStatusLables()[$model->status];
                         }
                     ],
-                    [
-                        'class' => 'yii\grid\ActionColumn',
-                        'visibleButtons' => [
-                            'visibleButtons' => [
-                                'update' => function ($model, $key, $index) {
-                                    return $model->canUserManipulateProject();
-                                },
-                                'delete' => function ($model, $key, $index) {
-                                    return $model->canUserManipulateProject();
-                                }
-                            ]
-                        ]
-                    ]
+                    ['class' => 'yii\grid\ActionColumn']
                 ]
             ]) ?>
         <?php Pjax::end() ?>

@@ -83,18 +83,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ]
                                 );
                             }
-                        ],
-                        'visibleButtons' => [
-                            'update' => function ($model, $key, $index) {
-                                return $model->canUserManipulateProposal();
-                            },
-                            'delete' => function ($model, $key, $index) {
-                                return $model->canUserManipulateProposal();
-                            },
-                            'projects' => Yii::$app->user->canAccessAny([
-                                'expert',
-                                'research.manageProject'
-                            ])
                         ]
                     ]
                 ]

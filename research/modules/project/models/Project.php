@@ -2,7 +2,6 @@
 
 namespace nad\research\modules\project\models;
 
-use Yii;
 use core\behaviors\TimestampBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseReasearch;
@@ -123,13 +122,6 @@ class Project extends BaseReasearch
     public function getProposal()
     {
         return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
-    }
-
-    public function canUserManipulateProject()
-    {
-        return $this->proposal->canUserCreateProject() || Yii::$app->user->can(
-            'research.manageProject'
-        );
     }
 
     public static function tableName()

@@ -68,7 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             );
                         }
                     ],
-                    'createdAt:dateTime'
+                    'createdAt:dateTime',
+                    [
+                        'class' => 'core\grid\AjaxActionColumn',
+                        'template' => '{delete}'
+                    ]
                 ]
             ]) ?>
         <?php Pjax::end() ?>

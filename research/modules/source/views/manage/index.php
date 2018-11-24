@@ -104,11 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'research.createSource',
                                         'research.manageSources'
                                     ]);
-                            },
-                            'proposals' => Yii::$app->user->canAccessAny([
-                                'expert',
-                                'research.manageSources'
-                            ])
+                            }
                         ]
                     ]
                 ]

@@ -36,7 +36,7 @@ class m181122_115612_create_source_tables extends Migration
             'nad_research_expert',
             'id',
             'RESTRICT',
-            'RESTRICT'
+            'CASCADE'
         );
 
         $this->createTable('nad_research_source_reason', [

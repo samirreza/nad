@@ -2,7 +2,7 @@
 
 namespace nad\research\modules\source\models;
 
-use Yii;
+use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
@@ -30,6 +30,11 @@ class Source extends BaseReasearch
             'Comments' => [
                 'class' => CommentBehavior::class,
                 'moduleId' => 'source'
+            ],
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'createdBy',
+                'updatedByAttribute' => false
             ]
         ];
     }
@@ -104,14 +109,6 @@ class Source extends BaseReasearch
     {
         return $this->hasMany(SourceReason::class, ['id' => 'reasonId'])
             ->viaTable('nad_research_source_reason_relation', ['sourceId' => 'id']);
-    }
-
-    public function canUserCreateProposal()
-    {
-        if (!$this->expertId) {
-            return false;
-        }
-        return Yii::$app->user->id == $this->expert->userId;
     }
 
     public static function tableName()

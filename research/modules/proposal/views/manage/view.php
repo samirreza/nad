@@ -1,12 +1,12 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
 use theme\widgets\ActionButtons;
 use nad\research\modules\proposal\models\Proposal;
 use nad\extensions\comment\widgets\commentList\CommentList;
-use yii\helpers\Html;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'لیست پروپوژال ها', 'url' => ['index']];
@@ -17,93 +17,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <a class="ajaxcreate" data-gridpjaxid="proposal-view-detailviewpjax"></a>
 <div class="proposal-view">
     <?php Pjax::begin(['id' => 'proposal-view-detailviewpjax']) ?>
+        <?= $this->render('@nad/research/common/views/base-action-buttons', [
+            'model' => $model,
+            'managerPermission' => ['research.manageProposals'],
+            'deliverToManagerPermission' => ['expert']
+        ]) ?>
         <?= ActionButtons::widget([
+            'visibleFor' => ['research.manageProposals'],
             'buttons' => [
-                'deliver-to-manager' => [
-                    'label' => 'ارسال به مدیر',
-                    'icon' => 'send',
-                    'type' => 'info',
-                    'visibleFor' => ['expert'],
-                    'visible' => $model->status == Proposal::STATUS_INPROGRESS ||
-                        $model->status == Proposal::STATUS_NEED_CORRECTION,
-                    'url' => ['deliver-to-manager', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'set-session-date' => [
-                    'label' => 'تعیین زمان جلسه توجیحی',
-                    'icon' => 'clock-o',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
-                    'visible' => $model->status == Proposal::STATUS_DELIVERED_TO_MANAGER ||
-                        $model->status == Proposal::STATUS_WAITING_FOR_MEETING,
-                    'url' => ['set-session-date', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxupdate'
-                    ]
-                ],
-                'meeting-held' => [
-                    'label' => 'جلسه برگزار شد',
-                    'icon' => 'check',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
-                    'visible' => $model->status == Proposal::STATUS_WAITING_FOR_MEETING,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_MEETING_HELD
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'write-proceedings' => [
-                    'label' => 'ثبت صورت جلسه',
-                    'icon' => 'file-word-o',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
-                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
-                    'url' => ['write-proceedings', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxupdate'
-                    ]
-                ],
-                'accept' => [
-                    'label' => 'تایید',
-                    'icon' => 'check',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
-                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_ACCEPTED
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'icon' => 'refresh',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
-                    'visible' => $model->status == Proposal::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_NEED_CORRECTION
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
                 'set-expert' => [
                     'label' => 'تعیین کارشناس',
                     'icon' => 'graduation-cap',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageProposals'],
                     'visible' => $model->status == Proposal::STATUS_ACCEPTED,
                     'url' => ['set-expert', 'id' => $model->id],
                     'options' => [
@@ -114,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'ارسال برای تهیه پروژه',
                     'icon' => 'clone',
                     'type' => 'success',
-                    'visibleFor' => ['research.manageProposals'],
                     'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
                         $model->expertId,
                     'url' => [
@@ -130,8 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'درج پروژه',
                     'icon' => 'plus',
                     'type' => 'success',
-                    'visible' => $model->canUserCreateProject() &&
-                        $model->status == Proposal::STATUS_READY_FOR_PROJECT,
+                    'visibleFor' => ['expert'],
+                    'visible' => $model->status == Proposal::STATUS_READY_FOR_PROJECT,
                     'url' => [
                         '/research/project/manage/create',
                         'proposalId' => $model->id
@@ -149,12 +73,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'url' => ['documentation', 'id' => $model->id]
                 ],
                 'update' => [
-                    'label' => 'ویرایش',
-                    'visible' => $model->canUserManipulateProposal()
+                    'label' => 'ویرایش'
                 ],
                 'delete' => [
-                    'label' => 'حذف',
-                    'visible' => $model->canUserManipulateProposal()
+                    'label' => 'حذف'
                 ],
                 'index' => ['label' => 'لیست پروپوزال ها']
             ]

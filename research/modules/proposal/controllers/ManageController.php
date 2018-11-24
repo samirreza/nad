@@ -33,10 +33,10 @@ class ManageController extends BaseResearchController
                         [
                             'allow' => true,
                             'actions' => [
-                                'update',
-                                'delete',
                                 'index',
                                 'view',
+                                'update',
+                                'delete',
                                 'documentation'
                             ],
                             'roles' => [

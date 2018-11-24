@@ -5,13 +5,29 @@ namespace nad\research\modules\expert\models;
 use Yii;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
+use core\behaviors\PreventDeleteBehavior;
+use nad\research\modules\proposal\models\Proposal;
+use nad\research\modules\project\models\Project;
 
 class Expert extends \yii\db\ActiveRecord
 {
     public function behaviors()
     {
         return [
-            TimestampBehavior::class
+            TimestampBehavior::class,
+            [
+                'class' => PreventDeleteBehavior::class,
+                'relations' => [
+                    [
+                        'relationMethod' => 'getProposals',
+                        'relationName' => 'پروپوزال'
+                    ],
+                    [
+                        'relationMethod' => 'getProjects',
+                        'relationName' => 'پروژه'
+                    ]
+                ]
+            ]
         ];
     }
 
@@ -42,6 +58,18 @@ class Expert extends \yii\db\ActiveRecord
         return $this->user->email;
     }
 
+    public function getProposals()
+    {
+        return $this->hasMany(Proposal::class, ['sourceId' => 'id'])
+            ->viaTable('nad_research_source', ['expertId' => 'id']);
+    }
+
+    public function getProjects()
+    {
+        return $this->hasMany(Project::class, ['proposalId' => 'id'])
+            ->viaTable('nad_research_proposal', ['expertId' => 'id']);
+    }
+
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {
@@ -65,6 +93,11 @@ class Expert extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
     }
 
+    public static function tableName()
+    {
+        return 'nad_research_expert';
+    }
+
     private function hasExpertRole()
     {
         return Yii::$app->authManager->checkAccess($this->userId, 'expert');
@@ -74,10 +107,5 @@ class Expert extends \yii\db\ActiveRecord
     {
         $auth = Yii::$app->authManager;
         $auth->assign($auth->getRole('expert'), $this->userId);
-    }
-
-    public static function tableName()
-    {
-        return 'nad_research_expert';
     }
 }

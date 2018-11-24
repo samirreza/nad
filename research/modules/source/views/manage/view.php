@@ -16,93 +16,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <a class="ajaxcreate" data-gridpjaxid="source-view-detailviewpjax"></a>
 <div class="source-view">
     <?php Pjax::begin(['id' => 'source-view-detailviewpjax']) ?>
+        <?= $this->render('@nad/research/common/views/base-action-buttons', [
+            'model' => $model,
+            'managerPermission' => ['research.manageSources'],
+            'deliverToManagerPermission' => ['research.createSource']
+        ]) ?>
         <?= ActionButtons::widget([
+            'visibleFor' => ['research.manageSources'],
             'buttons' => [
-                'deliver-to-manager' => [
-                    'label' => 'ارسال به مدیر',
-                    'icon' => 'send',
-                    'type' => 'info',
-                    'visibleFor' => ['research.createSource'],
-                    'visible' => $model->status == Source::STATUS_INPROGRESS ||
-                        $model->status == Source::STATUS_NEED_CORRECTION,
-                    'url' => ['deliver-to-manager', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'set-session-date' => [
-                    'label' => 'تعیین زمان جلسه توجیحی',
-                    'icon' => 'clock-o',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_DELIVERED_TO_MANAGER ||
-                        $model->status == Source::STATUS_WAITING_FOR_MEETING,
-                    'url' => ['set-session-date', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxupdate'
-                    ]
-                ],
-                'meeting-held' => [
-                    'label' => 'جلسه برگزار شد',
-                    'icon' => 'check',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_WAITING_FOR_MEETING,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_MEETING_HELD
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'write-proceedings' => [
-                    'label' => 'ثبت صورت جلسه',
-                    'icon' => 'file-word-o',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
-                    'url' => ['write-proceedings', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxupdate'
-                    ]
-                ],
-                'accept' => [
-                    'label' => 'تایید',
-                    'icon' => 'check',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_ACCEPTED
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'icon' => 'refresh',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_NEED_CORRECTION
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
                 'reject' => [
                     'label' => 'رد',
                     'icon' => 'times',
-                    'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
+                    'type' => 'danger',
                     'visible' => $model->status == Source::STATUS_MEETING_HELD,
                     'url' => [
                         'change-status',
@@ -117,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'تعیین کارشناس',
                     'icon' => 'graduation-cap',
                     'type' => 'info',
-                    'visibleFor' => ['research.manageSources'],
                     'visible' => $model->status == Source::STATUS_ACCEPTED,
                     'url' => ['set-expert', 'id' => $model->id],
                     'options' => [
@@ -128,7 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'ارسال برای نگارش پروپوزال',
                     'icon' => 'clone',
                     'type' => 'success',
-                    'visibleFor' => ['research.manageSources'],
                     'visible' => $model->status == Source::STATUS_ACCEPTED &&
                         $model->expertId,
                     'url' => [
@@ -144,8 +67,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'درج پروپوزال',
                     'icon' => 'plus',
                     'type' => 'success',
-                    'visible' => $model->canUserCreateProposal() &&
-                        $model->status == Source::STATUS_READY_FOR_PROPOSAL,
+                    'visibleFor' => ['expert'],
+                    'visible' => $model->status == Source::STATUS_READY_FOR_PROPOSAL,
                     'url' => [
                         '/research/proposal/manage/create',
                         'sourceId' => $model->id
