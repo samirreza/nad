@@ -8,7 +8,7 @@ class m181125_060042_change_project_manage_permission_description extends Migrat
     {
         Yii::$app->db->createCommand()->update(
             'auth_item',
-            ['description' => 'مدیریت گزارش های'],
+            ['description' => 'مدیریت گزارش ها'],
             ['name' => 'research.manageProject']
         )->execute();
     }
