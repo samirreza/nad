@@ -5,6 +5,7 @@ namespace modules\nad\material\modules\type\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use modules\nad\material\modules\type\models\Type;
+use modules\nad\material\modules\type\models\Category;
 use modules\nad\material\modules\type\models\TypeSearch;
 
 class ManageController extends \core\controllers\AjaxAdminController
@@ -52,4 +53,21 @@ class ManageController extends \core\controllers\AjaxAdminController
         }
         return $materials;
     }
+
+    public function actionTreeList()
+    {
+        return $this->render('tree');
+    }
+
+    public function actionGetJsonTree($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $roots = Category::find()->roots()->all();
+        $tree = [];
+        foreach ($roots as $root) {
+            $tree[] = $root->getFamilyTreeArray();
+        }
+        return $tree;
+    }
+
 }
