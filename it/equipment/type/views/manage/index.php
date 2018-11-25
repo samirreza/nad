@@ -28,6 +28,11 @@ $this->params['breadcrumbs'] = [
                 'label' => 'رده های تجهیزات',
                 'icon' => 'sitemap'
             ],
+            'tree' => [
+                'label' => 'نمایش درختی',
+                'icon' => 'tree',
+                'url' => ['tree-list']
+            ]
         ],
     ]); ?>
 
