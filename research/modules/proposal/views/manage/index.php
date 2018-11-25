@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'buttons' => [
                             'projects' => function ($url, $model, $key) {
                                 return Html::a(
-                                    'پروژه ها',
+                                    'گزارش ها',
                                     [
                                         '/research/project/manage/index',
                                         'ProjectSearch[proposalId]' => $model->id

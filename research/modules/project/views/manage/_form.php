@@ -21,7 +21,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
     ]) ?>
         <div class="row">
             <div class="col-md-8">
-            <?php Panel::begin(['title' => 'مشخصات پروژه']) ?>
+            <?php Panel::begin(['title' => 'مشخصات گزارش']) ?>
                     <?= $form->field($model, 'title')->textInput([
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
@@ -54,7 +54,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">
-                <?php Panel::begin(['title' => 'سایر اطلاعات پروژه']) ?>
+                <?php Panel::begin(['title' => 'سایر اطلاعات گزارش']) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

@@ -2,8 +2,8 @@
 
 use theme\widgets\ActionButtons;
 
-$this->title = 'ویرایش پروژه';
-$this->params['breadcrumbs'][] = ['label' => 'لیست پروژه ها', 'url' => ['index']];
+$this->title = 'ویرایش گزارش';
+$this->params['breadcrumbs'][] = ['label' => 'لیست گزارش ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = [
     'label' => $model->title,
     'url' => ['view', 'id' => $model->id]
@@ -16,9 +16,9 @@ $this->params['breadcrumbs'][] = 'ویرایش';
 	<?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'create' => ['label' => 'درج پروژه'],
-            'delete' => ['label' => 'حذف پروژه'],
-            'index' => ['label' => 'لیست پروژه ها']
+            'create' => ['label' => 'درج گزارش'],
+            'delete' => ['label' => 'حذف گزارش'],
+            'index' => ['label' => 'لیست گزارش ها']
         ]
     ]) ?>
     <?= $this->render('_form', [

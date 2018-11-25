@@ -24,7 +24,7 @@ class Expert extends \yii\db\ActiveRecord
                     ],
                     [
                         'relationMethod' => 'getProjects',
-                        'relationName' => 'پروژه'
+                        'relationName' => 'گزارش'
                     ]
                 ]
             ]

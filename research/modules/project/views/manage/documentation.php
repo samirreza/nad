@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'مدیریت مراجع پروژه';
-$this->params['breadcrumbs'][] = ['label' => 'لیست پروژه ها', 'url' => ['index']];
+$this->title = 'مدیریت مراجع گزارش';
+$this->params['breadcrumbs'][] = ['label' => 'لیست گزارش ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = [
     'label' => $model->title,
     'url' => ['view', 'id' => $model->id]

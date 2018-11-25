@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use theme\widgets\Panel;
 use nad\research\modules\project\models\Project;
 
-$this->title = 'لیست پروژه ها';
+$this->title = 'لیست گزارش ها';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

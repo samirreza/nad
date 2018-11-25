@@ -131,7 +131,7 @@ class Proposal extends BaseReasearch
         $statusLabels = array_merge(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROJECT => 'آماده برای انجام پروژه'
+                self::STATUS_READY_FOR_PROJECT => 'آماده برای انجام گزارش'
             ]
         );
         unset($statusLabels[self::STATUS_REJECTED]);

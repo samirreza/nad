@@ -101,7 +101,7 @@ class Project extends BaseReasearch
             'id' => 'شناسه',
             'title' => 'عنوان',
             'researcherName' => 'نام محقق',
-            'complationDate' => 'تاریخ اتمام پروژه',
+            'complationDate' => 'تاریخ اتمام گزارش',
             'abstract' => 'چکیده',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',

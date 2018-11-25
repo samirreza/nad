@@ -9,7 +9,7 @@ use nad\research\modules\project\models\Project;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'لیست پروژه ها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'لیست گزارش ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -56,13 +56,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'delete' => [
                     'label' => 'حذف'
                 ],
-                'index' => ['label' => 'لیست پروژه ها']
+                'index' => ['label' => 'لیست گزارش ها']
             ]
         ]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">
-                <?php Panel::begin(['title' => 'مشخصات پروژه']) ?>
+                <?php Panel::begin(['title' => 'مشخصات گزارش']) ?>
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [

@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 'send-for-project' => [
-                    'label' => 'ارسال برای تهیه پروژه',
+                    'label' => 'ارسال برای تهیه گزارش',
                     'icon' => 'clone',
                     'type' => 'success',
                     'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 'create-project' => [
-                    'label' => 'درج پروژه',
+                    'label' => 'درج گزارش',
                     'icon' => 'plus',
                     'type' => 'success',
                     'visibleFor' => ['expert'],
