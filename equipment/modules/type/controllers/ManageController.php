@@ -52,4 +52,9 @@ class ManageController extends \core\controllers\AdminController
         }
         return $equipments;
     }
+
+    public function actionMaterial()
+    {
+        return $this->render('@theme/views/site/construction.html');
+    }
 }
