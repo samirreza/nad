@@ -6,17 +6,17 @@ ul.jqtree-tree .jqtree-element {
     background-color: #f9f9f9;
 }
 li.depth-0 > div.jqtree-element {
-    background-color: #d4b6d8;
+    background-color: #0066ff;
 }
 li.depth-1 > div.jqtree-element {
-    background-color: #e7b7cb;
+    background-color: #4d94ff;
 }
 li.depth-2 > div.jqtree-element {
-    background-color: #f4cdcc;
+    background-color: #99c2ff;
 }
 li.depth-3 > div.jqtree-element {
-    background-color: #ffdecd;
+    background-color: #cce0ff;
 }
 li.depth-4 > div.jqtree-element {
-    background-color: #fcefde;
+    background-color: #e6f0ff;
 }
