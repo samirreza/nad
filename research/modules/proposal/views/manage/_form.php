@@ -7,6 +7,9 @@ use yii\widgets\ActiveForm;
 use theme\widgets\editor\Editor;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use nad\extensions\thing\widgets\selectThing\SelectMaterials;
+use nad\extensions\thing\widgets\selectThing\SelectEquipments;
+use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -51,6 +54,9 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <div class="col-md-4">
                 <?php Panel::begin(['title' => 'سایر اطلاعات پروپوزال']) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                    <?= $form->field($model, 'materials')->widget(SelectMaterials::class) ?>
+                    <?= $form->field($model, 'equipments')->widget(SelectEquipments::class) ?>
+                    <?= $form->field($model, 'equipmentParts')->widget(SelectEquipmentParts::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>
                     <?= Html::submitButton(

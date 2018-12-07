@@ -110,6 +110,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }
                             ],
                             [
+                                'attribute' => 'materials',
+                                'value' => function ($model) {
+                                    return $model->getMaterialsAsString();
+                                }
+                            ],
+                            [
+                                'attribute' => 'equipments',
+                                'value' => function ($model) {
+                                    return $model->getEquipmentsAsString();
+                                }
+                            ],
+                            [
+                                'attribute' => 'equipmentParts',
+                                'value' => function ($model) {
+                                    return $model->getEquipmentPartsAsString();
+                                }
+                            ],
+                            [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {
                                     return $model->getTagsAsString();
