@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\equipment\modules\type\details\models;
 
 use core\behaviors\PreventDeleteBehavior;
@@ -9,17 +10,20 @@ class Part extends \modules\nad\equipment\models\Part
 {
     public function behaviors()
     {
-        return [
+        return array_merge(
+            parent::behaviors(),
             [
-                'class' => PreventDeleteBehavior::class,
-                'relations' => [
-                    [
-                        'relationMethod' => 'getModels',
-                        'relationName' => 'مدل'
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getModels',
+                            'relationName' => 'مدل'
+                        ]
                     ]
                 ]
             ]
-        ];
+        );
     }
 
     public function rules()

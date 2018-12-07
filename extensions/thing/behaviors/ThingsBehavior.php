@@ -58,7 +58,6 @@ class ThingsBehavior extends Behavior
 
     public function attachThings()
     {
-        dd($this->materials);
         if (!$this->owner->isNewRecord) {
             $this->deleteThings();
         }
