@@ -2,11 +2,12 @@
 
 namespace nad\research\modules\project\models;
 
+use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
+use modules\user\backend\models\User;
 use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
-use nad\research\modules\expert\models\Expert;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
@@ -29,6 +30,11 @@ class Project extends BaseReasearch
             'Comments' => [
                 'class' => CommentBehavior::class,
                 'moduleId' => 'project'
+            ],
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'createdBy',
+                'updatedByAttribute' => false
             ],
             [
                 'class' => FileBehavior::class,
@@ -63,23 +69,18 @@ class Project extends BaseReasearch
             [
                 [
                     'title',
-                    'researcherName',
-                    'complationDate',
                     'abstract'
                 ],
                 'required'
             ],
             [
-                [
-                    'complationDate',
-                    'sessionDate'
-                ],
+                'sessionDate',
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
             ],
-            [['title', 'researcherName'], 'string', 'max' => 255],
+            ['title', 'string', 'max' => 255],
             [['abstract', 'proceedings'], 'string'],
             [
                 ['abstract', 'proceedings'],
@@ -100,23 +101,22 @@ class Project extends BaseReasearch
         return [
             'id' => 'شناسه',
             'title' => 'عنوان',
-            'researcherName' => 'نام محقق',
-            'complationDate' => 'تاریخ اتمام گزارش',
+            'createdBy' => 'محقق',
+            'createdAt' => 'تاریخ اتمام گزارش',
             'abstract' => 'چکیده',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
-            'proceedings' => 'صورت جلسه',
+            'proceedings' => 'نتیجه برگزاری جلسه',
             'status' => 'وضعیت',
-            'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
             'proposalId' => 'پروپوژال'
         ];
     }
 
-    public function getExpert()
+    public function getResearcher()
     {
-        return $this->hasOne(Expert::class, ['id' => 'expertId']);
+        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function getProposal()

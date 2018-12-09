@@ -4,61 +4,21 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
-use theme\widgets\ActionButtons;
 use nad\research\modules\project\models\Project;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'لیست گزارش ها', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $model->title;
 
 ?>
 
 <a class="ajaxcreate" data-gridpjaxid="project-view-detailviewpjax"></a>
 <div class="project-view">
     <?php Pjax::begin(['id' => 'project-view-detailviewpjax']) ?>
-        <?= $this->render('@nad/research/common/views/base-action-buttons', [
-            'model' => $model,
-            'managerPermission' => ['research.manageProject'],
-            'deliverToManagerPermission' => ['expert']
-        ]) ?>
-        <?= ActionButtons::widget([
-            'visibleFor' => ['research.manageProject'],
-            'buttons' => [
-                'archive' => [
-                    'label' => 'آرشیو کردن',
-                    'icon' => 'clone',
-                    'type' => 'success',
-                    'visible' => $model->status == Project::STATUS_ACCEPTED,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Project::STATUS_ARCHIVED
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ]
-            ]
-        ]) ?>
-        <?= ActionButtons::widget([
-            'modelID' => $model->id,
-            'buttons' => [
-                'documentation' => [
-                    'label' => $model->hasDocumentation() ? 'مراجع' : 'درج مرجع',
-                    'icon' => 'file',
-                    'type' => 'info',
-                    'url' => ['documentation', 'id' => $model->id]
-                ],
-                'update' => [
-                    'label' => 'ویرایش'
-                ],
-                'delete' => [
-                    'label' => 'حذف'
-                ],
-                'index' => ['label' => 'لیست گزارش ها']
-            ]
-        ]) ?>
+        <h2><?= $model->title . ' (' . Project::getStatusLables()[$model->status] . ')' ?></h2>
+        <br>
+        <?= $this->render('_action-buttons', ['model' => $model]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">
@@ -66,18 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id:farsiNumber',
                             'title',
-                            'researcherName',
-                            'complationDate:date',
-                            'deliverToManagerDate:boolean',
-                            'sessionDate:dateTime',
                             [
-                                'attribute' => 'status',
+                                'attribute' => 'createdBy',
                                 'value' => function ($model) {
-                                    return Project::getStatusLables()[$model->status];
+                                    return $model->researcher->email;
                                 }
                             ],
+                            'createdAt:date',
+                            'deliverToManagerDate:date',
+                            'sessionDate:date',
                             [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {
@@ -101,8 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 }
                             ],
-                            'createdAt:dateTime',
-                            'updatedAt:dateTime'
+                            [
+                                'attribute' => 'status',
+                                'value' => function ($model) {
+                                    return Project::getStatusLables()[$model->status];
+                                }
+                            ],
+                            'updatedAt:date'
                         ]
                     ]) ?>
                 <?php Panel::end() ?>
@@ -112,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'moduleId' => 'project',
                     'showCreateButton' => Yii::$app->user->can(
-                        'research.manageProject'
+                        'research.manage'
                     ) && $model->status == Project::STATUS_MEETING_HELD
                 ]) ?>
             </div>
@@ -129,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-ms-12">
                 <?php Panel::begin([
-                    'title' => 'صورت جلسه'
+                    'title' => 'نتیجه برگزاری جلسه'
                 ]) ?>
                     <div class="well">
                         <?= $model->proceedings ?>

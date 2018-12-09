@@ -9,7 +9,7 @@ class ExpertSearch extends Expert
     public function rules()
     {
         return [
-            [['id', 'userId'], 'integer']
+            ['userId', 'integer']
         ];
     }
 
@@ -34,10 +34,7 @@ class ExpertSearch extends Expert
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'userId' => $this->userId
-        ]);
+        $query->andFilterWhere(['userId' => $this->userId]);
 
         return $dataProvider;
     }

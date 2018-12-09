@@ -9,8 +9,8 @@ class SourceSearch extends Source
     public function rules()
     {
         return [
-            [['title', 'recommenderName'], 'string'],
-            [['id', 'expertId', 'status'], 'integer']
+            ['title', 'string'],
+            [['id', 'createdBy', 'status'], 'integer']
         ];
     }
 
@@ -22,13 +22,13 @@ class SourceSearch extends Source
             'sort' => [
                 'attributes' => [
                     'id',
-                    'recommendationDate',
+                    'createdAt',
                     'deliverToManagerDate',
                     'sessionDate',
                     'status'
                 ],
                 'defaultOrder' => [
-                    'id' => SORT_DESC
+                    'createdAt' => SORT_DESC
                 ]
             ]
         ]);
@@ -40,13 +40,11 @@ class SourceSearch extends Source
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'expertId' => $this->expertId,
+            'createdBy' => $this->createdBy,
             'status' => $this->status
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-
-        $query->andFilterWhere(['like', 'recommenderName', $this->recommenderName]);
 
         return $dataProvider;
     }

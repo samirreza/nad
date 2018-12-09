@@ -16,12 +16,8 @@ $this->params['breadcrumbs'][] = 'ویرایش';
 	<?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'create' => ['label' => 'درج گزارش'],
-            'delete' => ['label' => 'حذف گزارش'],
             'index' => ['label' => 'لیست گزارش ها']
         ]
     ]) ?>
-    <?= $this->render('_form', [
-        'model' => $model
-    ]) ?>
+    <?= $this->render('_form', ['model' => $model]) ?>
 </div>

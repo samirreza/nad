@@ -19,8 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => [
-                'label' => 'درج منشا',
-                'visibleFor' => ['research.createSource']
+                'label' => 'درج منشا'
             ]
         ]
     ]) ?>
@@ -30,21 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\IDColumn'],
                     'title',
-                    'recommenderName',
-                    'recommendationDate:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:dateTime',
                     [
-                        'attribute' => 'expertId',
+                        'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],
                         'filter' => Select2::widget([
                             'model' => $searchModel,
-                            'attribute' => 'expertId',
+                            'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
                                 Expert::find()->all(),
-                                'id',
+                                'userId',
                                 'email'
                             ),
                             'options' => [
@@ -54,24 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'format' => 'raw',
                         'value' => function ($model) {
-                            if (!$model->expertId) {
-                                return;
-                            }
-                            return Html::a(
-                                $model->expert->email,
-                                [
-                                    '/research/manage/index',
-                                    'ExpertSearch[id]' => $model->expertId
-                                ],
-                                [
-                                    'target' => '_blank',
-                                    'data-pjax' => '0'
-                                ]
-                            );
+                            return $model->recommender->email;
                         }
                     ],
+                    'createdAt:date',
+                    'deliverToManagerDate:date',
+                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'filter' => Source::getStatusLables(),
@@ -84,26 +67,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{view} {update} {delete} {proposals}',
                         'buttons' => [
                             'proposals' => function ($url, $model, $key) {
-                                return Html::a(
-                                    'پروپوزال ها',
-                                    [
-                                        '/research/proposal/manage/index',
-                                        'ProposalSearch[sourceId]' => $model->id
-                                    ]
-                                );
+                                if (Yii::$app->user->can('research.manage')) {
+                                    return Html::a(
+                                        'پروپوزال ها',
+                                        [
+                                            '/research/proposal/manage/index',
+                                            'ProposalSearch[sourceId]' => $model->id
+                                        ]
+                                    );
+                                }
                             }
                         ],
                         'visibleButtons' => [
-                            'delete' => Yii::$app->user->canAccessAny([
-                                'research.createSource',
-                                'research.manageSources'
+                            'view' => Yii::$app->user->canAccessAny([
+                                'expert',
+                                'research.manage'
                             ]),
                             'update' => function ($model, $key, $index) {
-                                return $model->status != Source::STATUS_REJECTED &&
-                                    Yii::$app->user->canAccessAny([
-                                        'research.createSource',
-                                        'research.manageSources'
-                                    ]);
+                                return $model->canUserUpdateOrDelete();
+                            },
+                            'delete' => function ($model, $key, $index) {
+                                return $model->canUserUpdateOrDelete();
                             }
                         ]
                     ]

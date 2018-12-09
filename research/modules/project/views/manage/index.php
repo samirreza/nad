@@ -3,6 +3,9 @@
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
+use yii\helpers\ArrayHelper;
+use core\widgets\select2\Select2;
+use nad\research\modules\expert\models\Expert;
 use nad\research\modules\project\models\Project;
 
 $this->title = 'لیست گزارش ها';
@@ -17,12 +20,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\IDColumn'],
                     'title',
-                    'researcherName',
-                    'complationDate:date',
+                    [
+                        'attribute' => 'createdBy',
+                        'headerOptions' => ['style' => 'width:300px'],
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'createdBy',
+                            'data' => ArrayHelper::map(
+                                Expert::find()->all(),
+                                'userId',
+                                'email'
+                            ),
+                            'options' => [
+                                'placeholder' => 'ایمیل کارشناس را انتخاب کنید'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]),
+                        'value' => function ($model) {
+                            return $model->researcher->email;
+                        }
+                    ],
+                    'createdAt:date',
                     'deliverToManagerDate:date',
-                    'sessionDate:dateTime',
+                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'filter' => Project::getStatusLables(),
@@ -30,7 +53,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Project::getStatusLables()[$model->status];
                         }
                     ],
-                    ['class' => 'yii\grid\ActionColumn']
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'visibleButtons' => [
+                            'view' => Yii::$app->user->canAccessAny([
+                                'expert',
+                                'research.manage'
+                            ]),
+                            'update' => function ($model, $key, $index) {
+                                return $model->canUserUpdateOrDelete();
+                            },
+                            'delete' => function ($model, $key, $index) {
+                                return $model->canUserUpdateOrDelete();
+                            }
+                        ]
+                    ]
                 ]
             ]) ?>
         <?php Pjax::end() ?>

@@ -4,7 +4,9 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use core\widgets\editor\Editor;
+use yii\helpers\ArrayHelper;
+use core\widgets\select2\Select2;
+use nad\research\modules\expert\models\Expert;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -12,12 +14,12 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <?php Panel::begin([
-            'title' => 'ثبت نتیجه برگزاری جلسه',
+            'title' => 'تعیین کارشناسان',
             'showCloseButton' => true
         ]) ?>
-            <div class="expert-form">
+            <div class="set-experts-form">
                 <?php $form = ActiveForm::begin([
                     'enableClientValidation' => true,
                     'options' => [
@@ -25,9 +27,23 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
-                    <?= $form->field($model, 'proceedings')->widget(
-                        Editor::class,
-                        ['preset' => 'advanced']
+                    <?= $form->field($model, 'experts')->widget(
+                        Select2::class,
+                        [
+                            'data' => ArrayHelper::map(
+                                Expert::find()->all(),
+                                'userId',
+                                'email'
+                            ),
+                            'options' => [
+                                'placeholder' => 'ایمیل کارشناس را انتخاب کنید ...',
+                                'multiple' => true,
+                                'value' => $model->getExperts()
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]
                     ) ?>
                     <br>
                     <?= Html::submitButton(

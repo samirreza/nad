@@ -13,11 +13,11 @@ class ReasonsBehavior extends TaggableBehavior
 
     public function init()
     {
-        parent::init();
         $this->tagValuesAsArray = $this->catValuesAsArray;
         $this->tagRelation = $this->catRelation;
         $this->tagValueAttribute = $this->catValueAttribute;
         $this->tagFrequencyAttribute = $this->catFrequencyAttribute;
+        parent::init();
     }
 
     public function getReasons()

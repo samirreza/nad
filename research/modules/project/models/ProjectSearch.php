@@ -9,8 +9,8 @@ class ProjectSearch extends Project
     public function rules()
     {
         return [
-            [['title', 'researcherName'], 'string'],
-            [['id', 'status', 'proposalId'], 'integer']
+            ['title', 'string'],
+            [['createdBy', 'status', 'proposalId'], 'integer']
         ];
     }
 
@@ -21,14 +21,13 @@ class ProjectSearch extends Project
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'id',
-                    'complationDate',
+                    'createdAt',
                     'deliverToManagerDate',
                     'sessionDate',
                     'status'
                 ],
                 'defaultOrder' => [
-                    'id' => SORT_DESC
+                    'createdAt' => SORT_DESC
                 ]
             ]
         ]);
@@ -39,14 +38,12 @@ class ProjectSearch extends Project
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            'createdBy' => $this->createdBy,
             'status' => $this->status,
             'proposalId' => $this->proposalId
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-
-        $query->andFilterWhere(['like', 'researcherName', $this->researcherName]);
 
         return $dataProvider;
     }

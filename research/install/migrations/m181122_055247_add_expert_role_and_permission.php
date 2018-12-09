@@ -7,7 +7,7 @@ class m181122_055247_add_expert_role_and_permission extends Migration
     public function safeUp()
     {
         $auth = Yii::$app->authManager;
-        if (!$auth->getRole($role)) {
+        if (!$auth->getRole('expert')) {
             $expertRole = $auth->createRole('expert');
             $auth->add($expertRole);
         }

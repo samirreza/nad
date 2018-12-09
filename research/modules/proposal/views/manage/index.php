@@ -21,21 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\IDColumn'],
                     'title',
-                    'researcherName',
-                    'presentationDate:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:dateTime',
                     [
-                        'attribute' => 'expertId',
+                        'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],
                         'filter' => Select2::widget([
                             'model' => $searchModel,
-                            'attribute' => 'expertId',
+                            'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
                                 Expert::find()->all(),
-                                'id',
+                                'userId',
                                 'email'
                             ),
                             'options' => [
@@ -45,24 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'format' => 'raw',
                         'value' => function ($model) {
-                            if (!$model->expertId) {
-                                return;
-                            }
-                            return Html::a(
-                                $model->expert->email,
-                                [
-                                    '/research/manage/index',
-                                    'ExpertSearch[id]' => $model->expertId
-                                ],
-                                [
-                                    'target' => '_blank',
-                                    'data-pjax' => '0'
-                                ]
-                            );
+                            return $model->researcher->email;
                         }
                     ],
+                    'createdAt:date',
+                    'deliverToManagerDate:date',
+                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'filter' => Proposal::getStatusLables(),
@@ -75,13 +59,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{view} {update} {delete} {projects}',
                         'buttons' => [
                             'projects' => function ($url, $model, $key) {
-                                return Html::a(
-                                    'گزارش ها',
-                                    [
-                                        '/research/project/manage/index',
-                                        'ProjectSearch[proposalId]' => $model->id
-                                    ]
-                                );
+                                if (Yii::$app->user->can('research.manage')) {
+                                    return Html::a(
+                                        'گزارش ها',
+                                        [
+                                            '/research/project/manage/index',
+                                            'ProjectSearch[proposalId]' => $model->id
+                                        ]
+                                    );
+                                }
+                            }
+                        ],
+                        'visibleButtons' => [
+                            'view' => Yii::$app->user->canAccessAny([
+                                'expert',
+                                'research.manage'
+                            ]),
+                            'update' => function ($model, $key, $index) {
+                                return $model->canUserUpdateOrDelete();
+                            },
+                            'delete' => function ($model, $key, $index) {
+                                return $model->canUserUpdateOrDelete();
                             }
                         ]
                     ]

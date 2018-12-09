@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = 'ویرایش';
 	<?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'create' => ['label' => 'درج پروپوزال'],
-            'delete' => ['label' => 'حذف پروپوزال'],
             'index' => ['label' => 'لیست پروپوزال ها']
         ]
     ]) ?>

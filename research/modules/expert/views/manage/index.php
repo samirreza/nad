@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="expert-index">
     <?= ActionButtons::widget([
-        'visibleFor' => ['research.manageExperts'],
         'buttons' => [
             'create' => [
                 'label' => 'درج کارشناس',
@@ -34,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\IDColumn'],
                     [
                         'attribute' => 'userId',
                         'headerOptions' => ['style' => 'width:500px'],
@@ -68,11 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             );
                         }
                     ],
-                    'createdAt:dateTime',
-                    [
-                        'class' => 'core\grid\AjaxActionColumn',
-                        'template' => '{delete}'
-                    ]
+                    'createdAt:dateTime'
                 ]
             ]) ?>
         <?php Pjax::end() ?>

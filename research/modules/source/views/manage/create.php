@@ -14,7 +14,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'index' => ['label' => 'لیست منشاها']
         ]
     ]) ?>
-    <?= $this->render('_form', [
-        'model' => $model
-    ]) ?>
+    <?= $this->render('_form', ['model' => $model]) ?>
 </div>

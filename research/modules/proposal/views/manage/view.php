@@ -4,83 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
-use theme\widgets\ActionButtons;
+use modules\user\backend\models\User;
 use nad\research\modules\proposal\models\Proposal;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'لیست پروپوژال ها', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $model->title;
 
 ?>
 
 <a class="ajaxcreate" data-gridpjaxid="proposal-view-detailviewpjax"></a>
 <div class="proposal-view">
     <?php Pjax::begin(['id' => 'proposal-view-detailviewpjax']) ?>
-        <?= $this->render('@nad/research/common/views/base-action-buttons', [
-            'model' => $model,
-            'managerPermission' => ['research.manageProposals'],
-            'deliverToManagerPermission' => ['expert']
-        ]) ?>
-        <?= ActionButtons::widget([
-            'visibleFor' => ['research.manageProposals'],
-            'buttons' => [
-                'set-expert' => [
-                    'label' => 'تعیین کارشناس',
-                    'icon' => 'graduation-cap',
-                    'type' => 'info',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED,
-                    'url' => ['set-expert', 'id' => $model->id],
-                    'options' => [
-                        'class' => 'ajaxupdate'
-                    ]
-                ],
-                'send-for-project' => [
-                    'label' => 'ارسال برای تهیه گزارش',
-                    'icon' => 'clone',
-                    'type' => 'success',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
-                        $model->expertId,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_READY_FOR_PROJECT
-                    ],
-                    'options' => [
-                        'class' => 'ajaxrequest'
-                    ]
-                ],
-                'create-project' => [
-                    'label' => 'درج گزارش',
-                    'icon' => 'plus',
-                    'type' => 'success',
-                    'visibleFor' => ['expert'],
-                    'visible' => $model->status == Proposal::STATUS_READY_FOR_PROJECT,
-                    'url' => [
-                        '/research/project/manage/create',
-                        'proposalId' => $model->id
-                    ]
-                ]
-            ]
-        ]) ?>
-        <?= ActionButtons::widget([
-            'modelID' => $model->id,
-            'buttons' => [
-                'documentation' => [
-                    'label' => $model->hasDocumentation() ? 'مراجع' : 'درج مرجع',
-                    'icon' => 'file',
-                    'type' => 'info',
-                    'url' => ['documentation', 'id' => $model->id]
-                ],
-                'update' => [
-                    'label' => 'ویرایش'
-                ],
-                'delete' => [
-                    'label' => 'حذف'
-                ],
-                'index' => ['label' => 'لیست پروپوزال ها']
-            ]
-        ]) ?>
+        <h2><?= $model->title . ' (' . Proposal::getStatusLables()[$model->status] . ')' ?></h2>
+        <br>
+        <?= $this->render('_action-buttons', ['model' => $model]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">
@@ -88,27 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= DetailView::widget([
                         'model' => $model,
                         'attributes' => [
-                            'id:farsiNumber',
                             'title',
-                            'researcherName',
-                            'presentationDate:date',
-                            'deliverToManagerDate:boolean',
-                            'sessionDate:dateTime',
                             [
-                                'attribute' => 'expertId',
+                                'attribute' => 'createdBy',
                                 'value' => function ($model) {
-                                    if (!$model->expertId) {
-                                        return;
-                                    }
-                                    return $model->expert->email;
+                                    return $model->researcher->email;
                                 }
                             ],
-                            [
-                                'attribute' => 'status',
-                                'value' => function ($model) {
-                                    return Proposal::getStatusLables()[$model->status];
-                                }
-                            ],
+                            'createdAt:date',
+                            'deliverToManagerDate:date',
+                            'sessionDate:date',
                             [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {
@@ -132,8 +60,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 }
                             ],
-                            'createdAt:dateTime',
-                            'updatedAt:dateTime'
+                            [
+                                'attribute' => 'expertUserId',
+                                'value' => function ($model) {
+                                    return User::findOne($model->expertUserId)
+                                        ->email ?? null;
+                                }
+                            ],
+                            [
+                                'attribute' => 'status',
+                                'value' => function ($model) {
+                                    return Proposal::getStatusLables()[$model->status];
+                                }
+                            ],
+                            'updatedAt:date'
                         ]
                     ]) ?>
                 <?php Panel::end() ?>
@@ -143,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'moduleId' => 'proposal',
                     'showCreateButton' => Yii::$app->user->can(
-                        'research.manageProposals'
+                        'research.manage'
                     ) && $model->status == Proposal::STATUS_MEETING_HELD
                 ]) ?>
             </div>
@@ -178,7 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-ms-12">
                 <?php Panel::begin([
-                    'title' => 'صورت جلسه'
+                    'title' => 'نتیجه برگزاری جلسه'
                 ]) ?>
                     <div class="well">
                         <?= $model->proceedings ?>

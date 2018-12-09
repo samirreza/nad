@@ -9,8 +9,8 @@ class ProposalSearch extends Proposal
     public function rules()
     {
         return [
-            [['title', 'researcherName'], 'string'],
-            [['id', 'expertId', 'status', 'sourceId'], 'integer']
+            ['title', 'string'],
+            [['createdBy', 'status', 'sourceId'], 'integer']
         ];
     }
 
@@ -21,14 +21,13 @@ class ProposalSearch extends Proposal
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'id',
-                    'presentationDate',
+                    'createdAt',
                     'deliverToManagerDate',
                     'sessionDate',
                     'status'
                 ],
                 'defaultOrder' => [
-                    'id' => SORT_DESC
+                    'createdAt' => SORT_DESC
                 ]
             ]
         ]);
@@ -39,15 +38,12 @@ class ProposalSearch extends Proposal
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'expertId' => $this->expertId,
+            'createdBy' => $this->createdBy,
             'status' => $this->status,
             'sourceId' => $this->sourceId
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-
-        $query->andFilterWhere(['like', 'researcherName', $this->researcherName]);
 
         return $dataProvider;
     }

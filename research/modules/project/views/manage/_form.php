@@ -6,7 +6,6 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use theme\widgets\editor\Editor;
 use extensions\tag\widgets\selectTag\SelectTag;
-use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -26,19 +25,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'researcherName')->textInput([
-                        'maxlength' => 255,
-                        'class' => 'form-control input-large'
-                    ]) ?>
-                    <?= $form->field($model, 'complationDate')->widget(
-                        JalaliDatePicker::class,
-                        [
-                            'options' => [
-                                'class' => 'form-control input-small',
-                                'autocomplete' => 'off'
-                            ]
-                        ]
-                    ) ?>
                     <br>
                     <div class="input-small">
                         <?= SingleFileUpload::widget([

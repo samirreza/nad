@@ -3,7 +3,10 @@
 namespace nad\research\modules\proposal\controllers;
 
 use Yii;
+use yii\helpers\Json;
+use yii\web\Response;
 use yii\filters\AccessControl;
+use yii\filters\ContentNegotiator;
 use nad\research\modules\proposal\models\Proposal;
 use nad\research\modules\proposal\models\ProposalSearch;
 use nad\research\common\controllers\BaseResearchController;
@@ -27,27 +30,41 @@ class ManageController extends BaseResearchController
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['create', 'deliver-to-manager'],
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'documentation'
+                            ],
                             'roles' => ['expert']
                         ],
                         [
                             'allow' => true,
                             'actions' => [
-                                'index',
-                                'view',
                                 'update',
                                 'delete',
-                                'documentation'
+                                'deliver-to-manager'
                             ],
-                            'roles' => [
-                                'expert',
-                                'research.manageProposals'
-                            ]
+                            'roles' => ['research.manageOwnResearch'],
+                            'roleParams' => function() {
+                                return ['research' => Proposal::findOne([
+                                    'id' => Yii::$app->request->get('id')]
+                                )];
+                            }
                         ],
                         [
                             'allow' => true,
-                            'roles' => ['research.manageProposals']
+                            'roles' => ['research.manage']
                         ]
+                    ]
+                ],
+                [
+                    'class' => ContentNegotiator::class,
+                    'only' => [
+                        'set-expert'
+                    ],
+                    'formats' => [
+                        'application/json' => Response::FORMAT_JSON
                     ]
                 ]
             ]
@@ -67,9 +84,23 @@ class ManageController extends BaseResearchController
             );
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->render('create', ['model' => $model]);
         }
+    }
+
+    public function actionSetExpert($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            echo Json::encode([
+                'status' => 'success',
+                'message' => 'کارشناس با موفقیت در سیستم درج شد.'
+            ]);
+            exit;
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('set-expert', ['model' => $model])
+        ]);
+        exit;
     }
 }

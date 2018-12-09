@@ -27,7 +27,12 @@ class ManageController extends BaseResearchController
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['create', 'deliver-to-manager'],
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'documentation'
+                            ],
                             'roles' => ['expert']
                         ],
                         [
@@ -35,18 +40,18 @@ class ManageController extends BaseResearchController
                             'actions' => [
                                 'update',
                                 'delete',
-                                'index',
-                                'view',
-                                'documentation'
+                                'deliver-to-manager'
                             ],
-                            'roles' => [
-                                'expert',
-                                'research.manageProject'
-                            ]
+                            'roles' => ['research.manageOwnResearch'],
+                            'roleParams' => function() {
+                                return ['research' => Project::findOne([
+                                    'id' => Yii::$app->request->get('id')]
+                                )];
+                            }
                         ],
                         [
                             'allow' => true,
-                            'roles' => ['research.manageProject']
+                            'roles' => ['research.manage']
                         ]
                     ]
                 ]
@@ -67,9 +72,7 @@ class ManageController extends BaseResearchController
             );
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->render('create', ['model' => $model]);
         }
     }
 }

@@ -22,8 +22,7 @@ class BaseResearchController extends AdminController
                         'change-status',
                         'deliver-to-manager',
                         'set-session-date',
-                        'write-proceedings',
-                        'set-expert'
+                        'write-proceedings'
                     ],
                     'formats' => [
                         'application/json' => Response::FORMAT_JSON
@@ -61,7 +60,7 @@ class BaseResearchController extends AdminController
         $model->save();
         echo Json::encode([
             'status' => 'success',
-            'message' => 'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+            'message' => 'آیتم مورد نظر با موفقیت به مدیر ارسال شد.'
         ]);
         exit;
     }
@@ -74,7 +73,7 @@ class BaseResearchController extends AdminController
             if ($model->save()) {
                 echo Json::encode([
                     'status' => 'success',
-                    'message' => 'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+                    'message' => 'تاریخ جلسه توجیهی با موفقیت در سیستم درج شد.'
                 ]);
                 exit;
             }
@@ -93,30 +92,12 @@ class BaseResearchController extends AdminController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             echo Json::encode([
                 'status' => 'success',
-                'message' => 'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+                'message' => 'نتیجه برگزاری جلسه با موفقیت در سیستم درج شد.'
             ]);
             exit;
         }
         echo Json::encode([
             'content' => $this->renderAjax('@nad/research/common/views/write-proceedings', [
-                'model' => $model
-            ])
-        ]);
-        exit;
-    }
-
-    public function actionSetExpert($id)
-    {
-        $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            echo Json::encode([
-                'status' => 'success',
-                'message' => 'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
-            ]);
-            exit;
-        }
-        echo Json::encode([
-            'content' => $this->renderAjax('@nad/research/common/views/set-expert', [
                 'model' => $model
             ])
         ]);

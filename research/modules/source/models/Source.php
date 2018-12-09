@@ -2,16 +2,18 @@
 
 namespace nad\research\modules\source\models;
 
+use Yii;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
+use modules\user\backend\models\User;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\research\modules\source\behaviors\ExpertsBehavior;
 use nad\research\modules\source\behaviors\ReasonsBehavior;
-use nad\extensions\documentation\behaviors\DocumentationBehavior;
 
 class Source extends BaseReasearch
 {
@@ -22,7 +24,7 @@ class Source extends BaseReasearch
         return [
             TimestampBehavior::class,
             'Reasons' => ReasonsBehavior::class,
-            'Documentation' => DocumentationBehavior::class,
+            'Experts' => ExpertsBehavior::class,
             'Tags' => [
                 'class' => TaggableBehavior::class,
                 'moduleId' => 'source'
@@ -45,8 +47,6 @@ class Source extends BaseReasearch
             [
                 [
                     'title',
-                    'recommenderName',
-                    'recommendationDate',
                     'reason',
                     'necessity',
                     'reasons'
@@ -54,28 +54,19 @@ class Source extends BaseReasearch
                 'required'
             ],
             [
-                [
-                    'recommendationDate',
-                    'sessionDate'
-                ],
+                'sessionDate',
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
             ],
-            [['title', 'recommenderName'], 'string', 'max' => 255],
+            ['title', 'string', 'max' => 255],
             [['reason', 'necessity', 'proceedings'], 'string'],
             [
                 ['reason', 'necessity', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            ['tags', 'safe'],
-            [
-                'expertId',
-                'exist',
-                'targetClass' => Expert::class,
-                'targetAttribute' => ['expertId' => 'id']
-            ]
+            [['tags', 'experts'], 'safe']
         ];
     }
 
@@ -84,31 +75,47 @@ class Source extends BaseReasearch
         return [
             'id' => 'شناسه',
             'title' => 'عنوان',
-            'recommenderName' => 'نام پیشنهاد دهنده',
-            'recommendationDate' => 'تاریخ پیشنهاد',
+            'createdBy' => 'پیشنهاد دهنده',
             'reason' => 'دلایل طرح موضوع',
             'necessity' => 'ضرورت های طرح موضوع',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
-            'proceedings' => 'صورت جلسه',
-            'expertId' => 'کارشناس',
+            'proceedings' => 'نتیجه برگزاری جلسه',
             'status' => 'وضعیت',
-            'createdAt' => 'تاریخ درج',
+            'createdAt' => 'تاریخ پیشنهاد',
             'updatedAt' => 'آخرین بروزرسانی',
             'reasons' => 'علل پیدایش',
-            'tags' => 'کلید واژه ها'
+            'tags' => 'کلید واژه ها',
+            'experts' => 'کارشناسان نگارش پروپوزال'
         ];
     }
 
-    public function getExpert()
+    public function getRecommender()
     {
-        return $this->hasOne(Expert::class, ['id' => 'expertId']);
+        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function getReasonsQuery()
     {
         return $this->hasMany(SourceReason::class, ['id' => 'reasonId'])
             ->viaTable('nad_research_source_reason_relation', ['sourceId' => 'id']);
+    }
+
+    public function getExpertsQuery()
+    {
+        return $this->hasMany(Expert::class, ['id' => 'expertId'])
+            ->viaTable('nad_research_proposal_expert_relation', ['sourceId' => 'id']);
+    }
+
+    public function canUserCreateProposal()
+    {
+        if ($this->status == self::STATUS_READY_FOR_PROPOSAL) {
+            if (Yii::$app->user->can('research.manage')) {
+                return true;
+            }
+            return $this->hasExpert(Yii::$app->user->id);
+        }
+        return false;
     }
 
     public static function tableName()

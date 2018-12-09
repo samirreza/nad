@@ -2,7 +2,11 @@
 
 namespace nad\research\modules\source\controllers;
 
+use Yii;
+use yii\helpers\Json;
+use yii\web\Response;
 use yii\filters\AccessControl;
+use yii\filters\ContentNegotiator;
 use nad\research\modules\source\models\Source;
 use nad\research\modules\source\models\SourceSearch;
 use nad\research\common\controllers\BaseResearchController;
@@ -26,37 +30,59 @@ class ManageController extends BaseResearchController
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['create', 'deliver-to-manager'],
-                            'roles' => ['research.createSource']
-                        ],
-                        [
-                            'allow' => true,
-                            'actions' => ['index', 'view', 'documentation'],
-                            'roles' => [
-                                'expert'
-                            ]
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create'
+                            ],
+                            'roles' => ['expert']
                         ],
                         [
                             'allow' => true,
                             'actions' => [
-                                'index',
-                                'view',
-                                'upate',
+                                'update',
                                 'delete',
-                                'documentation'
+                                'deliver-to-manager'
                             ],
-                            'roles' => [
-                                'research.createSource',
-                                'research.manageSources'
-                            ]
+                            'roles' => ['research.manageOwnResearch'],
+                            'roleParams' => function() {
+                                return ['research' => Source::findOne([
+                                    'id' => Yii::$app->request->get('id')]
+                                )];
+                            }
                         ],
                         [
                             'allow' => true,
-                            'roles' => ['research.manageSources']
+                            'roles' => ['research.manage']
                         ]
+                    ]
+                ],
+                [
+                    'class' => ContentNegotiator::class,
+                    'only' => [
+                        'set-experts'
+                    ],
+                    'formats' => [
+                        'application/json' => Response::FORMAT_JSON
                     ]
                 ]
             ]
         );
+    }
+
+    public function actionSetExperts($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            echo Json::encode([
+                'status' => 'success',
+                'message' => 'کارشناسان با موفقیت در سیستم درج شدند.'
+            ]);
+            exit;
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('set-experts', ['model' => $model])
+        ]);
+        exit;
     }
 }

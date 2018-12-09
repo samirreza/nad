@@ -2,6 +2,8 @@
 
 namespace nad\research\common\models;
 
+use Yii;
+
 class BaseReasearch extends \yii\db\ActiveRecord
 {
     const STATUS_REJECTED = 0;
@@ -18,10 +20,38 @@ class BaseReasearch extends \yii\db\ActiveRecord
         $this->save();
     }
 
-    public function canDeliverToManager()
+    public function canUserUpdateOrDelete()
     {
-        return $this->status == self::STATUS_INPROGRESS ||
-            $this->status == self::STATUS_NEED_CORRECTION;
+        if (Yii::$app->user->can('research.manage')) {
+            return true;
+        }
+        if(
+            $this->status == self::STATUS_NEED_CORRECTION ||
+            $this->status == self::STATUS_INPROGRESS
+        ) {
+            return Yii::$app->user->can(
+                'research.manageOwnResearch',
+                ['research' => $this]
+            );
+        }
+        return false;
+    }
+
+    public function canUserDeliverToManager()
+    {
+        if (
+            $this->status == self::STATUS_INPROGRESS ||
+            $this->status == self::STATUS_NEED_CORRECTION
+        ) {
+            if (Yii::$app->user->can('research.manage')) {
+                return true;
+            }
+            return Yii::$app->user->can(
+                'research.manageOwnResearch',
+                ['research' => $this]
+            );
+        }
+        return false;
     }
 
     public function canSetSessionDate()

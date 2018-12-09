@@ -9,7 +9,6 @@ use theme\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\source\models\SourceReason;
-use theme\widgets\jalalidatepicker\JalaliDatePicker;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -24,19 +23,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'recommenderName')->textInput([
-                        'maxlength' => 255,
-                        'class' => 'form-control input-large'
-                    ]) ?>
-                    <?= $form->field($model, 'recommendationDate')->widget(
-                        JalaliDatePicker::class,
-                        [
-                            'options' => [
-                                'class' => 'form-control input-small',
-                                'autocomplete' => 'off'
-                            ]
-                        ]
-                    ) ?>
                     <?= $form->field($model, 'reason')->widget(
                         Editor::class,
                         ['preset' => 'advanced']

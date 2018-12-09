@@ -2,10 +2,12 @@
 
 namespace nad\research\modules\proposal\models;
 
+use Yii;
+use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
+use modules\user\backend\models\User;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
-use nad\research\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
@@ -28,6 +30,11 @@ class Proposal extends BaseReasearch
             'Comments' => [
                 'class' => CommentBehavior::class,
                 'moduleId' => 'proposal'
+            ],
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'createdBy',
+                'updatedByAttribute' => false
             ]
         ];
     }
@@ -38,8 +45,6 @@ class Proposal extends BaseReasearch
             [
                 [
                     'title',
-                    'researcherName',
-                    'presentationDate',
                     'necessity',
                     'mainPurpose',
                     'secondaryPurpose'
@@ -47,16 +52,13 @@ class Proposal extends BaseReasearch
                 'required'
             ],
             [
-                [
-                    'presentationDate',
-                    'sessionDate'
-                ],
+                'sessionDate',
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
             ],
-            [['title', 'researcherName'], 'string', 'max' => 255],
+            ['title', 'string', 'max' => 255],
             [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
             [
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
@@ -64,12 +66,7 @@ class Proposal extends BaseReasearch
             ],
             ['tags', 'safe'],
             ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
-            [
-                'expertId',
-                'exist',
-                'targetClass' => Expert::class,
-                'targetAttribute' => ['expertId' => 'id']
-            ],
+            ['expertUserId', 'integer'],
             [
                 'sourceId',
                 'exist',
@@ -94,31 +91,41 @@ class Proposal extends BaseReasearch
         return [
             'id' => 'شناسه',
             'title' => 'عنوان',
-            'researcherName' => 'نام محقق',
-            'presentationDate' => 'تاریخ ارائه',
+            'createdBy' => 'محقق',
             'necessity' => 'ضرورت اجرای طرح',
             'mainPurpose' => 'هدف اصلی',
-            'secondaryPurpose' => 'هدف فرعی',
+            'secondaryPurpose' => 'اهدافص فرعی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
-            'proceedings' => 'صورت جلسه',
-            'expertId' => 'کارشناس',
+            'proceedings' => 'نتیجه برگزاری جلسه',
+            'expertUserId' => 'کارشناس نگارش گزارش',
             'status' => 'وضعیت',
-            'createdAt' => 'تاریخ درج',
+            'createdAt' => 'تاریخ ارائه',
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
             'sourceId' => 'منشا'
         ];
     }
 
-    public function getExpert()
+    public function getResearcher()
     {
-        return $this->hasOne(Expert::class, ['id' => 'expertId']);
+        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function getSource()
     {
         return $this->hasOne(Source::class, ['id' => 'sourceId']);
+    }
+
+    public function canUserCreateProject()
+    {
+        if ($this->status == self::STATUS_READY_FOR_PROJECT) {
+            if (Yii::$app->user->can('research.manage')) {
+                return true;
+            }
+            return $this->expertUserId == Yii::$app->user->id;
+        }
+        return false;
     }
 
     public static function tableName()
@@ -131,7 +138,7 @@ class Proposal extends BaseReasearch
         $statusLabels = array_merge(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROJECT => 'آماده برای انجام گزارش'
+                self::STATUS_READY_FOR_PROJECT => 'آماده برای نگارش گزارش'
             ]
         );
         unset($statusLabels[self::STATUS_REJECTED]);
