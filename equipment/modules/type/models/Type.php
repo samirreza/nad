@@ -1,4 +1,5 @@
 <?php
+
 namespace modules\nad\equipment\modules\type\models;
 
 use core\behaviors\PreventDeleteBehavior;

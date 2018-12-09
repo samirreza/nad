@@ -9,6 +9,7 @@ use modules\user\backend\models\User;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
+use nad\extensions\thing\behaviors\ThingsBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -35,6 +36,10 @@ class Proposal extends BaseReasearch
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
                 'updatedByAttribute' => false
+            ],
+            [
+                'class' => ThingsBehavior::class,
+                'moduleId' => 'proposal'
             ]
         ];
     }
@@ -64,7 +69,7 @@ class Proposal extends BaseReasearch
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            ['tags', 'safe'],
+            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe'],
             ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             ['expertUserId', 'integer'],
             [
@@ -103,7 +108,10 @@ class Proposal extends BaseReasearch
             'createdAt' => 'تاریخ ارائه',
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
-            'sourceId' => 'منشا'
+            'sourceId' => 'منشا',
+            'materials' => 'مواد',
+            'equipments' => 'تجهیزات',
+            'equipmentParts' => 'قطعات'
         ];
     }
 
