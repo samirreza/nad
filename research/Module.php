@@ -8,7 +8,6 @@ class Module extends \yii\base\Module
 {
     public $title;
     public $menu;
-    public $defaultRoute = 'expert/manage/index';
 
     public function init()
     {
@@ -25,7 +24,8 @@ class Module extends \yii\base\Module
             ],
             'project' => [
                 'class' => 'nad\research\modules\project\Module'
-            ]
+            ],
+            'lab' => 'nad\research\lab\Module',
         ];
         parent::init();
     }

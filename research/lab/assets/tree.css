@@ -1,0 +1,22 @@
+ul.jqtree-tree .jqtree-element {
+    padding: 5px 10px 0;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+li.depth-0 > div.jqtree-element {
+    background-color: #0066ff;
+}
+li.depth-1 > div.jqtree-element {
+    background-color: #4d94ff;
+}
+li.depth-2 > div.jqtree-element {
+    background-color: #99c2ff;
+}
+li.depth-3 > div.jqtree-element {
+    background-color: #cce0ff;
+}
+li.depth-4 > div.jqtree-element {
+    background-color: #e6f0ff;
+}
