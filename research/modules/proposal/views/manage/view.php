@@ -9,7 +9,7 @@ use nad\research\modules\proposal\models\Proposal;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'لیست پروپوژال ها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'لیست پروپوزال ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;
 
 ?>

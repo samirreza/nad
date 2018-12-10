@@ -101,7 +101,7 @@ class Proposal extends BaseReasearch
             'createdBy' => 'محقق',
             'necessity' => 'ضرورت اجرای طرح',
             'mainPurpose' => 'هدف اصلی',
-            'secondaryPurpose' => 'اهدافص فرعی',
+            'secondaryPurpose' => 'اهداف فرعی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه برگزاری جلسه',

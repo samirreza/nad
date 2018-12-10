@@ -7,7 +7,6 @@ use yii\helpers\Json;
 use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
-use yii\web\ForbiddenHttpException;
 use nad\research\modules\proposal\models\Proposal;
 use nad\research\modules\proposal\models\ProposalSearch;
 use nad\research\common\controllers\BaseResearchController;

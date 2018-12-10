@@ -43,24 +43,21 @@ class ThingsBehavior extends Behavior
 
     public function setMaterials($materials)
     {
-        $this->materials = $materials;
+        $this->materials = empty($materials) ? [] : $materials;
     }
 
     public function setEquipments($equipments)
     {
-        $this->equipments = $equipments;
+        $this->equipments = empty($equipments) ? [] : $equipments;
     }
 
     public function setEquipmentParts($equipmentParts)
     {
-        $this->equipmentParts = $equipmentParts;
+        $this->equipmentParts = empty($equipmentParts) ? [] : $equipmentParts;
     }
 
     public function attachThings()
     {
-        if (!$this->owner->isNewRecord) {
-            $this->deleteThings();
-        }
         $this->attachThing('materials', self::TYPE_MATERIAL);
         $this->attachThing('equipments', self::TYPE_EQUIPMENT);
         $this->attachThing('equipmentParts', self::TYPE_EQUIPMENT_PART);
@@ -68,8 +65,12 @@ class ThingsBehavior extends Behavior
 
     public function attachThing($property, $type)
     {
-        if (empty($this->$property)) {
+        if ($this->$property === null) {
             return;
+        }
+
+        if (!$this->owner->isNewRecord) {
+            $this->deleteThing($type);
         }
 
         foreach ($this->$property as $prop) {
@@ -90,6 +91,17 @@ class ThingsBehavior extends Behavior
                 $rows
             )->execute();
         }
+    }
+
+    public function deleteThing($type)
+    {
+        Yii::$app->db->createCommand()->delete('nad_module_thing_relation', [
+            'modelId' => $this->owner->getPrimaryKey(),
+            'modelClassName' => (new \ReflectionClass($this->owner))
+                ->getShortName(),
+            'moduleId' => $this->moduleId,
+            'thingTypeId' => $type
+        ])->execute();
     }
 
     public function deleteThings()
@@ -150,7 +162,7 @@ class ThingsBehavior extends Behavior
         return implode(', ', ArrayHelper::getColumn($this->getEquipmentParts(), 'title'));
     }
 
-    public function getThingIdsAsArray($property, $type)
+    private function getThingIdsAsArray($property, $type)
     {
         if (!$this->owner->isNewRecord && $this->$property === null) {
             $this->$property = (new Query())

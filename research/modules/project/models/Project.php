@@ -110,7 +110,7 @@ class Project extends BaseReasearch
             'status' => 'وضعیت',
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
-            'proposalId' => 'پروپوژال'
+            'proposalId' => 'پروپوزال'
         ];
     }
 
