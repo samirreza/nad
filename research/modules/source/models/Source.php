@@ -6,9 +6,11 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
+use core\behaviors\PreventDeleteBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\expert\models\Expert;
+use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -37,6 +39,15 @@ class Source extends BaseReasearch
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
                 'updatedByAttribute' => false
+            ],
+            [
+                'class' => PreventDeleteBehavior::class,
+                'relations' => [
+                    [
+                        'relationMethod' => 'getProposals',
+                        'relationName' => 'پروپوزال'
+                    ]
+                ]
             ]
         ];
     }
@@ -105,6 +116,11 @@ class Source extends BaseReasearch
     {
         return $this->hasMany(Expert::class, ['id' => 'expertId'])
             ->viaTable('nad_research_proposal_expert_relation', ['sourceId' => 'id']);
+    }
+
+    public function getProposals()
+    {
+        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
     public function canUserCreateProposal()

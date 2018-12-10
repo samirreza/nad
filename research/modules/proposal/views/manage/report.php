@@ -26,8 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'createdAt:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {

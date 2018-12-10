@@ -6,9 +6,11 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
+use core\behaviors\PreventDeleteBehavior;
 use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
+use nad\research\modules\project\models\Project;
 use nad\extensions\thing\behaviors\ThingsBehavior;
 use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
@@ -42,6 +44,15 @@ class Proposal extends BaseReasearch
             [
                 'class' => ThingsBehavior::class,
                 'moduleId' => 'proposal'
+            ],
+            [
+                'class' => PreventDeleteBehavior::class,
+                'relations' => [
+                    [
+                        'relationMethod' => 'getProject',
+                        'relationName' => 'گزارش'
+                    ]
+                ]
             ]
         ];
     }
@@ -125,6 +136,11 @@ class Proposal extends BaseReasearch
     public function getSource()
     {
         return $this->hasOne(Source::class, ['id' => 'sourceId']);
+    }
+
+    public function getProject()
+    {
+        return $this->hasOne(Project::class, ['proposalId' => 'id']);
     }
 
     public function canUserCreateProject()
