@@ -55,17 +55,7 @@ class ManageController extends BaseResearchController
                         ],
                         [
                             'allow' => true,
-                            'actions' => ['report'],
-                            'roles' => ['superuser']
-                        ],
-                        [
-                            'allow' => true,
-                            'roles' => ['research.manage'],
-                            'matchCallback' => function ($rule, $action) {
-                                if ($action->id == 'report') {
-                                    throw new ForbiddenHttpException();
-                                }
-                            }
+                            'roles' => ['research.manage']
                         ]
                     ]
                 ],
