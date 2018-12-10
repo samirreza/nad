@@ -34,6 +34,19 @@ $this->params['breadcrumbs'][] = $model->title;
                                 }
                             ],
                             'createdAt:date',
+                            [
+                                'label' => 'فایل',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return Html::a(
+                                        'دانلود فایل',
+                                        $model->getFile('report')->getUrl(),
+                                        [
+                                            'data-pjax' => '0'
+                                        ]
+                                    );
+                                }
+                            ],
                             'deliverToManagerDate:date',
                             'sessionDate:date',
                             [
