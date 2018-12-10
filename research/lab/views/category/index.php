@@ -12,8 +12,8 @@ TreeAssetBundle::register($this);
 $this->title = 'لیست رده ها';
 $this->params['breadcrumbs'] = [
     'پژوهش',
-    'تجهیزات پزشکی',
-    ['label' => 'انواع تجهیزات پزشکی', 'url' => ['manage/index']],
+    'تجهیزات آزمایشگاهی',
+    ['label' => 'انواع تجهیزات آزمایشگاهی', 'url' => ['manage/index']],
     $this->title
 ];
 ?>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'] = [
             ]
         ],
         'materials' => [
-            'label' => 'انواع تجهیزات پزشکی',
+            'label' => 'انواع تجهیزات آزمایشگاهی',
             'url' => ['manage/index'],
             'type' => 'info',
             'icon' => 'list'

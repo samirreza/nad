@@ -12,8 +12,8 @@ TreeAssetBundle::register($this);
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'پژوهش',
-    'تجهیزات پزشکی',
-    ['label' => 'انواع تجهیزات پزشکی', 'url' => ['index']],
+    'تجهیزات آزمایشگاهی',
+    ['label' => 'انواع تجهیزات آزمایشگاهی', 'url' => ['index']],
     $this->title
 ];
 ?>
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'] = [
 <?= ActionButtons::widget([
     'buttons' => [
         'materials' => [
-            'label' => 'انواع تجهیزات پزشکی',
+            'label' => 'انواع تجهیزات آزمایشگاهی',
             'url' => ['index'],
             'type' => 'info',
             'icon' => 'list'
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'] = [
 <div class="row">
     <div class="col-md-6">
         <?php Panel::begin([
-            'title' => 'درخت تجهیزات پزشکی',
+            'title' => 'درخت تجهیزات آزمایشگاهی',
             'tools' => Html::a(
                 '<span class="glyphicon glyphicon-refresh"></span>',
                 null,

@@ -7,10 +7,10 @@ use yii\helpers\ArrayHelper;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 
-$this->title = 'انواع تجهیزات پزشکی';
+$this->title = 'انواع تجهیزات آزمایشگاهی';
 $this->params['breadcrumbs'] = [
     'پژوهش',
-    'تجهیزات پزشکی',
+    'تجهیزات آزمایشگاهی',
     $this->title
 ];
 ?>
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'] = [
                 ]
             ],
             'categoriesIndex' => [
-                'label' => 'رده های تجهیزات پزشکی',
+                'label' => 'رده های تجهیزات',
                 'icon' => 'sitemap'
             ],
             'tree' => [

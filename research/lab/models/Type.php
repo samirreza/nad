@@ -63,9 +63,9 @@ class Type extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه نوع تجهیز',
             'title' => 'عنوان',
             'description' => 'توضیحات',
-            'categoryId' => 'زیر شاخه',
-            'category.title' => 'زیر شاخه',
-            'category.familyTreeTitle' => 'زیر شاخه',
+            'categoryId' => 'دسته',
+            'category.title' => 'دسته',
+            'category.familyTreeTitle' => 'دسته',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
