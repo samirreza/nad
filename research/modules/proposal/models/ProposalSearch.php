@@ -9,8 +9,18 @@ class ProposalSearch extends Proposal
     public function rules()
     {
         return [
-            ['title', 'string'],
-            [['createdBy', 'status', 'sourceId'], 'integer']
+            [
+                [
+                    'title',
+                    'necessity',
+                    'mainPurpose',
+                    'secondaryPurpose',
+                    'proceedings'
+                ],
+                'string'
+            ],
+            [['createdBy', 'status', 'sourceId', 'expertUserId'], 'integer'],
+            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe']
         ];
     }
 
@@ -40,10 +50,27 @@ class ProposalSearch extends Proposal
         $query->andFilterWhere([
             'createdBy' => $this->createdBy,
             'status' => $this->status,
-            'sourceId' => $this->sourceId
+            'sourceId' => $this->sourceId,
+            'expertUserId' => $this->expertUserId
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        $query->andFilterWhere(['like', 'necessity', $this->necessity]);
+
+        $query->andFilterWhere(['like', 'mainPurpose', $this->mainPurpose]);
+
+        $query->andFilterWhere(['like', 'secondaryPurpose', $this->secondaryPurpose]);
+
+        $query->andFilterWhere(['like', 'proceedings', $this->proceedings]);
+
+        $query->hasAnyTags($this->tags);
+
+        $query->hasAnyMaterials($this->materials);
+
+        $query->hasAnyEquipments($this->equipments);
+
+        $query->hasAnyEquipmentParts($this->equipmentParts);
 
         return $dataProvider;
     }

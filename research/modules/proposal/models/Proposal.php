@@ -10,8 +10,10 @@ use nad\research\common\models\BaseReasearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
 use nad\extensions\thing\behaviors\ThingsBehavior;
+use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
+use nad\extensions\thing\behaviors\ThingsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\extensions\documentation\behaviors\DocumentationBehavior;
 
@@ -134,6 +136,30 @@ class Proposal extends BaseReasearch
             return $this->expertUserId == Yii::$app->user->id;
         }
         return false;
+    }
+
+    public static function find()
+    {
+        $query = parent::find();
+        $query->attachBehavior(
+            'TaggableQueryBehavior',
+            [
+                'class' => TaggableQueryBehavior::class,
+                'modelShortClassName' => (new \ReflectionClass(self::class))
+                    ->getShortName(),
+                'moduleId' => 'proposal'
+            ]
+        );
+        $query->attachBehavior(
+            'ThingsQueryBehavior',
+            [
+                'class' => ThingsQueryBehavior::class,
+                'modelShortClassName' => (new \ReflectionClass(self::class))
+                    ->getShortName(),
+                'moduleId' => 'proposal'
+            ]
+        );
+        return $query;
     }
 
     public static function tableName()

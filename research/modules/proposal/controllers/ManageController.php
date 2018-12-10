@@ -7,6 +7,7 @@ use yii\helpers\Json;
 use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
+use yii\web\ForbiddenHttpException;
 use nad\research\modules\proposal\models\Proposal;
 use nad\research\modules\proposal\models\ProposalSearch;
 use nad\research\common\controllers\BaseResearchController;
@@ -54,7 +55,17 @@ class ManageController extends BaseResearchController
                         ],
                         [
                             'allow' => true,
-                            'roles' => ['research.manage']
+                            'actions' => ['report'],
+                            'roles' => ['superuser']
+                        ],
+                        [
+                            'allow' => true,
+                            'roles' => ['research.manage'],
+                            'matchCallback' => function ($rule, $action) {
+                                if ($action->id == 'report') {
+                                    throw new ForbiddenHttpException();
+                                }
+                            }
                         ]
                     ]
                 ],
@@ -102,5 +113,16 @@ class ManageController extends BaseResearchController
             'content' => $this->renderAjax('set-expert', ['model' => $model])
         ]);
         exit;
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new $this->searchClass;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }
