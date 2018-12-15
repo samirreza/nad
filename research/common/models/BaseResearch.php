@@ -4,7 +4,7 @@ namespace nad\research\common\models;
 
 use Yii;
 
-class BaseReasearch extends \yii\db\ActiveRecord
+class BaseResearch extends \yii\db\ActiveRecord
 {
     const STATUS_REJECTED = 0;
     const STATUS_NEED_CORRECTION = 1;

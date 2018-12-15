@@ -10,7 +10,7 @@ use core\widgets\select2\Select2;
 use nad\research\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
 
-$this->title = 'لیست منشاها';
+$this->title = 'منشاها';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    'title',
+                    ['class' => 'core\grid\TitleColumn'],
                     [
                         'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],

@@ -7,7 +7,7 @@ use nad\research\modules\source\models\Source;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'لیست منشاها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'منشاها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;
 
 ?>
@@ -36,6 +36,13 @@ $this->params['breadcrumbs'][] = $model->title;
                             'reasons',
                             'deliverToManagerDate:date',
                             'sessionDate:date',
+                            [
+                                'attribute' => 'resources',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return $model->getClickableResourcesAsString();
+                                }
+                            ],
                             [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {

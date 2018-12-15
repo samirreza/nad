@@ -4,11 +4,12 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use theme\widgets\editor\Editor;
+use core\widgets\editor\Editor;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\extensions\thing\widgets\selectThing\SelectMaterials;
 use nad\extensions\thing\widgets\selectThing\SelectEquipments;
 use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
+use nad\research\modules\resource\widgets\SelectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -40,6 +41,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             <div class="col-md-4">
                 <?php Panel::begin(['title' => 'سایر اطلاعات پروپوزال']) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
                     <?= $form->field($model, 'materials')->widget(SelectMaterials::class) ?>
                     <?= $form->field($model, 'equipments')->widget(SelectEquipments::class) ?>
                     <?= $form->field($model, 'equipmentParts')->widget(SelectEquipmentParts::class) ?>

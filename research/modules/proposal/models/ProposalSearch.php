@@ -3,9 +3,13 @@
 namespace nad\research\modules\proposal\models;
 
 use yii\data\ActiveDataProvider;
+use extensions\i18n\validators\JalaliDateToTimestamp;
 
 class ProposalSearch extends Proposal
 {
+    public $beginDate;
+    public $endDate;
+
     public function rules()
     {
         return [
@@ -20,7 +24,8 @@ class ProposalSearch extends Proposal
                 'string'
             ],
             [['createdBy', 'status', 'sourceId', 'expertUserId'], 'integer'],
-            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe']
+            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe'],
+            [['beginDate','endDate'], JalaliDateToTimestamp::class],
         ];
     }
 
@@ -63,6 +68,10 @@ class ProposalSearch extends Proposal
         $query->andFilterWhere(['like', 'secondaryPurpose', $this->secondaryPurpose]);
 
         $query->andFilterWhere(['like', 'proceedings', $this->proceedings]);
+
+        $query->andFilterWhere(['>=', 'createdAt', $this->beginDate]);
+
+        $query->andFilterWhere(['<=', 'createdAt', $this->endDate]);
 
         $query->hasAnyTags($this->tags);
 

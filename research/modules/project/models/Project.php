@@ -6,15 +6,15 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
 use extensions\file\behaviors\FileBehavior;
-use nad\research\common\models\BaseReasearch;
+use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\extensions\documentation\behaviors\DocumentationBehavior;
+use nad\research\modules\resource\behaviors\ResourceBehavior;
 
-class Project extends BaseReasearch
+class Project extends BaseResearch
 {
     const STATUS_ARCHIVED = 7;
 
@@ -22,7 +22,6 @@ class Project extends BaseReasearch
     {
         return [
             TimestampBehavior::class,
-            'Documentation' => DocumentationBehavior::class,
             'Tags' => [
                 'class' => TaggableBehavior::class,
                 'moduleId' => 'project'
@@ -59,7 +58,8 @@ class Project extends BaseReasearch
                         ]
                     ]
                 ]
-            ]
+            ],
+            ResourceBehavior::class
         ];
     }
 
@@ -86,7 +86,7 @@ class Project extends BaseReasearch
                 ['abstract', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            ['tags', 'safe'],
+            [['tags', 'resources'], 'safe'],
             [
                 'proposalId',
                 'exist',
@@ -110,7 +110,8 @@ class Project extends BaseReasearch
             'status' => 'وضعیت',
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
-            'proposalId' => 'پروپوزال'
+            'proposalId' => 'پروپوزال',
+            'resources' => 'منابع'
         ];
     }
 
@@ -122,6 +123,22 @@ class Project extends BaseReasearch
     public function getProposal()
     {
         return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+    }
+
+    public function canUserUpdateOrDelete()
+    {
+        if ($this->status == self::STATUS_ARCHIVED) {
+            return false;
+        }
+        return parent::canUserUpdateOrDelete();
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $this->proposal->changeStatus(Proposal::STATUS_PROJECT_CREATED);
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public static function tableName()

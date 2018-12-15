@@ -5,10 +5,11 @@ use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use theme\widgets\editor\Editor;
+use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\source\models\SourceReason;
+use nad\research\modules\resource\widgets\SelectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -50,6 +51,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             ]
                         ]
                     ) ?>
+                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

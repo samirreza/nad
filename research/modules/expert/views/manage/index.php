@@ -9,7 +9,7 @@ use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use modules\user\backend\models\User;
 
-$this->title = 'لیست کارشناسان';
+$this->title = 'کارشناسان';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

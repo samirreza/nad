@@ -4,9 +4,10 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use theme\widgets\editor\Editor;
+use core\widgets\editor\Editor;
 use extensions\tag\widgets\selectTag\SelectTag;
 use extensions\file\widgets\singleupload\SingleFileUpload;
+use nad\research\modules\resource\widgets\SelectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -41,6 +42,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             </div>
             <div class="col-md-4">
                 <?php Panel::begin(['title' => 'سایر اطلاعات گزارش']) ?>
+                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

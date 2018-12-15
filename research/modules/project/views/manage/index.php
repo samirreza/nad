@@ -8,7 +8,7 @@ use core\widgets\select2\Select2;
 use nad\research\modules\expert\models\Expert;
 use nad\research\modules\project\models\Project;
 
-$this->title = 'لیست گزارش ها';
+$this->title = 'گزارش ها';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    'title',
+                    ['class' => 'core\grid\TitleColumn'],
                     [
                         'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],

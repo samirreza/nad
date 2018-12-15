@@ -9,7 +9,7 @@ use nad\research\modules\proposal\models\Proposal;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'لیست پروپوزال ها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'پروپوزال ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;
 
 ?>
@@ -38,6 +38,19 @@ $this->params['breadcrumbs'][] = $model->title;
                             'deliverToManagerDate:date',
                             'sessionDate:date',
                             [
+                                'attribute' => 'tags',
+                                'value' => function ($model) {
+                                    return $model->getTagsAsString();
+                                }
+                            ],
+                            [
+                                'attribute' => 'resources',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return $model->getClickableResourcesAsString();
+                                }
+                            ],
+                            [
                                 'attribute' => 'materials',
                                 'value' => function ($model) {
                                     return $model->getMaterialsAsString();
@@ -53,12 +66,6 @@ $this->params['breadcrumbs'][] = $model->title;
                                 'attribute' => 'equipmentParts',
                                 'value' => function ($model) {
                                     return $model->getEquipmentPartsAsString();
-                                }
-                            ],
-                            [
-                                'attribute' => 'tags',
-                                'value' => function ($model) {
-                                    return $model->getTagsAsString();
                                 }
                             ],
                             [

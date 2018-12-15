@@ -10,6 +10,7 @@ use nad\research\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\proposal\models\Proposal;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use nad\extensions\thing\widgets\selectThing\SelectMaterials;
 use nad\extensions\thing\widgets\selectThing\SelectEquipments;
 use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
@@ -56,6 +57,36 @@ use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
                                 'prompt' => ''
                             ]
                         ) ?>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'beginDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('از تاریخ')
+                                ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'endDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('تا تاریخ')
+                                ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <?= $form->field($model, 'expertUserId')->widget(

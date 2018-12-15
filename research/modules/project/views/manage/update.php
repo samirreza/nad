@@ -3,7 +3,7 @@
 use theme\widgets\ActionButtons;
 
 $this->title = 'ویرایش گزارش';
-$this->params['breadcrumbs'][] = ['label' => 'لیست گزارش ها', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'گزارش ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = [
     'label' => $model->title,
     'url' => ['view', 'id' => $model->id]
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = 'ویرایش';
 	<?= ActionButtons::widget([
         'modelID' => $model->id,
         'buttons' => [
-            'index' => ['label' => 'لیست گزارش ها']
+            'index' => ['label' => 'گزارش ها']
         ]
     ]) ?>
     <?= $this->render('_form', ['model' => $model]) ?>

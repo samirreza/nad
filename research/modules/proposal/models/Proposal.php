@@ -7,7 +7,7 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
 use core\behaviors\PreventDeleteBehavior;
-use nad\research\common\models\BaseReasearch;
+use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
 use nad\research\modules\project\models\Project;
@@ -17,17 +17,17 @@ use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use nad\extensions\thing\behaviors\ThingsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\extensions\documentation\behaviors\DocumentationBehavior;
+use nad\research\modules\resource\behaviors\ResourceBehavior;
 
-class Proposal extends BaseReasearch
+class Proposal extends BaseResearch
 {
     const STATUS_READY_FOR_PROJECT = 7;
+    const STATUS_PROJECT_CREATED = 8;
 
     public function behaviors()
     {
         return [
             TimestampBehavior::class,
-            'Documentation' => DocumentationBehavior::class,
             'Tags' => [
                 'class' => TaggableBehavior::class,
                 'moduleId' => 'proposal'
@@ -53,7 +53,8 @@ class Proposal extends BaseReasearch
                         'relationName' => 'گزارش'
                     ]
                 ]
-            ]
+            ],
+            ResourceBehavior::class
         ];
     }
 
@@ -82,7 +83,10 @@ class Proposal extends BaseReasearch
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe'],
+            [
+                ['tags', 'materials', 'equipments', 'equipmentParts', 'resources'],
+                'safe'
+            ],
             ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             ['expertUserId', 'integer'],
             [
@@ -124,7 +128,8 @@ class Proposal extends BaseReasearch
             'sourceId' => 'منشا',
             'materials' => 'مواد',
             'equipments' => 'تجهیزات',
-            'equipmentParts' => 'قطعات'
+            'equipmentParts' => 'قطعات',
+            'resources' => 'منابع'
         ];
     }
 
@@ -152,6 +157,22 @@ class Proposal extends BaseReasearch
             return $this->expertUserId == Yii::$app->user->id;
         }
         return false;
+    }
+
+    public function canUserUpdateOrDelete()
+    {
+        if ($this->status == self::STATUS_PROJECT_CREATED) {
+            return false;
+        }
+        return parent::canUserUpdateOrDelete();
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $this->source->changeStatus(Source::STATUS_PROPOSAL_CREATED);
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public static function find()
@@ -188,7 +209,8 @@ class Proposal extends BaseReasearch
         $statusLabels = array_merge(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROJECT => 'آماده برای نگارش گزارش'
+                self::STATUS_READY_FOR_PROJECT => 'آماده برای نگارش گزارش',
+                self::STATUS_PROJECT_CREATED => 'در حال تکمیل گزارش'
             ]
         );
         unset($statusLabels[self::STATUS_REJECTED]);

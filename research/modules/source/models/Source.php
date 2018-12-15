@@ -7,7 +7,7 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
 use core\behaviors\PreventDeleteBehavior;
-use nad\research\common\models\BaseReasearch;
+use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\expert\models\Expert;
 use nad\research\modules\proposal\models\Proposal;
@@ -16,10 +16,12 @@ use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\modules\source\behaviors\ExpertsBehavior;
 use nad\research\modules\source\behaviors\ReasonsBehavior;
+use nad\research\modules\resource\behaviors\ResourceBehavior;
 
-class Source extends BaseReasearch
+class Source extends BaseResearch
 {
     const STATUS_READY_FOR_PROPOSAL = 7;
+    const STATUS_PROPOSAL_CREATED = 8;
 
     public function behaviors()
     {
@@ -48,7 +50,8 @@ class Source extends BaseReasearch
                         'relationName' => 'پروپوزال'
                     ]
                 ]
-            ]
+            ],
+            ResourceBehavior::class
         ];
     }
 
@@ -77,7 +80,7 @@ class Source extends BaseReasearch
                 ['reason', 'necessity', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            [['tags', 'experts'], 'safe']
+            [['tags', 'experts', 'resources'], 'safe']
         ];
     }
 
@@ -97,7 +100,8 @@ class Source extends BaseReasearch
             'updatedAt' => 'آخرین بروزرسانی',
             'reasons' => 'علل پیدایش',
             'tags' => 'کلید واژه ها',
-            'experts' => 'کارشناسان نگارش پروپوزال'
+            'experts' => 'کارشناسان نگارش پروپوزال',
+            'resources' => 'منابع'
         ];
     }
 
@@ -134,6 +138,14 @@ class Source extends BaseReasearch
         return false;
     }
 
+    public function canUserUpdateOrDelete()
+    {
+        if ($this->status == self::STATUS_PROPOSAL_CREATED) {
+            return false;
+        }
+        return parent::canUserUpdateOrDelete();
+    }
+
     public static function tableName()
     {
         return 'nad_research_source';
@@ -144,7 +156,8 @@ class Source extends BaseReasearch
         return array_merge(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROPOSAL => 'آماده برای تهیه پروپوزال'
+                self::STATUS_READY_FOR_PROPOSAL => 'آماده برای تهیه پروپوزال',
+                self::STATUS_PROPOSAL_CREATED => 'در حال تکمیل پروپوزال'
             ]
         );
     }
