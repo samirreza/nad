@@ -95,6 +95,6 @@ class Type extends \yii\db\ActiveRecord implements Codable
 
     public static function tableName()
     {
-        return 'nad_material_type';
+        return 'nad_research_material';
     }
 }

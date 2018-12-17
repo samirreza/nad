@@ -9,6 +9,7 @@ TreeAssetBundle::register($this);
 
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
+    'پژوهش',
     ['label' => 'شناسه مواد و کالای فرایندی', 'url' => ['manage/index']],
     $this->title
 ];

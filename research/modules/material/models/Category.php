@@ -15,7 +15,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
 
     public static function tableName()
     {
-        return 'nad_material_type_category';
+        return 'nad_research_material_category';
     }
 
     public function behaviors()

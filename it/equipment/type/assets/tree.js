@@ -16,7 +16,7 @@ function fillTree(rootId) {
             $('.refresh-tree').attr('data-rootid', rootId);
             $('#loading').addClass('hidden');
             $('#cats-tree').tree({
-                autoOpen: 1,
+                autoOpen: false,
                 autoEscape: false,
                 selectable: false,
                 data: data,

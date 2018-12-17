@@ -3,17 +3,17 @@
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 
-$this->title = 'انواع تجهیزات آزمایشگاهی';
+$this->title = 'تجهیزات آزمایشگاه';
 $this->params['breadcrumbs'] = [
     'پژوهش',
-    'تجهیزات آزمایشگاهی',
     $this->title
 ];
+
 ?>
+
 <div class="equipment-type-index">
     <?= ActionButtons::widget([
         'buttons' => [

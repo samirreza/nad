@@ -7,6 +7,7 @@ use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 
 $this->title = 'مواد و کالای فرایندی';
+$this->params['breadcrumbs'][] = 'پژوهش';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

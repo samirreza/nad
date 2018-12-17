@@ -11,6 +11,7 @@ TreeAssetBundle::register($this);
 
 $this->title = 'لیست رده های مواد و کالای فرایندی';
 $this->params['breadcrumbs'] = [
+    'پژوهش',
     ['label' => 'مواد و کالای فرایندی', 'url' => ['manage/index']],
     $this->title
 ];

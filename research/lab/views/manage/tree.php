@@ -1,10 +1,8 @@
 <?php
+
 use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\grid\GridView;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
-use nad\research\lab\models\Category;
 use nad\research\lab\assetbundles\TreeAssetBundle;
 
 TreeAssetBundle::register($this);
@@ -12,8 +10,7 @@ TreeAssetBundle::register($this);
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'پژوهش',
-    'تجهیزات آزمایشگاهی',
-    ['label' => 'انواع تجهیزات آزمایشگاهی', 'url' => ['index']],
+    ['label' => 'تجهیزات آزمایشگاه', 'url' => ['index']],
     $this->title
 ];
 ?>
@@ -21,7 +18,7 @@ $this->params['breadcrumbs'] = [
 <?= ActionButtons::widget([
     'buttons' => [
         'materials' => [
-            'label' => 'انواع تجهیزات آزمایشگاهی',
+            'label' => 'تجهیزات آزمایشگاه',
             'url' => ['index'],
             'type' => 'info',
             'icon' => 'list'

@@ -21,9 +21,9 @@ class ManageController extends \core\controllers\AjaxAdminController
                         [
                             'allow' => true,
                             'roles' => ['it.equipment-type']
-                        ],
-                    ],
-                ],
+                        ]
+                    ]
+                ]
             ]
         );
     }
@@ -49,5 +49,10 @@ class ManageController extends \core\controllers\AjaxAdminController
             $tree[] = $root->getFamilyTreeArray();
         }
         return $tree;
+    }
+
+    public function actionReport()
+    {
+        return $this->render('report');
     }
 }
