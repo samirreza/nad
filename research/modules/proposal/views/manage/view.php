@@ -51,24 +51,6 @@ $this->params['breadcrumbs'][] = $model->title;
                                 }
                             ],
                             [
-                                'attribute' => 'materials',
-                                'value' => function ($model) {
-                                    return $model->getMaterialsAsString();
-                                }
-                            ],
-                            [
-                                'attribute' => 'equipments',
-                                'value' => function ($model) {
-                                    return $model->getEquipmentsAsString();
-                                }
-                            ],
-                            [
-                                'attribute' => 'equipmentParts',
-                                'value' => function ($model) {
-                                    return $model->getEquipmentPartsAsString();
-                                }
-                            ],
-                            [
                                 'attribute' => 'sourceId',
                                 'format' => 'raw',
                                 'value' => function ($model) {

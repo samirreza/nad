@@ -1,11 +1,12 @@
 <?php
-namespace modules\nad\material\modules\type\controllers;
 
-use Yii;
-use yii\helpers\Json;
+namespace nad\research\modules\material\controllers;
+
+use yii\web\Response;
 use yii\filters\AccessControl;
-use modules\nad\material\modules\type\models\Category;
-use modules\nad\material\modules\type\models\CategorySearch;
+use yii\filters\ContentNegotiator;
+use nad\research\modules\material\models\Category;
+use nad\research\modules\material\models\CategorySearch;
 
 class CategoryController extends \core\controllers\AjaxAdminController
 {
@@ -15,29 +16,29 @@ class CategoryController extends \core\controllers\AjaxAdminController
             parent::behaviors(),
             [
                 [
-                    'class' => \yii\filters\ContentNegotiator::className(),
+                    'class' => ContentNegotiator::class,
                     'only' => ['get-json-tree'],
                     'formats' => [
-                        'application/json' => \yii\web\Response::FORMAT_JSON,
+                        'application/json' => Response::FORMAT_JSON,
                     ]
                 ],
                 'access' => [
-                    'class' => AccessControl::className(),
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['material.type'],
-                        ],
-                    ],
-                ],
+                            'roles' => ['material.type']
+                        ]
+                    ]
+                ]
             ]
         );
     }
 
     public function init()
     {
-        $this->modelClass = Category::className();
-        $this->searchClass = CategorySearch::className();
+        $this->modelClass = Category::class;
+        $this->searchClass = CategorySearch::class;
         parent::init();
     }
 
@@ -46,17 +47,17 @@ class CategoryController extends \core\controllers\AjaxAdminController
         return [
             'create' => [
                 'class' => 'core\tree\actions\CreateAction',
-                'modelClass' => Category::className(),
+                'modelClass' => Category::class,
                 'isAjax' => true
             ],
             'update' => [
                 'class' => 'core\tree\actions\UpdateAction',
-                'modelClass' => Category::className(),
+                'modelClass' => Category::class,
                 'isAjax' => true
             ],
             'delete' => [
                 'class' => 'core\tree\actions\DeleteAction',
-                'modelClass' => Category::className(),
+                'modelClass' => Category::class,
                 'isAjax' => true
             ]
         ];

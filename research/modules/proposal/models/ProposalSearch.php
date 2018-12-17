@@ -24,7 +24,7 @@ class ProposalSearch extends Proposal
                 'string'
             ],
             [['createdBy', 'status', 'sourceId', 'expertUserId'], 'integer'],
-            [['tags', 'materials', 'equipments', 'equipmentParts'], 'safe'],
+            ['tags', 'safe'],
             [['beginDate','endDate'], JalaliDateToTimestamp::class],
         ];
     }
@@ -74,12 +74,6 @@ class ProposalSearch extends Proposal
         $query->andFilterWhere(['<=', 'createdAt', $this->endDate]);
 
         $query->hasAnyTags($this->tags);
-
-        $query->hasAnyMaterials($this->materials);
-
-        $query->hasAnyEquipments($this->equipments);
-
-        $query->hasAnyEquipmentParts($this->equipmentParts);
 
         return $dataProvider;
     }

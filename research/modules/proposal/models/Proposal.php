@@ -11,11 +11,9 @@ use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
 use nad\research\modules\project\models\Project;
-use nad\extensions\thing\behaviors\ThingsBehavior;
 use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
-use nad\extensions\thing\behaviors\ThingsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\modules\resource\behaviors\ResourceBehavior;
 
@@ -40,10 +38,6 @@ class Proposal extends BaseResearch
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
                 'updatedByAttribute' => false
-            ],
-            [
-                'class' => ThingsBehavior::class,
-                'moduleId' => 'proposal'
             ],
             [
                 'class' => PreventDeleteBehavior::class,
@@ -83,10 +77,7 @@ class Proposal extends BaseResearch
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
-            [
-                ['tags', 'materials', 'equipments', 'equipmentParts', 'resources'],
-                'safe'
-            ],
+            [['tags', 'resources'], 'safe'],
             ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             ['expertUserId', 'integer'],
             [
@@ -126,9 +117,6 @@ class Proposal extends BaseResearch
             'updatedAt' => 'آخرین بروزرسانی',
             'tags' => 'کلید واژه ها',
             'sourceId' => 'منشا',
-            'materials' => 'مواد',
-            'equipments' => 'تجهیزات',
-            'equipmentParts' => 'قطعات',
             'resources' => 'منابع'
         ];
     }
@@ -182,15 +170,6 @@ class Proposal extends BaseResearch
             'TaggableQueryBehavior',
             [
                 'class' => TaggableQueryBehavior::class,
-                'modelShortClassName' => (new \ReflectionClass(self::class))
-                    ->getShortName(),
-                'moduleId' => 'proposal'
-            ]
-        );
-        $query->attachBehavior(
-            'ThingsQueryBehavior',
-            [
-                'class' => ThingsQueryBehavior::class,
                 'modelShortClassName' => (new \ReflectionClass(self::class))
                     ->getShortName(),
                 'moduleId' => 'proposal'

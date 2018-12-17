@@ -1,6 +1,6 @@
 <?php
 
-namespace modules\nad\material\modules\type\models;
+namespace nad\research\modules\material\models;
 
 use yii\data\ActiveDataProvider;
 
@@ -9,7 +9,7 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['title', 'code', 'depth'], 'safe'],
+            [['title', 'code', 'depth'], 'safe']
         ];
     }
 
@@ -21,21 +21,25 @@ class CategorySearch extends Category
             'sort' => [
                 'defaultOrder' => [
                     'tree' => SORT_DESC,
-                    'lft' => SORT_ASC,
+                    'lft' => SORT_ASC
                 ]
-            ],
+            ]
         ]);
+
         $this->load($params);
         if (!$this->validate()) {
             $query->where('0=1');
             return $dataProvider;
         }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'code' => $this->code,
             'depth' => $this->depth,
         ]);
+
         $query->andFilterWhere(['like', 'title', $this->title]);
+        
         return $dataProvider;
     }
 }

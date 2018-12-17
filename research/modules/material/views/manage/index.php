@@ -3,13 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 
-$this->title = 'انواع مواد';
-$this->params['breadcrumbs'][] = 'مواد';
+$this->title = 'مواد و کالای فرایندی';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="material-type-index">
     <?= ActionButtons::widget([

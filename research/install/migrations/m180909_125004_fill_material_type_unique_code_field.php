@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use modules\nad\material\modules\type\models\Type;
+use modules\nad\research\modules\material\models\Type;
 
 class m180909_125004_fill_material_type_unique_code_field extends Migration
 {

@@ -1,31 +1,34 @@
 <?php
-namespace modules\nad\material\modules\type\models;
 
+namespace nad\research\modules\material\models;
+
+use nad\common\code\Codable;
+use nad\common\code\CodableTrait;
+use core\behaviors\TimestampBehavior;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Type extends \modules\nad\material\models\Type
+class Type extends \yii\db\ActiveRecord implements Codable
 {
+    use CodableTrait;
+
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
+        return [
+            TimestampBehavior::class,
             [
-                'core\behaviors\TimestampBehavior',
-                [
-                    'class' => FileBehavior::className(),
-                    'groups' => [
-                        'file' => [
-                            'type' => FileBehavior::TYPE_FILE,
-                            'rules' => [
-                                'extensions' => ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'doc', 'xlsx'],
-                                'maxSize' => 5*1024*1024,
-                            ]
-                        ],
-                    ]
+                'class' => FileBehavior::class,
+                'groups' => [
+                    'file' => [
+                        'type' => FileBehavior::TYPE_FILE,
+                        'rules' => [
+                            'extensions' => ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'doc', 'xlsx'],
+                            'maxSize' => 5 * 1024 * 1024
+                        ]
+                    ],
                 ]
             ]
-        );
+        ];
     }
 
     public function rules()
@@ -37,13 +40,13 @@ class Type extends \modules\nad\material\models\Type
             ['code', 'string', 'max' => 1, 'min' => 1],
             [['categoryId'], 'integer'],
             [['description'], 'string'],
-            [['title'], FarsiCharactersValidator::className()],
+            [['title'], FarsiCharactersValidator::class],
             [
                 'code',
                 'unique',
                 'targetAttribute' => ['code', 'categoryId'],
                 'message' => 'این شناسه نوع ماده پیش تر ثبت شده است.'
-            ],
+            ]
         ];
     }
 
@@ -63,15 +66,20 @@ class Type extends \modules\nad\material\models\Type
         ];
     }
 
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'categoryId']);
-    }
-
     public function beforeValidate()
     {
         $this->code = strtoupper($this->code);
         return parent::beforeValidate();
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'categoryId']);
+    }
+
+    public function getUniqueCode() : string
+    {
+        return $this->uniqueCode;
     }
 
     public function beforeSave($insert)
@@ -83,5 +91,10 @@ class Type extends \modules\nad\material\models\Type
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
+    }
+
+    public static function tableName()
+    {
+        return 'nad_material_type';
     }
 }

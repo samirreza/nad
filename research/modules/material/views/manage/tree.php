@@ -1,18 +1,15 @@
 <?php
+
 use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\grid\GridView;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
-use nad\it\equipment\type\models\Category;
-use nad\it\equipment\type\assetbundles\TreeAssetBundle;
+use nad\research\modules\material\assetbundles\TreeAssetBundle;
 
 TreeAssetBundle::register($this);
 
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
-    'مواد',
-    ['label' => 'شناسه مواد', 'url' => ['manage/index']],
+    ['label' => 'شناسه مواد و کالای فرایندی', 'url' => ['manage/index']],
     $this->title
 ];
 ?>

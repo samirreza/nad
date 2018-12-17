@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use core\widgets\select2\Select2;
 use theme\widgets\Panel;
 use theme\widgets\Button;
+use yii\widgets\ActiveForm;
+use core\widgets\select2\Select2;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>

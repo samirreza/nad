@@ -11,9 +11,6 @@ use nad\research\modules\source\models\Source;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\proposal\models\Proposal;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
-use nad\extensions\thing\widgets\selectThing\SelectMaterials;
-use nad\extensions\thing\widgets\selectThing\SelectEquipments;
-use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
 
 ?>
 
@@ -115,21 +112,6 @@ use nad\extensions\thing\widgets\selectThing\SelectEquipmentParts;
                                 ]
                             ]
                         ) ?>
-                    </div>
-                    <div class="col-md-4">
-                        <?= $form->field($model, 'materials')
-                            ->widget(SelectMaterials::class)
-                            ->label('مواد') ?>
-                    </div>
-                    <div class="col-md-4">
-                        <?= $form->field($model, 'equipments')
-                            ->widget(SelectEquipments::class)
-                            ->label('تجهیزات') ?>
-                    </div>
-                    <div class="col-md-4">
-                        <?= $form->field($model, 'equipmentParts')
-                            ->widget(SelectEquipmentParts::class)
-                            ->label('قطعات') ?>
                     </div>
                     <div class="col-md-4">
                         <?= $form->field($model, 'status')->dropDownList(

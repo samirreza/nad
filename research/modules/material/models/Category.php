@@ -1,11 +1,12 @@
 <?php
-namespace modules\nad\material\modules\type\models;
+
+namespace nad\research\modules\material\models;
 
 use nad\common\code\Codable;
-use nad\common\code\CodableTrait;
-use nad\common\code\CodableCategoryBehavior;
 use core\tree\NestedSetsBehavior;
+use nad\common\code\CodableTrait;
 use core\behaviors\PreventDeleteBehavior;
+use nad\common\code\CodableCategoryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Category extends \yii\db\ActiveRecord implements Codable
@@ -35,9 +36,9 @@ class Category extends \yii\db\ActiveRecord implements Codable
                 ]
             ],
             'tree' => [
-                'class' => NestedSetsBehavior::className(),
-                'treeAttribute' => 'tree',
-            ],
+                'class' => NestedSetsBehavior::class,
+                'treeAttribute' => 'tree'
+            ]
         ];
     }
 
@@ -61,7 +62,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             'nestedTitle' => 'عنوان',
             'code' => 'شناسه رده',
             'uniqueCode' => 'شناسه یکتا',
-            'parentId' => 'رده پدر',
+            'parentId' => 'رده پدر'
         ];
     }
 
@@ -79,7 +80,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             'nestedQuery',
             'creocoder\nestedsets\NestedSetsQueryBehavior'
         );
-        return $query->orderBy(['tree' => SORT_DESC,'lft' => SORT_ASC]);
+        return $query->orderBy(['tree' => SORT_DESC, 'lft' => SORT_ASC]);
     }
 
     public function getUniqueCode() : string
@@ -87,11 +88,11 @@ class Category extends \yii\db\ActiveRecord implements Codable
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getUniqueCode().'.'.$this->code;
+        return $this->parent->getUniqueCode() . '.' . $this->code;
     }
 
     public function getTypes()
     {
-        return $this->hasMany(Type::className(), ['categoryId' => 'id']);
+        return $this->hasMany(Type::class, ['categoryId' => 'id']);
     }
 }

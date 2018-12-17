@@ -1,7 +1,7 @@
 <?php
-namespace modules\nad\material\modules\type\models;
 
-use yii\base\Model;
+namespace nad\research\modules\material\models;
+
 use yii\data\ActiveDataProvider;
 
 class TypeSearch extends Type
@@ -24,19 +24,27 @@ class TypeSearch extends Type
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
         $this->load($params);
         if (!$this->validate()) {
             $query->where('0=1');
             return $dataProvider;
         }
+
         $query->joinWith('category AS category');
+
         $query->andFilterWhere(['like', 'nad_material_type.title', $this->title]);
+
         $query->andFilterWhere(['like', 'code', $this->code]);
+
         $query->andFilterWhere(['like', 'titleEn', $this->titleEn]);
+
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]
         );
+        
         return $dataProvider;
     }
 }

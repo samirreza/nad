@@ -1,17 +1,19 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use theme\widgets\Panel;
 use theme\widgets\Button;
+use yii\widgets\ActiveForm;
 use theme\widgets\editor\Editor;
 use modules\nad\supplier\models\Supplier;
-use modules\nad\material\widgets\MaterialsSelect2;
 use modules\nad\equipment\widgets\EquipmentsSelect2;
 use modules\nad\equipment\widgets\EquipmentPartsSelect2;
+use nad\research\modules\material\widgets\MaterialsSelect2;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
+
 ?>
+
 <div class="supplier-form">
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">

@@ -1,12 +1,13 @@
 <?php
 
-namespace modules\nad\material\modules\type\controllers;
+namespace nad\research\modules\material\controllers;
 
 use Yii;
+use yii\web\Response;
 use yii\filters\AccessControl;
-use modules\nad\material\modules\type\models\Type;
-use modules\nad\material\modules\type\models\Category;
-use modules\nad\material\modules\type\models\TypeSearch;
+use nad\research\modules\material\models\Type;
+use nad\research\modules\material\models\Category;
+use nad\research\modules\material\models\TypeSearch;
 
 class ManageController extends \core\controllers\AjaxAdminController
 {
@@ -16,14 +17,14 @@ class ManageController extends \core\controllers\AjaxAdminController
             parent::behaviors(),
             [
                 'access' => [
-                    'class' => AccessControl::className(),
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
                             'allow' => true,
                             'roles' => ['material.type']
-                        ],
-                    ],
-                ],
+                        ]
+                    ]
+                ]
             ]
         );
     }
@@ -37,13 +38,11 @@ class ManageController extends \core\controllers\AjaxAdminController
 
     public function actionAjaxFindMaterials($q = null)
     {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $types = Type::find()
             ->select(['id', 'title', 'uniqueCode'])
             ->where(['or', ['like', 'title', $q], ['like', 'uniqueCode', $q]])
             ->all();
-
         $materials['results'] = [];
         foreach ($types as $type) {
             $materials['results'][] = [
@@ -61,7 +60,7 @@ class ManageController extends \core\controllers\AjaxAdminController
 
     public function actionGetJsonTree($id)
     {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $roots = Category::find()->roots()->all();
         $tree = [];
         foreach ($roots as $root) {
@@ -69,5 +68,4 @@ class ManageController extends \core\controllers\AjaxAdminController
         }
         return $tree;
     }
-
 }

@@ -1,18 +1,17 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
-use modules\nad\material\modules\type\models\Category;
-use modules\nad\material\modules\type\assetbundles\TreeAssetBundle;
+use nad\research\modules\material\assetbundles\TreeAssetBundle;
 
 TreeAssetBundle::register($this);
 
-$this->title = 'لیست رده ها';
+$this->title = 'لیست رده های مواد و کالای فرایندی';
 $this->params['breadcrumbs'] = [
-    'مواد',
-    ['label' => 'انواع مواد', 'url' => ['manage/index']],
+    ['label' => 'مواد و کالای فرایندی', 'url' => ['manage/index']],
     $this->title
 ];
 ?>

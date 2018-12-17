@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
 use theme\widgets\Panel;
 use theme\widgets\Button;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
-use modules\nad\material\modules\type\models\Category;
+use nad\research\modules\material\models\Category;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;

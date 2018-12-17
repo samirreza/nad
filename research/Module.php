@@ -28,6 +28,9 @@ class Module extends \yii\base\Module
             'lab' => 'nad\research\lab\Module',
             'resource' => [
                 'class' => 'nad\research\modules\resource\Module'
+            ],
+            'material' => [
+                'class' => 'nad\research\modules\material\Module'
             ]
         ];
         parent::init();

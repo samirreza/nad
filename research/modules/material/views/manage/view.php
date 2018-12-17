@@ -1,9 +1,7 @@
 <?php
-use yii\helpers\Html;
-use yii\bootstrap\Alert;
-use yii\widgets\DetailView;
+
 use theme\widgets\Panel;
-use theme\widgets\ActionButtons;
+use yii\widgets\DetailView;
 
 ?>
 <div class="page-view">

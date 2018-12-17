@@ -1,10 +1,12 @@
 <?php
-namespace modules\nad\material\widgets;
+
+namespace nad\research\modules\material\widgets;
 
 use yii\helpers\Url;
 use yii\web\JsExpression;
+use core\widgets\select2\Select2;
 
-class MaterialsSelect2 extends \core\widgets\select2\Select2
+class MaterialsSelect2 extends Select2
 {
     public function init()
     {
@@ -24,7 +26,6 @@ class MaterialsSelect2 extends \core\widgets\select2\Select2
             ],
             'templateResult' => new JsExpression('function(material) { return material.text; }'),
         ];
-
         parent::init();
     }
 }
