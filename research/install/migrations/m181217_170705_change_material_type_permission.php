@@ -8,7 +8,7 @@ class m181217_170705_change_material_type_permission extends Migration
     {
         Yii::$app->db->createCommand()->update(
             'auth_item',
-            ['name' => 'research.type'],
+            ['name' => 'research.material'],
             ['name' => 'material.type']
         )->execute();
     }
