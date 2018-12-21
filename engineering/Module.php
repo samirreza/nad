@@ -10,9 +10,8 @@ class Module extends \yii\base\Module
     {
         parent::init();
         $this->modules = [
-            'resource' => [
-                'class' => 'nad\engineering\resource\Module',
-            ],
+            'plant' => 'nad\engineering\plant\Module',
+            'resource' => 'nad\engineering\resource\Module',
         ];
         \Yii::configure($this, require(__DIR__ . '/config.php'));
     }

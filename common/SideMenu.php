@@ -136,17 +136,17 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'پلانت ها',
                         'icon' => 'tag',
-                        'url' => ['/engineering/resource/manage/index']
+                        'url' => ['/engineering/plant/manage/index']
                     ],
                     [
                         'label' => 'مکان ها',
                         'icon' => 'tag',
-                        'url' => ['/engineering/resource/manage/index']
+                        'url' => '#'
                     ],
                     [
                         'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
                         'icon' => 'tag',
-                        'url' => ['/engineering/resource/manage/index']
+                        'url' => '#'
                     ],
                     [
                         'label' => 'شناسه تجهیزات',
