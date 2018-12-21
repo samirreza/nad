@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         'model' => $model,
                         'attributes' => [
                             'title',
+                            'uniqueCode',
                             [
                                 'attribute' => 'createdBy',
                                 'value' => function ($model) {
@@ -47,8 +48,6 @@ $this->params['breadcrumbs'][] = $model->title;
                                     );
                                 }
                             ],
-                            'deliverToManagerDate:date',
-                            'sessionDate:date',
                             [
                                 'attribute' => 'resources',
                                 'format' => 'raw',
@@ -79,13 +78,14 @@ $this->params['breadcrumbs'][] = $model->title;
                                     );
                                 }
                             ],
+                            'deliverToManagerDate:date',
+                            'sessionDate:date',
                             [
                                 'attribute' => 'status',
                                 'value' => function ($model) {
                                     return Project::getStatusLables()[$model->status];
                                 }
-                            ],
-                            'updatedAt:date'
+                            ]
                         ]
                     ]) ?>
                 <?php Panel::end() ?>

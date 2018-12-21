@@ -23,6 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'core\grid\TitleColumn'],
                     [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => false
+                    ],
+                    [
                         'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],
                         'filter' => Select2::widget([
@@ -45,8 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'createdAt:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'filter' => Proposal::getStatusLables(),

@@ -9,6 +9,7 @@ use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\research\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
+use nad\research\modules\source\models\SourceReason;
 
 $this->title = 'منشاها';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'core\grid\TitleColumn'],
                     [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => false
+                    ],
+                    [
                         'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],
                         'filter' => Select2::widget([
@@ -52,9 +57,28 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->recommender->email;
                         }
                     ],
-                    'createdAt:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:date',
+                    [
+                        'attribute' => 'mainReasonId',
+                        'headerOptions' => ['style' => 'width:300px'],
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'mainReasonId',
+                            'data' => ArrayHelper::map(
+                                SourceReason::find()->all(),
+                                'id',
+                                'title'
+                            ),
+                            'options' => [
+                                'placeholder' => 'علت را انتخاب کنید'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]),
+                        'value' => function ($model) {
+                            return $model->mainReason->title;
+                        }
+                    ],
                     [
                         'attribute' => 'status',
                         'filter' => Source::getStatusLables(),

@@ -4,6 +4,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
+use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\research\modules\expert\models\Expert;
 use nad\research\modules\project\models\Project;
@@ -14,6 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="project-index">
+    <?= ActionButtons::widget([
+        'buttons' => [
+            'categoriesIndex' => [
+                'label' => 'رده های گزارش ها',
+                'icon' => 'sitemap',
+                'visibleFor' => ['research.manage']
+            ]
+        ]
+    ]) ?>
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'project-index-gridviewpjax']) ?>
             <?= GridView::widget([
@@ -21,6 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'core\grid\TitleColumn'],
+                    [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => false
+                    ],
+                    [
+                        'attribute' => 'category.title',
+                        'header' => 'زیر شاخه',
+                        'value' => function ($model) {
+                            return $model->category->familyTreeTitle;
+                        }
+                    ],
                     [
                         'attribute' => 'createdBy',
                         'headerOptions' => ['style' => 'width:300px'],
@@ -44,8 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'createdAt:date',
-                    'deliverToManagerDate:date',
-                    'sessionDate:date',
                     [
                         'attribute' => 'status',
                         'filter' => Project::getStatusLables(),

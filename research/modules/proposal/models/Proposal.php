@@ -58,11 +58,23 @@ class Proposal extends BaseResearch
             [
                 [
                     'title',
+                    'code',
                     'necessity',
                     'mainPurpose',
                     'secondaryPurpose'
                 ],
                 'required'
+            ],
+            ['title', 'string', 'max' => 255],
+            ['code', 'string', 'max' => 4, 'min' => 4],
+            [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
+            [['tags', 'resources'], 'safe'],
+            [['title', 'code'], 'trim'],
+            ['expertUserId', 'integer'],
+            ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
+            [
+                ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
+                FarsiCharactersValidator::class
             ],
             [
                 'sessionDate',
@@ -70,21 +82,6 @@ class Proposal extends BaseResearch
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
-            ],
-            ['title', 'string', 'max' => 255],
-            [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
-            [
-                ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
-                FarsiCharactersValidator::class
-            ],
-            [['tags', 'resources'], 'safe'],
-            ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
-            ['expertUserId', 'integer'],
-            [
-                'sourceId',
-                'exist',
-                'targetClass' => Source::class,
-                'targetAttribute' => ['sourceId' => 'id']
             ]
         ];
     }
@@ -102,23 +99,56 @@ class Proposal extends BaseResearch
     public function attributeLabels()
     {
         return [
-            'id' => 'شناسه',
             'title' => 'عنوان',
+            'code' => 'کد موضوع',
+            'uniqueCode' => 'شناسه',
             'createdBy' => 'محقق',
+            'createdAt' => 'تاریخ ارائه',
             'necessity' => 'ضرورت اجرای طرح',
             'mainPurpose' => 'هدف اصلی',
             'secondaryPurpose' => 'اهداف فرعی',
+            'resources' => 'منابع',
+            'tags' => 'کلید واژه ها',
+            'sourceId' => 'منشا',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه برگزاری جلسه',
             'expertUserId' => 'کارشناس نگارش گزارش',
             'status' => 'وضعیت',
-            'createdAt' => 'تاریخ ارائه',
             'updatedAt' => 'آخرین بروزرسانی',
-            'tags' => 'کلید واژه ها',
-            'sourceId' => 'منشا',
-            'resources' => 'منابع'
         ];
+    }
+
+    public function beforeValidate()
+    {
+        if (!parent::beforeValidate()) {
+            return false;
+        }
+        $this->code = strtoupper($this->code);
+        return true;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($insert) {
+            $this->lastCode = 1;
+        } elseif (
+            $this->oldAttributes['status'] == self::STATUS_NEED_CORRECTION &&
+            $this->status == self::STATUS_DELIVERED_TO_MANAGER
+        ) {
+            $this->lastCode = $this->lastCode + 1;
+        }
+        $this->setUniqueCode();
+        return true;
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->code . '.' .
+            str_pad($this->lastCode, 3, '0', STR_PAD_LEFT);
     }
 
     public function getResearcher()

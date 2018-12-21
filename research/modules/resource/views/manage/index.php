@@ -30,6 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
+                    [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => true
+                    ],
                     'title',
                     [
                         'header' => 'فایل',

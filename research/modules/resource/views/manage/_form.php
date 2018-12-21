@@ -6,6 +6,7 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use core\widgets\editor\Editor;
 use extensions\file\widgets\singleupload\SingleFileUpload;
+use nad\research\modules\resource\models\Resource;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -25,6 +26,9 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
+                    <?= $form->field($model, 'type')->dropDownList(
+                        Resource::getTypeLabels()
+                    ) ?>
                     <?= $form->field($model, 'title')->textInput() ?>
                     <br>
                     <div class="input-medium">

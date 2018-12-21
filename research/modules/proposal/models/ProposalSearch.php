@@ -16,6 +16,7 @@ class ProposalSearch extends Proposal
             [
                 [
                     'title',
+                    'uniqueCode',
                     'necessity',
                     'mainPurpose',
                     'secondaryPurpose',
@@ -60,6 +61,8 @@ class ProposalSearch extends Proposal
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
 
         $query->andFilterWhere(['like', 'necessity', $this->necessity]);
 

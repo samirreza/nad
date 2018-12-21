@@ -16,6 +16,7 @@ use yii\widgets\DetailView;
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
+                        'uniqueCode',
                         'title',
                         [
                             'label' => 'فایل',
@@ -31,8 +32,7 @@ use yii\widgets\DetailView;
                             }
                         ],
                         'description:raw',
-                        'createdAt:dateTime',
-                        'updatedAt:dateTime'
+                        'createdAt:date'
                     ]
                 ]) ?>
             </div>

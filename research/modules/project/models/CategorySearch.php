@@ -1,42 +1,42 @@
 <?php
 
-namespace nad\research\modules\resource\models;
+namespace nad\research\modules\project\models;
 
 use yii\data\ActiveDataProvider;
 
-class ResourceSearch extends Resource
+class CategorySearch extends Category
 {
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string']
+            ['title', 'string'],
+            ['depth', 'integer']
         ];
     }
 
     public function search($params)
     {
-        $query = Resource::find();
+        $query = Category::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'attributes' => [
-                    'createdAt'
-                ],
                 'defaultOrder' => [
-                    'createdAt' => SORT_DESC
+                    'tree' => SORT_DESC,
+                    'lft' => SORT_ASC
                 ]
             ]
         ]);
 
         $this->load($params);
         if (!$this->validate()) {
+            $query->where('0=1');
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+        $query->andFilterWhere(['depth' => $this->depth]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-
+        
         return $dataProvider;
     }
 }

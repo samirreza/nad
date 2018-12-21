@@ -1,4 +1,5 @@
 <?php
+
 namespace nad\common\code;
 
 use yii\helpers\Html;
@@ -20,7 +21,7 @@ class CodeGridColumn extends DataColumn
         $this->contentOptions = ['style' => 'direction:ltr'];
         $this->value = function ($model) {
             $attribute = $this->attribute;
-            return Html::a($model->$attribute, ['view', 'id'=>$model->id], [
+            return Html::a($model->$attribute, ['view', 'id' => $model->id], [
                 'title' => \Yii::t('yii', 'View'),
                 'class' => $this->isAjaxGrid ? 'ajaxview' : ''
             ]);

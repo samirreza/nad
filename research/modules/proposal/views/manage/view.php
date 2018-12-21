@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         'model' => $model,
                         'attributes' => [
                             'title',
+                            'uniqueCode',
                             [
                                 'attribute' => 'createdBy',
                                 'value' => function ($model) {

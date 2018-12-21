@@ -9,8 +9,8 @@ class SourceSearch extends Source
     public function rules()
     {
         return [
-            ['title', 'string'],
-            [['id', 'createdBy', 'status'], 'integer']
+            [['title', 'uniqueCode'], 'string'],
+            [['id', 'createdBy', 'mainReasonId', 'status'], 'integer']
         ];
     }
 
@@ -24,7 +24,6 @@ class SourceSearch extends Source
                     'id',
                     'createdAt',
                     'deliverToManagerDate',
-                    'sessionDate',
                     'status'
                 ],
                 'defaultOrder' => [
@@ -41,10 +40,13 @@ class SourceSearch extends Source
         $query->andFilterWhere([
             'id' => $this->id,
             'createdBy' => $this->createdBy,
+            'mainReasonId' => $this->mainReasonId,
             'status' => $this->status
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
 
         return $dataProvider;
     }

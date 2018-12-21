@@ -1,7 +1,9 @@
 <?php
+
 namespace nad\common\code;
 
-trait CodableTrait {
+trait CodableTrait
+{
     public function getHtmlCodedTitle() : string
     {
         return '<span style="display: inline-block">' . $this->title . '</span><small> ['
@@ -10,6 +12,6 @@ trait CodableTrait {
 
     public function getCodedTitle() : string
     {
-        return $this->title .  ' - ' . $this->getUniqueCode();
+        return $this->title . ' - ' . $this->getUniqueCode();
     }
 }

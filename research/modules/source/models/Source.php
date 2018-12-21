@@ -13,6 +13,7 @@ use nad\research\modules\expert\models\Expert;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
+use nad\research\common\behaviors\SettingCodeBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\modules\source\behaviors\ExpertsBehavior;
 use nad\research\modules\source\behaviors\ReasonsBehavior;
@@ -51,7 +52,11 @@ class Source extends BaseResearch
                     ]
                 ]
             ],
-            ResourceBehavior::class
+            ResourceBehavior::class,
+            [
+                'class' => SettingCodeBehavior::class,
+                'determinativeColumn' => 'mainReasonId'
+            ]
         ];
     }
 
@@ -61,12 +66,19 @@ class Source extends BaseResearch
             [
                 [
                     'title',
+                    'code',
                     'reason',
                     'necessity',
-                    'reasons'
+                    'reasons',
+                    'mainReasonId'
                 ],
                 'required'
             ],
+            [['title', 'code'], 'trim'],
+            ['title', 'string', 'max' => 255],
+            ['code', 'string', 'max' => 4, 'min' => 4],
+            [['reason', 'necessity', 'proceedings'], 'string'],
+            [['tags', 'experts', 'resources'], 'safe'],
             [
                 'sessionDate',
                 JalaliDateToTimestamp::class,
@@ -74,40 +86,68 @@ class Source extends BaseResearch
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
             ],
-            ['title', 'string', 'max' => 255],
-            [['reason', 'necessity', 'proceedings'], 'string'],
             [
-                ['reason', 'necessity', 'proceedings'],
+                ['title', 'reason', 'necessity', 'proceedings'],
                 FarsiCharactersValidator::class
-            ],
-            [['tags', 'experts', 'resources'], 'safe']
+            ]
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'شناسه',
             'title' => 'عنوان',
+            'code' => 'کد موضوع',
+            'uniqueCode' => 'شناسه',
             'createdBy' => 'پیشنهاد دهنده',
+            'createdAt' => 'تاریخ پیشنهاد',
             'reason' => 'دلایل طرح موضوع',
             'necessity' => 'ضرورت های طرح موضوع',
+            'reasons' => 'علل پیدایش',
+            'mainReasonId' => 'علت اصلی',
+            'resources' => 'منابع',
+            'tags' => 'کلید واژه ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه برگزاری جلسه',
-            'status' => 'وضعیت',
-            'createdAt' => 'تاریخ پیشنهاد',
-            'updatedAt' => 'آخرین بروزرسانی',
-            'reasons' => 'علل پیدایش',
-            'tags' => 'کلید واژه ها',
             'experts' => 'کارشناسان نگارش پروپوزال',
-            'resources' => 'منابع'
+            'status' => 'وضعیت',
+            'updatedAt' => 'آخرین بروزرسانی'
         ];
+    }
+
+    public function beforeValidate()
+    {
+        if (!parent::beforeValidate()) {
+            return false;
+        }
+        $this->code = strtoupper($this->code);
+        return true;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->setUniqueCode();
+        return true;
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->mainReason->code . '.'
+            . $this->code . '.' . $this->lastCodePart;
     }
 
     public function getRecommender()
     {
         return $this->hasOne(User::class, ['id' => 'createdBy']);
+    }
+
+    public function getMainReason()
+    {
+        return $this->hasOne(SourceReason::class, ['id' => 'mainReasonId']);
     }
 
     public function getReasonsQuery()
@@ -127,6 +167,14 @@ class Source extends BaseResearch
         return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
+    public function canUserUpdateOrDelete()
+    {
+        if ($this->status == self::STATUS_PROPOSAL_CREATED) {
+            return false;
+        }
+        return parent::canUserUpdateOrDelete();
+    }
+
     public function canUserCreateProposal()
     {
         if ($this->status == self::STATUS_READY_FOR_PROPOSAL) {
@@ -136,14 +184,6 @@ class Source extends BaseResearch
             return $this->hasExpert(Yii::$app->user->id);
         }
         return false;
-    }
-
-    public function canUserUpdateOrDelete()
-    {
-        if ($this->status == self::STATUS_PROPOSAL_CREATED) {
-            return false;
-        }
-        return parent::canUserUpdateOrDelete();
     }
 
     public static function tableName()

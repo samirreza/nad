@@ -14,7 +14,7 @@ class SelectResource extends Select2
             $this->data = ArrayHelper::map(
                 Resource::find()->all(),
                 'id',
-                'title'
+                'codedTitle'
             );
         }
         if (!isset($this->options['placeholder'])) {

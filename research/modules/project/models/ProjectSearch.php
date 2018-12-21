@@ -6,10 +6,15 @@ use yii\data\ActiveDataProvider;
 
 class ProjectSearch extends Project
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['category.title']);
+    }
+
     public function rules()
     {
         return [
-            ['title', 'string'],
+            [['title', 'uniqueCode', 'category.title'], 'string'],
             [['createdBy', 'status', 'proposalId'], 'integer']
         ];
     }
@@ -44,6 +49,13 @@ class ProjectSearch extends Project
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+
+        $query->joinWith('category AS category');
+        $query->andFilterWhere(
+            ['like', 'category.title', $this->getAttribute('category.title')]
+        );
 
         return $dataProvider;
     }

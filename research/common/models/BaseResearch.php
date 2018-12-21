@@ -3,9 +3,13 @@
 namespace nad\research\common\models;
 
 use Yii;
+use nad\common\code\Codable;
+use nad\common\code\CodableTrait;
 
-class BaseResearch extends \yii\db\ActiveRecord
+class BaseResearch extends \yii\db\ActiveRecord implements Codable
 {
+    use CodableTrait;
+
     const STATUS_REJECTED = 0;
     const STATUS_NEED_CORRECTION = 1;
     const STATUS_INPROGRESS = 2;
@@ -13,6 +17,11 @@ class BaseResearch extends \yii\db\ActiveRecord
     const STATUS_WAITING_FOR_MEETING = 4;
     const STATUS_MEETING_HELD = 5;
     const STATUS_ACCEPTED = 6;
+
+    public function getUniqueCode() : string
+    {
+        return $this->uniqueCode;
+    }
 
     public function changeStatus($newStatus)
     {

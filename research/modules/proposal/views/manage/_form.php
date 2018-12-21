@@ -37,8 +37,12 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             </div>
             <div class="col-md-4">
                 <?php Panel::begin(['title' => 'سایر اطلاعات پروپوزال']) ?>
-                    <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                    <?= $form->field($model, 'code')->textInput([
+                        'maxlength' => 255,
+                        'class' => 'form-control input-large'
+                    ])->hint('۴ کاراکتر بزرگ لاتین') ?>
                     <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
+                    <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>
                     <?= Html::submitButton(

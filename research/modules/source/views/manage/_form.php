@@ -36,6 +36,23 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
             </div>
             <div class="col-md-4">
                 <?php Panel::begin(['title' => 'سایر اطلاعات منشا']) ?>
+                    <?= $form->field($model, 'code')->textInput([
+                        'maxlength' => 255,
+                        'class' => 'form-control input-large'
+                    ])->hint('۴ کاراکتر بزرگ لاتین') ?>
+                    <?= $form->field($model, 'mainReasonId')->widget(
+                        Select2::class,
+                        [
+                            'data' => ArrayHelper::map(
+                                SourceReason::find()->all(),
+                                'id',
+                                'title'
+                            ),
+                            'options' => [
+                                'prompt' => 'علت اصلی را انتخاب کنید ...'
+                            ]
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'reasons')->widget(
                         Select2::class,
                         [

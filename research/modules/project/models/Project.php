@@ -11,6 +11,7 @@ use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
+use nad\research\common\behaviors\SettingCodeBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\modules\resource\behaviors\ResourceBehavior;
 
@@ -59,7 +60,11 @@ class Project extends BaseResearch
                     ]
                 ]
             ],
-            ResourceBehavior::class
+            ResourceBehavior::class,
+            [
+                'class' => SettingCodeBehavior::class,
+                'determinativeColumn' => 'categoryId'
+            ]
         ];
     }
 
@@ -69,9 +74,18 @@ class Project extends BaseResearch
             [
                 [
                     'title',
-                    'abstract'
+                    'abstract',
+                    'categoryId',
                 ],
                 'required'
+            ],
+            ['title', 'trim'],
+            ['title', 'string', 'max' => 255],
+            [['abstract', 'proceedings'], 'string'],
+            [['tags', 'resources'], 'safe'],
+            [
+                ['abstract', 'proceedings'],
+                FarsiCharactersValidator::class
             ],
             [
                 'sessionDate',
@@ -79,19 +93,6 @@ class Project extends BaseResearch
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
-            ],
-            ['title', 'string', 'max' => 255],
-            [['abstract', 'proceedings'], 'string'],
-            [
-                ['abstract', 'proceedings'],
-                FarsiCharactersValidator::class
-            ],
-            [['tags', 'resources'], 'safe'],
-            [
-                'proposalId',
-                'exist',
-                'targetClass' => Proposal::class,
-                'targetAttribute' => ['proposalId' => 'id']
             ]
         ];
     }
@@ -99,20 +100,36 @@ class Project extends BaseResearch
     public function attributeLabels()
     {
         return [
-            'id' => 'شناسه',
             'title' => 'عنوان',
+            'uniqueCode' => 'شناسه',
             'createdBy' => 'محقق',
             'createdAt' => 'تاریخ اتمام گزارش',
             'abstract' => 'چکیده',
+            'proposalId' => 'پروپوزال',
+            'categoryId' => 'رده',
+            'resources' => 'منابع',
+            'tags' => 'کلید واژه ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه برگزاری جلسه',
-            'status' => 'وضعیت',
             'updatedAt' => 'آخرین بروزرسانی',
-            'tags' => 'کلید واژه ها',
-            'proposalId' => 'پروپوزال',
-            'resources' => 'منابع'
+            'status' => 'وضعیت'
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->setUniqueCode();
+        return true;
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = $this->category->uniqueCode . '.' .
+            $this->lastCodePart;
     }
 
     public function getResearcher()
@@ -123,6 +140,11 @@ class Project extends BaseResearch
     public function getProposal()
     {
         return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'categoryId']);
     }
 
     public function canUserUpdateOrDelete()
