@@ -6,7 +6,7 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use core\widgets\editor\Editor;
 use extensions\tag\widgets\selectTag\SelectTag;
-use nad\research\modules\resource\widgets\SelectResource\SelectResource;
+use nad\research\modules\resource\widgets\selectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 

@@ -9,7 +9,7 @@ use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\source\models\SourceReason;
-use nad\research\modules\resource\widgets\SelectResource\SelectResource;
+use nad\research\modules\resource\widgets\selectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
