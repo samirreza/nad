@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\research\modules\resource\widgets\SelectResource;
+namespace nad\research\modules\resource\widgets\selectResource;
 
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
