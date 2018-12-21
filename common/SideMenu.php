@@ -129,6 +129,26 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'wrench',
                 'items' => [
                     [
+                        'label' => 'منابع',
+                        'icon' => 'tag',
+                        'url' => ['/engineering/resource/manage/index']
+                    ],
+                    [
+                        'label' => 'پلانت ها',
+                        'icon' => 'tag',
+                        'url' => ['/engineering/resource/manage/index']
+                    ],
+                    [
+                        'label' => 'مکان ها',
+                        'icon' => 'tag',
+                        'url' => ['/engineering/resource/manage/index']
+                    ],
+                    [
+                        'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
+                        'icon' => 'tag',
+                        'url' => ['/engineering/resource/manage/index']
+                    ],
+                    [
                         'label' => 'شناسه تجهیزات',
                         'icon' => 'tag',
                         'url' => ['/equipment/type/manage/index'],
