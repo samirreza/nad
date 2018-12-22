@@ -141,7 +141,7 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'مکان ها',
                         'icon' => 'tag',
-                        'url' => '#'
+                        'url' => ['/engineering/location/manage/index']
                     ],
                     [
                         'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',

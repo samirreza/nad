@@ -12,6 +12,7 @@ class Module extends \yii\base\Module
         $this->modules = [
             'plant' => 'nad\engineering\plant\Module',
             'resource' => 'nad\engineering\resource\Module',
+            'location' => 'nad\engineering\location\Module',
         ];
         \Yii::configure($this, require(__DIR__ . '/config.php'));
     }
