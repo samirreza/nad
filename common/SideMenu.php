@@ -146,7 +146,7 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
                         'icon' => 'tag',
-                        'url' => '#'
+                        'url' => ['/engineering/document/manage/index']
                     ],
                     [
                         'label' => 'شناسه تجهیزات',
