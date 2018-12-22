@@ -30,7 +30,7 @@ class ResourceSearch extends Resource
             return $dataProvider;
         }
         $query->joinWith('category AS category');
-        $query->andFilterWhere(['like', 'nad_material_type.title', $this->title]);
+        $query->andFilterWhere(['like', 'nad_eng_resource.title', $this->title]);
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]

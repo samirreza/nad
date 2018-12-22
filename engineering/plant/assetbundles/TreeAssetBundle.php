@@ -5,7 +5,7 @@ use yii\web\AssetBundle;
 
 class TreeAssetBundle extends AssetBundle
 {
-    public $sourcePath = '@nad/engineering/resource/assets';
+    public $sourcePath = '@nad/engineering/plant/assets';
 
     public $css = ['tree.css'];
 
