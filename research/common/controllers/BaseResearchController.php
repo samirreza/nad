@@ -8,6 +8,7 @@ use yii\web\Response;
 use yii\filters\ContentNegotiator;
 use core\controllers\AdminController;
 use nad\extensions\documentation\actions\DocumentationAction;
+use nad\research\common\models\BaseResearch;
 
 class BaseResearchController extends AdminController
 {
@@ -68,6 +69,7 @@ class BaseResearchController extends AdminController
     public function actionSetSessionDate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = BaseResearch::SCENARIO_SET_SESSION_DATE;
         if ($model->load(Yii::$app->request->post())) {
             $model->status = $this->modelClass::STATUS_WAITING_FOR_MEETING;
             if ($model->save()) {

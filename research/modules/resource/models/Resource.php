@@ -6,7 +6,7 @@ use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use core\behaviors\TimestampBehavior;
 use extensions\file\behaviors\FileBehavior;
-use nad\research\common\behaviors\SettingCodeBehavior;
+use nad\research\common\behaviors\CodeNumerator;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Resource extends \yii\db\ActiveRecord implements Codable
@@ -47,7 +47,7 @@ class Resource extends \yii\db\ActiveRecord implements Codable
                 ]
             ],
             [
-                'class' => SettingCodeBehavior::class,
+                'class' => CodeNumerator::class,
                 'determinativeColumn' => 'type'
             ]
         ];

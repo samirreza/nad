@@ -3,9 +3,6 @@
 namespace nad\research\modules\proposal\models;
 
 use Yii;
-use yii\behaviors\BlameableBehavior;
-use core\behaviors\TimestampBehavior;
-use modules\user\backend\models\User;
 use core\behaviors\PreventDeleteBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
@@ -15,41 +12,38 @@ use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\research\modules\resource\behaviors\ResourceBehavior;
 
 class Proposal extends BaseResearch
 {
     const STATUS_READY_FOR_PROJECT = 7;
     const STATUS_PROJECT_CREATED = 8;
 
+    const SCENARIO_SET_EXPERT = 'setExpert';
+
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-            'Tags' => [
-                'class' => TaggableBehavior::class,
-                'moduleId' => 'proposal'
-            ],
-            'Comments' => [
-                'class' => CommentBehavior::class,
-                'moduleId' => 'proposal'
-            ],
+        return array_merge(
+            parent::behaviors(),
             [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'createdBy',
-                'updatedByAttribute' => false
-            ],
-            [
-                'class' => PreventDeleteBehavior::class,
-                'relations' => [
-                    [
-                        'relationMethod' => 'getProject',
-                        'relationName' => 'گزارش'
+                'Tags' => [
+                    'class' => TaggableBehavior::class,
+                    'moduleId' => 'proposal'
+                ],
+                'Comments' => [
+                    'class' => CommentBehavior::class,
+                    'moduleId' => 'proposal'
+                ],
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getProject',
+                            'relationName' => 'گزارش'
+                        ]
                     ]
                 ]
-            ],
-            ResourceBehavior::class
-        ];
+            ]
+        );
     }
 
     public function rules()
@@ -65,12 +59,13 @@ class Proposal extends BaseResearch
                 ],
                 'required'
             ],
+            ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
+            ['expertUserId', 'required', 'on' => self::SCENARIO_SET_EXPERT],
             ['title', 'string', 'max' => 255],
             ['code', 'string', 'max' => 4, 'min' => 4],
             [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
             [['tags', 'resources'], 'safe'],
             [['title', 'code'], 'trim'],
-            ['expertUserId', 'integer'],
             ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             [
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
@@ -94,6 +89,13 @@ class Proposal extends BaseResearch
                 'تعداد کلید واژه ها باید حداقل ۳ عدد باشد.'
             );
         }
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SET_EXPERT] = ['expertUserId'];
+        return $scenarios;
     }
 
     public function attributeLabels()
@@ -149,11 +151,6 @@ class Proposal extends BaseResearch
     {
         $this->uniqueCode = $this->code . '.' .
             str_pad($this->lastCode, 3, '0', STR_PAD_LEFT);
-    }
-
-    public function getResearcher()
-    {
-        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function getSource()

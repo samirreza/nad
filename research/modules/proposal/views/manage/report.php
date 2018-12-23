@@ -20,6 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     'title',
                     [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => false
+                    ],
+                    [
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
                             return $model->researcher->email;

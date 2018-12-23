@@ -73,6 +73,7 @@ class ManageController extends BaseResearchController
     public function actionSetExperts($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = Source::SCENARIO_SET_EXPERTS;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             echo Json::encode([
                 'status' => 'success',

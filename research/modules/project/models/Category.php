@@ -92,9 +92,9 @@ class Category extends \yii\db\ActiveRecord implements Codable
         } elseif ($this->getProjects()->count() != 0) {
             foreach ($this->projects as $project) {
                 $children[] = [
-                    'id' => $type->id,
-                    'name' => $type->htmlCodedTitle,
-                    'code' => $type->uniqueCode,
+                    'id' => $project->id,
+                    'name' => $project->htmlCodedTitle,
+                    'code' => $project->uniqueCode,
                     'depth' => $this->leafsDepth + 1
                 ];
             }
@@ -136,7 +136,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             'nestedQuery',
             'creocoder\nestedsets\NestedSetsQueryBehavior'
         );
-        return $query->orderBy(['tree' => SORT_DESC, 'lft' => SORT_ASC]);
+        return $query;
     }
 
     public static function tableName()

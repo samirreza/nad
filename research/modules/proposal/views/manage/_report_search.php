@@ -26,6 +26,9 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                         <?= $form->field($model, 'title')->textInput() ?>
                     </div>
                     <div class="col-md-4">
+                        <?= $form->field($model, 'uniqueCode')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
                         <?= $form->field($model, 'createdBy')->widget(
                             Select2::class,
                             [
@@ -54,36 +57,6 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                                 'prompt' => ''
                             ]
                         ) ?>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'beginDate')
-                                    ->widget(
-                                        JalaliDatePicker::class,
-                                        [
-                                            'options' => [
-                                                'autocomplete' => 'off'
-                                            ]
-                                        ]
-                                    )
-                                    ->label('از تاریخ')
-                                ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'endDate')
-                                    ->widget(
-                                        JalaliDatePicker::class,
-                                        [
-                                            'options' => [
-                                                'autocomplete' => 'off'
-                                            ]
-                                        ]
-                                    )
-                                    ->label('تا تاریخ')
-                                ?>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-4">
                         <?= $form->field($model, 'expertUserId')->widget(
@@ -121,6 +94,41 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                             ]
                         ) ?>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-2" style="padding-top: 30px;">
+                                <b><p>تاریخ نگارش :</p></b>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'beginDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('از')
+                                ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'endDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('تا')
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="col-md-4">
                         <?= $form->field($model, 'necessity')->textarea() ?>
                     </div>

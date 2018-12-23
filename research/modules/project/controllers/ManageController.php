@@ -58,20 +58,43 @@ class ManageController extends BaseResearchController
         );
     }
 
+    public function actions()
+    {
+        return [
+            'update' => [
+                'class' => 'core\tree\actions\UpdateAction',
+                'modelClass' => Project::class,
+                'isAjax' => false
+            ],
+            'delete' => [
+                'class' => 'core\tree\actions\DeleteAction',
+                'modelClass' => Project::class,
+                'isAjax' => false
+            ]
+        ];
+    }
+
     public function actionCreate()
     {
         $model = new Project([
             'proposalId' => Yii::$app->request->get('proposalId')
         ]);
         $model->loadDefaultValues();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->addFlash(
-                'success',
-                'داده مورد نظر با موفقیت در سیستم درج شد.'
-            );
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', ['model' => $model]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->parentId != 0) {
+                $parent =  Project::findOne($model->parentId);
+                $success = $model->appendTo($parent);
+            } else {
+                $success = $model->makeRoot();
+            }
+            if ($success) {
+                Yii::$app->session->addFlash(
+                    'success',
+                    'داده مورد نظر با موفقیت در سیستم درج شد.'
+                );
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+        return $this->render('create', ['model' => $model]);
     }
 }

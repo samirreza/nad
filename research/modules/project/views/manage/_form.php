@@ -55,6 +55,17 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             )
                         ]
                     ) ?>
+                    <?= $form->field($model, 'parentId')->widget(
+                        Select2::class,
+                        [
+                            'data' => ['آیتم سطح نخست است'] +
+                                ArrayHelper::map(
+                                    $model->possibleParents(),
+                                    'id',
+                                    'prefixedTitle'
+                                )
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>

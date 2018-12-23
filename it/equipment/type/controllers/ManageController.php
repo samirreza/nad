@@ -3,36 +3,52 @@
 namespace nad\it\equipment\type\controllers;
 
 use Yii;
+use yii\web\Response;
 use yii\filters\AccessControl;
 use nad\it\equipment\type\models\Type;
+use core\controllers\AjaxAdminController;
 use nad\it\equipment\type\models\Category;
 use nad\it\equipment\type\models\TypeSearch;
 
-class ManageController extends \core\controllers\AjaxAdminController
+class ManageController extends AjaxAdminController
 {
+    public function init()
+    {
+        $this->modelClass = Type::class;
+        $this->searchClass = TypeSearch::class;
+        parent::init();
+    }
+
     public function behaviors()
     {
         return array_merge(
             parent::behaviors(),
             [
                 'access' => [
-                    'class' => AccessControl::className(),
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
                             'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'update',
+                                'delete',
+                                'tree-list',
+                                'get-json-tree'
+                            ],
                             'roles' => ['it.equipment-type']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['report', 'get-json-tree'],
+                            'roles' => ['manager']
                         ]
                     ]
                 ]
             ]
         );
-    }
-
-    public function init()
-    {
-        $this->modelClass = Type::className();
-        $this->searchClass = TypeSearch::className();
-        parent::init();
     }
 
     public function actionTreeList()
@@ -42,7 +58,7 @@ class ManageController extends \core\controllers\AjaxAdminController
 
     public function actionGetJsonTree($id)
     {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $roots = Category::find()->roots()->all();
         $tree = [];
         foreach ($roots as $root) {

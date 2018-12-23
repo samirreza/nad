@@ -5,6 +5,10 @@ namespace nad\research\common\models;
 use Yii;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
+use yii\behaviors\BlameableBehavior;
+use core\behaviors\TimestampBehavior;
+use modules\user\backend\models\User;
+use nad\research\modules\resource\behaviors\ResourceBehavior;
 
 class BaseResearch extends \yii\db\ActiveRecord implements Codable
 {
@@ -18,9 +22,36 @@ class BaseResearch extends \yii\db\ActiveRecord implements Codable
     const STATUS_MEETING_HELD = 5;
     const STATUS_ACCEPTED = 6;
 
+    const SCENARIO_SET_SESSION_DATE = 'setSessionDate';
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'createdBy',
+                'updatedByAttribute' => false
+            ],
+            ResourceBehavior::class
+        ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SET_SESSION_DATE] = ['sessionDate'];
+        return $scenarios;
+    }
+
     public function getUniqueCode() : string
     {
         return $this->uniqueCode;
+    }
+
+    public function getResearcher()
+    {
+        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function changeStatus($newStatus)

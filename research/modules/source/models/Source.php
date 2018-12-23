@@ -3,61 +3,55 @@
 namespace nad\research\modules\source\models;
 
 use Yii;
-use yii\behaviors\BlameableBehavior;
-use core\behaviors\TimestampBehavior;
-use modules\user\backend\models\User;
 use core\behaviors\PreventDeleteBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\expert\models\Expert;
+use nad\research\common\behaviors\CodeNumerator;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
-use nad\research\common\behaviors\SettingCodeBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\modules\source\behaviors\ExpertsBehavior;
 use nad\research\modules\source\behaviors\ReasonsBehavior;
-use nad\research\modules\resource\behaviors\ResourceBehavior;
 
 class Source extends BaseResearch
 {
     const STATUS_READY_FOR_PROPOSAL = 7;
     const STATUS_PROPOSAL_CREATED = 8;
 
+    const SCENARIO_SET_EXPERTS = 'setExperts';
+
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-            'Reasons' => ReasonsBehavior::class,
-            'Experts' => ExpertsBehavior::class,
-            'Tags' => [
-                'class' => TaggableBehavior::class,
-                'moduleId' => 'source'
-            ],
-            'Comments' => [
-                'class' => CommentBehavior::class,
-                'moduleId' => 'source'
-            ],
+        return array_merge(
+            parent::behaviors(),
             [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'createdBy',
-                'updatedByAttribute' => false
-            ],
-            [
-                'class' => PreventDeleteBehavior::class,
-                'relations' => [
-                    [
-                        'relationMethod' => 'getProposals',
-                        'relationName' => 'پروپوزال'
+                'Reasons' => ReasonsBehavior::class,
+                'Experts' => ExpertsBehavior::class,
+                'Tags' => [
+                    'class' => TaggableBehavior::class,
+                    'moduleId' => 'source'
+                ],
+                'Comments' => [
+                    'class' => CommentBehavior::class,
+                    'moduleId' => 'source'
+                ],
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getProposals',
+                            'relationName' => 'پروپوزال'
+                        ]
                     ]
+                ],
+                [
+                    'class' => CodeNumerator::class,
+                    'determinativeColumn' => 'mainReasonId'
                 ]
-            ],
-            ResourceBehavior::class,
-            [
-                'class' => SettingCodeBehavior::class,
-                'determinativeColumn' => 'mainReasonId'
             ]
-        ];
+        );
     }
 
     public function rules()
@@ -74,11 +68,13 @@ class Source extends BaseResearch
                 ],
                 'required'
             ],
+            ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
+            ['experts', 'required', 'on' => self::SCENARIO_SET_EXPERTS],
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
             ['code', 'string', 'max' => 4, 'min' => 4],
             [['reason', 'necessity', 'proceedings'], 'string'],
-            [['tags', 'experts', 'resources'], 'safe'],
+            [['tags', 'resources'], 'safe'],
             [
                 'sessionDate',
                 JalaliDateToTimestamp::class,
@@ -91,6 +87,13 @@ class Source extends BaseResearch
                 FarsiCharactersValidator::class
             ]
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SET_EXPERTS] = ['experts'];
+        return $scenarios;
     }
 
     public function attributeLabels()
@@ -138,11 +141,6 @@ class Source extends BaseResearch
     {
         $this->uniqueCode = $this->mainReason->code . '.'
             . $this->code . '.' . $this->lastCodePart;
-    }
-
-    public function getRecommender()
-    {
-        return $this->hasOne(User::class, ['id' => 'createdBy']);
     }
 
     public function getMainReason()

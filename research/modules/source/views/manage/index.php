@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]
                         ]),
                         'value' => function ($model) {
-                            return $model->recommender->email;
+                            return $model->researcher->email;
                         }
                     ],
                     [

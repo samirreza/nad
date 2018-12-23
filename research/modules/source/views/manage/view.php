@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $model->title;
                             [
                                 'attribute' => 'createdBy',
                                 'value' => function ($model) {
-                                    return $model->recommender->email;
+                                    return $model->researcher->email;
                                 }
                             ],
                             'createdAt:date',

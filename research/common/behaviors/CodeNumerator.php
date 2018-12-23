@@ -6,7 +6,7 @@ use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\base\InvalidCallException;
 
-class SettingCodeBehavior extends Behavior
+class CodeNumerator extends Behavior
 {
     public $determinativeColumn;
     public $lastCodeColumn = 'lastCode';
@@ -23,13 +23,19 @@ class SettingCodeBehavior extends Behavior
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_INSERT => 'setLastCode'
+            ActiveRecord::EVENT_BEFORE_INSERT => 'setLastCode',
+            ActiveRecord::EVENT_BEFORE_UPDATE => 'setLastCode'
         ];
     }
 
     public function setLastCode()
     {
-        $this->owner->{$this->lastCodeColumn} = $this->getLastInsertedCode() + 1;
+        if (
+            $this->owner->isNewRecord ||
+            $this->owner->oldAttributes[$this->determinativeColumn] != $this->owner->{$this->determinativeColumn}
+        ) {
+            $this->owner->{$this->lastCodeColumn} = $this->getLastInsertedCode() + 1;
+        }
     }
 
     public function getLastInsertedCode()

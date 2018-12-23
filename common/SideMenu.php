@@ -118,7 +118,7 @@ class SideMenu extends \theme\widgets\Menu
                             [
                                 'label' => 'پروپوزال',
                                 'url' => ['/research/proposal/manage/report'],
-                                'visible' => $user->can('superuser')
+                                'visible' => $user->can('manager')
                             ]
                         ]
                     ]
@@ -198,9 +198,9 @@ class SideMenu extends \theme\widgets\Menu
                         'label' => 'گزارش های مدیریتی',
                         'items' => [
                             [
-                                'label' => 'درخت شناسه های تجهیزات',
+                                'label' => 'شناسه تجهیزات',
                                 'url' => ['/it/equipment/type/manage/report'],
-                                'visible' => $user->can('superuser')
+                                'visible' => $user->can('manager')
                             ]
                         ]
                     ]

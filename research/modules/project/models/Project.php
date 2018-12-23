@@ -2,18 +2,15 @@
 
 namespace nad\research\modules\project\models;
 
-use yii\behaviors\BlameableBehavior;
-use core\behaviors\TimestampBehavior;
-use modules\user\backend\models\User;
+use core\tree\NestedSetsBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
+use nad\research\common\behaviors\CodeNumerator;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
-use nad\research\common\behaviors\SettingCodeBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\research\modules\resource\behaviors\ResourceBehavior;
 
 class Project extends BaseResearch
 {
@@ -21,51 +18,51 @@ class Project extends BaseResearch
 
     public function behaviors()
     {
-        return [
-            TimestampBehavior::class,
-            'Tags' => [
-                'class' => TaggableBehavior::class,
-                'moduleId' => 'project'
-            ],
-            'Comments' => [
-                'class' => CommentBehavior::class,
-                'moduleId' => 'project'
-            ],
+        return array_merge(
+            parent::behaviors(),
             [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'createdBy',
-                'updatedByAttribute' => false
-            ],
-            [
-                'class' => FileBehavior::class,
-                'groups' => [
-                    'report' => [
-                        'type' => FileBehavior::TYPE_FILE,
-                        'rules' => [
-                            'extensions' => [
-                                'png',
-                                'jpg',
-                                'jpeg',
-                                'pdf',
-                                'doc',
-                                'docx',
-                                'xls',
-                                'xlsx',
-                                'ppt',
-                                'pptx'
-                            ],
-                            'maxSize' => 5 * 1024 * 1024,
-                            'required' => true
+                'Tags' => [
+                    'class' => TaggableBehavior::class,
+                    'moduleId' => 'project'
+                ],
+                'Comments' => [
+                    'class' => CommentBehavior::class,
+                    'moduleId' => 'project'
+                ],
+                [
+                    'class' => FileBehavior::class,
+                    'groups' => [
+                        'report' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx'
+                                ],
+                                'maxSize' => 5 * 1024 * 1024,
+                                'required' => true
+                            ]
                         ]
                     ]
+                ],
+                [
+                    'class' => CodeNumerator::class,
+                    'determinativeColumn' => 'categoryId'
+                ],
+                'tree' => [
+                    'class' => NestedSetsBehavior::class,
+                    'treeAttribute' => 'tree'
                 ]
-            ],
-            ResourceBehavior::class,
-            [
-                'class' => SettingCodeBehavior::class,
-                'determinativeColumn' => 'categoryId'
             ]
-        ];
+        );
     }
 
     public function rules()
@@ -76,9 +73,11 @@ class Project extends BaseResearch
                     'title',
                     'abstract',
                     'categoryId',
+                    'parentId'
                 ],
                 'required'
             ],
+            ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             ['title', 'trim'],
             ['title', 'string', 'max' => 255],
             [['abstract', 'proceedings'], 'string'],
@@ -107,6 +106,7 @@ class Project extends BaseResearch
             'abstract' => 'چکیده',
             'proposalId' => 'پروپوزال',
             'categoryId' => 'رده',
+            'parentId' => 'گزارش پدر',
             'resources' => 'منابع',
             'tags' => 'کلید واژه ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
@@ -132,11 +132,6 @@ class Project extends BaseResearch
             $this->lastCodePart;
     }
 
-    public function getResearcher()
-    {
-        return $this->hasOne(User::class, ['id' => 'createdBy']);
-    }
-
     public function getProposal()
     {
         return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
@@ -145,6 +140,15 @@ class Project extends BaseResearch
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
+    }
+
+    public function getPrefixedTitle()
+    {
+        $prefix = '';
+        for ($i = 0; $i < $this->depth; $i++) {
+            $prefix .= '- ';
+        }
+        return $prefix . ' ' . $this->codedTitle;
     }
 
     public function canUserUpdateOrDelete()
@@ -166,6 +170,19 @@ class Project extends BaseResearch
     public static function tableName()
     {
         return 'nad_research_project';
+    }
+
+    public static function find()
+    {
+        $query = parent::find();
+        $query->attachBehavior(
+            'nestedQuery',
+            'creocoder\nestedsets\NestedSetsQueryBehavior'
+        );
+        return $query->orderBy([
+            'nad_research_project.tree' => SORT_DESC,
+            'nad_research_project.lft' => SORT_ASC
+        ]);
     }
 
     public static function getStatusLables()

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
+use yii\bootstrap\Alert;
 use yii\widgets\DetailView;
 use nad\research\modules\project\models\Project;
 use nad\extensions\comment\widgets\commentList\CommentList;
@@ -11,6 +12,8 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'گزارش ها', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;
 
+$children = $model->children()->all();
+
 ?>
 
 <a class="ajaxcreate" data-gridpjaxid="project-view-detailviewpjax"></a>
@@ -18,6 +21,18 @@ $this->params['breadcrumbs'][] = $model->title;
     <?php Pjax::begin(['id' => 'project-view-detailviewpjax']) ?>
         <h2><?= $model->title . ' (' . Project::getStatusLables()[$model->status] . ')' ?></h2>
         <br>
+        <p>
+            <?php if ($model->canUserUpdateOrDelete() && count($children) > 0): ?>
+                <?php Alert::begin(['options' => ['class' => 'alert-warning'], 'closeButton' => false]); ?>
+                    <p>
+                        <b>احتیاط کنید!</b> با حذف کردن این گزارش تمامی گزارش هایی که زیرمجموعه آن هستند نیز از سیستم حذف می شوند. در حال حاضر این
+                        گزارش
+                        <strong>* <?= Yii::$app->i18n->translateNumber(count($children)) ?> *</strong>
+                        زیر مجموعه دارد.
+                    </p>
+                <?php Alert::end() ?>
+            <?php endif ?>
+        </p>
         <?= $this->render('_action-buttons', ['model' => $model]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
@@ -47,6 +62,20 @@ $this->params['breadcrumbs'][] = $model->title;
                                         ]
                                     );
                                 }
+                            ],
+                            [
+                                'attribute' => 'categoryId',
+                                'value' => $model->category->htmlCodedTitle,
+                                'format' => 'raw'
+                            ],
+                            [
+                                'label' => "گزارش پدر",
+                                'visible' => !$model->isRoot(),
+                                'value' => ($model->isRoot()) ?: Html::a(
+                                    $model->getParent()->htmlCodedTitle,
+                                    ['view', 'id' => $model->getParent()->id]
+                                ),
+                                'format' => 'raw'
                             ],
                             [
                                 'attribute' => 'resources',
