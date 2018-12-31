@@ -26,18 +26,17 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
+                    <?= $form->field($model, 'title')->textInput() ?>
                     <?= $form->field($model, 'type')->dropDownList(
                         Resource::getTypeLabels()
                     ) ?>
-                    <?= $form->field($model, 'title')->textInput() ?>
-                    <br>
                     <div class="input-medium">
+                        <?= Html::label('فایل') ?>
                         <?= SingleFileUpload::widget([
                             'model' => $model,
                             'group' => 'resource'
                         ]) ?>
                     </div>
-                    <br>
                     <?= $form->field($model, 'description')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
@@ -50,11 +49,11 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     ) ?>
                     <?= Button::widget([
                         'label' => 'انصراف',
+                        'type' => 'warning',
+                        'icon' => 'undo',
                         'options' => [
                             'class' => 'btn-lg close-sliding-form-button'
-                        ],
-                        'type' => 'warning',
-                        'icon' => 'undo'
+                        ]
                     ]) ?>
                 <?php ActiveForm::end() ?>
             </div>

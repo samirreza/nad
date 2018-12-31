@@ -6,7 +6,7 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
-use nad\research\modules\expert\models\Expert;
+use nad\office\modules\expert\models\Expert;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -31,7 +31,9 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         Select2::class,
                         [
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                Expert::getDepartmentExperts(
+                                    Expert::DEPARTMENT_RESEARCH
+                                ),
                                 'userId',
                                 'email'
                             ),

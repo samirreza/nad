@@ -5,6 +5,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
+use nad\research\modules\resource\models\Resource;
 
 $this->title = 'منابع';
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,8 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
-            'create' => [
+            'create-resource' => [
                 'label' => 'منبع جدید',
+                'url' => [
+                    'resource/manage/create',
+                    'clientId' => $clientId
+                ],
+                'icon' => 'plus',
+                'type' => 'success',
                 'options' => [
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-index-gridviewpjax'
@@ -30,11 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    [
-                        'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => true
-                    ],
+                    'uniqueCode',
                     'title',
+                    [
+                        'attribute' => 'type',
+                        'value' => function ($model) {
+                            return Resource::getTypeLabels()[$model->type];
+                        },
+                        'filter' => Resource::getTypeLabels()
+                    ],
                     [
                         'header' => 'فایل',
                         'format' => 'raw',
@@ -48,9 +59,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             );
                         }
                     ],
-                    'createdAt:dateTime',
+                    'createdAt:date',
                     [
-                        'class' => 'core\grid\AjaxActionColumn'
+                        'class' => 'core\grid\AjaxActionColumn',
+                        'controller' => 'resource/manage',
+                        'template' => '{update} {view}'
                     ]
                 ]
             ]) ?>

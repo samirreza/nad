@@ -6,7 +6,9 @@ use core\tree\NestedSetsBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
+use nad\research\modules\source\models\Source;
 use nad\research\common\behaviors\CodeNumerator;
+use creocoder\nestedsets\NestedSetsQueryBehavior;
 use nad\research\modules\proposal\models\Proposal;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
@@ -14,8 +16,6 @@ use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Project extends BaseResearch
 {
-    const STATUS_ARCHIVED = 7;
-
     public function behaviors()
     {
         return array_merge(
@@ -47,8 +47,27 @@ class Project extends BaseResearch
                                     'ppt',
                                     'pptx'
                                 ],
-                                'maxSize' => 5 * 1024 * 1024,
+                                'maxSize' => 10 * 1024 * 1024,
                                 'required' => true
+                            ]
+                        ],
+                        'doc' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 10 * 1024 * 1024
                             ]
                         ]
                     ]
@@ -71,6 +90,7 @@ class Project extends BaseResearch
             [
                 [
                     'title',
+                    'createdAt',
                     'abstract',
                     'categoryId',
                     'parentId'
@@ -78,16 +98,16 @@ class Project extends BaseResearch
                 'required'
             ],
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
-            ['title', 'trim'],
-            ['title', 'string', 'max' => 255],
+            [['title', 'englishTitle'], 'trim'],
+            [['title', 'englishTitle'], 'string', 'max' => 255],
             [['abstract', 'proceedings'], 'string'],
             [['tags', 'resources'], 'safe'],
             [
-                ['abstract', 'proceedings'],
+                ['title', 'abstract', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
             [
-                'sessionDate',
+                ['sessionDate', 'createdAt'],
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
@@ -100,9 +120,10 @@ class Project extends BaseResearch
     {
         return [
             'title' => 'عنوان',
+            'englishTitle' => 'عنوان انگلیسی',
             'uniqueCode' => 'شناسه',
-            'createdBy' => 'محقق',
-            'createdAt' => 'تاریخ اتمام گزارش',
+            'createdBy' => 'کارشناس',
+            'createdAt' => 'تاریخ درج',
             'abstract' => 'چکیده',
             'proposalId' => 'پروپوزال',
             'categoryId' => 'رده',
@@ -151,18 +172,13 @@ class Project extends BaseResearch
         return $prefix . ' ' . $this->codedTitle;
     }
 
-    public function canUserUpdateOrDelete()
-    {
-        if ($this->status == self::STATUS_ARCHIVED) {
-            return false;
-        }
-        return parent::canUserUpdateOrDelete();
-    }
-
     public function afterSave($insert, $changedAttributes)
     {
         if ($insert) {
-            $this->proposal->changeStatus(Proposal::STATUS_PROJECT_CREATED);
+            $this->proposal->changeStatus(Proposal::STATUS_IN_NEXT_STEP);
+        } elseif ($this->status == self::STATUS_FINISHED) {
+            $this->proposal->changeStatus(Proposal::STATUS_FINISHED);
+            $this->proposal->source->changeStatus(Source::STATUS_FINISHED);
         }
         parent::afterSave($insert, $changedAttributes);
     }
@@ -177,7 +193,7 @@ class Project extends BaseResearch
         $query = parent::find();
         $query->attachBehavior(
             'nestedQuery',
-            'creocoder\nestedsets\NestedSetsQueryBehavior'
+            NestedSetsQueryBehavior::class
         );
         return $query->orderBy([
             'nad_research_project.tree' => SORT_DESC,
@@ -187,13 +203,17 @@ class Project extends BaseResearch
 
     public static function getStatusLables()
     {
-        $statusLabels = array_merge(
+        $statusLabels = array_replace(
             parent::getStatusLables(),
             [
-                self::STATUS_ARCHIVED => 'آرشیو شده'
+                self::STATUS_FINISHED => 'آرشیو شده'
             ]
         );
-        unset($statusLabels[self::STATUS_REJECTED]);
+        unset(
+            $statusLabels[self::STATUS_REJECTED],
+            $statusLabels[self::STATUS_READY_FOR_NEXT_STEP],
+            $statusLabels[self::STATUS_IN_NEXT_STEP]
+        );
         return $statusLabels;
     }
 }

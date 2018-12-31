@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
+use nad\research\modules\resource\models\Resource;
 
 ?>
 
@@ -18,6 +19,12 @@ use yii\widgets\DetailView;
                     'attributes' => [
                         'uniqueCode',
                         'title',
+                        [
+                            'attribute' => 'type',
+                            'value' => function ($model) {
+                                return Resource::getTypeLabels()[$model->type];
+                            }
+                        ],
                         [
                             'label' => 'فایل',
                             'format' => 'raw',

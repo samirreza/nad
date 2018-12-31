@@ -18,16 +18,21 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
-                    'title',
+                    [
+                        'class' => 'core\grid\TitleColumn',
+                        'headerOptions' => ['style' => 'width:30%']
+                    ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => false
+                        'isAjaxGrid' => false,
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
                             return $model->researcher->email;
-                        }
+                        },
+                        'headerOptions' => ['style' => 'width:25%']
                     ],
                     'createdAt:date',
                     [

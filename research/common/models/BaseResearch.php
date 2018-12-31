@@ -21,13 +21,19 @@ class BaseResearch extends \yii\db\ActiveRecord implements Codable
     const STATUS_WAITING_FOR_MEETING = 4;
     const STATUS_MEETING_HELD = 5;
     const STATUS_ACCEPTED = 6;
+    const STATUS_READY_FOR_NEXT_STEP = 7;
+    const STATUS_IN_NEXT_STEP = 8;
+    const STATUS_FINISHED = 9;
 
     const SCENARIO_SET_SESSION_DATE = 'setSessionDate';
 
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => false
+            ],
             [
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
@@ -109,7 +115,10 @@ class BaseResearch extends \yii\db\ActiveRecord implements Codable
             self::STATUS_DELIVERED_TO_MANAGER => 'ارسال شده به مدیر',
             self::STATUS_WAITING_FOR_MEETING => 'در انتظار جلسه',
             self::STATUS_MEETING_HELD => 'جلسه برگزار شد',
-            self::STATUS_ACCEPTED => 'پذیرفته شد'
+            self::STATUS_ACCEPTED => 'پذیرفته شد',
+            self::STATUS_READY_FOR_NEXT_STEP => 'آماده برای مرحله بعد',
+            self::STATUS_IN_NEXT_STEP => 'قرار گرفته در مرحله بعد',
+            self::STATUS_FINISHED => 'نهایی شده'
         ];
     }
 }

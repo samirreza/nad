@@ -17,6 +17,10 @@ class Resource extends \yii\db\ActiveRecord implements Codable
     const TYPE_PAPER = 'P';
     const TYPE_CATALOGUE = 'C';
     const TYPE_THESIS = 'T';
+    const TYPE_REPORT = 'R';
+    const TYPE_WEBSITE = 'w';
+
+    const CLIENT_INVESTIGATION = 0;
 
     public function behaviors()
     {
@@ -40,7 +44,7 @@ class Resource extends \yii\db\ActiveRecord implements Codable
                                 'ppt',
                                 'pptx'
                             ],
-                            'maxSize' => 5 * 1024 * 1024,
+                            'maxSize' => 10 * 1024 * 1024,
                             'required' => true
                         ]
                     ]
@@ -57,11 +61,17 @@ class Resource extends \yii\db\ActiveRecord implements Codable
     {
         return [
             [['title', 'type'], 'required'],
-            [['title', 'type'], 'trim'],
+            ['title', 'trim'],
             ['title', 'string', 'max' => 255],
             ['description', 'string'],
-            [['title', 'description'], FarsiCharactersValidator::class],
-            [['title', 'description'], 'default', 'value' => null]
+            ['description', 'default', 'value' => null],
+            [
+                'title',
+                'unique',
+                'targetAttribute' => ['title', 'type', 'clientId'],
+                'message' => 'این عنوان قبلا در سیستم درج شده است.'
+            ],
+            [['title', 'description'], FarsiCharactersValidator::class]
         ];
     }
 
@@ -69,10 +79,10 @@ class Resource extends \yii\db\ActiveRecord implements Codable
     {
         return [
             'uniqueCode' => 'شناسه',
-            'type' => 'نوع',
             'title' => 'عنوان',
+            'type' => 'نوع',
             'description' => 'توضیحات',
-            'createdAt' => 'تاریخ درج منبع'
+            'createdAt' => 'تاریخ درج'
         ];
     }
 
@@ -106,7 +116,9 @@ class Resource extends \yii\db\ActiveRecord implements Codable
             self::TYPE_BOOK => 'کتاب',
             self::TYPE_PAPER => 'مقاله',
             self::TYPE_CATALOGUE => 'بروشور',
-            self::TYPE_THESIS => 'پایان نامه'
+            self::TYPE_THESIS => 'پایان نامه',
+            self::TYPE_REPORT => 'گزارش',
+            self::TYPE_WEBSITE => 'وب سایت'
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 use theme\widgets\ActionButtons;
 use nad\research\common\models\BaseResearch;
-use nad\research\modules\proposal\models\Proposal;
 
 ?>
 
@@ -14,7 +13,7 @@ use nad\research\modules\proposal\models\Proposal;
             'icon' => 'send',
             'type' => 'info',
             'visible' => $model->canUserDeliverToManager(),
-            'visibleFor' => ['expert', 'research.manage'],
+            'visibleFor' => ['research.expert', 'research.manage'],
             'url' => ['deliver-to-manager', 'id' => $model->id],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -74,7 +73,7 @@ use nad\research\modules\proposal\models\Proposal;
             'label' => 'تعیین کارشناس',
             'icon' => 'graduation-cap',
             'type' => 'info',
-            'visible' => $model->status == Proposal::STATUS_ACCEPTED,
+            'visible' => $model->status == BaseResearch::STATUS_ACCEPTED,
             'url' => ['set-expert', 'id' => $model->id],
             'options' => ['class' => 'ajaxupdate']
         ],
@@ -82,12 +81,12 @@ use nad\research\modules\proposal\models\Proposal;
             'label' => 'ارسال برای تهیه گزارش',
             'icon' => 'clone',
             'type' => 'success',
-            'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
+            'visible' => $model->status == BaseResearch::STATUS_ACCEPTED &&
                 $model->expertUserId,
             'url' => [
                 'change-status',
                 'id' => $model->id,
-                'newStatus' => Proposal::STATUS_READY_FOR_PROJECT
+                'newStatus' => BaseResearch::STATUS_READY_FOR_NEXT_STEP
             ],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -95,7 +94,7 @@ use nad\research\modules\proposal\models\Proposal;
             'label' => 'درج گزارش',
             'icon' => 'plus',
             'type' => 'success',
-            'visibleFor' => ['expert', 'research.manage'],
+            'visibleFor' => ['research.expert', 'research.manage'],
             'visible' => $model->canUserCreateProject(),
             'url' => [
                 '/research/project/manage/create',

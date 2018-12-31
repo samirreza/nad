@@ -3,6 +3,7 @@
 namespace nad\common;
 
 use Yii;
+use nad\research\modules\resource\models\Resource;
 
 class SideMenu extends \theme\widgets\Menu
 {
@@ -21,7 +22,7 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'منشا',
                                 'url' => ['/research/source/manage/index'],
                                 'visible' => $user->canAccessAny([
-                                    'expert',
+                                    'research.expert',
                                     'research.manage'
                                 ])
                             ],
@@ -29,7 +30,7 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'پروپوزال',
                                 'url' => ['/research/proposal/manage/index'],
                                 'visible' => $user->canAccessAny([
-                                    'expert',
+                                    'research.expert',
                                     'research.manage'
                                 ])
                             ],
@@ -37,13 +38,21 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'گزارش',
                                 'url' => ['/research/project/manage/index'],
                                 'visible' => $user->canAccessAny([
-                                    'expert',
+                                    'research.expert',
                                     'research.manage'
                                 ])
                             ],
                             [
                                 'label' => 'دستور العمل بهره برداری',
                                 'url' => '#'
+                            ],
+                            [
+                                'label' => 'منابع',
+                                'url' => ['/research/investigation-resource'],
+                                'visible' => $user->canAccessAny([
+                                    'research.expert',
+                                    'research.manage'
+                                ])
                             ]
                         ]
                     ],
@@ -70,7 +79,7 @@ class SideMenu extends \theme\widgets\Menu
                             [
                                 'label' => 'تامین کنندگان',
                                 'url' => '#',
-                            ],
+                            ]
                         ]
                     ],
                     [
@@ -100,21 +109,13 @@ class SideMenu extends \theme\widgets\Menu
                         ]
                     ],
                     [
-                        'label' => 'منابع',
-                        'url' => ['/research/resource/manage/index'],
-                        'visible' => $user->canAccessAny([
-                            'expert',
-                            'research.manage'
-                        ])
-                    ],
-                    [
-                        'label' => 'کارشناسان',
-                        'url' => ['/research/expert/manage/index'],
-                        'visible' => $user->can('research.manage')
-                    ],
-                    [
                         'label' => 'گزارش های مدیریتی',
                         'items' => [
+                            [
+                                'label' => 'منشا',
+                                'url' => ['/research/source/manage/report'],
+                                'visible' => $user->can('manager')
+                            ],
                             [
                                 'label' => 'پروپوزال',
                                 'url' => ['/research/proposal/manage/report'],
@@ -212,7 +213,14 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'اداری',
-                'icon' => 'wrench'
+                'icon' => 'wrench',
+                'items' => [
+                    [
+                        'label' => 'کارشناسان',
+                        'url' => ['/office/expert/manage/index'],
+                        'visible' => $user->can('office.manageExpert')
+                    ]
+                ]
             ],
             [
                 'label' => 'بندر',

@@ -8,7 +8,9 @@ use yii\helpers\ArrayHelper;
 use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
+use nad\research\modules\resource\models\Resource;
 use nad\research\modules\source\models\SourceReason;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use nad\research\modules\resource\widgets\selectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -24,6 +26,21 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
+                    <?= $form->field($model, 'englishTitle')->textInput([
+                        'maxlength' => 255,
+                        'class' => 'form-control input-large'
+                    ]) ?>
+                    <?= $form->field($model, 'createdAt')
+                        ->widget(
+                            JalaliDatePicker::class,
+                            [
+                                'options' => [
+                                    'class' => 'form-control input-medium',
+                                    'autocomplete' => 'off'
+                                ]
+                            ]
+                        )
+                    ?>
                     <?= $form->field($model, 'reason')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
@@ -68,7 +85,12 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             ]
                         ]
                     ) ?>
-                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
+                    <?= $form->field($model, 'resources')->widget(
+                        SelectResource::class,
+                        [
+                            'clientId' => Resource::CLIENT_INVESTIGATION
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

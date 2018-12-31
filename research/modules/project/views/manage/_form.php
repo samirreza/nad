@@ -9,6 +9,8 @@ use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\project\models\Category;
+use nad\research\modules\resource\models\Resource;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\research\modules\resource\widgets\selectResource\SelectResource;
 
@@ -29,14 +31,28 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <br>
+                    <?= $form->field($model, 'englishTitle')->textInput([
+                        'maxlength' => 255,
+                        'class' => 'form-control input-large'
+                    ]) ?>
+                    <?= $form->field($model, 'createdAt')
+                        ->widget(
+                            JalaliDatePicker::class,
+                            [
+                                'options' => [
+                                    'class' => 'form-control input-medium',
+                                    'autocomplete' => 'off'
+                                ]
+                            ]
+                        )
+                    ?>
                     <div class="input-small">
+                        <?= Html::label('فایل') ?>
                         <?= SingleFileUpload::widget([
                             'model' => $model,
                             'group' => 'report'
                         ]) ?>
                     </div>
-                    <br>
                     <?= $form->field($model, 'abstract')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
@@ -66,7 +82,17 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                                 )
                         ]
                     ) ?>
-                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
+                    <?= $form->field($model, 'resources')->widget(
+                        SelectResource::class,
+                        [
+                            'clientId' => Resource::CLIENT_INVESTIGATION
+                        ]
+                    ) ?>
+                    <?= Html::label('مدارک') ?>
+                    <?= SingleFileUpload::widget([
+                        'model' => $model,
+                        'group' => 'doc'
+                    ]) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

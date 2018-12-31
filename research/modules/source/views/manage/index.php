@@ -7,7 +7,7 @@ use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
 use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
-use nad\research\modules\expert\models\Expert;
+use nad\office\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
 use nad\research\modules\source\models\SourceReason;
 
@@ -30,19 +30,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\TitleColumn'],
+                    [
+                        'class' => 'core\grid\TitleColumn',
+                        'headerOptions' => ['style' => 'width:30%']
+                    ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => false
+                        'isAjaxGrid' => false,
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'attribute' => 'createdBy',
-                        'headerOptions' => ['style' => 'width:300px'],
+                        'value' => function ($model) {
+                            return $model->researcher->email;
+                        },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                Expert::getDepartmentExperts(
+                                    Expert::DEPARTMENT_RESEARCH
+                                ),
                                 'userId',
                                 'email'
                             ),
@@ -53,13 +61,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'value' => function ($model) {
-                            return $model->researcher->email;
-                        }
+                        'headerOptions' => ['style' => 'width:20%']
                     ],
                     [
                         'attribute' => 'mainReasonId',
-                        'headerOptions' => ['style' => 'width:300px'],
+                        'value' => function ($model) {
+                            return $model->mainReason->title;
+                        },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'mainReasonId',
@@ -75,10 +83,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'value' => function ($model) {
-                            return $model->mainReason->title;
-                        }
+                        'headerOptions' => ['style' => 'width:15%']
                     ],
+                    'createdAt:date',
                     [
                         'attribute' => 'status',
                         'filter' => Source::getStatusLables(),
@@ -104,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'visibleButtons' => [
                             'view' => Yii::$app->user->canAccessAny([
-                                'expert',
+                                'research.expert',
                                 'research.manage'
                             ]),
                             'update' => function ($model, $key, $index) {

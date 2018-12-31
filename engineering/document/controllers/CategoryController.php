@@ -69,6 +69,6 @@ class CategoryController extends \core\controllers\AjaxAdminController
         } else {
             $root = $this->findModel($id);
         }
-        return [$root->getFamilyTreeArray()];
+        return $root ? [$root->getFamilyTreeArray()] : [];
     }
 }

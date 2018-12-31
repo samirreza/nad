@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\research\modules\expert\controllers;
+namespace nad\office\modules\expert\controllers;
 
 use yii\filters\AccessControl;
 use core\controllers\AjaxAdminController;
-use nad\research\modules\expert\models\Expert;
-use nad\research\modules\expert\models\ExpertSearch;
+use nad\office\modules\expert\models\Expert;
+use nad\office\modules\expert\models\ExpertSearch;
 
 class ManageController extends AjaxAdminController
 {
@@ -26,7 +26,7 @@ class ManageController extends AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['research.manage']
+                            'roles' => ['office.manageExpert']
                         ]
                     ]
                 ]

@@ -36,12 +36,20 @@ class ResourceBehavior extends Behavior
         $this->deleteResources();
 
         foreach ($this->resources as $resource) {
-            Yii::$app->db->createCommand()->insert('nad_research_resource_relation', [
-                'resourceId' => $resource,
-                'modelClassName' => (new \ReflectionClass($this->owner))
+            $rows[] = [
+                $resource,
+                (new \ReflectionClass($this->owner))
                     ->getShortName(),
-                'modelId' => $this->owner->id
-            ])->execute();
+                $this->owner->id
+            ];
+        }
+
+        if (!empty($rows)) {
+            Yii::$app->db->createCommand()->batchInsert(
+                'nad_research_resource_relation',
+                ['resourceId', 'modelClassName', 'modelId'],
+                $rows
+            )->execute();
         }
     }
 

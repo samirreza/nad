@@ -9,7 +9,8 @@ class ResourceSearch extends Resource
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string']
+            ['clientId', 'integer'],
+            [['uniqueCode', 'title', 'type'], 'string']
         ];
     }
 
@@ -33,9 +34,13 @@ class ResourceSearch extends Resource
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['clientId' => $this->clientId]);
+
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
+
+        $query->andFilterWhere(['type' => $this->type]);
 
         return $dataProvider;
     }

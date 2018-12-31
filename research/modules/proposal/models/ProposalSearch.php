@@ -16,6 +16,7 @@ class ProposalSearch extends Proposal
             [
                 [
                     'title',
+                    'englishTitle',
                     'uniqueCode',
                     'necessity',
                     'mainPurpose',
@@ -26,7 +27,7 @@ class ProposalSearch extends Proposal
             ],
             [['createdBy', 'status', 'sourceId', 'expertUserId'], 'integer'],
             ['tags', 'safe'],
-            [['beginDate','endDate'], JalaliDateToTimestamp::class],
+            [['beginDate','endDate'], JalaliDateToTimestamp::class]
         ];
     }
 
@@ -37,10 +38,7 @@ class ProposalSearch extends Proposal
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'createdAt',
-                    'deliverToManagerDate',
-                    'sessionDate',
-                    'status'
+                    'createdAt'
                 ],
                 'defaultOrder' => [
                     'createdAt' => SORT_DESC
@@ -62,7 +60,15 @@ class ProposalSearch extends Proposal
 
         $query->andFilterWhere(['like', 'title', $this->title]);
 
+        $query->andFilterWhere(['like', 'englishTitle', $this->englishTitle]);
+
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+
+        $query->hasAnyTags($this->tags);
+
+        $query->andFilterWhere(['>=', 'createdAt', $this->beginDate]);
+
+        $query->andFilterWhere(['<=', 'createdAt', $this->endDate]);
 
         $query->andFilterWhere(['like', 'necessity', $this->necessity]);
 
@@ -71,12 +77,6 @@ class ProposalSearch extends Proposal
         $query->andFilterWhere(['like', 'secondaryPurpose', $this->secondaryPurpose]);
 
         $query->andFilterWhere(['like', 'proceedings', $this->proceedings]);
-
-        $query->andFilterWhere(['>=', 'createdAt', $this->beginDate]);
-
-        $query->andFilterWhere(['<=', 'createdAt', $this->endDate]);
-
-        $query->hasAnyTags($this->tags);
 
         return $dataProvider;
     }

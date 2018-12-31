@@ -3,12 +3,12 @@
 namespace nad\research\modules\source\models;
 
 use Yii;
-use core\behaviors\PreventDeleteBehavior;
+use nad\office\modules\expert\models\Expert;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
-use nad\research\modules\expert\models\Expert;
 use nad\research\common\behaviors\CodeNumerator;
 use nad\research\modules\proposal\models\Proposal;
+use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -17,9 +17,6 @@ use nad\research\modules\source\behaviors\ReasonsBehavior;
 
 class Source extends BaseResearch
 {
-    const STATUS_READY_FOR_PROPOSAL = 7;
-    const STATUS_PROPOSAL_CREATED = 8;
-
     const SCENARIO_SET_EXPERTS = 'setExperts';
 
     public function behaviors()
@@ -38,15 +35,6 @@ class Source extends BaseResearch
                     'moduleId' => 'source'
                 ],
                 [
-                    'class' => PreventDeleteBehavior::class,
-                    'relations' => [
-                        [
-                            'relationMethod' => 'getProposals',
-                            'relationName' => 'پروپوزال'
-                        ]
-                    ]
-                ],
-                [
                     'class' => CodeNumerator::class,
                     'determinativeColumn' => 'mainReasonId'
                 ]
@@ -61,6 +49,7 @@ class Source extends BaseResearch
                 [
                     'title',
                     'code',
+                    'createdAt',
                     'reason',
                     'necessity',
                     'reasons',
@@ -70,13 +59,13 @@ class Source extends BaseResearch
             ],
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             ['experts', 'required', 'on' => self::SCENARIO_SET_EXPERTS],
-            [['title', 'code'], 'trim'],
-            ['title', 'string', 'max' => 255],
+            [['title', 'englishTitle', 'code'], 'trim'],
+            [['title', 'englishTitle'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 4, 'min' => 4],
             [['reason', 'necessity', 'proceedings'], 'string'],
             [['tags', 'resources'], 'safe'],
             [
-                'sessionDate',
+                ['sessionDate', 'createdAt'],
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
@@ -100,22 +89,23 @@ class Source extends BaseResearch
     {
         return [
             'title' => 'عنوان',
-            'code' => 'کد موضوع',
+            'englishTitle' => 'عنوان انگلیسی',
             'uniqueCode' => 'شناسه',
-            'createdBy' => 'پیشنهاد دهنده',
-            'createdAt' => 'تاریخ پیشنهاد',
-            'reason' => 'دلایل طرح موضوع',
+            'createdBy' => 'کارشناس',
+            'createdAt' => 'تاریخ درج',
+            'reason' => 'علت پیدایش',
             'necessity' => 'ضرورت های طرح موضوع',
-            'reasons' => 'علل پیدایش',
+            'code' => 'کد موضوع',
             'mainReasonId' => 'علت اصلی',
+            'reasons' => 'علل فرعی',
             'resources' => 'منابع',
             'tags' => 'کلید واژه ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه برگزاری جلسه',
             'experts' => 'کارشناسان نگارش پروپوزال',
-            'status' => 'وضعیت',
-            'updatedAt' => 'آخرین بروزرسانی'
+            'updatedAt' => 'آخرین بروزرسانی',
+            'status' => 'وضعیت'
         ];
     }
 
@@ -165,17 +155,12 @@ class Source extends BaseResearch
         return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
-    public function canUserUpdateOrDelete()
-    {
-        if ($this->status == self::STATUS_PROPOSAL_CREATED) {
-            return false;
-        }
-        return parent::canUserUpdateOrDelete();
-    }
-
     public function canUserCreateProposal()
     {
-        if ($this->status == self::STATUS_READY_FOR_PROPOSAL) {
+        if (
+            $this->status == self::STATUS_READY_FOR_NEXT_STEP ||
+            $this->status == self::STATUS_IN_NEXT_STEP
+        ) {
             if (Yii::$app->user->can('research.manage')) {
                 return true;
             }
@@ -189,13 +174,28 @@ class Source extends BaseResearch
         return 'nad_research_source';
     }
 
+    public static function find()
+    {
+        $query = parent::find();
+        $query->attachBehavior(
+            'TaggableQueryBehavior',
+            [
+                'class' => TaggableQueryBehavior::class,
+                'modelShortClassName' => (new \ReflectionClass(self::class))
+                    ->getShortName(),
+                'moduleId' => 'proposal'
+            ]
+        );
+        return $query;
+    }
+
     public static function getStatusLables()
     {
-        return array_merge(
+        return array_replace(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROPOSAL => 'آماده برای تهیه پروپوزال',
-                self::STATUS_PROPOSAL_CREATED => 'در حال تکمیل پروپوزال'
+                self::STATUS_READY_FOR_NEXT_STEP => 'آماده برای تهیه پروپوزال',
+                self::STATUS_IN_NEXT_STEP => 'در حال تکمیل پروپوزال'
             ]
         );
     }

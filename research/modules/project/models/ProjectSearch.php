@@ -26,10 +26,7 @@ class ProjectSearch extends Project
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'createdAt',
-                    'deliverToManagerDate',
-                    'sessionDate',
-                    'status'
+                    'createdAt'
                 ],
                 'defaultOrder' => [
                     'createdAt' => SORT_DESC

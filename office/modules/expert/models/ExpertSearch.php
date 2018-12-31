@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\research\modules\expert\models;
+namespace nad\office\modules\expert\models;
 
 use yii\data\ActiveDataProvider;
 
@@ -9,7 +9,7 @@ class ExpertSearch extends Expert
     public function rules()
     {
         return [
-            ['userId', 'integer']
+            [['userId', 'departmentId'], 'integer']
         ];
     }
 
@@ -20,7 +20,6 @@ class ExpertSearch extends Expert
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'id',
                     'createdAt'
                 ],
                 'defaultOrder' => [
@@ -34,7 +33,10 @@ class ExpertSearch extends Expert
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['userId' => $this->userId]);
+        $query->andFilterWhere([
+            'userId' => $this->userId,
+            'departmentId' => $this->departmentId
+        ]);
 
         return $dataProvider;
     }

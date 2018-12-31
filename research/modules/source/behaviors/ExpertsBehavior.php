@@ -53,14 +53,15 @@ class ExpertsBehavior extends \yii\base\Behavior
         foreach ($this->experts as $expert) {
             $rows[] = [
                 $expert,
-                $this->owner->getPrimaryKey()
+                $this->owner->getPrimaryKey(),
+                time()
             ];
         }
 
         if (!empty($rows)) {
             Yii::$app->db->createCommand()->batchInsert(
                 'nad_research_source_expert_relation',
-                ['userId', 'sourceId'],
+                ['userId', 'sourceId', 'time'],
                 $rows
             )->execute();
         }
@@ -80,6 +81,17 @@ class ExpertsBehavior extends \yii\base\Behavior
             $emails .= User::findOne($expertId)->email . ', ';
         }
         return trim($emails, ', ');
+    }
+
+    public function getDeliveryToExpertsTime()
+    {
+        return (new Query())
+            ->select(['time'])
+            ->from('nad_research_source_expert_relation')
+            ->where([
+                'sourceId' => $this->owner->getPrimaryKey()
+            ])
+            ->scalar();
     }
 
     public function hasAnyExpert()

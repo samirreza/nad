@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         'model' => $model,
                         'attributes' => [
                             'title',
+                            'englishTitle',
                             'uniqueCode',
                             [
                                 'attribute' => 'createdBy',
@@ -35,20 +36,47 @@ $this->params['breadcrumbs'][] = $model->title;
                                     return $model->researcher->email;
                                 }
                             ],
-                            'createdAt:date',
-                            'deliverToManagerDate:date',
-                            'sessionDate:date',
                             [
-                                'attribute' => 'tags',
+                                'label' => 'تاریخ تحویل به کارشناس',
+                                'format' => 'date',
                                 'value' => function ($model) {
-                                    return $model->getTagsAsString();
+                                    return $model->source->getDeliveryToExpertsTime();
                                 }
                             ],
+                            'createdAt:date',
                             [
                                 'attribute' => 'resources',
                                 'format' => 'raw',
                                 'value' => function ($model) {
                                     return $model->getClickableResourcesAsString();
+                                }
+                            ],
+                            [
+                                'label' => 'مدارک',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    if (!$model->getFile('documents')) {
+                                        return;
+                                    }
+                                    return Html::a(
+                                        'دانلود مدارک',
+                                        $model->getFile('documents')->getUrl(),
+                                        [
+                                            'data-pjax' => '0'
+                                        ]
+                                    );
+                                }
+                            ],
+                            [
+                                'attribute' => 'partners',
+                                'value' => function ($model) {
+                                    return $model->getPartnerEmailsAsString();
+                                }
+                            ],
+                            [
+                                'attribute' => 'tags',
+                                'value' => function ($model) {
+                                    return $model->getTagsAsString();
                                 }
                             ],
                             [
@@ -68,6 +96,8 @@ $this->params['breadcrumbs'][] = $model->title;
                                     );
                                 }
                             ],
+                            'deliverToManagerDate:date',
+                            'sessionDate:date',
                             [
                                 'attribute' => 'expertUserId',
                                 'value' => function ($model) {
@@ -75,13 +105,13 @@ $this->params['breadcrumbs'][] = $model->title;
                                         ->email ?? null;
                                 }
                             ],
+                            'updatedAt:date',
                             [
                                 'attribute' => 'status',
                                 'value' => function ($model) {
                                     return Proposal::getStatusLables()[$model->status];
                                 }
-                            ],
-                            'updatedAt:date'
+                            ]
                         ]
                     ]) ?>
                 <?php Panel::end() ?>

@@ -3,7 +3,7 @@
 namespace nad\research\modules\proposal\models;
 
 use Yii;
-use core\behaviors\PreventDeleteBehavior;
+use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
 use nad\research\modules\source\models\Source;
@@ -12,12 +12,10 @@ use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\research\modules\proposal\behaviors\PartnersBehavior;
 
 class Proposal extends BaseResearch
 {
-    const STATUS_READY_FOR_PROJECT = 7;
-    const STATUS_PROJECT_CREATED = 8;
-
     const SCENARIO_SET_EXPERT = 'setExpert';
 
     public function behaviors()
@@ -34,14 +32,30 @@ class Proposal extends BaseResearch
                     'moduleId' => 'proposal'
                 ],
                 [
-                    'class' => PreventDeleteBehavior::class,
-                    'relations' => [
-                        [
-                            'relationMethod' => 'getProject',
-                            'relationName' => 'گزارش'
+                    'class' => FileBehavior::class,
+                    'groups' => [
+                        'documents' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 10 * 1024 * 1024
+                            ]
                         ]
                     ]
-                ]
+                ],
+                PartnersBehavior::class
             ]
         );
     }
@@ -53,6 +67,7 @@ class Proposal extends BaseResearch
                 [
                     'title',
                     'code',
+                    'createdAt',
                     'necessity',
                     'mainPurpose',
                     'secondaryPurpose'
@@ -61,23 +76,26 @@ class Proposal extends BaseResearch
             ],
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             ['expertUserId', 'required', 'on' => self::SCENARIO_SET_EXPERT],
-            ['title', 'string', 'max' => 255],
+            [['title', 'englishTitle', 'code'], 'trim'],
+            [['title', 'englishTitle'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 4, 'min' => 4],
-            [['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'], 'string'],
-            [['tags', 'resources'], 'safe'],
-            [['title', 'code'], 'trim'],
-            ['tags', 'validateTagsCount', 'skipOnEmpty' => false],
             [
                 ['necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
+                'string'
+            ],
+            [['tags', 'resources', 'partners'], 'safe'],
+            [
+                ['title', 'necessity', 'mainPurpose', 'secondaryPurpose', 'proceedings'],
                 FarsiCharactersValidator::class
             ],
             [
-                'sessionDate',
+                ['sessionDate', 'createdAt'],
                 JalaliDateToTimestamp::class,
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
-            ]
+            ],
+            ['tags', 'validateTagsCount', 'skipOnEmpty' => false]
         ];
     }
 
@@ -102,14 +120,16 @@ class Proposal extends BaseResearch
     {
         return [
             'title' => 'عنوان',
-            'code' => 'کد موضوع',
+            'englishTitle' => 'عنوان انگلیسی',
             'uniqueCode' => 'شناسه',
-            'createdBy' => 'محقق',
-            'createdAt' => 'تاریخ ارائه',
+            'createdBy' => 'کارشناس',
+            'createdAt' => 'تاریخ درج',
             'necessity' => 'ضرورت اجرای طرح',
             'mainPurpose' => 'هدف اصلی',
             'secondaryPurpose' => 'اهداف فرعی',
+            'code' => 'کد موضوع',
             'resources' => 'منابع',
+            'partners' => 'همکاران',
             'tags' => 'کلید واژه ها',
             'sourceId' => 'منشا',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
@@ -165,7 +185,7 @@ class Proposal extends BaseResearch
 
     public function canUserCreateProject()
     {
-        if ($this->status == self::STATUS_READY_FOR_PROJECT) {
+        if ($this->status == self::STATUS_READY_FOR_NEXT_STEP) {
             if (Yii::$app->user->can('research.manage')) {
                 return true;
             }
@@ -174,18 +194,10 @@ class Proposal extends BaseResearch
         return false;
     }
 
-    public function canUserUpdateOrDelete()
-    {
-        if ($this->status == self::STATUS_PROJECT_CREATED) {
-            return false;
-        }
-        return parent::canUserUpdateOrDelete();
-    }
-
     public function afterSave($insert, $changedAttributes)
     {
         if ($insert) {
-            $this->source->changeStatus(Source::STATUS_PROPOSAL_CREATED);
+            $this->source->changeStatus(Source::STATUS_IN_NEXT_STEP);
         }
         parent::afterSave($insert, $changedAttributes);
     }
@@ -212,11 +224,11 @@ class Proposal extends BaseResearch
 
     public static function getStatusLables()
     {
-        $statusLabels = array_merge(
+        $statusLabels = array_replace(
             parent::getStatusLables(),
             [
-                self::STATUS_READY_FOR_PROJECT => 'آماده برای نگارش گزارش',
-                self::STATUS_PROJECT_CREATED => 'در حال تکمیل گزارش'
+                self::STATUS_READY_FOR_NEXT_STEP => 'آماده برای نگارش گزارش',
+                self::STATUS_IN_NEXT_STEP => 'در حال تکمیل گزارش'
             ]
         );
         unset($statusLabels[self::STATUS_REJECTED]);

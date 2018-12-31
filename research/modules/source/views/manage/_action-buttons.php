@@ -2,7 +2,6 @@
 
 use theme\widgets\ActionButtons;
 use nad\research\common\models\BaseResearch;
-use nad\research\modules\source\models\Source;
 
 ?>
 
@@ -14,7 +13,7 @@ use nad\research\modules\source\models\Source;
             'icon' => 'send',
             'type' => 'info',
             'visible' => $model->canUserDeliverToManager(),
-            'visibleFor' => ['expert', 'research.manage'],
+            'visibleFor' => ['research.expert', 'research.manage'],
             'url' => ['deliver-to-manager', 'id' => $model->id],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -74,11 +73,11 @@ use nad\research\modules\source\models\Source;
             'label' => 'رد',
             'icon' => 'times',
             'type' => 'danger',
-            'visible' => $model->status == Source::STATUS_MEETING_HELD,
+            'visible' => $model->status == BaseResearch::STATUS_MEETING_HELD,
             'url' => [
                 'change-status',
                 'id' => $model->id,
-                'newStatus' => Source::STATUS_REJECTED
+                'newStatus' => BaseResearch::STATUS_REJECTED
             ],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -86,7 +85,7 @@ use nad\research\modules\source\models\Source;
             'label' => 'تعیین کارشناسان',
             'icon' => 'graduation-cap',
             'type' => 'info',
-            'visible' => $model->status == Source::STATUS_ACCEPTED,
+            'visible' => $model->status == BaseResearch::STATUS_ACCEPTED,
             'url' => ['set-experts', 'id' => $model->id],
             'options' => ['class' => 'ajaxupdate']
         ],
@@ -94,12 +93,12 @@ use nad\research\modules\source\models\Source;
             'label' => 'ارسال برای نگارش پروپوزال',
             'icon' => 'clone',
             'type' => 'success',
-            'visible' => $model->status == Source::STATUS_ACCEPTED &&
+            'visible' => $model->status == BaseResearch::STATUS_ACCEPTED &&
                 $model->hasAnyExpert(),
             'url' => [
                 'change-status',
                 'id' => $model->id,
-                'newStatus' => Source::STATUS_READY_FOR_PROPOSAL
+                'newStatus' => BaseResearch::STATUS_READY_FOR_NEXT_STEP
             ],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -107,7 +106,7 @@ use nad\research\modules\source\models\Source;
             'label' => 'درج پروپوزال',
             'icon' => 'plus',
             'type' => 'success',
-            'visibleFor' => ['expert', 'research.manage'],
+            'visibleFor' => ['research.expert', 'research.manage'],
             'visible' => $model->canUserCreateProposal(),
             'url' => [
                 '/research/proposal/manage/create',

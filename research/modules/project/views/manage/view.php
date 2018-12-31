@@ -42,11 +42,19 @@ $children = $model->children()->all();
                         'model' => $model,
                         'attributes' => [
                             'title',
+                            'englishTitle',
                             'uniqueCode',
                             [
                                 'attribute' => 'createdBy',
                                 'value' => function ($model) {
                                     return $model->researcher->email;
+                                }
+                            ],
+                            [
+                                'label' => 'تاریخ تحویل به کارشناس',
+                                'format' => 'date',
+                                'value' => function ($model) {
+                                    return $model->proposal->deliveryToExpertTime;
                                 }
                             ],
                             'createdAt:date',
@@ -85,6 +93,22 @@ $children = $model->children()->all();
                                 }
                             ],
                             [
+                                'label' => 'مدارک',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    if (!$model->getFile('doc')) {
+                                        return;
+                                    }
+                                    return Html::a(
+                                        'دانلود مدارک',
+                                        $model->getFile('doc')->getUrl(),
+                                        [
+                                            'data-pjax' => '0'
+                                        ]
+                                    );
+                                }
+                            ],
+                            [
                                 'attribute' => 'tags',
                                 'value' => function ($model) {
                                     return $model->getTagsAsString();
@@ -109,6 +133,7 @@ $children = $model->children()->all();
                             ],
                             'deliverToManagerDate:date',
                             'sessionDate:date',
+                            'updatedAt:date',
                             [
                                 'attribute' => 'status',
                                 'value' => function ($model) {

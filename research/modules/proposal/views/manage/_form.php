@@ -4,8 +4,14 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use core\widgets\editor\Editor;
+use core\widgets\select2\Select2;
+use nad\office\modules\expert\models\Expert;
 use extensions\tag\widgets\selectTag\SelectTag;
+use nad\research\modules\resource\models\Resource;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\research\modules\resource\widgets\selectResource\SelectResource;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
@@ -13,7 +19,11 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 
 <div class="proposal-form">
-    <?php $form = ActiveForm::begin() ?>
+    <?php $form = ActiveForm::begin([
+        'options' => [
+            'enctype' => 'multipart/form-data'
+        ]
+    ]) ?>
         <div class="row">
             <div class="col-md-8">
             <?php Panel::begin(['title' => 'مشخصات پروپوزال']) ?>
@@ -21,6 +31,21 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
+                    <?= $form->field($model, 'englishTitle')->textInput([
+                        'maxlength' => 255,
+                        'class' => 'form-control input-large'
+                    ]) ?>
+                    <?= $form->field($model, 'createdAt')
+                        ->widget(
+                            JalaliDatePicker::class,
+                            [
+                                'options' => [
+                                    'class' => 'form-control input-medium',
+                                    'autocomplete' => 'off'
+                                ]
+                            ]
+                        )
+                    ?>
                     <?= $form->field($model, 'necessity')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
@@ -41,7 +66,37 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ])->hint('۴ کاراکتر بزرگ لاتین') ?>
-                    <?= $form->field($model, 'resources')->widget(SelectResource::class) ?>
+                    <?= $form->field($model, 'resources')->widget(
+                        SelectResource::class,
+                        [
+                            'clientId' => Resource::CLIENT_INVESTIGATION
+                        ]
+                    ) ?>
+                    <?= Html::label('مدارک') ?>
+                    <?= SingleFileUpload::widget([
+                        'model' => $model,
+                        'group' => 'documents'
+                    ]) ?>
+                    <?= $form->field($model, 'partners')->widget(
+                        Select2::class,
+                        [
+                            'data' => ArrayHelper::map(
+                                Expert::getDepartmentExperts(
+                                    Expert::DEPARTMENT_RESEARCH
+                                ),
+                                'userId',
+                                'email'
+                            ),
+                            'options' => [
+                                'placeholder' => 'ایمیل کارشناس را انتخاب کنید ...',
+                                'multiple' => true,
+                                'value' => $model->getPartners()
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 <?php Panel::end() ?>
                 <?php Panel::begin() ?>

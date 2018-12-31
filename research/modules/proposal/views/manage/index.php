@@ -6,7 +6,7 @@ use yii\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
-use nad\research\modules\expert\models\Expert;
+use nad\office\modules\expert\models\Expert;
 use nad\research\modules\proposal\models\Proposal;
 
 $this->title = 'پروپوزال ها';
@@ -21,19 +21,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'core\grid\TitleColumn'],
+                    [
+                        'class' => 'core\grid\TitleColumn',
+                        'headerOptions' => ['style' => 'width:30%']
+                    ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => false
+                        'isAjaxGrid' => false,
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'attribute' => 'createdBy',
-                        'headerOptions' => ['style' => 'width:300px'],
+                        'value' => function ($model) {
+                            return $model->researcher->email;
+                        },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                Expert::getDepartmentExperts(
+                                    Expert::DEPARTMENT_RESEARCH
+                                ),
                                 'userId',
                                 'email'
                             ),
@@ -44,9 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'value' => function ($model) {
-                            return $model->researcher->email;
-                        }
+                        'headerOptions' => ['style' => 'width:25%']
                     ],
                     'createdAt:date',
                     [
@@ -74,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'visibleButtons' => [
                             'view' => Yii::$app->user->canAccessAny([
-                                'expert',
+                                'research.expert',
                                 'research.manage'
                             ]),
                             'update' => function ($model, $key, $index) {

@@ -6,7 +6,7 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
-use nad\research\modules\expert\models\Expert;
+use nad\office\modules\expert\models\Expert;
 use nad\research\modules\source\models\Source;
 use extensions\tag\widgets\selectTag\SelectTag;
 use nad\research\modules\proposal\models\Proposal;
@@ -26,6 +26,9 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                         <?= $form->field($model, 'title')->textInput() ?>
                     </div>
                     <div class="col-md-4">
+                        <?= $form->field($model, 'englishTitle')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
                         <?= $form->field($model, 'uniqueCode')->textInput() ?>
                     </div>
                     <div class="col-md-4">
@@ -33,7 +36,9 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                             Select2::class,
                             [
                                 'data' => ArrayHelper::map(
-                                    Expert::find()->all(),
+                                    Expert::getDepartmentExperts(
+                                        Expert::DEPARTMENT_RESEARCH
+                                    ),
                                     'userId',
                                     'email'
                                 ),
@@ -63,7 +68,9 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                             Select2::class,
                             [
                                 'data' => ArrayHelper::map(
-                                    Expert::find()->all(),
+                                    Expert::getDepartmentExperts(
+                                        Expert::DEPARTMENT_RESEARCH
+                                    ),
                                     'userId',
                                     'email'
                                 ),
@@ -161,5 +168,5 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
                 </div>
             </div>
         <?php Panel::end() ?>
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end() ?>
 </div>

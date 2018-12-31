@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use modules\user\backend\models\User;
+use nad\office\modules\expert\models\Expert;
 
 $this->title = 'کارشناسان';
 $this->params['breadcrumbs'][] = $this->title;
@@ -35,7 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     [
                         'attribute' => 'userId',
-                        'headerOptions' => ['style' => 'width:500px'],
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a(
+                                $model->email,
+                                [
+                                    '/user/manage/index',
+                                    'UserSearch[email]' => $model->email
+                                ],
+                                [
+                                    'target' => '_blank',
+                                    'data-pjax' => '0'
+                                ]
+                            );
+                        },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'userId',
@@ -51,22 +65,44 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
+                        'headerOptions' => ['style' => 'width:500px']
+                    ],
+                    [
+                        'attribute' => 'departmentId',
                         'format' => 'raw',
                         'value' => function ($model) {
+                            return Expert::getDepartmentLabels()[$model->departmentId];
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'departmentId',
+                            'data' => Expert::getDepartmentLabels(),
+                            'options' => [
+                                'placeholder' => 'دپارتمان کاربر را انتخاب کنید'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]),
+                        'headerOptions' => ['style' => 'width:300px']
+                    ],
+                    [
+                        'header' => 'مدارک',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            if (!$model->getFile('evidence')) {
+                                return;
+                            }
                             return Html::a(
-                                $model->email,
+                                'دانلود مدارک',
+                                $model->getFile('evidence')->getUrl(),
                                 [
-                                    '/user/manage/index',
-                                    'UserSearch[email]' => $model->email
-                                ],
-                                [
-                                    'target' => '_blank',
                                     'data-pjax' => '0'
                                 ]
                             );
                         }
                     ],
-                    'createdAt:dateTime'
+                    'createdAt:date'
                 ]
             ]) ?>
         <?php Pjax::end() ?>

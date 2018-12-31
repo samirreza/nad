@@ -3,14 +3,23 @@
 namespace nad\research\modules\source\models;
 
 use yii\data\ActiveDataProvider;
+use extensions\i18n\validators\JalaliDateToTimestamp;
 
 class SourceSearch extends Source
 {
+    public $beginDate;
+    public $endDate;
+
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string'],
-            [['id', 'createdBy', 'mainReasonId', 'status'], 'integer']
+            [
+                ['title', 'englishTitle', 'uniqueCode', 'reason', 'necessity'],
+                'string'
+            ],
+            [['id', 'createdBy', 'mainReasonId', 'status'], 'integer'],
+            ['tags', 'safe'],
+            [['beginDate','endDate'], JalaliDateToTimestamp::class]
         ];
     }
 
@@ -21,10 +30,7 @@ class SourceSearch extends Source
             'query' => $query,
             'sort' => [
                 'attributes' => [
-                    'id',
-                    'createdAt',
-                    'deliverToManagerDate',
-                    'status'
+                    'createdAt'
                 ],
                 'defaultOrder' => [
                     'createdAt' => SORT_DESC
@@ -46,7 +52,19 @@ class SourceSearch extends Source
 
         $query->andFilterWhere(['like', 'title', $this->title]);
 
+        $query->andFilterWhere(['like', 'englishTitle', $this->englishTitle]);
+
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+
+        $query->andFilterWhere(['>=', 'createdAt', $this->beginDate]);
+
+        $query->andFilterWhere(['<=', 'createdAt', $this->endDate]);
+
+        $query->hasAnyTags($this->tags);
+
+        $query->andFilterWhere(['like', 'reason', $this->reason]);
+
+        $query->andFilterWhere(['like', 'necessity', $this->necessity]);
 
         return $dataProvider;
     }

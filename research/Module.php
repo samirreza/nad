@@ -13,9 +13,6 @@ class Module extends \yii\base\Module
     {
         Yii::configure($this, require(__DIR__ . '/config.php'));
         $this->modules = [
-            'expert' => [
-                'class' => 'nad\research\modules\expert\Module'
-            ],
             'source' => [
                 'class' => 'nad\research\modules\source\Module'
             ],

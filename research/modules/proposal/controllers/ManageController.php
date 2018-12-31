@@ -35,7 +35,7 @@ class ManageController extends BaseResearchController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['expert']
+                            'roles' => ['research.expert']
                         ],
                         [
                             'allow' => true,
@@ -54,6 +54,11 @@ class ManageController extends BaseResearchController
                         [
                             'allow' => true,
                             'roles' => ['research.manage']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['report'],
+                            'roles' => ['manager']
                         ]
                     ]
                 ],
@@ -91,6 +96,7 @@ class ManageController extends BaseResearchController
     {
         $model = $this->findModel($id);
         $model->scenario = Proposal::SCENARIO_SET_EXPERT;
+        $model->deliveryToExpertTime = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             echo Json::encode([
                 'status' => 'success',
@@ -102,16 +108,5 @@ class ManageController extends BaseResearchController
             'content' => $this->renderAjax('set-expert', ['model' => $model])
         ]);
         exit;
-    }
-
-    public function actionReport()
-    {
-        $searchModel = new $this->searchClass;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('report', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
     }
 }

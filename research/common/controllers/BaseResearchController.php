@@ -105,4 +105,15 @@ class BaseResearchController extends AdminController
         ]);
         exit;
     }
+
+    public function actionReport()
+    {
+        $searchModel = new $this->searchClass;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }

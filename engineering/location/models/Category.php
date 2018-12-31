@@ -14,7 +14,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
 
     public static function tableName()
     {
-        return 'nad_eng_plant_category';
+        return 'nad_eng_location_category';
     }
 
     public function behaviors()

@@ -27,7 +27,7 @@ class CategoryController extends \core\controllers\AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['material.type']
+                            'roles' => ['research.material']
                         ]
                     ]
                 ]

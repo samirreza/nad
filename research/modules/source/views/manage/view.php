@@ -12,9 +12,9 @@ $this->params['breadcrumbs'][] = $model->title;
 
 ?>
 
-<a class="ajaxcreate" data-gridpjaxid="source-view-detailviewpjax"></a>
+<a class="ajaxcreate" data-gridpjaxid="source-view-detailview-pjax"></a>
 <div class="source-view">
-    <?php Pjax::begin(['id' => 'source-view-detailviewpjax']) ?>
+    <?php Pjax::begin(['id' => 'source-view-detailview-pjax']) ?>
         <h2><?= $model->title . ' (' . Source::getStatusLables()[$model->status] . ')' ?></h2>
         <br>
         <?= $this->render('_action-buttons', ['model' => $model]) ?>
@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $model->title;
                         'model' => $model,
                         'attributes' => [
                             'title',
+                            'englishTitle',
                             'uniqueCode',
                             [
                                 'attribute' => 'createdBy',

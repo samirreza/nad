@@ -7,6 +7,8 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
 use modules\user\backend\models\User;
+use nad\office\modules\expert\models\Expert;
+use extensions\file\widgets\singleupload\SingleFileUpload;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -35,11 +37,23 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                                 'email'
                             ),
                             'options' => [
-                                'placeholder' => 'لطفا ایمیل کاربر مورد نظر را وارد کنید ...',
-                                'multiple' => false
+                                'placeholder' => 'لطفا ایمیل کاربر مورد نظر را وارد کنید ...'
                             ]
                         ]
                     ) ?>
+                    <?= $form->field($model, 'departmentId')->widget(
+                        Select2::class,
+                        [
+                            'data' => Expert::getDepartmentLabels()
+                        ]
+                    ) ?>
+                    <div class="input-medium">
+                        <?= Html::label('مدارک') ?>
+                        <?= SingleFileUpload::widget([
+                            'model' => $model,
+                            'group' => 'evidence'
+                        ]) ?>
+                    </div>
                     <br>
                     <?= Html::submitButton(
                         '<i class="fa fa-save"></i> ذخیره',

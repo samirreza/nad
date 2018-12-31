@@ -32,7 +32,7 @@ class ManageController extends BaseResearchController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['expert']
+                            'roles' => ['research.expert']
                         ],
                         [
                             'allow' => true,

@@ -19,7 +19,5 @@ $this->params['breadcrumbs'][] = 'ویرایش';
             'index' => ['label' => 'پروپوزال ها']
         ]
     ]) ?>
-    <?= $this->render('_form', [
-        'model' => $model
-    ]) ?>
+    <?= $this->render('_form', ['model' => $model]) ?>
 </div>

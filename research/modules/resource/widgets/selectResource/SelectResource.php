@@ -4,15 +4,24 @@ namespace nad\research\modules\resource\widgets\selectResource;
 
 use yii\helpers\ArrayHelper;
 use core\widgets\select2\Select2;
+use yii\base\InvalidConfigException;
 use nad\research\modules\resource\models\Resource;
 
 class SelectResource extends Select2
 {
+    public $clientId;
+
     public function init()
     {
+        if ($this->clientId === null) {
+            throw new InvalidConfigException('clientId property must be set.');
+        }
+
         if (!isset($this->data)) {
             $this->data = ArrayHelper::map(
-                Resource::find()->all(),
+                Resource::find()
+                    ->andWhere(['clientId' => $this->clientId])
+                    ->all(),
                 'id',
                 'codedTitle'
             );

@@ -2,7 +2,6 @@
 
 use theme\widgets\ActionButtons;
 use nad\research\common\models\BaseResearch;
-use nad\research\modules\project\models\Project;
 
 ?>
 
@@ -14,7 +13,7 @@ use nad\research\modules\project\models\Project;
             'icon' => 'send',
             'type' => 'info',
             'visible' => $model->canUserDeliverToManager(),
-            'visibleFor' => ['expert', 'research.manage'],
+            'visibleFor' => ['research.expert', 'research.manage'],
             'url' => ['deliver-to-manager', 'id' => $model->id],
             'options' => ['class' => 'ajaxrequest']
         ],
@@ -74,11 +73,11 @@ use nad\research\modules\project\models\Project;
             'label' => 'آرشیو کردن',
             'icon' => 'clone',
             'type' => 'success',
-            'visible' => $model->status == Project::STATUS_ACCEPTED,
+            'visible' => $model->status == BaseResearch::STATUS_ACCEPTED,
             'url' => [
                 'change-status',
                 'id' => $model->id,
-                'newStatus' => Project::STATUS_ARCHIVED
+                'newStatus' => BaseResearch::STATUS_FINISHED
             ],
             'options' => ['class' => 'ajaxrequest']
         ]
