@@ -7,7 +7,7 @@ use modules\nad\supplier\behaviors\MaterialsBehavior;
 use modules\nad\supplier\behaviors\EquipmentsBehavior;
 use modules\nad\equipment\modules\type\details\models\Part;
 use modules\nad\supplier\modules\phonebook\models\Phonebook;
-use modules\nad\research\modules\material\models\Type as MaterialType;
+use nad\research\modules\material\models\Type as MaterialType;
 use modules\nad\equipment\modules\type\models\Type as EquipmentType;
 
 class Supplier extends \yii\db\ActiveRecord

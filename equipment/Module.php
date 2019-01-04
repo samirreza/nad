@@ -1,6 +1,6 @@
 <?php
 
-namespace modules\nad\equipment;
+namespace nad\equipment;
 
 class Module extends \yii\base\Module
 {
@@ -9,15 +9,12 @@ class Module extends \yii\base\Module
 
     public function init()
     {
-        parent::init();
         $this->modules = [
-            'type' => [
-                'class' => 'modules\nad\equipment\modules\type\Module'
-            ],
-            'document' => [
-                'class' => 'modules\nad\equipment\modules\document\Module'
-            ]
+            'material' => 'nad\equipment\material\Module',
+            'model' => 'nad\equipment\model\Module',
+            'sample' => 'nad\equipment\sample\Module',
+            'tool' => 'nad\equipment\tool\Module'
         ];
-        \Yii::configure($this, require(__DIR__ . '/config.php'));
+        parent::init();
     }
 }

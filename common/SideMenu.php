@@ -3,7 +3,6 @@
 namespace nad\common;
 
 use Yii;
-use nad\research\modules\resource\models\Resource;
 
 class SideMenu extends \theme\widgets\Menu
 {
@@ -152,7 +151,7 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'شناسه تجهیزات',
                         'icon' => 'tag',
-                        'url' => ['/equipment/type/manage/index'],
+                        'url' => ['/engineering/equipment/type/manage/index'],
                         'visible' => $user->can('equipment.type')
                     ]
                 ]
@@ -162,11 +161,21 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'cogs',
                 'items' => [
                     [
-                        'label' => 'شناسه مواد سرویس ونگهداری',
-                        'icon' => 'tag',
-                        'url' => ['/equipment/type/manage/material'],
-                        'visible' => $user->can('material.type')
+                        'label' => 'ابزار',
+                        'url' => ['/equipment/tool/manage/index']
                     ],
+                    [
+                        'label' => 'مدل',
+                        'url' => ['/equipment/model/manage/index']
+                    ],
+                    [
+                        'label' => 'نمونه‌های مورد نیاز برای ساخت',
+                        'url' => ['/equipment/sample/manage/index']
+                    ],
+                    [
+                        'label' => 'مواد سرویس ونگهداری',
+                        'url' => ['/equipment/material/manage/index']
+                    ]
                 ]
             ],
             [
