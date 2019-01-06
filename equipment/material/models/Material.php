@@ -69,8 +69,8 @@ class Material extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه منبع',
-            'uniqueCode' => 'شناسه منبع',
+            'code' => 'شناسه ماده',
+            'uniqueCode' => 'شناسه ماده',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',

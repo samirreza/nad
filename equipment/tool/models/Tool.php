@@ -69,8 +69,8 @@ class Tool extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه منبع',
-            'uniqueCode' => 'شناسه منبع',
+            'code' => 'شناسه ابزار',
+            'uniqueCode' => 'شناسه ابزار',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',

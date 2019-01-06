@@ -69,8 +69,8 @@ class Sample extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه منبع',
-            'uniqueCode' => 'شناسه منبع',
+            'code' => 'شناسه نمونه',
+            'uniqueCode' => 'شناسه نمونه',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',

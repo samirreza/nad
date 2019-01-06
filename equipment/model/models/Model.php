@@ -69,8 +69,8 @@ class Model extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه منبع',
-            'uniqueCode' => 'شناسه منبع',
+            'code' => 'شناسه مدل',
+            'uniqueCode' => 'شناسه مدل',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',
