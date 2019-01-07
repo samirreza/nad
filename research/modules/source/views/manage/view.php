@@ -55,8 +55,8 @@ $this->params['breadcrumbs'][] = $model->title;
                                     return $model->getTagsAsString();
                                 }
                             ],
-                            'deliverToManagerDate:date',
-                            'sessionDate:date',
+                            'deliverToManagerDate',
+                            'sessionDate:dateTime',
                             [
                                 'attribute' => 'experts',
                                 'value' => function ($model) {

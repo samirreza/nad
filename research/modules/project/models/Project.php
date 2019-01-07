@@ -6,7 +6,6 @@ use core\tree\NestedSetsBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\research\common\models\BaseResearch;
 use extensions\tag\behaviors\TaggableBehavior;
-use nad\research\modules\source\models\Source;
 use nad\research\common\behaviors\CodeNumerator;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use nad\research\modules\proposal\models\Proposal;
@@ -107,8 +106,17 @@ class Project extends BaseResearch
                 FarsiCharactersValidator::class
             ],
             [
-                ['sessionDate', 'createdAt'],
+                'createdAt',
                 JalaliDateToTimestamp::class,
+                'when' => function ($model, $attribute) {
+                    return $model->$attribute !== $model->getOldAttribute($attribute);
+                }
+            ],
+            [
+                'sessionDate',
+                JalaliDateToTimestamp::class,
+                'hourAttr' => 'sessionHourAttribute',
+                'minuteAttr' => 'sessionMinuteAttribute',
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }
@@ -178,7 +186,6 @@ class Project extends BaseResearch
             $this->proposal->changeStatus(Proposal::STATUS_IN_NEXT_STEP);
         } elseif ($this->status == self::STATUS_FINISHED) {
             $this->proposal->changeStatus(Proposal::STATUS_FINISHED);
-            $this->proposal->source->changeStatus(Source::STATUS_FINISHED);
         }
         parent::afterSave($insert, $changedAttributes);
     }

@@ -132,7 +132,7 @@ $children = $model->children()->all();
                                 }
                             ],
                             'deliverToManagerDate:date',
-                            'sessionDate:date',
+                            'sessionDate:dateTime',
                             'updatedAt:date',
                             [
                                 'attribute' => 'status',

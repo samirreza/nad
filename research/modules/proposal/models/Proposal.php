@@ -89,8 +89,17 @@ class Proposal extends BaseResearch
                 FarsiCharactersValidator::class
             ],
             [
-                ['sessionDate', 'createdAt'],
+                'createdAt',
                 JalaliDateToTimestamp::class,
+                'when' => function ($model, $attribute) {
+                    return $model->$attribute !== $model->getOldAttribute($attribute);
+                }
+            ],
+            [
+                'sessionDate',
+                JalaliDateToTimestamp::class,
+                'hourAttr' => 'sessionHourAttribute',
+                'minuteAttr' => 'sessionMinuteAttribute',
                 'when' => function ($model, $attribute) {
                     return $model->$attribute !== $model->getOldAttribute($attribute);
                 }

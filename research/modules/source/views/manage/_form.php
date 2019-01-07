@@ -30,17 +30,15 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'maxlength' => 255,
                         'class' => 'form-control input-large'
                     ]) ?>
-                    <?= $form->field($model, 'createdAt')
-                        ->widget(
-                            JalaliDatePicker::class,
-                            [
-                                'options' => [
-                                    'class' => 'form-control input-medium',
-                                    'autocomplete' => 'off'
-                                ]
+                    <?= $form->field($model, 'createdAt')->widget(
+                        JalaliDatePicker::class,
+                        [
+                            'options' => [
+                                'class' => 'form-control input-medium',
+                                'autocomplete' => 'off'
                             ]
-                        )
-                    ?>
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'reason')->widget(
                         Editor::class,
                         ['preset' => 'advanced']

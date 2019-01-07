@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
-use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use theme\widgets\dateTimePicker\DateTimePicker;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -26,11 +26,13 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     ]
                 ]) ?>
                     <?= $form->field($model, 'sessionDate')->widget(
-                        JalaliDatePicker::class,
+                        DateTimePicker::class,
                         [
+                            'dateAttribute' => 'sessionDate',
+                            'hourAttribute' => 'sessionHourAttribute',
+                            'minuteAttribute' => 'sessionMinuteAttribute',
                             'options' => [
-                                'class' => 'form-control input-medium',
-                                'autocomplete' => 'off'
+                                'class' => 'form-control input-large'
                             ]
                         ]
                     ) ?>

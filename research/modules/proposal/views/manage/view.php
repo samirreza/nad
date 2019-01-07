@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $model->title;
                                 }
                             ],
                             'deliverToManagerDate:date',
-                            'sessionDate:date',
+                            'sessionDate:dateTime',
                             [
                                 'attribute' => 'expertUserId',
                                 'value' => function ($model) {

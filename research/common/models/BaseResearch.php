@@ -14,6 +14,9 @@ class BaseResearch extends \yii\db\ActiveRecord implements Codable
 {
     use CodableTrait;
 
+    public $sessionHourAttribute;
+    public $sessionMinuteAttribute;
+
     const STATUS_REJECTED = 0;
     const STATUS_NEED_CORRECTION = 1;
     const STATUS_INPROGRESS = 2;
@@ -46,7 +49,11 @@ class BaseResearch extends \yii\db\ActiveRecord implements Codable
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SET_SESSION_DATE] = ['sessionDate'];
+        $scenarios[self::SCENARIO_SET_SESSION_DATE] = [
+            'sessionDate',
+            'sessionHourAttribute',
+            'sessionMinuteAttribute'
+        ];
         return $scenarios;
     }
 
