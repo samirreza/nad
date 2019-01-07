@@ -97,4 +97,17 @@ class ManageController extends BaseResearchController
         }
         return $this->render('create', ['model' => $model]);
     }
+
+    public function actionCertificate($id)
+    {
+        $project = $this->findModel($id);
+        $proposal = $project->proposal;
+        $source = $proposal->source;
+        
+        return $this->render('certificate', [
+            'source' => $source,
+            'proposal' => $proposal,
+            'project' => $project
+        ]);
+    }
 }

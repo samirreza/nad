@@ -94,6 +94,13 @@ use nad\research\common\models\BaseResearch;
             'label' => 'حذف',
             'visible' => $model->canUserUpdateOrDelete()
         ],
+        'certificate' => [
+            'label' => 'شناسنامه',
+            'icon' => 'book',
+            'type' => 'success',
+            'url' => ['certificate', 'id' => $model->id],
+            'visibleFor' => ['research.manage']
+        ],
         'index' => ['label' => 'گزارش ها']
     ]
 ]) ?>

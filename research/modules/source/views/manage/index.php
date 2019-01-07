@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:30%']
+                        'headerOptions' => ['style' => 'width:30%'],
+                        'filterInputOptions' => [
+                            'class'       => 'form-control',
+                            'placeholder' => 'جست‌و‌جو عنوان منشا'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
@@ -61,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'headerOptions' => ['style' => 'width:20%']
+                        'headerOptions' => ['style' => 'width:15%']
                     ],
                     [
                         'attribute' => 'mainReasonId',

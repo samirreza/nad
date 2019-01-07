@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
@@ -32,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:30%']
+                        'headerOptions' => ['style' => 'width:30%'],
+                        'filterInputOptions' => [
+                            'class'       => 'form-control',
+                            'placeholder' => 'جست‌و‌جو عنوان گزارش'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
@@ -45,7 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function ($model) {
                             return $model->category->familyTreeTitle;
                         },
-                        'headerOptions' => ['style' => 'width:20%']
+                        'headerOptions' => ['style' => 'width:20%'],
+                        'filterInputOptions' => [
+                            'class'       => 'form-control',
+                            'placeholder' => 'جست‌و‌جو زیر‌شاخه گزارش'
+                        ]
                     ],
                     [
                         'attribute' => 'createdBy',
@@ -82,6 +91,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete} {certificate}',
+                        'buttons' => [
+                            'certificate' => function ($url, $model, $key) {
+                                return Html::a(
+                                    '<span class="fa fa-book"></span>',
+                                    [
+                                        '/research/project/manage/certificate',
+                                        'id' => $model->id
+                                    ],
+                                    [
+                                        'title' => 'شناسنامه'
+                                    ]
+                                );
+                            }
+                        ],
                         'visibleButtons' => [
                             'view' => Yii::$app->user->canAccessAny([
                                 'research.expert',
@@ -92,7 +116,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                             'delete' => function ($model, $key, $index) {
                                 return $model->canUserUpdateOrDelete();
-                            }
+                            },
+                            'certificate' => Yii::$app->user->can('research.manage')
                         ]
                     ]
                 ]

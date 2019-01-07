@@ -37,8 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    'uniqueCode',
-                    'title',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'filterInputOptions' => [
+                            'class'       => 'form-control',
+                            'placeholder' => 'جست‌و‌جو شناسه منبع'
+                        ]
+                    ],
+                    [
+                        'attribute' => 'title',
+                        'filterInputOptions' => [
+                            'class'       => 'form-control',
+                            'placeholder' => 'جست‌و‌جو عنوان منبع'
+                        ]
+                    ],
                     [
                         'attribute' => 'type',
                         'value' => function ($model) {
