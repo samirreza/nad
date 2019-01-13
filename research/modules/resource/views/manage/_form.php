@@ -14,7 +14,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <?php Panel::begin([
             'title' => 'اطلاعات منبع',
             'showCloseButton' => true
@@ -26,6 +26,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
+                    <div class="col-md-6">
                     <?= $form->field($model, 'title')->textInput() ?>
                     <?= $form->field($model, 'type')->dropDownList(
                         Resource::getTypeLabels()
@@ -37,6 +38,13 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                             'group' => 'resource'
                         ]) ?>
                     </div>
+                    <?= $form->field($model, 'publishYear')->textInput([
+                        'class' => 'form-control input-medium'
+                    ]) ?>
+                    <?= $form->field($model, 'author')->textInput() ?>
+                    <?= $form->field($model, 'publisher')->textInput() ?>
+                    </div>
+                    <div class="col-md-6">
                     <?= $form->field($model, 'description')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
@@ -55,6 +63,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                             'class' => 'btn-lg close-sliding-form-button'
                         ]
                     ]) ?>
+                    </div>
                 <?php ActiveForm::end() ?>
             </div>
         <?php Panel::end() ?>

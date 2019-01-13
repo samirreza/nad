@@ -38,6 +38,9 @@ use nad\research\modules\resource\models\Resource;
                                 );
                             }
                         ],
+                        'publishYear:farsiNumber',
+                        'author',
+                        'publisher',
                         'description:raw',
                         'createdAt:date'
                     ]

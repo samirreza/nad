@@ -61,8 +61,9 @@ class Resource extends \yii\db\ActiveRecord implements Codable
     {
         return [
             [['title', 'type'], 'required'],
-            ['title', 'trim'],
-            ['title', 'string', 'max' => 255],
+            [['title', 'author', 'publisher', 'publishYear'], 'trim'],
+            [['title', 'author', 'publisher'], 'string', 'max' => 255],
+            ['publishYear', 'integer'],
             ['description', 'string'],
             ['description', 'default', 'value' => null],
             [
@@ -81,6 +82,9 @@ class Resource extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه',
             'title' => 'عنوان',
             'type' => 'نوع',
+            'publishYear' => 'سال انتشار',
+            'author' => 'نویسنده',
+            'publisher' => 'انتشار دهنده',
             'description' => 'توضیحات',
             'createdAt' => 'تاریخ درج'
         ];
