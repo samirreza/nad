@@ -45,7 +45,7 @@ class Expert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userId', 'departmentId'], 'required']
+            ['departmentId', 'required']
         ];
     }
 
@@ -70,51 +70,54 @@ class Expert extends \yii\db\ActiveRecord
         return $this->user->email;
     }
 
+    public function getName()
+    {
+        return $this->user->name;
+    }
+
+    public function getSurname()
+    {
+        return $this->user->surname;
+    }
+
     public function getUserId()
     {
         return $this->user->id;
     }
 
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        if ($insert) {
-            if ($this->hasExpertRole()) {
-                $this->addError(
-                    'userId',
-                    'این کاربر در حال حاضر کارشناس این دپارتمان است.'
-                );
-                return false;
-            }
-        }
-        return true;
-    }
-
     public function afterSave($insert, $changedAttributes)
     {
-        $this->assignExpertRole();
+        if ($insert) {
+            $this->assignDepartmentExpertRole();
+        }
+        if ($this->getOldAttribute('departmentId') != $this->departmentId) {
+            $this->revokePreviousDepartmentExpertRole();
+            $this->assignDepartmentExpertRole();
+        }
         parent::afterSave($insert, $changedAttributes);
     }
 
     public function afterDelete()
     {
-        Yii::$app->authManager->revoke(
-            Yii::$app->authManager->getRole($this->departmentExpertPermission),
-            $this->userId
-        );
+        $this->user->delete();
         parent::afterDelete();
     }
 
-    public function getDepartmentExpertPermission()
+    public function getDepartmentExpertRole()
     {
-        return self::getDepartmentExpertPermissions()[$this->departmentId];
+        return self::getDepartmentExpertRoles()[$this->departmentId];
     }
 
     public static function tableName()
     {
         return 'nad_office_expert';
+    }
+
+    public static function getDepartmentExpertRoles()
+    {
+        return [
+            self::DEPARTMENT_RESEARCH => 'research.expert'
+        ];
     }
 
     public static function getDepartmentLabels()
@@ -131,27 +134,23 @@ class Expert extends \yii\db\ActiveRecord
             ->all();
     }
 
-    private function hasExpertRole()
+    private function assignDepartmentExpertRole()
     {
-        return Yii::$app->authManager->checkAccess(
-            $this->userId,
-            $this->departmentExpertPermission
-        );
-    }
-
-    private function assignExpertRole()
-    {
-        $auth = Yii::$app->authManager;
-        $auth->assign(
-            $auth->getRole($this->departmentExpertPermission),
+        $authManager = Yii::$app->authManager;
+        $authManager->assign(
+            $authManager->getRole($this->departmentExpertRole),
             $this->userId
         );
     }
 
-    private static function getDepartmentExpertPermissions()
+    private function revokePreviousDepartmentExpertRole()
     {
-        return [
-            self::DEPARTMENT_RESEARCH => 'research.expert'
-        ];
+        $authManager = Yii::$app->authManager;
+        $authManager->revoke(
+            $authManager->getRole(
+                self::getDepartmentExpertRoles()[$this->getOldAttribute('departmentId')]
+            ),
+            $this->userId
+        );
     }
 }

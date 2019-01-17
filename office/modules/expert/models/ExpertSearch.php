@@ -6,16 +6,20 @@ use yii\data\ActiveDataProvider;
 
 class ExpertSearch extends Expert
 {
+    public $name;
+    public $surname;
+
     public function rules()
     {
         return [
-            [['userId', 'departmentId'], 'integer']
+            [['userId', 'departmentId'], 'integer'],
+            [['name', 'surname'], 'string']
         ];
     }
 
     public function search($params)
     {
-        $query = Expert::find();
+        $query = Expert::find()->joinWith('user');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -37,6 +41,9 @@ class ExpertSearch extends Expert
             'userId' => $this->userId,
             'departmentId' => $this->departmentId
         ]);
+
+        $query->andFilterWhere(['like', 'user.name', $this->name])
+            ->andFilterWhere(['like', 'user.surname', $this->surname]);
 
         return $dataProvider;
     }

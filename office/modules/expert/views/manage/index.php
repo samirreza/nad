@@ -35,7 +35,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     [
+                        'attribute' => 'name',
+                        'label' => 'نام',
+                        'value' => function ($model) {
+                            return $model->user->name;
+                        },
+                        'headerOptions' => ['style' => 'width:15%']
+                    ],
+                    [
+                        'attribute' => 'surname',
+                        'label' => 'نام خانوادگی',
+                        'value' => function ($model) {
+                            return $model->user->surname;
+                        },
+                        'headerOptions' => ['style' => 'width:15%']
+                    ],
+                    [
                         'attribute' => 'userId',
+                        'label' => 'ایمیل',
                         'format' => 'raw',
                         'value' => function ($model) {
                             return Html::a(
@@ -59,13 +76,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'email'
                             ),
                             'options' => [
-                                'placeholder' => 'ایمیل کاربر را انتخاب کنید'
+                                'placeholder' => 'ایمیل کارشناس را انتخاب کنید'
                             ],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ]
                         ]),
-                        'headerOptions' => ['style' => 'width:500px']
+                        'headerOptions' => ['style' => 'width:25%']
                     ],
                     [
                         'attribute' => 'departmentId',
@@ -84,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'headerOptions' => ['style' => 'width:300px']
+                        'headerOptions' => ['style' => 'width:10%']
                     ],
                     [
                         'header' => 'مدارک',
@@ -102,7 +119,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             );
                         }
                     ],
-                    'createdAt:date'
+                    'createdAt:date',
+                    [
+                        'class' => 'core\grid\AjaxActionColumn',
+                        'template' => '{update}'
+                    ]
                 ]
             ]) ?>
         <?php Pjax::end() ?>

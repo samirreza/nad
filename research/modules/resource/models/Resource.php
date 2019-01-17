@@ -44,7 +44,7 @@ class Resource extends \yii\db\ActiveRecord implements Codable
                                 'ppt',
                                 'pptx'
                             ],
-                            'maxSize' => 10 * 1024 * 1024,
+                            'maxSize' => 100 * 1024 * 1024,
                             'required' => true
                         ]
                     ]
