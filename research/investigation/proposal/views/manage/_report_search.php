@@ -1,0 +1,172 @@
+<?php
+
+use yii\helpers\Html;
+use theme\widgets\Panel;
+use theme\widgets\Button;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use core\widgets\select2\Select2;
+use nad\office\modules\expert\models\Expert;
+use extensions\tag\widgets\selectTag\SelectTag;
+use nad\research\investigation\source\models\Source;
+use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use nad\research\investigation\proposal\models\Proposal;
+
+?>
+
+<div class="proposal-search">
+    <?php $form = ActiveForm::begin([
+        'action' => ['report'],
+        'method' => 'get'
+    ]) ?>
+        <?php Panel::begin(['showCollapseButton' => true, 'title' => 'جست و جو']) ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'title')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'englishTitle')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'uniqueCode')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'createdBy')->widget(
+                            Select2::class,
+                            [
+                                'data' => ArrayHelper::map(
+                                    Expert::getDepartmentExperts(
+                                        Expert::DEPARTMENT_RESEARCH
+                                    ),
+                                    'userId',
+                                    'fullName'
+                                ),
+                                'options' => [
+                                    'placeholder' => 'کارشناس را انتخاب کنید'
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ]
+                            ]
+                        ) ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'sourceId')->dropDownList(
+                            ArrayHelper::map(
+                                Source::find()->all(),
+                                'id',
+                                'title'
+                            ),
+                            [
+                                'prompt' => ''
+                            ]
+                        ) ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'projectExpertId')->widget(
+                            Select2::class,
+                            [
+                                'data' => ArrayHelper::map(
+                                    Expert::getDepartmentExperts(
+                                        Expert::DEPARTMENT_RESEARCH
+                                    ),
+                                    'id',
+                                    'fullName'
+                                ),
+                                'options' => [
+                                    'placeholder' => 'کارشناس را انتخاب کنید'
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ]
+                            ]
+                        ) ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'tags')->widget(
+                            SelectTag::class,
+                            [
+                                'pluginOptions' => [
+                                    'tags' => false
+                                ]
+                            ]
+                        ) ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'status')->dropDownList(
+                            Proposal::getStatusLables(),
+                            [
+                                'prompt' => ''
+                            ]
+                        ) ?>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-2" style="padding-top: 30px;">
+                                <b><p>تاریخ نگارش :</p></b>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'beginDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('از')
+                                ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'endDate')
+                                    ->widget(
+                                        JalaliDatePicker::class,
+                                        [
+                                            'options' => [
+                                                'autocomplete' => 'off'
+                                            ]
+                                        ]
+                                    )
+                                    ->label('تا')
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'necessity')->textarea() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'mainPurpose')->textarea() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'secondaryPurpose')->textarea() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'proceedings')->textarea() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <?= Html::submitButton(
+                            '<i class="fa fa-search"></i>',
+                            ['class' => 'btn btn-success']
+                        ) ?>
+                        <?= Button::widget([
+                            'label' => '',
+                            'type' => 'warning',
+                            'icon' => 'undo',
+                            'url' => ['report'],
+                        ])
+                        ?>
+                    </div>
+                </div>
+            </div>
+        <?php Panel::end() ?>
+    <?php ActiveForm::end() ?>
+</div>

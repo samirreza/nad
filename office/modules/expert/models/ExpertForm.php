@@ -21,6 +21,7 @@ class ExpertForm extends \yii\base\Model
     {
         if ($this->expert->isNewRecord) {
             $this->user = new User([
+                'type' => User::TYPE_OPERATOR,
                 'status' => User::STATUS_ACTIVE
             ]);
         } else {

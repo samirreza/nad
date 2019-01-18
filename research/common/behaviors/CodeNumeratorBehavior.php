@@ -1,0 +1,60 @@
+<?php
+
+namespace nad\research\common\behaviors;
+
+use yii\base\Behavior;
+use yii\db\ActiveRecord;
+use yii\base\InvalidCallException;
+
+class CodeNumeratorBehavior extends Behavior
+{
+    public $determinativeColumn;
+    public $lastCodeColumn = 'lastCode';
+    public $lastCodeDigitNumber = 3;
+
+    public function init()
+    {
+        if (empty($this->determinativeColumn)) {
+            throw new InvalidCallException('determinativeColumn must be set.');
+        }
+        parent::init();
+    }
+
+    public function events()
+    {
+        return [
+            ActiveRecord::EVENT_BEFORE_INSERT => 'setLastCode',
+            ActiveRecord::EVENT_BEFORE_UPDATE => 'setLastCode'
+        ];
+    }
+
+    public function setLastCode()
+    {
+        if (
+            $this->owner->isNewRecord ||
+            $this->owner->oldAttributes[$this->determinativeColumn] != $this->owner->{$this->determinativeColumn}
+        ) {
+            $this->owner->{$this->lastCodeColumn} = $this->owner->getLastInsertedCode() + 1;
+        }
+    }
+
+    public function getLastInsertedCode()
+    {
+        $determinativeColumn = $this->determinativeColumn;
+        return $this->owner::find()
+            ->andWhere([
+                $this->determinativeColumn => $this->owner->$determinativeColumn
+            ])
+            ->max($this->lastCodeColumn);
+    }
+
+    public function getLastPartOfUniqueCode()
+    {
+        return str_pad(
+            $this->owner->{$this->lastCodeColumn},
+            $this->lastCodeDigitNumber,
+            '0',
+            STR_PAD_LEFT
+        );
+    }
+}

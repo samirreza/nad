@@ -2,6 +2,7 @@
 
 namespace nad\equipment\tool\models;
 
+use yii\db\ActiveRecord;
 use nad\common\code\Codable;
 use core\tree\NestedSetsBehavior;
 use nad\common\code\CodableTrait;
@@ -10,17 +11,13 @@ use nad\common\code\CodableCategoryBehavior;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Category extends \yii\db\ActiveRecord implements Codable
+class Category extends ActiveRecord implements Codable
 {
     use CodableTrait;
 
     public function behaviors()
     {
         return [
-            [
-                'class' => CodableCategoryBehavior::class,
-                'leafsDepth' => 2
-            ],
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -30,13 +27,17 @@ class Category extends \yii\db\ActiveRecord implements Codable
                     ],
                     [
                         'relationMethod' => 'getTypes',
-                        'relationName' => 'نوع ابزار'
+                        'relationName' => 'نوع ابزار و لوازم مصرفی'
                     ]
                 ]
             ],
             'tree' => [
                 'class' => NestedSetsBehavior::class,
                 'treeAttribute' => 'tree',
+            ],
+            [
+                'class' => CodableCategoryBehavior::class,
+                'leafsDepth' => 2
             ]
         ];
     }
@@ -47,7 +48,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             [['title', 'parentId', 'code'], 'required'],
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
-            [['title'], FarsiCharactersValidator::class],
+            ['title', FarsiCharactersValidator::class],
             ['code', 'string', 'min' => 1, 'max' => 3]
         ];
     }

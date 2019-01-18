@@ -17,7 +17,6 @@ class Category extends ActiveRecord
     public function behaviors()
     {
         return [
-            CodableCategoryBehavior::class,
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -34,7 +33,8 @@ class Category extends ActiveRecord
             'tree' => [
                 'class' => NestedSetsBehavior::class,
                 'treeAttribute' => 'tree'
-            ]
+            ],
+            CodableCategoryBehavior::class
         ];
     }
 
@@ -45,7 +45,7 @@ class Category extends ActiveRecord
             ['code', 'string', 'min' => 2, 'max' => 3],
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
-            [['title'], FarsiCharactersValidator::class]
+            ['title', FarsiCharactersValidator::class]
         ];
     }
 

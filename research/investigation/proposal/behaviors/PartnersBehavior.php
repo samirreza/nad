@@ -1,0 +1,66 @@
+<?php
+
+namespace nad\research\investigation\proposal\behaviors;
+
+use creocoder\taggable\TaggableBehavior;
+
+class PartnersBehavior extends TaggableBehavior
+{
+    public $partnerRelation = 'partners';
+    public $partnerValueAttribute = 'id';
+    public $partnerValuesAsArray = false;
+    public $partnerFrequencyAttribute = false;
+
+    public function init()
+    {
+        $this->tagValuesAsArray = $this->partnerValuesAsArray;
+        $this->tagRelation = $this->partnerRelation;
+        $this->tagValueAttribute = $this->partnerValueAttribute;
+        $this->tagFrequencyAttribute = $this->partnerFrequencyAttribute;
+        parent::init();
+    }
+
+    public function getPartners()
+    {
+        return $this->getTagValues();
+    }
+
+    public function getPartnersAsArray()
+    {
+        return $this->getTagValues(true);
+    }
+
+    public function setPartners($values)
+    {
+        return $this->setTagValues($values);
+    }
+
+    public function addPartners($values)
+    {
+        return $this->addTagValues($values);
+    }
+
+    public function removePartners($values)
+    {
+        return $this->removeTagValues($values);
+    }
+
+    public function removeAllPartners()
+    {
+        return $this->removeAllTagValues();
+    }
+
+    public function hasPartners($values)
+    {
+        return $this->hasTagValues($values);
+    }
+
+    public function getPartnerFullNamesAsString()
+    {
+        $output = '';
+        foreach ($this->owner->partners as $partners) {
+            $output .= $partners->fullName . ', ';
+        }
+        return rtrim($output, ', ');
+    }
+}

@@ -2,13 +2,14 @@
 
 namespace nad\equipment\sample\models;
 
+use yii\db\ActiveRecord;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use core\behaviors\TimestampBehavior;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Sample extends \yii\db\ActiveRecord implements Codable
+class Sample extends ActiveRecord implements Codable
 {
     use CodableTrait;
 
@@ -52,17 +53,17 @@ class Sample extends \yii\db\ActiveRecord implements Codable
         return [
             [['title', 'categoryId', 'code'], 'required'],
             [['title', 'code'], 'trim'],
-            [['title'], 'string', 'max' => 255],
+            ['title', 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['categoryId'], 'integer'],
-            [['description'], 'string'],
-            [['title'], FarsiCharactersValidator::class],
+            ['description', 'string'],
+            ['categoryId', 'integer'],
             [
                 'code',
                 'unique',
                 'targetAttribute' => ['code', 'categoryId'],
                 'message' => 'این شناسه پیش تر ثبت شده است.'
-            ]
+            ],
+            [['title', 'description'], FarsiCharactersValidator::class]
         ];
     }
 

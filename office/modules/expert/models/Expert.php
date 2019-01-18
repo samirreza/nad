@@ -3,11 +3,12 @@
 namespace nad\office\modules\expert\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use core\behaviors\TimestampBehavior;
 use modules\user\backend\models\User;
 use extensions\file\behaviors\FileBehavior;
 
-class Expert extends \yii\db\ActiveRecord
+class Expert extends ActiveRecord
 {
     const DEPARTMENT_RESEARCH = 0;
 
@@ -78,6 +79,11 @@ class Expert extends \yii\db\ActiveRecord
     public function getSurname()
     {
         return $this->user->surname;
+    }
+
+    public function getFullName()
+    {
+        return "$this->name  $this->surname";
     }
 
     public function getUserId()

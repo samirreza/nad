@@ -19,7 +19,7 @@ class SideMenu extends \theme\widgets\Menu
                         'items' => [
                             [
                                 'label' => 'منشا',
-                                'url' => ['/research/source/manage/index'],
+                                'url' => ['/research/investigation/source/manage/index'],
                                 'visible' => $user->canAccessAny([
                                     'research.expert',
                                     'research.manage'
@@ -27,7 +27,7 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'پروپوزال',
-                                'url' => ['/research/proposal/manage/index'],
+                                'url' => ['/research/investigation/proposal/manage/index'],
                                 'visible' => $user->canAccessAny([
                                     'research.expert',
                                     'research.manage'
@@ -35,7 +35,7 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'گزارش',
-                                'url' => ['/research/project/manage/index'],
+                                'url' => ['/research/investigation/project/manage/index'],
                                 'visible' => $user->canAccessAny([
                                     'research.expert',
                                     'research.manage'
@@ -47,7 +47,7 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'منابع',
-                                'url' => ['/research/investigation-resource'],
+                                'url' => ['/research/investigation/resource'],
                                 'visible' => $user->canAccessAny([
                                     'research.expert',
                                     'research.manage'
@@ -72,8 +72,8 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'مواد و کالای فرایندی',
-                                'url' => ['/research/material/manage/index'],
-                                'visible' => $user->can('research.material')
+                                'url' => '#',
+                                // 'visible' => $user->can('research.material')
                             ],
                             [
                                 'label' => 'تامین کنندگان',
@@ -94,8 +94,8 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'تجهیزات، کالا، مواد',
-                                'url' => ['/research/lab/manage/index'],
-                                'visible' => $user->can('research.manage')
+                                'url' => '#',
+                                // 'visible' => $user->can('research.manage')
                             ],
                             [
                                 'label' => 'تامین کنندگان',
@@ -112,12 +112,12 @@ class SideMenu extends \theme\widgets\Menu
                         'items' => [
                             [
                                 'label' => 'منشا',
-                                'url' => ['/research/source/manage/report'],
+                                'url' => ['/research/investigation/source/manage/report'],
                                 'visible' => $user->can('manager')
                             ],
                             [
                                 'label' => 'پروپوزال',
-                                'url' => ['/research/proposal/manage/report'],
+                                'url' => ['/research/investigation/proposal/manage/report'],
                                 'visible' => $user->can('manager')
                             ]
                         ]
@@ -161,7 +161,7 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'cogs',
                 'items' => [
                     [
-                        'label' => 'ابزار',
+                        'label' => 'ابزار و لوازم مصرفی',
                         'url' => ['/equipment/tool/manage/index']
                     ],
                     [
@@ -169,7 +169,7 @@ class SideMenu extends \theme\widgets\Menu
                         'url' => ['/equipment/model/manage/index']
                     ],
                     [
-                        'label' => 'نمونه‌های مورد نیاز برای ساخت',
+                        'label' => 'نمونه‌ها',
                         'url' => ['/equipment/sample/manage/index']
                     ],
                     [

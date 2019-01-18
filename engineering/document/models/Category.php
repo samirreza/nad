@@ -1,14 +1,17 @@
 <?php
+
 namespace nad\engineering\document\models;
 
+use yii\db\ActiveRecord;
 use nad\common\code\Codable;
-use nad\common\code\CodableTrait;
-use nad\common\code\CodableCategoryBehavior;
 use core\tree\NestedSetsBehavior;
+use nad\common\code\CodableTrait;
 use core\behaviors\PreventDeleteBehavior;
+use nad\common\code\CodableCategoryBehavior;
+use creocoder\nestedsets\NestedSetsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Category extends \yii\db\ActiveRecord implements Codable
+class Category extends ActiveRecord implements Codable
 {
     use CodableTrait;
 
@@ -20,10 +23,6 @@ class Category extends \yii\db\ActiveRecord implements Codable
     public function behaviors()
     {
         return [
-            [
-                'class' => CodableCategoryBehavior::class,
-                'leafsDepth' => 4
-            ],
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -38,9 +37,13 @@ class Category extends \yii\db\ActiveRecord implements Codable
                 ]
             ],
             'tree' => [
-                'class' => NestedSetsBehavior::className(),
+                'class' => NestedSetsBehavior::class,
                 'treeAttribute' => 'tree',
             ],
+            [
+                'class' => CodableCategoryBehavior::class,
+                'leafsDepth' => 4
+            ]
         ];
     }
 
@@ -50,7 +53,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             [['title', 'parentId', 'code'], 'required'],
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
-            [['title'], FarsiCharactersValidator::className()],
+            ['title', FarsiCharactersValidator::class],
             ['code', 'string', 'min' => 1, 'max' => 3]
         ];
     }
@@ -64,14 +67,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             'nestedTitle' => 'عنوان',
             'code' => 'شناسه رده',
             'uniqueCode' => 'شناسه یکتا',
-            'parentId' => 'رده پدر',
-        ];
-    }
-
-    public function transactions()
-    {
-        return [
-            self::SCENARIO_DEFAULT => self::OP_ALL,
+            'parentId' => 'رده پدر'
         ];
     }
 
@@ -80,9 +76,9 @@ class Category extends \yii\db\ActiveRecord implements Codable
         $query = parent::find();
         $query->attachBehavior(
             'nestedQuery',
-            'creocoder\nestedsets\NestedSetsQueryBehavior'
+            NestedSetsQueryBehavior::class
         );
-        return $query->orderBy(['tree' => SORT_DESC,'lft' => SORT_ASC]);
+        return $query->orderBy(['tree' => SORT_DESC, 'lft' => SORT_ASC]);
     }
 
     public function getUniqueCode() : string
@@ -90,12 +86,12 @@ class Category extends \yii\db\ActiveRecord implements Codable
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getUniqueCode().'.'.$this->code;
+        return $this->parent->getUniqueCode() . '.' . $this->code;
     }
 
     public function getTypes()
     {
-        return $this->hasMany(Plant::className(), ['categoryId' => 'id']);
+        return $this->hasMany(Plant::class, ['categoryId' => 'id']);
     }
 
     public function getDepthList()
@@ -105,7 +101,7 @@ class Category extends \yii\db\ActiveRecord implements Codable
             1 => 'دسته',
             2 => 'زیر دسته',
             3 => 'شاخه',
-            4 => 'زیر شاخه',
+            4 => 'زیر شاخه'
         ];
     }
 }

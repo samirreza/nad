@@ -1,4 +1,5 @@
 <?php
+
 namespace nad\common\code;
 
 use yii\db\ActiveRecord;
@@ -7,6 +8,7 @@ use yii\helpers\ArrayHelper;
 class CodableCategoryBehavior extends \yii\base\Behavior
 {
     public $leafsDepth = 2;
+    public $checkForUniqueCode = true;
 
     public function events()
     {
@@ -20,7 +22,35 @@ class CodableCategoryBehavior extends \yii\base\Behavior
                     $this->updateChildrenCodes();
                 }
             },
+            ActiveRecord::EVENT_BEFORE_INSERT => 'validateUniqueCode',
+            ActiveRecord::EVENT_BEFORE_UPDATE => 'validateUniqueCode'
         ];
+    }
+
+    public function validateUniqueCode($event)
+    {
+        if (!$this->checkForUniqueCode) {
+            return;
+        }
+
+        $isValid = true;
+        if ($this->owner->isRoot()) {
+            if ($this->existRootWithThisCode()) {
+                $isValid = false;
+            }
+        } else {
+            if ($this->existRowWithThisCode()) {
+                $isValid = false;
+            }
+        }
+
+        if (!$isValid) {
+            $this->owner->addError(
+                'code',
+                'این شناسه در این درخت تکراری است.'
+            );
+            $event->isValid = false;
+        }
     }
 
     public function getParentsForSelect2() : array
@@ -52,7 +82,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
             $family[] = $owner->id;
             $children = $owner->children()->select('id')->all();
             foreach ($children as $child) {
-                $family[] =  $child->id ;
+                $family[] = $child->id ;
             }
         }
         return $owner->find()
@@ -63,7 +93,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
 
     private function possibleParentsDepths()
     {
-        for ($i=0; $i < $this->leafsDepth; $i++) {
+        for ($i = 0; $i < $this->leafsDepth; $i++) {
             $depths[] = $i;
         }
         return $depths;
@@ -111,5 +141,39 @@ class CodableCategoryBehavior extends \yii\base\Behavior
                 $type->save(false);
             }
         }
+    }
+
+    private function existRootWithThisCode()
+    {
+        $modelClassName = (new \ReflectionClass($this->owner))->getName();
+        if (
+            $modelClassName::find()
+                ->andWhere([
+                    'depth' => $this->owner->depth,
+                    'code' => $this->owner->code
+                ])
+                ->exists()
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    private function existRowWithThisCode()
+    {
+        $modelClassName = (new \ReflectionClass($this->owner))->getName();
+        $parentId = $this->owner->parents(1)->one()->id;
+        $allModelsWithThisCode = $modelClassName::find()
+            ->andWhere([
+                'depth' => $this->owner->depth,
+                'code' => $this->owner->code
+            ])
+            ->all();
+        foreach ($allModelsWithThisCode as $model) {
+            if ($model->parents(1)->one()->id == $parentId) {
+                return true;
+            }
+        }
+        return false;
     }
 }
