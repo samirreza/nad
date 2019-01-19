@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-use yii\grid\GridView;
+use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
 use theme\widgets\ActionButtons;
@@ -33,6 +33,8 @@ $this->params['breadcrumbs'] = [
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'showExportButton' => true,
+                'exportAction' => 'export-source-grid',
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
@@ -96,15 +98,27 @@ $this->params['breadcrumbs'] = [
                     'createdAt:date',
                     [
                         'attribute' => 'status',
-                        'filter' => Source::getStatusLables(),
                         'value' => function ($model) {
                             return Source::getStatusLables()[$model->status];
-                        }
+                        },
+                        'filter' => Source::getStatusLables()
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {delete} {proposals}',
+                        'template' => '{view} {update} {delete} {certificate} {proposals}',
                         'buttons' => [
+                            'certificate' => function ($url, $model, $key) {
+                                return Html::a(
+                                    '<span class="fa fa-book"></span>',
+                                    [
+                                        'certificate',
+                                        'id' => $model->id
+                                    ],
+                                    [
+                                        'title' => 'شناسنامه'
+                                    ]
+                                );
+                            },
                             'proposals' => function ($url, $model, $key) {
                                 if (Yii::$app->user->can('research.manage')) {
                                     return Html::a(
@@ -127,7 +141,8 @@ $this->params['breadcrumbs'] = [
                             },
                             'delete' => function ($model, $key, $index) {
                                 return $model->canUserUpdateOrDelete();
-                            }
+                            },
+                            'certificate' => Yii::$app->user->can('research.manage')
                         ]
                     ]
                 ]

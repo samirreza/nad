@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
 use nad\research\investigation\source\models\Source;
 use nad\research\investigation\source\models\SourceSearch;
+use nad\research\investigation\source\actions\ExportSourceGridAction;
 use nad\research\investigation\common\controllers\BaseInvestigationController;
 
 class ManageController extends BaseInvestigationController
@@ -33,7 +34,8 @@ class ManageController extends BaseInvestigationController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'export-source-grid'
                             ],
                             'roles' => ['research.expert']
                         ],
@@ -75,6 +77,15 @@ class ManageController extends BaseInvestigationController
         );
     }
 
+    public function actions()
+    {
+        return [
+            'export-source-grid' => [
+                'class' => ExportSourceGridAction::class
+            ]
+        ];
+    }
+
     public function actionSetExperts($id)
     {
         $model = $this->findModel($id);
@@ -91,5 +102,11 @@ class ManageController extends BaseInvestigationController
             'content' => $this->renderAjax('set-experts', ['model' => $model])
         ]);
         exit;
+    }
+
+    public function actionCertificate($id)
+    {
+        $source = $this->findModel($id);
+        return $this->render('certificate', ['source' => $source]);
     }
 }

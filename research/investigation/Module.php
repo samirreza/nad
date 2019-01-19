@@ -17,19 +17,28 @@ class Module extends \yii\base\Module
             'resource' => 'nad\research\investigation\common\controllers\ResourceController'
         ];
         $this->horizontalButtons = [
-            'source' => [
-                'label' => 'منشا‌ها',
-                'url' => ['/research/investigation/source/manage/index']
+            [
+                'label' => 'منشا',
+                'items' => [
+                    [
+                        'label' => 'منشا‌ها',
+                        'url' => ['/research/investigation/source/manage/index']
+                    ],
+                    [
+                        'label' => 'درج منشا',
+                        'url' => ['/research/investigation/source/manage/create']
+                    ]
+                ]
             ],
-            'proposal' => [
-                'label' => 'پروپوزال‌ها',
+            [
+                'label' => 'پروپوزال',
                 'url' => ['/research/investigation/proposal/manage/index']
             ],
-            'project' => [
-                'label' => 'گزارش‌ها',
+            [
+                'label' => 'گزارش',
                 'url' => ['/research/investigation/project/manage/index']
             ],
-            'resource' => [
+            [
                 'label' => 'منابع',
                 'url' => ['/research/investigation/resource']
             ]

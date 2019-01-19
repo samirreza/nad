@@ -2,22 +2,38 @@
 
 use theme\widgets\Panel;
 
+$this->title = 'شناسنامه ' . $source->title;
+$this->params['breadcrumbs'] = [
+    'پژوهش',
+    'بررسی',
+    ['label' => 'منشا‌ها', 'url' => ['index']],
+    [
+        'label' => $source->title,
+        'url' => ['view', 'id' => $source->id]
+    ],
+    'شناسنامه'
+];
+
 ?>
 
 <div class="research-investigation-certificate">
     <?php Panel::begin(['title' => $this->title]) ?>
-        <?= $this->render('_base_source_certificate', [
+        <?= $this->render('@nad/research/investigation/common/views/_base_source_certificate', [
             'source' => $source
         ]) ?>
-        <?php if ($proposal) : ?>
-            <?= $this->render('_base_proposal_certificate', [
-                'proposal' => $proposal
-            ]) ?>
-        <?php endif; ?>
-        <?php if ($project) : ?>
-            <?= $this->render('_base_project_certificate', [
-                'project' => $project
-            ]) ?>
+        <?php if ($source->proposals) : ?>
+            <?php foreach ($source->proposals as $proposal) : ?>
+                <?php Panel::begin(['title' => '']) ?>
+                    <?= $this->render('@nad/research/investigation/common/views/_base_proposal_certificate', [
+                        'proposal' => $proposal
+                    ]) ?>
+                    <?php if ($proposal->project) : ?>
+                        <?= $this->render('@nad/research/investigation/common/views/_base_project_certificate', [
+                            'project' => $proposal->project
+                        ]) ?>
+                    <?php endif; ?>
+                <?php Panel::end() ?>
+            <?php endforeach; ?>
         <?php endif; ?>
     <?php Panel::end() ?>
 </div>
@@ -64,3 +80,4 @@ use theme\widgets\Panel;
         float: left;
     }
 ') ?>
+

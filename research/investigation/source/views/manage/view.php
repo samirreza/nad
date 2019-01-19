@@ -66,6 +66,16 @@ $this->params['breadcrumbs'] = [
                         '/research/investigation/proposal/manage/create',
                         'sourceId' => $model->id
                     ]
+                ],
+                'certificate' => [
+                    'label' => 'شناسنامه',
+                    'icon' => 'book',
+                    'type' => 'primary',
+                    'visibleFor' => ['research.manage'],
+                    'url' => [
+                        'certificate',
+                        'id' => $model->id
+                    ]
                 ]
             ]
         ]) ?>
