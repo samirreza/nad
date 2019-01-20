@@ -1,21 +1,21 @@
 <?php
 
-namespace nad\equipment\model\controllers;
+namespace nad\build\material\controllers;
 
 use Yii;
 use yii\web\Response;
 use yii\filters\AccessControl;
-use nad\equipment\model\models\Model;
-use nad\equipment\model\models\Category;
 use core\controllers\AjaxAdminController;
-use nad\equipment\model\models\ModelSearch;
+use nad\build\material\models\Category;
+use nad\build\material\models\Material;
+use nad\build\material\models\MaterialSearch;
 
 class ManageController extends AjaxAdminController
 {
     public function init()
     {
-        $this->modelClass = Model::class;
-        $this->searchClass = ModelSearch::class;
+        $this->modelClass = Material::class;
+        $this->searchClass = MaterialSearch::class;
         parent::init();
     }
 
@@ -48,7 +48,7 @@ class ManageController extends AjaxAdminController
         $roots = Category::find()->roots()->all();
         $tree = [];
         foreach ($roots as $root) {
-            $tree[] = $root->getFamilyTreeArray();
+            $tree[] = $root->getBehavior('codableCategory')->getFamilyTreeArray();
         }
 
         return $tree;

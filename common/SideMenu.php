@@ -179,6 +179,16 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
+                'label' => 'احداث',
+                'icon' => 'cogs',
+                'items' => [
+                    [
+                        'label' => 'مصالح ساختمانی',
+                        'url' => ['/build/material/manage/index']
+                    ]
+                ]
+            ],
+            [
                 'label' => 'بازرگانی',
                 'icon' => 'briefcase',
                 'items' => [

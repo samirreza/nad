@@ -53,9 +53,4 @@ class ManageController extends AjaxAdminController
 
         return $tree;
     }
-
-    public function actionReport()
-    {
-        return $this->render('report');
-    }
 }

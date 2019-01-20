@@ -2,9 +2,11 @@
 
 namespace nad\research\investigation;
 
+use Yii;
+
 class Module extends \yii\base\Module
 {
-    public $horizontalButtons;
+    public $horizontalMenuItems;
 
     public function init()
     {
@@ -16,7 +18,7 @@ class Module extends \yii\base\Module
         $this->controllerMap = [
             'resource' => 'nad\research\investigation\common\controllers\ResourceController'
         ];
-        $this->horizontalButtons = [
+        $this->horizontalMenuItems = [
             [
                 'label' => 'منشا',
                 'items' => [
@@ -36,7 +38,17 @@ class Module extends \yii\base\Module
             ],
             [
                 'label' => 'گزارش',
-                'url' => ['/research/investigation/project/manage/index']
+                'items' => [
+                    [
+                        'label' => 'گزارش‌ها',
+                        'url' => ['/research/investigation/project/manage/index']
+                    ],
+                    [
+                        'label' => 'رده‌های گزارش‌ها',
+                        'url' => ['/research/investigation/project/category/index'],
+                        'visible' => Yii::$app->user->can('research.manage')
+                    ]
+                ]
             ],
             [
                 'label' => 'منابع',

@@ -50,12 +50,7 @@ class ManageController extends AjaxAdminController
         foreach ($roots as $root) {
             $tree[] = $root->getFamilyTreeArray();
         }
-        
-        return $tree;
-    }
 
-    public function actionReport()
-    {
-        return $this->render('report');
+        return $tree;
     }
 }
