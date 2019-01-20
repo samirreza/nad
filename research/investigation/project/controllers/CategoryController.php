@@ -71,7 +71,7 @@ class CategoryController extends AjaxAdminController
         } else {
             $root = $this->findModel($id);
         }
-        
-        return $root ? [$root->getFamilyTreeArray()] : [];
+
+        return $root ? [$root->getFamilyTreeArrayForWidget()] : [];
     }
 }

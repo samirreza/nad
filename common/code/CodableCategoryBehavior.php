@@ -99,7 +99,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
         return $depths;
     }
 
-    public function getFamilyTreeArray()
+    public function getFamilyTreeArrayForWidget()
     {
         $owner = $this->owner;
         $attributes = [
@@ -111,7 +111,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
         if ($owner->children(1)->count() != 0) {
             $children = [];
             foreach ($owner->children(1)->all() as $child) {
-                $children[] = $child->getFamilyTreeArray();
+                $children[] = $child->getFamilyTreeArrayForWidget();
             }
         } elseif ($owner->getTypes()->count() != 0) {
             foreach ($owner->types as $type) {

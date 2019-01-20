@@ -72,6 +72,6 @@ class CategoryController extends AjaxAdminController
             $root = $this->findModel($id);
         }
 
-        return $root ? [$root->getBehavior('codableCategory')->getFamilyTreeArray()] : [];
+        return $root ? [$root->getFamilyTreeArrayForWidget()] : [];
     }
 }

@@ -48,7 +48,7 @@ class ManageController extends AjaxAdminController
         $roots = Category::find()->roots()->all();
         $tree = [];
         foreach ($roots as $root) {
-            $tree[] = $root->getFamilyTreeArray();
+            $tree[] = $root->getFamilyTreeArrayForWidget();
         }
 
         return $tree;

@@ -78,7 +78,7 @@ class Category extends ActiveRecord implements Codable
         return $this->hasMany(Project::class, ['categoryId' => 'id']);
     }
 
-    public function getFamilyTreeArray()
+    public function getFamilyTreeArrayForWidget()
     {
         $attributes = [
             'id' => $this->id,
@@ -89,7 +89,7 @@ class Category extends ActiveRecord implements Codable
         if ($this->children(1)->count() != 0) {
             $children = [];
             foreach ($this->children(1)->all() as $child) {
-                $children[] = $child->getFamilyTreeArray();
+                $children[] = $child->getFamilyTreeArrayForWidget();
             }
         } elseif ($this->getProjects()->count() != 0) {
             foreach ($this->projects as $project) {
