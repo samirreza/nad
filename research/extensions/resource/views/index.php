@@ -17,23 +17,25 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="resource-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'create-resource' => [
-                'label' => 'منبع جدید',
-                'url' => [
-                    'create',
-                    'clientId' => $clientId
-                ],
-                'icon' => 'plus',
-                'type' => 'success',
-                'options' => [
-                    'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'resource-index-gridviewpjax'
+    <div class="fixed-action-buttons">
+        <?= ActionButtons::widget([
+            'buttons' => [
+                'create-resource' => [
+                    'label' => 'منبع جدید',
+                    'url' => [
+                        'create',
+                        'clientId' => $clientId
+                    ],
+                    'icon' => 'plus',
+                    'type' => 'success',
+                    'options' => [
+                        'class' => 'ajaxcreate',
+                        'data-gridpjaxid' => 'resource-index-gridviewpjax'
+                    ]
                 ]
             ]
-        ]
-    ]) ?>
+        ]) ?>
+    </div>
     <div class="sliding-form-wrapper"></div>
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'resource-index-gridviewpjax']) ?>

@@ -5,7 +5,6 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
 use nad\research\investigation\project\models\Project;
@@ -20,15 +19,6 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="project-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'categoriesIndex' => [
-                'label' => 'رده های گزارش‌ها',
-                'icon' => 'sitemap',
-                'visibleFor' => ['research.manage']
-            ]
-        ]
-    ]) ?>
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'project-index-gridviewpjax']) ?>
             <?= GridView::widget([
@@ -37,7 +27,7 @@ $this->params['breadcrumbs'] = [
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:30%'],
+                        'headerOptions' => ['style' => 'width:60%'],
                         'filterInputOptions' => [
                             'class'       => 'form-control',
                             'placeholder' => 'جست‌و‌جو عنوان گزارش'
@@ -46,7 +36,7 @@ $this->params['breadcrumbs'] = [
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
                         'isAjaxGrid' => false,
-                        'options' => ['style' => 'width:10%']
+                        'options' => ['style' => 'width:5%']
                     ],
                     [
                         'attribute' => 'category.title',
@@ -81,9 +71,7 @@ $this->params['breadcrumbs'] = [
                             'pluginOptions' => [
                                 'allowClear' => true
                             ]
-                        ]),
-
-                        'headerOptions' => ['style' => 'width:20%']
+                        ])
                     ],
                     'createdAt:date',
                     [
@@ -91,7 +79,8 @@ $this->params['breadcrumbs'] = [
                         'filter' => Project::getStatusLables(),
                         'value' => function ($model) {
                             return Project::getStatusLables()[$model->status];
-                        }
+                        },
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

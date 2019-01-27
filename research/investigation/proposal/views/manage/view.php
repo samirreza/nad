@@ -21,53 +21,45 @@ $this->params['breadcrumbs'] = [
 <a class="ajaxcreate" data-gridpjaxid="proposal-view-detailviewpjax"></a>
 <div class="proposal-view">
     <?php Pjax::begin(['id' => 'proposal-view-detailviewpjax']) ?>
-        <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
-            'model' => $model,
-            'modelTitle' => 'پورپوزال',
-            'buttons' => [
-                'set-expert' => [
-                    'label' => 'تعیین کارشناس',
-                    'icon' => 'graduation-cap',
-                    'type' => 'info',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED,
-                    'url' => ['set-expert', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'send-for-project' => [
-                    'label' => 'ارسال برای تهیه گزارش',
-                    'icon' => 'clone',
-                    'type' => 'success',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
-                        $model->projectExpertId,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_READY_FOR_NEXT_STEP
+        <div class="fixed-action-buttons">
+            <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
+                'model' => $model,
+                'modelTitle' => 'پورپوزال',
+                'buttons' => [
+                    'set-expert' => [
+                        'label' => 'تعیین کارشناس',
+                        'icon' => 'graduation-cap',
+                        'type' => 'info',
+                        'visible' => $model->status == Proposal::STATUS_ACCEPTED,
+                        'url' => ['set-expert', 'id' => $model->id],
+                        'options' => ['class' => 'ajaxupdate']
                     ],
-                    'options' => ['class' => 'ajaxrequest']
-                ],
-                'create-project' => [
-                    'label' => 'درج گزارش',
-                    'icon' => 'plus',
-                    'type' => 'success',
-                    'visible' => $model->canUserCreateProject(),
-                    'url' => [
-                        '/research/investigation/project/manage/create',
-                        'proposalId' => $model->id
-                    ]
-                ],
-                'certificate' => [
-                    'label' => 'شناسنامه',
-                    'icon' => 'book',
-                    'type' => 'primary',
-                    'visibleFor' => ['research.manage'],
-                    'url' => [
-                        'certificate',
-                        'id' => $model->id
+                    'send-for-project' => [
+                        'label' => 'ارسال برای تهیه گزارش',
+                        'icon' => 'clone',
+                        'type' => 'success',
+                        'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
+                            $model->projectExpertId,
+                        'url' => [
+                            'change-status',
+                            'id' => $model->id,
+                            'newStatus' => Proposal::STATUS_READY_FOR_NEXT_STEP
+                        ],
+                        'options' => ['class' => 'ajaxrequest']
+                    ],
+                    'create-project' => [
+                        'label' => 'درج گزارش',
+                        'icon' => 'plus',
+                        'type' => 'success',
+                        'visible' => $model->canUserCreateProject(),
+                        'url' => [
+                            '/research/investigation/project/manage/create',
+                            'proposalId' => $model->id
+                        ]
                     ]
                 ]
-            ]
-        ]) ?>
+            ]) ?>
+        </div>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">
@@ -78,6 +70,7 @@ $this->params['breadcrumbs'] = [
                             'title',
                             'englishTitle',
                             'uniqueCode',
+                            'lastCode:farsiNumber',
                             [
                                 'attribute' => 'createdBy',
                                 'value' => function ($model) {

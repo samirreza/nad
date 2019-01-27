@@ -17,25 +17,23 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="research-investigation-certificate">
-    <?php Panel::begin(['title' => $this->title]) ?>
-        <?= $this->render('@nad/research/investigation/common/views/_base_source_certificate', [
-            'source' => $source
-        ]) ?>
-        <?php if ($source->proposals) : ?>
-            <?php foreach ($source->proposals as $proposal) : ?>
-                <?php Panel::begin(['title' => '']) ?>
-                    <?= $this->render('@nad/research/investigation/common/views/_base_proposal_certificate', [
-                        'proposal' => $proposal
+    <?= $this->render('@nad/research/investigation/common/views/_base_source_certificate', [
+        'source' => $source
+    ]) ?>
+    <?php if ($source->proposals) : ?>
+        <?php foreach ($source->proposals as $index => $proposal) : ?>
+            <?php Panel::begin(['title' => 'پوپوزال / گزارش ' . Yii::$app->formatter->asFarsiNumber($index + 1)]) ?>
+                <?= $this->render('@nad/research/investigation/common/views/_base_proposal_certificate', [
+                    'proposal' => $proposal
+                ]) ?>
+                <?php if ($proposal->project) : ?>
+                    <?= $this->render('@nad/research/investigation/common/views/_base_project_certificate', [
+                        'project' => $proposal->project
                     ]) ?>
-                    <?php if ($proposal->project) : ?>
-                        <?= $this->render('@nad/research/investigation/common/views/_base_project_certificate', [
-                            'project' => $proposal->project
-                        ]) ?>
-                    <?php endif; ?>
-                <?php Panel::end() ?>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    <?php Panel::end() ?>
+                <?php endif; ?>
+            <?php Panel::end() ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
 
 <?php $this->registerCss('

@@ -1,7 +1,5 @@
 <?php
 
-use theme\widgets\ActionButtons;
-
 $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'پژوهش',
@@ -17,11 +15,5 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="source-update">
-	<?= ActionButtons::widget([
-        'modelID' => $model->id,
-        'buttons' => [
-            'index' => ['label' => 'منشاها']
-        ]
-    ]) ?>
     <?= $this->render('_form', ['model' => $model]) ?>
 </div>

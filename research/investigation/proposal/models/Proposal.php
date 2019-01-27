@@ -144,6 +144,7 @@ class Proposal extends BaseInvestigationModel
             'title' => 'عنوان',
             'englishTitle' => 'عنوان انگلیسی',
             'uniqueCode' => 'شناسه',
+            'lastCode' => 'نسخه',
             'createdBy' => 'کارشناس',
             'createdAt' => 'تاریخ درج',
             'necessity' => 'ضرورت اجرای طرح',
@@ -192,7 +193,7 @@ class Proposal extends BaseInvestigationModel
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->code . '.' .
-            str_pad($this->lastCode, 3, '0', STR_PAD_LEFT);
+            str_pad(self::find()->count() + 1, 3, '0', STR_PAD_LEFT);
     }
 
     public function getPartners()

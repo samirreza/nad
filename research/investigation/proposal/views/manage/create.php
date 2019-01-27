@@ -1,7 +1,5 @@
 <?php
 
-use theme\widgets\ActionButtons;
-
 $this->title = 'پروپوزال جدید';
 $this->params['breadcrumbs'] = [
     'پژوهش',
@@ -13,10 +11,5 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="proposal-create">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'index' => ['label' => 'پروپوزال‌ها']
-        ]
-    ]) ?>
     <?= $this->render('_form', ['model' => $model]) ?>
 </div>

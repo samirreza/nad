@@ -23,6 +23,26 @@ $children = $model->children()->all();
 <a class="ajaxcreate" data-gridpjaxid="project-view-detailviewpjax"></a>
 <div class="project-view">
     <?php Pjax::begin(['id' => 'project-view-detailviewpjax']) ?>
+        <div class="fixed-action-buttons">
+            <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
+                'model' => $model,
+                'modelTitle' => 'گزارش',
+                'buttons' => [
+                    'archive' => [
+                        'label' => 'آرشیو کردن',
+                        'icon' => 'clone',
+                        'type' => 'success',
+                        'visible' => $model->status == Project::STATUS_ACCEPTED,
+                        'url' => [
+                            'change-status',
+                            'id' => $model->id,
+                            'newStatus' => Project::STATUS_FINISHED
+                        ],
+                        'options' => ['class' => 'ajaxrequest']
+                    ]
+                ]
+            ]) ?>
+        </div>
         <p>
             <?php if ($model->canUserUpdateOrDelete() && count($children) > 0): ?>
                 <?php Alert::begin(['options' => ['class' => 'alert-warning'], 'closeButton' => false]); ?>
@@ -35,34 +55,6 @@ $children = $model->children()->all();
                 <?php Alert::end() ?>
             <?php endif ?>
         </p>
-        <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
-            'model' => $model,
-            'modelTitle' => 'گزارش',
-            'buttons' => [
-                'archive' => [
-                    'label' => 'آرشیو کردن',
-                    'icon' => 'clone',
-                    'type' => 'success',
-                    'visible' => $model->status == Project::STATUS_ACCEPTED,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Project::STATUS_FINISHED
-                    ],
-                    'options' => ['class' => 'ajaxrequest']
-                ],
-                'certificate' => [
-                    'label' => 'شناسنامه',
-                    'icon' => 'book',
-                    'type' => 'primary',
-                    'visibleFor' => ['research.manage'],
-                    'url' => [
-                        'certificate',
-                        'id' => $model->id
-                    ]
-                ]
-            ]
-        ]) ?>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">

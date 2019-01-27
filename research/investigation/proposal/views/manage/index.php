@@ -27,7 +27,7 @@ $this->params['breadcrumbs'] = [
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:45%'],
+                        'headerOptions' => ['style' => 'width:80%'],
                         'filterInputOptions' => [
                             'class'       => 'form-control',
                             'placeholder' => 'جست‌و‌جو عنوان پروپوزال'
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'] = [
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
                         'isAjaxGrid' => false,
-                        'options' => ['style' => 'width:10%']
+                        'options' => ['style' => 'width:5%']
                     ],
                     [
                         'attribute' => 'createdBy',
@@ -59,8 +59,7 @@ $this->params['breadcrumbs'] = [
                             'pluginOptions' => [
                                 'allowClear' => true
                             ]
-                        ]),
-                        'headerOptions' => ['style' => 'width:20%']
+                        ])
                     ],
                     'createdAt:date',
                     [
@@ -68,7 +67,8 @@ $this->params['breadcrumbs'] = [
                         'filter' => Proposal::getStatusLables(),
                         'value' => function ($model) {
                             return Proposal::getStatusLables()[$model->status];
-                        }
+                        },
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

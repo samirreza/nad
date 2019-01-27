@@ -5,7 +5,6 @@ use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
 use nad\research\investigation\source\models\Source;
@@ -21,13 +20,6 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="source-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'create' => [
-                'label' => 'درج منشا'
-            ]
-        ]
-    ]) ?>
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
             <?= GridView::widget([
@@ -38,16 +30,16 @@ $this->params['breadcrumbs'] = [
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:30%'],
+                        'headerOptions' => ['style' => 'width:70%'],
                         'filterInputOptions' => [
-                            'class'       => 'form-control',
+                            'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو عنوان منشا'
                         ]
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
                         'isAjaxGrid' => false,
-                        'options' => ['style' => 'width:10%']
+                        'options' => ['style' => 'width:5%']
                     ],
                     [
                         'attribute' => 'createdBy',
@@ -65,13 +57,12 @@ $this->params['breadcrumbs'] = [
                                 'fullName'
                             ),
                             'options' => [
-                                'placeholder' => 'کارشناس را انتخاب کنید'
+                                'placeholder' => 'انتخاب کارشناس'
                             ],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ]
-                        ]),
-                        'headerOptions' => ['style' => 'width:15%']
+                        ])
                     ],
                     [
                         'attribute' => 'mainReasonId',
@@ -87,13 +78,12 @@ $this->params['breadcrumbs'] = [
                                 'title'
                             ),
                             'options' => [
-                                'placeholder' => 'علت را انتخاب کنید'
+                                'placeholder' => 'انتخاب علت'
                             ],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ]
-                        ]),
-                        'headerOptions' => ['style' => 'width:15%']
+                        ])
                     ],
                     'createdAt:date',
                     [
@@ -101,7 +91,8 @@ $this->params['breadcrumbs'] = [
                         'value' => function ($model) {
                             return Source::getStatusLables()[$model->status];
                         },
-                        'filter' => Source::getStatusLables()
+                        'filter' => Source::getStatusLables(),
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

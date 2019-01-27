@@ -19,66 +19,58 @@ $this->params['breadcrumbs'] = [
 <a class="ajaxcreate" data-gridpjaxid="source-view-detailview-pjax"></a>
 <div class="source-view">
     <?php Pjax::begin(['id' => 'source-view-detailview-pjax']) ?>
-        <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
-            'model' => $model,
-            'modelTitle' => 'منشا',
-            'buttons' => [
-                'reject' => [
-                    'label' => 'رد',
-                    'icon' => 'times',
-                    'type' => 'danger',
-                    'visible' => $model->status == Source::STATUS_MEETING_HELD,
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_REJECTED
+        <div class="fixed-action-buttons">
+            <?= $this->render('@nad/research/investigation/common/views/_base_action_buttons', [
+                'model' => $model,
+                'modelTitle' => 'منشا',
+                'buttons' => [
+                    'reject' => [
+                        'label' => 'رد',
+                        'icon' => 'times',
+                        'type' => 'danger',
+                        'visible' => $model->status == Source::STATUS_MEETING_HELD,
+                        'url' => [
+                            'change-status',
+                            'id' => $model->id,
+                            'newStatus' => Source::STATUS_REJECTED
+                        ],
+                        'options' => ['class' => 'ajaxrequest']
                     ],
-                    'options' => ['class' => 'ajaxrequest']
-                ],
-                'set-experts' => [
-                    'label' => 'تعیین کارشناسان',
-                    'icon' => 'graduation-cap',
-                    'type' => 'info',
-                    'visible' => $model->status == Source::STATUS_ACCEPTED,
-                    'url' => ['set-experts', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'send-for-proposal' => [
-                    'label' => 'ارسال برای نگارش پروپوزال',
-                    'icon' => 'clone',
-                    'type' => 'success',
-                    'visible' => $model->status == Source::STATUS_ACCEPTED &&
-                        $model->hasAnyExpert(),
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_READY_FOR_NEXT_STEP
+                    'set-experts' => [
+                        'label' => 'تعیین کارشناسان',
+                        'icon' => 'graduation-cap',
+                        'type' => 'info',
+                        'visible' => $model->status == Source::STATUS_ACCEPTED,
+                        'url' => ['set-experts', 'id' => $model->id],
+                        'options' => ['class' => 'ajaxupdate']
                     ],
-                    'options' => ['class' => 'ajaxrequest']
-                ],
-                'create-proposal' => [
-                    'label' => 'درج پروپوزال',
-                    'icon' => 'plus',
-                    'type' => 'success',
-                    'visibleFor' => ['research.expert', 'research.manage'],
-                    'visible' => $model->canUserCreateProposal(),
-                    'url' => [
-                        '/research/investigation/proposal/manage/create',
-                        'sourceId' => $model->id
-                    ]
-                ],
-                'certificate' => [
-                    'label' => 'شناسنامه',
-                    'icon' => 'book',
-                    'type' => 'primary',
-                    'visibleFor' => ['research.manage'],
-                    'url' => [
-                        'certificate',
-                        'id' => $model->id
+                    'send-for-proposal' => [
+                        'label' => 'ارسال برای نگارش پروپوزال',
+                        'icon' => 'clone',
+                        'type' => 'success',
+                        'visible' => $model->status == Source::STATUS_ACCEPTED &&
+                            $model->hasAnyExpert(),
+                        'url' => [
+                            'change-status',
+                            'id' => $model->id,
+                            'newStatus' => Source::STATUS_READY_FOR_NEXT_STEP
+                        ],
+                        'options' => ['class' => 'ajaxrequest']
+                    ],
+                    'create-proposal' => [
+                        'label' => 'درج پروپوزال',
+                        'icon' => 'plus',
+                        'type' => 'success',
+                        'visibleFor' => ['research.expert', 'research.manage'],
+                        'visible' => $model->canUserCreateProposal(),
+                        'url' => [
+                            '/research/investigation/proposal/manage/create',
+                            'sourceId' => $model->id
+                        ]
                     ]
                 ]
-            ]
-        ]) ?>
+            ]) ?>
+        </div>
         <div class="sliding-form-wrapper"></div>
         <div class="row">
             <div class="col-md-6">

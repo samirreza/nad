@@ -24,26 +24,27 @@ $this->params['breadcrumbs'] = [
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
-                        'headerOptions' => ['style' => 'width:30%']
+                        'headerOptions' => ['style' => 'width:70%']
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
                         'isAjaxGrid' => false,
-                        'options' => ['style' => 'width:10%']
+                        'options' => ['style' => 'width:5%']
                     ],
                     [
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
                             return $model->researcher->fullName;
                         },
-                        'headerOptions' => ['style' => 'width:20%']
+                        'headerOptions' => ['style' => 'width:10%']
                     ],
                     'createdAt:date',
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
                             return Proposal::getStatusLables()[$model->status];
-                        }
+                        },
+                        'options' => ['style' => 'width:10%']
                     ],
                     [
                         'class' => 'core\grid\ActionColumn',

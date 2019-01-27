@@ -74,10 +74,20 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
                     'newStatus' => BaseInvestigationModel::STATUS_NEED_CORRECTION
                 ],
                 'options' => ['class' => 'ajaxrequest']
-            ]
+            ],
         ],
         $buttons,
         [
+            'certificate' => [
+                'label' => 'شناسنامه',
+                'icon' => 'book',
+                'type' => 'primary',
+                'visibleFor' => ['research.manage'],
+                'url' => [
+                    'certificate',
+                    'id' => $model->id
+                ]
+            ],
             'update' => [
                 'label' => 'ویرایش',
                 'visible' => $model->canUserUpdateOrDelete()
@@ -85,9 +95,6 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             'delete' => [
                 'label' => 'حذف',
                 'visible' => $model->canUserUpdateOrDelete()
-            ],
-            'index' => [
-                'label' => "$modelTitle ها"
             ]
         ]
     )

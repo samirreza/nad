@@ -1,25 +1,19 @@
-<?php
 
-use theme\widgets\Panel;
-
-?>
 
 <div class="research-investigation-certificate">
-    <?php Panel::begin(['title' => $this->title]) ?>
-        <?= $this->render('_base_source_certificate', [
-            'source' => $source
+    <?= $this->render('_base_source_certificate', [
+        'source' => $source
+    ]) ?>
+    <?php if ($proposal) : ?>
+        <?= $this->render('_base_proposal_certificate', [
+            'proposal' => $proposal
         ]) ?>
-        <?php if ($proposal) : ?>
-            <?= $this->render('_base_proposal_certificate', [
-                'proposal' => $proposal
-            ]) ?>
-        <?php endif; ?>
-        <?php if ($project) : ?>
-            <?= $this->render('_base_project_certificate', [
-                'project' => $project
-            ]) ?>
-        <?php endif; ?>
-    <?php Panel::end() ?>
+    <?php endif; ?>
+    <?php if ($project) : ?>
+        <?= $this->render('_base_project_certificate', [
+            'project' => $project
+        ]) ?>
+    <?php endif; ?>
 </div>
 
 <?php $this->registerCss('
