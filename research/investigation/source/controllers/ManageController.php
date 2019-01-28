@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
 use nad\research\investigation\source\models\Source;
 use nad\research\investigation\source\models\SourceSearch;
+use nad\research\investigation\source\models\SourceSearchModel;
 use nad\research\investigation\source\actions\ExportSourceGridAction;
 use nad\research\investigation\common\controllers\BaseInvestigationController;
 
@@ -108,5 +109,23 @@ class ManageController extends BaseInvestigationController
     {
         $source = $this->findModel($id);
         return $this->render('certificate', ['source' => $source]);
+    }
+
+    public function actionSearch()
+    {
+        $model = new SourceSearchModel();
+        if ($model->load(Yii::$app->request->post())) {
+            $searchModel = new SourceSearch();
+            $params = [];
+            $params[$searchModel->formName()]['title'] = $model->title;
+            $params[$searchModel->formName()]['tags'] = $model->tags;
+            $dataProvider = $searchModel->search($params);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider
+            ]);
+        } else {
+            return $this->render('search', ['model' => $model]);
+        }
     }
 }

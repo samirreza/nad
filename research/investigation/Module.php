@@ -27,6 +27,10 @@ class Module extends \yii\base\Module
                         'url' => ['/research/investigation/source/manage/index']
                     ],
                     [
+                        'label' => 'جست‌و‌جو منشا',
+                        'url' => ['/research/investigation/source/manage/search']
+                    ],
+                    [
                         'label' => 'درج منشا',
                         'url' => ['/research/investigation/source/manage/create']
                     ]

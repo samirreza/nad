@@ -26,6 +26,7 @@ $this->params['breadcrumbs'] = [
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'showExportButton' => true,
+                'filterUrl' => ['index'],
                 'exportAction' => 'export-source-grid',
                 'columns' => [
                     [
