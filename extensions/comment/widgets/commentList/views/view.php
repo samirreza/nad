@@ -15,15 +15,16 @@ $model = $this->context->model;
     <div class="row">
         <div class="comments col-md-12">
             <?= Button::widget([
-                'label' => 'درج نظر',
+                'label' => 'تبادل نظر',
                 'url' => [
                     '/comment/create',
                     'moduleId' => $this->context->moduleId,
                     'modelClassName' => get_class($model),
-                    'modelId' => $model->id
+                    'modelId' => $model->id,
+                    'returnUrl' => $this->context->returnUrl
                 ],
                 'options' => [
-                    'class' => 'ajaxcreate',
+                    'class' => 'ajaxcreate insert-comment',
                     'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
                 ],
                 'icon' => 'comment',

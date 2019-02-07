@@ -140,6 +140,7 @@ class Project extends BaseInvestigationModel
             'tags' => 'کلید واژه‌ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
+            'negotiateDate' => 'تاریخ مذاکره',
             'proceedings' => 'نتیجه برگزاری جلسه',
             'updatedAt' => 'آخرین بروزرسانی',
             'status' => 'وضعیت'

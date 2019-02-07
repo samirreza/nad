@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
@@ -25,9 +24,7 @@ $this->params['breadcrumbs'] = [
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'showExportButton' => true,
                 'filterUrl' => ['index'],
-                'exportAction' => 'export-source-grid',
                 'columns' => [
                     [
                         'class' => 'core\grid\TitleColumn',
@@ -94,48 +91,6 @@ $this->params['breadcrumbs'] = [
                         },
                         'filter' => Source::getStatusLables(),
                         'options' => ['style' => 'width:10%']
-                    ],
-                    [
-                        'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {delete} {certificate} {proposals}',
-                        'buttons' => [
-                            'certificate' => function ($url, $model, $key) {
-                                return Html::a(
-                                    '<span class="fa fa-book"></span>',
-                                    [
-                                        'certificate',
-                                        'id' => $model->id
-                                    ],
-                                    [
-                                        'title' => 'شناسنامه'
-                                    ]
-                                );
-                            },
-                            'proposals' => function ($url, $model, $key) {
-                                if (Yii::$app->user->can('research.manage')) {
-                                    return Html::a(
-                                        'پروپوزال‌ها',
-                                        [
-                                            '/research/investigation/proposal/manage/index',
-                                            'ProposalSearch[sourceId]' => $model->id
-                                        ]
-                                    );
-                                }
-                            }
-                        ],
-                        'visibleButtons' => [
-                            'view' => Yii::$app->user->canAccessAny([
-                                'research.expert',
-                                'research.manage'
-                            ]),
-                            'update' => function ($model, $key, $index) {
-                                return $model->canUserUpdateOrDelete();
-                            },
-                            'delete' => function ($model, $key, $index) {
-                                return $model->canUserUpdateOrDelete();
-                            },
-                            'certificate' => Yii::$app->user->can('research.manage')
-                        ]
                     ]
                 ]
             ]) ?>

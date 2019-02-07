@@ -114,6 +114,18 @@ class BaseInvestigationModel extends ActiveRecord implements Codable
             $this->status == self::STATUS_WAITING_FOR_MEETING;
     }
 
+    public function canHoldSession()
+    {
+        return $this->status == self::STATUS_WAITING_FOR_MEETING &&
+            $this->sessionDate &&
+            $this->sessionDate <= time();
+    }
+
+    public function canInsertComment()
+    {
+        return $this->status == self::STATUS_DELIVERED_TO_MANAGER;
+    }
+
     public static function getStatusLables()
     {
         return [

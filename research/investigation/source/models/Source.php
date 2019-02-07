@@ -123,7 +123,8 @@ class Source extends BaseInvestigationModel
             'tags' => 'کلید واژه‌ها',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
-            'proceedings' => 'نتیجه برگزاری جلسه',
+            'negotiateDate' => 'تاریخ مذاکره',
+            'proceedings' => 'نتیجه برگزاری جلسه / مذاکره',
             'experts' => 'کارشناسان نگارش پروپوزال',
             'updatedAt' => 'آخرین بروزرسانی',
             'status' => 'وضعیت'

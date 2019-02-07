@@ -17,7 +17,7 @@ use nad\research\investigation\proposal\models\Proposal;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            '/research/proposal/manage/view',
+            '/research/investigation/proposal/manage/view',
             'id' => $proposal->id
         ],
         [

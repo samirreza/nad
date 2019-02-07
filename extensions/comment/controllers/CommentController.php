@@ -24,7 +24,15 @@ class CommentController extends AjaxAdminController
                 ->getShortName(),
             'modelId' => Yii::$app->request->get('modelId')
         ]);
+        $returnUrl = Yii::$app->request->get('returnUrl');
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
+            if ($returnUrl) {
+                Yii::$app->session->addFlash(
+                    'success',
+                    'نظر مورد نظر با موفقیت در سیستم درج شد.'
+                );
+                return $this->redirect($returnUrl);
+            }
             echo Json::encode([
                 'status' => 'success',
                 'message' => 'نظر مورد نظر با موفقیت در سیستم درج شد.'

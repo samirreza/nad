@@ -157,6 +157,7 @@ class Proposal extends BaseInvestigationModel
             'sourceId' => 'منشا',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
+            'negotiateDate' => 'تاریخ مذاکره',
             'proceedings' => 'نتیجه برگزاری جلسه',
             'projectExpertId' => 'کارشناس نگارش گزارش',
             'status' => 'وضعیت',

@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
@@ -81,37 +80,6 @@ $this->params['breadcrumbs'] = [
                             return Project::getStatusLables()[$model->status];
                         },
                         'options' => ['style' => 'width:10%']
-                    ],
-                    [
-                        'class' => 'yii\grid\ActionColumn',
-                        'template' => '{view} {update} {delete} {certificate}',
-                        'buttons' => [
-                            'certificate' => function ($url, $model, $key) {
-                                return Html::a(
-                                    '<span class="fa fa-book"></span>',
-                                    [
-                                        'certificate',
-                                        'id' => $model->id
-                                    ],
-                                    [
-                                        'title' => 'شناسنامه'
-                                    ]
-                                );
-                            }
-                        ],
-                        'visibleButtons' => [
-                            'view' => Yii::$app->user->canAccessAny([
-                                'research.expert',
-                                'research.manage'
-                            ]),
-                            'update' => function ($model, $key, $index) {
-                                return $model->canUserUpdateOrDelete();
-                            },
-                            'delete' => function ($model, $key, $index) {
-                                return $model->canUserUpdateOrDelete();
-                            },
-                            'certificate' => Yii::$app->user->can('research.manage')
-                        ]
                     ]
                 ]
             ]) ?>

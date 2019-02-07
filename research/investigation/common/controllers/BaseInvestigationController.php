@@ -20,7 +20,6 @@ class BaseInvestigationController extends AdminController
                     'class' => ContentNegotiator::class,
                     'only' => [
                         'change-status',
-                        'deliver-to-manager',
                         'set-session-date',
                         'write-proceedings'
                     ],
@@ -48,11 +47,11 @@ class BaseInvestigationController extends AdminController
         $model->status = $this->modelClass::STATUS_DELIVERED_TO_MANAGER;
         $model->deliverToManagerDate = time();
         $model->save();
-        echo Json::encode([
-            'status' => 'success',
-            'message' => 'آیتم مورد نظر با موفقیت به مدیر ارسال شد.'
-        ]);
-        exit;
+        Yii::$app->session->addFlash(
+            'success',
+            'آیتم مورد نظر با موفقیت به مدیر ارسال شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     public function actionSetSessionDate($id)
@@ -62,17 +61,30 @@ class BaseInvestigationController extends AdminController
         if ($model->load(Yii::$app->request->post())) {
             $model->status = $this->modelClass::STATUS_WAITING_FOR_MEETING;
             if ($model->save()) {
-                echo Json::encode([
-                    'status' => 'success',
-                    'message' => 'تاریخ جلسه توجیهی با موفقیت در سیستم درج شد.'
-                ]);
-                exit;
+                Yii::$app->session->addFlash(
+                    'success',
+                    'تاریخ جلسه توجیهی با موفقیت در سیستم درج شد.'
+                );
+                return $this->redirect(['view', 'id' => $id]);
             }
         }
         echo Json::encode([
             'content' => $this->renderAjax('@nad/research/investigation/common/views/set-session-date', [
                 'model' => $model
             ])
+        ]);
+        exit;
+    }
+
+    public function actionNegotiate($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $this->modelClass::STATUS_MEETING_HELD;
+        $model->negotiateDate = time();
+        $model->save();
+        echo Json::encode([
+            'status' => 'success',
+            'message' => 'تاریخ برگزاری مذاکره با موفقیت در سیستم درج شد.'
         ]);
         exit;
     }

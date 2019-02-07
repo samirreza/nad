@@ -11,7 +11,6 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
         [
             'deliver-to-manager' => [
                 'label' => 'ارسال به مدیر',
-                'icon' => 'send',
                 'type' => 'info',
                 'visible' => $model->canUserDeliverToManager(),
                 'visibleFor' => ['research.expert', 'research.manage'],
@@ -20,18 +19,24 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             ],
             'set-session-date' => [
                 'label' => 'تعیین زمان جلسه توجیحی',
-                'icon' => 'clock-o',
                 'type' => 'info',
                 'visible' => $model->canSetSessionDate(),
                 'visibleFor' => ['research.manage'],
                 'url' => ['set-session-date', 'id' => $model->id],
                 'options' => ['class' => 'ajaxupdate']
             ],
+            'negotiate' => [
+                'label' => 'مذاکره',
+                'type' => 'info',
+                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER,
+                'visibleFor' => ['research.manage'],
+                'url' => ['negotiate', 'id' => $model->id],
+                'options' => ['class' => 'ajaxrequest']
+            ],
             'meeting-held' => [
                 'label' => 'جلسه برگزار شد',
-                'icon' => 'check',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_WAITING_FOR_MEETING,
+                'visible' => $model->canHoldSession(),
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'change-status',
@@ -41,8 +46,7 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
                 'options' => ['class' => 'ajaxrequest']
             ],
             'write-proceedings' => [
-                'label' => 'ثبت نتیجه برگزاری جلسه',
-                'icon' => 'file-word-o',
+                'label' => 'ثبت نتیجه برگزاری جلسه / مذاکره',
                 'type' => 'info',
                 'visible' => $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
                 'visibleFor' => ['research.manage'],
@@ -51,9 +55,9 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             ],
             'accept' => [
                 'label' => 'تایید',
-                'icon' => 'check',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
+                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER ||
+                    $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'change-status',
@@ -64,9 +68,9 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             ],
             'need-correction' => [
                 'label' => 'نیازمند اصلاح',
-                'icon' => 'refresh',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
+                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER ||
+                    $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'change-status',
@@ -80,7 +84,6 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
         [
             'certificate' => [
                 'label' => 'شناسنامه',
-                'icon' => 'book',
                 'type' => 'primary',
                 'visibleFor' => ['research.manage'],
                 'url' => [

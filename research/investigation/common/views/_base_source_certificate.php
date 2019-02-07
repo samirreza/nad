@@ -16,7 +16,7 @@ use nad\research\investigation\source\models\Source;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            '/research/source/manage/view',
+            '/research/investigation/source/manage/view',
             'id' => $source->id
         ],
         [

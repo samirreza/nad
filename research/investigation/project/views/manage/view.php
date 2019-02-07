@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
@@ -30,7 +31,6 @@ $children = $model->children()->all();
                 'buttons' => [
                     'archive' => [
                         'label' => 'آرشیو کردن',
-                        'icon' => 'clone',
                         'type' => 'success',
                         'visible' => $model->status == Project::STATUS_ACCEPTED,
                         'url' => [
@@ -56,127 +56,129 @@ $children = $model->children()->all();
             <?php endif ?>
         </p>
         <div class="sliding-form-wrapper"></div>
+        <div id="comment-sliding-form-wrapper"></div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <?php Panel::begin(['title' => 'مشخصات گزارش']) ?>
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'attributes' => [
-                            'title',
-                            'englishTitle',
-                            'uniqueCode',
-                            [
-                                'attribute' => 'createdBy',
-                                'value' => function ($model) {
-                                    return $model->researcher->fullName;
-                                }
-                            ],
-                            [
-                                'label' => 'تاریخ تحویل به کارشناس',
-                                'format' => 'date',
-                                'value' => function ($model) {
-                                    return $model->proposal->deliveryToExpertTime;
-                                }
-                            ],
-                            'createdAt:date',
-                            [
-                                'label' => 'فایل گزارش',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    return Html::a(
-                                        'دانلود فایل',
-                                        $model->getFile('report')->getUrl(),
-                                        [
-                                            'data-pjax' => '0'
-                                        ]
-                                    );
-                                }
-                            ],
-                            [
-                                'attribute' => 'categoryId',
-                                'value' => $model->category->htmlCodedTitle,
-                                'format' => 'raw'
-                            ],
-                            [
-                                'label' => "گزارش پدر",
-                                'visible' => !$model->isRoot(),
-                                'value' => ($model->isRoot()) ?: Html::a(
-                                    $model->getParent()->htmlCodedTitle,
-                                    ['view', 'id' => $model->getParent()->id]
-                                ),
-                                'format' => 'raw'
-                            ],
-                            [
-                                'attribute' => 'resources',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    return $model->getClickableResourcesAsString();
-                                }
-                            ],
-                            [
-                                'label' => 'مدارک',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    if (!$model->getFile('doc')) {
-                                        return;
+                    <div class="col-md-6">
+                        <?= DetailView::widget([
+                            'model' => $model,
+                            'attributes' => [
+                                'title',
+                                'englishTitle',
+                                'uniqueCode',
+                                [
+                                    'attribute' => 'createdBy',
+                                    'value' => function ($model) {
+                                        return $model->researcher->fullName;
                                     }
-                                    return Html::a(
-                                        'دانلود مدارک',
-                                        $model->getFile('doc')->getUrl(),
-                                        [
-                                            'data-pjax' => '0'
-                                        ]
-                                    );
-                                }
-                            ],
-                            [
-                                'attribute' => 'tags',
-                                'value' => function ($model) {
-                                    return $model->getTagsAsString();
-                                }
-                            ],
-                            [
-                                'attribute' => 'proposalId',
-                                'format' => 'raw',
-                                'value' => function ($model) {
-                                    return Html::a(
-                                        $model->proposal->title,
-                                        [
-                                            '/research/proposal/manage/view',
-                                            'id' => $model->proposalId
-                                        ],
-                                        [
-                                            'target' => '_blank',
-                                            'data-pjax' => '0'
-                                        ]
-                                    );
-                                }
-                            ],
-                            'deliverToManagerDate:date',
-                            'sessionDate:dateTime',
-                            'updatedAt:date',
-                            [
-                                'attribute' => 'status',
-                                'value' => function ($model) {
-                                    return Project::getStatusLables()[$model->status];
-                                }
+                                ],
+                                [
+                                    'label' => 'تاریخ تحویل به کارشناس',
+                                    'format' => 'date',
+                                    'value' => function ($model) {
+                                        return $model->proposal->deliveryToExpertTime;
+                                    }
+                                ],
+                                'createdAt:date',
+                                [
+                                    'label' => 'فایل گزارش',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'دانلود فایل',
+                                            $model->getFile('report')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'categoryId',
+                                    'value' => $model->category->htmlCodedTitle,
+                                    'format' => 'raw'
+                                ]
                             ]
-                        ]
-                    ]) ?>
+                        ]) ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= DetailView::widget([
+                            'model' => $model,
+                            'attributes' => [
+                                [
+                                    'label' => "گزارش پدر",
+                                    'visible' => !$model->isRoot(),
+                                    'value' => ($model->isRoot()) ?: Html::a(
+                                        $model->getParent()->htmlCodedTitle,
+                                        ['view', 'id' => $model->getParent()->id]
+                                    ),
+                                    'format' => 'raw'
+                                ],
+                                [
+                                    'attribute' => 'resources',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableResourcesAsString();
+                                    }
+                                ],
+                                [
+                                    'label' => 'مدارک',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->getFile('doc')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود مدارک',
+                                            $model->getFile('doc')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'tags',
+                                    'value' => function ($model) {
+                                        return $model->getTagsAsString();
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'proposalId',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            $model->proposal->title,
+                                            [
+                                                '/research/proposal/manage/view',
+                                                'id' => $model->proposalId
+                                            ],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    }
+                                ],
+                                'deliverToManagerDate:date',
+                                'sessionDate:dateTime',
+                                'negotiateDate:dateTime',
+                                'updatedAt:date',
+                                [
+                                    'attribute' => 'status',
+                                    'value' => function ($model) {
+                                        return Project::getStatusLables()[$model->status];
+                                    }
+                                ]
+                            ]
+                        ]) ?>
+                    </div>
                 <?php Panel::end() ?>
-            </div>
-            <div class="col-md-6">
-                <?= CommentList::widget([
-                    'model' => $model,
-                    'moduleId' => 'project',
-                    'showCreateButton' => Yii::$app->user->can(
-                        'research.manage'
-                    ) && $model->status == Project::STATUS_MEETING_HELD
-                ]) ?>
             </div>
         </div>
         <div class="row">
-            <div class="col-ms-12">
+            <div class="col-md-12">
                 <?php Panel::begin([
                     'title' => 'چکیده'
                 ]) ?>
@@ -185,15 +187,28 @@ $children = $model->children()->all();
                     </div>
                 <?php Panel::end() ?>
             </div>
-            <div class="col-ms-12">
-                <?php Panel::begin([
-                    'title' => 'نتیجه برگزاری جلسه'
+            <?php if ($model->proceedings) : ?>
+                <div class="col-md-6">
+                    <?php Panel::begin(['title' => 'نتیجه برگزاری جلسه']) ?>
+                        <div class="well">
+                            <?= $model->proceedings ?>
+                        </div>
+                    <?php Panel::end() ?>
+                </div>
+            <?php endif; ?>
+            <div class="col-md-6">
+                <?= CommentList::widget([
+                    'model' => $model,
+                    'moduleId' => 'project',
+                    'showCreateButton' => $model->canInsertComment(),
+                    'returnUrl' => Url::current()
                 ]) ?>
-                    <div class="well">
-                        <?= $model->proceedings ?>
-                    </div>
-                <?php Panel::end() ?>
             </div>
         </div>
     <?php Pjax::end() ?>
 </div>
+
+<?php $this->registerJs('
+    $(".fixed-action-buttons div.col-sm-12 a:first").after($("a.insert-comment"));
+    $("a.insert-comment").addClass("btn-top");
+') ?>

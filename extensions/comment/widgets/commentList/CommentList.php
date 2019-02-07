@@ -12,6 +12,7 @@ class CommentList extends \yii\base\Widget
     public $showCreateButton = true;
     public $sort = SORT_DESC;
     public $visible = true;
+    public $returnUrl;
 
     public function init()
     {

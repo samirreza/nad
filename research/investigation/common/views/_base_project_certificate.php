@@ -15,7 +15,7 @@ use nad\research\investigation\project\models\Project;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            '/research/project/manage/view',
+            '/research/investigation/project/manage/view',
             'id' => $project->id
         ],
         [
