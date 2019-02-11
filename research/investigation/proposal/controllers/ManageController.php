@@ -17,7 +17,6 @@ class ManageController extends BaseInvestigationController
     {
         $this->modelClass = Proposal::class;
         $this->searchClass = ProposalSearch::class;
-        parent::init();
     }
 
     public function behaviors()

@@ -31,7 +31,7 @@ $children = $model->children()->all();
                 'buttons' => [
                     'archive' => [
                         'label' => 'آرشیو کردن',
-                        'type' => 'success',
+                        'type' => 'info',
                         'visible' => $model->status == Project::STATUS_ACCEPTED,
                         'url' => [
                             'change-status',
@@ -189,7 +189,9 @@ $children = $model->children()->all();
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-6">
-                    <?php Panel::begin(['title' => 'نتیجه برگزاری جلسه']) ?>
+                    <?php Panel::begin([
+                        'title' => 'نتیجه ' . $model->getProceedingsLabel(),
+                    ]) ?>
                         <div class="well">
                             <?= $model->proceedings ?>
                         </div>
@@ -209,6 +211,6 @@ $children = $model->children()->all();
 </div>
 
 <?php $this->registerJs('
-    $(".fixed-action-buttons div.col-sm-12 a:first").after($("a.insert-comment"));
+    $(".fixed-action-buttons div.col-sm-12 a:first").before($("a.insert-comment"));
     $("a.insert-comment").addClass("btn-top");
 ') ?>

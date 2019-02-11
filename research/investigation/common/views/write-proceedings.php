@@ -13,7 +13,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 <div class="row">
     <div class="col-md-12">
         <?php Panel::begin([
-            'title' => 'ثبت نتیجه برگزاری جلسه',
+            'title' => 'درج نتیجه ' . $model->getProceedingsLabel(),
             'showCloseButton' => true
         ]) ?>
             <div class="expert-form">
@@ -27,7 +27,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     <?= $form->field($model, 'proceedings')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
-                    ) ?>
+                    )->label('نتیجه ' . $model->getProceedingsLabel()) ?>
                     <br>
                     <?= Html::submitButton(
                         '<i class="fa fa-save"></i> ذخیره',

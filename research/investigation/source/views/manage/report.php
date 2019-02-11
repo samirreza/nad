@@ -38,7 +38,12 @@ $this->params['breadcrumbs'] = [
                         },
                         'headerOptions' => ['style' => 'width:10%']
                     ],
-                    'createdAt:date',
+                    [
+                        'attribute' => 'createdAt',
+                        'value' => function ($model) {
+                            return Yii::$app->formatter->asDate($model->createdAt, 'Y-M-d');
+                        }
+                    ],
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {

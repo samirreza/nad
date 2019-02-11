@@ -27,8 +27,8 @@ $model = $this->context->model;
                     'class' => 'ajaxcreate insert-comment',
                     'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
                 ],
-                'icon' => 'comment',
-                'type' => 'success',
+                'icon' => false,
+                'type' => 'info',
                 'visible' => $this->context->showCreateButton
             ]) ?>
             <br><br>

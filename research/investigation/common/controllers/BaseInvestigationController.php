@@ -11,6 +11,13 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
 
 class BaseInvestigationController extends AdminController
 {
+    public function init()
+    {
+        $this->modelClass = BaseInvestigationModel::class;
+        $this->searchClass = false;
+        parent::init();
+    }
+
     public function behaviors()
     {
         return array_merge(
@@ -29,6 +36,11 @@ class BaseInvestigationController extends AdminController
                 ]
             ]
         );
+    }
+
+    public function actionHome()
+    {
+        return $this->render('@nad/research/investigation/common/views/home');
     }
 
     public function actionChangeStatus($id, $newStatus)
@@ -79,14 +91,14 @@ class BaseInvestigationController extends AdminController
     public function actionNegotiate($id)
     {
         $model = $this->findModel($id);
-        $model->status = $this->modelClass::STATUS_MEETING_HELD;
+        $model->status = $this->modelClass::STATUS_NEGOTIATE_MADE;
         $model->negotiateDate = time();
         $model->save();
-        echo Json::encode([
-            'status' => 'success',
-            'message' => 'تاریخ برگزاری مذاکره با موفقیت در سیستم درج شد.'
-        ]);
-        exit;
+        Yii::$app->session->addFlash(
+            'success',
+            'تاریخ برگزاری مذاکره با موفقیت در سیستم درج شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     public function actionWriteProceedings($id)

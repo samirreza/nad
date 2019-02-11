@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use theme\widgets\Panel;
@@ -72,7 +73,12 @@ $this->params['breadcrumbs'] = [
                             ]
                         ])
                     ],
-                    'createdAt:date',
+                    [
+                        'attribute' => 'createdAt',
+                        'value' => function ($model) {
+                            return Yii::$app->formatter->asDate($model->createdAt, 'Y-M-d');
+                        }
+                    ],
                     [
                         'attribute' => 'status',
                         'filter' => Project::getStatusLables(),
@@ -80,6 +86,23 @@ $this->params['breadcrumbs'] = [
                             return Project::getStatusLables()[$model->status];
                         },
                         'options' => ['style' => 'width:10%']
+                    ],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header' => 'روند',
+                        'template' => '{view-project}',
+                        'buttons' => [
+                            'view-project' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="glyphicon glyphicon-eye-open"></span>',
+                                    ['view', 'id' => $model->id],
+                                    [
+                                        'title' => 'نما',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            }
+                        ]
                     ]
                 ]
             ]) ?>

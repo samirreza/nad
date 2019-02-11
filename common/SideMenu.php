@@ -16,44 +16,11 @@ class SideMenu extends \theme\widgets\Menu
                 'items' => [
                     [
                         'label' => 'بررسی',
-                        'items' => [
-                            [
-                                'label' => 'منشا',
-                                'url' => ['/research/investigation/source/manage/index'],
-                                'visible' => $user->canAccessAny([
-                                    'research.expert',
-                                    'research.manage'
-                                ])
-                            ],
-                            [
-                                'label' => 'پروپوزال',
-                                'url' => ['/research/investigation/proposal/manage/index'],
-                                'visible' => $user->canAccessAny([
-                                    'research.expert',
-                                    'research.manage'
-                                ])
-                            ],
-                            [
-                                'label' => 'گزارش',
-                                'url' => ['/research/investigation/project/manage/index'],
-                                'visible' => $user->canAccessAny([
-                                    'research.expert',
-                                    'research.manage'
-                                ])
-                            ],
-                            [
-                                'label' => 'دستور العمل بهره برداری',
-                                'url' => '#'
-                            ],
-                            [
-                                'label' => 'منابع',
-                                'url' => ['/research/investigation/resource'],
-                                'visible' => $user->canAccessAny([
-                                    'research.expert',
-                                    'research.manage'
-                                ])
-                            ]
-                        ]
+                        'url' => ['/research/investigation/base-investigation/home'],
+                        'visible' => $user->canAccessAny([
+                            'research.expert',
+                            'research.manage'
+                        ])
                     ],
                     [
                         'label' => 'کنترل',

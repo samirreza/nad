@@ -27,9 +27,8 @@ $this->params['breadcrumbs'] = [
                 'buttons' => [
                     'reject' => [
                         'label' => 'رد',
-                        'type' => 'danger',
-                        'visible' => $model->status == Source::STATUS_DELIVERED_TO_MANAGER ||
-                            $model->status == Source::STATUS_MEETING_HELD,
+                        'type' => 'info',
+                        'visible' => $model->canAcceptOrRejectOrSendForCorrection(),
                         'url' => [
                             'change-status',
                             'id' => $model->id,
@@ -46,7 +45,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'send-for-proposal' => [
                         'label' => 'ارسال برای نگارش پروپوزال',
-                        'type' => 'success',
+                        'type' => 'info',
                         'visible' => $model->status == Source::STATUS_ACCEPTED &&
                             $model->hasAnyExpert(),
                         'url' => [
@@ -58,7 +57,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'create-proposal' => [
                         'label' => 'درج پروپوزال',
-                        'type' => 'success',
+                        'type' => 'info',
                         'visibleFor' => ['research.expert', 'research.manage'],
                         'visible' => $model->canUserCreateProposal(),
                         'url' => [
@@ -68,7 +67,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'proposals' => [
                         'label' => 'پروپوزال‌ها',
-                        'type' => 'primary',
+                        'type' => 'success',
                         'visibleFor' => ['research.expert', 'research.manage'],
                         'visible' => $model->proposals,
                         'url' => [
@@ -164,7 +163,9 @@ $this->params['breadcrumbs'] = [
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-6">
-                    <?php Panel::begin(['title' => 'نتیجه برگزاری جلسه']) ?>
+                    <?php Panel::begin([
+                        'title' => 'نتیجه ' . $model->getProceedingsLabel(),
+                    ]) ?>
                         <div class="well">
                             <?= $model->proceedings ?>
                         </div>
@@ -184,6 +185,6 @@ $this->params['breadcrumbs'] = [
 </div>
 
 <?php $this->registerJs('
-    $(".fixed-action-buttons div.col-sm-12 a:first").after($("a.insert-comment"));
+    $(".fixed-action-buttons div.col-sm-12 a:first").before($("a.insert-comment"));
     $("a.insert-comment").addClass("btn-top");
 ') ?>

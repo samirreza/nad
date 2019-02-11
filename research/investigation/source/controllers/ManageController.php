@@ -19,7 +19,6 @@ class ManageController extends BaseInvestigationController
     {
         $this->modelClass = Source::class;
         $this->searchClass = SourceSearch::class;
-        parent::init();
     }
 
     public function behaviors()

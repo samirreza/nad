@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
                 <div class="row">
                     <div class="col-md-12">
                         <?= Html::submitButton(
-                            '<i class="fa fa-search"></i> جست‌و‌جو',
+                            '<i class="fa fa-search"></i> لیست',
                             ['class' => 'btn btn-success pull-left']
                         ) ?>
                     </div>

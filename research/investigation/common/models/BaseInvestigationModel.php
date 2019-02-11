@@ -22,8 +22,8 @@ class BaseInvestigationModel extends ActiveRecord implements Codable
     const STATUS_NEED_CORRECTION = 1;
     const STATUS_INPROGRESS = 2;
     const STATUS_DELIVERED_TO_MANAGER = 3;
-    const STATUS_WAITING_FOR_MEETING = 4;
-    const STATUS_MEETING_HELD = 5;
+    const STATUS_NEGOTIATE_MADE = 4;
+    const STATUS_WAITING_FOR_MEETING = 5;
     const STATUS_ACCEPTED = 6;
     const STATUS_READY_FOR_NEXT_STEP = 7;
     const STATUS_IN_NEXT_STEP = 8;
@@ -114,28 +114,42 @@ class BaseInvestigationModel extends ActiveRecord implements Codable
             $this->status == self::STATUS_WAITING_FOR_MEETING;
     }
 
-    public function canHoldSession()
-    {
-        return $this->status == self::STATUS_WAITING_FOR_MEETING &&
-            $this->sessionDate &&
-            $this->sessionDate <= time();
-    }
-
     public function canInsertComment()
     {
         return $this->status == self::STATUS_DELIVERED_TO_MANAGER;
     }
 
+    public function canNegotiate()
+    {
+        return $this->status == self::STATUS_DELIVERED_TO_MANAGER;
+    }
+
+    public function canAcceptOrRejectOrSendForCorrection()
+    {
+        return $this->status == self::STATUS_DELIVERED_TO_MANAGER ||
+            $this->status == self::STATUS_WAITING_FOR_MEETING ||
+            $this->status == self::STATUS_NEGOTIATE_MADE;
+    }
+
+    public function getProceedingsLabel()
+    {
+        if ($this->status == self::STATUS_WAITING_FOR_MEETING) {
+            return 'جلسه';
+        } elseif ($this->status == self::STATUS_NEGOTIATE_MADE) {
+            return 'مذاکره';
+        }
+    }
+
     public static function getStatusLables()
     {
         return [
-            self::STATUS_REJECTED => 'رد شده',
-            self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
-            self::STATUS_INPROGRESS => 'در حال تکمیل',
-            self::STATUS_DELIVERED_TO_MANAGER => 'ارسال شده به مدیر',
-            self::STATUS_WAITING_FOR_MEETING => 'در انتظار جلسه',
-            self::STATUS_MEETING_HELD => 'جلسه برگزار شد',
-            self::STATUS_ACCEPTED => 'پذیرفته شد',
+            self::STATUS_INPROGRESS => 'در دست تهیه',
+            self::STATUS_DELIVERED_TO_MANAGER => 'نزد مدیر',
+            self::STATUS_NEGOTIATE_MADE => 'مذاکره',
+            self::STATUS_WAITING_FOR_MEETING => 'نوبت جلسه',
+            self::STATUS_REJECTED => 'رد',
+            self::STATUS_ACCEPTED => 'قبول',
+            self::STATUS_NEED_CORRECTION => 'اصلاح',
             self::STATUS_READY_FOR_NEXT_STEP => 'آماده برای مرحله بعد',
             self::STATUS_IN_NEXT_STEP => 'قرار گرفته در مرحله بعد',
             self::STATUS_FINISHED => 'نهایی شده'

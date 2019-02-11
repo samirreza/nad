@@ -36,7 +36,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'send-for-project' => [
                         'label' => 'ارسال برای تهیه گزارش',
-                        'type' => 'success',
+                        'type' => 'info',
                         'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
                             $model->projectExpertId,
                         'url' => [
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'create-project' => [
                         'label' => 'درج گزارش',
-                        'type' => 'success',
+                        'type' => 'info',
                         'visible' => $model->canUserCreateProject(),
                         'url' => [
                             '/research/investigation/project/manage/create',
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     'project' => [
                         'label' => 'گزارش',
-                        'type' => 'primary',
+                        'type' => 'success',
                         'visibleFor' => ['research.expert', 'research.manage'],
                         'visible' => isset($model->project),
                         'url' => [
@@ -202,7 +202,9 @@ $this->params['breadcrumbs'] = [
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-6">
-                    <?php Panel::begin(['title' => 'نتیجه برگزاری جلسه']) ?>
+                    <?php Panel::begin([
+                        'title' => 'نتیجه ' . $model->getProceedingsLabel(),
+                    ]) ?>
                         <div class="well">
                             <?= $model->proceedings ?>
                         </div>
@@ -222,6 +224,6 @@ $this->params['breadcrumbs'] = [
 </div>
 
 <?php $this->registerJs('
-    $(".fixed-action-buttons div.col-sm-12 a:first").after($("a.insert-comment"));
+    $(".fixed-action-buttons div.col-sm-12 a:first").before($("a.insert-comment"));
     $("a.insert-comment").addClass("btn-top");
 ') ?>

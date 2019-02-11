@@ -18,7 +18,7 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
                 'options' => ['class' => 'ajaxrequest']
             ],
             'set-session-date' => [
-                'label' => 'تعیین زمان جلسه توجیحی',
+                'label' => 'زمان جلسه',
                 'type' => 'info',
                 'visible' => $model->canSetSessionDate(),
                 'visibleFor' => ['research.manage'],
@@ -28,27 +28,16 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             'negotiate' => [
                 'label' => 'مذاکره',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER,
+                'visible' => $model->canNegotiate(),
                 'visibleFor' => ['research.manage'],
                 'url' => ['negotiate', 'id' => $model->id],
                 'options' => ['class' => 'ajaxrequest']
             ],
-            'meeting-held' => [
-                'label' => 'جلسه برگزار شد',
-                'type' => 'info',
-                'visible' => $model->canHoldSession(),
-                'visibleFor' => ['research.manage'],
-                'url' => [
-                    'change-status',
-                    'id' => $model->id,
-                    'newStatus' => BaseInvestigationModel::STATUS_MEETING_HELD
-                ],
-                'options' => ['class' => 'ajaxrequest']
-            ],
             'write-proceedings' => [
-                'label' => 'ثبت نتیجه برگزاری جلسه / مذاکره',
+                'label' => 'درج نتیجه ' . $model->getProceedingsLabel(),
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
+                'visible' => $model->status == BaseInvestigationModel::STATUS_WAITING_FOR_MEETING ||
+                    $model->status == BaseInvestigationModel::STATUS_NEGOTIATE_MADE,
                 'visibleFor' => ['research.manage'],
                 'url' => ['write-proceedings', 'id' => $model->id],
                 'options' => ['class' => 'ajaxupdate']
@@ -56,8 +45,7 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
             'accept' => [
                 'label' => 'تایید',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER ||
-                    $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
+                'visible' => $model->canAcceptOrRejectOrSendForCorrection(),
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'change-status',
@@ -67,10 +55,9 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
                 'options' => ['class' => 'ajaxrequest']
             ],
             'need-correction' => [
-                'label' => 'نیازمند اصلاح',
+                'label' => 'اصلاح',
                 'type' => 'info',
-                'visible' => $model->status == BaseInvestigationModel::STATUS_DELIVERED_TO_MANAGER ||
-                    $model->status == BaseInvestigationModel::STATUS_MEETING_HELD,
+                'visible' => $model->canAcceptOrRejectOrSendForCorrection(),
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'change-status',
@@ -82,22 +69,24 @@ use nad\research\investigation\common\models\BaseInvestigationModel;
         ],
         $buttons,
         [
+            'update' => [
+                'label' => 'ویرایش',
+                'type' => 'warning',
+                'visible' => $model->canUserUpdateOrDelete()
+            ],
+            'delete' => [
+                'label' => 'حذف',
+                'type' => 'warning',
+                'visible' => $model->canUserUpdateOrDelete()
+            ],
             'certificate' => [
                 'label' => 'شناسنامه',
-                'type' => 'primary',
+                'type' => 'success',
                 'visibleFor' => ['research.manage'],
                 'url' => [
                     'certificate',
                     'id' => $model->id
                 ]
-            ],
-            'update' => [
-                'label' => 'ویرایش',
-                'visible' => $model->canUserUpdateOrDelete()
-            ],
-            'delete' => [
-                'label' => 'حذف',
-                'visible' => $model->canUserUpdateOrDelete()
             ]
         ]
     )

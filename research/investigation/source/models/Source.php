@@ -124,7 +124,7 @@ class Source extends BaseInvestigationModel
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'negotiateDate' => 'تاریخ مذاکره',
-            'proceedings' => 'نتیجه برگزاری جلسه / مذاکره',
+            'proceedings' => 'نتیجه جلسه / مذاکره',
             'experts' => 'کارشناسان نگارش پروپوزال',
             'updatedAt' => 'آخرین بروزرسانی',
             'status' => 'وضعیت'

@@ -7,6 +7,7 @@ use Yii;
 class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
+    public $controllerNamespace = 'nad\research\investigation\common\controllers';
 
     public function init()
     {
@@ -23,7 +24,7 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'منشا‌ها',
+                        'label' => 'لیست منشا‌ها',
                         'url' => ['/research/investigation/source/manage/index']
                     ],
                     [
@@ -37,14 +38,14 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'پروپوزال',
+                'label' => 'لیست پروپوزال‌ها',
                 'url' => ['/research/investigation/proposal/manage/index']
             ],
             [
                 'label' => 'گزارش',
                 'items' => [
                     [
-                        'label' => 'گزارش‌ها',
+                        'label' => 'لیست گزارش‌ها',
                         'url' => ['/research/investigation/project/manage/index']
                     ],
                     [
@@ -55,7 +56,7 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'منابع',
+                'label' => 'لیست منابع',
                 'url' => ['/research/investigation/resource']
             ]
         ];
