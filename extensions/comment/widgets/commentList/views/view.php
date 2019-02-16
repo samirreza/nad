@@ -15,7 +15,7 @@ $model = $this->context->model;
     <div class="row">
         <div class="comments col-md-12">
             <?= Button::widget([
-                'label' => 'تبادل نظر',
+                'label' => 'نظر (تبادل)',
                 'url' => [
                     '/comment/create',
                     'moduleId' => $this->context->moduleId,

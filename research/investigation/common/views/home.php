@@ -61,3 +61,7 @@ $this->params['breadcrumbs'] = [
         </div>
     </div>
 </div>
+
+<?php $this->registerJs('
+    $("ul.horizontal-menu").empty();
+') ?>

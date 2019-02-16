@@ -19,6 +19,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 
 <div class="project-form">
+    <div class="fixed-action-buttons"></div>
     <?php $form = ActiveForm::begin([
         'options' => [
             'enctype' => 'multipart/form-data'
@@ -58,21 +59,19 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">
-                <?php Panel::begin() ?>
-                    <?= Html::submitButton(
-                        '<i class="fa fa-save"></i> ذخیره',
-                        [
-                            'class' => 'btn btn-lg btn-success'
-                        ]
-                    ) ?>
-                    <?= Button::widget([
-                        'label' => 'انصراف',
-                        'options' => ['class' => 'btn-lg'],
-                        'type' => 'warning',
-                        'icon' => 'undo',
-                        'url' => $backLink
-                    ]) ?>
-                <?php Panel::end() ?>
+                <?= Html::submitButton(
+                    'ذخیره',
+                    [
+                        'class' => 'btn btn-lg btn-success'
+                    ]
+                ) ?>
+                <?= Button::widget([
+                    'label' => 'انصراف',
+                    'options' => ['class' => 'btn-lg'],
+                    'type' => 'warning',
+                    'icon' => false,
+                    'url' => $backLink
+                ]) ?>
                 <?php Panel::begin(['title' => 'سایر اطلاعات گزارش']) ?>
                     <?= $form->field($model, 'categoryId')->widget(
                         Select2::class,
@@ -112,3 +111,10 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         </div>
     <?php ActiveForm::end() ?>
 </div>
+
+<?php $this->registerJs('
+    $(".fixed-action-buttons").append($(".btn-success"));
+    $(".btn-success").addClass("btn-top");
+    $(".fixed-action-buttons").append($(".btn-warning"));
+    $(".btn-warning").addClass("btn-top");
+') ?>

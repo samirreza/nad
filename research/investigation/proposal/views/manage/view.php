@@ -28,7 +28,7 @@ $this->params['breadcrumbs'] = [
                 'modelTitle' => 'پورپوزال',
                 'buttons' => [
                     'set-expert' => [
-                        'label' => 'تعیین کارشناس',
+                        'label' => $model->projectExpertId ? 'تغییر کارشناس' : 'تعیین کارشناس',
                         'type' => 'info',
                         'visible' => $model->status == Proposal::STATUS_ACCEPTED,
                         'url' => ['set-expert', 'id' => $model->id],

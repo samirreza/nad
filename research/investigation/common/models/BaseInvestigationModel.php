@@ -145,7 +145,7 @@ class BaseInvestigationModel extends ActiveRecord implements Codable
         return [
             self::STATUS_INPROGRESS => 'در دست تهیه',
             self::STATUS_DELIVERED_TO_MANAGER => 'نزد مدیر',
-            self::STATUS_NEGOTIATE_MADE => 'مذاکره',
+            self::STATUS_NEGOTIATE_MADE => 'نوبت مذاکره',
             self::STATUS_WAITING_FOR_MEETING => 'نوبت جلسه',
             self::STATUS_REJECTED => 'رد',
             self::STATUS_ACCEPTED => 'قبول',

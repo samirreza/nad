@@ -13,15 +13,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="equipment-type-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'create' => ['label' => 'نوع تجهیز جدید'],
-            'categoriesIndex' => [
-                'label' => 'رده های تجهیزات',
-                'icon' => 'sitemap'
+    <div class="fixed-action-buttons">
+        <?= ActionButtons::widget([
+            'buttons' => [
+                'create' => ['label' => 'نوع تجهیز جدید'],
+                'categoriesIndex' => [
+                    'label' => 'رده های تجهیزات',
+                    'icon' => 'sitemap'
+                ]
             ]
-        ]
-    ]) ?>
+        ]) ?>
+    </div>
     <?php Panel::begin(['title' => Html::encode($this->title)]) ?>
         <?php Pjax::begin([
             'id' => 'equipment-gridviewpjax',

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'filterModel' => $searchModel,
                 'columns' => [
                     [
-                        'class' => 'core\grid\TitleColumn',
+                        'attribute' => 'title',
                         'headerOptions' => ['style' => 'width:80%'],
                         'filterInputOptions' => [
                             'class'       => 'form-control',
@@ -35,7 +35,6 @@ $this->params['breadcrumbs'] = [
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => false,
                         'options' => ['style' => 'width:5%']
                     ],
                     [
@@ -78,14 +77,24 @@ $this->params['breadcrumbs'] = [
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view-proposal}',
+                        'template' => '{view-source} {certificate}',
                         'buttons' => [
-                            'view-proposal' => function ($url, $model) {
+                            'view-source' => function ($url, $model) {
                                 return Html::a(
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     ['view', 'id' => $model->id],
                                     [
-                                        'title' => 'نما',
+                                        'title' => 'روند',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'certificate' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="glyphicon glyphicon-book"></span>',
+                                    ['certificate', 'id' => $model->id],
+                                    [
+                                        'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]
                                 );

@@ -37,7 +37,7 @@ $this->params['breadcrumbs'] = [
                         'options' => ['class' => 'ajaxrequest']
                     ],
                     'set-experts' => [
-                        'label' => 'تعیین کارشناسان',
+                        'label' => $model->hasAnyExpert() ? 'تغییر کارشناسان' : 'تعیین کارشناسان',
                         'type' => 'info',
                         'visible' => $model->status == Source::STATUS_ACCEPTED,
                         'url' => ['set-experts', 'id' => $model->id],

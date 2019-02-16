@@ -17,23 +17,25 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="categories-index">
-    <?= ActionButtons::widget([
-        'buttons' => [
-            'create' => [
-                'label' => 'رده جدید',
-                'options' => [
-                    'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'categories-gridviewpjax'
+    <div class="fixed-action-buttons">
+        <?= ActionButtons::widget([
+            'buttons' => [
+                'create' => [
+                    'label' => 'رده جدید',
+                    'options' => [
+                        'class' => 'ajaxcreate',
+                        'data-gridpjaxid' => 'categories-gridviewpjax'
+                    ]
+                ],
+                'materials' => [
+                    'label' => 'گزارش‌ها',
+                    'url' => ['manage/index'],
+                    'type' => 'warning',
+                    'icon' => 'list'
                 ]
-            ],
-            'materials' => [
-                'label' => 'گزارش ها',
-                'url' => ['manage/index'],
-                'type' => 'info',
-                'icon' => 'list'
             ]
-        ]
-    ]) ?>
+        ]) ?>
+    </div>
 
     <div class="sliding-form-wrapper"></div>
     <div class="row">
@@ -50,13 +52,9 @@ $this->params['breadcrumbs'] = [
                             ['class' => 'yii\grid\SerialColumn'],
                             [
                                 'class' => 'nad\common\code\CodeGridColumn',
-                                'options' => ['style' => 'width:30%'],
-                                'isAjaxGrid' => true
+                                'options' => ['style' => 'width:30%']
                             ],
-                            [
-                                'class' => 'core\grid\TitleColumn',
-                                'isAjaxGrid' => true
-                            ],
+                            'title',
                             [
                                 'attribute' => 'depth',
                                 'filter' => $searchModel->getDepthList(),

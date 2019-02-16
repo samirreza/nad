@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use theme\widgets\Panel;
 use core\helpers\Utility;
 use yii\widgets\DetailView;
 use nad\research\investigation\project\models\Project;

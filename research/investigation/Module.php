@@ -24,7 +24,7 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'لیست منشا‌ها',
+                        'label' => 'منشا‌ها',
                         'url' => ['/research/investigation/source/manage/index']
                     ],
                     [
@@ -38,14 +38,14 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'لیست پروپوزال‌ها',
+                'label' => 'پروپوزال‌ها',
                 'url' => ['/research/investigation/proposal/manage/index']
             ],
             [
-                'label' => 'گزارش',
+                'label' => 'گزارش‌ها',
                 'items' => [
                     [
-                        'label' => 'لیست گزارش‌ها',
+                        'label' => 'گزارش‌ها',
                         'url' => ['/research/investigation/project/manage/index']
                     ],
                     [
@@ -56,7 +56,7 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'لیست منابع',
+                'label' => 'منابع',
                 'url' => ['/research/investigation/resource']
             ]
         ];
