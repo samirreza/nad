@@ -6,7 +6,6 @@ use core\behaviors\TimestampBehavior;
 use core\behaviors\PreventDeleteBehavior;
 use nad\engineering\equipment\modules\type\details;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\engineering\equipment\modules\document\models\Document;
 
 class Type extends \nad\engineering\equipment\models\Type
 {

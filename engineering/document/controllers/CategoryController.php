@@ -1,8 +1,7 @@
 <?php
+
 namespace nad\engineering\document\controllers;
 
-use Yii;
-use yii\helpers\Json;
 use yii\filters\AccessControl;
 use nad\engineering\document\models\Category;
 use nad\engineering\document\models\CategorySearch;
@@ -26,8 +25,20 @@ class CategoryController extends \core\controllers\AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['@'],
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'get-json-tree'
+                            ],
+                            'roles' => ['@']
                         ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['manager']
+                        ]
                     ],
                 ],
             ]

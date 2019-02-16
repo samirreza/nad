@@ -28,7 +28,20 @@ class ManageController extends AdminController
                     'rules' => [
                         [
                             'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'ajax-find-equipments',
+                                'material'
+                            ],
                             'roles' => ['equipment.type']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['manager']
                         ]
                     ]
                 ]

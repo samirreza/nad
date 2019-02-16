@@ -7,8 +7,10 @@ use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 
 $this->title = 'انواع تجهیزات';
-$this->params['breadcrumbs'][] = 'تجهیزات';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'] = [
+    'فنی',
+    $this->title
+];
 
 ?>
 
@@ -43,7 +45,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     [
-                        'class' => 'yii\grid\ActionColumn'
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{view} {update} {delete} {document}',
+                        'buttons' => [
+                            'document' => function ($url, $model, $key) {
+                                return Html::a(
+                                    '<span class="fa fa-book"></span>',
+                                    [
+                                        'document/index',
+                                        'DocumentSearch[equipmentTypeId]' => $model->id
+                                    ],
+                                    ['title' => 'بایگانی مدارک', 'data-pjax' => 0]
+                                );
+                            }
+                        ]
                     ]
                 ]
             ]) ?>

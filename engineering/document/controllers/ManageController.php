@@ -20,7 +20,20 @@ class ManageController extends \core\controllers\AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'tree-list',
+                                'get-json-tree'
+                            ],
                             'roles' => ['@']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update', 'report'],
+                            'roles' => ['manager']
                         ]
                     ]
                 ]

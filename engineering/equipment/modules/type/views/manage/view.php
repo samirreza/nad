@@ -15,36 +15,37 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="page-view">
-    <?= ActionButtons::widget([
-        'modelID' => $model->id,
-        'buttons' => [
-            'update' => ['label' => 'ویرایش'],
-            'delete' => ['label' => 'حذف'],
-            'index' => ['label' => 'انواع تجهیزات'],
-            'parts' => [
-                'label' => 'لیست قطعات',
-                'url' => ['details/part/index', 'typeId' => $model->id],
-                'type' => 'warning',
-                'icon' => 'cog'
-            ],
-            'fittings' => [
-                'label' => 'لیست اتصالات',
-                'url' => ['details/fitting/index', 'typeId' => $model->id],
-                'type' => 'success',
-                'icon' => 'chain'
-            ],
-            'documents' => [
-                'label' => 'لیست اسناد',
-                'color' => 'blue',
-                'icon' => 'file',
-                'url' => [
-                    '/engineering/equipment/document/manage/index',
-                    'equipmentTypeId' => $model->id
+    <div class="fixed-action-buttons">
+        <?= ActionButtons::widget([
+            'modelID' => $model->id,
+            'buttons' => [
+                'update' => ['label' => 'ویرایش'],
+                'delete' => ['label' => 'حذف'],
+                'index' => ['label' => 'انواع تجهیزات'],
+                'parts' => [
+                    'label' => 'لیست قطعات',
+                    'url' => ['details/part/index', 'typeId' => $model->id],
+                    'type' => 'warning',
+                    'icon' => 'cog'
                 ],
-                'visibleFor' => ['equipment.document']
+                'fittings' => [
+                    'label' => 'لیست اتصالات',
+                    'url' => ['details/fitting/index', 'typeId' => $model->id],
+                    'type' => 'success',
+                    'icon' => 'chain'
+                ],
+                'documents' => [
+                    'label' => 'بایگانی مدارک',
+                    'type' => 'success',
+                    'url' => [
+                        '/engineering/equipment/type/document/index',
+                        'DocumentSearch[equipmentTypeId]' => $model->id
+                    ],
+                    'visibleFor' => ['equipment.type']
+                ]
             ]
-        ]
-    ]) ?>
+        ]) ?>
+    </div>
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin(['title' => 'اطلاعات اصلی']) ?>
@@ -65,7 +66,7 @@ $this->params['breadcrumbs'] = [
                             'format' => 'farsiNumber'
                         ],
                         [
-                            'label' => 'تعداد اسناد',
+                            'label' => 'تعداد مدارک',
                             'value' => $model->getDocuments()->count(),
                             'format' => 'farsiNumber'
                         ],

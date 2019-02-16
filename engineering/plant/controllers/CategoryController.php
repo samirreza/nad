@@ -26,10 +26,22 @@ class CategoryController extends \core\controllers\AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'get-json-tree'
+                            ],
                             'roles' => ['@'],
                         ],
-                    ],
-                ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['manager']
+                        ]
+                    ]
+                ]
             ]
         );
     }

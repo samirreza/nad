@@ -116,7 +116,7 @@ class SideMenu extends \theme\widgets\Menu
                         'url' => ['/engineering/document/manage/index']
                     ],
                     [
-                        'label' => 'شناسه تجهیزات',
+                        'label' => 'انواع تجهیزات',
                         'icon' => 'tag',
                         'url' => ['/engineering/equipment/type/manage/index'],
                         'visible' => $user->can('equipment.type')
