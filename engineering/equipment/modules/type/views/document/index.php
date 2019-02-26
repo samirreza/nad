@@ -69,6 +69,9 @@ $this->params['breadcrumbs'] = [
                     'label' => 'فایل مدرک',
                     'format' => 'raw',
                     'value' => function ($model) {
+                        if (!$model->getFile('file')) {
+                            return;
+                        }
                         return Html::a(
                             'دانلود',
                             $model->getFile('file')->getUrl(),

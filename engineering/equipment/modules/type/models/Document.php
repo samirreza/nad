@@ -5,9 +5,12 @@ namespace nad\engineering\equipment\modules\type\models;
 use core\behaviors\TimestampBehavior;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\engineering\equipment\modules\type\behaviors\NotificationBehavior;
 
 class Document extends \yii\db\ActiveRecord
 {
+    const EVENT_DOCUMENT_INSERTED = 'documentInserted';
+
     public function behaviors()
     {
         return [
@@ -33,7 +36,8 @@ class Document extends \yii\db\ActiveRecord
                         ]
                     ]
                 ]
-            ]
+            ],
+            NotificationBehavior::class
         ];
     }
 
@@ -70,6 +74,17 @@ class Document extends \yii\db\ActiveRecord
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $this->trigger(self::EVENT_DOCUMENT_INSERTED);
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getEquipmentType()
+    {
+        return $this->hasOne(Type::class, ['id' => 'equipmentTypeId']);
     }
 
     public static function tableName()

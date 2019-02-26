@@ -23,11 +23,16 @@ use yii\widgets\DetailView;
                         [
                             'label' => 'فایل مدرک',
                             'format' => 'raw',
-                            'value' => Html::a(
-                                'دانلود',
-                                $model->getFile('file')->getUrl(),
-                                ['data-pjax' => 0]
-                            )
+                            'value' => function ($model) {
+                                if (!$model->getFile('file')) {
+                                    return;
+                                }
+                                return Html::a(
+                                    'دانلود',
+                                    $model->getFile('file')->getUrl(),
+                                    ['data-pjax' => 0]
+                                );
+                            }
                         ],
                         'createdAt:date',
                         'updatedAt:date'

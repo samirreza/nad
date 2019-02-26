@@ -3,6 +3,7 @@
 namespace nad\common;
 
 use Yii;
+use extensions\notification\models\Notification;
 
 class SideMenu extends \theme\widgets\Menu
 {
@@ -10,6 +11,12 @@ class SideMenu extends \theme\widgets\Menu
     {
         $user = Yii::$app->user;
         return [
+            [
+                'label' => 'اعلانات',
+                'icon' => 'bullhorn',
+                'badge' => Notification::getUnreadNotificationsCountForUser(),
+                'url' => ['/notif/index']
+            ],
             [
                 'label' => 'پژوهش',
                 'icon' => 'flask',
@@ -116,7 +123,7 @@ class SideMenu extends \theme\widgets\Menu
                         'url' => ['/engineering/document/manage/index']
                     ],
                     [
-                        'label' => 'انواع تجهیزات',
+                        'label' => 'تجهیزات (شناسه و سوابق)',
                         'icon' => 'tag',
                         'url' => ['/engineering/equipment/type/manage/index'],
                         'visible' => $user->can('equipment.type')
