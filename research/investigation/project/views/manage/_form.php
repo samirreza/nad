@@ -59,19 +59,21 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-4">
-                <?= Html::submitButton(
-                    'ذخیره',
-                    [
-                        'class' => 'btn btn-lg btn-success'
-                    ]
-                ) ?>
-                <?= Button::widget([
-                    'label' => 'انصراف',
-                    'options' => ['class' => 'btn-lg'],
-                    'type' => 'warning',
-                    'icon' => false,
-                    'url' => $backLink
-                ]) ?>
+                <?php Panel::begin() ?>
+                    <?= Html::submitButton(
+                        'ذخیره',
+                        [
+                            'class' => 'btn btn-lg btn-success'
+                        ]
+                    ) ?>
+                    <?= Button::widget([
+                        'label' => 'انصراف',
+                        'options' => ['class' => 'btn-lg'],
+                        'type' => 'warning',
+                        'icon' => false,
+                        'url' => $backLink
+                    ]) ?>
+                <?php Panel::end() ?>
                 <?php Panel::begin(['title' => 'سایر اطلاعات گزارش']) ?>
                     <?= $form->field($model, 'categoryId')->widget(
                         Select2::class,
@@ -111,10 +113,3 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
         </div>
     <?php ActiveForm::end() ?>
 </div>
-
-<?php $this->registerJs('
-    $(".fixed-action-buttons").append($(".btn-success"));
-    $(".btn-success").addClass("btn-top");
-    $(".fixed-action-buttons").append($(".btn-warning"));
-    $(".btn-warning").addClass("btn-top");
-') ?>

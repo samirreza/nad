@@ -6,9 +6,9 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use theme\widgets\editor\Editor;
 use modules\nad\supplier\models\Supplier;
-use modules\nad\equipment\widgets\EquipmentsSelect2;
-use modules\nad\equipment\widgets\EquipmentPartsSelect2;
-use nad\research\modules\material\widgets\MaterialsSelect2;
+use nad\engineering\equipment\widgets\EquipmentsSelect2;
+use nad\research\control\material\widgets\MaterialsSelect2;
+use nad\engineering\equipment\widgets\EquipmentPartsSelect2;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 

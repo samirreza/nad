@@ -46,11 +46,11 @@ class BaseInvestigationController extends AdminController
     public function actionChangeStatus($id, $newStatus)
     {
         $model = $this->findModel($id)->changeStatus($newStatus);
-        echo Json::encode([
-            'status' => 'success',
-            'message' => 'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
-        ]);
-        exit;
+        Yii::$app->session->addFlash(
+            'success',
+            'آیتم ویرایش شده با موفقیت در سیستم به روز رسانی شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     public function actionDeliverToManager($id)

@@ -92,11 +92,11 @@ class ManageController extends BaseInvestigationController
         $model->scenario = Source::SCENARIO_SET_EXPERTS;
         $model->deliverForProposalDate = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            echo Json::encode([
-                'status' => 'success',
-                'message' => 'کارشناسان با موفقیت در سیستم درج شدند.'
-            ]);
-            exit;
+            Yii::$app->session->addFlash(
+                'success',
+                'کارشناسان با موفقیت در سیستم درج شدند.'
+            );
+            return $this->redirect(['view', 'id' => $id]);
         }
         echo Json::encode([
             'content' => $this->renderAjax('set-experts', ['model' => $model])

@@ -19,7 +19,7 @@ class EquipmentsSelect2 extends Select2
             'allowClear' => true,
             'minimumInputLength' => 2,
             'ajax' => [
-                'url' => Url::to(['/equipment/type/manage/ajax-find-equipments']),
+                'url' => Url::to(['/engineering/equipment/type/manage/ajax-find-equipments']),
                 'dataType' => 'json',
                 'delay' => 1000,
                 'data' => new JsExpression('function(params) { return {q:params.term}; }')
