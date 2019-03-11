@@ -19,7 +19,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 
 <div class="proposal-form">
-    <div class="fixed-action-buttons"></div>
     <?php $form = ActiveForm::begin([
         'options' => [
             'enctype' => 'multipart/form-data'

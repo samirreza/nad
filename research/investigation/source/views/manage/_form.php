@@ -18,7 +18,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 ?>
 
 <div class="source-form">
-    <div class="fixed-action-buttons"></div>
     <?php $form = ActiveForm::begin() ?>
         <div class="row">
             <div class="col-md-8">
