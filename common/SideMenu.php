@@ -18,17 +18,23 @@ class SideMenu extends \theme\widgets\Menu
                 'url' => ['/notif/index']
             ],
             [
+                'label' => 'فرایند',
+                'items' => [
+                    [
+                        'label' => 'بررسی، پایش و طراحی',
+                        'items' => [
+                            [
+                                'label' => 'استخر',
+                                'url' => ['/pool']
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
                 'label' => 'پژوهش',
                 'icon' => 'flask',
                 'items' => [
-                    [
-                        'label' => 'بررسی',
-                        'url' => ['/research/investigation/base-investigation/home'],
-                        'visible' => $user->canAccessAny([
-                            'research.expert',
-                            'research.manage'
-                        ])
-                    ],
                     [
                         'label' => 'کنترل',
                         'items' => [
@@ -79,21 +85,6 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'نقاط نمونه گیری و اندازه گیری',
                                 'url' => '#',
                             ],
-                        ]
-                    ],
-                    [
-                        'label' => 'گزارش های مدیریتی',
-                        'items' => [
-                            [
-                                'label' => 'منشا',
-                                'url' => ['/research/investigation/source/manage/report'],
-                                'visible' => $user->can('manager')
-                            ],
-                            [
-                                'label' => 'پروپوزال',
-                                'url' => ['/research/investigation/proposal/manage/report'],
-                                'visible' => $user->can('manager')
-                            ]
                         ]
                     ]
                 ]

@@ -2,8 +2,8 @@
 
 namespace nad\extensions\comment\behaviors;
 
-use nad\extensions\comment\models\Comment;
 use yii\base\InvalidConfigException;
+use nad\extensions\comment\models\Comment;
 
 class CommentBehavior extends \yii\base\Behavior
 {
