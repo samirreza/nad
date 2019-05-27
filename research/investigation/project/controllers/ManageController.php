@@ -69,7 +69,10 @@ class ManageController extends BaseInvestigationController
                 'class' => 'core\tree\actions\DeleteAction',
                 'modelClass' => Project::class,
                 'isAjax' => false
-            ]
+            ],
+            'generate-graph' => [
+                'class' => 'nad\extensions\graphGenerator\actions\GenerateGraphAction',
+            ],
         ];
     }
 
