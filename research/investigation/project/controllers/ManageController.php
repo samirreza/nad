@@ -72,6 +72,7 @@ class ManageController extends BaseInvestigationController
             ],
             'generate-graph' => [
                 'class' => 'nad\extensions\graphGenerator\actions\GenerateGraphAction',
+                'modelClassName' => Project::class,
             ],
         ];
     }
