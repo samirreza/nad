@@ -52,7 +52,12 @@ class Module extends \yii\base\Module
                         'label' => 'رده‌های گزارش‌ها',
                         'url' => ['/research/investigation/project/category/index'],
                         'visible' => Yii::$app->user->can('research.manage')
-                    ]
+                    ],
+                    [
+                        'label' => 'گراف گزارش ها',
+                        'url' => ['/research/investigation/project/manage/generate-graph'],                        
+                        // 'visible' => Yii::$app->user->can('research.manage')
+                    ],
                 ]
             ],
             [
