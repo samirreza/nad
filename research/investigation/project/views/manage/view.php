@@ -98,6 +98,13 @@ $children = $model->children()->all();
                                     'attribute' => 'categoryId',
                                     'value' => $model->category->htmlCodedTitle,
                                     'format' => 'raw'
+                                ],
+                                [
+                                    'label' => 'گزارش های پدر',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getFormattedThingLinks();    
+                                    }
                                 ]
                             ]
                         ]) ?>
