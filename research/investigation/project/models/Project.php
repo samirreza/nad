@@ -11,6 +11,7 @@ use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\research\common\behaviors\CodeNumeratorBehavior;
 use nad\research\investigation\proposal\models\Proposal;
+use nad\extensions\graphGenerator\behaviors\GraphBehavior;
 use nad\research\investigation\common\models\BaseInvestigationModel;
 
 class Project extends BaseInvestigationModel
@@ -78,7 +79,11 @@ class Project extends BaseInvestigationModel
                 'tree' => [
                     'class' => NestedSetsBehavior::class,
                     'treeAttribute' => 'tree'
-                ]
+                ],
+                'graph' => [
+                    'class' => GraphBehavior::className(),
+                    'graphTableName' => 'nad_project_graph'
+                ],
             ]
         );
     }

@@ -107,6 +107,27 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'group' => 'doc'
                     ]) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+
+                    <?= Html::label('گزارشات پدر') ?>
+                    <?= $form->field($model, 'thingLinks')->label(false)->widget(
+                        Select2::class,
+                        [
+                            'data' => 
+                                ArrayHelper::map(
+                                    $model->getAllThings(),
+                                    'id',
+                                    'prefixedTitle'
+                                ),
+                                'options' => [
+                                    'multiple' => true,
+                                    'placeholder' => 'گزارش های پدر را انتخاب کنید',
+                                ],
+                                'pluginOptions' => [                    
+                                    //'allowClear' => true,
+                                    'minimumInputLength' => 2
+                                ]
+                        ]
+                    ) ?>
                 <?php Panel::end() ?>
             </div>
         </div>
