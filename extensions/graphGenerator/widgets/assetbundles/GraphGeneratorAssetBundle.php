@@ -11,11 +11,12 @@ class GraphGeneratorAssetBundle extends AssetBundle
     public $jsOptions = ['position' => View::POS_HEAD];
 
     public $js = [
-        'js/d3-version5.js',
-        'js/d3-dagre.js',        
+        'js/d3-version5.js',        
+        'js/d3-dagre.min.js',
+        'js/graph.js'        
     ];
 
-    // public $css = [
-    //     'css/graph.css',        
-    // ];
+    public $css = [
+        'css/graph.css',        
+    ];
 }
