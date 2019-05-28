@@ -54,4 +54,17 @@ class ProposalController extends BaseInvestigationController
         ]);
         exit;
     }
+
+    public function actionCertificate($id)
+    {
+        $proposal = $this->findModel($id);
+        $report = $proposal->report;
+        $source = $proposal->source;
+
+        return $this->render('certificate', [
+            'source' => $source,
+            'proposal' => $proposal,
+            'report' => $report
+        ]);
+    }
 }

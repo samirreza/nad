@@ -79,7 +79,7 @@ class Source extends BaseInvestigationModel
             ['experts', 'required', 'on' => self::SCENARIO_SET_EXPERT],
             [['title', 'englishTitle'], 'string', 'max' => 255],
             [['reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult'], 'string'],
-            ['tags', 'safe'],
+            [['tags', 'references'], 'safe'],
             ['englishTitle', 'default', 'value' => null],
             [
                 'createdAt',
@@ -122,6 +122,7 @@ class Source extends BaseInvestigationModel
             'description' => 'توضیحات',
             'mainReasonId' => 'علت اصلی',
             'reasons' => 'علل فرعی',
+            'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
             'createdBy' => 'کارشناس',

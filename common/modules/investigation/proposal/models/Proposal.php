@@ -87,7 +87,7 @@ class Proposal extends BaseInvestigationModel
             [['title', 'englishTitle'], 'string', 'max' => 255],
             [['reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult'], 'string'],
             ['englishTitle', 'default', 'value' => null],
-            ['partners', 'safe'],
+            [['partners', 'references'], 'safe'],
             [
                 'createdAt',
                 JalaliDateToTimestamp::class,
@@ -139,6 +139,7 @@ class Proposal extends BaseInvestigationModel
             'necessity' => 'ضرورت های طرح موضوع',
             'description' => 'توضیحات',
             'partners' => 'همکاران',
+            'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
             'createdBy' => 'کارشناس',

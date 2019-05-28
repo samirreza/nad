@@ -1,5 +1,7 @@
 <?php
 
+use nad\process\ird\pool\investigation\proposal\models\Proposal;
+
 $this->title = 'درج پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
@@ -13,6 +15,7 @@ $this->params['breadcrumbs'] = [
 
 <div class="proposal-create">
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/_form', [
-        'model' => $model
+        'model' => $model,
+        'consumer' => Proposal::CONSUMER_CODE
     ]) ?>
 </div>

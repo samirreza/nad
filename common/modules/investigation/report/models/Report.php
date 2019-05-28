@@ -106,7 +106,7 @@ class Report extends BaseInvestigationModel
             [['title', 'englishTitle'], 'string', 'max' => 255],
             [['abstract', 'description', 'proceedings', 'negotiationResult'], 'string'],
             ['englishTitle', 'default', 'value' => null],
-            ['tags', 'safe'],
+            [['tags', 'references'], 'safe'],
             [
                 'createdAt',
                 JalaliDateToTimestamp::class,
@@ -139,6 +139,7 @@ class Report extends BaseInvestigationModel
             'abstract' => 'چکیده',
             'description' => 'توضیحات',
             'categoryId' => 'رده',
+            'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
             'createdBy' => 'کارشناس',

@@ -8,6 +8,7 @@ use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
+use nad\common\modules\investigation\reference\behaviors\ReferenceBehavior;
 
 class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
 {
@@ -44,6 +45,10 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'createdBy',
                 'updatedByAttribute' => false
+            ],
+            [
+                'class' => ReferenceBehavior::class,
+                'moduleId' => $this->moduleId
             ]
         ];
     }

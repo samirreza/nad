@@ -36,4 +36,17 @@ class ReportController extends BaseInvestigationController
             ]
         );
     }
+
+    public function actionCertificate($id)
+    {
+        $report = $this->findModel($id);
+        $proposal = $report->proposal;
+        $source = $proposal->source;
+
+        return $this->render('certificate', [
+            'source' => $source,
+            'proposal' => $proposal,
+            'report' => $report
+        ]);
+    }
 }

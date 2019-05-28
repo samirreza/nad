@@ -198,6 +198,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     }
                                 ],
                                 [
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableReferencesAsString();
+                                    }
+                                ],
+                                [
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();

@@ -11,7 +11,8 @@ class Module extends \yii\base\Module
         $this->modules = [
             'source' => 'nad\process\ird\pool\investigation\source\Module',
             'proposal' => 'nad\process\ird\pool\investigation\proposal\Module',
-            'report' => 'nad\process\ird\pool\investigation\report\Module'
+            'report' => 'nad\process\ird\pool\investigation\report\Module',
+            'reference' => 'nad\process\ird\pool\investigation\reference\Module'
         ];
         $this->horizontalMenuItems = [
             [
@@ -29,12 +30,7 @@ class Module extends \yii\base\Module
             ],
             [
                 'label' => 'پروپوزال',
-                'items' => [
-                    [
-                        'label' => 'لیست‌ پروپوزال',
-                        'url' => ['/pool/investigation/proposal/manage/index']
-                    ]
-                ]
+                'url' => ['/pool/investigation/proposal/manage/index']
             ],
             [
                 'label' => 'گزارش‌',
@@ -76,17 +72,8 @@ class Module extends \yii\base\Module
             ],
             [
                 'label' => 'منابع',
-                'items' => [
-                    [
-                        'label' => 'لیست منابع',
-                        'url' => ['/']
-                    ],
-                    [
-                        'label' => 'افزودن منبع',
-                        'url' => ['/']
-                    ]
-                ]
-            ],
+                'url' => ['/pool/investigation/reference/manage/index']
+            ]
         ];
         parent::init();
     }

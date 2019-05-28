@@ -11,6 +11,7 @@ use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\common\modules\investigation\report\models\Category;
+use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -82,6 +83,12 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         'group' => 'doc',
                         'label' => 'مدارک'
                     ]) ?>
+                    <?= $form->field($model, 'references')->widget(
+                        SelectReference::class,
+                        [
+                            'consumer' => $consumer
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
                 </div>
             </div>

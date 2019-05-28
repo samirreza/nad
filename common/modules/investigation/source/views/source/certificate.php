@@ -7,22 +7,22 @@ use theme\widgets\Panel;
 <div class="source-certificate">
     <?= $this->render('@nad/common/modules/investigation/common/views/_base_source_certificate', [
         'source' => $source,
-        'baseRoute' => '/pool/investigation',
-        'moduleId' => $moduleId
+        'moduleId' => $moduleId,
+        'baseRoute' => $baseRoute
     ]) ?>
     <?php if ($source->proposals) : ?>
         <?php foreach ($source->proposals as $index => $proposal) : ?>
             <?php Panel::begin(['title' => 'پوپوزال / گزارش ' . Yii::$app->formatter->asFarsiNumber($index + 1)]) ?>
                 <?= $this->render('@nad/common/modules/investigation/common/views/_base_proposal_certificate', [
                     'proposal' => $proposal,
-                    'baseRoute' => '/pool/investigation',
-                    'moduleId' => $moduleId
+                    'moduleId' => $moduleId,
+                    'baseRoute' => $baseRoute
                 ]) ?>
                 <?php if ($proposal->report) : ?>
                     <?= $this->render('@nad/common/modules/investigation/common/views/_base_report_certificate', [
                         'report' => $proposal->report,
-                        'baseRoute' => '/pool/investigation',
-                        'moduleId' => $moduleId
+                        'moduleId' => $moduleId,
+                        'baseRoute' => $baseRoute
                     ]) ?>
                 <?php endif; ?>
             <?php Panel::end() ?>

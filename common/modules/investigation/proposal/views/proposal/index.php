@@ -73,7 +73,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view}',
+                        'template' => '{view} {certificate}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -81,6 +81,16 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     $url,
                                     [
                                         'title' => 'روند',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'certificate' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="glyphicon glyphicon-book"></span>',
+                                    ['certificate', 'id' => $model->id],
+                                    [
+                                        'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]
                                 );

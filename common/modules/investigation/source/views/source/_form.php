@@ -10,6 +10,7 @@ use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use nad\common\modules\investigation\source\models\SourceReason;
+use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -76,6 +77,12 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                                 'prompt' => 'علل فرعی را انتخاب کنید ...',
                                 'value' => $model->getReasonsAsArray()
                             ]
+                        ]
+                    ) ?>
+                    <?= $form->field($model, 'references')->widget(
+                        SelectReference::class,
+                        [
+                            'consumer' => $consumer
                         ]
                     ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>

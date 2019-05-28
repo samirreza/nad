@@ -45,7 +45,7 @@ $this->params['breadcrumbs'] = [
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="circle">
-            <?= Html::a('منابع', ['/']) ?>
+            <?= Html::a('منابع', ['/pool/investigation/reference/manage/index']) ?>
         </div>
     </div>
 </div>

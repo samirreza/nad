@@ -204,6 +204,13 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     }
                                 ],
                                 [
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableReferencesAsString();
+                                    }
+                                ],
+                                [
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
