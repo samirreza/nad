@@ -92,14 +92,14 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     );
                 }
             ],
-            // [
-            //     'attribute' => 'references',
-            //     'label' => 'منابع گزارش',
-            //     'format' => 'raw',
-            //     'value' => function ($model) {
-            //         return $model->getClickableReferencesAsString();
-            //     }
-            // ],
+            [
+                'attribute' => 'references',
+                'label' => 'منابع گزارش',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getClickableReferencesAsString();
+                }
+            ],
             [
                 'attribute' => 'tags',
                 'label' => 'کلید واژه‌ها گزارش',

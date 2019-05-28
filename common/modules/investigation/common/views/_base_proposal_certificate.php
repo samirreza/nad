@@ -76,12 +76,12 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                 'label' => 'همکاران در نگارش پروپوزال',
                 'value' => $proposal->getPartnerFullNamesAsString()
             ],
-            // [
-            //     'attribute' => 'references',
-            //     'label' => 'منابع پروپوزال',
-            //     'format' => 'raw',
-            //     'value' => $proposal->getClickableReferencesAsString()
-            // ],
+            [
+                'attribute' => 'references',
+                'label' => 'منابع پروپوزال',
+                'format' => 'raw',
+                'value' => $proposal->getClickableReferencesAsString()
+            ],
             [
                 'attribute' => 'tags',
                 'label' => 'کلید واژه‌ها پروپوزال',

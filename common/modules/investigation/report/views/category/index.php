@@ -19,12 +19,12 @@ use nad\common\widgets\treeView\TreeView;
                     'data-gridpjaxid' => 'report-category-gridviewpjax'
                 ]
             ],
-            // 'materials' => [
-            //     'label' => 'گزارش‌ها',
-            //     'url' => ['manage/index'],
-            //     'type' => 'warning',
-            //     'icon' => 'list'
-            // ]
+            'reports' => [
+                'label' => 'گزارش‌ها',
+                'url' => ['manage/index'],
+                'type' => 'success',
+                'icon' => 'list'
+            ]
         ]
     ]) ?>
 

@@ -30,6 +30,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     const SCENARIO_SET_EXPERT = 'setExpert';
 
     public $moduleId;
+    public $referenceClassName;
 
     public $sessionHourAttribute;
     public $sessionMinuteAttribute;
@@ -48,7 +49,8 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
             ],
             [
                 'class' => ReferenceBehavior::class,
-                'moduleId' => $this->moduleId
+                'moduleId' => $this->moduleId,
+                'referenceClassName' => $this->referenceClassName
             ]
         ];
     }

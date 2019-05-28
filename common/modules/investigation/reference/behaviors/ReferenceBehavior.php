@@ -6,13 +6,13 @@ use Yii;
 use yii\helpers\Html;
 use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
-use nad\common\modules\investigation\reference\models\Reference;
 
 class ReferenceBehavior extends \yii\base\Behavior
 {
     private $references;
 
     public $moduleId;
+    public $referenceClassName;
 
     public function init()
     {
@@ -75,7 +75,7 @@ class ReferenceBehavior extends \yii\base\Behavior
 
     public function getReferences()
     {
-        return Reference::find()
+        return $this->referenceClassName::find()
             ->innerJoin(
                 'nad_investigation_reference_relation',
                 'nad_investigation_reference_relation.referenceId = nad_investigation_reference.id'
