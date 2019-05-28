@@ -8,12 +8,13 @@ class ExpertSearch extends Expert
 {
     public $name;
     public $surname;
+    public $email;
 
     public function rules()
     {
         return [
-            [['userId', 'departmentId'], 'integer'],
-            [['name', 'surname'], 'string']
+            ['departmentId', 'integer'],
+            [['name', 'surname', 'email'], 'string']
         ];
     }
 
@@ -37,13 +38,11 @@ class ExpertSearch extends Expert
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'userId' => $this->userId,
-            'departmentId' => $this->departmentId
-        ]);
+        $query->andFilterWhere(['departmentId' => $this->departmentId]);
 
         $query->andFilterWhere(['like', 'user.name', $this->name])
-            ->andFilterWhere(['like', 'user.surname', $this->surname]);
+            ->andFilterWhere(['like', 'user.surname', $this->surname])
+            ->andFilterWhere(['like', 'user.email', $this->email]);
 
         return $dataProvider;
     }

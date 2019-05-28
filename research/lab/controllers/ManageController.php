@@ -16,14 +16,13 @@ class ManageController extends \core\controllers\AjaxAdminController
             parent::behaviors(),
             [
                 'access' => [
-                    'class' => AccessControl::className(),
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'allow' => true,
-                            'roles' => ['research.manage']
-                        ],
-                    ],
-                ],
+                            'allow' => true
+                        ]
+                    ]
+                ]
             ]
         );
     }

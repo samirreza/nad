@@ -5,10 +5,10 @@ namespace modules\nad\supplier\models;
 use modules\nad\supplier\behaviors\PartsBehavior;
 use modules\nad\supplier\behaviors\MaterialsBehavior;
 use modules\nad\supplier\behaviors\EquipmentsBehavior;
-use modules\nad\equipment\modules\type\details\models\Part;
+use nad\engineering\equipment\models\Part;
 use modules\nad\supplier\modules\phonebook\models\Phonebook;
-use nad\research\modules\material\models\Type as MaterialType;
-use modules\nad\equipment\modules\type\models\Type as EquipmentType;
+use nad\equipment\material\models\Material as MaterialType;
+use nad\engineering\equipment\models\Type as EquipmentType;
 
 class Supplier extends \yii\db\ActiveRecord
 {

@@ -2,8 +2,10 @@
 
 namespace nad\extensions\comment\behaviors;
 
-use nad\extensions\comment\models\Comment;
+use Yii;
+use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
+use nad\extensions\comment\models\Comment;
 
 class CommentBehavior extends \yii\base\Behavior
 {
@@ -15,6 +17,23 @@ class CommentBehavior extends \yii\base\Behavior
             throw new InvalidConfigException('moduleId property must be set.');
         }
         parent::init();
+    }
+
+    public function events()
+    {
+        return [
+            ActiveRecord::EVENT_AFTER_DELETE => 'deleteComments'
+        ];
+    }
+
+    public function deleteComments()
+    {
+        Yii::$app->db->createCommand()->delete('comment', [
+            'moduleId' => $this->moduleId,
+            'modelClassName' => (new \ReflectionClass($this->owner))
+                ->getShortName(),
+            'modelId' => $this->owner->getPrimaryKey()
+        ])->execute();
     }
 
     public function getComments($sort = SORT_DESC)

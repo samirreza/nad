@@ -19,7 +19,7 @@ class CodableCategoryBehavior extends \yii\base\Behavior
             },
             ActiveRecord::EVENT_AFTER_UPDATE => function ($event) {
                 if (isset($event->changedAttributes['code'])) {
-                    $this->updateChildrenCodes();
+                    $this->owner->updateChildrenCodes();
                 }
             },
             ActiveRecord::EVENT_BEFORE_INSERT => 'validateUniqueCode',
@@ -30,6 +30,13 @@ class CodableCategoryBehavior extends \yii\base\Behavior
     public function validateUniqueCode($event)
     {
         if (!$this->checkForUniqueCode) {
+            return;
+        }
+
+        if (
+            !$this->owner->isNewRecord &&
+            !isset($event->changedAttributes['code'])
+        ) {
             return;
         }
 

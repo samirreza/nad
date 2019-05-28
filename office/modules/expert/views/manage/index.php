@@ -51,15 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style' => 'width:15%']
                     ],
                     [
-                        'attribute' => 'userId',
+                        'attribute' => 'email',
                         'label' => 'ایمیل',
                         'format' => 'raw',
                         'value' => function ($model) {
                             return Html::a(
-                                $model->email,
+                                $model->user->email,
                                 [
                                     '/user/manage/index',
-                                    'UserSearch[email]' => $model->email
+                                    'UserSearch[email]' => $model->user->email
                                 ],
                                 [
                                     'target' => '_blank',
@@ -69,10 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
-                            'attribute' => 'userId',
+                            'attribute' => 'email',
                             'data' => ArrayHelper::map(
                                 User::find()->all(),
-                                'id',
+                                'email',
                                 'email'
                             ),
                             'options' => [
@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ]
                         ]),
-                        'headerOptions' => ['style' => 'width:10%']
+                        'headerOptions' => ['style' => 'width:20%']
                     ],
                     [
                         'header' => 'مدارک',
