@@ -8,6 +8,7 @@ use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\extensions\graphGenerator\behaviors\GraphBehavior;
 use nad\common\modules\investigation\proposal\models\Proposal;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
@@ -81,7 +82,11 @@ class Report extends BaseInvestigationModel
                 'codeNumerator' => [
                     'class' => CodeNumeratorBehavior::class,
                     'determinativeColumn' => 'categoryId'
-                ]
+                ],
+                'graph' => [
+                    'class' => GraphBehavior::className(),
+                    'graphTableName' => 'nad_project_graph'
+                ],
             ]
         );
     }

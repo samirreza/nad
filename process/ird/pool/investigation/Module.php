@@ -42,7 +42,13 @@ class Module extends \yii\base\Module
                     [
                         'label' => 'رده‌بندی گزارش‌ها',
                         'url' => ['/pool/investigation/report/category/index']
-                    ]
+                    ],
+                    [
+                        'label' => 'گراف گزارش ها',
+                        'url' => ['/pool/investigation/report/manage/generate-graph'],                        
+                        // 'visible' => Yii::$app->user->can('research.manage')
+                    ],
+
                 ]
             ],
             [

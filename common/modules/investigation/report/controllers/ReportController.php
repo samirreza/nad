@@ -37,6 +37,16 @@ class ReportController extends BaseInvestigationController
         );
     }
 
+    public function actions()
+    {
+        return [            
+            'generate-graph' => [
+                'class' => 'nad\extensions\graphGenerator\actions\GenerateGraphAction',
+                'modelClassName' => Report::class,
+            ],
+        ];
+    }
+
     public function actionCertificate($id)
     {
         $report = $this->findModel($id);
