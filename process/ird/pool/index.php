@@ -8,7 +8,6 @@ $this->params['breadcrumbs'] = [
     'بررسی، پایش و طراحی',
     $this->title
 ];
-$this->params['disableHorizontalMenu'] = true;
 
 ?>
 

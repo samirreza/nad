@@ -10,17 +10,6 @@ class Source extends BaseSource
 
     public $moduleId = 'pool';
 
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        if ($insert) {
-            $this->consumer = self::CONSUMER_CODE;
-        }
-        return true;
-    }
-
     public static function find()
     {
         return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);

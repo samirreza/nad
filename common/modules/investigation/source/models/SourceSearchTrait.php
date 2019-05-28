@@ -39,8 +39,8 @@ trait SourceSearchTrait
             'mainReasonId' => $this->mainReasonId,
             'status' => $this->status
         ])
-        ->andFilterWhere(['like', 'title', $this->title])
-        ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
 
         return $dataProvider;
     }

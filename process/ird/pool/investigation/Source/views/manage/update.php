@@ -4,8 +4,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',
-    'استخر',
-    'بررسی',
+    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
     ['label' => 'منشاها', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="source-update">
-    <?= $this->render('@nad/common/modules/investigation/source/views/manage/_form', [
+    <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model
     ]) ?>
 </div>

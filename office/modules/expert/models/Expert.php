@@ -10,7 +10,7 @@ use extensions\file\behaviors\FileBehavior;
 
 class Expert extends ActiveRecord
 {
-    const DEPARTMENT_RESEARCH = 0;
+    const DEPARTMENT_PROCESS = 0;
 
     public function behaviors()
     {
@@ -34,8 +34,7 @@ class Expert extends ActiveRecord
                                 'ppt',
                                 'pptx'
                             ],
-                            'maxSize' => 10 * 1024 * 1024,
-                            'required' => true
+                            'maxSize' => 10 * 1024 * 1024
                         ]
                     ]
                 ]
@@ -66,39 +65,14 @@ class Expert extends ActiveRecord
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
 
-    public function getEmail()
-    {
-        return $this->user->email;
-    }
-
-    public function getName()
-    {
-        return $this->user->name;
-    }
-
-    public function getSurname()
-    {
-        return $this->user->surname;
-    }
-
-    public function getFullName()
-    {
-        return "$this->name  $this->surname";
-    }
-
-    public function getUserId()
-    {
-        return $this->user->id;
-    }
-
     public function afterSave($insert, $changedAttributes)
     {
         if ($insert) {
-            $this->assignDepartmentExpertRole();
+            $this->assignDepartmentRoles();
         }
         if ($this->getOldAttribute('departmentId') != $this->departmentId) {
-            $this->revokePreviousDepartmentExpertRole();
-            $this->assignDepartmentExpertRole();
+            $this->revokePreviousDepartmentRoles();
+            $this->assignDepartmentRoles();
         }
         parent::afterSave($insert, $changedAttributes);
     }
@@ -109,27 +83,24 @@ class Expert extends ActiveRecord
         parent::afterDelete();
     }
 
-    public function getDepartmentExpertRole()
-    {
-        return self::getDepartmentExpertRoles()[$this->departmentId];
-    }
-
     public static function tableName()
     {
         return 'nad_office_expert';
     }
 
-    public static function getDepartmentExpertRoles()
+    public static function getDepartmentRoles()
     {
         return [
-            self::DEPARTMENT_RESEARCH => 'research.expert'
+            self::DEPARTMENT_PROCESS => [
+                'expert'
+            ]
         ];
     }
 
     public static function getDepartmentLabels()
     {
         return [
-            self::DEPARTMENT_RESEARCH => 'پژوهش'
+            self::DEPARTMENT_PROCESS => 'فرایند'
         ];
     }
 
@@ -140,23 +111,44 @@ class Expert extends ActiveRecord
             ->all();
     }
 
-    private function assignDepartmentExpertRole()
+    public static function getDepartmentExpertsByPermission($departmentId, $permission)
     {
+        $experts = [];
         $authManager = Yii::$app->authManager;
-        $authManager->assign(
-            $authManager->getRole($this->departmentExpertRole),
-            $this->userId
-        );
+        foreach (self::getDepartmentExperts($departmentId) as $expert) {
+            if ($authManager->checkAccess($expert->userId, $permission)) {
+                $experts[] = $expert;
+            }
+        }
+
+        return $experts;
     }
 
-    private function revokePreviousDepartmentExpertRole()
+    private function assignDepartmentRoles()
     {
         $authManager = Yii::$app->authManager;
-        $authManager->revoke(
-            $authManager->getRole(
-                self::getDepartmentExpertRoles()[$this->getOldAttribute('departmentId')]
-            ),
-            $this->userId
-        );
+        $roles = self::getDepartmentRoles()[$this->departmentId];
+        foreach ($roles as $role) {
+            if (!$authManager->checkAccess($this->userId, $role)) {
+                $authManager->assign(
+                    $authManager->getRole($role),
+                    $this->userId
+                );
+            }
+        }
+    }
+
+    private function revokePreviousDepartmentRoles()
+    {
+        $authManager = Yii::$app->authManager;
+        $roles = self::getDepartmentRoles()[$this->getOldAttribute('departmentId')];
+        foreach ($roles as $role) {
+            if ($authManager->checkAccess($this->userId, $role)) {
+                $authManager->revoke(
+                    $authManager->getRole($role),
+                    $this->userId
+                );
+            }
+        }
     }
 }

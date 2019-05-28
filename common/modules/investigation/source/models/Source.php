@@ -2,12 +2,15 @@
 
 namespace nad\common\modules\investigation\source\models;
 
+use Yii;
+use core\behaviors\PreventDeleteBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\tag\behaviors\TaggableBehavior;
 use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\common\modules\investigation\proposal\models\Proposal;
 use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\source\behaviors\ReasonsBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
@@ -15,6 +18,8 @@ use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class Source extends BaseInvestigationModel
 {
+    public $moduleId = 'source';
+
     public function behaviors()
     {
         return array_merge(
@@ -24,7 +29,7 @@ class Source extends BaseInvestigationModel
                 'experts' => ExpertsBehavior::class,
                 'tags' => [
                     'class' => TaggableBehavior::class,
-                    'moduleId' => 'source'
+                    'moduleId' => $this->moduleId
                 ],
                 'comments' => [
                     'class' => CommentBehavior::class,
@@ -39,7 +44,16 @@ class Source extends BaseInvestigationModel
                     'modelShortClassName' => (new \ReflectionClass(self::class))
                         ->getShortName(),
                     'moduleId' => $this->moduleId
-                ]
+                ],
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getProposals',
+                            'relationName' => 'پروپوزال'
+                        ]
+                    ]
+                ],
             ]
         );
     }
@@ -107,6 +121,8 @@ class Source extends BaseInvestigationModel
             'necessity' => 'ضرورت های طرح موضوع',
             'description' => 'توضیحات',
             'mainReasonId' => 'علت اصلی',
+            'reasons' => 'علل فرعی',
+            'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
             'createdBy' => 'کارشناس',
             'updatedAt' => 'آخرین بروزرسانی',
@@ -115,10 +131,26 @@ class Source extends BaseInvestigationModel
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'reasons' => 'علل فرعی',
-            'tags' => 'کلید واژه‌ها',
             'experts' => 'کارشناسان نگارش پروپوزال'
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($insert) {
+            $this->consumer = static::CONSUMER_CODE;
+        }
+        $this->setUniqueCode();
+        return true;
+    }
+
+    public function setUniqueCode()
+    {
+        $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
+            '.' . $this->numberPartOfUniqueCode;
     }
 
     public function getMainReason()
@@ -138,19 +170,22 @@ class Source extends BaseInvestigationModel
             ->viaTable('nad_investigation_source_expert_relation', ['sourceId' => 'id']);
     }
 
-    public function beforeSave($insert)
+    public function getProposals()
     {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        $this->setUniqueCode();
-        return true;
+        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
-    public function setUniqueCode()
+    public function canUserCreateProposal()
     {
-        $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
-            '.' . $this->numberPartOfUniqueCode;
+        if ($this->status == self::STATUS_IN_NEXT_STEP) {
+            if (Yii::$app->user->can('superuser')) {
+                return true;
+            }
+            return $this->hasExperts(Expert::findOne([
+                'userId' => Yii::$app->user->id
+            ])->id);
+        }
+        return false;
     }
 
     public static function tableName()

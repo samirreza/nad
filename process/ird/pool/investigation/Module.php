@@ -4,10 +4,89 @@ namespace nad\process\ird\pool\investigation;
 
 class Module extends \yii\base\Module
 {
+    public $horizontalMenuItems;
+
     public function init()
     {
         $this->modules = [
-            'source' => 'nad\process\ird\pool\investigation\source\Module'
+            'source' => 'nad\process\ird\pool\investigation\source\Module',
+            'proposal' => 'nad\process\ird\pool\investigation\proposal\Module',
+            'report' => 'nad\process\ird\pool\investigation\report\Module'
+        ];
+        $this->horizontalMenuItems = [
+            [
+                'label' => 'منشا',
+                'items' => [
+                    [
+                        'label' => 'لیست‌ منشا',
+                        'url' => ['/pool/investigation/source/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منشا',
+                        'url' => ['/pool/investigation/source/manage/create']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'پروپوزال',
+                'items' => [
+                    [
+                        'label' => 'لیست‌ پروپوزال',
+                        'url' => ['/pool/investigation/proposal/manage/index']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'گزارش‌',
+                'items' => [
+                    [
+                        'label' => 'لیست گزارش‌ها',
+                        'url' => ['/pool/investigation/report/manage/index']
+                    ],
+                    [
+                        'label' => 'رده‌بندی گزارش‌ها',
+                        'url' => ['/pool/investigation/report/category/index']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'لیست روش‌ها',
+                        'url' => ['/']
+                    ],
+                    [
+                        'label' => 'رده‌بندی روش‌ها',
+                        'url' => ['/']
+                    ],
+                    [
+                        'label' => 'رده‌بندی روش‌ها',
+                        'url' => ['/']
+                    ],
+                    [
+                        'label' => 'افزودن روش',
+                        'url' => ['/']
+                    ],
+                    [
+                        'label' => 'افزودن رده',
+                        'url' => ['/']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/']
+                    ]
+                ]
+            ],
         ];
         parent::init();
     }

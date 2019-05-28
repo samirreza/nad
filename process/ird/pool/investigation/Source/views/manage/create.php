@@ -4,15 +4,15 @@ $this->title = 'درج منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',
-    'استخر',
-    'بررسی',
+    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
     $this->title
 ];
 
 ?>
 
 <div class="source-create">
-    <?= $this->render('@nad/common/modules/investigation/source/views/manage/_form', [
+    <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model
     ]) ?>
 </div>

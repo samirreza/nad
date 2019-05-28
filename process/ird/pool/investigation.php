@@ -6,10 +6,9 @@ $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',
-    'استخر',
+    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
     $this->title
 ];
-$this->params['disableHorizontalMenu'] = true;
 
 ?>
 
@@ -23,7 +22,7 @@ $this->params['disableHorizontalMenu'] = true;
     </div>
     <div class="col-md-4">
         <div class="circle">
-            <?= Html::a('پروپوزال', ['/']) ?>
+            <?= Html::a('پروپوزال', ['/pool/investigation/proposal/manage/index']) ?>
         </div>
     </div>
     <div class="col-md-2"></div>
@@ -32,7 +31,7 @@ $this->params['disableHorizontalMenu'] = true;
     <div class="col-md-2"></div>
     <div class="col-md-4">
         <div class="circle">
-            <?= Html::a('گزارش‌ها', ['/']) ?>
+            <?= Html::a('گزارش‌ها', ['/pool/investigation/report/manage/index']) ?>
         </div>
     </div>
     <div class="col-md-4">

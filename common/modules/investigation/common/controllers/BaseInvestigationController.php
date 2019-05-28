@@ -9,6 +9,21 @@ use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 
 class BaseInvestigationController extends AdminController
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['superuser']
+                    ]
+                ]
+            ]
+        ];
+    }
+
     public function actionDeliverToManager($id)
     {
         $model = static::findModel($id);

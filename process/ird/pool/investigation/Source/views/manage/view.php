@@ -4,8 +4,8 @@ $this->title = $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',
-    'استخر',
-    'بررسی',
+    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
     ['label' => 'منشاها', 'url' => ['index']],
     $this->title
 ];
@@ -13,7 +13,9 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <div class="source-view">
-    <?= $this->render('@nad/common/modules/investigation/source/views/manage/view', [
-        'model' => $model
+    <?= $this->render('@nad/common/modules/investigation/source/views/source/view', [
+        'model' => $model,
+        'moduleId' => 'pool',
+        'creatProposalRoute' => '/pool/investigation/proposal/manage/create'
     ]) ?>
 </div>

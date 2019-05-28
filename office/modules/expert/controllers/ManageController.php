@@ -43,7 +43,7 @@ class ManageController extends AjaxAdminController
         if ($expertForm->load(Yii::$app->request->post()) && $expertForm->save()) {
             echo Json::encode([
                 'status' => 'success',
-                'message' => 'کارشناس با موفقیت در سیستم درج شد'
+                'message' => 'کارشناس با موفقیت در سیستم درج شد.'
             ]);
             exit;
         }

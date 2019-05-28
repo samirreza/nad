@@ -2,6 +2,7 @@
 
 namespace nad\common\modules\investigation\common\models;
 
+use Yii;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
@@ -36,7 +37,8 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     {
         return [
             [
-                'class' => TimestampBehavior::class
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => false
             ],
             [
                 'class' => BlameableBehavior::class,
@@ -85,11 +87,17 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
 
     public function canUserUpdateOrDelete()
     {
-        if(
+        if (Yii::$app->user->can('superuser')) {
+            return true;
+        }
+        if (
             $this->status == self::STATUS_NEED_CORRECTION ||
             $this->status == self::STATUS_INPROGRESS
         ) {
-            return true;
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
         }
         return false;
     }
@@ -100,7 +108,13 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
             $this->status == self::STATUS_INPROGRESS ||
             $this->status == self::STATUS_NEED_CORRECTION
         ) {
-            return true;
+            if (Yii::$app->user->can('superuser')) {
+                return true;
+            }
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
         }
         return false;
     }
@@ -122,9 +136,15 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
         return $this->status == self::STATUS_WAIT_FOR_NEGOTIATION;
     }
 
-    public function canInsertComment()
+    public function canHaveConverstation()
     {
-        return $this->status == self::STATUS_WAIT_FOR_CONVERSATION;
+        if ($this->status == self::STATUS_WAIT_FOR_CONVERSATION) {
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
+        }
+        return false;
     }
 
     public function canAcceptOrRejectOrCorrect()

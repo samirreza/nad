@@ -74,8 +74,7 @@ class SideMenu extends \theme\widgets\Menu
                             ],
                             [
                                 'label' => 'تجهیزات، کالا، مواد',
-                                'url' => '#',
-                                // 'visible' => $user->can('research.manage')
+                                'url' => '#'
                             ],
                             [
                                 'label' => 'تامین کنندگان',

@@ -4,6 +4,7 @@ namespace nad\process\ird\pool;
 
 class Module extends \yii\base\Module
 {
+    public $title = 'استخر';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\process\ird\pool';
 

@@ -59,7 +59,7 @@ class ExpertsBehavior extends TaggableBehavior
     {
         $output = '';
         foreach ($this->owner->getExpertsQuery()->all() as $expert) {
-            $output .= $expert->fullName . ', ';
+            $output .= $expert->user->fullName . ', ';
         }
         return rtrim($output, ', ');
     }
