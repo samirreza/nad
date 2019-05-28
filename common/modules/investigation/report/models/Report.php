@@ -85,7 +85,7 @@ class Report extends BaseInvestigationModel
                 ],
                 'graph' => [
                     'class' => GraphBehavior::className(),
-                    'graphTableName' => 'nad_project_graph'
+                    'graphTableName' => 'nad_report_graph'
                 ],
             ]
         );
