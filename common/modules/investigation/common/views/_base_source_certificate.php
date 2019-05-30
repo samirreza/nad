@@ -65,14 +65,14 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 'label' => 'علل فرعی منشا',
                 'value' => $source->reasons
             ],
-            [
-                'attribute' => 'references',
-                'label' => 'منابع منشا',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getClickableReferencesAsString();
-                }
-            ],
+            // [
+            //     'attribute' => 'references',
+            //     'label' => 'منابع منشا',
+            //     'format' => 'raw',
+            //     'value' => function ($model) {
+            //         return $model->getClickableReferencesAsString();
+            //     }
+            // ],
             [
                 'attribute' => 'tags',
                 'label' => 'کلید واژه‌ها منشا',

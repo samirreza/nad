@@ -2,9 +2,9 @@
 
 namespace nad\process\ird\pool\investigation\source\models;
 
-use nad\common\modules\investigation\source\models\sourceSearchTrait;
+use nad\common\modules\investigation\source\models\SourceSearchTrait;
 
-class sourceSearch extends source
+class SourceSearch extends Source
 {
-    use sourceSearchTrait;
+    use SourceSearchTrait;
 }

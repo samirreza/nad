@@ -4,16 +4,27 @@ namespace nad\extensions\graphGenerator\behaviors;
 
 use yii;
 use yii\db\Query;
-use yii\validators\Validator;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
+use yii\validators\Validator;
 use yii\base\InvalidConfigException;
 
 class GraphBehavior extends Behavior
 {
+    private $_thingLinks;
+
     public $graphTableName = null;
 
-    private $_thingLinks;
+    public function init()
+	{
+		if ( empty($this->graphTableName)) {
+			throw new InvalidConfigException(
+				'graphTableName property must be set.'
+			);
+		}
+		parent::init();
+	}
+
     public function getThingLinks()
     {
         $this->_thingLinks = (new Query())->select(['parent_id'])
@@ -23,34 +34,23 @@ class GraphBehavior extends Behavior
 
         return $this->_thingLinks;
     }
+
     public function setThingLinks($value)
-    {                
+    {
         $this->_thingLinks = $value;
     }
-
-    public function init()
-	{
-		if ( empty($this->graphTableName)) {
-			throw new InvalidConfigException(
-				'graphTableName property must be set.'
-			);
-
-		}        
-
-		parent::init();
-	}
 
     public function events()
     {
         return [
             ActiveRecord::EVENT_AFTER_INSERT => 'insertThingLinks',
-            ActiveRecord::EVENT_AFTER_UPDATE => 'insertThingLinks',            
+            ActiveRecord::EVENT_AFTER_UPDATE => 'insertThingLinks'
         ];
     }
 
-    public function attach($owner){
+    public function attach($owner)
+    {
         parent::attach($owner);
-
         $this->owner->validators[] = Validator::createValidator('safe', $this->owner, 'thingLinks');
     }
 
@@ -59,19 +59,22 @@ class GraphBehavior extends Behavior
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-            if(!$this->owner->isNewRecord)
-                Yii::$app->db->createCommand()->delete($this->graphTableName, 'child_id = '.$this->owner->id)->execute();
-
-            foreach ($this->_thingLinks as $link) {
-                Yii::$app->db->createCommand()->insert($this->graphTableName, [
-                    'parent_id' => $link,
-                    'child_id' => $this->owner->id,
-                ])->execute();
+            if (!$this->owner->isNewRecord) {
+                Yii::$app->db->createCommand()->delete(
+                    $this->graphTableName,
+                    'child_id = ' . $this->owner->id)
+                ->execute();
             }
-
+            if (!empty($this->_thingLinks)) {
+                foreach ((array)$this->_thingLinks as $link) {
+                    Yii::$app->db->createCommand()->insert($this->graphTableName, [
+                        'parent_id' => $link,
+                        'child_id' => $this->owner->id
+                    ])->execute();
+                }
+            }
             $transaction->commit();
-
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             $transaction->rollBack();
             throw $e;
         }
@@ -90,7 +93,6 @@ class GraphBehavior extends Behavior
             ->from($this->owner->tableName().' AS p1')
             ->innerJoin($this->graphTableName.' AS g', 'p1.id = g.parent_id')
             ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = g.child_id')
-            //->limit(100)
             ->all();
 
         return $links;
@@ -110,22 +112,24 @@ class GraphBehavior extends Behavior
             ->all();
 
         return array_map(function($node) {
-                return $node['title'];
-            }, $nodes);
+            return $node['title'];
+        }, $nodes);
     }
 
-    public function getAllThings(){        
-        return $this->owner->find()->all();        
+    public function getAllThings()
+    {
+        return $this->owner->find()->all();
     }
 
-    public function getFormattedThingLinks(){
+    public function getFormattedThingLinks()
+    {
         $query = new Query();
         $links = $query->select(['p1.title AS parent'])
             ->from($this->owner->tableName().' AS p1')
             ->innerJoin($this->graphTableName.' AS g', 'p1.id = g.parent_id')
-            ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = '.$this->owner->id)            
+            ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = '.$this->owner->id)
             ->column();
 
-            return implode(' , ', $links);
+        return implode(' , ', $links);
     }
 }

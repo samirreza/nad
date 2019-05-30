@@ -94,23 +94,18 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     <?= $form->field($model, 'thingLinks')->label(false)->widget(
                         Select2::class,
                         [
-                            'data' => 
+                            'data' =>
                                 ArrayHelper::map(
                                     $model->getAllThings(),
                                     'id',
-                                    'prefixedTitle'
+                                    'codedTitle'
                                 ),
-                                'options' => [
-                                    'multiple' => true,
-                                    'placeholder' => 'گزارش های پدر را انتخاب کنید',
-                                ],
-                                'pluginOptions' => [                    
-                                    //'allowClear' => true,
-                                    'minimumInputLength' => 2
-                                ]
+                            'options' => [
+                                'multiple' => true,
+                                'placeholder' => 'گزارش های پدر را انتخاب کنید'
+                            ]
                         ]
                     ) ?>
-
                 </div>
             </div>
             <div class="row">
