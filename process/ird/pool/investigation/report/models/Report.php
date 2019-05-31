@@ -2,6 +2,7 @@
 
 namespace nad\process\ird\pool\investigation\report\models;
 
+use nad\process\ird\pool\investigation\proposal\models\Proposal;
 use nad\process\ird\pool\investigation\reference\models\Reference;
 use nad\common\modules\investigation\report\models\Report as BaseReport;
 
@@ -11,6 +12,11 @@ class Report extends BaseReport
 
     public $moduleId = 'report';
     public $referenceClassName = Reference::class;
+
+    public function getProposal()
+    {
+        return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+    }
 
     public static function find()
     {

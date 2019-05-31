@@ -137,7 +137,8 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             [
                 'attribute' => 'projectExpertId',
                 'label' => 'کارشناس نگارش گزارش',
-                'value' => Expert::findOne($proposal->reportExpertId)->user->fullName
+                'value' => $proposal->reportExpertId ?
+                    Expert::findOne($proposal->reportExpertId)->user->fullName : null
             ]
         ]
     ]) ?>

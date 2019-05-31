@@ -6,7 +6,7 @@ use nad\process\ird\pool\investigation\proposal\models\Proposal;
 use nad\process\ird\pool\investigation\reference\models\Reference;
 use nad\common\modules\investigation\source\models\source as BaseSource;
 
-class source extends BaseSource
+class Source extends BaseSource
 {
     const CONSUMER_CODE = 'SD';
 

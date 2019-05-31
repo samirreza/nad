@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'منابع';
+$this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',

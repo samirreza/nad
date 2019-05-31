@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'رده‌های گزارش';
+$this->title = 'رده‌بندی گزارش‌ها';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'بررسی، پایش و طراحی',

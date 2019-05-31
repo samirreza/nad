@@ -2,7 +2,6 @@
 
 namespace nad\process\ird\pool\investigation\proposal\controllers;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use nad\process\ird\pool\investigation\proposal\models\Proposal;
@@ -38,22 +37,5 @@ class ManageController extends ProposalController
                 ]
             ]
         );
-    }
-
-    public function actionCreate()
-    {
-        $model = new Proposal([
-            'sourceId' => Yii::$app->request->get('sourceId')
-        ]);
-        $model->loadDefaultValues();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->addFlash(
-                'success',
-                'داده مورد نظر با موفقیت در سیستم درج شد.'
-            );
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', ['model' => $model]);
-        }
     }
 }

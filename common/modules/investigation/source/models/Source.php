@@ -53,7 +53,7 @@ class Source extends BaseInvestigationModel
                             'relationName' => 'پروپوزال'
                         ]
                     ]
-                ],
+                ]
             ]
         );
     }

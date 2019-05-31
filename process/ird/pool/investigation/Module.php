@@ -29,14 +29,14 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'پروپوزال',
+                'label' => 'لیست پروپوزال',
                 'url' => ['/pool/investigation/proposal/manage/index']
             ],
             [
                 'label' => 'گزارش‌',
                 'items' => [
                     [
-                        'label' => 'لیست گزارش‌ها',
+                        'label' => 'لیست گزارش',
                         'url' => ['/pool/investigation/report/manage/index']
                     ],
                     [
@@ -45,10 +45,8 @@ class Module extends \yii\base\Module
                     ],
                     [
                         'label' => 'گراف گزارش ها',
-                        'url' => ['/pool/investigation/report/manage/generate-graph'],                        
-                        // 'visible' => Yii::$app->user->can('research.manage')
-                    ],
-
+                        'url' => ['/pool/investigation/report/manage/generate-graph']
+                    ]
                 ]
             ],
             [
@@ -63,21 +61,13 @@ class Module extends \yii\base\Module
                         'url' => ['/']
                     ],
                     [
-                        'label' => 'رده‌بندی روش‌ها',
-                        'url' => ['/']
-                    ],
-                    [
                         'label' => 'افزودن روش',
-                        'url' => ['/']
-                    ],
-                    [
-                        'label' => 'افزودن رده',
                         'url' => ['/']
                     ]
                 ]
             ],
             [
-                'label' => 'منابع',
+                'label' => 'لیست منابع',
                 'url' => ['/pool/investigation/reference/manage/index']
             ]
         ];

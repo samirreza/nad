@@ -20,7 +20,7 @@ use nad\common\widgets\treeView\TreeView;
                 ]
             ],
             'reports' => [
-                'label' => 'گزارش‌ها',
+                'label' => 'لیست گزارش',
                 'url' => ['manage/index'],
                 'type' => 'success',
                 'icon' => 'list'

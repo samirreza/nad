@@ -3,6 +3,7 @@
 namespace nad\common\modules\investigation\proposal\models;
 
 use Yii;
+use core\behaviors\PreventDeleteBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\tag\behaviors\TaggableBehavior;
@@ -62,7 +63,16 @@ class Proposal extends BaseInvestigationModel
                         ]
                     ]
                 ],
-                'partners' => PartnersBehavior::class
+                'partners' => PartnersBehavior::class,
+                [
+                    'class' => PreventDeleteBehavior::class,
+                    'relations' => [
+                        [
+                            'relationMethod' => 'getReport',
+                            'relationName' => 'گزارش'
+                        ]
+                    ]
+                ]
             ]
         );
     }

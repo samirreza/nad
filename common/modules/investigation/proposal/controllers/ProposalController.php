@@ -38,6 +38,23 @@ class ProposalController extends BaseInvestigationController
         );
     }
 
+    public function actionCreate()
+    {
+        $model = new $this->modelClass([
+            'sourceId' => Yii::$app->request->get('sourceId')
+        ]);
+        $model->loadDefaultValues();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->addFlash(
+                'success',
+                'داده مورد نظر با موفقیت در سیستم درج شد.'
+            );
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', ['model' => $model]);
+        }
+    }
+
     public function actionSetExpert($id)
     {
         $model = $this->findModel($id);

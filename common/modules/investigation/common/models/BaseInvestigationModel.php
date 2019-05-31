@@ -135,6 +135,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     public function canWriteProceedings()
     {
         return $this->status == self::STATUS_WAITING_FOR_SESSION &&
+            $this->sessionDate != null &&
             $this->sessionDate <= time();
     }
 

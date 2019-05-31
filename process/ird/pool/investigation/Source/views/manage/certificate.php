@@ -6,7 +6,7 @@ $this->params['breadcrumbs'] = [
     'بررسی، پایش و طراحی',
     ['label' => 'استخر', 'url' => ['/pool/manage/index']],
     ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
-    ['label' => 'منشاها', 'url' => ['index']],
+    ['label' => 'لیست منشا', 'url' => ['index']],
     $this->title
 ];
 
