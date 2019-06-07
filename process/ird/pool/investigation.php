@@ -1,6 +1,8 @@
 <?php
 
+use yii\helpers\Url;
 use yii\bootstrap\Html;
+use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
@@ -13,39 +15,60 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <br><br>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('منشا', ['/pool/investigation/source']) ?>
+<div class="well">
+    <br><br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'question-circle',  
+                'showCount' => false,          
+                'title' => 'منشا',
+                'titleUrl' => Url::to('@web/pool/investigation/source/manage/index')
+            ]) ?>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('پروپوزال', ['/pool/investigation/proposal/manage/index']) ?>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'graduation-cap',  
+                'showCount' => false,          
+                'title' => 'پروپوزال',
+                'titleUrl' => Url::to('@web/pool/investigation/proposal/manage/index')
+            ]) ?>
         </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-2"></div>
-</div>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('گزارش‌ها', ['/pool/investigation/report/manage/index']) ?>
-        </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+             <?= InfoBox::widget([
+                'icon' => 'file-text',  
+                'showCount' => false,          
+                'title' => 'گزارش‌ها',
+                'titleUrl' => Url::to('@web/pool/investigation/report/manage/index')
+            ]) ?>        
+        </div>   
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'bell',  
+                'showCount' => false,          
+                'title' => 'روش‌ها',
+                'titleUrl' => Url::to('@web')
+            ]) ?>
+        </div>  
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('روش‌ها', ['/']) ?>
-        </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'book',  
+                'showCount' => false,          
+                'title' => 'منابع',
+                'titleUrl' => Url::to('@web/pool/investigation/reference/manage/index')
+            ]) ?>
+        </div>    
     </div>
-    <div class="col-md-2"></div>
-</div>
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('منابع', ['/pool/investigation/reference/manage/index']) ?>
-        </div>
-    </div>
+    <br><br>
 </div>

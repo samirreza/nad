@@ -1,6 +1,8 @@
 <?php
 
+use yii\helpers\Url;
 use yii\bootstrap\Html;
+use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'استخر';
 $this->params['breadcrumbs'] = [
@@ -11,26 +13,40 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<br><br>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('بررسی', ['investigation']) ?>
+<br><br><br><br>
+<div class="well">
+    <br><br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'search',  
+                'showCount' => false,          
+                'title' => 'بررسی',
+                'titleUrl' => Url::to('pool/manage/investigation')
+            ]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'pencil',  
+                'showCount' => false,          
+                'title' => 'طراحی',
+                'titleUrl' => Url::to('@web')
+            ]) ?>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'retweet',  
+                'showCount' => false,          
+                'title' => 'پایش',
+                'titleUrl' => Url::to('@web')
+            ]) ?>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('طراحی', ['/']) ?>
-        </div>
-    </div>
-    <div class="col-md-2"></div>
-</div>
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="circle">
-            <?= Html::a('پایش', ['/']) ?>
-        </div>
-    </div>
+    <br><br>
 </div>
