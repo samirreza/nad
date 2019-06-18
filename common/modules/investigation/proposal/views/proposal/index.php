@@ -5,12 +5,23 @@ use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
+use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\proposal\models\Proposal;
 
 ?>
 
+<?= ActionButtons::widget([
+    'buttons' => [
+        'accepted-index' => [
+            'label' => 'لیست پروپوزال‌های تایید شده',
+            'url' => ['accepted-index'],
+            'type' => 'success',
+            'icon' => 'list'
+        ]
+    ]
+]) ?>
 <div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'proposal-index-gridviewpjax']) ?>

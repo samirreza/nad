@@ -5,7 +5,6 @@ use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\source\models\Source;
@@ -13,17 +12,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
 
 ?>
 
-
-<?= ActionButtons::widget([
-    'buttons' => [
-        'accepted-index' => [
-            'label' => 'لیست منشا‌های تایید شده',
-            'url' => ['accepted-index'],
-            'type' => 'success',
-            'icon' => 'list'
-        ]
-    ]
-]) ?>
+<div class="sliding-form-wrapper"></div>
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
@@ -107,7 +96,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view} {certificate}',
+                        'template' => '{view} {certificate} {set-experts} {send-for-proposal}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -125,6 +114,37 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     ['certificate', 'id' => $model->id],
                                     [
                                         'title' => 'شناسنامه',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'set-experts' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="fa fa-graduation-cap"></span>',
+                                    ['set-experts', 'id' => $model->id],
+                                    [
+                                        'title' => $model->hasAnyExpert() ? 'تغییر کارشناسان' : 'تعیین کارشناسان',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'send-for-proposal' => function ($url, $model) {
+                                if (!$model->hasAnyExpert()) {
+                                    return;
+                                }
+                                return Html::a(
+                                    '<span class="fa fa-check"></span>',
+                                    [
+                                        'change-status',
+                                        'id' => $model->id,
+                                        'newStatus' => Source::STATUS_IN_NEXT_STEP
+                                    ],
+                                    [
+                                        'title' => 'ارسال برای نگارش پروپوزال',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
                                         'style' => 'color: green'
                                     ]
                                 );

@@ -6,15 +6,14 @@ use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
 use theme\widgets\ActionButtons;
-use nad\office\modules\expert\models\Expert;
+use nad\common\modules\investigation\method\models\Method;
 use nad\extensions\comment\widgets\commentList\CommentList;
-use nad\common\modules\investigation\proposal\models\Proposal;
 
 ?>
 
-<a class="ajaxcreate" data-gridpjaxid="proposal-view-detailview-pjax"></a>
-<div class="proposal-view">
-    <?php Pjax::begin(['id' => 'proposal-view-detailview-pjax']) ?>
+<a class="ajaxcreate" data-gridpjaxid="method-view-detailview-pjax"></a>
+<div class="method-view">
+    <?php Pjax::begin(['id' => 'method-view-detailview-pjax']) ?>
         <?= ActionButtons::widget([
             'modelID' => $model->id,
             'buttons' => [
@@ -37,36 +36,36 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'label' => 'جلسه',
                     'type' => 'info',
                     'icon' => 'bank',
-                    'visible' => $model->status == Proposal::STATUS_IN_MANAGER_HAND,
+                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND,
                     'visibleFor' => ['superuser'],
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_WAITING_FOR_SESSION
+                        'newStatus' => Method::STATUS_WAITING_FOR_SESSION
                     ]
                 ],
                 'wait-for-negotiation' => [
                     'label' => 'مذاکره',
                     'type' => 'info',
                     'icon' => 'handshake-o',
-                    'visible' => $model->status == Proposal::STATUS_IN_MANAGER_HAND,
+                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND,
                     'visibleFor' => ['superuser'],
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_WAIT_FOR_NEGOTIATION
+                        'newStatus' => Method::STATUS_WAIT_FOR_NEGOTIATION
                     ]
                 ],
                 'wait-for-converstation' => [
                     'label' => 'تبادل نظر',
                     'type' => 'info',
                     'icon' => 'comments',
-                    'visible' => $model->status == Proposal::STATUS_IN_MANAGER_HAND &&
+                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND &&
                         Yii::$app->user->can('superuser'),
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_WAIT_FOR_CONVERSATION
+                        'newStatus' => Method::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
                 'set-session-date' => [
@@ -105,7 +104,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_ACCEPTED
+                        'newStatus' => Method::STATUS_ACCEPTED
                     ]
                 ],
                 'need-correction' => [
@@ -117,39 +116,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'url' => [
                         'change-status',
                         'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_NEED_CORRECTION
-                    ]
-                ],
-                'set-expert' => [
-                    'label' => $model->reportExpertId ? 'تغییر کارشناس' : 'تعیین کارشناس',
-                    'type' => 'info',
-                    'icon' => 'graduation-cap',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED,
-                    'visibleFor' => ['superuser'],
-                    'url' => ['set-expert', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'send-for-report' => [
-                    'label' => 'ارسال برای نگارش گزارش',
-                    'type' => 'info',
-                    'visible' => $model->status == Proposal::STATUS_ACCEPTED &&
-                        $model->reportExpertId,
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_IN_NEXT_STEP
-                    ]
-                ],
-                'create-report' => [
-                    'label' => 'درج گزارش',
-                    'type' => 'info',
-                    'icon' => 'plus',
-                    'visible' => $model->canUserCreateReport() &&
-                        !$model->report,
-                    'url' => [
-                        $creatReportRoute,
-                        'proposalId' => $model->id
+                        'newStatus' => Method::STATUS_NEED_CORRECTION
                     ]
                 ]
             ]
@@ -166,7 +133,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         <?php endif; ?>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'مشخصات پروپوزال']) ?>
+                <?php Panel::begin(['title' => 'مشخصات روش']) ?>
                     <div class="col-md-6">
                         <?= DetailView::widget([
                             'model' => $model,
@@ -182,15 +149,15 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 ],
                                 'createdAt:date',
                                 [
-                                    'label' => 'مدارک',
+                                    'label' => 'فایل فایل دستورالعمل',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        if (!$model->getFile('documents')) {
+                                        if (!$model->hasFile('instruction')) {
                                             return;
                                         }
                                         return Html::a(
-                                            'دانلود مدارک',
-                                            $model->getFile('documents')->getUrl(),
+                                            'دانلود فایل دستورالعمل',
+                                            $model->getFile('instruction')->getUrl(),
                                             [
                                                 'data-pjax' => '0'
                                             ]
@@ -198,9 +165,19 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     }
                                 ],
                                 [
-                                    'attribute' => 'partners',
+                                    'label' => 'مدارک',
+                                    'format' => 'raw',
                                     'value' => function ($model) {
-                                        return $model->getPartnerFullNamesAsString();
+                                        if (!$model->hasFile('document')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود مدارک',
+                                            $model->getFile('document')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
                                     }
                                 ],
                                 [
@@ -229,17 +206,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 [
                                     'attribute' => 'status',
                                     'value' => function ($model) {
-                                        return Proposal::getStatusLables()[$model->status];
-                                    }
-                                ],
-                                [
-                                    'attribute' => 'reportExpertId',
-                                    'value' => function ($model) {
-                                        if ($model->reportExpertId) {
-                                            return Expert::findOne($model->reportExpertId)
-                                                ->user
-                                                ->fullName;
-                                        }
+                                        return Method::getStatusLables()[$model->status];
                                     }
                                 ]
                             ]
@@ -250,16 +217,9 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'علت پیدایش']) ?>
+                <?php Panel::begin(['title' => 'چکیده']) ?>
                     <div class="well">
-                        <?= $model->reasonForGenesis ?>
-                    </div>
-                <?php Panel::end() ?>
-            </div>
-            <div class="col-md-12">
-                <?php Panel::begin(['title' => 'ضرورت‌های طرح موضوع']) ?>
-                    <div class="well">
-                        <?= $model->necessity ?>
+                        <?= $model->abstract ?>
                     </div>
                 <?php Panel::end() ?>
             </div>

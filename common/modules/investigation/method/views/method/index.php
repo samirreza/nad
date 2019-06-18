@@ -5,28 +5,15 @@ use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
-use nad\common\modules\investigation\source\models\Source;
-use nad\common\modules\investigation\source\models\SourceReason;
+use nad\common\modules\investigation\method\models\Method;
 
 ?>
 
-
-<?= ActionButtons::widget([
-    'buttons' => [
-        'accepted-index' => [
-            'label' => 'لیست منشا‌های تایید شده',
-            'url' => ['accepted-index'],
-            'type' => 'success',
-            'icon' => 'list'
-        ]
-    ]
-]) ?>
-<div class="source-index">
+<div class="method-index">
     <?php Panel::begin(['title' => $this->title]) ?>
-        <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
+        <?php Pjax::begin(['id' => 'method-index-gridviewpjax']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -68,27 +55,6 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         ])
                     ],
                     [
-                        'attribute' => 'mainReasonId',
-                        'value' => function ($model) {
-                            return $model->mainReason->title;
-                        },
-                        'filter' => Select2::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'mainReasonId',
-                            'data' => ArrayHelper::map(
-                                SourceReason::find()->all(),
-                                'id',
-                                'title'
-                            ),
-                            'options' => [
-                                'placeholder' => 'انتخاب علت'
-                            ],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ]
-                        ])
-                    ],
-                    [
                         'attribute' => 'createdAt',
                         'value' => function ($model) {
                             return Yii::$app->formatter->asDate(
@@ -100,14 +66,14 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return Source::getStatusLables()[$model->status];
+                            return Method::getStatusLables()[$model->status];
                         },
-                        'filter' => Source::getStatusLables()
+                        'filter' => Method::getStatusLables()
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view} {certificate}',
+                        'template' => '{view}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -115,16 +81,6 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     $url,
                                     [
                                         'title' => 'روند',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
-                            'certificate' => function ($url, $model) {
-                                return Html::a(
-                                    '<span class="glyphicon glyphicon-book"></span>',
-                                    ['certificate', 'id' => $model->id],
-                                    [
-                                        'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]
                                 );

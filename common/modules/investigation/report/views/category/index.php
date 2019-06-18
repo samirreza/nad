@@ -27,7 +27,6 @@ use nad\common\widgets\treeView\TreeView;
             ]
         ]
     ]) ?>
-
     <div class="sliding-form-wrapper"></div>
     <div class="row">
         <div class="col-md-7">

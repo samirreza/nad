@@ -31,11 +31,29 @@ class SourceController extends BaseInvestigationController
                                     'id' => Yii::$app->request->get('id')]
                                 )];
                             }
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['accepted-index'],
+                            'roles' => ['manager']
                         ]
                     ]
                 ]
             ]
         );
+    }
+
+    public function actionAcceptedIndex()
+    {
+        $searchModel = new $this->searchClass;
+        $params = Yii::$app->request->queryParams;
+        $params[$searchModel->formName()]['status'] = Source::STATUS_ACCEPTED;
+        $dataProvider = $searchModel->search($params);
+
+        return $this->render('accepted-index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
+        ]);
     }
 
     public function actionSetExperts($id)

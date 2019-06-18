@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Url;
-use yii\bootstrap\Html;
 use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'بررسی';
@@ -21,18 +20,18 @@ $this->params['breadcrumbs'] = [
         <div class="col-md-3"></div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'question-circle',  
-                'showCount' => false,          
+                'icon' => 'question-circle',
+                'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to('@web/pool/investigation/source/manage/index')
+                'titleUrl' => Url::to(['/pool/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'graduation-cap',  
-                'showCount' => false,          
+                'icon' => 'graduation-cap',
+                'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to('@web/pool/investigation/proposal/manage/index')
+                'titleUrl' => Url::to(['/pool/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -42,20 +41,20 @@ $this->params['breadcrumbs'] = [
         <div class="col-md-3"></div>
         <div class="col-md-3">
              <?= InfoBox::widget([
-                'icon' => 'file-text',  
-                'showCount' => false,          
+                'icon' => 'file-text',
+                'showCount' => false,
                 'title' => 'گزارش‌ها',
-                'titleUrl' => Url::to('@web/pool/investigation/report/manage/index')
-            ]) ?>        
-        </div>   
+                'titleUrl' => Url::to(['/pool/investigation/report/manage/index'])
+            ]) ?>
+        </div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'bell',  
-                'showCount' => false,          
+                'icon' => 'bell',
+                'showCount' => false,
                 'title' => 'روش‌ها',
-                'titleUrl' => Url::to('@web')
+                'titleUrl' => Url::to(['/pool/investigation/method/manage/index'])
             ]) ?>
-        </div>  
+        </div>
         <div class="col-md-3"></div>
     </div>
     <br>
@@ -63,12 +62,12 @@ $this->params['breadcrumbs'] = [
         <div class="col-md-3"></div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'book',  
-                'showCount' => false,          
+                'icon' => 'book',
+                'showCount' => false,
                 'title' => 'منابع',
-                'titleUrl' => Url::to('@web/pool/investigation/reference/manage/index')
+                'titleUrl' => Url::to(['/pool/investigation/reference/manage/index'])
             ]) ?>
-        </div>    
+        </div>
     </div>
     <br><br>
 </div>

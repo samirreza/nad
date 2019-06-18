@@ -5,28 +5,15 @@ use yii\widgets\Pjax;
 use core\grid\GridView;
 use theme\widgets\Panel;
 use yii\helpers\ArrayHelper;
-use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
-use nad\common\modules\investigation\source\models\Source;
-use nad\common\modules\investigation\source\models\SourceReason;
+use nad\common\modules\investigation\proposal\models\Proposal;
 
 ?>
 
-
-<?= ActionButtons::widget([
-    'buttons' => [
-        'accepted-index' => [
-            'label' => 'لیست منشا‌های تایید شده',
-            'url' => ['accepted-index'],
-            'type' => 'success',
-            'icon' => 'list'
-        ]
-    ]
-]) ?>
-<div class="source-index">
+<div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
-        <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
+        <?php Pjax::begin(['id' => 'proposal-index-gridviewpjax']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -68,27 +55,6 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         ])
                     ],
                     [
-                        'attribute' => 'mainReasonId',
-                        'value' => function ($model) {
-                            return $model->mainReason->title;
-                        },
-                        'filter' => Select2::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'mainReasonId',
-                            'data' => ArrayHelper::map(
-                                SourceReason::find()->all(),
-                                'id',
-                                'title'
-                            ),
-                            'options' => [
-                                'placeholder' => 'انتخاب علت'
-                            ],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ]
-                        ])
-                    ],
-                    [
                         'attribute' => 'createdAt',
                         'value' => function ($model) {
                             return Yii::$app->formatter->asDate(
@@ -100,14 +66,14 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return Source::getStatusLables()[$model->status];
+                            return Proposal::getStatusLables()[$model->status];
                         },
-                        'filter' => Source::getStatusLables()
+                        'filter' => Proposal::getStatusLables()
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view} {certificate}',
+                        'template' => '{view} {certificate} {set-expert} {send-for-report}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -125,6 +91,37 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     ['certificate', 'id' => $model->id],
                                     [
                                         'title' => 'شناسنامه',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'set-expert' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="fa fa-graduation-cap"></span>',
+                                    ['set-expert', 'id' => $model->id],
+                                    [
+                                        'title' => $model->reportExpertId ? 'تغییر کارشناس' : 'تعیین کارشناس',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'send-for-report' => function ($url, $model) {
+                                if (!$model->reportExpertId) {
+                                    return;
+                                }
+                                return Html::a(
+                                    '<span class="fa fa-check"></span>',
+                                    [
+                                        'change-status',
+                                        'id' => $model->id,
+                                        'newStatus' => Proposal::STATUS_IN_NEXT_STEP
+                                    ],
+                                    [
+                                        'title' => 'ارسال برای نگارش گزارش',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
                                         'style' => 'color: green'
                                     ]
                                 );

@@ -12,7 +12,8 @@ class Module extends \yii\base\Module
             'source' => 'nad\process\ird\pool\investigation\source\Module',
             'proposal' => 'nad\process\ird\pool\investigation\proposal\Module',
             'report' => 'nad\process\ird\pool\investigation\report\Module',
-            'reference' => 'nad\process\ird\pool\investigation\reference\Module'
+            'reference' => 'nad\process\ird\pool\investigation\reference\Module',
+            'method' => 'nad\process\ird\pool\investigation\method\Module'
         ];
         $this->horizontalMenuItems = [
             [
@@ -54,15 +55,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست روش‌ها',
-                        'url' => ['/']
-                    ],
-                    [
-                        'label' => 'رده‌بندی روش‌ها',
-                        'url' => ['/']
+                        'url' => ['/pool/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'افزودن روش',
-                        'url' => ['/']
+                        'url' => ['/pool/investigation/method/manage/create']
                     ]
                 ]
             ],

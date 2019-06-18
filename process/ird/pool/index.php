@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Url;
-use yii\bootstrap\Html;
 use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'استخر';
@@ -20,16 +19,16 @@ $this->params['breadcrumbs'] = [
         <div class="col-md-3"></div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'search',  
-                'showCount' => false,          
+                'icon' => 'search',
+                'showCount' => false,
                 'title' => 'بررسی',
-                'titleUrl' => Url::to('pool/manage/investigation')
+                'titleUrl' => Url::to(['/pool/manage/investigation'])
             ]) ?>
         </div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'pencil',  
-                'showCount' => false,          
+                'icon' => 'pencil',
+                'showCount' => false,
                 'title' => 'طراحی',
                 'titleUrl' => Url::to('@web')
             ]) ?>
@@ -41,8 +40,8 @@ $this->params['breadcrumbs'] = [
         <div class="col-md-3"></div>
         <div class="col-md-3">
             <?= InfoBox::widget([
-                'icon' => 'retweet',  
-                'showCount' => false,          
+                'icon' => 'retweet',
+                'showCount' => false,
                 'title' => 'پایش',
                 'titleUrl' => Url::to('@web')
             ]) ?>
