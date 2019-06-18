@@ -16,12 +16,13 @@ use nad\common\modules\investigation\proposal\models\Proposal;
     'buttons' => [
         'accepted-index' => [
             'label' => 'لیست پروپوزال‌های تایید شده',
-            'url' => ['accepted-index'],
+            'url' => ['index', 'ProposalSearch[status]' => Proposal::STATUS_ACCEPTED],
             'type' => 'success',
             'icon' => 'list'
         ]
     ]
 ]) ?>
+<div class="sliding-form-wrapper"></div>
 <div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'proposal-index-gridviewpjax']) ?>
@@ -84,7 +85,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view} {certificate}',
+                        'template' => '{view} {certificate} {set-expert} {send-for-report}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -105,7 +106,44 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                         'style' => 'color: green'
                                     ]
                                 );
+                            },
+                            'set-expert' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="fa fa-graduation-cap"></span>',
+                                    ['set-expert', 'id' => $model->id],
+                                    [
+                                        'title' => $model->reportExpertId ? 'تغییر کارشناس' : 'تعیین کارشناس',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
+                            'send-for-report' => function ($url, $model) {
+                                if (!$model->reportExpertId) {
+                                    return;
+                                }
+                                return Html::a(
+                                    '<span class="fa fa-check"></span>',
+                                    [
+                                        'change-status',
+                                        'id' => $model->id,
+                                        'newStatus' => Proposal::STATUS_IN_NEXT_STEP
+                                    ],
+                                    [
+                                        'title' => 'ارسال برای نگارش گزارش',
+                                        'data-pjax' => '0',
+                                        'class' => 'ajaxupdate',
+                                        'style' => 'color: green'
+                                    ]
+                                );
                             }
+                        ],
+                        'visibleButtons' => [
+                            'set-expert' => $searchModel->status == Proposal::STATUS_ACCEPTED &&
+                                Yii::$app->user->isSuperuser(),
+                            'send-for-report' => $searchModel->status == Proposal::STATUS_ACCEPTED &&
+                                Yii::$app->user->isSuperuser()
                         ]
                     ]
                 ]

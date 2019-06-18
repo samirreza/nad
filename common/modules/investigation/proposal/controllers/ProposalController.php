@@ -60,20 +60,6 @@ class ProposalController extends BaseInvestigationController
         }
     }
 
-    public function actionAcceptedIndex()
-    {
-        $searchModel = new $this->searchClass;
-        $params = Yii::$app->request->queryParams;
-        $params[$searchModel->formName()]['status'] = Proposal::STATUS_ACCEPTED;
-        $dataProvider = $searchModel->search($params);
-
-        return $this->render('accepted-index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
-        ]);
-    }
-
-
     public function actionSetExpert($id)
     {
         $model = $this->findModel($id);

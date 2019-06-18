@@ -4,7 +4,6 @@ namespace nad\common\modules\investigation\report\models;
 
 use extensions\file\behaviors\FileBehavior;
 use extensions\tag\behaviors\TaggableBehavior;
-use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -28,12 +27,6 @@ class Report extends BaseInvestigationModel
                 ],
                 'comments' => [
                     'class' => CommentBehavior::class,
-                    'moduleId' => $this->moduleId
-                ],
-                'taggableQuery' => [
-                    'class' => TaggableQueryBehavior::class,
-                    'modelShortClassName' => (new \ReflectionClass(self::class))
-                        ->getShortName(),
                     'moduleId' => $this->moduleId
                 ],
                 [
@@ -107,7 +100,6 @@ class Report extends BaseInvestigationModel
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             ['proceedings', 'required', 'on' => self::SCENARIO_WRITE_PROCEEDINGS],
             ['negotiationResult', 'required', 'on' => self::SCENARIO_WRITE_NEGOTIATION_RESULT],
-
             [['title', 'englishTitle'], 'string', 'max' => 255],
             [['abstract', 'description', 'proceedings', 'negotiationResult'], 'string'],
             ['englishTitle', 'default', 'value' => null],
@@ -193,8 +185,10 @@ class Report extends BaseInvestigationModel
 
     public static function getStatusLables()
     {
+        $labels = parent::getStatusLables();
+        unset($labels[self::STATUS_REJECTED]);
         $statusLabels = array_replace(
-            parent::getStatusLables(),
+            $labels,
             [
                 self::STATUS_IN_NEXT_STEP => 'آرشیو شده'
             ]

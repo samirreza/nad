@@ -7,7 +7,6 @@ use core\behaviors\PreventDeleteBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\tag\behaviors\TaggableBehavior;
-use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -15,10 +14,13 @@ use nad\common\modules\investigation\report\models\Report;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\proposal\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
+use nad\common\modules\investigation\proposal\behaviors\NotificationBehavior;
 
 class Proposal extends BaseInvestigationModel
 {
     public $moduleId = 'proposal';
+
+    const EVENT_SET_EXPERT = 'set-expert';
 
     public function behaviors()
     {
@@ -31,12 +33,6 @@ class Proposal extends BaseInvestigationModel
                 ],
                 'comments' => [
                     'class' => CommentBehavior::class,
-                    'moduleId' => $this->moduleId
-                ],
-                'taggableQuery' => [
-                    'class' => TaggableQueryBehavior::class,
-                    'modelShortClassName' => (new \ReflectionClass(self::class))
-                        ->getShortName(),
                     'moduleId' => $this->moduleId
                 ],
                 [
@@ -72,7 +68,8 @@ class Proposal extends BaseInvestigationModel
                             'relationName' => 'گزارش'
                         ]
                     ]
-                ]
+                ],
+                'notification' => NotificationBehavior::class
             ]
         );
     }
@@ -185,8 +182,25 @@ class Proposal extends BaseInvestigationModel
     public function setUniqueCode()
     {
         $this->uniqueCode = static::CONSUMER_CODE . '.' .
-            str_pad(static::find()->count() + 1, 3, '0', STR_PAD_LEFT) . '.' .
+            str_pad(
+                static::find()->andWhere(['<', 'id', $this->id])->count() + 1,
+                3,
+                '0',
+                STR_PAD_LEFT
+            ) . '.' .
             $this->lastCodeNumber;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (
+            isset($changedAttributes['status']) &&
+            $changedAttributes['status'] == self::STATUS_ACCEPTED &&
+            $this->status == self::STATUS_IN_NEXT_STEP
+        ) {
+            $this->trigger(self::EVENT_SET_EXPERT);
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public function getPartnersQuery()
@@ -203,6 +217,11 @@ class Proposal extends BaseInvestigationModel
     public function getReport()
     {
         return $this->hasOne(Report::class, ['proposalId' => 'id']);
+    }
+
+    public function getReportExpert()
+    {
+        return $this->hasOne(Expert::class, ['id' => 'reportExpertId']);
     }
 
     public function canUserCreateReport()
@@ -225,8 +244,10 @@ class Proposal extends BaseInvestigationModel
 
     public static function getStatusLables()
     {
+        $labels = parent::getStatusLables();
+        unset($labels[self::STATUS_REJECTED]);
         $statusLabels = array_replace(
-            parent::getStatusLables(),
+            $labels,
             [
                 self::STATUS_IN_NEXT_STEP => 'در حال تکمیل گزارش'
             ]

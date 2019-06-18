@@ -24,6 +24,11 @@ class Proposal extends BaseProposal
         return $this->hasOne(Report::class, ['proposalId' => 'id']);
     }
 
+    public function getBaseViewRoute()
+    {
+        return '/pool/investigation/proposal/manage/view';
+    }
+
     public static function find()
     {
         return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);

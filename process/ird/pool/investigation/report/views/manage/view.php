@@ -15,6 +15,6 @@ $this->params['breadcrumbs'] = [
 <div class="report-view">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/view', [
         'model' => $model,
-        'moduleId' => 'report'
+        'moduleId' => 'pool'
     ]) ?>
 </div>

@@ -39,12 +39,29 @@ class ReportController extends BaseInvestigationController
 
     public function actions()
     {
-        return [            
+        return [
             'generate-graph' => [
                 'class' => 'nad\extensions\graphGenerator\actions\GenerateGraphAction',
                 'modelClassName' => Report::class,
             ],
         ];
+    }
+
+    public function actionCreate()
+    {
+        $model = new $this->modelClass([
+            'proposalId' => Yii::$app->request->get('proposalId')
+        ]);
+        $model->loadDefaultValues();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->addFlash(
+                'success',
+                'داده مورد نظر با موفقیت در سیستم درج شد.'
+            );
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', ['model' => $model]);
+        }
     }
 
     public function actionCertificate($id)

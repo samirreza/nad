@@ -6,7 +6,6 @@ use Yii;
 use core\behaviors\PreventDeleteBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\tag\behaviors\TaggableBehavior;
-use extensions\tag\behaviors\TaggableQueryBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use nad\extensions\comment\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -14,11 +13,14 @@ use nad\common\modules\investigation\proposal\models\Proposal;
 use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\source\behaviors\ReasonsBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
+use nad\common\modules\investigation\source\behaviors\NotificationBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class Source extends BaseInvestigationModel
 {
     public $moduleId = 'source';
+
+    const EVENT_SET_EXPERTS = 'set-experts';
 
     public function behaviors()
     {
@@ -39,12 +41,6 @@ class Source extends BaseInvestigationModel
                     'class' => CodeNumeratorBehavior::class,
                     'determinativeColumn' => 'mainReasonId'
                 ],
-                'taggableQuery' => [
-                    'class' => TaggableQueryBehavior::class,
-                    'modelShortClassName' => (new \ReflectionClass(self::class))
-                        ->getShortName(),
-                    'moduleId' => $this->moduleId
-                ],
                 [
                     'class' => PreventDeleteBehavior::class,
                     'relations' => [
@@ -53,7 +49,8 @@ class Source extends BaseInvestigationModel
                             'relationName' => 'پروپوزال'
                         ]
                     ]
-                ]
+                ],
+                'notification' => NotificationBehavior::class
             ]
         );
     }
@@ -152,6 +149,18 @@ class Source extends BaseInvestigationModel
     {
         $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
             '.' . $this->numberPartOfUniqueCode;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (
+            isset($changedAttributes['status']) &&
+            $changedAttributes['status'] == self::STATUS_ACCEPTED &&
+            $this->status == self::STATUS_IN_NEXT_STEP
+        ) {
+            $this->trigger(self::EVENT_SET_EXPERTS);
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public function getMainReason()

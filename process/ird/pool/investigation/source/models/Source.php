@@ -18,6 +18,11 @@ class Source extends BaseSource
         return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
+    public function getBaseViewRoute()
+    {
+        return '/pool/investigation/source/manage/view';
+    }
+
     public static function find()
     {
         return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
