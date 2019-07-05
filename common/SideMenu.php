@@ -21,13 +21,55 @@ class SideMenu extends \theme\widgets\Menu
                 'label' => 'فرایند',
                 'items' => [
                     [
-                        'label' => 'بررسی، پایش و طراحی',
+                        'label' => 'بررسی فرایند',
                         'items' => [
                             [
                                 'label' => 'استخر',
                                 'url' => ['/pool']
+                            ],
+                            [
+                                'label' => 'آشنایی',
+                                'url' => ['/introduction']
+                            ],
+                            [
+                                'label' => 'ته نشینی',
+                                'url' => ['/sedimentation']
+                            ],
+                            [
+                                'label' => 'فیلتر شنی',
+                                'url' => ['/filter']
+                            ],
+                            [
+                                'label' => 'کارتریج',
+                                'url' => ['/cartridge']
+                            ],
+                            [
+                                'label' => 'آر او',
+                                'url' => ['/ro']
+                            ],
+                            [
+                                'label' => 'پساب',
+                                'url' => ['/wastewater']
+                            ],
+                            [
+                                'label' => 'میکروبی',
+                                'url' => ['/microbial']
+                            ],
+                            [
+                                'label' => 'گرافن',
+                                'url' => ['/graphene']
+                            ],
+                            [
+                                'label' => 'تکنولوژی های نو',
+                                'url' => ['/newTechnology']
                             ]
                         ]
+                    ],
+                    [
+                        'label' => 'مواد'
+                    ],
+                    [
+                        'label' => 'آزمایشگاه'
                     ]
                 ]
             ],
