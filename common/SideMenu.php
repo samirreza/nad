@@ -22,6 +22,7 @@ class SideMenu extends \theme\widgets\Menu
                 'items' => [
                     [
                         'label' => 'فرایند‌ها',
+                        'icon' => 'flask',
                         'items' => [
                             [
                                 'label' => 'استخر',
