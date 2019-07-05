@@ -21,7 +21,7 @@ class SideMenu extends \theme\widgets\Menu
                 'label' => 'فرایند',
                 'items' => [
                     [
-                        'label' => 'بررسی فرایند',
+                        'label' => 'فرایند‌ها',
                         'items' => [
                             [
                                 'label' => 'استخر',
