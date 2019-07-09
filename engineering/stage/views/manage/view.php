@@ -21,7 +21,15 @@ use theme\widgets\ActionButtons;
                 'attributes' => [
                     'uniqueCode',
                     'title',
-                    'category.familyTreeTitle',
+                    'category.familyTreeTitle',                    
+                    [
+                        'attribute' => 'parent.title',
+                        'label' => $model->getAttributeLabel('parentId'),
+                        'value' => function ($model) {
+                            $parent = $model->parent;
+                            return ($parent !== null)?$parent->title:null;
+                        },
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

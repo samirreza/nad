@@ -1,6 +1,7 @@
 <?php
 namespace nad\engineering\stage\models;
 
+use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
@@ -49,7 +50,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             [['title'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['categoryId'], 'integer'],
+            [['categoryId', 'parentId'], 'integer'],
             [['description'], 'string'],
             [['title'], FarsiCharactersValidator::className()],
             [
@@ -69,6 +70,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',
+            'parentId' => 'مرحله پدر',
             'category.title' => 'زیر شاخه',
             'category.familyTreeTitle' => 'زیر شاخه',
             'createdAt' => 'تاریخ درج',
@@ -79,6 +81,11 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'categoryId']);
+    }
+
+    public function getParent()
+    {
+        return $this->hasOne(self::className(), ['id' => 'parentId']);
     }
 
     public function beforeValidate()
@@ -96,5 +103,13 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
+    }
+
+    public function getAllStagesAsDropdown(){
+        return ArrayHelper::map(
+            self::find()->select(['id', 'title'])->where('id != :id OR :id IS NULL', ['id' => $this->id])->all(),
+            'id',
+            'title'
+        );
     }
 }

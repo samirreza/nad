@@ -8,13 +8,13 @@ class StageSearch extends Stage
 {
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['category.title']);
+        return array_merge(parent::attributes(), ['category.title', 'parent.title']);
     }
 
     public function rules()
     {
         return [
-            [['title', 'category.title', 'uniqueCode'], 'safe'],
+            [['title', 'category.title', 'parent.title', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -30,10 +30,14 @@ class StageSearch extends Stage
             return $dataProvider;
         }
         $query->joinWith('category AS category');
+        $query->joinWith('parent AS parent');
         $query->andFilterWhere(['like', 'nad_eng_stage.title', $this->title]);
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]
+        );
+        $query->andFilterWhere(
+            ['like', 'parent.title', $this->getAttribute('parent.title')]
         );
         return $dataProvider;
     }

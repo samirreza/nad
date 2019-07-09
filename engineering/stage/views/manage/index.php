@@ -65,6 +65,14 @@ $this->params['breadcrumbs'] = [
                         }
                     ],
                     [
+                        'attribute' => 'parent.title',
+                        'label' => $searchModel->getAttributeLabel('parentId'),
+                        'value' => function ($model) {
+                            $parent = $model->parent;
+                            return ($parent !== null)?$parent->title:null;
+                        },
+                    ],
+                    [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {download}',
                         'buttons' => [

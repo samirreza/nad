@@ -23,30 +23,49 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
         <div class="col-md-9">
             <?php Panel::begin() ?>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <?= $form->field($model, 'title')->textInput() ?>
                 </div>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'code')->textInput(
+                        ['style' => 'direction:ltr', 'maxlength' => 1]
+                    )->hint('تنها یک کاراکتر لاتین') ?>
+                </div>            
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <?=
                     $form->field($model, 'categoryId')
                         ->widget(
                             Select2::class,
-                            ['data' => ArrayHelper::map(
-                                Category::find()->where(['depth' => 4])->all(),
-                                'id',
-                                'codedTitle'
-                            )]
+                            [
+                                'data' => ArrayHelper::map(
+                                    Category::find()->where(['depth' => 4])->all(),
+                                    'id',
+                                    'codedTitle'
+                                )
+                            ]
                         );
                     ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'code')->textInput(
-                        ['style' => 'direction:ltr', 'maxlength' => 1]
-                    )->hint('تنها یک کاراکتر لاتین') ?>
-                </div>
+                </div>                
+                <div class="col-md-4">
+                    <?=
+                    $form->field($model, 'parentId')
+                        ->widget(
+                            Select2::class,
+                            [
+                                'data' => $model->getAllStagesAsDropdown(),
+                                'options' => ['placeholder' => 'انتخاب کنید...'],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]
+                        );
+                    ?>
+                </div> 
             </div>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <?= $form->field($model, 'description')->textarea([]) ?>
                 </div>
             </div>
