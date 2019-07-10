@@ -151,6 +151,11 @@ class SideMenu extends \theme\widgets\Menu
                         'url' => ['/engineering/location/manage/index']
                     ],
                     [
+                        'label' => 'مراحل',
+                        'icon' => 'tag',
+                        'url' => ['/engineering/stage/manage/index']
+                    ],
+                    [
                         'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
                         'icon' => 'tag',
                         'url' => ['/engineering/document/manage/index']

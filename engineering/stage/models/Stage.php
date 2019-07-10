@@ -1,19 +1,20 @@
 <?php
-namespace nad\engineering\location\models;
+namespace nad\engineering\stage\models;
 
+use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
-use nad\engineering\stage\models\Stage;
 use extensions\file\behaviors\FileBehavior;
+use nad\engineering\location\models\Location;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Location extends \yii\db\ActiveRecord implements Codable
+class Stage extends \yii\db\ActiveRecord implements Codable
 {
     use CodableTrait;
 
     public static function tableName()
     {
-        return 'nad_eng_location';
+        return 'nad_eng_stage';
     }
 
     public function getUniqueCode() : string
@@ -50,7 +51,7 @@ class Location extends \yii\db\ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             [['title'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['categoryId'], 'integer'],
+            [['categoryId', 'parentId'], 'integer'],            
             [['description'], 'string'],
             [['title'], FarsiCharactersValidator::className()],
             [
@@ -65,11 +66,13 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه مکان',
-            'uniqueCode' => 'شناسه مکان',
+            'code' => 'شناسه مرحله',
+            'uniqueCode' => 'شناسه مرحله',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',
+            'parentId' => 'مرحله پدر',
+            'locations' => 'مکان ها',
             'category.title' => 'زیر شاخه',
             'category.familyTreeTitle' => 'زیر شاخه',
             'createdAt' => 'تاریخ درج',
@@ -82,9 +85,14 @@ class Location extends \yii\db\ActiveRecord implements Codable
         return $this->hasOne(Category::className(), ['id' => 'categoryId']);
     }
 
-    public function getStages()
+    public function getParent()
     {
-        return $this->hasMany(Stage::className(), ['id' => 'stageId'])->viaTable('nad_eng_location_stage', ['locationId' => 'id']);
+        return $this->hasOne(self::className(), ['id' => 'parentId']);
+    }
+
+    public function getLocations()
+    {
+        return $this->hasMany(Location::className(), ['id' => 'locationId'])->viaTable('nad_eng_location_stage', ['stageId' => 'id']);
     }
 
     public function beforeValidate()
@@ -102,5 +110,21 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
+    }
+
+    public function getAllStagesAsDropdown(){
+        return ArrayHelper::map(
+            self::find()->select(['id', 'title'])->where('id != :id OR :id IS NULL', ['id' => $this->id])->all(),
+            'id',
+            'title'
+        );
+    }
+
+    public function getAllLocationsAsDropdown(){
+        return ArrayHelper::map(
+            Location::find()->select(['id', 'title'])->all(),
+            'id',
+            'title'
+        );
     }
 }

@@ -17,7 +17,8 @@ class Module extends \yii\base\Module
             'resource' => 'nad\engineering\resource\Module',
             'location' => 'nad\engineering\location\Module',
             'document' => 'nad\engineering\document\Module',
-            'equipment' => 'nad\engineering\equipment\Module'
+            'equipment' => 'nad\engineering\equipment\Module',
+            'stage' => 'nad\engineering\stage\Module',
         ];
         parent::init();
     }
