@@ -3,6 +3,7 @@ namespace nad\engineering\location\models;
 
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
+use nad\engineering\stage\models\Stage;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
@@ -79,6 +80,11 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'categoryId']);
+    }
+
+    public function getStages()
+    {
+        return $this->hasMany(Stage::className(), ['id' => 'stageId'])->viaTable('nad_eng_location_stage', ['locationId' => 'id']);
     }
 
     public function beforeValidate()

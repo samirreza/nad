@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
+use nad\engineering\location\models\Location;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Stage extends \yii\db\ActiveRecord implements Codable
@@ -50,7 +51,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             [['title'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['categoryId', 'parentId'], 'integer'],
+            [['categoryId', 'parentId'], 'integer'],            
             [['description'], 'string'],
             [['title'], FarsiCharactersValidator::className()],
             [
@@ -71,6 +72,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',
             'parentId' => 'مرحله پدر',
+            'locations' => 'مکان ها',
             'category.title' => 'زیر شاخه',
             'category.familyTreeTitle' => 'زیر شاخه',
             'createdAt' => 'تاریخ درج',
@@ -86,6 +88,11 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getParent()
     {
         return $this->hasOne(self::className(), ['id' => 'parentId']);
+    }
+
+    public function getLocations()
+    {
+        return $this->hasMany(Location::className(), ['id' => 'locationId'])->viaTable('nad_eng_location_stage', ['stageId' => 'id']);
     }
 
     public function beforeValidate()
@@ -108,6 +115,14 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getAllStagesAsDropdown(){
         return ArrayHelper::map(
             self::find()->select(['id', 'title'])->where('id != :id OR :id IS NULL', ['id' => $this->id])->all(),
+            'id',
+            'title'
+        );
+    }
+
+    public function getAllLocationsAsDropdown(){
+        return ArrayHelper::map(
+            Location::find()->select(['id', 'title'])->all(),
             'id',
             'title'
         );

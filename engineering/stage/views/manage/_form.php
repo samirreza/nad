@@ -66,6 +66,27 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
             </div>
             <div class="row">
                 <div class="col-md-8">
+                    <?=
+                    $form->field($model, 'locations')
+                        ->widget(
+                            Select2::class,
+                            [
+                                'data' => $model->getAllLocationsAsDropdown(),
+                                'options' => [
+                                    'placeholder' => 'انتخاب کنید...',
+                                    'multiple' => true,
+                                    'dir' => 'rtl'
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]
+                        );
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
                     <?= $form->field($model, 'description')->textarea([]) ?>
                 </div>
             </div>
