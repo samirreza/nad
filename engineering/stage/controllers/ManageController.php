@@ -98,7 +98,7 @@ class ManageController extends \core\controllers\AjaxAdminController
         if (!empty($this->modelScenario)) {
             $model->scenario = $this->modelScenario;
         }
-        $model->loadDefaultValues();
+        
         if ($model->load(Yii::$app->request->post())) {
             $transaction = $model::getDb()->beginTransaction();
             try{                
