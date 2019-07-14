@@ -134,27 +134,145 @@ class SideMenu extends \theme\widgets\Menu
             [
                 'label' => 'فنی',
                 'icon' => 'wrench',
-                'items' => [
+                'items' => [                                            
+                    [
+                        'label' => 'مشترک',
+                        'icon' => 'tag',
+                        'items' => [                            
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'لوله کشی',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '/admin/engineering/piping/location/manage/index'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '/admin/engineering/piping/stage/manage/index'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'مکانیک',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'برق',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'ابزاردقیق',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'کنترل',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'ساختمان',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'چاه',
+                        'icon' => 'tag',
+                        'items' => [
+                            [
+                                'label' => 'مکانها',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ],
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => '#'
+                            ]
+                        ]
+                    ],
                     [
                         'label' => 'منابع',
                         'icon' => 'tag',
                         'url' => ['/engineering/resource/manage/index']
                     ],
-                    [
-                        'label' => 'پلانت ها',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/plant/manage/index']
-                    ],
-                    [
-                        'label' => 'مکان ها',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/location/manage/index']
-                    ],
-                    [
-                        'label' => 'مراحل',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/stage/manage/index']
-                    ],
+                    // [
+                    //     'label' => 'پلانت ها',
+                    //     'icon' => 'tag',
+                    //     'url' => ['/engineering/plant/manage/index']
+                    // ],                                      
                     [
                         'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
                         'icon' => 'tag',
