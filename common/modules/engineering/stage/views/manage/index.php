@@ -64,14 +64,14 @@ $module = $this->context->module;
                             return $model->category->familyTreeTitle;
                         }
                     ],
-                    [
-                        'attribute' => 'parent.title',
-                        'label' => $searchModel->getAttributeLabel('parentId'),
-                        'value' => function ($model) {
-                            $parent = $model->parent;
-                            return ($parent !== null)?$parent->title:null;
-                        },
-                    ],
+                    // [
+                    //     'attribute' => 'parent.title',
+                    //     'label' => $searchModel->getAttributeLabel('parentId'),
+                    //     'value' => function ($model) {
+                    //         $parent = $model->parent;
+                    //         return ($parent !== null)?$parent->title:null;
+                    //     },
+                    // ],
                     [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {download}',

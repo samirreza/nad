@@ -154,112 +154,156 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'لوله کشی',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '/admin/engineering/piping/location/manage/index'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '/admin/engineering/piping/stage/manage/index'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/piping/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/piping/location/manage/index']
+                                    ],
+                                ]
+                                
                             ]
                         ]
                     ],
                     [
                         'label' => 'مکانیک',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/mechanics/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
+                                
                             ]
                         ]
                     ],
                     [
                         'label' => 'برق',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/electricity/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
                             ]
                         ]
                     ],
                     [
                         'label' => 'ابزاردقیق',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/instrument/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
                             ]
                         ]
                     ],
                     [
                         'label' => 'کنترل',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/control/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
                             ]
                         ]
                     ],
                     [
                         'label' => 'ساختمان',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                           
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/construction/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
                             ]
                         ]
                     ],
                     [
                         'label' => 'چاه',
                         'icon' => 'tag',
-                        'items' => [
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
+                        'items' => [                            
                             [
                                 'label' => 'مراحل',
                                 'icon' => 'tag',
-                                'url' => '#'
+                                'items' => [
+                                    [
+                                        'label' => 'تعریف',
+                                        'icon' => 'tag',
+                                        'url' => ['/engineering/well/stage/manage/index']
+                                    ],
+                                    [
+                                        'label' => 'مدارک',
+                                        'icon' => 'tag',
+                                        'url' => '#'
+                                    ],
+                                ]
                             ]
                         ]
                     ],

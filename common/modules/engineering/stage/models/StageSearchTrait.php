@@ -20,7 +20,7 @@ trait StageSearchTrait
 
     public function search($params)
     {
-        $query = Stage::find();
+        $query = static::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -28,17 +28,19 @@ trait StageSearchTrait
         if (!$this->validate()) {
             $query->where('0=1');
             return $dataProvider;
-        }
+        }        
         $query->joinWith('category AS category');
-        $query->joinWith('parent AS parent');
+        // $query->joinWith('parent AS parent');            
+        // $query->select(['nad_eng_stage.*', 'parent.id', 'parent.title', 'parent.consumer']);
         $query->andFilterWhere(['like', 'nad_eng_stage.title', $this->title]);
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]
         );
-        $query->andFilterWhere(
-            ['like', 'parent.title', $this->getAttribute('parent.title')]
-        );
+        // $query->andFilterWhere(
+        //     ['like', 'parent.title', $this->getAttribute('parent.title')]
+        // );
+        
         return $dataProvider;
     }
 }

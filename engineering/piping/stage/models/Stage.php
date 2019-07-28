@@ -8,10 +8,10 @@ class Stage extends ParentStage
 {
     const CONSUMER_CODE = 'nad\engineering\piping';
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'piping';
 
     public static function find()
-    {
+    {    
         return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
     }
 }

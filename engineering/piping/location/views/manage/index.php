@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'لیست مکانهای لوله کشی';
+$this->title = 'لیست مدارک لوله کشی';
 $this->params['breadcrumbs'] = [
     'فنی',    
     // ['label' => 'لیست مکانها', 'url' => ['/piping/location/manage/index']],    

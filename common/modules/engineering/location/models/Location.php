@@ -65,8 +65,8 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه مکان',
-            'uniqueCode' => 'شناسه مکان',
+            'code' => 'شناسه مدرک',
+            'uniqueCode' => 'شناسه مدرک',
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',

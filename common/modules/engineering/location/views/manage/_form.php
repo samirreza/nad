@@ -38,11 +38,22 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                             )]
                         );
                     ?>
-                </div>
+                </div>                
+            </div>
+            <div class="row">
                 <div class="col-md-3">
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr', 'maxlength' => 1]
                     )->hint('تنها یک کاراکتر لاتین') ?>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group field-doc-type">
+                        <label class="control-label" for="doc-type">نوع مدرک</label>
+                        <select id="doc-type" class="form-control">
+                            <option value="">---</option>
+                            <option value="location">مکان</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="row">

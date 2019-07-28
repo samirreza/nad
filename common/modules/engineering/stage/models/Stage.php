@@ -117,7 +117,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
 
     public function getAllStagesAsDropdown(){
         return ArrayHelper::map(
-            static::find()->select(['id', 'title'])->where('id != :id OR :id IS NULL', ['id' => $this->id])->all(),
+            static::find()->select(['id', 'title'])->where('consumer = :consumer AND (id != :id OR :id IS NULL)', ['consumer' => static::CONSUMER_CODE, 'id' => $this->id])->all(),
             'id',
             'title'
         );
