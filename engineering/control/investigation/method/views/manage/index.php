@@ -2,7 +2,7 @@
 
 $this->title = 'لیست روش‌ها';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'کنترل', 'url' => ['/engineering/control/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/control/manage/investigation']],

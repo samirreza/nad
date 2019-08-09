@@ -5,7 +5,7 @@ use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'لوله کشی';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     $this->title
 ];

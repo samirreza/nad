@@ -4,7 +4,7 @@ use nad\engineering\piping\investigation\report\models\Report;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'لوله کشی', 'url' => ['/engineering/piping/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/piping/manage/investigation']],

@@ -4,7 +4,7 @@ use nad\engineering\control\investigation\source\models\Source;
 
 $this->title = 'درج منشا';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'کنترل', 'url' => ['/engineering/control/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/control/manage/investigation']],

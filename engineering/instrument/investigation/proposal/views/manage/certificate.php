@@ -2,7 +2,7 @@
 
 $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'ابزار دقیق', 'url' => ['/engineering/instrument/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/instrument/manage/investigation']],

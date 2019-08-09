@@ -4,7 +4,7 @@ use nad\engineering\piping\investigation\method\models\Method;
 
 $this->title = 'درج روش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'لوله کشی', 'url' => ['/engineering/piping/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/piping/manage/investigation']],

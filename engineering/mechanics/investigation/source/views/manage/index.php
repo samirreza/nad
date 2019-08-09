@@ -2,7 +2,7 @@
 
 $this->title = 'لیست منشا';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'مکانیک', 'url' => ['/engineering/mechanics/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/mechanics/manage/investigation']],

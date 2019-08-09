@@ -4,7 +4,7 @@ use nad\engineering\construction\investigation\report\models\Report;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'ساختمان', 'url' => ['/engineering/construction/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/construction/manage/investigation']],

@@ -5,7 +5,7 @@ use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'برق', 'url' => ['/engineering/electricity/manage/index']],
     $this->title

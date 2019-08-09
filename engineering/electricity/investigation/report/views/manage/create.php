@@ -4,7 +4,7 @@ use nad\engineering\electricity\investigation\report\models\Report;
 
 $this->title = 'درج گزارش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'برق', 'url' => ['/engineering/electricity/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/electricity/manage/investigation']],

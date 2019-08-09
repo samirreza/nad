@@ -2,7 +2,7 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'مکانیک', 'url' => ['/engineering/mechanics/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/mechanics/manage/investigation']],

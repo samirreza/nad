@@ -4,7 +4,7 @@ use nad\engineering\construction\investigation\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
+    'فنی',
     'بررسی، پایش و طراحی',
     ['label' => 'ساختمان', 'url' => ['/engineering/construction/manage/index']],
     ['label' => 'بررسی', 'url' => ['/engineering/construction/manage/investigation']],
