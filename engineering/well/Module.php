@@ -13,6 +13,7 @@ class Module extends \yii\base\Module
         $this->modules = [
             'location' => 'nad\engineering\well\location\Module',
             'stage' => 'nad\engineering\well\stage\Module',        
+            'investigation' => 'nad\engineering\well\investigation\Module',   
         ];
         parent::init();
     }

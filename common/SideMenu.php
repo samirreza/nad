@@ -138,196 +138,204 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'مشترک',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مکانها',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ],
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'url' => '#'
-                            ]
-                        ]
+                        'url' => '#'
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مکانها',
+                        //         'icon' => 'tag',
+                        //         'url' => '#'
+                        //     ],
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'url' => '#'
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'لوله کشی',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/piping/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/piping/location/manage/index']
-                                    ],
-                                ]
+                        'url' => ['/engineering/piping']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/piping/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/piping/location/manage/index']
+                        //             ],
+                        //         ]
                                 
-                            ]
-                        ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'مکانیک',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/mechanics/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
+                        'url' => ['/engineering/mechanics']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/mechanics/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
                                 
-                            ]
-                        ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'برق',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/electricity/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
-                            ]
-                        ]
+                        'url' => ['/engineering/electricity']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/electricity/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'ابزاردقیق',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/instrument/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
-                            ]
-                        ]
+                        'url' => ['/engineering/instrument']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/instrument/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'کنترل',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/control/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
-                            ]
-                        ]
+                        'url' => ['/engineering/control']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/control/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'ساختمان',
                         'icon' => 'tag',
-                        'items' => [                           
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/construction/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
-                            ]
-                        ]
+                        'url' => ['/engineering/construction']
+                        // 'items' => [                           
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/construction/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
+                        //     ]
+                        // ]
                     ],
                     [
                         'label' => 'چاه',
                         'icon' => 'tag',
-                        'items' => [                            
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'tag',
-                                'items' => [
-                                    [
-                                        'label' => 'تعریف',
-                                        'icon' => 'tag',
-                                        'url' => ['/engineering/well/stage/manage/index']
-                                    ],
-                                    [
-                                        'label' => 'مدارک',
-                                        'icon' => 'tag',
-                                        'url' => '#'
-                                    ],
-                                ]
-                            ]
-                        ]
+                        'url' => ['/engineering/well']
+                        // 'items' => [                            
+                        //     [
+                        //         'label' => 'مراحل',
+                        //         'icon' => 'tag',
+                        //         'items' => [
+                        //             [
+                        //                 'label' => 'تعریف',
+                        //                 'icon' => 'tag',
+                        //                 'url' => ['/engineering/well/stage/manage/index']
+                        //             ],
+                        //             [
+                        //                 'label' => 'مدارک',
+                        //                 'icon' => 'tag',
+                        //                 'url' => '#'
+                        //             ],
+                        //         ]
+                        //     ]
+                        // ]
                     ],
-                    [
-                        'label' => 'منابع',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/resource/manage/index']
-                    ],
+                    // [
+                    //     'label' => 'منابع',
+                    //     'icon' => 'tag',
+                    //     'url' => ['/engineering/resource/manage/index']
+                    // ],
                     // [
                     //     'label' => 'پلانت ها',
                     //     'icon' => 'tag',
                     //     'url' => ['/engineering/plant/manage/index']
                     // ],                                      
-                    [
-                        'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/document/manage/index']
-                    ],
-                    [
-                        'label' => 'تجهیزات (شناسه و سوابق)',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/equipment/type/manage/index'],
-                        'visible' => $user->can('equipment.type')
-                    ]
+                    // [
+                    //     'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
+                    //     'icon' => 'tag',
+                    //     'url' => ['/engineering/document/manage/index']
+                    // ],
+                    // [
+                    //     'label' => 'تجهیزات (شناسه و سوابق)',
+                    //     'icon' => 'tag',
+                    //     'url' => ['/engineering/equipment/type/manage/index'],
+                    //     'visible' => $user->can('equipment.type')
+                    // ]
                 ]
             ],
             [

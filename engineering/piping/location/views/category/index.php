@@ -3,7 +3,7 @@
 $this->title = 'لیست مکانها';
 $this->params['breadcrumbs'] = [
     'فنی',    
-    ['label' => 'لیست مکانها', 'url' => ['/piping/location/category/index']],    
+    ['label' => 'لیست مکانها', 'url' => ['/engineering/piping/location/category/index']],    
     $this->title
 ];
 

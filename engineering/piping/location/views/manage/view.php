@@ -4,7 +4,7 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فنی', 
     'لوله کشی',
-    ['label' => 'لیست مدارک', 'url' => ['/piping/location/manage/index']],        
+    ['label' => 'لیست مدارک', 'url' => ['/engineering/piping/location/manage/index']],        
     $this->title
 ];
 

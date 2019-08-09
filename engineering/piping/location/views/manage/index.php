@@ -3,7 +3,7 @@
 $this->title = 'لیست مدارک لوله کشی';
 $this->params['breadcrumbs'] = [
     'فنی',    
-    // ['label' => 'لیست مکانها', 'url' => ['/piping/location/manage/index']],    
+    // ['label' => 'لیست مکانها', 'url' => ['/engineering/piping/location/manage/index']],    
     $this->title
 ];
 

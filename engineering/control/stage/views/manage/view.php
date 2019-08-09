@@ -4,7 +4,7 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فنی', 
     'کنترل',
-    ['label' => 'لیست مراحل', 'url' => ['/control/stage/manage/index']],        
+    ['label' => 'لیست مراحل', 'url' => ['/engineering/control/stage/manage/index']],        
     $this->title
 ];
 
