@@ -10,18 +10,18 @@ use nad\common\modules\engineering\location\assetbundles\TreeAssetBundle;
 TreeAssetBundle::register($this);
 
 $module = $this->context->module;
-$this->title = $module->department.' - '.$module->pluralLabel.' - لیست رده ها';
-$this->params['breadcrumbs'] = [
-    $module->department,
-    ['label' => $module->pluralLabel, 'url' => ['manage/index']],
-    'لیست رده ها'
-];
+// $this->title = $module->department.' - '.$module->pluralLabel.' - لیست رده ها';
+// $this->params['breadcrumbs'] = [
+//     $module->department,
+//     ['label' => $module->pluralLabel, 'url' => ['manage/index']],
+//     'لیست رده ها'
+// ];
 ?>
 <div class="categories-index">
 <?= ActionButtons::widget([
     'buttons' => [
         'create' => [
-            'label' => 'رده جدید',
+            'label' => $module->categoryCreateBtnLabel,
             'options' => [
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
@@ -66,7 +66,24 @@ $this->params['breadcrumbs'] = [
                         'value' => function ($model) {
                             return $model->getDepthTitle();
                         }
-                    ],
+                    ],    
+                    [
+                        'label' => 'بسته مدارک',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a(
+                                    '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
+                                    [
+                                        '/engineering/piping/location/manage/index',
+                                    'LocationSearch[stageCategoryId]' => $model->id
+                                    ],                                    
+                                    [
+                                        'title' => 'لیست گروه های مدارک بسته مدارک',
+                                        'target' => '_blank'
+                                    ]
+                                );
+                        }
+                    ],                
                     [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {tree}',
@@ -83,7 +100,7 @@ $this->params['breadcrumbs'] = [
                                         'class' => 'reload-tree'
                                     ]
                                 );
-                            },
+                            },                            
                         ],
                     ]
                 ],

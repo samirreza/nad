@@ -136,7 +136,7 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'wrench',
                 'items' => [                                            
                     [
-                        'label' => 'مشترک',
+                        'label' => 'کلی',
                         'icon' => 'tag',
                         'url' => '#'
                         // 'items' => [                            
@@ -293,7 +293,7 @@ class SideMenu extends \theme\widgets\Menu
                         // ]
                     ],
                     [
-                        'label' => 'چاه',
+                        'label' => 'ژئوتکنیک',
                         'icon' => 'tag',
                         'url' => ['/engineering/well']
                         // 'items' => [                            

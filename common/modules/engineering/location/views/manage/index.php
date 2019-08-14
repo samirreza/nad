@@ -18,20 +18,26 @@ $module = $this->context->module;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => [
-                'label' => $module->singularLabel . ' جدید',
+                'label' => 'افزودن گروه های مدارک',
                 'options' => [
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-gridviewpjax'
                 ]
             ],
             'categoriesIndex' => [
-                'label' => 'رده های ' . $module->pluralLabel,
+                'label' => 'رده های بسته ' . $module->pluralLabel,
                 'icon' => 'sitemap'
             ],
             'tree' => [
-                'label' => 'نمایش درختی',
+                'label' => 'نمایش درختی رده های بسته مدارک',
                 'icon' => 'tree',
                 'url' => ['tree-list']
+            ],
+            'stageCategoriesIndex' => [
+                'label' => 'لیست رده بندی مراحل و بسته مدارک',
+                'icon' => 'sitemap',
+                'url' => $this->params['stageCategoriesIndex'],
+                'type' => 'success'
             ]
         ],
     ]); ?>
@@ -51,18 +57,18 @@ $module = $this->context->module;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => true
-                    ],
-                    [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
-                    ],
+                    ], 
                     [
                         'attribute' => 'category.title',
                         'value' => function ($model) {
                             return $model->category->familyTreeTitle;
                         }
+                    ],
+                    [
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'isAjaxGrid' => true
                     ],
                     [
                         'class' => 'core\grid\AjaxActionColumn',

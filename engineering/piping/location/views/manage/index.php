@@ -1,9 +1,11 @@
 <?php
 
-$this->title = 'لیست مدارک لوله کشی';
+$this->title = 'لیست گروه های مدارک';
+$this->params['stageCategoriesIndex'] = ['/engineering/piping/stage/category/index'];
 $this->params['breadcrumbs'] = [
-    'فنی',    
-    // ['label' => 'لیست مکانها', 'url' => ['/engineering/piping/location/manage/index']],    
+    'فنی',       
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping']],    
+    ['label' => 'لیست رده بندی مراحل و بسته مدارک', 'url' => ['/engineering/piping/stage/category']],    
     $this->title
 ];
 

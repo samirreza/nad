@@ -3,6 +3,7 @@
 namespace nad\common\modules\engineering\stage\models;
 
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use core\tree\NestedSetsBehavior;
 use nad\common\code\CodableTrait;
@@ -10,6 +11,7 @@ use core\behaviors\PreventDeleteBehavior;
 use nad\common\code\CodableCategoryBehavior;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\common\modules\engineering\location\models\Location;
 
 class Category extends ActiveRecord implements Codable
 {
@@ -67,7 +69,8 @@ class Category extends ActiveRecord implements Codable
             'nestedTitle' => 'عنوان',
             'code' => 'شناسه رده',
             'uniqueCode' => 'شناسه یکتا',
-            'parentId' => 'رده پدر'
+            'parentId' => 'رده پدر',
+            'locations' => 'بسته مدارک',
         ];
     }
 
@@ -94,6 +97,11 @@ class Category extends ActiveRecord implements Codable
         return $this->hasMany(Stage::class, ['categoryId' => 'id']);
     }
 
+    public function getLocations()
+    {
+        return $this->hasMany(Location::className(), ['id' => 'locationId'])->viaTable('nad_eng_location_stage', ['stageCategoryId' => 'id']);
+    }
+
     public function getDepthList()
     {
         return [
@@ -103,5 +111,14 @@ class Category extends ActiveRecord implements Codable
             3 => 'شاخه',
             4 => 'زیر شاخه'
         ];
+    }
+
+
+    public function getAllLocationsAsDropdown(){
+        return ArrayHelper::map(
+            Location::find()->select(['id', 'title'])->all(),
+            'id',
+            'title'
+        );
     }
 }

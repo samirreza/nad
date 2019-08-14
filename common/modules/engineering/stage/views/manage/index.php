@@ -25,7 +25,7 @@ $module = $this->context->module;
                 ]
             ],
             'categoriesIndex' => [
-                'label' => 'رده های ' . $module->pluralLabel,
+                'label' => $module->categoryListBtnLabel,
                 'icon' => 'sitemap'
             ],
             'tree' => [

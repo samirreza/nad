@@ -37,6 +37,27 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     <?= $form->field($model, 'title')->textInput() ?>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <?=
+                    $form->field($model, 'locations')
+                        ->widget(
+                            Select2::class,
+                            [
+                                'data' => $model->getAllLocationsAsDropdown(),
+                                'options' => [
+                                    'placeholder' => 'انتخاب کنید...',
+                                    'multiple' => true,
+                                    'dir' => 'rtl'
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]
+                        );
+                    ?>
+                 </div>
+            </div>
             <?php Panel::end() ?>
         </div>
         <div class="col-md-3">
@@ -57,7 +78,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     ])
                 ?>
             <?php Panel::end() ?>
-        </div>
+        </div>        
     </div>
     <?php Panel::end() ?>
     <?php ActiveForm::end(); ?>

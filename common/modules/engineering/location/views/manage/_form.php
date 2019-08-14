@@ -10,6 +10,8 @@ use nad\common\modules\engineering\location\models\Category;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
+$className = get_class($model);
+$uploadedFiles = $model->getFiles('file');
 ?>
 <div class="form">
     <?php $form = ActiveForm::begin([
@@ -45,16 +47,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     <?= $form->field($model, 'code')->textInput(
                         ['style' => 'direction:ltr', 'maxlength' => 1]
                     )->hint('تنها یک کاراکتر لاتین') ?>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group field-doc-type">
-                        <label class="control-label" for="doc-type">نوع مدرک</label>
-                        <select id="doc-type" class="form-control">
-                            <option value="">---</option>
-                            <option value="location">مکان</option>
-                        </select>
-                    </div>
-                </div>
+                </div>                
             </div>
             <div class="row">
                 <div class="col-md-9">
@@ -79,10 +72,23 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                     ])
                 ?>
             <?php Panel::end() ?>
+            <?php
+            if(isset($uploadedFiles) && !empty($uploadedFiles)){
+                Panel::begin();
+            ?>
+                    <label>فایل مستندات</label>
+                    <?= SingleFileUpload::widget([
+                        'model' => $model,
+                        'group' => 'file',
+                    ]) ?>
+            <?php 
+                Panel::end();
+            }
+            ?>
             <?php Panel::begin() ?>
                 <label>فایل مستندات</label>
                 <?= SingleFileUpload::widget([
-                    'model' => $model,
+                    'model' => new $className,
                     'group' => 'file',
                 ]) ?>
             <?php Panel::end() ?>

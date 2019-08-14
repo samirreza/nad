@@ -5,7 +5,6 @@ use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
-use nad\common\modules\engineering\location\models\Location;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Stage extends \yii\db\ActiveRecord implements Codable
@@ -71,8 +70,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'زیر شاخه',
-            'parentId' => 'مرحله پدر',
-            'locations' => 'مکان ها',
+            'parentId' => 'مرحله پدر',            
             'category.title' => 'زیر شاخه',
             'category.familyTreeTitle' => 'زیر شاخه',
             'createdAt' => 'تاریخ درج',
@@ -88,12 +86,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getParent()
     {
         return $this->hasOne(self::className(), ['id' => 'parentId']);
-    }
-
-    public function getLocations()
-    {
-        return $this->hasMany(Location::className(), ['id' => 'locationId'])->viaTable('nad_eng_location_stage', ['stageId' => 'id']);
-    }
+    }    
 
     public function beforeValidate()
     {
@@ -118,14 +111,6 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getAllStagesAsDropdown(){
         return ArrayHelper::map(
             static::find()->select(['id', 'title'])->where('consumer = :consumer AND (id != :id OR :id IS NULL)', ['consumer' => static::CONSUMER_CODE, 'id' => $this->id])->all(),
-            'id',
-            'title'
-        );
-    }
-
-    public function getAllLocationsAsDropdown(){
-        return ArrayHelper::map(
-            Location::find()->select(['id', 'title'])->where('consumer = :consumer_code', ['consumer_code' => static::CONSUMER_CODE])->all(),
             'id',
             'title'
         );

@@ -1,9 +1,10 @@
 <?php
 
-$this->title = 'لیست مکانها';
+$this->title = 'لیست رده بندی مراحل و بسته مدارک';
 $this->params['breadcrumbs'] = [
-    'فنی',    
-    ['label' => 'لیست مکانها', 'url' => ['/engineering/piping/stage/category/index']],    
+    'فنی',   
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping']], 
+    ['label' => 'لیست مراحل', 'url' => ['/engineering/piping/stage/manage/index']],    
     $this->title
 ];
 

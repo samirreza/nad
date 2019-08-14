@@ -10,7 +10,7 @@ use theme\widgets\ActionButtons;
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
-                'title' => 'اطلاعات گروه',
+                'title' => 'اطلاعات رده',
                 'showCloseButton' => true
             ]) ?>
             <?= DetailView::widget([
@@ -22,8 +22,31 @@ use theme\widgets\ActionButtons;
                     [
                         'label' => "رده پدر",
                         'visible' => !$model->isRoot(),
-                        'value' => $model->isRoot() ?: $model->getParent()->title,
+                        'value' => $model->isRoot() ?$model->title: $model->getParent()->title,
                         'format' => 'raw'
+                    ],
+                    [
+                        'attribute' => 'locations',
+                        'format' => 'raw', 
+                        'value' =>
+                        function ($model) {
+                            $tempLocations=[];                            
+                            foreach ($model->locations as $location) {
+                                $tempLocations[]=$location->title;
+                            }
+                            return empty($tempLocations)?null:'گروه ها: '.implode($tempLocations, ' - '). '&nbsp;&nbsp;&nbsp;' . Html::a(
+                                    '<button class="btn btn-success"><i class="fa fa-external-link-square"></i></button>',
+                                    [
+                                        '/engineering/piping/location/manage/index',
+                                        'LocationSearch[stageCategoryId]' => $model->id
+                                    ],
+                                    [
+                                        'title' => 'لیست گروه های مدارک بسته مدارک',
+                                        'target' => '_blank'
+                                    ]
+                                      
+                                );
+                        },
                     ],
                 ],
             ]) ?>

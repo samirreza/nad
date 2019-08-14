@@ -91,7 +91,7 @@ class Category extends ActiveRecord implements Codable
 
     public function getTypes()
     {
-        return $this->hasMany(Plant::class, ['categoryId' => 'id']);
+        return $this->hasMany(Location::class, ['categoryId' => 'id']);
     }
 
     public function getDepthList()

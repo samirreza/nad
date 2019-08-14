@@ -29,17 +29,7 @@ use theme\widgets\ActionButtons;
                             $parent = $model->parent;
                             return ($parent !== null)?$parent->title:null;
                         },
-                    ],
-                    [
-                        'attribute' => 'locations',
-                        'value' => function ($model) {
-                            $tempLocations=[];
-                            foreach ($model->locations as $location) {
-                                $tempLocations[]=$location->title;
-                            }
-                            return empty($tempLocations)?null:implode($tempLocations, ' - ');
-                        },
-                    ],
+                    ],                    
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

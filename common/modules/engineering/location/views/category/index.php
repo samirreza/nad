@@ -69,7 +69,7 @@ $this->params['breadcrumbs'] = [
                     ],
                     [
                         'class' => 'core\grid\AjaxActionColumn',
-                        'template' => '{view} {update} {delete} {tree}',
+                        'template' => '{view} {update} {delete} {tree} {documentsPackage}',
                         'options' => ['style' => 'width:20%'],
                         'buttons' => [
                             'tree' => function ($url, $model, $key) {
@@ -83,7 +83,7 @@ $this->params['breadcrumbs'] = [
                                         'class' => 'reload-tree'
                                     ]
                                 );
-                            },
+                            }                            
                         ],
                     ]
                 ],
