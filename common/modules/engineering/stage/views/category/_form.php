@@ -44,7 +44,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         ->widget(
                             Select2::class,
                             [
-                                'data' => $model->getAllLocationsAsDropdown(),
+                                'data' => $model->getCategoryLocationsAsDropdown(),
                                 'options' => [
                                     'placeholder' => 'انتخاب کنید...',
                                     'multiple' => true,

@@ -64,6 +64,7 @@ $module = $this->context->module;
                             return $model->category->familyTreeTitle;
                         }
                     ],
+                    'createdAt:datetime',
                     // [
                     //     'attribute' => 'parent.title',
                     //     'label' => $searchModel->getAttributeLabel('parentId'),

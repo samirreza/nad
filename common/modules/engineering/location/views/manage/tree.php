@@ -8,12 +8,12 @@ use nad\common\modules\engineering\location\assetbundles\TreeAssetBundle;
 TreeAssetBundle::register($this);
 
 $module = $this->context->module;
-$this->title = $module->department . ' - ' . $module->pluralLabel . ' - نمایش درختی';
-$this->params['breadcrumbs'] = [
-    $module->department,
-    ['label' => $module->pluralLabel, 'url' => ['index']],
-    'نمایش درختی'
-];
+// $this->title = $module->department . ' - ' . $module->pluralLabel . ' - نمایش درختی';
+// $this->params['breadcrumbs'] = [
+//     $module->department,
+//     ['label' => $module->pluralLabel, 'url' => ['index']],
+//     'نمایش درختی'
+// ];
 
 ?>
 

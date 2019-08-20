@@ -69,10 +69,10 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه مرحله',
             'title' => 'عنوان',
             'description' => 'توضیحات',
-            'categoryId' => 'زیر شاخه',
+            'categoryId' => 'شاخه',
             'parentId' => 'مرحله پدر',            
-            'category.title' => 'زیر شاخه',
-            'category.familyTreeTitle' => 'زیر شاخه',
+            'category.title' => 'شاخه',
+            'category.familyTreeTitle' => 'شاخه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];

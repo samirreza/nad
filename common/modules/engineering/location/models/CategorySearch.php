@@ -1,4 +1,7 @@
 <?php
+/*
+    THIS FILE IS NOT USED.
+*/
 
 namespace nad\common\modules\engineering\location\models;
 

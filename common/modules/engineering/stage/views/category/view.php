@@ -38,7 +38,7 @@ use theme\widgets\ActionButtons;
                                     '<button class="btn btn-success"><i class="fa fa-external-link-square"></i></button>',
                                     [
                                         '/engineering/piping/location/manage/index',
-                                        'LocationSearch[stageCategoryId]' => $model->id
+                                        'LocationSearch[categoryId]' => $model->id
                                     ],
                                     [
                                         'title' => 'لیست گروه های مدارک بسته مدارک',

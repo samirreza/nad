@@ -28,7 +28,7 @@ $module = $this->context->module;
             ]
         ],
         'materials' => [
-            'label' => $module->pluralLabel,
+            'label' => (isset($this->params['stageIndexBtnLabel'])) ? $this->params['stageIndexBtnLabel'] : $module->pluralLabel,
             'url' => ['manage/index'],
             'type' => 'info',
             'icon' => 'list'
@@ -75,7 +75,7 @@ $module = $this->context->module;
                                     '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
                                     [
                                         '/engineering/piping/location/manage/index',
-                                    'LocationSearch[stageCategoryId]' => $model->id
+                                    'LocationSearch[categoryId]' => $model->id
                                     ],                                    
                                     [
                                         'title' => 'لیست گروه های مدارک بسته مدارک',
@@ -89,12 +89,12 @@ $module = $this->context->module;
                         'template' => '{view} {update} {delete} {tree}',
                         'options' => ['style' => 'width:20%'],
                         'buttons' => [
-                            'tree' => function ($url, $model, $key) {
+                            'tree' => function ($url, $model, $key) use ($module) {
                                 return Html::a(
                                     '<span class="fa fa-tree"></span>',
                                     '#',
                                     [
-                                        'title' => 'نمایش درخت',
+                                        'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
                                         'data-pjax' => 0,
                                         'data-rootid' => $model->id,
                                         'class' => 'reload-tree'
@@ -110,7 +110,7 @@ $module = $this->context->module;
     </div>
     <div class="col-md-5">
         <?php Panel::begin([
-            'title' => 'نمایش درختی',
+            'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
             'tools' => Html::a(
                 '<span class="glyphicon glyphicon-refresh"></span>',
                 null,

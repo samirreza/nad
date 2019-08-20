@@ -3,7 +3,7 @@
 $this->title = 'لیست مراحل لوله کشی';
 $this->params['breadcrumbs'] = [
     'فنی',
-    'لوله کشی',
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping']],    
     $this->title
 ];
 

@@ -107,16 +107,16 @@ class Category extends ActiveRecord implements Codable
         return [
             0 => 'گروه',
             1 => 'دسته',
-            2 => 'زیر دسته',
-            3 => 'شاخه',
-            4 => 'زیر شاخه'
+            // 2 => 'زیر دسته',
+            2 => 'شاخه',
+            // 4 => 'زیر شاخه'
         ];
     }
 
 
-    public function getAllLocationsAsDropdown(){
+    public function getCategoryLocationsAsDropdown(){
         return ArrayHelper::map(
-            Location::find()->select(['id', 'title'])->all(),
+            Location::find()->where(['categoryId' => $this->id])->select(['id', 'title'])->all(),
             'id',
             'title'
         );

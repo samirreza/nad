@@ -40,7 +40,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                             Select2::class,
                             [
                                 'data' => ArrayHelper::map(
-                                    Category::find()->where(['depth' => 4])->all(),
+                                    Category::find()->where(['depth' => 2])->all(),
                                     'id',
                                     'codedTitle'
                                 )

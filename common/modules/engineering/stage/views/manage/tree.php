@@ -8,12 +8,12 @@ use nad\common\modules\engineering\stage\assetbundles\TreeAssetBundle;
 TreeAssetBundle::register($this);
 
 $module = $this->context->module;
-$this->title = $module->department . ' - ' . $module->pluralLabel . ' - نمایش درختی';
-$this->params['breadcrumbs'] = [
-    $module->department,
-    ['label' => $module->pluralLabel, 'url' => ['index']],
-    'نمایش درختی'
-];
+// $this->title = $module->department . ' - ' . $module->pluralLabel . ' - نمایش درختی';
+// $this->params['breadcrumbs'] = [
+//     $module->department,
+//     ['label' => $module->pluralLabel, 'url' => ['index']],
+//     'نمایش درختی'
+// ];
 
 ?>
 
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'] = [
     <?= ActionButtons::widget([
         'buttons' => [
             'materials' => [
-                'label' => $module->pluralLabel,
+                'label' => isset($this->params['stageIndexBtnLabel']) ? $this->params['stageIndexBtnLabel'] : $module->pluralLabel,
                 'url' => ['index'],
                 'type' => 'info',
                 'icon' => 'list'

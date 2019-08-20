@@ -3,7 +3,7 @@ namespace nad\common\modules\engineering\location\models;
 
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
-use nad\common\modules\engineering\stage\models\Category as StageCategory;
+use nad\common\modules\engineering\stage\models\Category;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
@@ -69,9 +69,9 @@ class Location extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه رده',
             'title' => 'گروه مدارک',
             'description' => 'توضیحات',
-            'categoryId' => 'عنوان رده',
+            'categoryId' => 'شاخه بسته',
             'category.title' => 'عنوان رده',
-            'category.familyTreeTitle' => 'زیر شاخه',
+            'category.familyTreeTitle' => 'عنوان رده (شاخه)',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
@@ -82,10 +82,10 @@ class Location extends \yii\db\ActiveRecord implements Codable
         return $this->hasOne(Category::className(), ['id' => 'categoryId']);
     }
 
-    public function getStageCategories()
-    {
-        return $this->hasMany(StageCategory::className(), ['id' => 'stageCategoryId'])->viaTable('nad_eng_location_stage', ['locationId' => 'id']);
-    }
+    // public function getStageCategories()
+    // {
+    //     return $this->hasMany(StageCategory::className(), ['id' => 'stageCategoryId'])->viaTable('nad_eng_location_stage', ['locationId' => 'id']);
+    // }
 
     public function beforeValidate()
     {

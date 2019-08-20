@@ -24,15 +24,15 @@ $module = $this->context->module;
                     'data-gridpjaxid' => 'resource-gridviewpjax'
                 ]
             ],
-            'categoriesIndex' => [
-                'label' => 'رده های بسته ' . $module->pluralLabel,
-                'icon' => 'sitemap'
-            ],
-            'tree' => [
-                'label' => 'نمایش درختی رده های بسته مدارک',
-                'icon' => 'tree',
-                'url' => ['tree-list']
-            ],
+            // 'categoriesIndex' => [
+            //     'label' => 'رده های بسته ' . $module->pluralLabel,
+            //     'icon' => 'sitemap'
+            // ],
+            // 'tree' => [
+            //     'label' => 'نمایش درختی رده های بسته مدارک',
+            //     'icon' => 'tree',
+            //     'url' => ['tree-list']
+            // ],
             'stageCategoriesIndex' => [
                 'label' => 'لیست رده بندی مراحل و بسته مدارک',
                 'icon' => 'sitemap',
@@ -62,14 +62,20 @@ $module = $this->context->module;
                     ], 
                     [
                         'attribute' => 'category.title',
-                        'value' => function ($model) {
+                        'value' => function ($model) {                            
                             return $model->category->familyTreeTitle;
                         }
                     ],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => true
+                        'isAjaxGrid' => true,                        
                     ],
+                    // [
+                    //     'label' => 'مدارک بازگذاری شده',
+                    //     'type' => 'raw',
+                    //     'value' =>  
+                    // ],
+                    'createdAt:datetime',
                     [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {download}',

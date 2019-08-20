@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use theme\widgets\Panel;
 use theme\widgets\Button;
 use core\widgets\select2\Select2;
-use nad\common\modules\engineering\location\models\Category;
+use nad\common\modules\engineering\stage\models\Category;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
@@ -34,7 +34,7 @@ $uploadedFiles = $model->getFiles('file');
                         ->widget(
                             Select2::class,
                             ['data' => ArrayHelper::map(
-                                Category::find()->where(['depth' => 4])->all(),
+                                Category::find()->where(['depth' => 2])->all(),
                                 'id',
                                 'codedTitle'
                             )]
