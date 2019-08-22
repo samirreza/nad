@@ -154,27 +154,19 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     [
                         'label' => 'لوله کشی',
-                        'icon' => 'tag',
-                        'url' => ['/engineering/piping']
-                        // 'items' => [                            
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
-                        //                 'url' => ['/engineering/piping/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
-                        //                 'url' => ['/engineering/piping/location/manage/index']
-                        //             ],
-                        //         ]
-                                
-                        //     ]
-                        // ]
+                        'icon' => 'tag',                        
+                        'items' => [                            
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'tag',
+                                'url' => ['/engineering/piping/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'tag',
+                                'url' => '#' //['/engineering/piping/equipment'] 
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'مکانیک',
