@@ -3,7 +3,7 @@
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فنی', 
-    'ساختمان'   
+    'ساختمان',  
     ['label' => 'لیست رده ها', 'url' => ['/engineering/construction/stage/category/index']],        
     $this->title
 ];
