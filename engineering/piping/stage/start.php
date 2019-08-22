@@ -46,6 +46,14 @@ $this->params['breadcrumbs'] = [
                 'titleUrl' => Url::to('@web')
             ]) ?>
         </div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => 'list-ol',
+                'showCount' => false,
+                'title' => 'مراحل و<br/> بسته مدارک',
+                'titleUrl' => Url::to(['/engineering/piping/stage/manage/index'])
+            ]) ?>
+        </div>
     </div>
     <br><br>
 </div>
