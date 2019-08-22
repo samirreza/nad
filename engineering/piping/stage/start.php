@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'search',
                 'showCount' => false,
                 'title' => 'بررسی',
-                'titleUrl' => Url::to(['/engineering/piping/manage/investigation'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/manage/investigation'])
             ]) ?>
         </div>
         <div class="col-md-3">

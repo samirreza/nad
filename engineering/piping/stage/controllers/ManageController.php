@@ -30,13 +30,25 @@ class ManageController extends ParentController
                                 'index',
                                 'view',
                                 'create',
-                                'update'
+                                'update',
+                                'start',
+                                'investigation'
                             ],
-                            'roles' => ['engineering.piping']
+                            'roles' => ['engineering.piping.stage']
                         ]
                     ]
                 ]
             ]
         );
+    }
+
+    public function actionStart()
+    {
+        return $this->render('@nad/engineering/piping/stage/start');
+    }
+
+    public function actionInvestigation()
+    {
+        return $this->render('@nad/engineering/piping/stage/investigation');
     }
 }

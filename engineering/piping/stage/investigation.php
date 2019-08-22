@@ -7,7 +7,7 @@ $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فنی',
     'بررسی، پایش و طراحی',
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/manage/index']],
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/stage/manage/index']],
     $this->title
 ];
 
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/engineering/piping/investigation/source/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/engineering/piping/investigation/proposal/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش‌ها',
-                'titleUrl' => Url::to(['/engineering/piping/investigation/report/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/investigation/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش‌ها',
-                'titleUrl' => Url::to(['/engineering/piping/investigation/method/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/investigation/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'منابع<br/><br/>',
-                'titleUrl' => Url::to(['/engineering/piping/investigation/reference/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/investigation/reference/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'list-ol',
                 'showCount' => false,
                 'title' => 'مراحل و<br/> بسته مدارک',
-                'titleUrl' => Url::to(['/engineering/piping/stage'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/manage/index'])
             ]) ?>
         </div>
     </div>    
