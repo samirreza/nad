@@ -1,13 +1,13 @@
 <?php
 
-use nad\engineering\piping\investigation\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigation\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فنی',
     'بررسی، پایش و طراحی',
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/engineering/piping/manage/investigation']],
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/engineering/piping/stage/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

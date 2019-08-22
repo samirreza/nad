@@ -1,9 +1,9 @@
 <?php
 
-namespace nad\engineering\piping\investigation\report\models;
+namespace nad\engineering\piping\stage\investigation\report\models;
 
-use nad\engineering\piping\investigation\proposal\models\Proposal;
-use nad\engineering\piping\investigation\reference\models\Reference;
+use nad\engineering\piping\stage\investigation\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigation\reference\models\Reference;
 use nad\common\modules\investigation\report\models\Report as BaseReport;
 
 class Report extends BaseReport

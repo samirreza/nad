@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\engineering\piping\investigation\method\models;
+namespace nad\engineering\piping\stage\investigation\method\models;
 
-use nad\engineering\piping\investigation\reference\models\Reference;
+use nad\engineering\piping\stage\investigation\reference\models\Reference;
 use nad\common\modules\investigation\method\models\Method as BaseMethod;
 
 class Method extends BaseMethod

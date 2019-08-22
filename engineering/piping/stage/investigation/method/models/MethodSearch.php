@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\engineering\piping\investigation\method\models;
+namespace nad\engineering\piping\stage\investigation\method\models;
 
 use nad\common\modules\investigation\method\models\MethodSearchTrait;
 

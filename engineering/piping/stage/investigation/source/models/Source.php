@@ -1,9 +1,9 @@
 <?php
 
-namespace nad\engineering\piping\investigation\source\models;
+namespace nad\engineering\piping\stage\investigation\source\models;
 
-use nad\engineering\piping\investigation\proposal\models\Proposal;
-use nad\engineering\piping\investigation\reference\models\Reference;
+use nad\engineering\piping\stage\investigation\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigation\reference\models\Reference;
 use nad\common\modules\investigation\source\models\Source as BaseSource;
 
 class Source extends BaseSource

@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\engineering\piping\investigation\source\models;
+namespace nad\engineering\piping\stage\investigation\source\models;
 
 use nad\common\modules\investigation\source\models\SourceSearchTrait;
 

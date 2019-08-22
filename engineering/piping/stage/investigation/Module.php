@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\engineering\piping\investigation;
+namespace nad\engineering\piping\stage\investigation;
 
 class Module extends \yii\base\Module
 {
@@ -9,11 +9,11 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->modules = [
-            'source' => 'nad\engineering\piping\investigation\source\Module',
-            'proposal' => 'nad\engineering\piping\investigation\proposal\Module',
-            'report' => 'nad\engineering\piping\investigation\report\Module',
-            'reference' => 'nad\engineering\piping\investigation\reference\Module',
-            'method' => 'nad\engineering\piping\investigation\method\Module'
+            'source' => 'nad\engineering\piping\stage\investigation\source\Module',
+            'proposal' => 'nad\engineering\piping\stage\investigation\proposal\Module',
+            'report' => 'nad\engineering\piping\stage\investigation\report\Module',
+            'reference' => 'nad\engineering\piping\stage\investigation\reference\Module',
+            'method' => 'nad\engineering\piping\stage\investigation\method\Module'
         ];
         $this->horizontalMenuItems = [
             [
@@ -21,32 +21,32 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست‌ منشا',
-                        'url' => ['/engineering/piping/investigation/source/manage/index']
+                        'url' => ['/engineering/piping/stage/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'افزودن منشا',
-                        'url' => ['/engineering/piping/investigation/source/manage/create']
+                        'url' => ['/engineering/piping/stage/investigation/source/manage/create']
                     ]
                 ]
             ],
             [
                 'label' => 'لیست پروپوزال',
-                'url' => ['/engineering/piping/investigation/proposal/manage/index']
+                'url' => ['/engineering/piping/stage/investigation/proposal/manage/index']
             ],
             [
                 'label' => 'گزارش‌',
                 'items' => [
                     [
                         'label' => 'لیست گزارش',
-                        'url' => ['/engineering/piping/investigation/report/manage/index']
+                        'url' => ['/engineering/piping/stage/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'رده‌بندی گزارش‌ها',
-                        'url' => ['/engineering/piping/investigation/report/category/index']
+                        'url' => ['/engineering/piping/stage/investigation/report/category/index']
                     ],
                     [
                         'label' => 'گراف گزارش ها',
-                        'url' => ['/engineering/piping/investigation/report/manage/generate-graph']
+                        'url' => ['/engineering/piping/stage/investigation/report/manage/generate-graph']
                     ]
                 ]
             ],
@@ -55,17 +55,17 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست روش‌ها',
-                        'url' => ['/engineering/piping/investigation/method/manage/index']
+                        'url' => ['/engineering/piping/stage/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'افزودن روش',
-                        'url' => ['/engineering/piping/investigation/method/manage/create']
+                        'url' => ['/engineering/piping/stage/investigation/method/manage/create']
                     ]
                 ]
             ],
             [
                 'label' => 'لیست منابع',
-                'url' => ['/engineering/piping/investigation/reference/manage/index']
+                'url' => ['/engineering/piping/stage/investigation/reference/manage/index']
             ]
         ];
         parent::init();

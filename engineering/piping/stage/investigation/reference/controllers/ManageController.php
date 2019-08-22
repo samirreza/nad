@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\investigation\reference\controllers;
+namespace nad\engineering\piping\stage\investigation\reference\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\investigation\reference\models\Reference;
-use nad\engineering\piping\investigation\reference\models\ReferenceSearch;
+use nad\engineering\piping\stage\investigation\reference\models\Reference;
+use nad\engineering\piping\stage\investigation\reference\models\ReferenceSearch;
 use nad\common\modules\investigation\reference\controllers\ReferenceController;
 
 class ManageController extends ReferenceController

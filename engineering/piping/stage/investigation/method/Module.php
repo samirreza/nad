@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\engineering\piping\investigation\method;
+namespace nad\engineering\piping\stage\investigation\method;
 
-use nad\engineering\piping\investigation\Module as BaseModule;
+use nad\engineering\piping\stage\investigation\Module as BaseModule;
 
 class Module extends BaseModule
 {

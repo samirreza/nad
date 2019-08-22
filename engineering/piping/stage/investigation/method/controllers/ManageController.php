@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\investigation\method\controllers;
+namespace nad\engineering\piping\stage\investigation\method\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\investigation\method\models\Method;
-use nad\engineering\piping\investigation\method\models\MethodSearch;
+use nad\engineering\piping\stage\investigation\method\models\Method;
+use nad\engineering\piping\stage\investigation\method\models\MethodSearch;
 use nad\common\modules\investigation\method\controllers\MethodController;
 
 class ManageController extends MethodController

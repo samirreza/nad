@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\investigation\proposal\controllers;
+namespace nad\engineering\piping\stage\investigation\proposal\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\investigation\proposal\models\Proposal;
-use nad\engineering\piping\investigation\proposal\models\ProposalSearch;
+use nad\engineering\piping\stage\investigation\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigation\proposal\models\ProposalSearch;
 use nad\common\modules\investigation\proposal\controllers\ProposalController;
 
 class ManageController extends ProposalController

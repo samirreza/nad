@@ -1,13 +1,13 @@
 <?php
 
-use nad\engineering\piping\investigation\report\models\Report;
+use nad\engineering\piping\stage\investigation\report\models\Report;
 
 $this->title = 'درج گزارش';
 $this->params['breadcrumbs'] = [
     'فنی',
     'بررسی، پایش و طراحی',
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/engineering/piping/manage/investigation']],
+    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/engineering/piping/stage/manage/investigation']],
     $this->title
 ];
 

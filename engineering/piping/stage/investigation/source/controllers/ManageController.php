@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\investigation\source\controllers;
+namespace nad\engineering\piping\stage\investigation\source\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\investigation\source\models\Source;
-use nad\engineering\piping\investigation\source\models\SourceSearch;
+use nad\engineering\piping\stage\investigation\source\models\Source;
+use nad\engineering\piping\stage\investigation\source\models\SourceSearch;
 use nad\common\modules\investigation\source\controllers\SourceController;
 
 class ManageController extends SourceController

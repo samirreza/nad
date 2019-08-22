@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\investigation\report\controllers;
+namespace nad\engineering\piping\stage\investigation\report\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\investigation\report\models\Category;
-use nad\engineering\piping\investigation\report\models\CategorySearch;
+use nad\engineering\piping\stage\investigation\report\models\Category;
+use nad\engineering\piping\stage\investigation\report\models\CategorySearch;
 use nad\common\modules\investigation\report\controllers\ReportCategoryController;
 
 class CategoryController extends ReportCategoryController
