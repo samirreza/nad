@@ -32,7 +32,8 @@ class ManageController extends ParentController
                                 'create',
                                 'update'                                
                             ],
-                            'roles' => ['engineering.piping']
+                            // 'roles' => ['nad.engineering.piping.location']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

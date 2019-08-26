@@ -31,7 +31,8 @@ class ManageController extends ReportController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['nad.engineering.piping.investigation']
+                            // 'roles' => ['nad.engineering.piping.investigation.report']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

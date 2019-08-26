@@ -34,7 +34,8 @@ class ManageController extends ParentController
                                 'start',
                                 'investigation'
                             ],
-                            'roles' => ['engineering.piping.stage']
+                            // 'roles' => ['nad.engineering.piping.stage']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

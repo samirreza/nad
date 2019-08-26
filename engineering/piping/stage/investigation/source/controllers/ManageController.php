@@ -32,7 +32,8 @@ class ManageController extends SourceController
                                 'create',
                                 'certificate'
                             ],
-                            'roles' => ['nad.engineering.piping.investigation']
+                            // 'roles' => ['nad.engineering.piping.investigation.source']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

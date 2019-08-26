@@ -26,7 +26,8 @@ class CategoryController extends ReportCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['nad.engineering.piping.investigation']
+                            // 'roles' => ['nad.engineering.piping.investigation.report']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

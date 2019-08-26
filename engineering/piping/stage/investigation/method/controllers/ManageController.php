@@ -31,7 +31,8 @@ class ManageController extends MethodController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['nad.engineering.piping.investigation']
+                            // 'roles' => ['nad.engineering.piping.investigation.method']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

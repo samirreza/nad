@@ -26,7 +26,8 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['nad.engineering.piping.investigation']
+                            // 'roles' => ['nad.engineering.piping.investigation.reference']
+                            'roles' => ['@']
                         ]
                     ]
                 ]
