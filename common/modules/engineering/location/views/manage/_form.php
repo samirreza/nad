@@ -34,7 +34,7 @@ $uploadedFiles = $model->getFiles('file');
                         ->widget(
                             Select2::class,
                             ['data' => ArrayHelper::map(
-                                Category::find()->where(['depth' => 2])->all(),
+                                Category::find()->all(),
                                 'id',
                                 'codedTitle'
                             )]

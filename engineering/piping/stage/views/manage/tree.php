@@ -4,7 +4,7 @@ $this->title = 'نمایش درختی مراحل';
 $this->params['stageIndexBtnLabel'] = 'لیست مراحل لوله کشی';
 $this->params['breadcrumbs'] = [
     'فنی',       
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping']],    
+    'لوله کشی',
     ['label' => 'لیست مراحل', 'url' => ['/engineering/piping/stage/manage/index']],    
     $this->title
 ];

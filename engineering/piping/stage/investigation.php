@@ -6,8 +6,9 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فنی',
-    'بررسی، پایش و طراحی',
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/stage/manage/index']],
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']], 
+    'بررسی، پایش و طراحی',        
     $this->title
 ];
 

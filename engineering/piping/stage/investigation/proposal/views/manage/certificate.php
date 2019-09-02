@@ -4,7 +4,8 @@ $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'فنی',
     'بررسی، پایش و طراحی',
-    ['label' => 'لوله کشی', 'url' => ['/engineering/piping/stage/manage/index']],
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage']], 
     ['label' => 'بررسی', 'url' => ['/engineering/piping/stage/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
