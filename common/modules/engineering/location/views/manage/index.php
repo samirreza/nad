@@ -62,8 +62,11 @@ $module = $this->context->module;
                     ], 
                     [
                         'attribute' => 'category.title',
-                        'value' => function ($model) {                            
-                            return $model->category->familyTreeTitle;
+                        'value' => function ($model) { 
+                            if(isset($model->category))                           
+                                return $model->category->familyTreeTitle;
+                            else
+                                return null;
                         }
                     ],
                     [
