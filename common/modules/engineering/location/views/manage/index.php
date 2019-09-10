@@ -21,7 +21,10 @@ $module = $this->context->module;
                 'label' => 'افزودن گروه های مدارک',
                 'options' => [
                     'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'resource-gridviewpjax'
+                    'data-gridpjaxid' => 'resource-gridviewpjax',
+                    'data-params' => 
+                        'Location[categoryId]=' . Yii::$app->request->queryParams['LocationSearch']['categoryId']
+                    
                 ]
             ],
             // 'categoriesIndex' => [
@@ -56,28 +59,24 @@ $module = $this->context->module;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    'code',
                     [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
                     ], 
-                    [
-                        'attribute' => 'category.title',
-                        'value' => function ($model) { 
-                            if(isset($model->category))                           
-                                return $model->category->familyTreeTitle;
-                            else
-                                return null;
-                        }
-                    ],
-                    [
-                        'class' => 'nad\common\code\CodeGridColumn',
-                        'isAjaxGrid' => true,                        
-                    ],
                     // [
-                    //     'label' => 'مدارک بازگذاری شده',
-                    //     'type' => 'raw',
-                    //     'value' =>  
+                    //     'attribute' => 'category.title',
+                    //     'value' => function ($model) { 
+                    //         if(isset($model->category))                           
+                    //             return $model->category->familyTreeTitle;
+                    //         else
+                    //             return null;
+                    //     }
                     // ],
+                    // [
+                    //     'class' => 'nad\common\code\CodeGridColumn',
+                    //     'isAjaxGrid' => true,                        
+                    // ],                
                     'createdAt:datetime',
                     [
                         'class' => 'core\grid\AjaxActionColumn',

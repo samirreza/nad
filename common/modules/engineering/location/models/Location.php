@@ -49,7 +49,7 @@ class Location extends \yii\db\ActiveRecord implements Codable
             [['title', 'categoryId', 'code'], 'required'],
             [['title', 'code'], 'trim'],
             [['title'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 1, 'min' => 1],
+            ['code', 'string', 'max' => 10, 'min' => 1],
             [['categoryId'], 'integer'],
             [['description'], 'string'],
             [['title'], FarsiCharactersValidator::className()],
@@ -65,11 +65,11 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شناسه مدرک',
+            'code' => 'شناسه گروه',
             'uniqueCode' => 'شناسه رده',
-            'title' => 'گروه مدارک',
+            'title' => 'عنوان گروه',
             'description' => 'توضیحات',
-            'categoryId' => 'شاخه بسته',
+            'categoryId' => 'عنوان رده - شناسه رده',
             'category.title' => 'عنوان رده',
             'category.familyTreeTitle' => 'عنوان رده (شاخه)',
             'createdAt' => 'تاریخ درج',

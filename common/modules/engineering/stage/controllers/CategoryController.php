@@ -88,12 +88,12 @@ class CategoryController extends \core\controllers\AjaxAdminController
                 $success = $model->makeRoot();
             }
             if ($success) {
-                $locationIds = Yii::$app->request->post('Category')['locations'];
-                if(isset($locationIds) && $locationIds != ''){
-                    foreach ($locationIds as $locationId) {
-                        Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
-                    }
-                }
+                // $locationIds = Yii::$app->request->post('Category')['locations'];
+                // if(isset($locationIds) && $locationIds != ''){
+                //     foreach ($locationIds as $locationId) {
+                //         Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
+                //     }
+                // }
                 $transaction->commit();
                 return $this->renderSuccess($model);
             }
@@ -121,14 +121,14 @@ class CategoryController extends \core\controllers\AjaxAdminController
                     : $model->makeRoot();
             }
             if ($success) {
-                Yii::$app->db->createCommand()->delete('nad_eng_location_stage', ['stageCategoryId' => $model->id])->execute();
-                    $locationIds = Yii::$app->request->post('Category')['locations'];
-                    if(isset($locationIds) && $locationIds != ''){
-                        foreach ($locationIds as $locationId) {
-                            Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
-                        }
-                    }
-                    $transaction->commit();
+                // Yii::$app->db->createCommand()->delete('nad_eng_location_stage', ['stageCategoryId' => $model->id])->execute();
+                //     $locationIds = Yii::$app->request->post('Category')['locations'];
+                //     if(isset($locationIds) && $locationIds != ''){
+                //         foreach ($locationIds as $locationId) {
+                //             Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
+                //         }
+                //     }
+                $transaction->commit();
                 return $this->renderSuccess($model);
             }
             $transaction->rollBack();

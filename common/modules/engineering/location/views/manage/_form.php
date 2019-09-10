@@ -29,26 +29,25 @@ $uploadedFiles = $model->getFiles('file');
                     <?= $form->field($model, 'title')->textInput() ?>
                 </div>
                 <div class="col-md-4">
-                    <?=
-                    $form->field($model, 'categoryId')
-                        ->widget(
-                            Select2::class,
-                            ['data' => ArrayHelper::map(
-                                Category::find()->all(),
-                                'id',
-                                'codedTitle'
-                            )]
-                        );
-                    ?>
+                    <?= $form->field($model, 'code')->textInput(
+                        ['style' => 'direction:ltr', 'maxlength' => 10]
+                    );//->hint('تنها یک کاراکتر لاتین') 
+                    ?>                    
                 </div>                
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <?= $form->field($model, 'code')->textInput(
-                        ['style' => 'direction:ltr', 'maxlength' => 1]
-                    )->hint('تنها یک کاراکتر لاتین') ?>
+                <?= $form->field($model, 'categoryId')->hiddenInput(); ?>
+                <?=
+                Html::textInput(
+                    'dummy',
+                    Category::findOne(['id' => $model->categoryId])->codedTitle,
+                     ['disabled' => 'true']
+                );
+                ?>
                 </div>                
             </div>
+            <br/>
             <div class="row">
                 <div class="col-md-9">
                     <?= $form->field($model, 'description')->textarea([]) ?>
