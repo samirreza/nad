@@ -34,19 +34,19 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            [
-                'label' => 'بسته مدارک',
-                'items' => [
-                    [
-                        'label' => 'لیست تمام گروه ها',
-                        'url' => ['/engineering/piping/location/manage/index']
-                    ],
-                    [
-                        'label' => 'افزودن گروه مدارگ',
-                        'url' => ['/engineering/piping/location/manage/index#ajaxcreate']
-                    ]
-                ]
-            ],
+            // [
+            //     'label' => 'بسته مدارک',
+            //     'items' => [
+            //         [
+            //             'label' => 'لیست تمام گروه ها',
+            //             'url' => ['/engineering/piping/location/manage/index']
+            //         ],
+            //         [
+            //             'label' => 'افزودن گروه مدارگ',
+            //             'url' => ['/engineering/piping/location/manage/index#ajaxcreate']
+            //         ]
+            //     ]
+            // ],
         ];
 
         parent::init();
