@@ -13,10 +13,6 @@ class Module extends \yii\base\Module
 
     public function init()
     {                
-        $this->modules = [  
-            'investigation' => 'nad\engineering\piping\stage\investigation\Module', 
-        ];
-
         $this->horizontalMenuItems = [                        
             [
                 'label' => 'رده بندی مراحل و بسته مدارک',
@@ -27,7 +23,7 @@ class Module extends \yii\base\Module
                     ],
                     [
                         'label' => 'افزودن رده',
-                        'url' => ['/engineering/piping/stage/category/index#ajaxcreate']
+                        'url' => ['/engineering/piping/stage/category/index#class_ajaxcreate']
                     ]
                 ]
             ],
@@ -40,7 +36,7 @@ class Module extends \yii\base\Module
             //         ],
             //         [
             //             'label' => 'افزودن گروه مدارگ',
-            //             'url' => ['/engineering/piping/location/manage/index#ajaxcreate']
+            //             'url' => ['/engineering/piping/location/manage/index#class_ajaxcreate']
             //         ]
             //     ]
             // ],

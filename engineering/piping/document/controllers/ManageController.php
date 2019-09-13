@@ -1,19 +1,19 @@
 <?php
 
-namespace nad\engineering\piping\stage\controllers;
+namespace nad\engineering\piping\document\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\common\modules\engineering\stage\models\Category;
-use nad\common\modules\engineering\stage\models\CategorySearch;
-use nad\common\modules\engineering\stage\controllers\CategoryController as ParentController;
+use nad\engineering\piping\document\models\Document;
+use nad\engineering\piping\document\models\DocumentSearch;
+use nad\common\modules\engineering\document\controllers\ManageController as ParentController;
 
-class CategoryController extends ParentController
+class ManageController extends ParentController
 {
     public function init()
     {
-        $this->modelClass = Category::class;
-        $this->searchClass = CategorySearch::class;        
+        $this->modelClass = Document::class;
+        $this->searchClass = DocumentSearch::class;
     }
 
     public function behaviors()
@@ -22,7 +22,7 @@ class CategoryController extends ParentController
             parent::behaviors(),
             [
                 'access' => [
-                    'class' => AccessControl::className(),
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
                             'allow' => true,
@@ -30,11 +30,9 @@ class CategoryController extends ParentController
                                 'index',
                                 'view',
                                 'create',
-                                'delete',
-                                'get-json-tree',
-                                'update'
+                                'update'                                
                             ],
-                            // 'roles' => ['nad.engineering.piping.stage']
+                            // 'roles' => ['nad.engineering.piping.document']
                             'roles' => ['@']
                         ]
                     ]

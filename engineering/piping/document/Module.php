@@ -1,25 +1,18 @@
 <?php
-namespace nad\engineering\piping\stage;
+namespace nad\engineering\piping\document;
 
 class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
     public $department = 'فنی';
-    public $pluralLabel = 'مراحل';    
-    public $singularLabel = 'مرحله';
+    public $pluralLabel = 'مدارک';
+    public $singularLabel = 'مدرک';
 
-    public $categoryListBtnLabel = 'لیست رده بندی مراحل و بسته مدارک';
-    public $categoryCreateBtnLabel = 'افزودن رده مراحل و بسته مدارک';
-
-    public $defaultRoute = 'manage/start';
+    public $defaultRoute = 'manage/index';
 
     public function init()
-    {                
-        $this->modules = [  
-            'investigation' => 'nad\engineering\piping\stage\investigation\Module', 
-        ];
-
+    {                       
         $this->horizontalMenuItems = [                        
             [
                 'label' => 'رده بندی مراحل و بسته مدارک',
@@ -39,11 +32,11 @@ class Module extends \yii\base\Module
             //     'items' => [
             //         [
             //             'label' => 'لیست تمام گروه ها',
-            //             'url' => ['/engineering/piping/location/manage/index']
+            //             'url' => ['/engineering/piping/document/manage/index']
             //         ],
             //         [
             //             'label' => 'افزودن گروه مدارگ',
-            //             'url' => ['/engineering/piping/location/manage/index#class_ajaxcreate']
+            //             'url' => ['/engineering/piping/document/manage/index#class_ajaxcreate']
             //         ]
             //     ]
             // ],

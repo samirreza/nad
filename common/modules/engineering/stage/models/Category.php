@@ -25,6 +25,7 @@ class Category extends ActiveRecord implements Codable
     public function behaviors()
     {
         return [
+            'core\behaviors\TimestampBehavior',
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [
@@ -71,6 +72,8 @@ class Category extends ActiveRecord implements Codable
             'uniqueCode' => 'شناسه یکتا',
             'parentId' => 'رده پدر',
             'locations' => 'بسته مدارک',
+            'createdAt' => 'تاریخ درج',
+            'updatedAt' => 'آخرین بروزرسانی'
         ];
     }
 
@@ -120,5 +123,9 @@ class Category extends ActiveRecord implements Codable
             'id',
             'title'
         );
+    }
+
+    public function getParentTitle(){
+        return $this->isRoot() ? 'ندارد' : $this->getParent()->title;
     }
 }

@@ -27,11 +27,6 @@ $module = $this->context->module;
             'categoriesIndex' => [
                 'label' => $module->categoryListBtnLabel,
                 'icon' => 'sitemap'
-            ],
-            'tree' => [
-                'label' => 'نمایش درختی',
-                'icon' => 'tree',
-                'url' => ['tree-list']
             ]
         ],
     ]); ?>

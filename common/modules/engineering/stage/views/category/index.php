@@ -61,6 +61,12 @@ $module = $this->context->module;
                         'isAjaxGrid' => true
                     ],
                     [
+                        'label' => 'رده پدر',
+                        'value' =>  function ($model) {
+                            return $model->getParentTitle();
+                        }
+                    ],
+                    [
                         'attribute' => 'depth',
                         'filter' => $searchModel->getDepthList(),
                         'value' => function ($model) {
@@ -85,6 +91,7 @@ $module = $this->context->module;
                         }
                     ],                
                     [
+                        'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {tree}',
                         'options' => ['style' => 'width:20%'],
@@ -102,7 +109,8 @@ $module = $this->context->module;
                                 );
                             },                            
                         ],
-                    ]
+                    ],
+                    'createdAt:datetime',
                 ],
             ]); ?>
         <?php Pjax::end(); ?>

@@ -15,7 +15,7 @@ trait LocationSearchTrait
     public function rules()
     {
         return [
-            [['categoryId', 'title', 'category.title', 'uniqueCode'], 'safe'],
+            [['categoryId', 'code', 'title', 'category.title', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -35,6 +35,7 @@ trait LocationSearchTrait
         // $query->joinWith('nad_eng_location_stage');
         $query->andFilterWhere(['=', 'category.id', $this->categoryId]);
         $query->andFilterWhere(['like', 'nad_eng_location.title', $this->title]);
+        $query->andFilterWhere(['like', 'nad_eng_location.code', $this->code]);
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]

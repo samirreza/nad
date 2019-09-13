@@ -58,8 +58,13 @@ $module = $this->context->module;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-                    'code',
+                    [
+                        'header' => 'شمارنده',
+                        'class' => 'yii\grid\SerialColumn'
+                    ],
+                    [
+                        'attribute' => 'code',
+                    ],
                     [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
@@ -78,6 +83,23 @@ $module = $this->context->module;
                     //     'isAjaxGrid' => true,                        
                     // ],                
                     'createdAt:datetime',
+                    [
+                        'label' => 'لیست مدارک گروه',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return Html::a(
+                                    '<i class="fa fa-external-link-square fa-2x" style="color:#46459f"></i>',
+                                    [
+                                        '/engineering/piping/document/manage/index',
+                                    'DocumentSearch[groupId]' => $model->id
+                                    ],                                    
+                                    [
+                                        'title' => 'لیست مدارک گروه مدارک',
+                                        'target' => '_blank'
+                                    ]
+                                );
+                        }
+                    ],    
                     [
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {download}',

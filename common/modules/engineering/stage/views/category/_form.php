@@ -21,20 +21,22 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
             <?php Panel::begin() ?>
             <div class="row">
                 <div class="col-md-4">
+                    <?= $form->field($model, 'title')->textInput() ?>
+                </div>
+                <div class="col-md-3">
                     <?=
+                    $form->field($model, 'code')->textInput(
+                        ['style' => 'direction:ltr', 'maxlength' => 3]
+                    )->hint('۱ تا ۳ کاراکتر بزرگ لاتین به فرمت AAA')
+                    ?>
+                </div>
+                <div class="col-md-4">
+                <?=
                         $form->field($model, 'parentId')
                             ->widget(Select2::class, [
                                 'data' => $model->getParentsForSelect2()
                             ]);
-                    ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'code')->textInput(
-                        ['style' => 'direction:ltr', 'maxlength' => 3]
-                    )->hint('۱ تا ۳ کاراکتر بزرگ لاتین به فرمت AAA') ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'title')->textInput() ?>
+                    ?>                    
                 </div>
             </div>            
             <?php Panel::end() ?>

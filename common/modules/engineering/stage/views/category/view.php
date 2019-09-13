@@ -22,7 +22,7 @@ use theme\widgets\ActionButtons;
                     [
                         'label' => "رده پدر",
                         'visible' => !$model->isRoot(),
-                        'value' => $model->isRoot() ?$model->title: $model->getParent()->title,
+                        'value' => $model->getParentTitle(),
                         'format' => 'raw'
                     ],
                     [
