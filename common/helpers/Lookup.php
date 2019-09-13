@@ -19,7 +19,7 @@ class Lookup extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Lookup';
+        return 'lookup';
     }    
 
     /**
