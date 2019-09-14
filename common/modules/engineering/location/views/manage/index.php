@@ -95,7 +95,7 @@ $module = $this->context->module;
                                     ],                                    
                                     [
                                         'title' => 'لیست مدارک گروه مدارک',
-                                        'target' => '_blank',
+                                        //'target' => '_blank',
                                         'data-pjax' => 0
                                     ]
                                 );
