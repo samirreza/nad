@@ -32,7 +32,7 @@ $module = $this->context->module;
 
 <div class="sliding-form-wrapper"></div>
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-11">
         <?php Panel::begin([
             'title' => 'لیست رده ها'
         ]) ?>
@@ -109,8 +109,10 @@ $module = $this->context->module;
             ]); ?>
         <?php Pjax::end(); ?>
         <?php Panel::end() ?>
-    </div>
-    <div class="col-md-5">
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-11">    
         <?php Panel::begin([
             'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
             'tools' => Html::a(
@@ -128,6 +130,5 @@ $module = $this->context->module;
             </div>
             <div id="cats-tree"></div>
         <?php Panel::end() ?>
-    </div>
+    </div>    
 </div>
-
