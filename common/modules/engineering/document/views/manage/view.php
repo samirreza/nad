@@ -41,7 +41,12 @@ use nad\common\modules\engineering\document\models\Document;
                         'label' =>  'گروه مدارک'   
                     ],
                     'revisionNumber',
-                    'uniqueCode',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'value' => function($model){
+                            return $model->getUniqueCode();
+                        }
+                    ],
                     'producerName',
                     'verifierName',
                     // 'location.familyTreeTitle',
