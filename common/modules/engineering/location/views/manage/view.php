@@ -19,7 +19,12 @@ use theme\widgets\ActionButtons;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'uniqueCode',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'value' => function($model){
+                            return $model->getUniqueCode();
+                        }
+                    ],
                     'title',
                     'category.familyTreeTitle',
                     'createdAt:date',

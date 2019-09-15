@@ -3,9 +3,9 @@ namespace nad\common\modules\engineering\document\models;
 
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
-use nad\common\modules\engineering\location\models\Location;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\common\modules\engineering\location\models\Location;
 
 class Document extends \yii\db\ActiveRecord implements Codable
 {
@@ -50,26 +50,18 @@ class Document extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['title', 'groupId', 'code'], 'required'],
-            [['title', 'code'], 'trim'],
-            [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 10, 'min' => 1],
+            [['title', 'groupId', 'documentType'], 'required'],
+            [['title'], 'trim'],
+            [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],        
             [['groupId', 'documentType', 'revisionNumber'], 'integer'],
             [['description'], 'string'],
-            [['title'], FarsiCharactersValidator::className()],
-            [
-                'code',
-                'unique',
-                'targetAttribute' => ['code', 'groupId'],
-                'message' => 'این شناسه پیش تر ثبت شده است.'
-            ],
+            [['title', 'producerName', 'verifierName', 'description'], FarsiCharactersValidator::className()],
         ];
     }
 
     public function attributeLabels()
     {
-        return [
-            'code' => 'شناسه مدرک',
+        return [            
             'uniqueCode' => 'شناسه مدرک',
             'title' => 'عنوان مدرک',
             'producerName' => 'نام تهیه کننده',
@@ -91,8 +83,7 @@ class Document extends \yii\db\ActiveRecord implements Codable
     }
 
     public function beforeValidate()
-    {
-        $this->code = strtoupper($this->code);
+    {        
         return parent::beforeValidate();
     }
 
@@ -107,11 +98,22 @@ class Document extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {        
-        $this->uniqueCode = $this->location->category->uniqueCode . '.' . $this->location->title . '.' . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . '.' . $this->code;
+        $this->uniqueCode = $this->location->uniqueCode . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
     }
+
+    // public function getUniqueCode() : string
+    // {
+    //     return $this->uniqueCode;
+    // }
 
     public function getUniqueCode() : string
     {
-        return $this->uniqueCode;
-    }
+        $group = $this->location;
+        if(!isset($group)){
+            $group = Location::findOne($this->groupId);
+        }
+        $categoryUniqueCodeWithoutDot = str_replace('.' , '', $group->category->uniqueCode);
+        
+        return $categoryUniqueCodeWithoutDot . '.' . $group->code . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
+    }    
 }

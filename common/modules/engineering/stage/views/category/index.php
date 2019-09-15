@@ -26,13 +26,7 @@ $module = $this->context->module;
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
             ]
-        ],
-        'materials' => [
-            'label' => (isset($this->params['stageIndexBtnLabel'])) ? $this->params['stageIndexBtnLabel'] : $module->pluralLabel,
-            'url' => ['manage/index'],
-            'type' => 'info',
-            'icon' => 'list'
-        ],
+        ]
     ],
 ]); ?>
 

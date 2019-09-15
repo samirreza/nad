@@ -3,9 +3,9 @@ namespace nad\common\modules\engineering\location\models;
 
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
-use nad\common\modules\engineering\stage\models\Category;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\common\modules\engineering\stage\models\Category;
 
 class Location extends \yii\db\ActiveRecord implements Codable
 {
@@ -14,11 +14,6 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public static function tableName()
     {
         return 'nad_eng_location';
-    }
-
-    public function getUniqueCode() : string
-    {
-        return $this->uniqueCode;
     }
 
     public function behaviors()
@@ -66,7 +61,7 @@ class Location extends \yii\db\ActiveRecord implements Codable
     {
         return [
             'code' => 'شناسه گروه',
-            'uniqueCode' => 'شناسه رده',
+            'uniqueCode' => 'شناسه گروه',
             'title' => 'عنوان گروه',
             'description' => 'توضیحات',
             'categoryId' => 'عنوان رده - شناسه رده',
@@ -105,5 +100,15 @@ class Location extends \yii\db\ActiveRecord implements Codable
     public function setUniqueCode()
     {
         $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
+    }
+    
+    public function getUniqueCode() : string
+    {
+        $category = $this->category;
+        if(!isset($category)){
+            $category = Category::findOne($this->categoryId);
+        }
+        $categoryUniqueCodeWithoutDot = str_replace('.' , '', $category->uniqueCode);
+        return $categoryUniqueCodeWithoutDot . '.' . $this->code;
     }
 }

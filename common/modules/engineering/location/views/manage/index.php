@@ -63,26 +63,16 @@ $module = $this->context->module;
                         'class' => 'yii\grid\SerialColumn'
                     ],
                     [
-                        'attribute' => 'code',
+                        'attribute' => 'uniqueCode',
+                        'value' => function($model){
+                            return $model->getUniqueCode();
+                        }
                     ],
                     [
                         'class' => 'core\grid\TitleColumn',
                         'isAjaxGrid' => true
-                    ], 
-                    // [
-                    //     'attribute' => 'category.title',
-                    //     'value' => function ($model) { 
-                    //         if(isset($model->category))                           
-                    //             return $model->category->familyTreeTitle;
-                    //         else
-                    //             return null;
-                    //     }
-                    // ],
-                    // [
-                    //     'class' => 'nad\common\code\CodeGridColumn',
-                    //     'isAjaxGrid' => true,                        
-                    // ],                
-                    'createdAt:datetime',
+                    ],                                   
+                    // 'createdAt:datetime',
                     [
                         'label' => 'لیست مدارک گروه',
                         'format' => 'raw',
@@ -95,7 +85,6 @@ $module = $this->context->module;
                                     ],                                    
                                     [
                                         'title' => 'لیست مدارک گروه مدارک',
-                                        //'target' => '_blank',
                                         'data-pjax' => 0
                                     ]
                                 );
