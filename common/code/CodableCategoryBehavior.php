@@ -60,9 +60,9 @@ class CodableCategoryBehavior extends \yii\base\Behavior
         }
     }
 
-    public function getParentsForSelect2() : array
+    public function getParentsForSelect2($rootLabel = 'درج به عنوان گروه') : array
     {
-        return ['درج به عنوان گروه'] +
+        return [$rootLabel] +
             ArrayHelper::map($this->possibleParents(), 'id', 'codedTitle');
     }
 

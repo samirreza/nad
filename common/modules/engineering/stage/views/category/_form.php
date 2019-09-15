@@ -26,15 +26,15 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                 <div class="col-md-3">
                     <?=
                     $form->field($model, 'code')->textInput(
-                        ['style' => 'direction:ltr', 'maxlength' => 3]
-                    )->hint('۱ تا ۳ کاراکتر بزرگ لاتین به فرمت AAA')
+                        ['style' => 'direction:ltr', 'maxlength' => 1]
+                    )->hint('۱ کاراکتر بزرگ لاتین به فرمت A')
                     ?>
                 </div>
                 <div class="col-md-4">
                 <?=
                         $form->field($model, 'parentId')
                             ->widget(Select2::class, [
-                                'data' => $model->getParentsForSelect2()
+                                'data' => $model->getParentsForSelect2('درج به عنوان رده 1')
                             ]);
                     ?>                    
                 </div>

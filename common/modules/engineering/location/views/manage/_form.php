@@ -70,27 +70,7 @@ $uploadedFiles = $model->getFiles('file');
                         'icon' => 'undo'
                     ])
                 ?>
-            <?php Panel::end() ?>
-            <?php
-            if(isset($uploadedFiles) && !empty($uploadedFiles)){
-                Panel::begin();
-            ?>
-                    <label>فایل مستندات</label>
-                    <?= SingleFileUpload::widget([
-                        'model' => $model,
-                        'group' => 'file',
-                    ]) ?>
-            <?php 
-                Panel::end();
-            }
-            ?>
-            <?php Panel::begin() ?>
-                <label>فایل مستندات</label>
-                <?= SingleFileUpload::widget([
-                    'model' => new $className,
-                    'group' => 'file',
-                ]) ?>
-            <?php Panel::end() ?>
+            <?php Panel::end() ?>            
         </div>
     </div>
     <?php Panel::end() ?>

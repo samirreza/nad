@@ -57,7 +57,7 @@ class Category extends ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
             ['title', FarsiCharactersValidator::class],
-            ['code', 'string', 'min' => 1, 'max' => 3]
+            ['code', 'string', 'min' => 1, 'max' => 1]
         ];
     }
 
@@ -108,11 +108,9 @@ class Category extends ActiveRecord implements Codable
     public function getDepthList()
     {
         return [
-            0 => 'گروه',
-            1 => 'دسته',
-            // 2 => 'زیر دسته',
-            2 => 'شاخه',
-            // 4 => 'زیر شاخه'
+            0 => 'رده 1',
+            1 => 'رده 2',            
+            2 => 'رده 3',            
         ];
     }
 

@@ -25,52 +25,40 @@ $uploadedFiles = $model->getFiles('file');
     <div class="row">
         <div class="col-md-9">
             <?php Panel::begin() ?>
+            <?= Html::activeHiddenInput($model, 'groupId'); ?>
             <div class="row">
                 <div class="col-md-8">
                     <?= $form->field($model, 'title')->textInput() ?>
                 </div>                
             </div>
             <div class="row">
-            <div class="col-md-4">            
+                <div class="col-md-4">            
                     <?= $form->field($model, 'documentType')->dropDownList(
                         Lookup::items('nad.stage.document.Type'),
                         ['prompt'=>'انتخاب کنید'] 
                     ) ?>
                 </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'code')->textInput(
-    ['style' => 'direction:ltr', 'maxlength' => 10]
-);//->hint('تنها یک کاراکتر لاتین')
-                    ?>                    
-                </div>                                   
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <?= Html::activeHiddenInput($model, 'groupId'); ?>
-                    <?= $model->getAttributeLabel('groupId'); ?>
+                <div class="col-md-4">                    
+                    <?= $model->getAttributeLabel('uniqueCode'); ?>
                     <?=
                     Html::textInput(
-                        'dummy',
-                        $model->location->getUniqueCode(),
+                        null,
+                        $model->getUniqueCode(),
                         [
                             'class' => 'form-control',
+                            'dir' => 'ltr',
                             'disabled' => 'true'
                         ]
                     );
                     ?>
                 </div>
-                <div class="col-md-3">
-                    <?= $model->getAttributeLabel('location.title'); ?>
-                    <?=
-                    Html::textInput(
-                        'dummy',
-                        $model->location->title,
-                        [
-                            'class' => 'form-control',
-                            'disabled' => 'true'
-                        ]
-                    );
-                    ?>
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+                    <p class="help-block">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    پس از ذخیره فرم، شماره نوع مدرک به انتهای شناسه مدرک اضافه خواهد شد.
+                    </p>
                 </div>
             </div>
             <br/>

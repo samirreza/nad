@@ -58,7 +58,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,              
                 'showCount' => false,
                 'title' => 'مراحل',
-                'titleUrl' => Url::to(['/engineering/piping/stage/manage/index'])
+                'titleUrl' => Url::to(['/engineering/piping/stage/category/index'])
             ]) ?>
         </div>
         <div class="col-md-3">

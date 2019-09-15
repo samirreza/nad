@@ -10,7 +10,7 @@ trait DocumentSearchTrait
     public function rules()
     {
         return [
-            [['groupId', 'code', 'title', 'uniqueCode'], 'safe'],
+            [['groupId', 'title', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -26,8 +26,7 @@ trait DocumentSearchTrait
             return $dataProvider;
         }
                                
-        $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'title', $this->title]);        
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
         $query->andFilterWhere(['like', 'groupId', $this->groupId]);
         return $dataProvider;

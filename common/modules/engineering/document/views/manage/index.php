@@ -18,7 +18,7 @@ $module = $this->context->module;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => [
-                'label' => 'افزودن مدارک',
+                'label' => 'افزودن مدرک',
                 'options' => [
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-gridviewpjax',
@@ -61,6 +61,9 @@ $module = $this->context->module;
                     ],
                     [
                         'attribute' => 'uniqueCode',
+                        'value' => function($model){
+                            return $model->getUniqueCode();
+                        }
                     ],
                     [
                         'attribute' => 'revisionNumber',            
