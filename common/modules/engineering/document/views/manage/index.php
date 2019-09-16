@@ -14,6 +14,8 @@ $module = $this->context->module;
 //     $module->pluralLabel
 // ];
 ?>
+
+<h4 class="nad-page-title">لیست مدارک گروه مدارک</h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
