@@ -9,8 +9,8 @@ class Module extends \yii\base\Module
     public $pluralLabel = 'مراحل';    
     public $singularLabel = 'مرحله';
 
-    public $categoryListBtnLabel = 'لیست رده بندی مراحل و بسته مدارک';
-    public $categoryCreateBtnLabel = 'افزودن رده مراحل و بسته مدارک';
+    public $categoryListBtnLabel = 'لیست رده بندی مراحل';
+    public $categoryCreateBtnLabel = 'افزودن رده مراحل';
 
     public $defaultRoute = 'manage/start';
 
@@ -22,7 +22,7 @@ class Module extends \yii\base\Module
 
         $this->horizontalMenuItems = [                        
             [
-                'label' => 'رده بندی مراحل و بسته مدارک',
+                'label' => 'رده بندی مراحل',
                 'items' => [
                     [
                         'label' => 'لیست رده ها',

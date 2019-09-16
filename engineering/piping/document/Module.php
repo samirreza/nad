@@ -15,7 +15,7 @@ class Module extends \yii\base\Module
     {                       
         $this->horizontalMenuItems = [                        
             [
-                'label' => 'رده بندی مراحل و بسته مدارک',
+                'label' => 'رده بندی مراحل',
                 'items' => [
                     [
                         'label' => 'لیست رده ها',

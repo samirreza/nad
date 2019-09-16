@@ -33,7 +33,7 @@ use nad\common\modules\engineering\document\models\Document;
                         'label' => 'عنوان رده'
                     ],
                     [
-                        'attribute' =>'location.category.uniqueCode',                    
+                        'attribute' =>'location.category.code',                    
                         'label' => 'شناسه رده'
                     ],
                     [

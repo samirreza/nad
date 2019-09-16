@@ -17,6 +17,7 @@ $module = $this->context->module;
 //     'لیست رده ها'
 // ];
 ?>
+<h4 class="nad-page-title">لیست رده بندی مراحل</h4>
 <div class="categories-index">
 <?= ActionButtons::widget([
     'buttons' => [
@@ -32,9 +33,9 @@ $module = $this->context->module;
 
 <div class="sliding-form-wrapper"></div>
 <div class="row">
-    <div class="col-md-11">
+    <div class="col-md-12">
         <?php Panel::begin([
-            'title' => 'لیست رده ها'
+            // 'title' => 'لیست رده ها'
         ]) ?>
         <?php Pjax::begin([
             'id' => 'categories-gridviewpjax',
@@ -79,7 +80,7 @@ $module = $this->context->module;
                                     ],                                    
                                     [
                                         'title' => 'لیست گروه های مدارک بسته مدارک',
-                                        'target' => '_blank'
+                                        'data-pjax' => 0
                                     ]
                                 );
                         }

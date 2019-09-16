@@ -111,9 +111,8 @@ class Document extends \yii\db\ActiveRecord implements Codable
         $group = $this->location;
         if(!isset($group)){
             $group = Location::findOne($this->groupId);
-        }
-        $categoryUniqueCodeWithoutDot = str_replace('.' , '', $group->category->uniqueCode);
+        }        
         
-        return $categoryUniqueCodeWithoutDot . '.' . $group->code . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
+        return $group->category->code . '.' . $group->code . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
     }    
 }
