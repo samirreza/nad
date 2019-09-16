@@ -16,7 +16,7 @@ use theme\widgets\ActionButtons;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'uniqueCode',
+                    // 'uniqueCode',
                     'code',
                     'title',
                     [
@@ -24,30 +24,8 @@ use theme\widgets\ActionButtons;
                         'visible' => !$model->isRoot(),
                         'value' => $model->getParentTitle(),
                         'format' => 'raw'
-                    ],
-                    [
-                        'attribute' => 'locations',
-                        'format' => 'raw', 
-                        'value' =>
-                        function ($model) {
-                            $tempLocations=[];                            
-                            foreach ($model->locations as $location) {
-                                $tempLocations[]=$location->title;
-                            }
-                            return empty($tempLocations)?null:'گروه ها: '.implode($tempLocations, ' - '). '&nbsp;&nbsp;&nbsp;' . Html::a(
-                                    '<button class="btn btn-success"><i class="fa fa-external-link-square"></i></button>',
-                                    [
-                                        '/engineering/piping/location/manage/index',
-                                        'LocationSearch[categoryId]' => $model->id
-                                    ],
-                                    [
-                                        'title' => 'لیست گروه های مدارک بسته مدارک',
-                                        'target' => '_blank'
-                                    ]
-                                      
-                                );
-                        },
-                    ],
+                    ], 
+                    'createdAt:date'                   
                 ],
             ]) ?>
             <?php Panel::end() ?>

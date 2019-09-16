@@ -14,6 +14,8 @@ $module = $this->context->module;
 //     $module->pluralLabel
 // ];
 ?>
+
+<h4 class="nad-page-title">بسته مدارک <?= $categoryModel->title . ' (' . $categoryModel->code . ')' ?></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -23,7 +25,7 @@ $module = $this->context->module;
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-gridviewpjax',
                     'data-params' => 
-                        'Location[categoryId]=' . Yii::$app->request->queryParams['LocationSearch']['categoryId']
+                        'Location[categoryId]=' . $categoryModel->id
                     
                 ]
             ],
@@ -37,7 +39,7 @@ $module = $this->context->module;
             //     'url' => ['tree-list']
             // ],
             'stageCategoriesIndex' => [
-                'label' => 'لیست رده بندی مراحل و بسته مدارک',
+                'label' => 'لیست رده بندی مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
                 'type' => 'success'

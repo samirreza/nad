@@ -57,7 +57,7 @@ $uploadedFiles = $model->getFiles('file');
                 <div class="col-md-11">
                     <p class="help-block">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    پس از ذخیره فرم، شماره نوع مدرک به انتهای شناسه مدرک اضافه خواهد شد.
+                    پس از ذخیره فرم، شناسه مدرک با شماره نوع مدرک انتخاب شده، بروز خواهد شد.
                     </p>
                 </div>
             </div>

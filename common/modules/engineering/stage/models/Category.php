@@ -57,19 +57,19 @@ class Category extends ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             ['title', 'string', 'max' => 255],
             ['title', FarsiCharactersValidator::class],
-            ['code', 'string', 'min' => 1, 'max' => 1]
+            ['code', 'string', 'min' => 1, 'max' => 3]
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'id' => 'شناسه',
+            'id' => 'ID',
             'depth' => 'رده',
             'title' => 'عنوان',
             'nestedTitle' => 'عنوان',
             'code' => 'شناسه رده',
-            'uniqueCode' => 'شناسه یکتا',
+            'uniqueCode' => 'شناسه',
             'parentId' => 'رده پدر',
             'locations' => 'بسته مدارک',
             'createdAt' => 'تاریخ درج',
@@ -100,11 +100,6 @@ class Category extends ActiveRecord implements Codable
         return $this->hasMany(Stage::class, ['categoryId' => 'id']);
     }
 
-    public function getLocations()
-    {
-        return $this->hasMany(Location::className(), ['id' => 'locationId'])->viaTable('nad_eng_location_stage', ['stageCategoryId' => 'id']);
-    }
-
     public function getDepthList()
     {
         return [
@@ -125,5 +120,15 @@ class Category extends ActiveRecord implements Codable
 
     public function getParentTitle(){
         return $this->isRoot() ? 'ندارد' : $this->getParent()->title;
+    }
+
+    /**
+     * Overrides CodableTrait::getCodedTitle()
+     * 
+     * @return string
+     */
+    public function getCodedTitle() : string
+    {
+        return $this->title . ' - ' . $this->code;
     }
 }

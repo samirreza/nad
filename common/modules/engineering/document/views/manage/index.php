@@ -28,7 +28,7 @@ $module = $this->context->module;
                 ]
             ],
             'stageCategoriesIndex' => [
-                'label' => 'لیست رده بندی مراحل و بسته مدارک',
+                'label' => 'لیست رده بندی مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
                 'type' => 'success'

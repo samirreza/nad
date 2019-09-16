@@ -5,7 +5,7 @@ namespace nad\common\modules\engineering\location\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use nad\common\modules\engineering\location\models\Location;
-use nad\common\modules\engineering\location\models\Category;
+use nad\common\modules\engineering\stage\models\Category;
 use nad\common\modules\engineering\location\models\LocationSearch;
 
 class ManageController extends \core\controllers\AjaxAdminController
@@ -68,6 +68,20 @@ class ManageController extends \core\controllers\AjaxAdminController
     public function actionReport()
     {
         return $this->render('report');
+    }
+
+    public function actionIndex()
+    {
+        $categoryId = Yii::$app->request->queryParams['LocationSearch']['categoryId'];  
+        $categoryModel = Category::findOne($categoryId);        
+        $searchModel = new $this->searchClass;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'categoryModel' => $categoryModel
+        ]);
     }
 
     // public function getViewPath()

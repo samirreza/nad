@@ -26,8 +26,8 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                 <div class="col-md-3">
                     <?=
                     $form->field($model, 'code')->textInput(
-                        ['style' => 'direction:ltr', 'maxlength' => 1]
-                    )->hint('۱ کاراکتر بزرگ لاتین به فرمت A')
+                        ['style' => 'direction:ltr', 'maxlength' => 3]
+                    )->hint('1 تا 3 کاراکتر بزرگ لاتین به فرمت AAA')
                     ?>
                 </div>
                 <div class="col-md-4">

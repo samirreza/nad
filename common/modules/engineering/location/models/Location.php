@@ -108,7 +108,7 @@ class Location extends \yii\db\ActiveRecord implements Codable
         if(!isset($category)){
             $category = Category::findOne($this->categoryId);
         }
-        $categoryUniqueCodeWithoutDot = str_replace('.' , '', $category->uniqueCode);
-        return $categoryUniqueCodeWithoutDot . '.' . $this->code;
+        
+        return $category->code . '.' . $this->code;
     }
 }
