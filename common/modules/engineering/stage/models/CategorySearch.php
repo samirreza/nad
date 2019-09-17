@@ -15,15 +15,10 @@ class CategorySearch extends Category
 
     public function search($params)
     {
-        $query = Category::find();
+        $query = Category::find()->orderBy(['code' => SORT_ASC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'tree' => SORT_DESC,
-                    'lft' => SORT_ASC,
-                ]
-            ],
+            'sort' =>false
         ]);
         $this->load($params);
         if (!$this->validate()) {
