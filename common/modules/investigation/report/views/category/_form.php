@@ -42,7 +42,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                 <div class="col-md-3">
                     <?php Panel::begin() ?>
                         <?= Html::submitButton('<i class="fa fa-save"></i> ذخیره', [
-                            'class' => 'btn btn-lg btn-warning'
+                            'class' => 'btn btn-xs btn-warning'
                         ]) ?>
                         <?= Button::widget([
                             'label' => 'انصراف',

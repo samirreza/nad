@@ -4,8 +4,8 @@ namespace nad\common\modules\engineering\location\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use nad\common\modules\engineering\location\models\Location;
 use nad\common\modules\engineering\stage\models\Category;
+use nad\common\modules\engineering\location\models\Location;
 use nad\common\modules\engineering\location\models\LocationSearch;
 
 class ManageController extends \core\controllers\AjaxAdminController

@@ -64,9 +64,9 @@ class Location extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه گروه',
             'title' => 'عنوان گروه',
             'description' => 'توضیحات',
-            'categoryId' => 'عنوان رده - شناسه رده',
-            'category.title' => 'عنوان رده',
-            'category.familyTreeTitle' => 'عنوان رده (شاخه)',
+            'categoryId' => 'عنوان و شناسه مرحله',
+            'category.title' => 'عنوان مرحله',
+            'category.familyTreeTitle' => 'عنوان مرحله (شاخه)',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];

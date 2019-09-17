@@ -12,7 +12,7 @@ $this->params['groupsIndex'] = [
 $this->params['breadcrumbs'] = [
     'فنی',       
     'لوله کشی',
-    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']], 
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/start']], 
     ['label' => 'لیست رده بندی مراحل', 'url' => ['/engineering/piping/stage/category']],
     ['label' => 'بسته مدارک', 'url' => $this->params['groupsIndex']],     
     $this->title
@@ -22,5 +22,6 @@ $this->params['breadcrumbs'] = [
 
 <?= $this->render('@nad/common/modules/engineering/document/views/manage/index', [
     'dataProvider' => $dataProvider,
-    'searchModel' => $searchModel
+    'searchModel' => $searchModel,
+    'locationModel' => $locationModel
 ]);

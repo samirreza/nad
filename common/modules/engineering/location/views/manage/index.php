@@ -15,7 +15,7 @@ $module = $this->context->module;
 // ];
 ?>
 
-<h4 class="nad-page-title">بسته مدارک <?= $categoryModel->title . ' (' . $categoryModel->code . ')' ?></h4>
+<h4 class="nad-page-title">بسته مدارک مرحله <?= $categoryModel->title . ' (' . $categoryModel->code . ')' ?></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -63,24 +63,24 @@ $module = $this->context->module;
                     [
                         'header' => 'شمارنده',
                         'class' => 'yii\grid\SerialColumn'
+                    ],                    
+                    [
+                        'class' => 'core\grid\TitleColumn',
+                        'isAjaxGrid' => true
                     ],
                     [
                         'attribute' => 'uniqueCode',
                         'value' => function($model){
                             return $model->getUniqueCode();
                         }
-                    ],
-                    [
-                        'class' => 'core\grid\TitleColumn',
-                        'isAjaxGrid' => true
                     ],                                   
                     // 'createdAt:datetime',
                     [
-                        'label' => 'لیست مدارک گروه',
+                        'label' => 'مدارک گروه',
                         'format' => 'raw',
                         'value' => function ($model) {
                             return Html::a(
-                                    '<i class="fa fa-external-link-square fa-2x" style="color:#46459f"></i>',
+                                    '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
                                     [
                                         '/engineering/piping/document/manage/index',
                                     'DocumentSearch[groupId]' => $model->id

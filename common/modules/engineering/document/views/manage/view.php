@@ -30,11 +30,11 @@ use nad\common\modules\engineering\document\models\Document;
                     ],
                     [
                         'attribute' => 'location.category.title',
-                        'label' => 'عنوان رده'
+                        'label' => 'عنوان مرحله'
                     ],
                     [
                         'attribute' =>'location.category.code',                    
-                        'label' => 'شناسه رده'
+                        'label' => 'شناسه مرحله'
                     ],
                     [
                         'attribute' =>'location.title',  
