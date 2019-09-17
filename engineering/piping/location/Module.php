@@ -15,14 +15,14 @@ class Module extends \yii\base\Module
     {                
         $this->horizontalMenuItems = [                        
             [
-                'label' => 'رده بندی مراحل',
+                'label' => 'مراحل',
                 'items' => [
                     [
-                        'label' => 'لیست رده ها',
+                        'label' => 'لیست مراحل',
                         'url' => ['/engineering/piping/stage/category/index']
                     ],
                     [
-                        'label' => 'افزودن رده',
+                        'label' => 'افزودن مرحله',
                         'url' => ['/engineering/piping/stage/category/index#class_ajaxcreate']
                     ]
                 ]
