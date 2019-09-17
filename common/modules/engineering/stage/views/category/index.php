@@ -108,7 +108,7 @@ $module = $this->context->module;
 <div class="row">
     <div class="col-md-7">    
         <?php Panel::begin([
-            'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
+            'title' => 'نمایش درختی ' . $module->pluralLabel,
             'tools' => Html::a(
                 '<span class="glyphicon glyphicon-refresh"></span>',
                 null,
