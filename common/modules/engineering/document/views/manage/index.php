@@ -15,7 +15,7 @@ $module = $this->context->module;
 // ];
 ?>
 
-<h4 class="nad-page-title">لیست مدارک گروه مدارک</h4>
+<h4 class="nad-page-title">لیست مدارک گروه <?= $locationModel->title ?> مرحله <?= $locationModel->category->title ?></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -62,6 +62,10 @@ $module = $this->context->module;
                         'class' => 'yii\grid\SerialColumn'
                     ],
                     [
+                        'class' => 'core\grid\TitleColumn',
+                        'isAjaxGrid' => true
+                    ],
+                    [
                         'attribute' => 'uniqueCode',
                         'value' => function($model){
                             return $model->getUniqueCode();
@@ -72,13 +76,9 @@ $module = $this->context->module;
                         'value' => function($model){
                             return (isset($model->revisionNumber) ? 'Rev.' . $model->revisionNumber : null);
                         }
-                    ],                    
+                    ],
                     [
-                        'class' => 'core\grid\TitleColumn',
-                        'isAjaxGrid' => true
-                    ], 
-                    [
-                        'header' => 'فایلها',
+                        'header' => 'مدرک',
                         'value' => function($model){
                             if (!$model->hasFile('file')) {
                                 return null;

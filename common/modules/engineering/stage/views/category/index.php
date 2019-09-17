@@ -10,19 +10,14 @@ use nad\common\modules\engineering\location\assetbundles\TreeAssetBundle;
 TreeAssetBundle::register($this);
 
 $module = $this->context->module;
-// $this->title = $module->department.' - '.$module->pluralLabel.' - لیست رده ها';
-// $this->params['breadcrumbs'] = [
-//     $module->department,
-//     ['label' => $module->pluralLabel, 'url' => ['manage/index']],
-//     'لیست رده ها'
-// ];
+
 ?>
-<h4 class="nad-page-title">لیست رده بندی مراحل</h4>
+<h4 class="nad-page-title">مراحل</h4>
 <div class="categories-index">
 <?= ActionButtons::widget([
     'buttons' => [
         'create' => [
-            'label' => $module->categoryCreateBtnLabel,
+            'label' => 'افزودن مرحله', //$module->categoryCreateBtnLabel,
             'options' => [
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
@@ -34,21 +29,19 @@ $module = $this->context->module;
 <div class="sliding-form-wrapper"></div>
 <div class="row">
     <div class="col-md-12">
-        <?php Panel::begin([
-            // 'title' => 'لیست رده ها'
-        ]) ?>
+        <?php Panel::begin([]) ?>
         <?php Pjax::begin([
             'id' => 'categories-gridviewpjax',
             'enablePushState' => false,
         ]); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
+                'filterModel' => $searchModel,                
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'class' => 'nad\common\code\CodeGridColumn',
-                        'options' => ['style' => 'width:30%'],
+                        'class' => 'nad\common\code\CodeGridColumn', 
+                        'options' => ['style' => 'width:10%'],                   
                         'isAjaxGrid' => true
                     ],
                     [
@@ -56,12 +49,12 @@ $module = $this->context->module;
                         'isAjaxGrid' => true
                     ],
                     [
-                        'label' => 'رده پدر',
+                        'label' => 'مرحله پدر',
                         'value' =>  function ($model) {
                             return $model->getParentTitle();
                         }
                     ],
-                    [
+                    [                        
                         'attribute' => 'depth',
                         'filter' => $searchModel->getDepthList(),
                         'value' => function ($model) {
@@ -105,7 +98,7 @@ $module = $this->context->module;
                             },                            
                         ],
                     ],
-                    'createdAt:datetime',
+                    'createdAt:date',
                 ],
             ]); ?>
         <?php Pjax::end(); ?>
@@ -113,7 +106,7 @@ $module = $this->context->module;
     </div>    
 </div>
 <div class="row">
-    <div class="col-md-11">    
+    <div class="col-md-7">    
         <?php Panel::begin([
             'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
             'tools' => Html::a(

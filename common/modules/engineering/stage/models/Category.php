@@ -65,12 +65,12 @@ class Category extends ActiveRecord implements Codable
     {
         return [
             'id' => 'ID',
-            'depth' => 'رده',
+            'depth' => 'مرحله',
             'title' => 'عنوان',
             'nestedTitle' => 'عنوان',
-            'code' => 'شناسه رده',
+            'code' => 'شناسه مرحله',
             'uniqueCode' => 'شناسه',
-            'parentId' => 'رده پدر',
+            'parentId' => 'مرحله پدر',
             'locations' => 'بسته مدارک',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
@@ -103,9 +103,9 @@ class Category extends ActiveRecord implements Codable
     public function getDepthList()
     {
         return [
-            0 => 'رده 1',
-            1 => 'رده 2',            
-            2 => 'رده 3',            
+            0 => 'مرحله 1',
+            1 => 'مرحله 2',            
+            2 => 'مرحله 3',            
         ];
     }
 

@@ -55,7 +55,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                 </div>
                 <div class="col-md-4">
                     <?= Html::submitButton('ذخیره', [
-                        'class' => 'btn btn-lg btn-warning'
+                        'class' => 'btn btn-xs btn-warning'
                     ]) ?>
                     <?= Button::widget([
                         'label' => 'انصراف',

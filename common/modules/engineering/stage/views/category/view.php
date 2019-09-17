@@ -10,7 +10,7 @@ use theme\widgets\ActionButtons;
     <div class="row">
         <div class="col-md-6">
             <?php Panel::begin([
-                'title' => 'اطلاعات رده',
+                'title' => 'اطلاعات مرحله',
                 'showCloseButton' => true
             ]) ?>
             <?= DetailView::widget([
@@ -20,7 +20,7 @@ use theme\widgets\ActionButtons;
                     'code',
                     'title',
                     [
-                        'label' => "رده پدر",
+                        'label' => "مرحله پدر",
                         'visible' => !$model->isRoot(),
                         'value' => $model->getParentTitle(),
                         'format' => 'raw'
