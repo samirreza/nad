@@ -92,7 +92,7 @@ class Category extends ActiveRecord implements Codable
         if ($this->parent == null) {
             return $this->code;
         }
-        return $this->parent->getUniqueCode().'.'.$this->code;
+        return $this->code;
     }
 
     public function getTypes()
