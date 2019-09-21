@@ -26,6 +26,9 @@ $module = $this->context->module;
     ],
 ]); ?>
 
+<br>
+<?= $this->render('_search', ['model' => $searchModel]) ?>
+
 <div class="sliding-form-wrapper"></div>
 <div class="row">
     <div class="col-md-12">
@@ -45,8 +48,8 @@ $module = $this->context->module;
                         'isAjaxGrid' => true
                     ],
                     [
-                        'class' => 'core\grid\TitleColumn',
-                        'isAjaxGrid' => true
+                        'class' => 'nad\common\grid\TitleColumn',
+                        'isAjaxGrid' => true,                        
                     ],
                     [
                         'label' => 'مرحله پدر',

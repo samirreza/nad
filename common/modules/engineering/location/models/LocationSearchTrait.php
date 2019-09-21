@@ -7,6 +7,8 @@ use yii\data\ActiveDataProvider;
 
 trait LocationSearchTrait
 {
+    public $titleOrCode;
+
     public function attributes()
     {
         return array_merge(parent::attributes(), ['category.title', 'category.id']);
@@ -15,7 +17,7 @@ trait LocationSearchTrait
     public function rules()
     {
         return [
-            [['categoryId', 'code', 'title', 'category.title', 'uniqueCode'], 'safe'],
+            [['categoryId', 'code', 'title', 'category.title', 'uniqueCode', 'titleOrCode'], 'safe'],
         ];
     }
 
@@ -31,8 +33,7 @@ trait LocationSearchTrait
             return $dataProvider;
         }
         
-        $query->joinWith('category AS category');
-        // $query->joinWith('nad_eng_location_stage');
+        $query->joinWith('category AS category');        
         $query->andFilterWhere(['=', 'category.id', $this->categoryId]);
         $query->andFilterWhere(['like', 'nad_eng_location.title', $this->title]);
         $query->andFilterWhere(['like', 'nad_eng_location.code', $this->code]);
@@ -40,6 +41,7 @@ trait LocationSearchTrait
         $query->andFilterWhere(
             ['like', 'category.title', $this->getAttribute('category.title')]
         );
+        $query->andFilterWhere(['or', ['like', 'nad_eng_location.title', $this->titleOrCode], ['like', 'nad_eng_location.uniqueCode', $this->titleOrCode]]);
         return $dataProvider;
     }
 }
