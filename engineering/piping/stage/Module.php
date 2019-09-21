@@ -9,7 +9,7 @@ class Module extends \yii\base\Module
     public $pluralLabel = 'مراحل';    
     public $singularLabel = 'مرحله';
 
-    public $categoryListBtnLabel = 'لیست رده بندی مراحل';
+    public $categoryListBtnLabel = 'لیست مراحل';
     public $categoryCreateBtnLabel = 'افزودن رده مراحل';
 
     public $defaultRoute = 'manage/start';

@@ -12,44 +12,8 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<br><br><br><br>
-<div class="well">
-    <br><h1 style="text-align: center">فعالیت ها</h1><br>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([
-                'icon' => 'search',
-                'showCount' => false,
-                'title' => 'بررسی',
-                'titleUrl' => Url::to(['/engineering/piping/stage/manage/investigation'])
-            ]) ?>
-        </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([
-                'icon' => 'pencil',
-                'showCount' => false,
-                'title' => 'طراحی',
-                'titleUrl' => Url::to('@web')
-            ]) ?>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-    <br><br>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([
-                'icon' => 'retweet',
-                'showCount' => false,
-                'title' => 'پایش',
-                'titleUrl' => Url::to('@web')
-            ]) ?>
-        </div>        
-    </div>
-    <br><br>
-
-    <br><h1 style="text-align: center">داده گاه ها</h1><br>
+    <br><h1 style="text-align: center">داده گاه ها (این صفحه موقت است)</h1><br>
+    <br>
 
     <div class="row">
         <div class="col-md-3"></div>
@@ -69,27 +33,7 @@ $this->params['breadcrumbs'] = [
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-    </div>
-    <br><br>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([   
-                'icon' => false,             
-                'showCount' => false,
-                'title' => 'منابع پایش',
-                'titleUrl' => Url::to(['@web'])
-            ]) ?>
-        </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
-                'showCount' => false,
-                'title' => 'منابع طراحی',
-                'titleUrl' => Url::to(['@web'])
-            ]) ?>
-        </div>
-    </div>
+    </div>    
     <br><br>
     <div class="row">
         <div class="col-md-3"></div>
@@ -110,6 +54,28 @@ $this->params['breadcrumbs'] = [
             ]) ?>
         </div>
     </div>
+
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([   
+                'icon' => false,             
+                'showCount' => false,
+                'title' => 'منابع پایش',
+                'titleUrl' => Url::to(['@web'])
+            ]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([  
+                'icon' => false,              
+                'showCount' => false,
+                'title' => 'منابع طراحی',
+                'titleUrl' => Url::to(['@web'])
+            ]) ?>
+        </div>
+    </div>    
     <br><br>
     <div class="row">
         <div class="col-md-3"></div>
