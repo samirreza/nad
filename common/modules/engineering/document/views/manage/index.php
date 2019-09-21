@@ -15,7 +15,7 @@ $module = $this->context->module;
 // ];
 ?>
 
-<h4 class="nad-page-title">لیست مدارک گروه <?= $locationModel->title ?> مرحله <?= $locationModel->category->title ?></h4>
+<h4 class="nad-page-title">لیست مدارک گروه <span class="nad-page-title-focus"><?= $locationModel->title ?></span> مرحله <span class="nad-page-title-focus"><?= $locationModel->category->title ?></span></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -30,7 +30,7 @@ $module = $this->context->module;
                 ]
             ],
             'stageCategoriesIndex' => [
-                'label' => 'لیست رده بندی مراحل',
+                'label' => 'لیست مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
                 'type' => 'success'
@@ -43,6 +43,12 @@ $module = $this->context->module;
             ]
         ],
     ]); ?>
+
+<br>
+    <?= $this->render('_search', [
+        'model' => $searchModel,
+        'groupId' =>  Yii::$app->request->queryParams['DocumentSearch']['groupId']
+        ]) ?>
 
     <div class="sliding-form-wrapper"></div>
 
@@ -62,10 +68,11 @@ $module = $this->context->module;
                         'class' => 'yii\grid\SerialColumn'
                     ],
                     [
-                        'class' => 'core\grid\TitleColumn',
+                        'class' => 'nad\common\grid\TitleColumn',
                         'isAjaxGrid' => true
                     ],
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
                         'value' => function($model){
                             return $model->getUniqueCode();
@@ -92,11 +99,12 @@ $module = $this->context->module;
                                 ]
                             );
                         }
-                    ],             
-                    'createdAt:datetime',                       
+                    ],                       
                     [
-                        'class' => 'core\grid\AjaxActionColumn'                        
-                    ]
+                        'header' => 'دسترسی',
+                        'class' => 'core\grid\AjaxActionColumn'
+                    ],             
+                    'createdAt:date'
                 ],
             ]); ?>
         <?php Pjax::end(); ?>

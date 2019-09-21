@@ -15,7 +15,7 @@ $module = $this->context->module;
 // ];
 ?>
 
-<h4 class="nad-page-title">بسته مدارک مرحله <?= $categoryModel->title . ' (' . $categoryModel->code . ')' ?></h4>
+<h4 class="nad-page-title">بسته مدارک مرحله <span class="nad-page-title-focus"><?= $categoryModel->title . ' (' . $categoryModel->code . ')' ?></span></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -39,13 +39,19 @@ $module = $this->context->module;
             //     'url' => ['tree-list']
             // ],
             'stageCategoriesIndex' => [
-                'label' => 'لیست رده بندی مراحل',
+                'label' => 'لیست مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
                 'type' => 'success'
             ]
         ],
     ]); ?>
+
+    <br>
+    <?= $this->render('_search', [
+        'model' => $searchModel,
+        'categoryModel' => $categoryModel
+        ]) ?>
 
     <div class="sliding-form-wrapper"></div>
 
@@ -65,10 +71,11 @@ $module = $this->context->module;
                         'class' => 'yii\grid\SerialColumn'
                     ],                    
                     [
-                        'class' => 'core\grid\TitleColumn',
+                        'class' => 'nad\common\grid\TitleColumn',
                         'isAjaxGrid' => true
                     ],
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
                         'value' => function($model){
                             return $model->getUniqueCode();
@@ -93,6 +100,7 @@ $module = $this->context->module;
                         }
                     ],    
                     [
+                        'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {download}',
                         'buttons' => [
