@@ -13,10 +13,11 @@ $module = $this->context->module;
 //     $module->department,
 //     $module->pluralLabel
 // ];
+
 ?>
 
 <h4 class="nad-page-title">لیست مدارک گروه <span class="nad-page-title-focus"><?= $locationModel->title ?></span> مرحله <span class="nad-page-title-focus"><?= $locationModel->category->title ?></span></h4>
-<div class="resource-index">
+<div class="document-index">
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => [
@@ -33,13 +34,13 @@ $module = $this->context->module;
                 'label' => 'لیست مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
-                'type' => 'success'
+                'type' => 'primary'
             ],
             'groupsIndex' => [
                 'label' => 'بسته مدارک',
                 'icon' => 'book',
                 'url' => $this->params['groupsIndex'],
-                'type' => 'success'
+                'type' => 'primary'
             ]
         ],
     ]); ?>
