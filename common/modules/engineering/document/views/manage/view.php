@@ -16,7 +16,7 @@ use nad\common\modules\engineering\document\models\Document;
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin([
-                'title' => 'اطلاعات اصلی'
+                'title' => 'شناسنامه'
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,

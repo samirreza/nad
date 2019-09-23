@@ -42,7 +42,7 @@ $module = $this->context->module;
                 'label' => 'لیست مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
-                'type' => 'success'
+                'type' => 'primary'
             ]
         ],
     ]); ?>
