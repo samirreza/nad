@@ -14,10 +14,12 @@ use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\source\behaviors\NotificationBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
-class Source extends SourceCommon
+class SourceArchived extends SourceCommon
 {
+    public $moduleId = 'source';
+
     public static function find()
     {
-        return parent::find()->andWhere(['isArchived' => self::IS_SOURCE_ARCHIVED_NO]);
+        return parent::find()->andWhere(['isArchived' => self::IS_SOURCE_ARCHIVED_YES]);
     }
 }

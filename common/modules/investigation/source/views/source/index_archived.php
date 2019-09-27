@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use core\grid\GridView;
@@ -13,16 +14,6 @@ use nad\common\modules\investigation\source\models\SourceReason;
 
 ?>
 
-<?= ActionButtons::widget([
-    'buttons' => [
-        'accepted-index' => [
-            'label' => 'لیست منشا‌های تایید شده',
-            'url' => ['index', 'SourceSearch[status]' => Source::STATUS_ACCEPTED],
-            'type' => 'success',
-            'icon' => 'list'
-        ]
-    ]
-]) ?>
 <div class="sliding-form-wrapper"></div>
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
@@ -30,7 +21,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'filterUrl' => ['index'],
+                'filterUrl' => ['archived-index'],
                 'columns' => [
                     [
                         'attribute' => 'title',
@@ -81,12 +72,12 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view} {certificate} {set-experts} {send-for-proposal}',
+                        'template' => '{view} {certificate}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
-                                    $url,
+                                    Url::to(['archived-view', 'id' => $model->id]),
                                     [
                                         'title' => 'روند',
                                         'style' => 'color: green'
@@ -96,50 +87,13 @@ use nad\common\modules\investigation\source\models\SourceReason;
                             'certificate' => function ($url, $model) {
                                 return Html::a(
                                     '<span class="glyphicon glyphicon-book"></span>',
-                                    ['certificate', 'id' => $model->id],
+                                    Url::to(['archived-certificate', 'id' => $model->id]),
                                     [
                                         'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]
                                 );
                             },
-                            'set-experts' => function ($url, $model) {
-                                return Html::a(
-                                    '<span class="fa fa-graduation-cap"></span>',
-                                    ['set-experts', 'id' => $model->id],
-                                    [
-                                        'title' => $model->hasAnyExpert() ? 'تغییر کارشناسان' : 'تعیین کارشناسان',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
-                            'send-for-proposal' => function ($url, $model) {
-                                if (!$model->hasAnyExpert()) {
-                                    return;
-                                }
-                                return Html::a(
-                                    '<span class="fa fa-check"></span>',
-                                    [
-                                        'change-status',
-                                        'id' => $model->id,
-                                        'newStatus' => Source::STATUS_IN_NEXT_STEP
-                                    ],
-                                    [
-                                        'title' => 'ارسال برای نگارش پروپوزال',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
-                        ],
-                        'visibleButtons' => [
-                            'set-experts' => $searchModel->status == Source::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser(),
-                            'send-for-proposal' => $searchModel->status == Source::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser()
                         ]
                     ]
                 ]

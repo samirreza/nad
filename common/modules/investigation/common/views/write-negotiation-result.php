@@ -1,4 +1,5 @@
 <?php
+// TODO remove this file asap.
 
 use yii\helpers\Html;
 use theme\widgets\Panel;

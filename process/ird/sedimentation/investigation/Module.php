@@ -24,6 +24,10 @@ class Module extends \yii\base\Module
                         'url' => ['/sedimentation/investigation/source/manage/index']
                     ],
                     [
+                        'label' => 'رده‌بندی منشا',
+                        'url' => ['/sedimentation/investigation/source/category/index']
+                    ],
+                    [
                         'label' => 'افزودن منشا',
                         'url' => ['/sedimentation/investigation/source/manage/create']
                     ]
@@ -62,10 +66,6 @@ class Module extends \yii\base\Module
                         'url' => ['/sedimentation/investigation/method/manage/create']
                     ]
                 ]
-            ],
-            [
-                'label' => 'لیست منابع',
-                'url' => ['/sedimentation/investigation/reference/manage/index']
             ]
         ];
         parent::init();

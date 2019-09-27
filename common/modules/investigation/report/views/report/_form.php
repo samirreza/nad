@@ -12,6 +12,7 @@ use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\common\modules\investigation\report\models\Category;
 use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
+use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -54,16 +55,17 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <?= Html::submitButton('ذخیره', [
-                        'class' => 'btn btn-xs btn-warning'
-                    ]) ?>
-                    <?= Button::widget([
-                        'label' => 'انصراف',
-                        'options' => ['class' => 'btn-lg'],
-                        'type' => 'warning',
-                        'icon' => false,
-                        'url' => $backLink
-                    ]) ?>
+                    <div class="col-sm-12">
+                        <?= Html::submitButton('ذخیره', [
+                            'class' => 'btn btn-xs btn-warning action-button'
+                        ]) ?>
+                        <?= Button::widget([
+                            'label' => 'انصراف',
+                            'type' => 'warning',
+                            'icon' => false,
+                            'url' => $backLink
+                        ]) ?>
+                    </div>
                     <br><br>
                     <?= $form->field($model, 'categoryId')->widget(
                         Select2::class,
@@ -86,7 +88,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [
-                            'consumer' => $consumer
+                            'consumer' => $consumer,
+                            'code' => ReferenceUses::CODE_REPORT
                         ]
                     ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>

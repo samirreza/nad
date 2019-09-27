@@ -10,6 +10,7 @@ use nad\common\modules\investigation\reference\models\Reference;
 class SelectReference extends Select2
 {
     public $consumer;
+    public $code;
 
     public function init()
     {
@@ -18,10 +19,13 @@ class SelectReference extends Select2
         }
 
         if (!isset($this->data)) {
+            $query = Reference::find();
+            if(isset($this->code)){
+                $query = $query->joinWith(['referenceUses'])->andWhere(['code' => $this->code]);
+            }
+
             $this->data = ArrayHelper::map(
-                Reference::find()
-                    ->andWhere(['consumer' => $this->consumer])
-                    ->all(),
+                $query->andWhere(['consumer' => $this->consumer])->all(),
                 'id',
                 'codedTitle'
             );

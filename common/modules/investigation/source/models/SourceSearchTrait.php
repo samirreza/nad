@@ -6,10 +6,15 @@ use yii\data\ActiveDataProvider;
 
 trait SourceSearchTrait
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['category.title']);
+    }
+
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string'],
+            [['title', 'uniqueCode', 'category.title'], 'string'],
             [['createdBy', 'mainReasonId', 'status'], 'integer']
         ];
     }
@@ -40,7 +45,13 @@ trait SourceSearchTrait
             'status' => $this->status
         ])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
+            ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
+
+        $query->joinWith('category AS category')
+            ->andFilterWhere(
+                ['like', 'category.title', $this->getAttribute('category.title')]
+            );
 
         return $dataProvider;
     }

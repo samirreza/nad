@@ -16,7 +16,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            "$baseRoute/source/manage/view",
+            ($source->isArchived == $source::IS_SOURCE_ARCHIVED_YES) ? "$baseRoute/source/manage/archived-view" : "$baseRoute/source/manage/view",
             'id' => $source->id
         ],
         [
@@ -57,14 +57,15 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             ],
             [
                 'attribute' => 'mainReasonId',
-                'label' => 'علت اصلی منشا',
+                'label' => 'علت طرح موضوع منشا',
                 'value' => $source->mainReason->title
             ],
-            [
-                'attribute' => 'reasons',
-                'label' => 'علل فرعی منشا',
-                'value' => $source->reasons
-            ],
+            // TODO remove 'reasons' asap
+            // [
+            //     'attribute' => 'reasons',
+            //     'label' => 'علل فرعی منشا',
+            //     'value' => $source->reasons
+            // ],
             [
                 'attribute' => 'references',
                 'label' => 'منابع منشا',
@@ -85,21 +86,15 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             ],
             [
                 'attribute' => 'reasonForGenesis',
-                'label' => 'علت پیدایش منشا',
+                'label' => 'سابقه پیدایش منشا',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($source->reasonForGenesis, 100)
             ],
             [
                 'attribute' => 'necessity',
-                'label' => 'ضرورت‌های طرح موضوع منشا',
+                'label' => 'شرح عنوان منشا',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($source->necessity, 100)
-            ],
-            [
-                'attribute' => 'description',
-                'label' => 'توضیحات منشا',
-                'format' => 'raw',
-                'value' => Utility::makeStringShorten($source->description, 100)
             ],
             [
                 'attribute' => 'deliverToManagerDate',
@@ -118,12 +113,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 'label' => 'نتیجه جلسه منشا',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($source->proceedings, 100)
-            ],
-            [
-                'attribute' => 'negotiationResult',
-                'label' => 'نتیجه مذاکره منشا',
-                'format' => 'raw',
-                'value' => Utility::makeStringShorten($source->negotiationResult, 100)
             ],
             [
                 'attribute' => 'experts',

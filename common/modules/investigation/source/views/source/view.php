@@ -18,48 +18,120 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             'buttons' => [
                 'update' => [
                     'type' => 'warning',
-                    'visible' => $model->canUserUpdateOrDelete()
+                    'isActive' => $model->canUserUpdateOrDelete()
                 ],
                 'delete' => [
                     'type' => 'warning',
-                    'visible' => $model->canUserUpdateOrDelete()
+                    'isActive' => $model->canUserUpdateOrDelete()
                 ],
-                'deliver-to-manager' => [
-                    'label' => 'ارسال به مدیر',
+                'send-to' => [
+                    'isDropDown' => true,
+                    'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'visible' => $model->canUserDeliverToManager(),
-                    'url' => ['deliver-to-manager', 'id' => $model->id]
+                    'isActive' => (($model->canUserDeliverToManager() && !Yii::$app->user->can('superuser')) || ($model->canAcceptOrRejectOrCorrect() && Yii::$app->user->can('superuser')) || ($model->status == Source::STATUS_ACCEPTED &&
+                    $model->hasAnyExpert() && Yii::$app->user->can('superuser'))),
+                    'items' => [
+                        'send-to-manager' => [
+                            'label' => 'به مدیر',
+                            'url' => ['deliver-to-manager', 'id' => $model->id],
+                            'icon' => 'reply',
+                            'isActive' => $model->canUserDeliverToManager() && !Yii::$app->user->can('superuser'),
+                            'visible' => true
+                        ],
+                        'send-to-expert' => [
+                            'label' => 'به کارشناس',
+                            'icon' => 'reply',
+                            'isActive' => $model->canAcceptOrRejectOrCorrect() && Yii::$app->user->can('superuser') ,
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Source::STATUS_NEED_CORRECTION
+                            ]
+                        ],
+                        'send-for-proposal' => [
+                            'label' => 'نگارش پروپوزال',
+                            'icon' => 'reply',
+                            'isActive' => $model->status == Source::STATUS_ACCEPTED &&
+                                $model->hasAnyExpert() && Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Source::STATUS_IN_NEXT_STEP
+                            ]
+                        ],
+                        'send-to-archive' => [
+                            'label' => 'به بایگانی',
+                            'icon' => 'reply',
+                            'isActive' => Yii::$app->user->can('superuser') ,
+                            'visible' => true,
+                            'url' => [
+                                'change-archive',
+                                'id' => $model->id,
+                                'newStatus' => Source::IS_SOURCE_ARCHIVED_YES
+                            ]
+                        ],
+                    ]
                 ],
-                'wait-for-session' => [
-                    'label' => 'جلسه',
+                'session' => [
+                    'isDropDown' => true,
+                    'label' => '&nbsp;&nbsp;&nbsp;جلسه&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'bank',
-                    'visible' => $model->status == Source::STATUS_IN_MANAGER_HAND,
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_WAITING_FOR_SESSION
+                    'isActive' => (Yii::$app->user->can('superuser') && (($model->status == Source::STATUS_IN_MANAGER_HAND) || ($model->canSetSessionDate()) || $model->canWriteProceedings())),
+                    'items' => [
+                        'wait-for-session' => [
+                            'label' => 'نیازمند جلسه',
+                            'icon' => 'bank',
+                            'isActive' => $model->status == Source::STATUS_IN_MANAGER_HAND &&
+                            Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Source::STATUS_WAITING_FOR_SESSION
+                            ]
+                        ],
+                        'set-session-date' => [
+                            'label' => 'تعیین زمان جلسه',
+                            'icon' => 'clock-o',
+                            'isActive' => $model->canSetSessionDate() &&
+                            Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => ['set-session-date', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
+                        'write-proceedings' => [
+                            'label' => 'ثبت نتیجه جلسه',
+                            'icon' => 'newspaper-o',
+                            'isActive' => $model->canWriteProceedings() &&
+                            Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => ['write-proceedings', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
                     ]
                 ],
-                'wait-for-negotiation' => [
-                    'label' => 'مذاکره',
-                    'type' => 'info',
-                    'icon' => 'handshake-o',
-                    'visible' => $model->status == Source::STATUS_IN_MANAGER_HAND,
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_WAIT_FOR_NEGOTIATION
-                    ]
-                ],
+                // TODO remove wait-for-negotiation asap.
+                // 'wait-for-negotiation' => [
+                //     'label' => 'مذاکره',
+                //     'type' => 'info',
+                //     'icon' => 'handshake-o',
+                //     'visible' => $model->status == Source::STATUS_IN_MANAGER_HAND,
+                //     'visibleFor' => ['superuser'],
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Source::STATUS_WAIT_FOR_NEGOTIATION
+                //     ]
+                // ],
                 'wait-for-converstation' => [
                     'label' => 'تبادل نظر',
                     'type' => 'info',
                     'icon' => 'comments',
-                    'visible' => $model->status == Source::STATUS_IN_MANAGER_HAND &&
+                    'isActive' => $model->status == Source::STATUS_IN_MANAGER_HAND &&
                         Yii::$app->user->can('superuser'),
                     'url' => [
                         'change-status',
@@ -67,39 +139,23 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'newStatus' => Source::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'set-session-date' => [
-                    'label' => 'تعیین زمان جلسه',
-                    'type' => 'info',
-                    'icon' => 'clock-o',
-                    'visible' => $model->canSetSessionDate(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['set-session-date', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'write-proceedings' => [
-                    'label' => 'ثبت نتیجه جلسه',
-                    'type' => 'info',
-                    'icon' => 'newspaper-o',
-                    'visible' => $model->canWriteProceedings(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['write-proceedings', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'write-negotiation-result' => [
-                    'label' => 'ثبت نتیجه مذاکره',
-                    'type' => 'info',
-                    'icon' => 'newspaper-o',
-                    'visible' => $model->canWriteNegotiationResult(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['write-negotiation-result', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
+                // TODO remove write-negotiation-result asap.
+                // 'write-negotiation-result' => [
+                //     'label' => 'ثبت نتیجه مذاکره',
+                //     'type' => 'info',
+                //     'icon' => 'newspaper-o',
+                //     'visible' => $model->canWriteNegotiationResult(),
+                //     'visibleFor' => ['superuser'],
+                //     'url' => ['write-negotiation-result', 'id' => $model->id],
+                //     'options' => ['class' => 'ajaxupdate']
+                // ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'visible' => $model->canAcceptOrRejectOrCorrect(),
-                    'visibleFor' => ['superuser'],
+                    'isActive' => $model->canAcceptOrRejectOrCorrect() &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
                     'url' => [
                         'change-status',
                         'id' => $model->id,
@@ -110,52 +166,30 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => 'رد',
                     'type' => 'info',
                     'icon' => 'close',
-                    'visible' => $model->canAcceptOrRejectOrCorrect(),
-                    'visibleFor' => ['superuser'],
+                    'isActive' => $model->canAcceptOrRejectOrCorrect() &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
                     'url' => [
                         'change-status',
                         'id' => $model->id,
                         'newStatus' => Source::STATUS_REJECTED
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'اصلاح',
-                    'type' => 'info',
-                    'icon' => 'refresh',
-                    'visible' => $model->canAcceptOrRejectOrCorrect(),
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_NEED_CORRECTION
-                    ]
-                ],
                 'set-experts' => [
-                    'label' => $model->hasAnyExpert() ? 'تغییر کارشناسان' : 'تعیین کارشناسان',
+                    'label' => $model->hasAnyExpert() ? 'تغییر کارشناس' : 'انتخاب کارشناس',
                     'type' => 'info',
                     'icon' => 'graduation-cap',
-                    'visible' => $model->status == Source::STATUS_ACCEPTED,
-                    'visibleFor' => ['superuser'],
+                    'isActive' => $model->status == Source::STATUS_ACCEPTED &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
                     'url' => ['set-experts', 'id' => $model->id],
                     'options' => ['class' => 'ajaxupdate']
-                ],
-                'send-for-proposal' => [
-                    'label' => 'ارسال برای نگارش پروپوزال',
-                    'type' => 'info',
-                    'visible' => $model->status == Source::STATUS_ACCEPTED &&
-                        $model->hasAnyExpert(),
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_IN_NEXT_STEP
-                    ]
                 ],
                 'create-proposal' => [
                     'label' => 'درج پروپوزال',
                     'type' => 'info',
                     'icon' => 'plus',
-                    'visible' => $model->canUserCreateProposal(),
+                    'isActive' => $model->canUserCreateProposal(),
                     'url' => [
                         $creatProposalRoute,
                         'sourceId' => $model->id
@@ -196,7 +230,8 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                         return $model->mainReason->title;
                                     }
                                 ],
-                                'reasons',
+                                // TODO remove 'reasons' asap
+                                //'reasons',
                                 [
                                     'attribute' => 'references',
                                     'format' => 'raw',
@@ -240,23 +275,16 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'علت پیدایش']) ?>
+                <?php Panel::begin(['title' => 'سابقه پیدایش']) ?>
                     <div class="well">
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'ضرورت‌های طرح موضوع']) ?>
+                <?php Panel::begin(['title' => 'شرح عنوان']) ?>
                     <div class="well">
                         <?= $model->necessity ?>
-                    </div>
-                <?php Panel::end() ?>
-            </div>
-            <div class="col-md-12">
-                <?php Panel::begin(['title' => 'توضیحات']) ?>
-                    <div class="well">
-                        <?= $model->description ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
@@ -269,16 +297,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     <?php Panel::end() ?>
                 </div>
             <?php endif; ?>
-            <?php if ($model->negotiationResult) : ?>
-                <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه مذاکره']) ?>
-                        <div class="well">
-                            <?= $model->negotiationResult ?>
-                        </div>
-                    <?php Panel::end() ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($model->comments) : ?>
+            <?php if ($model->status != Source::STATUS_WAIT_FOR_CONVERSATION && $model->comments) : ?>
                 <div class="col-md-12">
                     <?= CommentList::widget([
                         'model' => $model,

@@ -4,9 +4,9 @@ namespace nad\process\ird\sedimentation\investigation\source\models;
 
 use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
 use nad\process\ird\sedimentation\investigation\reference\models\Reference;
-use nad\common\modules\investigation\source\models\Source as BaseSource;
+use nad\common\modules\investigation\source\models\SourceArchived as BaseSourceArchived;
 
-class Source extends BaseSource
+class SourceArchived extends BaseSourceArchived
 {
     const CONSUMER_CODE = 'SR';
 
