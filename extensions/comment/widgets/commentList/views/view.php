@@ -14,23 +14,26 @@ $model = $this->context->model;
 <?php Panel::begin(['title' => 'نظر ها', 'showCollapseButton' => true]) ?>
     <div class="row">
         <div class="comments col-md-12">
-            <?= Button::widget([
-                'label' => 'افزودن نظر',
-                'url' => [
-                    '/comment/create',
-                    'moduleId' => $this->context->moduleId,
-                    'modelClassName' => get_class($model),
-                    'modelId' => $model->id,
-                    'returnUrl' => $this->context->returnUrl
-                ],
-                'options' => [
-                    'class' => 'ajaxcreate insert-comment',
-                    'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
-                ],
-                'icon' => false,
-                'type' => 'info',
-                'visible' => $this->context->showCreateButton
-            ]) ?>
+            <div class="col-sm-12">
+                <?= Button::widget([
+                    'label' => 'افزودن نظر',
+                    'url' => [
+                        '/comment/create',
+                        'moduleId' => $this->context->moduleId,
+                        'modelClassName' => get_class($model),
+                        'modelId' => $model->id,
+                        'returnUrl' => $this->context->returnUrl
+                    ],
+                    'options' => [
+                        'class' => 'ajaxcreate insert-comment',
+                        'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper'
+                    ],
+                    'useDefaultCssClass' => false,
+                    'icon' => false,
+                    'type' => 'info',
+                    'visible' => $this->context->showCreateButton
+                ]) ?>
+            </div>
             <br><br>
             <div id="comment-sliding-form-wrapper"></div>
             <?php Pjax::begin([
@@ -79,7 +82,8 @@ $model = $this->context->model;
                             } ?>
                         </div>
                         <div class="comment-timestamp">
-                            <?= Yii::$app->formatter->asDate($comment->insertedAt) ?>
+                            <?= $comment->author->fullName ?> -
+                            <?= Yii::$app->formatter->asDateTime($comment->insertedAt) ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

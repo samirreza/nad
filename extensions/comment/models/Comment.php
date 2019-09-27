@@ -3,6 +3,7 @@
 namespace nad\extensions\comment\models;
 
 use Yii;
+use modules\user\common\models\User;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -52,5 +53,10 @@ class Comment extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'comment';
+    }
+
+    public function getAuthor()
+    {
+        return $this->hasOne(User::class, ['id' => 'insertedBy']);
     }
 }
