@@ -34,13 +34,13 @@ $module = $this->context->module;
                 'label' => 'لیست مراحل',
                 'icon' => 'sitemap',
                 'url' => $this->params['stageCategoriesIndex'],
-                'type' => 'primary'
+                'type' => 'success'
             ],
             'groupsIndex' => [
                 'label' => 'بسته مدارک',
                 'icon' => 'book',
                 'url' => $this->params['groupsIndex'],
-                'type' => 'primary'
+                'type' => 'success'
             ]
         ],
     ]); ?>
