@@ -29,6 +29,9 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     const SCENARIO_WRITE_NEGOTIATION_RESULT = 'writeNegotiationResult';
     const SCENARIO_SET_EXPERT = 'setExpert';
 
+    const IS_SOURCE_ARCHIVED_NO = 1; // default value
+    const IS_SOURCE_ARCHIVED_YES = 2;
+
     public $moduleId;
     public $referenceClassName;
 
@@ -129,7 +132,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     public function canSetSessionDate()
     {
         return $this->status == self::STATUS_WAITING_FOR_SESSION &&
-            !$this->proceedings;
+            !$this->proceedings; // TODO why !$this->proceedings ??
     }
 
     public function canWriteProceedings()

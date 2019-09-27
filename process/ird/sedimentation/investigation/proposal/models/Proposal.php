@@ -4,6 +4,7 @@ namespace nad\process\ird\sedimentation\investigation\proposal\models;
 
 use nad\process\ird\sedimentation\investigation\report\models\Report;
 use nad\process\ird\sedimentation\investigation\source\models\Source;
+use nad\process\ird\sedimentation\investigation\source\models\SourceArchived;
 use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 use nad\common\modules\investigation\proposal\models\Proposal as BaseProposal;
 
@@ -16,7 +17,13 @@ class Proposal extends BaseProposal
 
     public function getSource()
     {
-        return $this->hasOne(Source::class, ['id' => 'sourceId']);
+        // TODO Rewrite with ActiveRecord::exists()
+        $source = Source::findOne($this->sourceId);
+        if(isset($source))
+            return $this->hasOne(Source::class, ['id' => 'sourceId']);
+        else
+            return $this->hasOne(SourceArchived::class, ['id' => 'sourceId']);
+
     }
 
     public function getReport()

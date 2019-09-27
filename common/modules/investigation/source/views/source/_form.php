@@ -9,8 +9,10 @@ use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use nad\common\modules\investigation\source\models\Category;
 use nad\common\modules\investigation\source\models\SourceReason;
 use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
+use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
@@ -40,17 +42,31 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     ) ?>
                 </div>
                 <div class="col-md-4">
-                    <?= Html::submitButton('ذخیره', [
-                        'class' => 'btn btn-xs btn-warning'
-                    ]) ?>
-                    <?= Button::widget([
-                        'label' => 'انصراف',
-                        'options' => ['class' => 'btn-lg'],
-                        'type' => 'warning',
-                        'icon' => false,
-                        'url' => $backLink
-                    ]) ?>
+                    <div class="col-sm-12">
+                        <?= Html::submitButton('ذخیره', [
+                            'class' => 'btn btn-xs btn-warning action-button'
+                        ]) ?>
+                        <?= Button::widget([
+                            'label' => 'انصراف',
+                            'type' => 'warning',
+                            'icon' => false,
+                            'url' => $backLink
+                        ]) ?>
+                    </div>
                     <br><br>
+                    <?= $form->field($model, 'categoryId')->widget(
+                        Select2::class,
+                        [
+                            'data' => ArrayHelper::map(
+                                Category::find()->andWhere([
+                                    // 'depth' => 3,
+                                    'consumer' => $consumer
+                                ])->all(),
+                                'id',
+                                'codedTitle'
+                            )
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'mainReasonId')->widget(
                         Select2::class,
                         [
@@ -60,29 +76,15 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                                 'title'
                             ),
                             'options' => [
-                                'prompt' => 'علت اصلی را انتخاب کنید ...'
-                            ]
-                        ]
-                    ) ?>
-                    <?= $form->field($model, 'reasons')->widget(
-                        Select2::class,
-                        [
-                            'data' => ArrayHelper::map(
-                                SourceReason::find()->all(),
-                                'title',
-                                'title'
-                            ),
-                            'options' => [
-                                'multiple' => true,
-                                'prompt' => 'علل فرعی را انتخاب کنید ...',
-                                'value' => $model->getReasonsAsArray()
+                                'prompt' => 'علت طرح موضوع را انتخاب کنید ...'
                             ]
                         ]
                     ) ?>
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [
-                            'consumer' => $consumer
+                            'consumer' => $consumer,
+                            'code' => ReferenceUses::CODE_SOURCE
                         ]
                     ) ?>
                     <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
@@ -95,10 +97,6 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         ['preset' => 'advanced']
                     ) ?>
                     <?= $form->field($model, 'necessity')->widget(
-                        Editor::class,
-                        ['preset' => 'advanced']
-                    ) ?>
-                    <?= $form->field($model, 'description')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
                     ) ?>

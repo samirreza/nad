@@ -40,6 +40,12 @@ use nad\common\modules\investigation\reference\models\Reference;
                             }
                         ],
                         [
+                            'attribute' => 'referenceUses',
+                            'value' => function ($model) {
+                                return $model->getCodesAsString();
+                            }
+                        ],
+                        [
                             'label' => 'فایل',
                             'format' => 'raw',
                             'value' => function ($model) {

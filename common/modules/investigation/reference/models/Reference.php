@@ -26,6 +26,8 @@ class Reference extends \yii\db\ActiveRecord implements Codable
 
     public $moduleId = 'reference';
 
+    private $_referenceUses;
+
     public function behaviors()
     {
         return [
@@ -87,7 +89,7 @@ class Reference extends \yii\db\ActiveRecord implements Codable
             ['publishedYear', 'integer'],
             [['title', 'author', 'publisher'], 'string', 'max' => 255],
             ['description', 'string'],
-            ['tags', 'safe'],
+            [['tags', 'referenceUses'], 'safe'],
             [['author', 'publisher', 'publishedYear', 'description'], 'default', 'value' => null],
             [
                 'title',
@@ -112,7 +114,8 @@ class Reference extends \yii\db\ActiveRecord implements Codable
             'uniqueCode' => 'شناسه',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی',
-            'createdBy' => 'کارشناس'
+            'createdBy' => 'کارشناس',
+            'referenceUses' => 'استفاده شده در'
         ];
     }
 
@@ -121,10 +124,33 @@ class Reference extends \yii\db\ActiveRecord implements Codable
         if (!parent::beforeSave($insert)) {
             return false;
         }
-        if ($insert) {
-            $this->consumer = static::CONSUMER_CODE;
+
+        $connection = \Yii::$app->db;
+
+        $transaction = $connection->beginTransaction();
+
+        try {
+            if ($insert) {
+                $this->consumer = static::CONSUMER_CODE;
+            } else {
+                \Yii::$app->db->createCommand()->delete(ReferenceUses::tableName(), 'referenceId = ' . $this->id)->execute();
+            }
+
+            if (isset($this->_referenceUses) && !empty($this->_referenceUses)) {
+                foreach ($this->_referenceUses as $item) {
+                    \Yii::$app->db->createCommand()->insert(ReferenceUses::tableName(), [
+                    'code' => $item,
+                    'referenceId' => $this->id,
+                ])->execute();
+                }
+            }
+            $transaction->commit();
+        }catch(Exception $e) {
+            $transaction->rollback();
         }
+
         $this->setUniqueCode();
+
         return true;
     }
 
@@ -143,6 +169,16 @@ class Reference extends \yii\db\ActiveRecord implements Codable
     public function getResearcher()
     {
         return $this->hasOne(User::class, ['id' => 'createdBy']);
+    }
+
+    public function getReferenceUses()
+    {
+        return $this->hasMany(ReferenceUses::className(), ['referenceId' => 'id']);
+    }
+
+    public function setReferenceUses($value)
+    {
+        $this->_referenceUses = $value;
     }
 
     public function getResearcherTitle()
@@ -174,5 +210,24 @@ class Reference extends \yii\db\ActiveRecord implements Codable
             self::TYPE_REPORT => 'گزارش',
             self::TYPE_WEBSITE => 'وب سایت'
         ];
+    }
+
+    public function getCodesAsArray(){
+        $uses = $this->getReferenceUses()->all();
+        $codes= [];
+        foreach ($uses as $item) {
+            $codes[]=$item->code;
+        }
+        return $codes;
+    }
+
+    public function getCodesAsString(){
+        $uses = $this->getReferenceUses()->all();
+        $usesAsString= '';
+        $allCodes = ReferenceUses::getCodes();
+        foreach ($uses as $item) {
+            $usesAsString .= $allCodes[$item->code] . ' ، ';
+        }
+        return trim($usesAsString, '، ');
     }
 }

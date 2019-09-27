@@ -5,9 +5,11 @@ use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use core\widgets\editor\Editor;
+use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\common\modules\investigation\reference\models\Reference;
+use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 
@@ -36,6 +38,20 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         <?= $form->field($model, 'publishedYear')->textInput() ?>
                         <?= $form->field($model, 'publisher')->textInput() ?>
                         <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                        <?= $form->field($model, 'referenceUses')->widget(
+                            Select2::class,
+                            [
+                                'data' => ReferenceUses::getCodes(),
+                                'options' => [
+                                    'multiple' => true,
+                                    'placeholder' => 'انتخاب کنید ...',
+                                    'value' => $model->getCodesAsArray()
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ]
+                            ]
+                        ) ?>
                         <div class="input-medium">
                             <?= SingleFileUpload::widget([
                                 'model' => $model,

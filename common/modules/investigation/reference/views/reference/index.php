@@ -36,27 +36,27 @@ use nad\common\modules\investigation\reference\models\Reference;
                         ]
                     ],
                     [
-                        'attribute' => 'type',
-                        'value' => function ($model) {
-                            return Reference::getTypeLabels()[$model->type];
-                        },
-                        'filter' => Reference::getTypeLabels()
-                    ],
-                    [
                         'attribute' => 'title',
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو عنوان'
                         ]
                     ],
-                    'author',
-                    'publishedYear:farsiNumber',
                     [
-                        'attribute' => 'createdBy',
+                        'attribute' => 'type',
                         'value' => function ($model) {
-                            return $model->researcher->fullName;
-                        }
+                            return Reference::getTypeLabels()[$model->type];
+                        },
+                        'filter' => Reference::getTypeLabels()
                     ],
+                    // 'author',
+                    // 'publishedYear:farsiNumber',
+                    // [
+                    //     'attribute' => 'createdBy',
+                    //     'value' => function ($model) {
+                    //         return $model->researcher->fullName;
+                    //     }
+                    // ],
                     // [
                     //     'attribute' => 'tags',
                     //     'value' => function ($model) {
@@ -86,6 +86,7 @@ use nad\common\modules\investigation\reference\models\Reference;
                         }
                     ],
                     [
+                        'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn'
                     ]
                 ]
