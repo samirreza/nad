@@ -5,7 +5,7 @@ use nad\process\ird\newTechnology\investigation\report\models\Report;
 $this->title = 'درج گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
     ['label' => 'بررسی', 'url' => ['/newTechnology/manage/investigation']],
     $this->title

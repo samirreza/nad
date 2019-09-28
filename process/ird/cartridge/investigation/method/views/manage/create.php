@@ -5,7 +5,7 @@ use nad\process\ird\cartridge\investigation\method\models\Method;
 $this->title = 'درج روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
     ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation']],
     $this->title

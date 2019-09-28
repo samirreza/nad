@@ -3,7 +3,7 @@
 $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],

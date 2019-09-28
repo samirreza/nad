@@ -3,7 +3,7 @@
 $this->title = 'لیست پروپوزال‌های تایید شده';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
     $this->title

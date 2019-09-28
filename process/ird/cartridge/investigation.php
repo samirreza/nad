@@ -6,7 +6,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
     $this->title
 ];

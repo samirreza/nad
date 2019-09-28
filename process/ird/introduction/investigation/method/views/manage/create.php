@@ -5,7 +5,7 @@ use nad\process\ird\introduction\investigation\method\models\Method;
 $this->title = 'درج روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
     ['label' => 'بررسی', 'url' => ['/introduction/manage/investigation']],
     $this->title

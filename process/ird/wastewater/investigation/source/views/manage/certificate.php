@@ -3,7 +3,7 @@
 $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
     ['label' => 'بررسی', 'url' => ['/wastewater/manage/investigation']],
     ['label' => 'لیست منشا', 'url' => ['index']],

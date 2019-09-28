@@ -3,7 +3,7 @@
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'استخر', 'url' => ['/pool/manage/index']],
     ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
     ['label' => 'لیست روش‌ها', 'url' => ['index']],

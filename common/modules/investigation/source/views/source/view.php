@@ -36,7 +36,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'label' => 'به مدیر',
                             'url' => ['deliver-to-manager', 'id' => $model->id],
                             'icon' => 'reply',
-                            'isActive' => $model->canUserDeliverToManager() && !Yii::$app->user->can('superuser'),
+                            'isActive' => $model->canUserDeliverToManager(),
                             'visible' => true
                         ],
                         'send-to-expert' => [

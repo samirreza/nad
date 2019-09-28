@@ -5,7 +5,7 @@ use nad\process\ird\graphene\investigation\method\models\Method;
 $this->title = 'درج روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
     ['label' => 'بررسی', 'url' => ['/graphene/manage/investigation']],
     $this->title

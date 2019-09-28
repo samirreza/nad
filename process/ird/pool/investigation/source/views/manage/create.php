@@ -5,7 +5,7 @@ use nad\process\ird\pool\investigation\source\models\Source;
 $this->title = 'درج منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'استخر', 'url' => ['/pool/manage/index']],
     ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
     $this->title

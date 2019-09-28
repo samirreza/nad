@@ -5,7 +5,7 @@ use nad\process\ird\graphene\investigation\source\models\Source;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
     ['label' => 'بررسی', 'url' => ['/graphene/manage/investigation']],
     ['label' => 'لیست منشا', 'url' => ['index']],

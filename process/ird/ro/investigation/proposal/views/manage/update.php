@@ -5,7 +5,7 @@ use nad\process\ird\ro\investigation\proposal\models\Proposal;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'آر او', 'url' => ['/ro/manage/index']],
     ['label' => 'بررسی', 'url' => ['/ro/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],

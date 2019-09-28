@@ -6,7 +6,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'فیلتر شنی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     $this->title
 ];
 

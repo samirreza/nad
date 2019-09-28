@@ -5,7 +5,7 @@ use nad\process\ird\newTechnology\investigation\method\models\Method;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
     ['label' => 'بررسی', 'url' => ['/newTechnology/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],

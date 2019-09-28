@@ -5,7 +5,7 @@ use nad\process\ird\microbial\investigation\source\models\Source;
 $this->title = 'درج منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     $this->title

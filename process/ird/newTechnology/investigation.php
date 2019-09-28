@@ -6,7 +6,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
     $this->title
 ];

@@ -142,7 +142,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     ]
                 ],
                 'create-report' => [
-                    'label' => 'درج گزارش',
+                    'label' => 'افزودن گزارش',
                     'type' => 'info',
                     'icon' => 'plus',
                     'visible' => $model->canUserCreateReport() &&

@@ -3,7 +3,7 @@
 $this->title = 'لیست پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
     ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation']],
     $this->title
