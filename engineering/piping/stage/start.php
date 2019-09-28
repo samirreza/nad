@@ -7,7 +7,7 @@ $this->title = 'لوله کشی';
 $this->params['breadcrumbs'] = [
     'فنی',
     $this->title,
-    'مراحل'      
+    'مراحل'
 ];
 
 ?>
@@ -16,38 +16,38 @@ $this->params['breadcrumbs'] = [
     <br>
 
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'مراحل',
                 'titleUrl' => Url::to(['/engineering/piping/stage/category/index'])
             ]) ?>
         </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'مکان ها',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-    </div>    
+    </div>
     <br><br>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([     
-                'icon' => false,           
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'مکان های داده برداری',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([   
-                'icon' => false,             
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'داده های بهره برداری',
                 'titleUrl' => Url::to(['@web'])
@@ -58,38 +58,38 @@ $this->params['breadcrumbs'] = [
     <br>
     <br>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([   
-                'icon' => false,             
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'منابع پایش',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'منابع طراحی',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-    </div>    
+    </div>
     <br><br>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([ 
-                'icon' => false,               
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'نتایج پایش ها',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'نتایج طراحی ها',
                 'titleUrl' => Url::to(['@web'])
@@ -98,17 +98,17 @@ $this->params['breadcrumbs'] = [
     </div>
     <br><br>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([  
-                'icon' => false,              
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <?= InfoBox::widget([
+                'icon' => false,
                 'showCount' => false,
                 'title' => 'روندهای اجرا شده پایش',
                 'titleUrl' => Url::to(['@web'])
             ]) ?>
         </div>
-        <div class="col-md-3">
-            <?= InfoBox::widget([   
+        <div class="col-md-5">
+            <?= InfoBox::widget([
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'روندهای اجرا شده طراحی',
@@ -117,5 +117,12 @@ $this->params['breadcrumbs'] = [
         </div>
     </div>
     <br><br>
-
 </div>
+
+<?php
+$this->registerCss('
+div.row div.col-md-5{
+    text-align:center;
+}
+');
+?>

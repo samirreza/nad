@@ -18,6 +18,7 @@ $module = $this->context->module;
     'buttons' => [
         'create' => [
             'label' => 'افزودن مرحله', //$module->categoryCreateBtnLabel,
+            'type' => 'info',
             'options' => [
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
@@ -39,17 +40,17 @@ $module = $this->context->module;
         ]); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,                
+                'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'class' => 'nad\common\code\CodeGridColumn', 
-                        'options' => ['style' => 'width:10%'],                   
+                        'class' => 'nad\common\code\CodeGridColumn',
+                        'options' => ['style' => 'width:40px'],
                         'isAjaxGrid' => true
                     ],
                     [
                         'class' => 'nad\common\grid\TitleColumn',
-                        'isAjaxGrid' => true,                        
+                        'isAjaxGrid' => true,
                     ],
                     [
                         'label' => 'مرحله پدر',
@@ -57,13 +58,14 @@ $module = $this->context->module;
                             return $model->getParentTitle();
                         }
                     ],
-                    [                        
+                    [
                         'attribute' => 'depth',
                         'filter' => $searchModel->getDepthList(),
                         'value' => function ($model) {
                             return $model->getDepthTitle();
-                        }
-                    ],    
+                        },
+                        'options' => ['style' => 'width:80px'],
+                    ],
                     [
                         'label' => 'بسته مدارک',
                         'format' => 'raw',
@@ -73,19 +75,20 @@ $module = $this->context->module;
                                     [
                                         '/engineering/piping/location/manage/index',
                                     'LocationSearch[categoryId]' => $model->id
-                                    ],                                    
+                                    ],
                                     [
                                         'title' => 'لیست گروه های مدارک بسته مدارک',
                                         'data-pjax' => 0
                                     ]
                                 );
-                        }
-                    ],                
+                        },
+                        'options' => ['style' => 'width:20px'],
+                    ],
                     [
                         'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete} {tree}',
-                        'options' => ['style' => 'width:20%'],
+                        'options' => ['style' => 'width:90px'],
                         'buttons' => [
                             'tree' => function ($url, $model, $key) use ($module) {
                                 return Html::a(
@@ -98,7 +101,7 @@ $module = $this->context->module;
                                         'class' => 'reload-tree'
                                     ]
                                 );
-                            },                            
+                            },
                         ],
                     ],
                     'createdAt:date',
@@ -106,10 +109,10 @@ $module = $this->context->module;
             ]); ?>
         <?php Pjax::end(); ?>
         <?php Panel::end() ?>
-    </div>    
+    </div>
 </div>
 <div class="row">
-    <div class="col-md-7">    
+    <div class="col-md-7">
         <?php Panel::begin([
             'title' => 'نمایش درختی ' . $module->pluralLabel,
             'tools' => Html::a(
@@ -127,5 +130,5 @@ $module = $this->context->module;
             </div>
             <div id="cats-tree"></div>
         <?php Panel::end() ?>
-    </div>    
+    </div>
 </div>

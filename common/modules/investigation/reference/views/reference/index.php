@@ -12,7 +12,7 @@ use nad\common\modules\investigation\reference\models\Reference;
     <?= ActionButtons::widget([
         'buttons' => [
             'create' => [
-                'label' => 'منبع جدید',
+                'label' => 'افزودن منبع',
                 'type' => 'success',
                 'options' => [
                     'class' => 'ajaxcreate',
