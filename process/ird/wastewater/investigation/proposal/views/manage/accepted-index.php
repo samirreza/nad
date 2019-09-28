@@ -3,7 +3,7 @@
 $this->title = 'لیست پروپوزال‌های تایید شده';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
     ['label' => 'بررسی', 'url' => ['/wastewater/manage/investigation']],
     $this->title

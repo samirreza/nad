@@ -5,7 +5,7 @@ use nad\process\ird\cartridge\investigation\source\models\Source;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
     ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation']],
     ['label' => 'لیست منشا', 'url' => ['index']],

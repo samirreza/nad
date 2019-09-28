@@ -5,7 +5,7 @@ use nad\process\ird\filter\investigation\report\models\Report;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'فیلتر شنی', 'url' => ['/filter/manage/index']],
     ['label' => 'بررسی', 'url' => ['/filter/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],

@@ -5,7 +5,7 @@ use nad\process\ird\microbial\investigation\report\models\Report;
 $this->title = 'درج گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'بررسی، پایش و طراحی',
+    'فرایندها',
     ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     $this->title
