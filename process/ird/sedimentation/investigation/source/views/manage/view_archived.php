@@ -6,7 +6,7 @@ $this->params['breadcrumbs'] = [
     'بررسی، پایش و طراحی',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
-    ['label' => 'لیست منشا', 'url' => ['archivedIndex']],
+    ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],
     $this->title
 ];
 
