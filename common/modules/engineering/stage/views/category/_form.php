@@ -16,9 +16,9 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
         'title' => 'مرحله جدید',
         'showCloseButton' => true
     ]) ?>
+    <?php Panel::begin() ?>
     <div class="row">
         <div class="col-md-9">
-            <?php Panel::begin() ?>
             <div class="row">
                 <div class="col-md-4">
                     <?= $form->field($model, 'title')->textInput()->label('عنوان مرحله جدید') ?>
@@ -33,24 +33,24 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                 <div class="col-md-4">
                 <?=
                         $form->field($model, 'parentId')
-                            ->widget(Select2::class, [                                
-                                'data' => $model->getParentsForSelect2('درج به عنوان مرحله 1'),                                
-                                'options' => [                                    
+                            ->widget(Select2::class, [
+                                'data' => $model->getParentsForSelect2('درج به عنوان مرحله 1'),
+                                'options' => [
                                     'placeholder' => 'sd'
-                                ]                                
+                                ]
                             ])->label('انتخاب مرحله پدر');
-                    ?>                    
+                    ?>
                 </div>
-            </div>            
-            <?php Panel::end() ?>
+            </div>
         </div>
         <div class="col-md-3">
-            <?php Panel::begin() ?>
+        <br>
+            <div class="col-ssm-12">
                 <?=
                     Html::submitButton(
                         '<i class="fa fa-save"></i> ذخیره',
                         [
-                            'class' => 'btn btn-xs btn-warning'
+                            'class' => 'btn btn-xs btn-warning action-button'
                         ]
                     )
                 ?>
@@ -61,9 +61,10 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'icon' => 'undo'
                     ])
                 ?>
-            <?php Panel::end() ?>
-        </div>        
+            </div>
+        </div>
     </div>
+    <?php Panel::end() ?>
     <?php Panel::end() ?>
     <?php ActiveForm::end(); ?>
 </div>
