@@ -131,8 +131,8 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
 
     public function canSetSessionDate()
     {
-        return $this->status == self::STATUS_WAITING_FOR_SESSION &&
-            !$this->proceedings; // TODO why !$this->proceedings ??
+        return $this->status == self::STATUS_WAITING_FOR_SESSION;
+            // && !$this->proceedings;
     }
 
     public function canWriteProceedings()
