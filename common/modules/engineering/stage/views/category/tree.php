@@ -12,7 +12,7 @@ $module = $this->context->module;
             'stageCategories' => [
                 'label' => 'لیست ' . $module->pluralLabel,
                 'url' => ['index'],
-                'type' => 'info',
+                'type' => 'success',
                 'icon' => 'list'
             ]
         ]
