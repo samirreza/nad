@@ -12,7 +12,7 @@ TreeAssetBundle::register($this);
 $module = $this->context->module;
 
 ?>
-<h4 class="nad-page-title">مراحل</h4>
+<h4 class="nad-page-title">مراحل (نمایش لیست)</h4>
 <div class="categories-index">
 <?= ActionButtons::widget([
     'buttons' => [
@@ -28,7 +28,7 @@ $module = $this->context->module;
 ]); ?>
 
 <br>
-<?= $this->render('_search', ['model' => $searchModel]) ?>
+<!-- <?= $this->render('_search', ['model' => $searchModel]) ?> -->
 
 <div class="sliding-form-wrapper"></div>
 <div class="row">
@@ -45,7 +45,7 @@ $module = $this->context->module;
                     ['class' => 'yii\grid\SerialColumn'],
                     [
                         'class' => 'nad\common\code\CodeGridColumn',
-                        'options' => ['style' => 'width:40px'],
+                        'options' => ['style' => 'width:70px'],
                         'isAjaxGrid' => true
                     ],
                     [
@@ -93,12 +93,11 @@ $module = $this->context->module;
                             'tree' => function ($url, $model, $key) use ($module) {
                                 return Html::a(
                                     '<span class="fa fa-tree"></span>',
-                                    '#',
+                                    ['tree-list', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
                                         'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
-                                        'data-pjax' => 0,
-                                        'data-rootid' => $model->id,
-                                        'class' => 'reload-tree'
+                                        'data-pjax' => 0
                                     ]
                                 );
                             },
@@ -108,27 +107,6 @@ $module = $this->context->module;
                 ],
             ]); ?>
         <?php Pjax::end(); ?>
-        <?php Panel::end() ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-7">
-        <?php Panel::begin([
-            'title' => 'نمایش درختی ' . $module->pluralLabel,
-            'tools' => Html::a(
-                '<span class="glyphicon glyphicon-refresh"></span>',
-                null,
-                [
-                    'class' => 'refresh-tree',
-                    'data-rootid' => 0
-                ]
-            )
-        ]) ?>
-            <div id="loading">
-                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div id="cats-tree"></div>
         <?php Panel::end() ?>
     </div>
 </div>

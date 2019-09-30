@@ -32,6 +32,7 @@ class CategoryController extends \core\controllers\AjaxAdminController
                                 'view',
                                 'create',
                                 'delete',
+                                'tree-list',
                                 'get-json-tree'
                             ],
                             'roles' => ['@']
@@ -65,6 +66,11 @@ class CategoryController extends \core\controllers\AjaxAdminController
         ];
     }
 
+    public function actionTreeList()
+    {
+        return $this->render('tree');
+    }
+
     public function actionGetJsonTree($id)
     {
         if ($id == '0') {
@@ -91,7 +97,7 @@ class CategoryController extends \core\controllers\AjaxAdminController
                 // $locationIds = Yii::$app->request->post('Category')['locations'];
                 // if(isset($locationIds) && $locationIds != ''){
                 //     foreach ($locationIds as $locationId) {
-                //         Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
+                //         Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();
                 //     }
                 // }
                 $transaction->commit();
@@ -125,7 +131,7 @@ class CategoryController extends \core\controllers\AjaxAdminController
                 //     $locationIds = Yii::$app->request->post('Category')['locations'];
                 //     if(isset($locationIds) && $locationIds != ''){
                 //         foreach ($locationIds as $locationId) {
-                //             Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();                        
+                //             Yii::$app->db->createCommand()->insert('nad_eng_location_stage', ['locationId' => $locationId, 'stageCategoryId' => $model->id])->execute();
                 //         }
                 //     }
                 $transaction->commit();
@@ -143,13 +149,13 @@ class CategoryController extends \core\controllers\AjaxAdminController
             'message' => 'عملیات با موفقیت انجام شد.'
         ];
         echo Json::encode($msg);
-        exit;        
+        exit;
     }
 
     protected function renderForm($model)
     {
-        $data = ['model' => $model];        
+        $data = ['model' => $model];
         echo Json::encode(['content' => $this->renderAjax('_form', $data)]);
-        exit;            
+        exit;
     }
 }

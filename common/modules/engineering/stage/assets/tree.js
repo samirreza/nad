@@ -1,5 +1,6 @@
 $(function() {
-    fillTree(0);
+    let queryStrings= getUrlVars();
+    fillTree(queryStrings['id']);
     $(document).on('click', '.reload-tree, .refresh-tree', function(event){
         event.preventDefault();
         $('#cats-tree').tree('destroy');
@@ -11,7 +12,7 @@ $(function() {
 function fillTree(rootId) {
     $.getJSON(
         'get-json-tree',
-        'id='+rootId,
+        'id=' + rootId,
         function(data) {
             $('.refresh-tree').attr('data-rootid', rootId);
             $('#loading').addClass('hidden');
@@ -27,4 +28,17 @@ function fillTree(rootId) {
             });
         }
     );
+}
+
+function getUrlVars()
+{
+    let vars = [], hash;
+    let hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(let i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
 }
