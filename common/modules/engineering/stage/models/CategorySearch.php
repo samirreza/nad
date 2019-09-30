@@ -11,7 +11,7 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['title', 'code', 'depth', 'titleOrCode'], 'safe'],
+            [['title', 'code', 'depth', 'titleOrCode', 'uniqueCode'], 'safe'],
         ];
     }
 
@@ -33,7 +33,12 @@ class CategorySearch extends Category
             'depth' => $this->depth,
         ]);
         $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['or', ['like', 'title', $this->titleOrCode], ['like', 'code', $this->titleOrCode]]);        
+        $query->andFilterWhere(['or', ['like', 'title', $this->titleOrCode], ['like', 'code', $this->titleOrCode]]);
         return $dataProvider;
+    }
+
+    public function setUniqueCode($value)
+    {
+        $this->code = $value;
     }
 }

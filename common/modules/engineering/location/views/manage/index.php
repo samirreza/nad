@@ -24,9 +24,9 @@ $module = $this->context->module;
                 'options' => [
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-gridviewpjax',
-                    'data-params' => 
+                    'data-params' =>
                         'Location[categoryId]=' . $categoryModel->id
-                    
+
                 ]
             ],
             // 'categoriesIndex' => [
@@ -48,10 +48,10 @@ $module = $this->context->module;
     ]); ?>
 
     <br>
-    <?= $this->render('_search', [
+    <!-- <?= $this->render('_search', [
         'model' => $searchModel,
         'categoryModel' => $categoryModel
-        ]) ?>
+        ]) ?> -->
 
     <div class="sliding-form-wrapper"></div>
 
@@ -69,7 +69,7 @@ $module = $this->context->module;
                     [
                         'header' => 'شمارنده',
                         'class' => 'yii\grid\SerialColumn'
-                    ],                    
+                    ],
                     [
                         'class' => 'nad\common\grid\TitleColumn',
                         'isAjaxGrid' => true
@@ -80,7 +80,7 @@ $module = $this->context->module;
                         'value' => function($model){
                             return $model->getUniqueCode();
                         }
-                    ],                                   
+                    ],
                     // 'createdAt:datetime',
                     [
                         'label' => 'مدارک گروه',
@@ -91,14 +91,14 @@ $module = $this->context->module;
                                     [
                                         '/engineering/piping/document/manage/index',
                                     'DocumentSearch[groupId]' => $model->id
-                                    ],                                    
+                                    ],
                                     [
                                         'title' => 'لیست مدارک گروه مدارک',
                                         'data-pjax' => 0
                                     ]
                                 );
                         }
-                    ],    
+                    ],
                     [
                         'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',

@@ -25,9 +25,9 @@ $module = $this->context->module;
                 'options' => [
                     'class' => 'ajaxcreate',
                     'data-gridpjaxid' => 'resource-gridviewpjax',
-                    'data-params' => 
+                    'data-params' =>
                         'Document[groupId]=' . Yii::$app->request->queryParams['DocumentSearch']['groupId']
-                    
+
                 ]
             ],
             'stageCategoriesIndex' => [
@@ -46,10 +46,10 @@ $module = $this->context->module;
     ]); ?>
 
 <br>
-    <?= $this->render('_search', [
+    <!-- <?= $this->render('_search', [
         'model' => $searchModel,
         'groupId' =>  Yii::$app->request->queryParams['DocumentSearch']['groupId']
-        ]) ?>
+        ]) ?> -->
 
     <div class="sliding-form-wrapper"></div>
 
@@ -80,7 +80,7 @@ $module = $this->context->module;
                         }
                     ],
                     [
-                        'attribute' => 'revisionNumber',            
+                        'attribute' => 'revisionNumber',
                         'value' => function($model){
                             return (isset($model->revisionNumber) ? 'Rev.' . $model->revisionNumber : null);
                         }
@@ -100,11 +100,11 @@ $module = $this->context->module;
                                 ]
                             );
                         }
-                    ],                       
+                    ],
                     [
                         'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn'
-                    ],             
+                    ],
                     'createdAt:date'
                 ],
             ]); ?>

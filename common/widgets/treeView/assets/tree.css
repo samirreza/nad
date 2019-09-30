@@ -26,3 +26,23 @@ li.depth-4 > div.jqtree-element {
 li.depth-0 > div.jqtree-element .jqtree-title {
     font-size: 18px;
 }
+
+/* rewriting above rules... */
+ul.jqtree-tree li > div.jqtree-element {
+    background-color: #0066ff;
+}
+ul.jqtree-tree li ul li > div.jqtree-element {
+    background-color: #4d94ff;
+}
+ul.jqtree-tree li ul li ul li > div.jqtree-element {
+    background-color: #99c2ff;
+}
+ul.jqtree-tree li ul li ul li ul li > div.jqtree-element {
+    background-color: #cce0ff;
+}
+ul.jqtree-tree li ul li ul li ul li ul li > div.jqtree-element {
+    background-color: #e6f0ff;
+}
+ul.jqtree-tree li > div.jqtree-element .jqtree-title {
+    font-size: 16px;
+}
