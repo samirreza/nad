@@ -13,7 +13,7 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h2 style="text-align: center">فعالیت ها</h2>
+<h2 style="text-align: center">برنامه ها</h2>
 <br>
     <div class="row">
         <div class="col-md-3"></div>
@@ -73,8 +73,8 @@ $this->params['breadcrumbs'] = [
 <h2 style="text-align: center">داده گاه ها</h2>
 <br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => Url::to(['/sedimentation/investigation/source/manage/archived-index'])
         ]) ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -93,8 +93,8 @@ $this->params['breadcrumbs'] = [
 </div>
 <br><br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -102,7 +102,7 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => '#'
         ]) ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -113,8 +113,8 @@ $this->params['breadcrumbs'] = [
 </div>
 <br><br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => '#'
         ]) ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -133,8 +133,8 @@ $this->params['breadcrumbs'] = [
 </div>
 <br><br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -142,7 +142,7 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => '#'
         ]) ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -153,8 +153,8 @@ $this->params['breadcrumbs'] = [
 </div>
 <br><br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -162,7 +162,7 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => '#'
         ]) ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -173,8 +173,8 @@ $this->params['breadcrumbs'] = [
 </div>
 <br><br>
 <div class="row" style="text-align: center">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -183,7 +183,7 @@ $this->params['breadcrumbs'] = [
         ])
         ?>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
