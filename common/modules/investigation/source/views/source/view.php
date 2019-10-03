@@ -30,7 +30,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'type' => 'info',
                     'icon' => 'send',
                     'isActive' => (($model->canUserDeliverToManager() && !Yii::$app->user->can('superuser')) || ($model->canAcceptOrRejectOrCorrect() && Yii::$app->user->can('superuser')) || ($model->status == Source::STATUS_ACCEPTED &&
-                    $model->hasAnyExpert() && Yii::$app->user->can('superuser'))),
+                    $model->hasAnyExpert() && Yii::$app->user->can('superuser')) || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -51,7 +51,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             ]
                         ],
                         'send-for-proposal' => [
-                            'label' => 'نگارش پروپوزال',
+                            'label' => 'جهت نگارش پروپوزال',
                             'icon' => 'reply',
                             'isActive' => $model->status == Source::STATUS_ACCEPTED &&
                                 $model->hasAnyExpert() && Yii::$app->user->can('superuser'),
