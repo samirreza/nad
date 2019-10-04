@@ -8,6 +8,7 @@ use nad\common\modules\investigation\reference\models\Reference;
 
 ?>
 
+<h3 class="nad-page-title">لیست منابع</h3>
 <div class="reference-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -33,6 +34,9 @@ use nad\common\modules\investigation\reference\models\Reference;
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو شناسه'
+                        ],
+                        'options' => [
+                            'style' => 'width: 100px'
                         ]
                     ],
                     [
@@ -47,7 +51,10 @@ use nad\common\modules\investigation\reference\models\Reference;
                         'value' => function ($model) {
                             return Reference::getTypeLabels()[$model->type];
                         },
-                        'filter' => Reference::getTypeLabels()
+                        'filter' => Reference::getTypeLabels(),
+                        'options' => [
+                            'style' => 'width: 70px'
+                        ]
                     ],
                     // 'author',
                     // 'publishedYear:farsiNumber',
@@ -83,11 +90,17 @@ use nad\common\modules\investigation\reference\models\Reference;
                                 $model->createdAt,
                                 'Y-M-d'
                             );
-                        }
+                        },
+                        'options' => [
+                            'style' => 'width: 100px'
+                        ]
                     ],
                     [
                         'header' => 'دسترسی',
-                        'class' => 'core\grid\AjaxActionColumn'
+                        'class' => 'core\grid\AjaxActionColumn',
+                        'options' => [
+                            'style' => 'width: 100px'
+                        ]
                     ]
                 ]
             ]) ?>

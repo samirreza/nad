@@ -82,7 +82,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             [
                 'attribute' => 'status',
                 'label' => 'وضعیت منشا',
-                'value' => Source::getStatusLables()[$source->status]
+                'value' => function($model){
+                    // TODO move it to a state in "Source::getUserHolderLables()"
+                    if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
+                        return 'منتظر ارسال جهت نگارش پروپوزال';
+                    }
+                    return Source::getStatusLables()[$model->status];
+                }
             ],
             [
                 'attribute' => 'reasonForGenesis',

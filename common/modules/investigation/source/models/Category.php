@@ -122,12 +122,12 @@ class Category extends ActiveRecord implements Codable
     public function getDepthList()
     {
         return [
-            0 => 'رده 1',
-            1 => 'رده 2',
-            2 => 'رده 3',
-            3 => 'رده 4',
-            4 => 'رده 5',
-            5 => 'رده 6',
+            0 => 'نوع مدرک',
+            1 => 'فعالیت',
+            2 => 'واحد',
+            3 => 'شاخه',
+            // 4 => 'رده 5',
+            // 5 => 'رده 6',
         ];
     }
 

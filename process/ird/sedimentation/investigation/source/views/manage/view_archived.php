@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'روند ' . $model->title;
+$this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],
     $this->title
 ];

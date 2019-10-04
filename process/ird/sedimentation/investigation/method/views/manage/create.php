@@ -2,7 +2,7 @@
 
 use nad\process\ird\sedimentation\investigation\method\models\Method;
 
-$this->title = 'درج روش';
+$this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',

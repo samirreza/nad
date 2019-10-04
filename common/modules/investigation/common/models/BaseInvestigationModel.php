@@ -23,6 +23,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     const STATUS_REJECTED = 6;
     const STATUS_ACCEPTED = 7;
     const STATUS_IN_NEXT_STEP = 8;
+    const STATUS_LOCKED = 9;
 
     const SCENARIO_SET_SESSION_DATE = 'setSessionDate';
     const SCENARIO_WRITE_PROCEEDINGS = 'writeProceedings';
@@ -194,7 +195,8 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
             self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
             self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
             self::STATUS_REJECTED => 'رد',
-            self::STATUS_ACCEPTED => 'قبول'
+            self::STATUS_ACCEPTED => 'قبول',
+            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)'
         ];
     }
 }

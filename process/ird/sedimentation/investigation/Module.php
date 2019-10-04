@@ -20,17 +20,17 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'لیست‌ منشا',
+                        'label' => 'افزودن منشا',
+                        'url' => ['/sedimentation/investigation/source/manage/create']
+                    ],
+                    [
+                        'label' => 'لیست‌ منشاهای برنامه',
                         'url' => ['/sedimentation/investigation/source/manage/index']
                     ],
                     [
-                        'label' => 'رده‌بندی منشا',
+                        'label' => 'لیست رده های منشا',
                         'url' => ['/sedimentation/investigation/source/category/index']
                     ],
-                    [
-                        'label' => 'افزودن منشا',
-                        'url' => ['/sedimentation/investigation/source/manage/create']
-                    ]
                 ]
             ],
             [

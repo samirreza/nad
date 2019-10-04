@@ -13,70 +13,83 @@ class SideMenu extends \theme\widgets\Menu
         return [
             [
                 'label' => 'اعلانات',
-                'icon' => 'bullhorn',
+                'icon' => 'angle-right',
                 'badge' => Notification::getUnreadNotificationsCountForUser(),
                 'url' => ['/notif/index']
             ],
             [
                 'label' => 'فرایند',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'فرایند‌ها',
-                        'icon' => 'flask',
+                        'icon' => 'angle-right',
                         'items' => [
-                            [
-                                'label' => 'استخر',
-                                'url' => ['/pool']
-                            ],
+                            // [
+                            //     'label' => 'استخر',
+                            //     'icon' => 'angle-right',
+                            //     'url' => ['/pool']
+                            // ],
                             [
                                 'label' => 'آشنایی',
+                                'icon' => 'angle-right',
                                 'url' => ['/introduction']
                             ],
                             [
                                 'label' => 'ته نشینی',
+                                'icon' => 'angle-right',
                                 'url' => ['/sedimentation']
                             ],
                             [
                                 'label' => 'فیلتر شنی',
+                                'icon' => 'angle-right',
                                 'url' => ['/filter']
                             ],
                             [
                                 'label' => 'کارتریج',
+                                'icon' => 'angle-right',
                                 'url' => ['/cartridge']
                             ],
                             [
                                 'label' => 'آر او',
+                                'icon' => 'angle-right',
                                 'url' => ['/ro']
                             ],
                             [
                                 'label' => 'پساب',
+                                'icon' => 'angle-right',
                                 'url' => ['/wastewater']
                             ],
                             [
                                 'label' => 'میکروبی',
+                                'icon' => 'angle-right',
                                 'url' => ['/microbial']
                             ],
                             [
                                 'label' => 'گرافن',
+                                'icon' => 'angle-right',
                                 'url' => ['/graphene']
                             ],
                             [
                                 'label' => 'تکنولوژی های نو',
+                                'icon' => 'angle-right',
                                 'url' => ['/newTechnology']
                             ]
                         ]
                     ],
                     [
-                        'label' => 'مواد'
+                        'label' => 'مواد',
+                        'icon' => 'angle-right',
                     ],
                     [
-                        'label' => 'آزمایشگاه'
+                        'label' => 'آزمایشگاه',
+                        'icon' => 'angle-right',
                     ]
                 ]
             ],
             // [
             //     'label' => 'پژوهش',
-            //     'icon' => 'flask',
+            //     'icon' => 'angle-right',
             //     'items' => [
             //         [
             //             'label' => 'کنترل',
@@ -133,82 +146,82 @@ class SideMenu extends \theme\widgets\Menu
             // ],
             [
                 'label' => 'فنی',
-                'icon' => 'wrench',
-                'items' => [                                            
+                'icon' => 'angle-right',
+                'items' => [
                     [
                         'label' => 'کلی',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => '#'
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مکانها',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'url' => '#'
                         //     ],
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'url' => '#'
                         //     ]
                         // ]
                     ],
                     [
                         'label' => 'لوله کشی',
-                        'icon' => 'tag',                        
-                        'items' => [                            
+                        'icon' => 'angle-right',
+                        'items' => [
                             [
                                 'label' => 'مراحل',
-                                'icon' => 'tag',
+                                'icon' => 'angle-right',
                                 'url' => ['/engineering/piping/stage']
                             ],
                             [
                                 'label' => 'دستگاه ها',
-                                'icon' => 'tag',
-                                'url' => '#' //['/engineering/piping/equipment'] 
+                                'icon' => 'angle-right',
+                                'url' => '#' //['/engineering/piping/equipment']
                             ]
                         ]
                     ],
                     [
                         'label' => 'مکانیک',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/mechanics']
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/mechanics/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
-                                
+
                         //     ]
                         // ]
                     ],
                     [
                         'label' => 'برق',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/electricity']
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/electricity/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
@@ -217,21 +230,21 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     [
                         'label' => 'ابزاردقیق',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/instrument']
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/instrument/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
@@ -240,21 +253,21 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     [
                         'label' => 'کنترل',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/control']
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/control/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
@@ -263,21 +276,21 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     [
                         'label' => 'ساختمان',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/construction']
-                        // 'items' => [                           
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/construction/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
@@ -286,21 +299,21 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     [
                         'label' => 'ژئوتکنیک',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/engineering/well']
-                        // 'items' => [                            
+                        // 'items' => [
                         //     [
                         //         'label' => 'مراحل',
-                        //         'icon' => 'tag',
+                        //         'icon' => 'angle-right',
                         //         'items' => [
                         //             [
                         //                 'label' => 'تعریف',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => ['/engineering/well/stage/manage/index']
                         //             ],
                         //             [
                         //                 'label' => 'مدارک',
-                        //                 'icon' => 'tag',
+                        //                 'icon' => 'angle-right',
                         //                 'url' => '#'
                         //             ],
                         //         ]
@@ -309,22 +322,22 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                     // [
                     //     'label' => 'منابع',
-                    //     'icon' => 'tag',
+                    //     'icon' => 'angle-right',
                     //     'url' => ['/engineering/resource/manage/index']
                     // ],
                     // [
                     //     'label' => 'پلانت ها',
-                    //     'icon' => 'tag',
+                    //     'icon' => 'angle-right',
                     //     'url' => ['/engineering/plant/manage/index']
-                    // ],                                      
+                    // ],
                     // [
                     //     'label' => 'مدارک ، نقشه ها و اسناد پلانت ها',
-                    //     'icon' => 'tag',
+                    //     'icon' => 'angle-right',
                     //     'url' => ['/engineering/document/manage/index']
                     // ],
                     // [
                     //     'label' => 'تجهیزات (شناسه و سوابق)',
-                    //     'icon' => 'tag',
+                    //     'icon' => 'angle-right',
                     //     'url' => ['/engineering/equipment/type/manage/index'],
                     //     'visible' => $user->can('equipment.type')
                     // ]
@@ -332,7 +345,7 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'تجهیزات',
-                'icon' => 'cogs',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'ابزار و لوازم مصرفی',
@@ -354,7 +367,7 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'احداث',
-                'icon' => 'cogs',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'مصالح ساختمانی',
@@ -364,11 +377,11 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'بازرگانی',
-                'icon' => 'briefcase',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'داده گاه تامین کنندگان',
-                        'icon' => 'database',
+                        'icon' => 'angle-right',
                         'url' => ['/supplier/manage/index'],
                         'visible' => $user->canAccessAny(['supplier.create', 'supplier.delete', 'supplier.update'])
                     ]
@@ -376,15 +389,15 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'پشتیبانی',
-                'icon' => 'wrench'
+                'icon' => 'angle-right'
             ],
             [
                 'label' => 'آی تی',
-                'icon' => 'laptop',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'شناسه تجهیزات',
-                        'icon' => 'tag',
+                        'icon' => 'angle-right',
                         'url' => ['/it/equipment/type/manage/index'],
                         'visible' => $user->can('it.equipment-type'),
                     ],
@@ -402,11 +415,11 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'مالی',
-                'icon' => 'wrench'
+                'icon' => 'angle-right'
             ],
             [
                 'label' => 'اداری',
-                'icon' => 'wrench',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'کارشناسان',
@@ -417,24 +430,24 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'بندر',
-                'icon' => 'wrench'
+                'icon' => 'angle-right'
             ],
             [
                 'label' => 'کاربران',
                 'url' => ['/user/manage/index'],
-                'icon' => 'user',
+                'icon' => 'angle-right',
                 'visible' => $user->can('superuser')
             ],
             [
                 'label' => 'تنظیمات سیستم',
                 'url' => ['/setting/manage/index'],
-                'icon' => 'cog',
+                'icon' => 'angle-right',
                 'visible' =>  $user->can('superuser')
             ],
             [
                 'label' => 'تاریخچه تغییرات',
                 'url' => ['/changelog/manage/list'],
-                'icon' => 'calendar',
+                'icon' => 'angle-right',
                 'visible' => $user->can('superuser')
             ]
         ];

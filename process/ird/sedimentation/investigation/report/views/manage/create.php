@@ -2,7 +2,7 @@
 
 use nad\process\ird\sedimentation\investigation\report\models\Report;
 
-$this->title = 'درج گزارش';
+$this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',

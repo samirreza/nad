@@ -9,6 +9,7 @@ use nad\common\widgets\treeView\TreeView;
 
 ?>
 
+<h2 class="nad-page-title">رده بندی منشاها</h2>
 <div class="source-category-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -19,12 +20,12 @@ use nad\common\widgets\treeView\TreeView;
                     'data-gridpjaxid' => 'source-category-gridviewpjax'
                 ]
             ],
-            'sources' => [
-                'label' => 'لیست منشا',
-                'url' => ['manage/index'],
-                'type' => 'success',
-                'icon' => 'list'
-            ]
+            // 'sources' => [
+            //     'label' => 'لیست منشا',
+            //     'url' => ['manage/index'],
+            //     'type' => 'success',
+            //     'icon' => 'list'
+            // ]
         ]
     ]) ?>
     <div class="sliding-form-wrapper"></div>
@@ -42,7 +43,7 @@ use nad\common\widgets\treeView\TreeView;
                             ['class' => 'yii\grid\SerialColumn'],
                             [
                                 'class' => 'nad\common\code\CodeGridColumn',
-                                'options' => ['style' => 'width:30%']
+                                'options' => ['style' => 'width:40px']
                             ],
                             'title',
                             [
@@ -50,9 +51,13 @@ use nad\common\widgets\treeView\TreeView;
                                 'filter' => $searchModel->getDepthList(),
                                 'value' => function ($model) {
                                     return $model->getDepthTitle();
-                                }
+                                },
+                                'options' => [
+                                    'width' => '60px'
+                                ]
                             ],
                             [
+                                'header' => 'دسترسی',
                                 'class' => 'core\grid\AjaxActionColumn',
                                 'template' => '{view} {update} {delete} {tree}',
                                 'options' => ['style' => 'width:20%'],

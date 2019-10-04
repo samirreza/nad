@@ -2,7 +2,7 @@
 
 use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
 
-$this->title = 'درج پروپوزال';
+$this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
