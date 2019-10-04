@@ -12,8 +12,9 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h1 style="text-align: center">فعالیت ها</h1>
-<br><br>
+<h1 class="nad-page-title">ته نشینی</h1>
+<h2>فعالیت ها:</h2>
+<br>
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-3" style="text-align: center">

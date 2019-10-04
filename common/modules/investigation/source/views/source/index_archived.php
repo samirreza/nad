@@ -12,8 +12,16 @@ use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceReason;
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'لیست داده گاه منشا',
+        'url' => ['/sedimentation/investigation/source/manage/archived-index']
+    ]
+];
+
 ?>
 
+<h3 class="nad-page-title">منشاهای داده گاه</h3>
 <div class="sliding-form-wrapper"></div>
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
@@ -65,6 +73,10 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
+                            // TODO move it to a state in "Source::getUserHolderLables()"
+                            if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
+                                return 'منتظر ارسال جهت نگارش پروپوزال';
+                            }
                             return Source::getStatusLables()[$model->status];
                         },
                         'filter' => Source::getStatusLables()
@@ -79,7 +91,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     Url::to(['archived-view', 'id' => $model->id]),
                                     [
-                                        'title' => 'روند',
+                                        'title' => 'مدرک',
                                         'style' => 'color: green'
                                     ]
                                 );

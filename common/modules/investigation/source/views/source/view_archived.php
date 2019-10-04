@@ -8,6 +8,12 @@ use theme\widgets\ActionButtons;
 use nad\common\modules\investigation\source\models\Source;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'لیست داده گاه منشا',
+        'url' => ['/sedimentation/investigation/source/manage/archived-index']
+    ]
+];
 ?>
 <?= ActionButtons::widget([
             'modelID' => $model->id,
@@ -79,6 +85,10 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' => function ($model) {
+                                        // TODO move it to a state in "Source::getUserHolderLables()"
+                                        if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
+                                            return 'منتظر ارسال جهت نگارش پروپوزال';
+                                        }
                                         return Source::getStatusLables()[$model->status];
                                     }
                                 ],

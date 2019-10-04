@@ -13,16 +13,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
 
 ?>
 
-<?= ActionButtons::widget([
-    'buttons' => [
-        'accepted-index' => [
-            'label' => 'لیست منشا‌های تایید شده',
-            'url' => ['index', 'SourceSearch[status]' => Source::STATUS_ACCEPTED],
-            'type' => 'success',
-            'icon' => 'list'
-        ]
-    ]
-]) ?>
+<h2 class="nad-page-title">منشاهای برنامه</h2>
 <div class="sliding-form-wrapper"></div>
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
@@ -43,7 +34,10 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         'class' => 'nad\common\code\CodeGridColumn',
                         'filterInputOptions' => [
                             'class' => 'form-control',
-                            'placeholder' => 'جست‌و‌جو'
+                            'placeholder' => 'جست‌و‌جو شناسه'
+                        ],
+                        'options' => [
+                            'width' => '40px'
                         ]
                     ],
                     [
@@ -74,9 +68,16 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
+                            // TODO move it to a state in "Source::getUserHolderLables()"
+                            if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
+                                return 'منتظر ارسال جهت نگارش پروپوزال';
+                            }
                             return Source::getStatusLables()[$model->status];
                         },
-                        'filter' => Source::getStatusLables()
+                        'filter' => Source::getStatusLables(),
+                        'options' => [
+                            'width' => '150px'
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

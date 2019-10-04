@@ -5,6 +5,7 @@ namespace nad\common\modules\investigation\common\controllers;
 use Yii;
 use yii\helpers\Json;
 use core\controllers\AdminController;
+use nad\common\modules\investigation\source\models\SourceCommon;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 
 class BaseInvestigationController extends AdminController

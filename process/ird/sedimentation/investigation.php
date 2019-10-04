@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'بررسی';
+$this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -13,7 +13,8 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h2 style="text-align: center">برنامه ها</h2>
+<h1 class="nad-page-title">بررسی فرایندی</h1>
+<h2>برنامه ها:</h2>
 <br>
     <div class="row">
         <div class="col-md-3"></div>
@@ -70,7 +71,7 @@ $this->params['breadcrumbs'] = [
     </div>
     <br><br>
 
-<h2 style="text-align: center">داده گاه ها</h2>
+<h2>داده گاه ها:</h2>
 <br>
 <div class="row" style="text-align: center">
     <div class="col-md-1"></div>

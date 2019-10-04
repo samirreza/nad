@@ -17,9 +17,9 @@ class SourceController extends BaseInvestigationController
 
     public function init()
     {
-        if (!isset($this->archivedClassName)) {
+        if (!isset($this->archivedClassName) || !isset($this->archivedSearchClassName)) {
             throw new InvalidConfigException("
-                \$archivedClassName property must be set.
+                \$archivedClassName and archivedSearchClassName properties must be set.
             ");
         }
     }
@@ -118,6 +118,31 @@ class SourceController extends BaseInvestigationController
             );
             return $this->redirect(['view', 'id' => $id]);
         }
+    }
+
+    public function actionDeliverToManager($id)
+    {
+        $model = static::findModel($id);
+        $model->userHolder = Source::USER_HOLDER_MANAGER;
+        $model->deliverToManagerDate = time();
+        $model->save();
+        Yii::$app->session->addFlash(
+            'success',
+            'آیتم مورد نظر با موفقیت به مدیر ارسال شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    public function actionDeliverToExpert($id)
+    {
+        $model = static::findModel($id);
+        $model->userHolder = Source::USER_HOLDER_EXPERT;
+        $model->save();
+        Yii::$app->session->addFlash(
+            'success',
+            'آیتم مورد نظر با موفقیت به کارشناس ارسال شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     protected function findArchivedModel($id)

@@ -20,8 +20,8 @@ use yii\widgets\DetailView;
                         'title',
                         [
                             'label' => 'رده پدر',
-                            'visible' => !$model->isRoot(),
-                            'value' => $model->isRoot() ?: $model->getParent()->title,
+                            // 'visible' => !$model->isRoot(),
+                            'value' => $model->isRoot() ? 'ندارد' : $model->getParent()->title,
                             'format' => 'raw'
                         ]
                     ]

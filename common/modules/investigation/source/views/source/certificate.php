@@ -4,6 +4,7 @@ use theme\widgets\Panel;
 
 ?>
 
+<h2 class="nad-page-title">شناسنامه</h2>
 <div class="source-certificate">
     <?= $this->render('@nad/common/modules/investigation/common/views/_base_source_certificate', [
         'source' => $source,

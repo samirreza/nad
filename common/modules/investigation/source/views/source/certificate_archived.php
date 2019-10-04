@@ -2,8 +2,15 @@
 
 use theme\widgets\Panel;
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'لیست داده گاه منشا',
+        'url' => ['/sedimentation/investigation/source/manage/archived-index']
+    ]
+];
 ?>
 
+<h3 class="nad-page-title">شناسنامه</h3>
 <div class="source-certificate">
     <?= $this->render('@nad/common/modules/investigation/common/views/_base_source_certificate', [
         'source' => $source,

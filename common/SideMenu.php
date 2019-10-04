@@ -19,6 +19,7 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'فرایند',
+                'icon' => 'angle-right',
                 'items' => [
                     [
                         'label' => 'فرایند‌ها',

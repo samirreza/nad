@@ -20,6 +20,9 @@ class SourceCommon extends BaseInvestigationModel
 {
     // TODO Remove all "reasons" related things asap.
 
+    const USER_HOLDER_MANAGER = 0;
+    const USER_HOLDER_EXPERT = 1;
+
     public $moduleId = 'source';
     public $ownerClassName = __NAMESPACE__ . '\Source';
 
@@ -129,6 +132,7 @@ class SourceCommon extends BaseInvestigationModel
             'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
+            'userHolder' => 'نزد',
             'createdBy' => 'کارشناس',
             'updatedAt' => 'آخرین بروزرسانی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
@@ -147,7 +151,14 @@ class SourceCommon extends BaseInvestigationModel
         }
         if ($insert) {
             $this->consumer = static::CONSUMER_CODE;
+
+            if(Yii::$app->user->can('superuser')){
+                $this->userHolder = self::USER_HOLDER_MANAGER;
+            }else{
+                $this->userHolder = self::USER_HOLDER_EXPERT;
+            }
         }
+
         $this->setUniqueCode();
         return true;
     }
@@ -218,18 +229,193 @@ class SourceCommon extends BaseInvestigationModel
 
     public static function getStatusLables()
     {
-        $statusLabels = array_replace(
-            parent::getStatusLables(),
-            [
-                self::STATUS_IN_NEXT_STEP => 'در حال تکمیل پروپوزال'
-            ]
-        );
-        return $statusLabels;
+        return [
+            self::STATUS_INPROGRESS => 'در دست تهیه',
+            self::STATUS_IN_MANAGER_HAND => 'نزد مدیر',
+            self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه',
+            self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره',
+            self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
+            self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
+            self::STATUS_REJECTED => 'رد',
+            self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
+            self::STATUS_IN_NEXT_STEP => 'منتظر پروپوزال جدید',
+            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
+        ];
+    }
+
+    public static function getUserHolderLables()
+    {
+        return [
+            self::USER_HOLDER_MANAGER => 'مدیر',
+            self::USER_HOLDER_EXPERT => 'کارشناس'
+        ];
+    }
+
+    public function changeStatus($newStatus)
+    {
+        if($newStatus == self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED)
+            $this->userHolder = self::USER_HOLDER_EXPERT;
+        else if($newStatus == self::STATUS_IN_MANAGER_HAND)
+            $this->userHolder = self::USER_HOLDER_MANAGER;
+
+        $this->status = $newStatus;
+
+        $this->save();
     }
 
     public function changeArchive($newStatus)
     {
         $this->isArchived = $newStatus;
         $this->save(false);
+    }
+
+    // TODO move all "can" functions to "BaseInvestigationModel" class if other classes need them.
+    public function canUserUpdateOrDelete()
+    {
+        if (Yii::$app->user->can('superuser')) {
+            return true;
+        }
+        if (
+            $this->userHolder == self::USER_HOLDER_EXPERT &&
+            (
+                $this->status == self::STATUS_NEED_CORRECTION ||
+                $this->status == self::STATUS_INPROGRESS
+            )
+        ) {
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
+        }
+        return false;
+    }
+
+    public function canUserDeliverToManager()
+    {
+        if ($this->userHolder != self::USER_HOLDER_MANAGER && ($this->userHolder == self::USER_HOLDER_EXPERT || Yii::$app->user->can('superuser'))) {
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
+
+        }
+        return false;
+    }
+
+    public function canManagerDeliverToExpert(){
+        return $this->canAcceptOrRejectOrSendForCorrection() && $this->userHolder != self::USER_HOLDER_EXPERT;
+    }
+
+    public function canSetWaitForSession(){
+        return $this->userHolder == Source::USER_HOLDER_MANAGER &&
+        Yii::$app->user->can('superuser') && $this->status != Source::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
+    }
+
+    public function canSetSessionDate()
+    {
+        return Yii::$app->user->can('superuser') && $this->status == self::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
+            // && !$this->proceedings;
+    }
+
+    public function canWriteProceedings()
+    {
+        return Yii::$app->user->can('superuser') && $this->status == self::STATUS_WAITING_FOR_SESSION &&
+            $this->sessionDate != null &&
+            $this->sessionDate <= time() && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
+    }
+
+    public function canStartConverstation()
+    {
+        if ($this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED) {
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
+        }
+        return false;
+    }
+
+    public function canHaveConverstation()
+    {
+        if ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED) {
+            return Yii::$app->user->can(
+                'investigation.manageOwnInvestigation',
+                ['investigation' => $this]
+            );
+        }
+        return false;
+    }
+
+    public function canSetForCorrection()
+    {
+        if($this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
+            if (
+                $this->status == self::STATUS_INPROGRESS
+                ||
+                (
+                    $this->status == self::STATUS_WAITING_FOR_SESSION &&
+                    $this->proceedings
+                )
+                ||
+                (
+                    $this->status == self::STATUS_WAIT_FOR_CONVERSATION &&
+                    $this->comments
+                )
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function canAcceptOrRejectOrSendForCorrection()
+    {
+        if (Yii::$app->user->can('superuser')) {
+            if ($this->status == self::STATUS_INPROGRESS) {
+                return true;
+            } elseif ($this->status == self::STATUS_NEED_CORRECTION) {
+                return true;
+            } elseif (
+                $this->status == self::STATUS_WAITING_FOR_SESSION &&
+                $this->proceedings
+            ) {
+                return true;
+            } elseif (
+                $this->status == self::STATUS_WAIT_FOR_NEGOTIATION &&
+                $this->negotiationResult
+            ) {
+                return true;
+            } elseif (
+                $this->status == self::STATUS_WAIT_FOR_CONVERSATION &&
+                $this->comments
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function canSendToWriteProposal(){
+        return ($this->status == self::STATUS_ACCEPTED && $this->hasAnyExpert() && Yii::$app->user->can('superuser'));
+    }
+
+    /**
+     * User can NOT create any new proposal for a locked source.
+     *
+     * @return boolean
+     */
+    public function canLock(){
+        return $this->status == self::STATUS_IN_NEXT_STEP;
+    }
+
+    /**
+     * User can NOT create any new proposal for a locked source.
+     *
+     * @return boolean
+     */
+    public function canUnlock(){
+        return $this->status == self::STATUS_LOCKED;
     }
 }
