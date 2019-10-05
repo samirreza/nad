@@ -307,8 +307,8 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     public function canSetWaitForSession(){
-        return $this->userHolder == Source::USER_HOLDER_MANAGER &&
-        Yii::$app->user->can('superuser') && $this->status != Source::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
+        return ($this->userHolder == Source::USER_HOLDER_MANAGER &&
+        Yii::$app->user->can('superuser') && $this->status != Source::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
     public function canSetSessionDate()
@@ -326,7 +326,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canStartConverstation()
     {
-        if ($this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED) {
+        if ($this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -337,7 +337,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canHaveConverstation()
     {
-        if ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED) {
+        if ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]

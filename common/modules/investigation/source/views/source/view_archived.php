@@ -36,7 +36,10 @@ $this->params['horizontalMenuItems'] = [
     <?php Pjax::begin(['id' => 'source-view-detailview-pjax']) ?>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
+                <?php Panel::begin([
+                    'title' => 'مشخصات منشا',
+                    'showCollapseButton' => true
+                    ]) ?>
                     <div class="col-md-6">
                         <?= DetailView::widget([
                             'model' => $model,
@@ -106,14 +109,20 @@ $this->params['horizontalMenuItems'] = [
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'سابقه پیدایش']) ?>
+                <?php Panel::begin([
+                    'title' => 'سابقه پیدایش',
+                    'showCollapseButton' => true
+                    ]) ?>
                     <div class="well">
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'شرح عنوان']) ?>
+                <?php Panel::begin([
+                    'title' => 'شرح عنوان',
+                    'showCollapseButton' => true
+                    ]) ?>
                     <div class="well">
                         <?= $model->necessity ?>
                     </div>
@@ -121,7 +130,10 @@ $this->params['horizontalMenuItems'] = [
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه جلسه']) ?>
+                    <?php Panel::begin([
+                        'title' => 'نتیجه جلسه',
+                        'showCollapseButton' => true
+                        ]) ?>
                         <div class="well">
                             <?= $model->proceedings ?>
                         </div>

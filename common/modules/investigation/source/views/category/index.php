@@ -7,6 +7,8 @@ use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 use nad\common\widgets\treeView\TreeView;
 
+$module = $this->context->module;
+
 ?>
 
 <h2 class="nad-page-title">رده بندی منشاها</h2>
@@ -30,7 +32,7 @@ use nad\common\widgets\treeView\TreeView;
     ]) ?>
     <div class="sliding-form-wrapper"></div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
             <?php Panel::begin(['title' => 'لیست رده‌ها']) ?>
                 <?php Pjax::begin([
                     'id' => 'source-category-gridviewpjax',
@@ -40,10 +42,13 @@ use nad\common\widgets\treeView\TreeView;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'class' => 'yii\grid\SerialColumn',
+                                'options' => ['style' => 'width:10px'],
+                            ],
                             [
                                 'class' => 'nad\common\code\CodeGridColumn',
-                                'options' => ['style' => 'width:40px']
+                                'options' => ['style' => 'width:70px'],
                             ],
                             'title',
                             [
@@ -52,25 +57,22 @@ use nad\common\widgets\treeView\TreeView;
                                 'value' => function ($model) {
                                     return $model->getDepthTitle();
                                 },
-                                'options' => [
-                                    'width' => '60px'
-                                ]
+                                'options' => ['style' => 'width:80px'],
                             ],
                             [
                                 'header' => 'دسترسی',
                                 'class' => 'core\grid\AjaxActionColumn',
                                 'template' => '{view} {update} {delete} {tree}',
-                                'options' => ['style' => 'width:20%'],
+                                'options' => ['style' => 'width:90px'],
                                 'buttons' => [
-                                    'tree' => function ($url, $model, $key) {
+                                    'tree' => function ($url, $model, $key) use($module) {
                                         return Html::a(
                                             '<span class="fa fa-tree"></span>',
-                                            '#',
+                                            ['tree-list', 'id' => $model->id],
                                             [
-                                                'title' => 'نمایش درخت',
-                                                'data-pjax' => 0,
-                                                'data-rootid' => $model->id,
-                                                'class' => 'reload-tree'
+                                                // 'target' => '_blank',
+                                                'title' => 'نمایش درختی رده های منشا',
+                                                'data-pjax' => 0
                                             ]
                                         );
                                     },
@@ -80,9 +82,6 @@ use nad\common\widgets\treeView\TreeView;
                     ]) ?>
                 <?php Pjax::end(); ?>
             <?php Panel::end() ?>
-        </div>
-        <div class="col-md-5">
-            <?= TreeView::widget() ?>
         </div>
     </div>
 </div>

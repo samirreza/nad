@@ -45,6 +45,11 @@ class SourceCategoryController extends AjaxAdminController
         ];
     }
 
+    public function actionTreeList()
+    {
+        return $this->render('tree');
+    }
+
     public function actionGetJsonTree($id)
     {
         if ($id == '0') {

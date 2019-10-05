@@ -26,8 +26,8 @@ class Category extends ActiveRecord implements Codable
                         'relationName' => 'زیر رده'
                     ],
                     [
-                        'relationMethod' => 'getReports',
-                        'relationName' => 'گزارش'
+                        'relationMethod' => 'getSources',
+                        'relationName' => 'منشا'
                     ]
                 ]
             ],
@@ -137,7 +137,7 @@ class Category extends ActiveRecord implements Codable
             foreach ($this->children(1)->all() as $child) {
                 $child->updateChildrenCodes();
             }
-        } elseif ($this->getReports()->count() != 0) {
+        } elseif ($this->getSources()->count() != 0) {
             foreach ($this->sources as $source) {
                 $source->setUniqueCode();
                 $source->save(false);
