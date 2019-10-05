@@ -83,7 +83,7 @@ $this->params['horizontalMenuItems'] = [
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'header' => 'روند',
+                        'header' => 'دسترسی',
                         'template' => '{view} {certificate}',
                         'buttons' => [
                             'view' => function ($url, $model) {
