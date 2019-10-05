@@ -6,7 +6,7 @@ $this->params['breadcrumbs'] = [
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
-    ['label' => 'رده های منشاها', 'url' => ['/sedimentation/category/index']],
+    ['label' => 'رده های منشاها', 'url' => ['/sedimentation/investigation/source/category/index']],
     $this->title
 ];
 

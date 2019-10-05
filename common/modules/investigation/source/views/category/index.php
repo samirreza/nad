@@ -32,7 +32,7 @@ $module = $this->context->module;
     ]) ?>
     <div class="sliding-form-wrapper"></div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
             <?php Panel::begin(['title' => 'لیست رده‌ها']) ?>
                 <?php Pjax::begin([
                     'id' => 'source-category-gridviewpjax',
@@ -42,10 +42,13 @@ $module = $this->context->module;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'class' => 'yii\grid\SerialColumn',
+                                'options' => ['style' => 'width:10px'],
+                            ],
                             [
                                 'class' => 'nad\common\code\CodeGridColumn',
-                                'options' => ['style' => 'width:40px']
+                                'options' => ['style' => 'width:70px'],
                             ],
                             'title',
                             [
@@ -54,15 +57,13 @@ $module = $this->context->module;
                                 'value' => function ($model) {
                                     return $model->getDepthTitle();
                                 },
-                                'options' => [
-                                    'width' => '60px'
-                                ]
+                                'options' => ['style' => 'width:80px'],
                             ],
                             [
                                 'header' => 'دسترسی',
                                 'class' => 'core\grid\AjaxActionColumn',
                                 'template' => '{view} {update} {delete} {tree}',
-                                'options' => ['style' => 'width:20%'],
+                                'options' => ['style' => 'width:90px'],
                                 'buttons' => [
                                     'tree' => function ($url, $model, $key) use($module) {
                                         return Html::a(
