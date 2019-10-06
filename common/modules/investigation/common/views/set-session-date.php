@@ -17,7 +17,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
             'title' => 'تعیین زمان جلسه توجیهی',
             'showCloseButton' => true
         ]) ?>
-            <div class="expert-form">
+            <div class="session-date-form">
                 <?php $form = ActiveForm::begin([
                     'enableClientValidation' => true,
                     'options' => [
