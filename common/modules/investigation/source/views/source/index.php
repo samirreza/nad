@@ -69,7 +69,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         'attribute' => 'status',
                         'value' => function ($model) {
                             // TODO move it to a state in "Source::getUserHolderLables()"
-                            if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
+                            if($model->hasAnyExpert() && $model->status == Source::STATUS_ACCEPTED){
                                 return 'منتظر ارسال جهت نگارش پروپوزال';
                             }
                             return Source::getStatusLables()[$model->status];

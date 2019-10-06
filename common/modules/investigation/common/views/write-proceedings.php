@@ -16,11 +16,10 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
             'title' => 'نتیجه جلسه',
             'showCloseButton' => true
         ]) ?>
-            <div class="expert-form">
+            <div class="session-proceedings-form">
                 <?php $form = ActiveForm::begin([
                     'enableClientValidation' => true,
                     'options' => [
-                        'enctype' => 'multipart/form-data',
                         'class' => 'sliding-form'
                     ]
                 ]) ?>
