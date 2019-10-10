@@ -43,6 +43,9 @@ $this->params['horizontalMenuItems'] = [
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو'
+                        ],
+                        'options' => [
+                            'width' => '100px'
                         ]
                     ],
                     [
@@ -79,12 +82,18 @@ $this->params['horizontalMenuItems'] = [
                             }
                             return Source::getStatusLables()[$model->status];
                         },
-                        'filter' => Source::getStatusLables()
+                        'filter' => Source::getStatusLables(),
+                        'options' => [
+                            'width' => '150px'
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'دسترسی',
                         'template' => '{view} {certificate}',
+                        'options' => [
+                            'width' => '50px'
+                        ],
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(

@@ -83,6 +83,9 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'دسترسی',
                         'template' => '{view} {certificate} {set-experts} {send-for-proposal}',
+                        'options' => [
+                            'width' => '50px'
+                        ],
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(

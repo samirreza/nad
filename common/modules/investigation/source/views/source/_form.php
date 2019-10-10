@@ -18,6 +18,8 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
 ?>
 
+<h2 class="nad-page-title"><?= $this->title ?></h2>
+
 <div class="source-form">
     <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
         <?php $form = ActiveForm::begin() ?>
