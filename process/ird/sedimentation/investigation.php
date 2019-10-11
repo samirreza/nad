@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use theme\widgets\Panel;
 use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'بررسی فرایندی';
@@ -13,9 +14,11 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h1 class="nad-page-title">بررسی فرایندی</h1>
-<h2>برنامه ها:</h2>
-<br>
+<h2 class="nad-page-title">بررسی فرایندی</h2>
+<?php Panel::begin([
+                    'title' => 'برنامه ها',
+                    'showCollapseButton' => true
+                    ]) ?>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -69,10 +72,11 @@ $this->params['breadcrumbs'] = [
             ]) ?>
         </div>
     </div>
-    <br><br>
-
-<h2>داده گاه ها:</h2>
-<br>
+    <?php Panel::end() ?>
+    <?php Panel::begin([
+                    'title' => 'داده گاه ها',
+                    'showCollapseButton' => true
+                    ]) ?>
 <div class="row" style="text-align: center">
     <div class="col-md-1"></div>
     <div class="col-md-5">
@@ -88,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigation/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -193,4 +197,5 @@ $this->params['breadcrumbs'] = [
         ]) ?>
     </div>
 </div>
+<?php Panel::end() ?>
 <br><br><br>

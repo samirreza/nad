@@ -39,7 +39,7 @@ $model = $this->context->model;
             <?php Pjax::begin([
                 'id' => 'comment-list-gridviewpjax'
             ]) ?>
-                <?php foreach ($model->getComments($this->context->sort) as $comment) : ?>
+                <?php foreach ($comments as $comment) : ?>
                     <?php if ($comment->isSentByThisUser()) {
                         $class = 'comment-send';
                     } else {

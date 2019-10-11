@@ -7,6 +7,7 @@ use modules\user\common\models\User;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\extensions\comment\behaviors\NotificationBehavior;
 
 class Comment extends \yii\db\ActiveRecord
 {
@@ -22,7 +23,8 @@ class Comment extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'insertedBy',
                 'updatedByAttribute' => false
-            ]
+            ],
+            'notification' => NotificationBehavior::class
         ];
     }
 

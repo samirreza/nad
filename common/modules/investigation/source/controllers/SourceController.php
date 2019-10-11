@@ -37,7 +37,8 @@ class SourceController extends BaseInvestigationController
                             'actions' => [
                                 'update',
                                 'delete',
-                                'deliver-to-manager'
+                                'deliver-to-manager',
+                                'view-history'
                             ],
                             'roles' => ['investigation.manageOwnInvestigation'],
                             'roleParams' => function() {
@@ -73,6 +74,46 @@ class SourceController extends BaseInvestigationController
     {
         $source = $this->findModel($id);
         return $this->render('certificate', ['source' => $source]);
+    }
+
+    public function actionViewHistory($id)
+    {
+        $source = $this->findModel($id);
+        $logs = $source->getLogsGroupedByUpdateTime(
+            $includeFields = [
+                'reasonForGenesis',
+                'necessity',
+                'proceedings',
+                'sessionDate'
+                // 'title',
+                // 'englishTitle',
+                // 'referencesAsString'
+            ],
+            $excludeFields = [],
+            $onlyChangedFields = false,
+            $sortType = 'DESC'
+        );
+
+        $logCounter = count($logs);
+        $allComments = $source->comments;
+
+        return $this->render('view_history', [
+            'model' => $source,
+            'logs' => $logs,
+            'logCounter' => $logCounter,
+            'allComments' =>$allComments
+            ]);
+    }
+
+    public function actionIndexHistory()
+    {
+        $searchModel = new $this->searchClass;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index_history', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionArchivedCertificate($id)

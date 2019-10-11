@@ -9,18 +9,24 @@ use core\widgets\editor\Editor;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\common\modules\investigation\source\models\Category;
 use nad\common\modules\investigation\source\models\SourceReason;
 use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
 use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
-
+$className = get_class($model);
+$uploadedFiles = $model->getFiles('file');
 ?>
+
+<h2 class="nad-page-title"><?= $this->title ?></h2>
 
 <div class="source-form">
     <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
-        <?php $form = ActiveForm::begin() ?>
+        <?php $form = ActiveForm::begin(
+            ['options' => ['enctype' => 'multipart/form-data']]
+        ) ?>
             <div class="row">
                 <div class="col-md-8">
                     <?= $form->field($model, 'title')->textInput([
@@ -40,6 +46,30 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             ]
                         ]
                     ) ?>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <?php
+                            if(isset($uploadedFiles) && !empty($uploadedFiles)){
+                                Panel::begin();
+                            ?>
+                                    <label>فایل مستندات</label>
+                                    <?= SingleFileUpload::widget([
+                                        'model' => $model,
+                                        'group' => 'file',
+                                    ]) ?>
+                            <?php
+                                Panel::end();
+                            }
+                            ?>
+                            <?php Panel::begin() ?>
+                                <label>فایل مستندات</label>
+                                <?= SingleFileUpload::widget([
+                                    'model' => new $className,
+                                    'group' => 'file',
+                                ]) ?>
+                            <?php Panel::end() ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="col-sm-12">

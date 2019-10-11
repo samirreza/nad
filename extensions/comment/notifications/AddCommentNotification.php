@@ -2,14 +2,23 @@
 
 namespace nad\extensions\comment\notifications;
 
+use yii\base\InvalidConfigException;
 use extensions\notification\Notification;
 
 class AddCommentNotification extends Notification
 {
-    public $source;
-    public $moduleId = 'source';
+    public $moduleId;
+    public $message = '';
     public $category = 'افزودن نظر';
-    public $baseViewRoute;
+    public $source;
+
+    public function init()
+    {
+        if (!isset($this->source)) {
+            throw new InvalidConfigException('source property must be set.');
+        }
+        parent::init();
+    }
 
     public function getChannels()
     {
@@ -18,13 +27,13 @@ class AddCommentNotification extends Notification
 
     public function getTitle()
     {
-        return "برای منشا {$this->source->title} نظر تازه ای ثبت شده است.";
+        return $this->message;
     }
 
     public function getRoute()
     {
         return [
-            $this->baseViewRoute,
+            $this->source->getBaseViewRoute(),
             'id' => $this->source->id
         ];
     }

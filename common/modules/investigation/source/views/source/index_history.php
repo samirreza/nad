@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 use core\grid\GridView;
@@ -12,24 +11,16 @@ use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceReason;
 
-$this->params['horizontalMenuItems'] = [
-    [
-        'label' => 'لیست داده گاه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/archived-index']
-    ]
-];
-
 ?>
 
-<h3 class="nad-page-title">منشاهای داده گاه</h3>
-<div class="sliding-form-wrapper"></div>
+<h2 class="nad-page-title">داده گاه روندهای منشا</h2>
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'filterUrl' => ['archived-index'],
+                'filterUrl' => ['index'],
                 'columns' => [
                     [
                         'attribute' => 'title',
@@ -42,10 +33,10 @@ $this->params['horizontalMenuItems'] = [
                         'class' => 'nad\common\code\CodeGridColumn',
                         'filterInputOptions' => [
                             'class' => 'form-control',
-                            'placeholder' => 'جست‌و‌جو'
+                            'placeholder' => 'جست‌و‌جو شناسه'
                         ],
                         'options' => [
-                            'width' => '100px'
+                            'width' => '40px'
                         ]
                     ],
                     [
@@ -90,7 +81,7 @@ $this->params['horizontalMenuItems'] = [
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'دسترسی',
-                        'template' => '{view} {certificate}',
+                        'template' => '{view}',
                         'options' => [
                             'width' => '50px'
                         ],
@@ -98,23 +89,13 @@ $this->params['horizontalMenuItems'] = [
                             'view' => function ($url, $model) {
                                 return Html::a(
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
-                                    Url::to(['archived-view', 'id' => $model->id]),
+                                    ['view-history', 'id' => $model->id],
                                     [
-                                        'title' => 'مدرک',
+                                        'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
                                 );
-                            },
-                            'certificate' => function ($url, $model) {
-                                return Html::a(
-                                    '<span class="glyphicon glyphicon-book"></span>',
-                                    Url::to(['archived-certificate', 'id' => $model->id]),
-                                    [
-                                        'title' => 'شناسنامه',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
+                            }
                         ]
                     ]
                 ]

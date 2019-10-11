@@ -22,6 +22,8 @@ class CommentController extends AjaxAdminController
             'moduleId' => Yii::$app->request->get('moduleId'),
             'modelClassName' => (new \ReflectionClass(Yii::$app->request->get('modelClassName')))
                 ->getShortName(),
+            'modelClassNameFull' => (new \ReflectionClass(Yii::$app->request->get('modelClassName')))
+                ->getName(),
             'modelId' => Yii::$app->request->get('modelId')
         ]);
         $returnUrl = Yii::$app->request->get('returnUrl');
