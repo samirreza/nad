@@ -13,6 +13,7 @@ class CommentList extends \yii\base\Widget
     public $sort = SORT_DESC;
     public $visible = true;
     public $returnUrl;
+    public $comments = null;
 
     public function init()
     {
@@ -22,6 +23,9 @@ class CommentList extends \yii\base\Widget
         if (empty($this->moduleId)) {
             throw new InvalidConfigException('moduleId property must be set.');
         }
+        if(!isset($this->comments)){
+            $this->comments = $this->model->getComments($this->sort);
+        }
         parent::init();
     }
 
@@ -30,6 +34,6 @@ class CommentList extends \yii\base\Widget
         if (!$this->visible) {
             return;
         }
-        return $this->render('view');
+        return $this->render('view', ['comments' => $this->comments]);
     }
 }
