@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
@@ -207,6 +207,10 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 // ]
             ]
         ]) ?>
+
+        <hr>
+        <h2 class="nad-page-title"><?= $this->title ?></h2>
+
         <div class="sliding-form-wrapper"></div>
         <?php if ($model->canHaveConverstation()) : ?>
             <div class="col-md-12">
