@@ -89,6 +89,15 @@ class ReferenceBehavior extends \yii\base\Behavior
             ->all();
     }
 
+    public function getReferencesAsString()
+    {
+        $output = '';
+        foreach ($this->owner->getReferences() as $reference) {
+            $output .= $reference->title . ', ';
+        }
+        return rtrim($output, ', ');
+    }
+
     public function getClickableReferencesAsString()
     {
         $output = '';

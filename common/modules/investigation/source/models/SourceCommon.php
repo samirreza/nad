@@ -188,6 +188,14 @@ class SourceCommon extends BaseInvestigationModel
         return $this->hasOne(SourceReason::class, ['id' => 'mainReasonId']);
     }
 
+    public function getMainReasonAsString()
+    {
+        if (!isset($this->mainReason)) {
+            return null;
+        }
+        return $this->mainReason->title;
+    }
+
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
@@ -255,6 +263,10 @@ class SourceCommon extends BaseInvestigationModel
     {
         if($newStatus == self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED)
             $this->userHolder = self::USER_HOLDER_EXPERT;
+        else if($newStatus == self::STATUS_WAITING_FOR_SESSION){
+            $this->proceedings = null;
+            $this->sessionDate = null;
+        }
         else if($newStatus == self::STATUS_IN_MANAGER_HAND)
             $this->userHolder = self::USER_HOLDER_MANAGER;
 
@@ -308,7 +320,9 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canSetWaitForSession(){
         return ($this->status != self::STATUS_REJECTED && $this->userHolder == Source::USER_HOLDER_MANAGER &&
-        Yii::$app->user->can('superuser') && $this->status != Source::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
+        Yii::$app->user->can('superuser')
+        // && $this->status != Source::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
+        && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
     public function canSetSessionDate()
