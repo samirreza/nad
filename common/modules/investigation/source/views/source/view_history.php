@@ -10,6 +10,13 @@ use theme\widgets\ActionButtons;
 use nad\common\modules\investigation\source\models\Source;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'داده گاه روندهای منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index-history']
+    ]
+];
+
 ?>
 
 <a class="ajaxcreate" data-gridpjaxid="source-view-detailview-pjax"></a>

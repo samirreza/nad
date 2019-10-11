@@ -39,9 +39,10 @@ class NotificationBehavior extends \yii\base\Behavior
         switch ($this->owner->modelClassName) {
             case 'Source':
                 // send to all experts assigned to the $sourceModel
-                foreach ($sourceModel->getExpertsQuery()->all() as $expert) {
-                    $recipientsUsers[] = $expert->user;
-                }
+                $recipientsUsers = array_merge(
+                    $sourceModel->getExpertsQuery()->all(),
+                    $recipientsUsers
+                );
                 $message = "برای منشا «{$sourceModel->title}» نظر تازه ای ثبت شده است.";
                 break;
             case 'Proposal':
