@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigation/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
