@@ -11,6 +11,13 @@ use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceReason;
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'داده گاه روندهای منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index-history']
+    ]
+];
+
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای منشا</h2>
