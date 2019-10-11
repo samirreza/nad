@@ -10,6 +10,12 @@ $this->params['breadcrumbs'] = [
     $this->title
 ];
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'داده گاه روندهای منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index-history']
+    ]
+];
 ?>
 
 <?= $this->render('@nad/common/modules/investigation/source/views/source/index_history', [
