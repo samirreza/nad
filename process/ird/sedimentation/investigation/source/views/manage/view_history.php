@@ -11,6 +11,13 @@ $this->params['breadcrumbs'] = [
     $this->title
 ];
 
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'داده گاه روندهای منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index-history']
+    ]
+];
+
 ?>
 
 <div class="source-view">

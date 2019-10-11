@@ -8,12 +8,6 @@ use theme\widgets\ActionButtons;
 use nad\common\modules\investigation\source\models\Source;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
-$this->params['horizontalMenuItems'] = [
-    [
-        'label' => 'لیست داده گاه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/archived-index']
-    ]
-];
 ?>
 <?= ActionButtons::widget([
             'modelID' => $model->id,

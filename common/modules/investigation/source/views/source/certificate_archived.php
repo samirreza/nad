@@ -2,12 +2,6 @@
 
 use theme\widgets\Panel;
 
-$this->params['horizontalMenuItems'] = [
-    [
-        'label' => 'لیست داده گاه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/archived-index']
-    ]
-];
 ?>
 
 <h3 class="nad-page-title">شناسنامه</h3>

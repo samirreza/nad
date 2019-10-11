@@ -9,6 +9,12 @@ $this->params['breadcrumbs'] = [
     'داده گاه منشا',
     $this->title
 ];
+$this->params['horizontalMenuItems'] = [
+    [
+        'label' => 'لیست داده گاه منشا',
+        'url' => ['/sedimentation/investigation/source/manage/archived-index']
+    ]
+];
 
 ?>
 

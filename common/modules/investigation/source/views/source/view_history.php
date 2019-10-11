@@ -10,13 +10,6 @@ use theme\widgets\ActionButtons;
 use nad\common\modules\investigation\source\models\Source;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
-$this->params['horizontalMenuItems'] = [
-    [
-        'label' => 'داده گاه روندهای منشا',
-        'url' => ['/sedimentation/investigation/source/manage/index-history']
-    ]
-];
-
 ?>
 
 <a class="ajaxcreate" data-gridpjaxid="source-view-detailview-pjax"></a>
@@ -72,7 +65,7 @@ $this->params['horizontalMenuItems'] = [
                             'model' => $model,
                             'attributes' => [
                                 'deliverToManagerDate:date',
-                                'sessionDate:dateTime',
+                                // 'sessionDate:dateTime',
                                 'updatedAt:date',
                                 [
                                     'attribute' => 'status',
@@ -105,46 +98,60 @@ $this->params['horizontalMenuItems'] = [
                 <?php Panel::end() ?>
             </div>
         </div>
-        <?php if($logCounter == 0): ?>
-            <div class="row">
-                <?php if ($model->proceedings) : ?>
-                    <div class="col-md-12">
-                        <?php Panel::begin([
-                            'title' => 'نتیجه جلسه',
-                            'showCollapseButton' => true
-                            ]) ?>
-                            <div class="well">
-                                <?= $model->proceedings ?>
-                            </div>
-                        <?php Panel::end() ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <?php Panel::begin([
+                    'title' => $model->getAttributeLabel('reasonForGenesis') . ' نسخه نهایی',
+                    'showCollapseButton' => true
+                    ]) ?>
+                    <div class="well">
+                        <?= $model->reasonForGenesis ?>
                     </div>
-                <?php endif; ?>
+                <?php Panel::end() ?>
             </div>
-            <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <?php Panel::begin([
+                    'title' => $model->getAttributeLabel('necessity') . ' نسخه نهایی',
+                    'showCollapseButton' => true
+                    ]) ?>
+                    <div class="well">
+                        <?= $model->necessity ?>
+                    </div>
+                <?php Panel::end() ?>
+            </div>
+        </div>
+        <div class="row">
+            <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
                     <?php Panel::begin([
-                        'title' => $model->getAttributeLabel('reasonForGenesis') . ' نسخه نهایی',
+                        'title' => 'نتیجه جلسه' . ' نسخه نهایی',
                         'showCollapseButton' => true
                         ]) ?>
                         <div class="well">
-                            <?= $model->reasonForGenesis ?>
+                            <?= $model->proceedings ?>
                         </div>
                     <?php Panel::end() ?>
                 </div>
-            </div>
-            <div class="row">
+            <?php endif; ?>
+        </div>
+        <div class="row">
+            <?php if ($model->sessionDate) : ?>
                 <div class="col-md-12">
                     <?php Panel::begin([
-                        'title' => $model->getAttributeLabel('necessity') . ' نسخه نهایی',
+                        'title' => 'تاریخ جلسه توجیهی' . ' نسخه نهایی',
                         'showCollapseButton' => true
                         ]) ?>
                         <div class="well">
-                            <?= $model->necessity ?>
+                            <?= Yii::$app->formatter->asDateTime($model->sessionDate) ?>
                         </div>
                     <?php Panel::end() ?>
                 </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
     <?php Pjax::end() ?>
 </div>
 
@@ -153,7 +160,7 @@ $this->params['horizontalMenuItems'] = [
         <div class="col-md-12">
             <?php
             foreach ($logs as $logUpdatedAt => $log) :
-                $counterTitle = ' ' . (($logCounter == count($logs)) ? 'نسخه نهایی':'نسخه ' . Utility::convertNumberToPersianWords($logCounter));
+                $counterTitle = ' ' . 'نسخه ' . Utility::convertNumberToPersianWords($logCounter);
             ?>
                 <?php
                 // inject comments into history
@@ -186,22 +193,6 @@ $this->params['horizontalMenuItems'] = [
                 <span class="label label-primary">
                     <?= 'تاریخ ویرایش: ' . Yii::$app->formatter->asDateTime($logUpdatedAt) ?>
                 </span>
-
-                <?php
-                // TODO find a better solution than this dirty hack
-                if(array_key_exists('sessionDate', $log) && !isset($log['sessionDate'])):
-                ?>
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php Panel::begin([
-                            'title' => 'نیازمند جلسه' . $counterTitle,
-                            'showCollapseButton' => true
-                            ]) ?>
-                                <?= '<i class="fa fa-2x fa-users"></i> ' . 'مدیر دستور برگزاری جلسه را صادر کرد.' ?>
-                        <?php Panel::end() ?>
-                    </div>
-                </div>
-                <?php endif; // end of dirty hack ?>
 
                 <?php if(isset($log['title'])): ?>
                     <div class="row">

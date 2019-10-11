@@ -12,13 +12,6 @@ use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceReason;
 
-$this->params['horizontalMenuItems'] = [
-    [
-        'label' => 'لیست داده گاه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/archived-index']
-    ]
-];
-
 ?>
 
 <h3 class="nad-page-title">منشاهای داده گاه</h3>
