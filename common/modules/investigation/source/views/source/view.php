@@ -88,7 +88,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             ]
                         ],
                         'set-session-date' => [
-                            'label' => 'تعیین زمان جلسه',
+                            'label' => (isset($model->sessionDate) ? 'ویرایش' : 'ثبت') . ' زمان جلسه',
                             'icon' => 'clock-o',
                             'isActive' => $model->canSetSessionDate(),
                             'visible' => true,
@@ -96,7 +96,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'options' => ['class' => 'ajaxupdate']
                         ],
                         'write-proceedings' => [
-                            'label' => 'ثبت نتیجه جلسه',
+                            'label' => (isset($model->proceedings) ? 'ویرایش' : 'ثبت') .  ' نتیجه جلسه',
                             'icon' => 'newspaper-o',
                             'isActive' => $model->canWriteProceedings(),
                             'visible' => true,
@@ -194,6 +194,17 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         ]
                     ]
                 ],
+                'go-to-history' => [
+                    'label' => 'روندهای اجرا شده',
+                    'type' => 'success',
+                    'icon' => 'sort-amount-desc',
+                    'url' => ['view-history', 'id' => $model->id],
+                    'isActive' => true,
+                    'visible' => true,
+                    'options' => [
+                        'data-pjax' => 0
+                    ]
+                ]
                 // TODO remove create-proposal asap.
                 // 'create-proposal' => [
                 //     'label' => 'درج پروپوزال',
