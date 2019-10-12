@@ -6,6 +6,7 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\widgets\editor\Editor;
+use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
@@ -21,6 +22,23 @@ $uploadedFiles = $model->getFiles('file');
 ?>
 
 <h2 class="nad-page-title"><?= $this->title ?></h2>
+
+<?= ActionButtons::widget([
+    'buttons' => [
+        'create-category' => [
+            'label' => 'افزودن رده',
+            'type' => 'info',
+            'icon' => 'plus',
+            'url' => [
+                'category/index#id_createCategoryBtn'
+            ],
+            'options' => [
+                'target' => '_blank'
+            ]
+        ]
+    ]
+]);
+?>
 
 <div class="source-form">
     <?php Panel::begin(['title' => 'مشخصات منشا']) ?>
