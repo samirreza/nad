@@ -327,15 +327,15 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canSetSessionDate()
     {
-        return $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser') && $this->status == self::STATUS_WAITING_FOR_SESSION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
-            // && !$this->proceedings;
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->sessionDate != null);
     }
 
     public function canWriteProceedings()
     {
-        return $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser') && $this->status == self::STATUS_WAITING_FOR_SESSION &&
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED &&
+        $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED &&
             $this->sessionDate != null &&
-            $this->sessionDate <= time() && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED;
+            (($this->proceedings == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->proceedings != null);
     }
 
     public function canStartConverstation()

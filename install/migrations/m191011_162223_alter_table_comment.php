@@ -14,7 +14,7 @@ class m191011_162223_alter_table_comment extends Migration
     {
         $this->execute('
         ALTER TABLE `comment`
-            ADD COLUMN `modelClassNameFull` varbinary(255) NULL AFTER `modelId`;
+            ADD COLUMN `modelClassNameFull` varchar(255) NULL AFTER `modelId`;
         ');
     }
 

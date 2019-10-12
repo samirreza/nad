@@ -19,7 +19,8 @@ $module = $this->context->module;
                 'label' => 'افزودن رده',
                 'options' => [
                     'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'source-category-gridviewpjax'
+                    'data-gridpjaxid' => 'source-category-gridviewpjax',
+                    'id' => 'createCategoryBtn'
                 ]
             ],
             // 'sources' => [

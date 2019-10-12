@@ -14,6 +14,21 @@ use nad\extensions\comment\widgets\commentList\CommentList;
 
 <a class="ajaxcreate" data-gridpjaxid="source-view-detailview-pjax"></a>
 <div class="source-view">
+<?= ActionButtons::widget([
+    'modelID' => $model->id,
+    'buttons' => [
+        'go-to-view' => [
+            'label' => 'روند در برنامه',
+            'type' => 'success',
+            'icon' => 'eye',
+            'url' => ['view', 'id' => $model->id],
+            'isActive' => true,
+            'visible' => true,
+        ]
+    ]
+]);
+?>
+<hr>
     <?php Pjax::begin(['id' => 'source-view-detailview-pjax']) ?>
         <h2 class="nad-page-title"><?= $this->title ?></h2>
         <div class="row">
