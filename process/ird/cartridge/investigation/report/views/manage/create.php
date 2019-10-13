@@ -1,8 +1,9 @@
 <?php
 
-use nad\process\ird\cartridge\investigation\report\models\Report;
+use nad\process\ird\cartridge\investigation\category\models\Category;
+use nad\process\ird\cartridge\investigation\reference\models\Reference;
 
-$this->title = 'درج گزارش';
+$this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'] = [
 <div class="report-create">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/_form', [
         'model' => $model,
-        'consumer' => Report::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
     ]) ?>
 </div>
