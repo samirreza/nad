@@ -24,6 +24,9 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             'url' => ['view', 'id' => $model->id],
             'isActive' => true,
             'visible' => true,
+            'options' => [
+                'target' => '_blank'
+            ]
         ]
     ]
 ]);
