@@ -6,7 +6,7 @@ use nad\common\modules\investigation\source\models\Category as BaseCategory;
 
 class Category extends BaseCategory
 {
-    const CONSUMER_CODE = 'SR';
+    const CONSUMER_CODE = Category::class;
 
     public static function find()
     {

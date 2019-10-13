@@ -73,7 +73,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             'data' => ArrayHelper::map(
                                 Category::find()->andWhere([
                                     'depth' => 3,
-                                    'consumer' => $consumer
+                                    'consumer' => $categoryConsumerCode
                                 ])->all(),
                                 'id',
                                 'codedTitle'
@@ -88,7 +88,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [
-                            'consumer' => $consumer,
+                            'consumer' => $referenceConsumerCode,
                             'code' => ReferenceUses::CODE_REPORT
                         ]
                     ) ?>

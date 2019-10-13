@@ -10,7 +10,7 @@ use nad\common\modules\investigation\proposal\models\Proposal as BaseProposal;
 
 class Proposal extends BaseProposal
 {
-    const CONSUMER_CODE = 'SR';
+    const CONSUMER_CODE = Proposal::class;
 
     public $moduleId = 'sedimentation';
     public $referenceClassName = Reference::class;

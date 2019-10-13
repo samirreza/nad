@@ -1,6 +1,7 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\source\models\Source;
+use nad\process\ird\sedimentation\investigation\source\models\Category;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 
 $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
@@ -19,6 +20,7 @@ $this->params['breadcrumbs'] = [
 <div class="source-update">
     <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model,
-        'consumer' => Source::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
     ]) ?>
 </div>
