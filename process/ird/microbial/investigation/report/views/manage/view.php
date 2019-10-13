@@ -4,7 +4,7 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title

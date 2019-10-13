@@ -4,8 +4,9 @@ $this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/microbial/manage/investigation']],
+    'داده گاه منابع',
     $this->title
 ];
 

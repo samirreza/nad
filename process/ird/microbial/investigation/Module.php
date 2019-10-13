@@ -20,13 +20,17 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'لیست‌ منشا',
+                        'label' => 'افزودن منشا',
+                        'url' => ['/microbial/investigation/source/manage/create']
+                    ],
+                    [
+                        'label' => 'لیست‌ منشاهای برنامه',
                         'url' => ['/microbial/investigation/source/manage/index']
                     ],
                     [
-                        'label' => 'افزودن منشا',
-                        'url' => ['/microbial/investigation/source/manage/create']
-                    ]
+                        'label' => 'لیست رده های منشا',
+                        'url' => ['/microbial/investigation/source/category/index']
+                    ],
                 ]
             ],
             [
@@ -62,10 +66,6 @@ class Module extends \yii\base\Module
                         'url' => ['/microbial/investigation/method/manage/create']
                     ]
                 ]
-            ],
-            [
-                'label' => 'لیست منابع',
-                'url' => ['/microbial/investigation/reference/manage/index']
             ]
         ];
         parent::init();

@@ -4,7 +4,7 @@ namespace nad\process\ird\microbial;
 
 class Module extends \yii\base\Module
 {
-    public $title = 'میکروبی';
+    public $title = 'میکروبیولوژی';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\process\ird\microbial';
 

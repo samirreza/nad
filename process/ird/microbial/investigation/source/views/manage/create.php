@@ -1,13 +1,15 @@
 <?php
 
-use nad\process\ird\microbial\investigation\source\models\Source;
+use nad\process\ird\microbial\investigation\source\models\Category;
+use nad\process\ird\microbial\investigation\reference\models\Reference;
 
-$this->title = 'درج منشا';
+$this->title = 'افزودن منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/microbial/manage/investigation']],
+    'برنامه منشا',
     $this->title
 ];
 
@@ -16,6 +18,7 @@ $this->params['breadcrumbs'] = [
 <div class="source-create">
     <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model,
-        'consumer' => Source::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
     ]) ?>
 </div>
