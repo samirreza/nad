@@ -121,9 +121,7 @@ class Reference extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        if ($insert) {
-            $this->consumer = static::CONSUMER_CODE;
-        }
+        $this->consumer = static::CONSUMER_CODE;
 
         if (!parent::beforeSave($insert)) {
             return false;
