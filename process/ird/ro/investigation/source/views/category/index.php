@@ -1,18 +1,17 @@
 <?php
 
-$this->title = 'لیست منابع';
+$this->title = 'رده‌بندی منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آر او', 'url' => ['/ro/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/ro/manage/investigation']],
-    'داده گاه منابع',
     $this->title
 ];
 
 ?>
 
-<?= $this->render('@nad/common/modules/investigation/reference/views/reference/index', [
+<?= $this->render('@nad/common/modules/investigation/source/views/category/index', [
     'dataProvider' => $dataProvider,
     'searchModel' => $searchModel
 ]);
