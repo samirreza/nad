@@ -14,9 +14,9 @@ class m191013_162345_update_table_auth_item extends Migration
     {
         $this->execute("
         UPDATE `auth_item`
-        SET description = 'بررسی فرایندی فرایندی'
+        SET description = 'بررسی فرایندی'
         WHERE
-            description = 'بررسی فرایندی';
+            description = 'بررسی';
         ");
     }
 
