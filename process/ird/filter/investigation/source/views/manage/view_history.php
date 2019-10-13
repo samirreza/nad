@@ -4,7 +4,7 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلتر', 'url' => ['/filter/manage/index']],
+    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/filter/manage/investigation']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],

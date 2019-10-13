@@ -8,7 +8,7 @@ $this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلتر', 'url' => ['/filter/manage/index']],
+    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
     $this->title
 ];
 

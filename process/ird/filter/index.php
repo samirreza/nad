@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'فیلتر';
+$this->title = 'فیلترشنی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -12,7 +12,7 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h1 class="nad-page-title">فیلتر</h1>
+<h1 class="nad-page-title">فیلترشنی</h1>
 <h2>فعالیت ها:</h2>
 <br>
 <div class="row">
