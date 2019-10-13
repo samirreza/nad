@@ -8,7 +8,7 @@ class m190705_110553_add_filter_investigation_permission extends Migration
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'filter.investigation' => 'بررسی'
+            'filter.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {

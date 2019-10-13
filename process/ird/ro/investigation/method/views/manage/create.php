@@ -1,8 +1,8 @@
 <?php
 
-use nad\process\ird\ro\investigation\method\models\Method;
+use nad\process\ird\ro\investigation\reference\models\Reference;
 
-$this->title = 'درج روش';
+$this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
 <div class="method-create">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/_form', [
         'model' => $model,
-        'consumer' => Method::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE
     ]) ?>
 </div>

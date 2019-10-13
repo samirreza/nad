@@ -4,19 +4,26 @@ namespace nad\process\ird\ro\investigation\proposal\models;
 
 use nad\process\ird\ro\investigation\report\models\Report;
 use nad\process\ird\ro\investigation\source\models\Source;
+use nad\process\ird\ro\investigation\source\models\SourceArchived;
 use nad\process\ird\ro\investigation\reference\models\Reference;
 use nad\common\modules\investigation\proposal\models\Proposal as BaseProposal;
 
 class Proposal extends BaseProposal
 {
-    const CONSUMER_CODE = 'RO';
+    const CONSUMER_CODE = Proposal::class;
 
     public $moduleId = 'ro';
     public $referenceClassName = Reference::class;
 
     public function getSource()
     {
-        return $this->hasOne(Source::class, ['id' => 'sourceId']);
+        // TODO Rewrite with ActiveRecord::exists()
+        $source = Source::findOne($this->sourceId);
+        if(isset($source))
+            return $this->hasOne(Source::class, ['id' => 'sourceId']);
+        else
+            return $this->hasOne(SourceArchived::class, ['id' => 'sourceId']);
+
     }
 
     public function getReport()

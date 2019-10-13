@@ -1,6 +1,7 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\report\models\Report;
+use nad\process\ird\sedimentation\investigation\category\models\Category;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 
 $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'] = [
 <div class="report-create">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/_form', [
         'model' => $model,
-        'consumer' => Report::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
     ]) ?>
 </div>

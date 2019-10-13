@@ -4,7 +4,7 @@ namespace nad\process\ird\filter;
 
 class Module extends \yii\base\Module
 {
-    public $title = 'فیلتر شنی';
+    public $title = 'فیلترشنی';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\process\ird\filter';
 

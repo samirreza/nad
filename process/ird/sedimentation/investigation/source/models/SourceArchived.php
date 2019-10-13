@@ -8,7 +8,7 @@ use nad\common\modules\investigation\source\models\SourceArchived as BaseSourceA
 
 class SourceArchived extends BaseSourceArchived
 {
-    const CONSUMER_CODE = 'SR';
+    const CONSUMER_CODE = Source::CONSUMER_CODE;
 
     public $moduleId = 'sedimentation';
     public $referenceClassName = Reference::class;

@@ -1,12 +1,12 @@
 <?php
 
-use nad\process\ird\microbial\investigation\method\models\Method;
+use nad\process\ird\microbial\investigation\reference\models\Reference;
 
-$this->title = 'درج روش';
+$this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     $this->title
 ];
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
 <div class="method-create">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/_form', [
         'model' => $model,
-        'consumer' => Method::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE
     ]) ?>
 </div>

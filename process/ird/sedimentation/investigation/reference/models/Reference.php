@@ -6,7 +6,7 @@ use nad\common\modules\investigation\reference\models\Reference as BaseReference
 
 class Reference extends BaseReference
 {
-    const CONSUMER_CODE = 'SR';
+    const CONSUMER_CODE = Reference::class;
 
     public $moduleId = 'sedimentation';
 

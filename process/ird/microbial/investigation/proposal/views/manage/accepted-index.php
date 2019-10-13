@@ -4,7 +4,7 @@ $this->title = 'لیست پروپوزال‌های تایید شده';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     $this->title
 ];

@@ -1,12 +1,13 @@
 <?php
 
-use nad\process\ird\microbial\investigation\report\models\Report;
+use nad\process\ird\microbial\investigation\category\models\Category;
+use nad\process\ird\microbial\investigation\reference\models\Reference;
 
-$this->title = 'درج گزارش';
+$this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
     ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
     $this->title
 ];
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'] = [
 <div class="report-create">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/_form', [
         'model' => $model,
-        'consumer' => Report::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
     ]) ?>
 </div>

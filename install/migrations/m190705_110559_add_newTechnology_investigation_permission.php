@@ -8,7 +8,7 @@ class m190705_110559_add_newTechnology_investigation_permission extends Migratio
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'newTechnology.investigation' => 'بررسی'
+            'newTechnology.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {

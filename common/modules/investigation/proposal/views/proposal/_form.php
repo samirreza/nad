@@ -84,7 +84,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [
-                            'consumer' => $consumer,
+                            'consumer' => $referenceConsumerCode,
                             'code' => ReferenceUses::CODE_PROPOSAL
                         ]
                     ) ?>

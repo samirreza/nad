@@ -1,6 +1,6 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\method\models\Method;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 
 $this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
 <div class="method-create">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/_form', [
         'model' => $model,
-        'consumer' => Method::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE
     ]) ?>
 </div>

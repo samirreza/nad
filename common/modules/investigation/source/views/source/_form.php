@@ -108,7 +108,7 @@ $uploadedFiles = $model->getFiles('file');
                             'data' => ArrayHelper::map(
                                 Category::find()->andWhere([
                                     // 'depth' => 3,
-                                    'consumer' => $consumer
+                                    'consumer' => $categoryConsumerCode
                                 ])->all(),
                                 'id',
                                 'codedTitle'
@@ -131,7 +131,7 @@ $uploadedFiles = $model->getFiles('file');
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [
-                            'consumer' => $consumer,
+                            'consumer' => $referenceConsumerCode,
                             'code' => ReferenceUses::CODE_SOURCE
                         ]
                     ) ?>

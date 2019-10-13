@@ -121,26 +121,33 @@ class Reference extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
+        $this->consumer = static::CONSUMER_CODE;
+
         if (!parent::beforeSave($insert)) {
             return false;
         }
 
-        $connection = \Yii::$app->db;
+        $this->setUniqueCode();
 
+        return true;
+    }
+
+    public function afterSave($insert, $changedAttributes){
+        parent::afterSave($insert, $changedAttributes);
+
+        $connection = \Yii::$app->db;
         $transaction = $connection->beginTransaction();
 
         try {
-            if ($insert) {
-                $this->consumer = static::CONSUMER_CODE;
-            } else {
-                \Yii::$app->db->createCommand()->delete(ReferenceUses::tableName(), 'referenceId = ' . $this->id)->execute();
+            if (!$insert) {
+                \Yii::$app->db->createCommand()->delete(ReferenceUses::tableName(), 'referenceId = ' . $this->getPrimaryKey())->execute();
             }
 
             if (isset($this->_referenceUses) && !empty($this->_referenceUses)) {
                 foreach ($this->_referenceUses as $item) {
                     \Yii::$app->db->createCommand()->insert(ReferenceUses::tableName(), [
                     'code' => $item,
-                    'referenceId' => $this->id,
+                    'referenceId' => $this->getPrimaryKey(),
                 ])->execute();
                 }
             }
@@ -148,10 +155,6 @@ class Reference extends \yii\db\ActiveRecord implements Codable
         }catch(Exception $e) {
             $transaction->rollback();
         }
-
-        $this->setUniqueCode();
-
-        return true;
     }
 
     public function getUniqueCode() : string

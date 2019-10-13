@@ -202,7 +202,8 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'isActive' => true,
                     'visible' => true,
                     'options' => [
-                        'data-pjax' => 0
+                        'data-pjax' => 0,
+                        'target' => '_blank'
                     ]
                 ]
                 // TODO remove create-proposal asap.

@@ -37,8 +37,7 @@ class SourceController extends BaseInvestigationController
                             'actions' => [
                                 'update',
                                 'delete',
-                                'deliver-to-manager',
-                                'view-history'
+                                'deliver-to-manager'
                             ],
                             'roles' => ['investigation.manageOwnInvestigation'],
                             'roleParams' => function() {
@@ -46,6 +45,17 @@ class SourceController extends BaseInvestigationController
                                     'id' => Yii::$app->request->get('id')]
                                 )];
                             }
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'archived-certificate',
+                                'archived-view',
+                                'archived-index',
+                                'change-archive',
+                                'deliver-to-expert'
+                            ],
+                            'roles' => ['superuser']
                         ]
                     ]
                 ]

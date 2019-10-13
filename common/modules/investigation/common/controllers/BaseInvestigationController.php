@@ -87,6 +87,12 @@ class BaseInvestigationController extends AdminController
         exit;
     }
 
+    /**
+     * TODO This action is NOT used anymore, delete it asap.
+     *
+     * @param integer $id
+     * @return void
+     */
     public function actionWriteNegotiationResult($id)
     {
         $model = static::findModel($id);

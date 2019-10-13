@@ -34,7 +34,9 @@ class ManageController extends SourceController
                                 'index',
                                 'view',
                                 'create',
-                                'certificate'
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
                             'roles' => ['sedimentation.investigation']
                         ]

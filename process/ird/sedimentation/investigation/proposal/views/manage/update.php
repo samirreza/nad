@@ -1,6 +1,6 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
@@ -18,6 +18,6 @@ $this->params['breadcrumbs'] = [
 <div class="proposal-update">
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/_form', [
         'model' => $model,
-        'consumer' => Proposal::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE
     ]) ?>
 </div>

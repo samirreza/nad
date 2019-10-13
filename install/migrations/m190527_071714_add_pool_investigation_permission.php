@@ -8,7 +8,7 @@ class m190527_071714_add_pool_investigation_permission extends Migration
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'pool.investigation' => 'بررسی'
+            'pool.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {
