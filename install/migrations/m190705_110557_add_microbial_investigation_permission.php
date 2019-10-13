@@ -8,7 +8,7 @@ class m190705_110557_add_microbial_investigation_permission extends Migration
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'microbial.investigation' => 'بررسی'
+            'microbial.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {

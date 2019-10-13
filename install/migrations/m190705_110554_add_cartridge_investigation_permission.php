@@ -8,7 +8,7 @@ class m190705_110554_add_cartridge_investigation_permission extends Migration
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'cartridge.investigation' => 'بررسی'
+            'cartridge.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {

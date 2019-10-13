@@ -8,7 +8,7 @@ class m190705_110556_add_wastewater_investigation_permission extends Migration
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'wastewater.investigation' => 'بررسی'
+            'wastewater.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {

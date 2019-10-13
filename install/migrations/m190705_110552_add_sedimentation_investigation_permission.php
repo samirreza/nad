@@ -8,7 +8,7 @@ class m190705_110552_add_sedimentation_investigation_permission extends Migratio
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'sedimentation.investigation' => 'بررسی'
+            'sedimentation.investigation' => 'بررسی فرایندی'
         ];
 
         foreach ($items as $item => $title) {
