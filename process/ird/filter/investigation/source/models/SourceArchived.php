@@ -4,11 +4,11 @@ namespace nad\process\ird\filter\investigation\source\models;
 
 use nad\process\ird\filter\investigation\proposal\models\Proposal;
 use nad\process\ird\filter\investigation\reference\models\Reference;
-use nad\common\modules\investigation\source\models\Source as BaseSource;
+use nad\common\modules\investigation\source\models\SourceArchived as BaseSourceArchived;
 
-class Source extends BaseSource
+class SourceArchived extends BaseSourceArchived
 {
-    const CONSUMER_CODE = Source::class;
+    const CONSUMER_CODE = Source::CONSUMER_CODE;
 
     public $moduleId = 'filter';
     public $referenceClassName = Reference::class;

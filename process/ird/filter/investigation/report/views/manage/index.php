@@ -4,7 +4,7 @@ $this->title = 'لیست گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلتر شنی', 'url' => ['/filter/manage/index']],
+    ['label' => 'فیلتر', 'url' => ['/filter/manage/index']],
     ['label' => 'بررسی', 'url' => ['/filter/manage/investigation']],
     $this->title
 ];

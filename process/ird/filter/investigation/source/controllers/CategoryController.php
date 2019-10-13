@@ -1,12 +1,21 @@
 <?php
 
-namespace nad\process\ird\filter;
+namespace nad\process\ird\filter\investigation\source\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use nad\process\ird\filter\investigation\source\models\Category;
+use nad\process\ird\filter\investigation\source\models\CategorySearch;
+use nad\common\modules\investigation\source\controllers\SourceCategoryController;
 
-class ManageController extends \yii\web\Controller
+class CategoryController extends SourceCategoryController
 {
+    public function init()
+    {
+        $this->modelClass = Category::class;
+        $this->searchClass = CategorySearch::class;
+    }
+
     public function behaviors()
     {
         return ArrayHelper::merge(
@@ -17,25 +26,11 @@ class ManageController extends \yii\web\Controller
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => [
-                                'index',
-                                'investigation'
-                            ],
                             'roles' => ['filter.investigation']
                         ]
                     ]
                 ]
             ]
         );
-    }
-
-    public function actionIndex()
-    {
-        return $this->render('@nad/process/ird/filter/index');
-    }
-
-    public function actionInvestigation()
-    {
-        return $this->render('@nad/process/ird/filter/investigation');
     }
 }
