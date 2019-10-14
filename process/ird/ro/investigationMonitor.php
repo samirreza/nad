@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use theme\widgets\Panel;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'بررسی فرایندی';
+$this->title = 'بررسی پایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
