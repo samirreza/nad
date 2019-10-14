@@ -1,14 +1,16 @@
 <?php
 
-use nad\process\ird\graphene\investigation\source\models\Source;
+use nad\process\ird\graphene\investigation\source\models\Category;
+use nad\process\ird\graphene\investigation\reference\models\Reference;
 
-$this->title = 'ویرایش';
+$this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/graphene/manage/investigation']],
-    ['label' => 'لیست منشا', 'url' => ['index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/graphene/manage/investigation']],
+    'برنامه منشا',
+    ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];
@@ -18,6 +20,7 @@ $this->params['breadcrumbs'] = [
 <div class="source-update">
     <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model,
-        'consumer' => Source::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
     ]) ?>
 </div>

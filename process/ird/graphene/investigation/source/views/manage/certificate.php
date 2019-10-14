@@ -5,8 +5,9 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/graphene/manage/investigation']],
-    ['label' => 'لیست منشا', 'url' => ['index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/graphene/manage/investigation']],
+    'برنامه منشا',
+    ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     $this->title
 ];
 

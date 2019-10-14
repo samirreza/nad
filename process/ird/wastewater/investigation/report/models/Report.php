@@ -8,7 +8,7 @@ use nad\common\modules\investigation\report\models\Report as BaseReport;
 
 class Report extends BaseReport
 {
-    const CONSUMER_CODE = 'WW';
+    const CONSUMER_CODE = Report::class;
 
     public $moduleId = 'report';
     public $referenceClassName = Reference::class;

@@ -19,9 +19,17 @@ class ManageController extends \yii\web\Controller
                             'allow' => true,
                             'actions' => [
                                 'index',
-                                'investigation'
+                                'investigation'                                
                             ],
                             'roles' => ['filter.investigation']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',                                
+                                'investigation-monitor'
+                            ],
+                            'roles' => ['filter.investigationMonitor']
                         ]
                     ]
                 ]
@@ -37,5 +45,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigation()
     {
         return $this->render('@nad/process/ird/filter/investigation');
+    }
+
+    public function actionInvestigationMonitor()
+    {
+        return $this->render('@nad/process/ird/filter/investigationMonitor');
     }
 }

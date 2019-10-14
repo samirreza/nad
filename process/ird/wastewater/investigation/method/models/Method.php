@@ -7,7 +7,7 @@ use nad\common\modules\investigation\method\models\Method as BaseMethod;
 
 class Method extends BaseMethod
 {
-    const CONSUMER_CODE = 'WW';
+    const CONSUMER_CODE = Method::class;
 
     public $moduleId = 'method';
     public $referenceClassName = Reference::class;

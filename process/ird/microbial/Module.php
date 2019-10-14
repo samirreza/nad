@@ -11,7 +11,8 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->modules = [
-            'investigation' => 'nad\process\ird\microbial\investigation\Module'
+            'investigation' => 'nad\process\ird\microbial\investigation\Module',
+            'investigationMonitor' => 'nad\process\ird\microbial\investigationMonitor\Module'
         ];
         parent::init();
     }

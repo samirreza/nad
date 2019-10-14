@@ -1,8 +1,8 @@
 <?php
 
-use nad\process\ird\wastewater\investigation\proposal\models\Proposal;
+use nad\process\ird\wastewater\investigation\reference\models\Reference;
 
-$this->title = 'درج پروپوزال';
+$this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
 <div class="proposal-create">
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/_form', [
         'model' => $model,
-        'consumer' => Proposal::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE
     ]) ?>
 </div>

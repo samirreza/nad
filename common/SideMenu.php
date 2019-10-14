@@ -80,6 +80,18 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'مواد',
                         'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'شوینده قلیایی',
+                                'icon' => 'angle-right',
+                                'url' => ['/alkalineWasher']
+                            ],
+                            [
+                                'label' => 'شوینده اسیدی',
+                                'icon' => 'angle-right',
+                                'url' => ['/acidicWasher']
+                            ],
+                        ],
                     ],
                     [
                         'label' => 'آزمایشگاه',
