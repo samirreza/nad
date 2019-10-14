@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\process\ird\graphene\investigation\report\models;
+namespace nad\process\ird\graphene\investigation\source\models;
 
-use nad\common\modules\investigation\report\models\Category as BaseCategory;
+use nad\common\modules\investigation\source\models\Category as BaseCategory;
 
 class Category extends BaseCategory
 {

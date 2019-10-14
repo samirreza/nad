@@ -4,11 +4,11 @@ namespace nad\process\ird\graphene\investigation\source\models;
 
 use nad\process\ird\graphene\investigation\proposal\models\Proposal;
 use nad\process\ird\graphene\investigation\reference\models\Reference;
-use nad\common\modules\investigation\source\models\Source as BaseSource;
+use nad\common\modules\investigation\source\models\SourceArchived as BaseSourceArchived;
 
-class Source extends BaseSource
+class SourceArchived extends BaseSourceArchived
 {
-    const CONSUMER_CODE = Source::class;
+    const CONSUMER_CODE = Source::CONSUMER_CODE;
 
     public $moduleId = 'graphene';
     public $referenceClassName = Reference::class;
