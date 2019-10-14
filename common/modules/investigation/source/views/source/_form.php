@@ -107,7 +107,7 @@ $uploadedFiles = $model->getFiles('file');
                         [
                             'data' => ArrayHelper::map(
                                 Category::find()->andWhere([
-                                    // 'depth' => 3,
+                                    'depth' => 3,
                                     'consumer' => $categoryConsumerCode
                                 ])->all(),
                                 'id',
