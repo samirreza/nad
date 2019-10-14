@@ -5,13 +5,17 @@ namespace nad\process\ird\wastewater\investigation\source\controllers;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use nad\process\ird\wastewater\investigation\source\models\Source;
+use nad\process\ird\wastewater\investigation\source\models\SourceArchived;
 use nad\process\ird\wastewater\investigation\source\models\SourceSearch;
+use nad\process\ird\wastewater\investigation\source\models\SourceArchivedSearch;
 use nad\common\modules\investigation\source\controllers\SourceController;
 
 class ManageController extends SourceController
 {
     public function init()
     {
+        $this->archivedClassName = SourceArchived::class;
+        $this->archivedSearchClassName = SourceArchivedSearch::class;
         $this->modelClass = Source::class;
         $this->searchClass = SourceSearch::class;
     }
@@ -30,7 +34,9 @@ class ManageController extends SourceController
                                 'index',
                                 'view',
                                 'create',
-                                'certificate'
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
                             'roles' => ['wastewater.investigation']
                         ]
