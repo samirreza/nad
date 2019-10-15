@@ -87,6 +87,11 @@ class SideMenu extends \theme\widgets\Menu
                                 'url' => ['/disinfectant']
                             ],
                             [
+                                'label' => 'منعقدکننده',
+                                'icon' => 'angle-right',
+                                'url' => ['/coagulant']
+                            ],
+                            [
                                 'label' => 'شوینده قلیایی',
                                 'icon' => 'angle-right',
                                 'url' => ['/alkalineWasher']
