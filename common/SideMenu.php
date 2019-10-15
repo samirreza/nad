@@ -101,6 +101,11 @@ class SideMenu extends \theme\widgets\Menu
                                 'icon' => 'angle-right',
                                 'url' => ['/acidicWasher']
                             ],
+                            [
+                                'label' => 'جی آر اس',
+                                'icon' => 'angle-right',
+                                'url' => ['/grs']
+                            ],
                         ],
                     ],
                     [
