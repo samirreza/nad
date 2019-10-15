@@ -5,7 +5,7 @@ use nad\process\materials\alkalineWasher\investigation\reference\models\Referenc
 $this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
     ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation']],
     $this->title

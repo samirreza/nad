@@ -3,7 +3,7 @@
 $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
     ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],

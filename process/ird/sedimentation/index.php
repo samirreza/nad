@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">

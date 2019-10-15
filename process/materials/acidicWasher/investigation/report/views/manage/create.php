@@ -6,8 +6,8 @@ use nad\process\materials\acidicWasher\investigation\reference\models\Reference;
 $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
-    ['label' => 'شوینده اسدی', 'url' => ['/acidicWasher/manage/index']],
+    'مواد',
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     ['label' => 'بررسی', 'url' => ['/acidicWasher/manage/investigation']],
     $this->title
 ];

@@ -82,6 +82,16 @@ class SideMenu extends \theme\widgets\Menu
                         'icon' => 'angle-right',
                         'items' => [
                             [
+                                'label' => 'گندزدا',
+                                'icon' => 'angle-right',
+                                'url' => ['/disinfectant']
+                            ],
+                            [
+                                'label' => 'منعقدکننده',
+                                'icon' => 'angle-right',
+                                'url' => ['/coagulant']
+                            ],
+                            [
                                 'label' => 'شوینده قلیایی',
                                 'icon' => 'angle-right',
                                 'url' => ['/alkalineWasher']
@@ -90,6 +100,11 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'شوینده اسیدی',
                                 'icon' => 'angle-right',
                                 'url' => ['/acidicWasher']
+                            ],
+                            [
+                                'label' => 'جی آر اس',
+                                'icon' => 'angle-right',
+                                'url' => ['/grs']
                             ],
                         ],
                     ],

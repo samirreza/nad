@@ -1,0 +1,10 @@
+<?php
+
+namespace nad\process\materials\coagulant\investigation\source\models;
+
+use nad\common\modules\investigation\source\models\SourceSearchTrait;
+
+class SourceArchivedSearch extends SourceArchived
+{
+    use SourceSearchTrait;
+}

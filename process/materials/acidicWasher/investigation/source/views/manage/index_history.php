@@ -3,8 +3,8 @@
 $this->title = 'لیست داده گاه روندهای منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
-    ['label' => 'شوینده اسدی', 'url' => ['/acidicWasher/manage/index']],
+    'مواد',
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/acidicWasher/manage/investigation']],
     'داده گاه روندهای منشا',
     $this->title

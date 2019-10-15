@@ -6,7 +6,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'شوینده قلیایی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     $this->title
 ];
 
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/alkalineWasher/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
