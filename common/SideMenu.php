@@ -82,6 +82,11 @@ class SideMenu extends \theme\widgets\Menu
                         'icon' => 'angle-right',
                         'items' => [
                             [
+                                'label' => 'گندزدا',
+                                'icon' => 'angle-right',
+                                'url' => ['/disinfectant']
+                            ],
+                            [
                                 'label' => 'شوینده قلیایی',
                                 'icon' => 'angle-right',
                                 'url' => ['/alkalineWasher']
