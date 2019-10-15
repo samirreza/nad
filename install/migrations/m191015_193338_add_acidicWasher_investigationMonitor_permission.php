@@ -14,7 +14,7 @@ class m191015_193338_add_acidicWasher_investigationMonitor_permission extends Mi
     {
         $auth = Yii::$app->authManager;
         $items = [
-            'investigationMonitor.investigationMonitor' => 'بررسی پایش'
+            'acidicWasher.investigationMonitor' => 'بررسی پایش'
         ];
 
         foreach ($items as $item => $title) {
