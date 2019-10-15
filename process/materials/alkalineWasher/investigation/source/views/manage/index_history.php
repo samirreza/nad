@@ -3,7 +3,7 @@
 $this->title = 'لیست داده گاه روندهای منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/alkalineWasher/manage/investigation']],
     'داده گاه روندهای منشا',

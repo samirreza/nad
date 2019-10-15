@@ -4,7 +4,7 @@ namespace nad\process\materials\acidicWasher;
 
 class Module extends \yii\base\Module
 {
-    public $title = 'شوینده اسدی';
+    public $title = 'شوینده اسیدی';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\process\materials\acidicWasher';
 

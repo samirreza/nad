@@ -3,8 +3,8 @@
 $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
-    ['label' => 'شوینده اسدی', 'url' => ['/acidicWasher/manage/index']],
+    'مواد',
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/acidicWasher/manage/investigation']],
     'داده گاه منشا',
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],

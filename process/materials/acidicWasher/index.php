@@ -3,16 +3,16 @@
 use yii\helpers\Url;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'شوینده اسدی';
+$this->title = 'شوینده اسیدی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     $this->title
 ];
 
 ?>
 
-<h1 class="nad-page-title">شوینده اسدی</h1>
+<h1 class="nad-page-title">شوینده اسیدی</h1>
 <h2>فعالیت ها:</h2>
 <br>
 <div class="row">

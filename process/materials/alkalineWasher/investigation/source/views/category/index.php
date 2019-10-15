@@ -3,7 +3,7 @@
 $this->title = 'رده‌بندی منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/alkalineWasher/manage/investigation']],
     $this->title

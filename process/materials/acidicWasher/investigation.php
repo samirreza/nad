@@ -7,8 +7,8 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
-    ['label' => 'شوینده اسدی', 'url' => ['/acidicWasher/manage/index']],
+    'مواد',
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     $this->title
 ];
 

@@ -3,7 +3,7 @@
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
-    'فرایندها',
+    'مواد',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/alkalineWasher/manage/investigation']],
     ['label' => 'رده های منشاها', 'url' => ['/alkalineWasher/investigation/source/category/index']],
