@@ -22,6 +22,14 @@ class ManageController extends \yii\web\Controller
                                 'investigation'
                             ],
                             'roles' => ['sedimentation.investigation']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'investigation-monitor'
+                            ],
+                            'roles' => ['sedimentation.investigationMonitor']
                         ]
                     ]
                 ]
@@ -37,5 +45,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigation()
     {
         return $this->render('@nad/process/ird/sedimentation/investigation');
+    }
+
+    public function actionInvestigationMonitor()
+    {
+        return $this->render('@nad/process/ird/sedimentation/investigationMonitor');
     }
 }
