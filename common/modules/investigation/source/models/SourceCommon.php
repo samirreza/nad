@@ -417,6 +417,10 @@ class SourceCommon extends BaseInvestigationModel
         return ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_ACCEPTED && $this->hasAnyExpert() && Yii::$app->user->can('superuser'));
     }
 
+    public function canSetExpert(){
+        return (Yii::$app->user->can('superuser') && ($this->status == self::STATUS_ACCEPTED || $this->status == self::STATUS_IN_NEXT_STEP));
+    }
+
     /**
      * User can NOT create any new proposal for a locked source.
      *

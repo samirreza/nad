@@ -157,8 +157,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => $model->hasAnyExpert() ? 'تغییر کارشناس' : 'انتخاب کارشناس',
                     'type' => 'info',
                     'icon' => 'graduation-cap',
-                    'isActive' => $model->status == Source::STATUS_ACCEPTED &&
-                    Yii::$app->user->can('superuser'),
+                    'isActive' => $model->canSetExpert(),
                     // 'visibleFor' => ['superuser'],
                     'url' => ['set-experts', 'id' => $model->id],
                     'options' => ['class' => 'ajaxupdate']
