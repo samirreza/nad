@@ -34,8 +34,21 @@ class Module extends \yii\base\Module
                 ]
             ],
             [
-                'label' => 'لیست پروپوزال',
-                'url' => ['/sedimentation/investigation/proposal/manage/index']
+                'label' => 'پروپوزال',
+                'items' => [
+                    [
+                        'label' => 'افزودن پروپوزال',
+                        'url' => ['/sedimentation/investigation/proposal/manage/create']
+                    ],
+                    [
+                        'label' => 'لیست پروپوزالهای برنامه',
+                        'url' => ['/sedimentation/investigation/proposal/manage/index']
+                    ],
+                    [
+                        'label' => 'لیست رده های پروپوزال',
+                        'url' => ['/sedimentation/investigation/proposal/category/index']
+                    ],
+                ]
             ],
             [
                 'label' => 'گزارش‌',

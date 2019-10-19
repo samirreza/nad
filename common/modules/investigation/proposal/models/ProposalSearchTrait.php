@@ -6,10 +6,15 @@ use yii\data\ActiveDataProvider;
 
 trait ProposalSearchTrait
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['category.title']);
+    }
+
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string'],
+            [['title', 'uniqueCode', 'category.title'], 'string'],
             [['createdBy', 'status'], 'integer']
         ];
     }
@@ -38,8 +43,14 @@ trait ProposalSearchTrait
             'createdBy' => $this->createdBy,
             'status' => $this->status
         ])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+            ->andFilterWhere(['like', 'nad_investigation_proposal.title', $this->title])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
+            ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
+
+        $query->joinWith('category AS category')
+            ->andFilterWhere(
+                ['like', 'category.title', $this->getAttribute('category.title')]
+            );
 
         return $dataProvider;
     }

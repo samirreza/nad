@@ -2,15 +2,17 @@
 
 namespace nad\process\ird\sedimentation\investigation\proposal\models;
 
+use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
 use nad\process\ird\sedimentation\investigation\reference\models\Reference;
-use nad\common\modules\investigation\proposal\models\Proposal as BaseProposal;
+use nad\common\modules\investigation\proposal\models\ProposalArchived as BaseProposalArchived;
 
-class Proposal extends BaseProposal
+class ProposalArchived extends BaseProposalArchived
 {
-    const CONSUMER_CODE = Proposal::class;
+    const CONSUMER_CODE = Proposal::CONSUMER_CODE;
 
-    public $moduleId= 'sedimentation';
+    public $moduleId = 'sedimentation';
     public $referenceClassName = Reference::class;
+
 
     public function getBaseViewRoute()
     {
