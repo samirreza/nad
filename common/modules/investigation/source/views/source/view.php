@@ -65,7 +65,8 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 'change-archive',
                                 'id' => $model->id,
                                 'newStatus' => Source::IS_SOURCE_ARCHIVED_YES
-                            ]
+                            ],
+                            'options' => ['data-pjax' => 0]
                         ],
                     ]
                 ],
