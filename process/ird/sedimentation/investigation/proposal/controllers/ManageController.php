@@ -33,7 +33,10 @@ class ManageController extends ProposalController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
                             'roles' => ['sedimentation.investigation']
                         ]
