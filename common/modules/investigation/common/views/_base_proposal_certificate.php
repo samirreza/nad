@@ -17,7 +17,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            "$baseRoute/proposal/manage/view",
+            ($proposal->isArchived == $proposal::IS_SOURCE_ARCHIVED_YES) ? "$baseRoute/proposal/manage/archived-view" : "$baseRoute/proposal/manage/view",
             'id' => $proposal->id
         ],
         [
