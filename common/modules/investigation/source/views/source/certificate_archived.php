@@ -13,6 +13,10 @@ use theme\widgets\Panel;
     ]) ?>
     <?php if ($source->proposals) : ?>
         <?php foreach ($source->proposals as $index => $proposal) : ?>
+        <?php
+        // TODO find a better way than this shit
+        $proposal->referenceClassName = $source->referenceClassName;
+        ?>
             <?php Panel::begin(['title' => 'پوپوزال / گزارش ' . Yii::$app->formatter->asFarsiNumber($index + 1)]) ?>
                 <?= $this->render('@nad/common/modules/investigation/common/views/_base_proposal_certificate', [
                     'proposal' => $proposal,
