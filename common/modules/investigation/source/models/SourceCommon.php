@@ -5,12 +5,12 @@ namespace nad\common\modules\investigation\source\models;
 use Yii;
 use core\behaviors\PreventDeleteBehavior;
 use nad\office\modules\expert\models\Expert;
-use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use extensions\i18n\validators\JalaliDateToTimestamp;
-use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\proposal\models\Proposal;
+use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
+use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 // use nad\common\modules\investigation\source\behaviors\ReasonsBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 use nad\common\modules\investigation\source\behaviors\NotificationBehavior;
@@ -18,8 +18,6 @@ use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class SourceCommon extends BaseInvestigationModel
 {
-    // TODO Remove all "reasons" related things asap.
-
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
 
@@ -27,13 +25,13 @@ class SourceCommon extends BaseInvestigationModel
     public $ownerClassName = __NAMESPACE__ . '\Source';
 
     const EVENT_SET_EXPERTS = 'set-experts';
+    const EVENT_DELIVERD_TO_MANAGER = 'deliverd-to-manager';
 
     public function behaviors()
     {
         return array_merge(
             parent::behaviors(),
             [
-                // 'reasons' => ReasonsBehavior::class,
                 'experts' => ExpertsBehavior::class,
                 'tags' => [
                     'class' => TaggableBehavior::class,
@@ -75,7 +73,6 @@ class SourceCommon extends BaseInvestigationModel
                     'necessity',
                     'mainReasonId',
                     'categoryId'
-                    // 'reasons'
                 ],
                 'required'
             ],
@@ -127,7 +124,6 @@ class SourceCommon extends BaseInvestigationModel
             'necessity' => 'شرح عنوان',
             'description' => 'توضیحات',
             'mainReasonId' => 'علت طرح موضوع',
-            // 'reasons' => 'علل فرعی',
             'categoryId' => 'رده',
             'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
@@ -179,7 +175,14 @@ class SourceCommon extends BaseInvestigationModel
             $this->status == self::STATUS_IN_NEXT_STEP
         ) {
             $this->trigger(self::EVENT_SET_EXPERTS);
+        }elseif(
+            isset($changedAttributes['userHolder']) &&
+            $changedAttributes['userHolder'] == self::USER_HOLDER_EXPERT &&
+            $this->userHolder == self::USER_HOLDER_MANAGER
+        ){
+            $this->trigger(self::EVENT_DELIVERD_TO_MANAGER);
         }
+
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -200,11 +203,6 @@ class SourceCommon extends BaseInvestigationModel
     {
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
     }
-    // public function getReasonsQuery()
-    // {
-    //     return $this->hasMany(SourceReason::class, ['id' => 'reasonId'])
-    //         ->viaTable('nad_investigation_source_reason_relation', ['sourceId' => 'id']);
-    // }
 
     public function getExpertsQuery()
     {
@@ -217,6 +215,7 @@ class SourceCommon extends BaseInvestigationModel
         return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
     }
 
+    // TODO this function is NOT used anymore. Remove asap.
     public function canUserCreateProposal()
     {
         if ($this->status == self::STATUS_IN_NEXT_STEP) {
