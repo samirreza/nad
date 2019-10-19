@@ -124,6 +124,20 @@ class Expert extends ActiveRecord
         return $experts;
     }
 
+    public static function getExpertsByPermission($permission)
+    {
+        $allExperts = self::find()->all();
+        $experts = [];
+        $authManager = Yii::$app->authManager;
+        foreach ($allExperts as $expert) {
+            if ($authManager->checkAccess($expert->userId, $permission)) {
+                $experts[] = $expert;
+            }
+        }
+
+        return $experts;
+    }
+
     private function assignDepartmentRoles()
     {
         $authManager = Yii::$app->authManager;
