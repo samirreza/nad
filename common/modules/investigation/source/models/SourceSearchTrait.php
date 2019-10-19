@@ -44,7 +44,7 @@ trait SourceSearchTrait
             'mainReasonId' => $this->mainReasonId,
             'status' => $this->status
         ])
-            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'nad_investigation_source.title', $this->title])
             ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
             ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
 

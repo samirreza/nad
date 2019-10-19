@@ -1,10 +1,10 @@
 <?php
 
-namespace nad\common\modules\investigation\source\models;
+namespace nad\common\modules\investigation\proposal\models;
 
-class SourceArchived extends SourceCommon
+class ProposalArchived extends ProposalCommon
 {
-    public $moduleId = 'source';
+    public $moduleId = 'proposal';
 
     public static function find()
     {

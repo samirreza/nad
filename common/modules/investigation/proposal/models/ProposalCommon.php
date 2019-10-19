@@ -1,30 +1,35 @@
 <?php
 
-namespace nad\common\modules\investigation\source\models;
+namespace nad\common\modules\investigation\proposal\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use core\behaviors\PreventDeleteBehavior;
+use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\common\modules\investigation\proposal\models\Proposal;
+use nad\common\modules\investigation\report\models\Report;
+use nad\common\modules\investigation\source\models\Source;
+use nad\common\modules\investigation\source\models\SourceArchived;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
-use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
-// use nad\common\modules\investigation\source\behaviors\ReasonsBehavior;
+use nad\common\modules\investigation\proposal\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
-use nad\common\modules\investigation\source\behaviors\NotificationBehavior;
+use nad\common\modules\investigation\proposal\behaviors\NotificationBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
-class SourceCommon extends BaseInvestigationModel
+class ProposalCommon extends BaseInvestigationModel
 {
+    // TODO remove lastCodeNumber from table asap
+
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
 
-    public $moduleId = 'source';
-    public $ownerClassName = __NAMESPACE__ . '\Source';
+    public $moduleId = 'proposal';
+    public $ownerClassName = __NAMESPACE__ . '\Proposal';
 
-    const EVENT_SET_EXPERTS = 'set-experts';
+    const EVENT_SET_EXPERT = 'set-expert';
     const EVENT_DELIVERD_TO_MANAGER = 'deliverd-to-manager';
 
     public function behaviors()
@@ -32,7 +37,6 @@ class SourceCommon extends BaseInvestigationModel
         return array_merge(
             parent::behaviors(),
             [
-                'experts' => ExpertsBehavior::class,
                 'tags' => [
                     'class' => TaggableBehavior::class,
                     'moduleId' => $this->moduleId,
@@ -47,12 +51,37 @@ class SourceCommon extends BaseInvestigationModel
                     'class' => CodeNumeratorBehavior::class,
                     'determinativeColumn' => 'categoryId'
                 ],
+                'partners' => PartnersBehavior::class,
                 [
                     'class' => PreventDeleteBehavior::class,
                     'relations' => [
                         [
-                            'relationMethod' => 'getProposals',
-                            'relationName' => 'پروپوزال'
+                            'relationMethod' => 'getReport',
+                            'relationName' => 'گزارش'
+                        ]
+                    ]
+                ],
+                [
+                    'class' => FileBehavior::class,
+                    'groups' => [
+                        'file' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 100 * 1024 * 1024
+                            ]
                         ]
                     ]
                 ],
@@ -71,19 +100,21 @@ class SourceCommon extends BaseInvestigationModel
                     'createdAt',
                     'reasonForGenesis',
                     'necessity',
-                    'mainReasonId',
-                    'categoryId'
+                    // 'methodDesc',
+                    'categoryId',
+                    'sourceId',
+                    'tags'
                 ],
                 'required'
             ],
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             ['proceedings', 'required', 'on' => self::SCENARIO_WRITE_PROCEEDINGS],
             ['negotiationResult', 'required', 'on' => self::SCENARIO_WRITE_NEGOTIATION_RESULT],
-            ['experts', 'required', 'on' => self::SCENARIO_SET_EXPERT],
+            ['reportExpertId', 'required', 'on' => self::SCENARIO_SET_EXPERT],
             [['title', 'englishTitle'], 'string', 'max' => 255],
-            [['reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult'], 'string'],
-            [['tags', 'references'], 'safe'],
+            [['reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult', 'methodDesc', 'estimatedCost'], 'string'],
             ['englishTitle', 'default', 'value' => null],
+            [['partners', 'references'], 'safe'],
             [
                 'createdAt',
                 JalaliDateToTimestamp::class,
@@ -101,16 +132,27 @@ class SourceCommon extends BaseInvestigationModel
                 }
             ],
             [
-                ['title', 'reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult'],
+                ['title', 'reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult', 'methodDesc', 'estimatedCost'],
                 FarsiCharactersValidator::class
-            ]
+            ],
+            ['tags', 'validateTagsCount', 'skipOnEmpty' => true]
         ];
+    }
+
+    public function validateTagsCount($model, $attribute)
+    {
+        if (count($this->tags) < 3) {
+            $this->addError(
+                'tags',
+                'تعداد کلید واژه‌ها باید حداقل ۳ عدد باشد.'
+            );
+        }
     }
 
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SET_EXPERT] = ['experts'];
+        $scenarios[self::SCENARIO_SET_EXPERT] = ['reportExpertId'];
         return $scenarios;
     }
 
@@ -120,15 +162,15 @@ class SourceCommon extends BaseInvestigationModel
             'title' => 'عنوان',
             'englishTitle' => 'عنوان انگلیسی',
             'createdAt' => 'تاریخ درج',
-            'reasonForGenesis' => 'سابقه پیدایش',
-            'necessity' => 'شرح عنوان',
+            'reasonForGenesis' => 'تعریف مسئله',
+            'necessity' => 'هدف و ضرورت اجرا',
+            'methodDesc' => 'روش کار',
+            'estimatedCost' => 'براورد هزینه اجرا پروژه',
             'description' => 'توضیحات',
-            'mainReasonId' => 'علت طرح موضوع',
-            'categoryId' => 'رده',
+            'partners' => 'همکاران',
             'references' => 'منابع',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
-            'userHolder' => 'نزد',
             'createdBy' => 'کارشناس',
             'updatedAt' => 'آخرین بروزرسانی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
@@ -136,7 +178,10 @@ class SourceCommon extends BaseInvestigationModel
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'experts' => 'کارشناسان نگارش پروپوزال'
+            'sourceId' => 'منشا',
+            'reportExpertId' => 'کارشناس نگارش گزارش',
+            'categoryId' => 'رده',
+            'userHolder' => 'نزد'
         ];
     }
 
@@ -159,14 +204,6 @@ class SourceCommon extends BaseInvestigationModel
         return true;
     }
 
-    public function setUniqueCode()
-    {
-        $this->uniqueCode = $this->category->uniqueCode . '.' .
-            $this->numberPartOfUniqueCode;
-        // $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
-            // '.' . $this->numberPartOfUniqueCode;
-    }
-
     public function afterSave($insert, $changedAttributes)
     {
         if (
@@ -174,7 +211,7 @@ class SourceCommon extends BaseInvestigationModel
             $changedAttributes['status'] == self::STATUS_ACCEPTED &&
             $this->status == self::STATUS_IN_NEXT_STEP
         ) {
-            $this->trigger(self::EVENT_SET_EXPERTS);
+            $this->trigger(self::EVENT_SET_EXPERT);
         }elseif(
             isset($changedAttributes['userHolder']) &&
             $changedAttributes['userHolder'] == self::USER_HOLDER_EXPERT &&
@@ -186,17 +223,68 @@ class SourceCommon extends BaseInvestigationModel
         parent::afterSave($insert, $changedAttributes);
     }
 
-    public function getMainReason()
+    public function setUniqueCode()
     {
-        return $this->hasOne(SourceReason::class, ['id' => 'mainReasonId']);
+        $this->uniqueCode = $this->category->uniqueCode . '.' .
+            $this->numberPartOfUniqueCode;
+        // $this->uniqueCode = static::CONSUMER_CODE . '.' .
+        //     str_pad(
+        //         static::find()->andWhere(['<', 'id', $this->id])->count() + 1,
+        //         3,
+        //         '0',
+        //         STR_PAD_LEFT
+        //     ) . '.' .
+        //     $this->lastCodeNumber;
     }
 
-    public function getMainReasonAsString()
+    public function getPartnersQuery()
     {
-        if (!isset($this->mainReason)) {
+        return $this->hasMany(Expert::class, ['id' => 'expertId'])
+            ->viaTable('nad_investigation_proposal_partner_relation', ['proposalId' => 'id']);
+    }
+
+    public function getSource()
+    {
+        // TODO Rewrite with ActiveRecord::exists()
+        $source = Source::findOne($this->sourceId);
+        if(isset($source))
+            return $this->hasOne(Source::class, ['id' => 'sourceId']);
+        else
+            return $this->hasOne(SourceArchived::class, ['id' => 'sourceId']);
+    }
+
+    public function getSourceAsString()
+    {
+        if(!isset($this->source)){
             return null;
         }
-        return $this->mainReason->title;
+        return $this->source->title;
+    }
+
+    public function getReport()
+    {
+        return $this->hasOne(Report::class, ['proposalId' => 'id']);
+    }
+
+    public function getReportAsString()
+    {
+        if (!isset($this->Report)) {
+            return null;
+        }
+        return $this->Report->title;
+    }
+
+    public function getReportExpert()
+    {
+        return $this->hasOne(Expert::class, ['id' => 'reportExpertId']);
+    }
+
+    public function getReportExpertAsString()
+    {
+        if (!isset($this->reportExpert)) {
+            return null;
+        }
+        return $this->reportExpert->user->fullName;
     }
 
     public function getCategory()
@@ -204,34 +292,43 @@ class SourceCommon extends BaseInvestigationModel
         return $this->hasOne(Category::class, ['id' => 'categoryId']);
     }
 
-    public function getExpertsQuery()
-    {
-        return $this->hasMany(Expert::class, ['id' => 'expertId'])
-            ->viaTable('nad_investigation_source_expert_relation', ['sourceId' => 'id']);
-    }
+    public function getExpertSourcesForDropdown($sourceConsumerCode){
+        $expertSources = [];
+        if (Yii::$app->user->can('superuser')) {
+            $expertSources = Source::find()
+                            ->where(['consumer' => $sourceConsumerCode])
+                            ->all();
+        }else{
+            $expertSources = Source::find()
+                        ->alias('src')
+                        ->innerJoinWith('expertsQuery exp')
+                        ->where([
+                            'exp.id' => Yii::$app->user->identity->expert->id,
+                            'src.consumer' => $sourceConsumerCode
+                            ])
+                        ->all();
+        }
 
-    public function getProposals()
-    {
-        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
+        return ArrayHelper::map($expertSources, 'id', 'title');
     }
 
     // TODO this function is NOT used anymore. Remove asap.
-    public function canUserCreateProposal()
+    public function canUserCreateReport()
     {
         if ($this->status == self::STATUS_IN_NEXT_STEP) {
             if (Yii::$app->user->can('superuser')) {
                 return true;
             }
-            return $this->hasExperts(Expert::findOne([
+            return $this->reportExpertId == Expert::findOne([
                 'userId' => Yii::$app->user->id
-            ])->id);
+            ])->id;
         }
         return false;
     }
 
     public static function tableName()
     {
-        return 'nad_investigation_source';
+        return 'nad_investigation_proposal';
     }
 
     public static function getStatusLables()
@@ -245,7 +342,7 @@ class SourceCommon extends BaseInvestigationModel
             self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
             self::STATUS_REJECTED => 'رد',
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_IN_NEXT_STEP => 'منتظر پروپوزال جدید',
+            self::STATUS_IN_NEXT_STEP => 'منتظر گزارش جدید',
             self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
         ];
     }
@@ -318,9 +415,9 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     public function canSetWaitForSession(){
-        return ($this->status != self::STATUS_REJECTED && $this->userHolder == Source::USER_HOLDER_MANAGER &&
+        return ($this->status != self::STATUS_REJECTED && $this->userHolder == Proposal::USER_HOLDER_MANAGER &&
         Yii::$app->user->can('superuser')
-        // && $this->status != Source::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
+        // && $this->status != Proposal::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
         && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
@@ -412,8 +509,8 @@ class SourceCommon extends BaseInvestigationModel
         return false;
     }
 
-    public function canSendToWriteProposal(){
-        return ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_ACCEPTED && $this->hasAnyExpert() && Yii::$app->user->can('superuser'));
+    public function canSendToWriteReport(){
+        return ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_ACCEPTED && $this->reportExpertId != null && Yii::$app->user->can('superuser'));
     }
 
     public function canSetExpert(){
@@ -421,7 +518,7 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     /**
-     * User can NOT create any new proposal for a locked source.
+     * User can NOT create any new report, ... for a locked proposal.
      *
      * @return boolean
      */
@@ -430,7 +527,7 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     /**
-     * User can NOT create any new proposal for a locked source.
+     * User can NOT create any new report, ... for a locked proposal.
      *
      * @return boolean
      */

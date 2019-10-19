@@ -75,18 +75,20 @@ class ReferenceBehavior extends \yii\base\Behavior
 
     public function getReferences()
     {
-        return $this->referenceClassName::find()
-            ->innerJoin(
-                'nad_investigation_reference_relation',
-                'nad_investigation_reference_relation.referenceId = nad_investigation_reference.id'
-            )
-            ->andWhere([
-                'moduleId' => $this->moduleId,
-                'modelClassName' => (new \ReflectionClass($this->owner))
-                    ->getShortName(),
-                'modelId' => $this->owner->id
-            ])
-            ->all();
+        $myClass = new \ReflectionClass($this->owner->referenceClassName);
+        $myInstance = $myClass->newInstanceWithoutConstructor();
+        return $myInstance->find()
+        ->innerJoin(
+            'nad_investigation_reference_relation',
+            'nad_investigation_reference_relation.referenceId = nad_investigation_reference.id'
+        )
+        ->andWhere([
+            'moduleId' => $this->moduleId,
+            'modelClassName' => (new \ReflectionClass($this->owner))
+                ->getShortName(),
+            'modelId' => $this->owner->id
+        ])
+        ->all();
     }
 
     public function getReferencesAsString()

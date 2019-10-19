@@ -30,6 +30,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     const SCENARIO_WRITE_NEGOTIATION_RESULT = 'writeNegotiationResult';
     const SCENARIO_SET_EXPERT = 'setExpert';
 
+    // TODO these two variables should renamed to IS_ARCHIVED_NO, IS_ARCHIVED_YES
     const IS_SOURCE_ARCHIVED_NO = 1; // default value
     const IS_SOURCE_ARCHIVED_YES = 2;
 

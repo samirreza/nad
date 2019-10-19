@@ -104,7 +104,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigation/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' => '#'
+            'titleUrl' =>  Url::to(['/sedimentation/investigation/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
