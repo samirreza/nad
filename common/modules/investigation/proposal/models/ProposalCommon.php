@@ -296,13 +296,17 @@ class ProposalCommon extends BaseInvestigationModel
         $expertSources = [];
         if (Yii::$app->user->can('superuser')) {
             $expertSources = Source::find()
-                            ->where(['consumer' => $sourceConsumerCode])
+                            ->andWhere([
+                                'status' => Source::STATUS_IN_NEXT_STEP,
+                                'consumer' => $sourceConsumerCode
+                                ])
                             ->all();
         }else{
             $expertSources = Source::find()
                         ->alias('src')
                         ->innerJoinWith('expertsQuery exp')
-                        ->where([
+                        ->andWhere([
+                            'src.status' => Source::STATUS_IN_NEXT_STEP,
                             'exp.id' => Yii::$app->user->identity->expert->id,
                             'src.consumer' => $sourceConsumerCode
                             ])
