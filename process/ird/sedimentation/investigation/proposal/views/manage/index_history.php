@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 
 $this->params['horizontalMenuItems'] = [
     [
+        'label' => 'برنامه پروپوزال',
+        'url' => ['/sedimentation/investigation/proposal/manage/index']
+    ],
+    [
+        'label' => 'داده گاه پروپوزال',
+        'url' => ['/sedimentation/investigation/proposal/manage/archived-index']
+    ],
+    [
         'label' => 'داده گاه روندهای پروپوزال',
         'url' => ['/sedimentation/investigation/proposal/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/sedimentation/investigation/reference/manage/index']
     ]
 ];
 ?>

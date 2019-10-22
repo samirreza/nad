@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 
 $this->params['horizontalMenuItems'] = [
     [
+        'label' => 'برنامه منشا',
+        'url' => ['/alkalineWasher/investigation/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
+        'url' => ['/alkalineWasher/investigation/source/manage/archived-index']
+    ],
+    [
         'label' => 'داده گاه روندهای منشا',
         'url' => ['/alkalineWasher/investigation/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/alkalineWasher/investigation/reference/manage/index']
     ]
 ];
 ?>

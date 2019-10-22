@@ -143,19 +143,20 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         'newStatus' => Proposal::STATUS_ACCEPTED
                     ]
                 ],
-                'reject' => [
-                    'label' => 'رد',
-                    'type' => 'info',
-                    'icon' => 'close',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
-                    Yii::$app->user->can('superuser'),
-                    // 'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_REJECTED
-                    ]
-                ],
+                // We don't have "reject" in proposal
+                // 'reject' => [
+                //     'label' => 'رد',
+                //     'type' => 'info',
+                //     'icon' => 'close',
+                //     'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                //     Yii::$app->user->can('superuser'),
+                //     // 'visibleFor' => ['superuser'],
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Proposal::STATUS_REJECTED
+                //     ]
+                // ],
                 'set-expert' => [
                     'label' => $model->reportExpertId != null ? 'تغییر کارشناس' : 'انتخاب کارشناس',
                     'type' => 'info',

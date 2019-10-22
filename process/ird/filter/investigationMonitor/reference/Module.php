@@ -13,10 +13,85 @@ class Module extends BaseModule
         parent::init();
         $this->horizontalMenuItems = [
             [
+                'label' => 'برنامه ها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/filter/investigationMonitor/source/manage/index']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/filter/investigationMonitor/proposal/manage/index']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/filter/investigationMonitor/report/manage/index']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/filter/investigationMonitor/method/manage/index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/filter/investigationMonitor/instruction/manage/index']
+                    ],
+                ]
+            ],
+            [
+                'label' => 'داده گاه ها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/filter/investigationMonitor/source/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/filter/investigationMonitor/proposal/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/filter/investigationMonitor/report/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/filter/investigationMonitor/method/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/filter/investigationMonitor/instruction/manage/archived-index']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه های روندها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/filter/investigationMonitor/source/manage/index-history']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/filter/investigationMonitor/proposal/manage/index-history']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/filter/investigationMonitor/report/manage/index-history']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/filter/investigationMonitor/method/manage/index-history']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/filter/investigationMonitor/instruction/manage/index-history']
+                    ]
+                ]
+            ],
+            [
                 'label' => 'داده گاه منابع',
                 'items' => [
                     [
-                        'label' => 'لیست داده گاه منابع',
+                        'label' => 'لیست منابع',
                         'url' => ['/filter/investigationMonitor/reference/manage/index']
                     ],
                     [

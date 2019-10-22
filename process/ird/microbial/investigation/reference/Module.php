@@ -13,10 +13,85 @@ class Module extends BaseModule
         parent::init();
         $this->horizontalMenuItems = [
             [
+                'label' => 'برنامه ها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/microbial/investigation/source/manage/index']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/microbial/investigation/proposal/manage/index']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/microbial/investigation/report/manage/index']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/microbial/investigation/method/manage/index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/microbial/investigation/instruction/manage/index']
+                    ],
+                ]
+            ],
+            [
+                'label' => 'داده گاه ها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/microbial/investigation/source/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/microbial/investigation/proposal/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/microbial/investigation/report/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/microbial/investigation/method/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/microbial/investigation/instruction/manage/archived-index']
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه های روندها',
+                'items' => [
+                    [
+                        'label' => 'منشا',
+                        'url' => ['/microbial/investigation/source/manage/index-history']
+                    ],
+                    [
+                        'label' => 'پروپوزال',
+                        'url' => ['/microbial/investigation/proposal/manage/index-history']
+                    ],
+                    [
+                        'label' => 'گزارش',
+                        'url' => ['/microbial/investigation/report/manage/index-history']
+                    ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/microbial/investigation/method/manage/index-history']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/microbial/investigation/instruction/manage/index-history']
+                    ]
+                ]
+            ],
+            [
                 'label' => 'داده گاه منابع',
                 'items' => [
                     [
-                        'label' => 'لیست داده گاه منابع',
+                        'label' => 'لیست منابع',
                         'url' => ['/microbial/investigation/reference/manage/index']
                     ],
                     [

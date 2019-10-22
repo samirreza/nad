@@ -20,37 +20,104 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'افزودن منشا',
-                        'url' => ['/wastewater/investigation/source/manage/create']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن منشا',
+                                'url' => ['/wastewater/investigation/source/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ منشاهای برنامه',
+                                'url' => ['/wastewater/investigation/source/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های منشا',
+                                'url' => ['/wastewater/investigation/source/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'لیست‌ منشاهای برنامه',
-                        'url' => ['/wastewater/investigation/source/manage/index']
-                    ],
-                    [
-                        'label' => 'لیست رده های منشا',
-                        'url' => ['/wastewater/investigation/source/category/index']
-                    ],
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'منشاها',
+                                'url' => ['/wastewater/investigation/source/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای منشا',
+                                'url' => ['/wastewater/investigation/source/manage/index-history']
+                            ],
+                        ]
+                    ]
                 ]
             ],
             [
-                'label' => 'لیست پروپوزال',
-                'url' => ['/wastewater/investigation/proposal/manage/index']
-            ],
-            [
-                'label' => 'گزارش‌',
+                'label' => 'پروپوزال',
                 'items' => [
                     [
-                        'label' => 'لیست گزارش',
-                        'url' => ['/wastewater/investigation/report/manage/index']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن پروپوزال',
+                                'url' => ['/wastewater/investigation/proposal/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ پروپوزالهای برنامه',
+                                'url' => ['/wastewater/investigation/proposal/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های پروپوزال',
+                                'url' => ['/wastewater/investigation/proposal/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'رده‌بندی گزارش‌ها',
-                        'url' => ['/wastewater/investigation/report/category/index']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'پروپوزالها',
+                                'url' => ['/wastewater/investigation/proposal/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای پروپوزال',
+                                'url' => ['/wastewater/investigation/proposal/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'گزارش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن گزارش',
+                                'url' => ['/wastewater/investigation/report/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ گزارشهای برنامه',
+                                'url' => ['/wastewater/investigation/report/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های گزارش',
+                                'url' => ['/wastewater/investigation/report/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'گراف گزارش ها',
-                        'url' => ['/wastewater/investigation/report/manage/generate-graph']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'گزارشها',
+                                'url' => ['/wastewater/investigation/report/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای گزارش',
+                                'url' => ['/wastewater/investigation/report/manage/index-history']
+                            ],
+                        ]
                     ]
                 ]
             ],
@@ -58,12 +125,69 @@ class Module extends \yii\base\Module
                 'label' => 'روش',
                 'items' => [
                     [
-                        'label' => 'لیست روش‌ها',
-                        'url' => ['/wastewater/investigation/method/manage/index']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/wastewater/investigation/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/wastewater/investigation/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/wastewater/investigation/method/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'افزودن روش',
-                        'url' => ['/wastewater/investigation/method/manage/create']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/wastewater/investigation/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/wastewater/investigation/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/wastewater/investigation/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/wastewater/investigation/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/wastewater/investigation/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/wastewater/investigation/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/wastewater/investigation/instruction/manage/index-history']
+                            ],
+                        ]
                     ]
                 ]
             ]
