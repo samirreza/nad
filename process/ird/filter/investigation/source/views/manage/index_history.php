@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 
 $this->params['horizontalMenuItems'] = [
     [
+        'label' => 'برنامه منشا',
+        'url' => ['/filter/investigation/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
+        'url' => ['/filter/investigation/source/manage/archived-index']
+    ],
+    [
         'label' => 'داده گاه روندهای منشا',
         'url' => ['/filter/investigation/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/filter/investigation/reference/manage/index']
     ]
 ];
 ?>

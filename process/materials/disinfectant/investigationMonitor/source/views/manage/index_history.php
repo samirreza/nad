@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 
 $this->params['horizontalMenuItems'] = [
     [
+        'label' => 'برنامه منشا',
+        'url' => ['/disinfectant/investigationMonitor/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
+        'url' => ['/disinfectant/investigationMonitor/source/manage/archived-index']
+    ],
+    [
         'label' => 'داده گاه روندهای منشا',
         'url' => ['/disinfectant/investigationMonitor/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/disinfectant/investigationMonitor/reference/manage/index']
     ]
 ];
 ?>
