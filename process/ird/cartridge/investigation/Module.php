@@ -20,37 +20,104 @@ class Module extends \yii\base\Module
                 'label' => 'منشا',
                 'items' => [
                     [
-                        'label' => 'افزودن منشا',
-                        'url' => ['/cartridge/investigation/source/manage/create']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن منشا',
+                                'url' => ['/cartridge/investigation/source/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ منشاهای برنامه',
+                                'url' => ['/cartridge/investigation/source/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های منشا',
+                                'url' => ['/cartridge/investigation/source/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'لیست‌ منشاهای برنامه',
-                        'url' => ['/cartridge/investigation/source/manage/index']
-                    ],
-                    [
-                        'label' => 'لیست رده های منشا',
-                        'url' => ['/cartridge/investigation/source/category/index']
-                    ],
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'منشاها',
+                                'url' => ['/cartridge/investigation/source/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای منشا',
+                                'url' => ['/cartridge/investigation/source/manage/index-history']
+                            ],
+                        ]
+                    ]
                 ]
             ],
             [
-                'label' => 'لیست پروپوزال',
-                'url' => ['/cartridge/investigation/proposal/manage/index']
-            ],
-            [
-                'label' => 'گزارش‌',
+                'label' => 'پروپوزال',
                 'items' => [
                     [
-                        'label' => 'لیست گزارش',
-                        'url' => ['/cartridge/investigation/report/manage/index']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن پروپوزال',
+                                'url' => ['/cartridge/investigation/proposal/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ پروپوزالهای برنامه',
+                                'url' => ['/cartridge/investigation/proposal/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های پروپوزال',
+                                'url' => ['/cartridge/investigation/proposal/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'رده‌بندی گزارش‌ها',
-                        'url' => ['/cartridge/investigation/report/category/index']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'پروپوزالها',
+                                'url' => ['/cartridge/investigation/proposal/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای پروپوزال',
+                                'url' => ['/cartridge/investigation/proposal/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'گزارش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن گزارش',
+                                'url' => ['/cartridge/investigation/report/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ گزارشهای برنامه',
+                                'url' => ['/cartridge/investigation/report/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های گزارش',
+                                'url' => ['/cartridge/investigation/report/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'گراف گزارش ها',
-                        'url' => ['/cartridge/investigation/report/manage/generate-graph']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'گزارشها',
+                                'url' => ['/cartridge/investigation/report/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای گزارش',
+                                'url' => ['/cartridge/investigation/report/manage/index-history']
+                            ],
+                        ]
                     ]
                 ]
             ],
@@ -58,12 +125,69 @@ class Module extends \yii\base\Module
                 'label' => 'روش',
                 'items' => [
                     [
-                        'label' => 'لیست روش‌ها',
-                        'url' => ['/cartridge/investigation/method/manage/index']
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/cartridge/investigation/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/cartridge/investigation/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/cartridge/investigation/method/category/index']
+                            ],
+                        ]
                     ],
                     [
-                        'label' => 'افزودن روش',
-                        'url' => ['/cartridge/investigation/method/manage/create']
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/cartridge/investigation/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/cartridge/investigation/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/cartridge/investigation/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/cartridge/investigation/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/cartridge/investigation/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/cartridge/investigation/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/cartridge/investigation/instruction/manage/index-history']
+                            ],
+                        ]
                     ]
                 ]
             ]
