@@ -22,7 +22,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
     const STATUS_NEED_CORRECTION = 5;
     const STATUS_REJECTED = 6;
     const STATUS_ACCEPTED = 7;
-    const STATUS_IN_NEXT_STEP = 8;
+    const STATUS_IN_NEXT_STEP = 8; // only for sinlgle proposal or single report
     const STATUS_LOCKED = 9;
 
     const SCENARIO_SET_SESSION_DATE = 'setSessionDate';
