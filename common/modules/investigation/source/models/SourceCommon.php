@@ -319,7 +319,8 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canSetWaitForSession(){
         return ($this->status != self::STATUS_REJECTED && $this->userHolder == Source::USER_HOLDER_MANAGER &&
-        Yii::$app->user->can('superuser')
+        Yii::$app->user->can('superuser') &&
+        $this->status != self::STATUS_ACCEPTED
         // && $this->status != Source::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
         && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
@@ -339,7 +340,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canStartConverstation()
     {
-        if ($this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
+        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -350,7 +351,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canHaveConverstation()
     {
-        if ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
+        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -361,7 +362,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canSetForCorrection()
     {
-        if($this->status != self::STATUS_REJECTED && $this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
+        if($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
             if (
                 $this->status == self::STATUS_INPROGRESS
                 ||
@@ -413,7 +414,7 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     public function canSendToWriteProposal(){
-        return ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_ACCEPTED && $this->hasAnyExpert() && Yii::$app->user->can('superuser'));
+        return ($this->status == self::STATUS_ACCEPTED && $this->hasAnyExpert() && Yii::$app->user->can('superuser'));
     }
 
     public function canSetExpert(){
