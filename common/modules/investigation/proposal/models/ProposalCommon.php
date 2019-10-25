@@ -23,6 +23,15 @@ class ProposalCommon extends BaseInvestigationModel
 {
     // TODO remove lastCodeNumber from table asap
 
+    // check BaseInvestigationModel to make sure you don't use same status codes
+    // const STATUS_IN_NEXT_STEP = 9; this one is for "report step" & is defined in BaseInvestigationModel
+    const STATUS_IN_NEXT_STEP_FOR_METHOD = 10;
+    const STATUS_IN_NEXT_STEP_FOR_INSTRUCTION = 11;
+    const STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD = 12;
+    const STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION = 13;
+    const STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION = 14;
+    const STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION = 15;
+
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
 
@@ -179,7 +188,7 @@ class ProposalCommon extends BaseInvestigationModel
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
             'sourceId' => 'منشا',
-            'reportExpertId' => 'کارشناس نگارش گزارش',
+            'reportExpertId' => 'کارشناس نگارش گزارش/روش/دستورالعمل',
             'categoryId' => 'رده',
             'userHolder' => 'نزد'
         ];
@@ -208,14 +217,14 @@ class ProposalCommon extends BaseInvestigationModel
     {
         if (
             isset($changedAttributes['status']) &&
-            $changedAttributes['status'] == self::STATUS_ACCEPTED &&
-            $this->status == self::STATUS_IN_NEXT_STEP
+            ($changedAttributes['status'] == self::STATUS_ACCEPTED || self::isInAnyOfNextSteps($this->status)) &&
+            self::isInAnyOfNextSteps($this->status)
         ) {
             $this->trigger(self::EVENT_SET_EXPERT);
         }elseif(
             isset($changedAttributes['userHolder']) &&
             $changedAttributes['userHolder'] == self::USER_HOLDER_EXPERT &&
-            $this->userHolder == self::USER_HOLDER_MANAGER
+            $this->userHolder == self::USER_HOLDER_MANAGER // USER_HOLDER_MANAGER: just to overwrite old records
         ){
             $this->trigger(self::EVENT_DELIVERD_TO_MANAGER);
         }
@@ -344,9 +353,15 @@ class ProposalCommon extends BaseInvestigationModel
             self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره',
             self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
             self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
-            self::STATUS_REJECTED => 'رد',
+            // self::STATUS_REJECTED => 'رد', // we don't have "reject" in proposal
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
             self::STATUS_IN_NEXT_STEP => 'منتظر گزارش جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_METHOD => 'منتظر روش جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION => 'منتظر دستورالعمل جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD => 'منتظر گزارش و روش جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION => 'منتظر گزارش و دستورالعمل جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION => 'منتظر روش و دستورالعمل جدید',
+            self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION => 'منتظر گزارش، روش و دستورالعمل جدید',
             self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
         ];
     }
@@ -361,7 +376,7 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function changeStatus($newStatus)
     {
-        if($newStatus == self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED)
+        if(self::isInAnyOfNextSteps($newStatus) && $this->status != self::STATUS_LOCKED)
             $this->userHolder = self::USER_HOLDER_EXPERT;
         else if($newStatus == self::STATUS_WAITING_FOR_SESSION){
             $this->proceedings = null;
@@ -404,7 +419,7 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function canUserDeliverToManager()
     {
-        if ($this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_REJECTED && $this->userHolder != self::USER_HOLDER_MANAGER && ($this->userHolder == self::USER_HOLDER_EXPERT || Yii::$app->user->can('superuser'))) {
+        if (!self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_REJECTED && $this->userHolder != self::USER_HOLDER_MANAGER && ($this->userHolder == self::USER_HOLDER_EXPERT || Yii::$app->user->can('superuser'))) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -420,27 +435,30 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function canSetWaitForSession(){
         return ($this->status != self::STATUS_REJECTED && $this->userHolder == Proposal::USER_HOLDER_MANAGER &&
-        Yii::$app->user->can('superuser')
+        Yii::$app->user->can('superuser') &&
+        $this->status != self::STATUS_ACCEPTED
         // && $this->status != Proposal::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
-        && $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
+        && !self::isInAnyOfNextSteps($this->status) && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
     public function canSetSessionDate()
     {
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->sessionDate != null);
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->sessionDate != null);
     }
 
     public function canWriteProceedings()
     {
         return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED &&
-        $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED &&
+        !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED &&
+        $this->status != self::STATUS_ACCEPTED &&
             $this->sessionDate != null &&
             (($this->proceedings == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->proceedings != null);
     }
 
     public function canStartConverstation()
     {
-        if ($this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
+        if ($this->status != self::STATUS_ACCEPTED &&
+        $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -451,7 +469,7 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function canHaveConverstation()
     {
-        if ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
+        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_WAIT_FOR_CONVERSATION && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -462,7 +480,7 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function canSetForCorrection()
     {
-        if($this->status != self::STATUS_REJECTED && $this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
+        if($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
             if (
                 $this->status == self::STATUS_INPROGRESS
                 ||
@@ -514,28 +532,101 @@ class ProposalCommon extends BaseInvestigationModel
     }
 
     public function canSendToWriteReport(){
-        return ($this->status != self::STATUS_REJECTED && $this->status == self::STATUS_ACCEPTED && $this->reportExpertId != null && Yii::$app->user->can('superuser'));
+        return ($this->status != self::STATUS_REJECTED && ($this->status == self::STATUS_ACCEPTED || self::isInAnyOfNextSteps($this->status)) && $this->reportExpertId != null && Yii::$app->user->can('superuser') &&
+        ($this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION)
+        );
+    }
+
+    public function canSendToWriteMethod(){
+        return ($this->status != self::STATUS_REJECTED && ($this->status == self::STATUS_ACCEPTED || self::isInAnyOfNextSteps($this->status)) && $this->reportExpertId != null && Yii::$app->user->can('superuser') &&
+        ($this->status != self::STATUS_IN_NEXT_STEP_FOR_METHOD && $this->status != self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION)
+        );
+    }
+
+    public function canSendToWriteInstruction(){
+        return ($this->status != self::STATUS_REJECTED && ($this->status == self::STATUS_ACCEPTED || self::isInAnyOfNextSteps($this->status)) && $this->reportExpertId != null && Yii::$app->user->can('superuser') &&
+        ($this->status != self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION && $this->status != self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION && $this->status != self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION)
+        );
     }
 
     public function canSetExpert(){
-        return (Yii::$app->user->can('superuser') && ($this->status == self::STATUS_ACCEPTED || $this->status == self::STATUS_IN_NEXT_STEP));
+        return (Yii::$app->user->can('superuser') && ($this->status == self::STATUS_ACCEPTED || self::isInAnyOfNextSteps($this->status)));
     }
 
     /**
-     * User can NOT create any new report, ... for a locked proposal.
+     * User can NOT create any new report, method, instruction, ... for a locked proposal.
      *
      * @return boolean
      */
     public function canLock(){
-        return $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_IN_NEXT_STEP;
+        return self::isInAnyOfNextSteps($this->status);
     }
 
     /**
-     * User can NOT create any new report, ... for a locked proposal.
+     * User can NOT create any new report, method, instruction, ... for a locked proposal.
      *
      * @return boolean
      */
     public function canUnlock(){
-        return $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_LOCKED;
+        return $this->status == self::STATUS_LOCKED;
+    }
+
+    public function getNextStepStatus($nextStepType){
+        $nextStepStatusCode = null;
+        switch ($nextStepType) {
+            case self::STATUS_IN_NEXT_STEP : // for report
+                if($this->status == self::STATUS_IN_NEXT_STEP_FOR_METHOD){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION;
+                }else{
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP;
+                }
+                break;
+            case self::STATUS_IN_NEXT_STEP_FOR_METHOD :
+                if($this->status == self::STATUS_IN_NEXT_STEP){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION;
+                }else{
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_METHOD;
+                }
+                break;
+            case self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION :
+                if($this->status == self::STATUS_IN_NEXT_STEP){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_METHOD){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION;
+                }else if($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD){
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION;
+                }{
+                    $nextStepStatusCode = self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return $nextStepStatusCode;
+    }
+
+    public static function isInAnyOfNextSteps($status){
+        if(
+            $status == self::STATUS_IN_NEXT_STEP ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_METHOD ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION ||
+            $status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION
+        ){
+            return true;
+        }
+
+        return false;
     }
 }

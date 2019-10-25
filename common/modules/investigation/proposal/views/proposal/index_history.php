@@ -69,7 +69,7 @@ use nad\common\modules\investigation\proposal\models\ProposalReason;
                         'value' => function ($model) {
                             // TODO move it to a state in "Proposal::getUserHolderLables()"
                             if($model->reportExpertId != null && $model->status == Proposal::STATUS_ACCEPTED){
-                                return 'منتظر ارسال جهت نگارش گزارش';
+                                return 'منتظر ارسال جهت نگارش گزارش/روش/دستورالعمل';
                             }
                             return Proposal::getStatusLables()[$model->status];
                         },

@@ -11,7 +11,7 @@ $module = $this->context->module;
 
 ?>
 
-<h2 class="nad-page-title">رده بندی پروپوزالها</h2>
+<h2 class="nad-page-title">رده های پروپوزالها</h2>
 <div class="proposal-category-index">
     <?= ActionButtons::widget([
         'buttons' => [

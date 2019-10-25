@@ -169,10 +169,6 @@ $uploadedFiles = $model->getFiles('file');
                         Editor::class,
                         ['preset' => 'advanced']
                     ) ?>
-                    <?= $form->field($model, 'description')->widget(
-                        Editor::class,
-                        ['preset' => 'advanced']
-                    ) ?>
                 </div>
             </div>
         <?php ActiveForm::end() ?>

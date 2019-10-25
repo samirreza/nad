@@ -12,6 +12,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
 
 ?>
 
+<h2 class="nad-page-title">پروپوزالهای برنامه</h2>
 <div class="sliding-form-wrapper"></div>
 <div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
