@@ -47,7 +47,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'visible' => true,
                             'url' => ['deliver-to-expert', 'id' => $model->id]
                         ],
-                        'send-for-proposal' => [
+                        'send-for-report' => [
                             'label' => 'جهت نگارش گزارش',
                             'icon' => 'reply',
                             'isActive' => $model->canSendToWriteReport(),
@@ -55,7 +55,29 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Proposal::STATUS_IN_NEXT_STEP
+                                'newStatus' => $model->getNextStepStatus(Proposal::STATUS_IN_NEXT_STEP)
+                            ]
+                        ],
+                        'send-for-method' => [
+                            'label' => 'جهت نگارش روش',
+                            'icon' => 'reply',
+                            'isActive' => $model->canSendToWriteMethod(),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => $model->getNextStepStatus(Proposal::STATUS_IN_NEXT_STEP_FOR_METHOD)
+                            ]
+                        ],
+                        'send-for-instruction' => [
+                            'label' => 'جهت نگارش دستورالعمل',
+                            'icon' => 'reply',
+                            'isActive' => $model->canSendToWriteInstruction(),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => $model->getNextStepStatus(Proposal::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION)
                             ]
                         ],
                         'send-to-archive' => [
@@ -286,9 +308,13 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 'updatedAt:date',
                                 [
                                     'attribute' => 'status',
-                                    'value' => function ($model) {
+                                    'value' =>  function ($model) {
+                                        // TODO move it to a state in "Proposal::getUserHolderLables()"
+                                        if($model->reportExpertId != null && $model->status == Proposal::STATUS_ACCEPTED){
+                                            return 'منتظر ارسال جهت نگارش گزارش/روش/دستورالعمل';
+                                        }
                                         return Proposal::getStatusLables()[$model->status];
-                                    }
+                                    },
                                 ],
                                 [
                                     'attribute' => 'userHolder',
@@ -347,13 +373,6 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                 <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost')]) ?>
                     <div class="well">
                         <?= $model->estimatedCost ?>
-                    </div>
-                <?php Panel::end() ?>
-            </div>
-            <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('description')]) ?>
-                    <div class="well">
-                        <?= $model->description ?>
                     </div>
                 <?php Panel::end() ?>
             </div>

@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 ];
 $this->params['horizontalMenuItems'] = [
     [
-        'label' => 'لیست داده گاه منشا',
+        'label' => 'برنامه منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
         'url' => ['/sedimentation/investigation/source/manage/archived-index']
+    ],
+    [
+        'label' => 'داده گاه روند منشا',
+        'url' => ['/sedimentation/investigation/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/sedimentation/investigation/reference/manage/index']
     ]
 ];
 

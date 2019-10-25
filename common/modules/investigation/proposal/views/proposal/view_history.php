@@ -54,6 +54,12 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                         return $model->researcherTitle;
                                     }
                                 ],
+                                [
+                                    'attribute' => 'sourceId',
+                                    'value' => function($model){
+                                        return $model->getSourceAsString();
+                                    }
+                                ],
                                 'createdAt:date',
                                 [
                                     'label' => 'مدارک',

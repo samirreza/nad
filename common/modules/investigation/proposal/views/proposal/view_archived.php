@@ -161,13 +161,6 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     </div>
                 <?php Panel::end() ?>
             </div>
-            <!-- <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('description')]) ?>
-                    <div class="well">
-                        <?= $model->description ?>
-                    </div>
-                <?php Panel::end() ?>
-            </div> -->
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
                     <?php Panel::begin([

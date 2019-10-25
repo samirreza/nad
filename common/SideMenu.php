@@ -471,12 +471,12 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'angle-right',
                 'visible' =>  $user->can('superuser')
             ],
-            [
-                'label' => 'تاریخچه تغییرات',
-                'url' => ['/changelog/manage/list'],
-                'icon' => 'angle-right',
-                'visible' => $user->can('superuser')
-            ]
+            // [
+            //     'label' => 'تاریخچه تغییرات',
+            //     'url' => ['/changelog/manage/list'],
+            //     'icon' => 'angle-right',
+            //     'visible' => $user->can('superuser')
+            // ]
         ];
     }
 }
