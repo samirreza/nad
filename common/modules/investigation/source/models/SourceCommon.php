@@ -26,6 +26,7 @@ class SourceCommon extends BaseInvestigationModel
 
     const EVENT_SET_EXPERTS = 'set-experts';
     const EVENT_DELIVERD_TO_MANAGER = 'deliverd-to-manager';
+    const EVENT_DELIVERD_TO_EXPERT = 'deliverd-to-expert';
 
     public function behaviors()
     {
@@ -181,6 +182,12 @@ class SourceCommon extends BaseInvestigationModel
             $this->userHolder == self::USER_HOLDER_MANAGER
         ){
             $this->trigger(self::EVENT_DELIVERD_TO_MANAGER);
+        }elseif(
+            isset($changedAttributes['userHolder']) &&
+            $changedAttributes['userHolder'] == self::USER_HOLDER_MANAGER &&
+            $this->userHolder == self::USER_HOLDER_EXPERT
+        ){
+            $this->trigger(self::EVENT_DELIVERD_TO_EXPERT);
         }
 
         parent::afterSave($insert, $changedAttributes);

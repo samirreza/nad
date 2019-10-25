@@ -40,6 +40,7 @@ class ProposalCommon extends BaseInvestigationModel
 
     const EVENT_SET_EXPERT = 'set-expert';
     const EVENT_DELIVERD_TO_MANAGER = 'deliverd-to-manager';
+    const EVENT_DELIVERD_TO_EXPERT = 'deliverd-to-expert';
 
     public function behaviors()
     {
@@ -227,6 +228,12 @@ class ProposalCommon extends BaseInvestigationModel
             $this->userHolder == self::USER_HOLDER_MANAGER // USER_HOLDER_MANAGER: just to overwrite old records
         ){
             $this->trigger(self::EVENT_DELIVERD_TO_MANAGER);
+        }elseif(
+            isset($changedAttributes['userHolder']) &&
+            $changedAttributes['userHolder'] == self::USER_HOLDER_MANAGER &&
+            $this->userHolder == self::USER_HOLDER_EXPERT
+        ){
+            $this->trigger(self::EVENT_DELIVERD_TO_EXPERT);
         }
 
         parent::afterSave($insert, $changedAttributes);
