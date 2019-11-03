@@ -6,6 +6,7 @@ use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
 use theme\widgets\ActionButtons;
+use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\method\models\Method;
 use nad\extensions\comment\widgets\commentList\CommentList;
 
@@ -14,109 +15,209 @@ use nad\extensions\comment\widgets\commentList\CommentList;
 <a class="ajaxcreate" data-gridpjaxid="method-view-detailview-pjax"></a>
 <div class="method-view">
     <?php Pjax::begin(['id' => 'method-view-detailview-pjax']) ?>
-        <?= ActionButtons::widget([
+    <?= ActionButtons::widget([
             'modelID' => $model->id,
             'buttons' => [
                 'update' => [
                     'type' => 'warning',
-                    'visible' => $model->canUserUpdateOrDelete()
+                    'isActive' => $model->canUserUpdateOrDelete()
                 ],
                 'delete' => [
                     'type' => 'warning',
-                    'visible' => $model->canUserUpdateOrDelete()
+                    'isActive' => $model->canUserUpdateOrDelete()
                 ],
-                'deliver-to-manager' => [
-                    'label' => 'ارسال به مدیر',
+                'send-to' => [
+                    'isDropDown' => true,
+                    'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'visible' => $model->canUserDeliverToManager(),
-                    'url' => ['deliver-to-manager', 'id' => $model->id]
-                ],
-                'wait-for-session' => [
-                    'label' => 'جلسه',
-                    'type' => 'info',
-                    'icon' => 'bank',
-                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND,
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Method::STATUS_WAITING_FOR_SESSION
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canAcceptOrRejectOrSendForCorrection() || $model->canSendToWriteSource() || Yii::$app->user->can('superuser')),
+                    'items' => [
+                        'send-to-manager' => [
+                            'label' => 'به مدیر',
+                            'url' => ['deliver-to-manager', 'id' => $model->id],
+                            'icon' => 'reply',
+                            'isActive' => $model->canUserDeliverToManager(),
+                            'visible' => true
+                        ],
+                        'send-to-expert' => [
+                            'label' => 'به کارشناس',
+                            'icon' => 'reply',
+                            'isActive' => $model->canManagerDeliverToExpert(),
+                            'visible' => true,
+                            'url' => ['deliver-to-expert', 'id' => $model->id]
+                        ],
+                        'send-for-source' => [
+                            'label' => 'جهت ارجاع به منشا جدید',
+                            'icon' => 'reply',
+                            'isActive' => $model->canSendToWriteSource(),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => $model->getNextStepStatus(Method::STATUS_IN_NEXT_STEP)
+                            ]
+                        ],
+                        'send-for-instruction' => [
+                            'label' => 'جهت نگارش دستورالعمل',
+                            'icon' => 'reply',
+                            'isActive' => $model->canSendToWriteInstruction(),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => $model->getNextStepStatus(Method::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION)
+                            ]
+                        ],
+                        'send-to-archive' => [
+                            'label' => 'به بایگانی',
+                            'icon' => 'reply',
+                            'isActive' => Yii::$app->user->can('superuser') ,
+                            'visible' => true,
+                            'url' => [
+                                'change-archive',
+                                'id' => $model->id,
+                                'newStatus' => Method::IS_SOURCE_ARCHIVED_YES
+                            ],
+                            'options' => ['data-pjax' => 0]
+                        ],
                     ]
                 ],
-                'wait-for-negotiation' => [
-                    'label' => 'مذاکره',
+                'session' => [
+                    'isDropDown' => true,
+                    'label' => '&nbsp;&nbsp;&nbsp;جلسه&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
-                    'icon' => 'handshake-o',
-                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND,
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Method::STATUS_WAIT_FOR_NEGOTIATION
+                    'icon' => 'users',
+                    'isActive' => ($model->canSetWaitForSession() || $model->canSetSessionDate() || $model->canWriteProceedings()),
+                    'items' => [
+                        'wait-for-session' => [
+                            'label' => 'نیازمند جلسه',
+                            'icon' => 'bank',
+                            'isActive' => $model->canSetWaitForSession(),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Method::STATUS_WAITING_FOR_SESSION
+                            ]
+                        ],
+                        'set-session-date' => [
+                            'label' => (isset($model->sessionDate) ? 'ویرایش' : 'ثبت') . ' زمان جلسه',
+                            'icon' => 'clock-o',
+                            'isActive' => $model->canSetSessionDate(),
+                            'visible' => true,
+                            'url' => ['set-session-date', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
+                        'write-proceedings' => [
+                            'label' => (isset($model->proceedings) ? 'ویرایش' : 'ثبت') .  ' نتیجه جلسه',
+                            'icon' => 'newspaper-o',
+                            'isActive' => $model->canWriteProceedings(),
+                            'visible' => true,
+                            'url' => ['write-proceedings', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
                     ]
                 ],
                 'wait-for-converstation' => [
                     'label' => 'تبادل نظر',
                     'type' => 'info',
                     'icon' => 'comments',
-                    'visible' => $model->status == Method::STATUS_IN_MANAGER_HAND &&
-                        Yii::$app->user->can('superuser'),
+                    'isActive' => $model->canStartConverstation(),
                     'url' => [
                         'change-status',
                         'id' => $model->id,
                         'newStatus' => Method::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'set-session-date' => [
-                    'label' => 'تعیین زمان جلسه',
+                'need-correction' => [
+                    'label' => 'نیازمند اصلاح',
                     'type' => 'info',
-                    'icon' => 'clock-o',
-                    'visible' => $model->canSetSessionDate(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['set-session-date', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'write-proceedings' => [
-                    'label' => 'ثبت نتیجه جلسه',
-                    'type' => 'info',
-                    'icon' => 'newspaper-o',
-                    'visible' => $model->canWriteProceedings(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['write-proceedings', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
-                ],
-                'write-negotiation-result' => [
-                    'label' => 'ثبت نتیجه مذاکره',
-                    'type' => 'info',
-                    'icon' => 'newspaper-o',
-                    'visible' => $model->canWriteNegotiationResult(),
-                    'visibleFor' => ['superuser'],
-                    'url' => ['write-negotiation-result', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
+                    'icon' => 'refresh',
+                    'isActive' => $model->canSetForCorrection(),
+                    'url' => [
+                        'change-status',
+                        'id' => $model->id,
+                        'newStatus' => Method::STATUS_NEED_CORRECTION
+                    ]
                 ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'visible' => $model->canAcceptOrRejectOrCorrect(),
-                    'visibleFor' => ['superuser'],
+                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
                     'url' => [
                         'change-status',
                         'id' => $model->id,
                         'newStatus' => Method::STATUS_ACCEPTED
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'اصلاح',
+                // We don't have "reject" in method
+                // 'reject' => [
+                //     'label' => 'رد',
+                //     'type' => 'info',
+                //     'icon' => 'close',
+                //     'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                //     Yii::$app->user->can('superuser'),
+                //     // 'visibleFor' => ['superuser'],
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Method::STATUS_REJECTED
+                //     ]
+                // ],
+                'set-expert' => [
+                    'label' => $model->expertId != null ? 'تغییر کارشناس' : 'انتخاب کارشناس',
                     'type' => 'info',
-                    'icon' => 'refresh',
-                    'visible' => $model->canAcceptOrRejectOrCorrect(),
-                    'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Method::STATUS_NEED_CORRECTION
+                    'icon' => 'graduation-cap',
+                    'isActive' => $model->canSetExpert(),
+                    // 'visibleFor' => ['superuser'],
+                    'url' => ['set-expert', 'id' => $model->id],
+                    'options' => ['class' => 'ajaxupdate']
+                ],
+                'change-lock' => [
+                    'isDropDown' => true,
+                    'label' => '&nbsp;&nbsp;&nbsp;قفل&nbsp;&nbsp;&nbsp;',
+                    'type' => 'danger',
+                    'icon' => 'lock',
+                    'isActive' => (Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
+                    'items' => [
+                        'lock' => [
+                            'label' => 'بستن قفل',
+                            'icon' => 'lock',
+                            'isActive' => $model->canLock() && Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Method::STATUS_LOCKED
+                            ]
+                        ],
+                        'unlock' => [
+                            'label' => 'باز کردن قفل',
+                            'icon' => 'unlock',
+                            'isActive' => $model->canUnlock() && Yii::$app->user->can('superuser'),
+                            'visible' => true,
+                            'url' => [
+                                'change-status',
+                                'id' => $model->id,
+                                'newStatus' => Method::STATUS_IN_NEXT_STEP
+                            ]
+                        ]
+                    ]
+                ],
+                'go-to-history' => [
+                    'label' => 'روندهای اجرا شده',
+                    'type' => 'success',
+                    'icon' => 'sort-amount-desc',
+                    'url' => ['view-history', 'id' => $model->id],
+                    'isActive' => true,
+                    'visible' => true,
+                    'options' => [
+                        'data-pjax' => 0,
+                        'target' => '_blank'
                     ]
                 ]
             ]
@@ -147,50 +248,54 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                         return $model->researcherTitle;
                                     }
                                 ],
+                                [
+                                    'attribute' => 'proposalId',
+                                    'value' => function($model){
+                                        return $model->getProposalAsString();
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'reportId',
+                                    'value' => function($model){
+                                        return $model->getReportAsString();
+                                    }
+                                ],
                                 'createdAt:date',
                                 [
-                                    'label' => 'فایل فایل دستورالعمل',
+                                    'label' => 'فایل روش',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        if (!$model->hasFile('instruction')) {
+                                        if (!$model->hasFile('methodDoc')) {
                                             return;
                                         }
                                         return Html::a(
-                                            'دانلود فایل دستورالعمل',
-                                            $model->getFile('instruction')->getUrl(),
+                                            'دانلود مدارک',
+                                            $model->getFile('methodDoc')->getUrl(),
                                             [
                                                 'data-pjax' => '0'
                                             ]
                                         );
                                     }
+                                ],
+                                [
+                                    'attribute' => 'categoryId',
+                                    'format' => 'raw',
+                                    'value' => $model->category->htmlCodedTitle
                                 ],
                                 [
                                     'label' => 'مدارک',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        if (!$model->hasFile('document')) {
+                                        if (!$model->getFile('doc')) {
                                             return;
                                         }
                                         return Html::a(
                                             'دانلود مدارک',
-                                            $model->getFile('document')->getUrl(),
+                                            $model->getFile('doc')->getUrl(),
                                             [
                                                 'data-pjax' => '0'
                                             ]
                                         );
-                                    }
-                                ],
-                                [
-                                    'attribute' => 'references',
-                                    'format' => 'raw',
-                                    'value' => function ($model) {
-                                        return $model->getClickableReferencesAsString();
-                                    }
-                                ],
-                                [
-                                    'attribute' => 'tags',
-                                    'value' => function ($model) {
-                                        return $model->getTagsAsString();
                                     }
                                 ]
                             ]
@@ -200,13 +305,55 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         <?= DetailView::widget([
                             'model' => $model,
                             'attributes' => [
+                                [
+                                    'attribute' => 'partners',
+                                    'value' => function ($model) {
+                                        return $model->getPartnerFullNamesAsString();
+                                    }
+                                ],
                                 'deliverToManagerDate:date',
                                 'sessionDate:dateTime',
                                 'updatedAt:date',
                                 [
                                     'attribute' => 'status',
-                                    'value' => function ($model) {
+                                    'value' =>  function ($model) {
+                                        // TODO move it to a state in "Method::getUserHolderLables()"
+                                        if($model->expertId != null && $model->status == Method::STATUS_ACCEPTED){
+                                            return 'منتظر ارسال جهت نگارش منشا/دستورالعمل';
+                                        }
                                         return Method::getStatusLables()[$model->status];
+                                    },
+                                ],
+                                [
+                                    'attribute' => 'expertId',
+                                    'value' => function ($model) {
+                                        if ($model->expertId) {
+                                            return Expert::findOne($model->expertId)
+                                                ->user
+                                                ->fullName;
+                                        }
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'userHolder',
+                                    'value' => function ($model) {
+                                        return Method::getUserHolderLables()[$model->userHolder];
+                                    },
+                                    'visible' => function ($model){
+                                        return !($model->userHolder == Method::USER_HOLDER_MANAGER && $model->status == Method::STATUS_IN_MANAGER_HAND);
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'tags',
+                                    'value' => function ($model) {
+                                        return $model->getTagsAsString();
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableReferencesAsString();
                                     }
                                 ]
                             ]

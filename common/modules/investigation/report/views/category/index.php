@@ -16,7 +16,8 @@ use nad\common\widgets\treeView\TreeView;
                 'label' => 'افزودن رده',
                 'options' => [
                     'class' => 'ajaxcreate',
-                    'data-gridpjaxid' => 'report-category-gridviewpjax'
+                    'data-gridpjaxid' => 'report-category-gridviewpjax',
+                    'id' => 'createCategoryBtn'
                 ]
             ],
             'reports' => [

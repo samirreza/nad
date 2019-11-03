@@ -129,12 +129,6 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                 'value' => Utility::makeStringShorten($proposal->proceedings, 100)
             ],
             [
-                'attribute' => 'negotiationResult',
-                'label' => 'نتیجه مذاکره پروپوزال',
-                'format' => 'raw',
-                'value' => Utility::makeStringShorten($proposal->negotiationResult, 100)
-            ],
-            [
                 'attribute' => 'projectExpertId',
                 'label' => 'کارشناس نگارش گزارش',
                 'value' => $proposal->reportExpertId ?

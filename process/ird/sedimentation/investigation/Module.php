@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\sedimentation\investigation\proposal\Module',
             'report' => 'nad\process\ird\sedimentation\investigation\report\Module',
             'reference' => 'nad\process\ird\sedimentation\investigation\reference\Module',
-            'method' => 'nad\process\ird\sedimentation\investigation\method\Module'
+            'method' => 'nad\process\ird\sedimentation\investigation\method\Module',
+            'instruction' => 'nad\process\ird\sedimentation\investigation\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/sedimentation/investigation/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/sedimentation/investigation/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [

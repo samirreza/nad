@@ -6,16 +6,30 @@
         'moduleId' => $moduleId,
         'baseRoute' => $baseRoute
     ]) ?>
-    <?php if ($proposal) : ?>
+    <?php if (isset($proposal)) : ?>
         <?= $this->render('_base_proposal_certificate', [
             'proposal' => $proposal,
             'moduleId' => $moduleId,
             'baseRoute' => $baseRoute
         ]) ?>
     <?php endif; ?>
-    <?php if ($report) : ?>
+    <?php if (isset($report)) : ?>
         <?= $this->render('_base_report_certificate', [
             'report' => $report,
+            'moduleId' => $moduleId,
+            'baseRoute' => $baseRoute
+        ]) ?>
+    <?php endif; ?>
+    <?php if (isset($method)) : ?>
+        <?= $this->render('_base_method_certificate', [
+            'method' => $method,
+            'moduleId' => $moduleId,
+            'baseRoute' => $baseRoute
+        ]) ?>
+    <?php endif; ?>
+    <?php if (isset($instruction)) : ?>
+        <?= $this->render('_base_instruction_certificate', [
+            'instruction' => $instruction,
             'moduleId' => $moduleId,
             'baseRoute' => $baseRoute
         ]) ?>

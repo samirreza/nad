@@ -6,11 +6,16 @@ use yii\data\ActiveDataProvider;
 
 trait MethodSearchTrait
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['category.title']);
+    }
+
     public function rules()
     {
         return [
-            [['title', 'uniqueCode'], 'string'],
-            [['createdBy', 'status'], 'integer']
+            [['title', 'uniqueCode', 'category.title'], 'string'],
+            [['createdBy', 'status', 'proposalId'], 'integer']
         ];
     }
 
@@ -37,10 +42,15 @@ trait MethodSearchTrait
         $query->andFilterWhere([
             'createdBy' => $this->createdBy,
             'status' => $this->status
-        ]);
+        ])
+            ->andFilterWhere(['like', 'nad_investigation_method.title', $this->title])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
+            ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+        $query->joinWith('category AS category')
+            ->andFilterWhere(
+                ['like', 'category.title', $this->getAttribute('category.title')]
+            );
 
         return $dataProvider;
     }

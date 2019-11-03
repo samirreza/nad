@@ -41,12 +41,11 @@ trait ReportSearchTrait
 
         $query->andFilterWhere([
             'createdBy' => $this->createdBy,
-            'status' => $this->status,
-            'proposalId' => $this->proposalId
-        ]);
-
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+            'status' => $this->status
+        ])
+            ->andFilterWhere(['like', 'nad_investigation_report.title', $this->title])
+            ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
+            ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
 
         $query->joinWith('category AS category')
             ->andFilterWhere(

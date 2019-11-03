@@ -67,8 +67,8 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
-                'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/sedimentation/investigation/reference/manage/index'])
+                'title' => 'دستورالعمل',
+                'titleUrl' => Url::to(['/sedimentation/investigation/instruction/manage/index'])
             ]) ?>
         </div>
     </div>

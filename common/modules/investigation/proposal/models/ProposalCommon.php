@@ -24,7 +24,7 @@ class ProposalCommon extends BaseInvestigationModel
     // TODO remove lastCodeNumber from table asap
 
     // check BaseInvestigationModel to make sure you don't use same status codes
-    // const STATUS_IN_NEXT_STEP = 9; this one is for "report step" & is defined in BaseInvestigationModel
+    // const STATUS_IN_NEXT_STEP = 8; this one is for "report step" & is defined in BaseInvestigationModel
     const STATUS_IN_NEXT_STEP_FOR_METHOD = 10;
     const STATUS_IN_NEXT_STEP_FOR_INSTRUCTION = 11;
     const STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD = 12;
