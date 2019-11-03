@@ -87,8 +87,9 @@ class ProposalController extends BaseInvestigationController
         $source = $proposal->source;
 
         // TODO find a better way than manually setting this shit
-        // $report->referenceClassName = $report->referenceClassName;
         $source->referenceClassName = $proposal->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $proposal->referenceClassName;        
 
         return $this->render('certificate', [
             'source' => $source,
@@ -146,8 +147,9 @@ class ProposalController extends BaseInvestigationController
         $source = $proposal->source;
 
         // TODO find a better way than manually setting this shit
-        // $report->referenceClassName = $report->referenceClassName;
         $source->referenceClassName = $proposal->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $proposal->referenceClassName;
 
         return $this->render('certificate_archived', [
             'source' => $source,

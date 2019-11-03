@@ -6,7 +6,9 @@ use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\widgets\editor\Editor;
+use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
+use nad\office\modules\expert\models\Expert;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
@@ -15,7 +17,25 @@ use nad\common\modules\investigation\reference\widgets\selectReference\SelectRef
 use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
+$className = get_class($model);
+$uploadedFiles = $model->getFiles('file');
+?>
 
+<?= ActionButtons::widget([
+    'buttons' => [
+        'create-category' => [
+            'label' => 'افزودن رده',
+            'type' => 'info',
+            'icon' => 'plus',
+            'url' => [
+                'category/index#id_createCategoryBtn'
+            ],
+            'options' => [
+                'target' => '_blank'
+            ]
+        ]
+    ]
+]);
 ?>
 
 <div class="report-form">
@@ -45,12 +65,36 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         ]
                     ) ?>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
+                            <?php Panel::begin(); ?>
                             <?= SingleFileUpload::widget([
                                 'model' => $model,
-                                'group' => 'report',
+                                'group' => 'reportDoc',
                                 'label' => 'فایل گزارش'
                             ]) ?>
+                            <?php Panel::end(); ?>
+                        </div>
+                        <div class="col-md-8">
+                            <?php
+                            if(isset($uploadedFiles) && !empty($uploadedFiles)){
+                                Panel::begin();
+                            ?>
+                                    <label>فایل مستندات</label>
+                                    <?= SingleFileUpload::widget([
+                                        'model' => $model,
+                                        'group' => 'file',
+                                    ]) ?>
+                            <?php
+                                Panel::end();
+                            }
+                            ?>
+                            <?php Panel::begin() ?>
+                                <label>فایل مستندات</label>
+                                <?= SingleFileUpload::widget([
+                                    'model' => new $className,
+                                    'group' => 'file',
+                                ]) ?>
+                            <?php Panel::end() ?>
                         </div>
                     </div>
                 </div>
@@ -67,6 +111,12 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                         ]) ?>
                     </div>
                     <br><br>
+                    <?= $form->field($model, 'proposalId')->widget(
+                        Select2::class,
+                        [
+                            'data' => $model->getExpertProposalsForDropdown($proposalConsumerCode)
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'categoryId')->widget(
                         Select2::class,
                         [
@@ -80,11 +130,24 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
                             )
                         ]
                     ) ?>
-                    <?= SingleFileUpload::widget([
-                        'model' => $model,
-                        'group' => 'doc',
-                        'label' => 'مدارک'
-                    ]) ?>
+                    <?= $form->field($model, 'partners')->widget(
+                        Select2::class,
+                        [
+                            'data' => ArrayHelper::map(
+                                Expert::find()->all(),
+                                'id',
+                                'user.fullname'
+                            ),
+                            'options' => [
+                                'multiple' => true,
+                                'placeholder' => 'همکاران را انتخاب کنید ...',
+                                'value' => $model->getPartnersAsArray()
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ]
+                    ) ?>
                     <?= $form->field($model, 'references')->widget(
                         SelectReference::class,
                         [

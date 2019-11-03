@@ -11,6 +11,7 @@ use nad\common\modules\investigation\report\models\Report;
 
 ?>
 
+<h3 class="nad-page-title">گزارشهای برنامه</h3>
 <div class="report-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'report-index-gridviewpjax']) ?>
@@ -33,18 +34,18 @@ use nad\common\modules\investigation\report\models\Report;
                             'placeholder' => 'جست‌و‌جو'
                         ]
                     ],
-                    [
-                        'attribute' => 'category.title',
-                        'header' => 'زیر شاخه',
-                        'value' => function ($model) {
-                            return $model->category->familyTreeTitle;
-                        },
-                        'headerOptions' => ['style' => 'width:20%'],
-                        'filterInputOptions' => [
-                            'class'       => 'form-control',
-                            'placeholder' => 'جست‌و‌جو زیر‌شاخه'
-                        ]
-                    ],
+                    // [
+                    //     'attribute' => 'category.title',
+                    //     'header' => 'زیر شاخه',
+                    //     'value' => function ($model) {
+                    //         return $model->category->familyTreeTitle;
+                    //     },
+                    //     'headerOptions' => ['style' => 'width:20%'],
+                    //     'filterInputOptions' => [
+                    //         'class'       => 'form-control',
+                    //         'placeholder' => 'جست‌و‌جو زیر‌شاخه'
+                    //     ]
+                    // ],
                     [
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
@@ -78,9 +79,16 @@ use nad\common\modules\investigation\report\models\Report;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
+                            // TODO move it to a state in "Report::getUserHolderLables()"
+                            if($model->expertId != null && $model->status == Report::STATUS_ACCEPTED){
+                                return 'منتظر ارسال جهت نگارش منشا/روش/دستورالعمل';
+                            }
                             return Report::getStatusLables()[$model->status];
                         },
-                        'filter' => Report::getStatusLables()
+                        'filter' => Report::getStatusLables(),
+                        'options' => [
+                            'width' => '150px'
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

@@ -16,7 +16,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
     <?= Html::a(
         '<span class="fa fa-external-link"></span>',
         [
-            "$baseRoute/report/manage/view",
+            ($report->isArchived == $report::IS_SOURCE_ARCHIVED_YES) ? "$baseRoute/report/manage/archived-view" : "$baseRoute/report/manage/view",
             'id' => $report->id
         ],
         [
@@ -139,12 +139,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 'label' => 'نتیجه جلسه گزارش',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($report->proceedings, 100)
-            ],
-            [
-                'attribute' => 'negotiationResult',
-                'label' => 'نتیجه مذاکره گزارش',
-                'format' => 'raw',
-                'value' => Utility::makeStringShorten($report->negotiationResult, 100)
             ]
         ]
     ]) ?>

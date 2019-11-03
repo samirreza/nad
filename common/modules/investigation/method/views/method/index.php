@@ -11,6 +11,7 @@ use nad\common\modules\investigation\method\models\Method;
 
 ?>
 
+<h3 class="nad-page-title">روشهای برنامه</h3>
 <div class="method-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'method-index-gridviewpjax']) ?>
@@ -73,7 +74,7 @@ use nad\common\modules\investigation\method\models\Method;
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'روند',
-                        'template' => '{view}',
+                        'template' => '{view} {certificate}',
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
@@ -84,7 +85,17 @@ use nad\common\modules\investigation\method\models\Method;
                                         'style' => 'color: green'
                                     ]
                                 );
-                            }
+                            },
+                            'certificate' => function ($url, $model) {
+                                return Html::a(
+                                    '<span class="glyphicon glyphicon-book"></span>',
+                                    ['certificate', 'id' => $model->id],
+                                    [
+                                        'title' => 'شناسنامه',
+                                        'style' => 'color: green'
+                                    ]
+                                );
+                            },
                         ]
                     ]
                 ]
