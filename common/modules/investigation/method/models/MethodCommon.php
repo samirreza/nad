@@ -127,9 +127,7 @@ class MethodCommon extends BaseInvestigationModel
                     'title',
                     'createdAt',
                     'abstract',
-                    'categoryId',
-                    'proposalId',
-                    'reportId'
+                    'categoryId'
                 ],
                 'required'
             ],
@@ -159,8 +157,26 @@ class MethodCommon extends BaseInvestigationModel
             [
                 ['title', 'abstract', 'description', 'proceedings', 'negotiationResult'],
                 FarsiCharactersValidator::class
+            ],
+            [
+                ['proposalId', 'reportId'],
+                'validateOneAttributeOnly',
+                'skipOnEmpty' => false
             ]
         ];
+    }
+
+    public function validateOneAttributeOnly($attribute, $params){
+        if (empty($this->proposalId) && empty($this->reportId)) {
+            $errorMessage = 'پروپوزال یا گزارش مرتبط را انتخاب کنید.';
+            $this->addError('proposalId', $errorMessage);
+            $this->addError('reportId',  $errorMessage);
+        }
+        else if(!empty($this->proposalId) && !empty($this->reportId)){
+            $errorMessage = 'تنها مجاز به انتخاب یکی از فیلدهای پروپوزال یا گزارش هستید.';
+            $this->addError('proposalId', $errorMessage);
+            $this->addError('reportId', $errorMessage);
+        }
     }
 
     public function attributeLabels()
@@ -253,14 +269,44 @@ class MethodCommon extends BaseInvestigationModel
             ->viaTable('nad_investigation_method_partner_relation', ['methodId' => 'id']);
     }
 
+    public function getSource(){
+        // first set with direct relations
+        $proposal = $this->proposal;
+        $report = $this->report;
+
+        // then set with indirect relations if direct relations are null
+        $source = null;
+        if(isset($proposal))
+            $source = $proposal->source;
+        elseif(isset($report))
+            $source = $report->proposal->source;
+
+        return $source;
+    }
+
+    public function getSourceAsString()
+    {
+        if(!isset($this->source)){
+            return null;
+        }
+        return $this->source->title;
+    }
+
     public function getProposal()
     {
         // TODO Rewrite with ActiveRecord::exists()
-        $proposal = Proposal::findOne($this->proposalId);
-        if(isset($proposal))
-            return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
-        else
-            return $this->hasOne(ProposalArchived::class, ['id' => 'proposalId']);
+        if (isset($this->proposalId)) {
+            $proposal = Proposal::findOne($this->proposalId);
+            if (isset($proposal)) {
+                return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+            } else {
+                return $this->hasOne(ProposalArchived::class, ['id' => 'proposalId']);
+            }
+        }elseif(isset($this->reportId)){
+            return $this->report->proposal;
+        }else{
+            return null;
+        }
     }
 
     public function getProposalAsString()
@@ -274,11 +320,16 @@ class MethodCommon extends BaseInvestigationModel
     public function getReport()
     {
         // TODO Rewrite with ActiveRecord::exists()
-        $report = Report::findOne($this->reportId);
-        if(isset($report))
-            return $this->hasOne(Report::class, ['id' => 'reportId']);
-        else
-            return $this->hasOne(ReportArchived::class, ['id' => 'reportId']);
+        if (isset($this->reportId)) {
+            $report = Report::findOne($this->reportId);
+            if (isset($report)) {
+                return $this->hasOne(Report::class, ['id' => 'reportId']);
+            } else {
+                return $this->hasOne(ReportArchived::class, ['id' => 'reportId']);
+            }
+        }else{
+            return null;
+        }
     }
 
     public function getReportAsString()
@@ -287,24 +338,6 @@ class MethodCommon extends BaseInvestigationModel
             return null;
         }
         return $this->report->title;
-    }
-
-    public function getInstruction()
-    {
-        // TODO Rewrite with ActiveRecord::exists()
-        $instruction = Instruction::findOne($this->instructionId);
-        if(isset($instruction))
-            return $this->hasOne(Instruction::class, ['id' => 'instructionId']);
-        else
-            return $this->hasOne(InstructionArchived::class, ['id' => 'instructionId']);
-    }
-
-    public function getInstructionAsString()
-    {
-        if(!isset($this->instruction)){
-            return null;
-        }
-        return $this->instruction->title;
     }
 
     public function getExpert()

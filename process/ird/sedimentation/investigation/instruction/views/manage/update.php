@@ -12,7 +12,7 @@ $this->params['breadcrumbs'] = [
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
-    ['label' => 'لیست روش', 'url' => ['index']],
+    ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];

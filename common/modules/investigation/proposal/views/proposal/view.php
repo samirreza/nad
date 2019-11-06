@@ -234,6 +234,9 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             ]
         ]) ?>
 
+        <hr>
+        <h2 class="nad-page-title"><?= $this->title ?></h2>
+
         <div class="sliding-form-wrapper"></div>
         <?php if ($model->canHaveConverstation()) : ?>
             <div class="col-md-12">

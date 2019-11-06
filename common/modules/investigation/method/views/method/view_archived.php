@@ -28,6 +28,8 @@ use nad\common\modules\investigation\method\models\Method;
             ]
 ]);
 ?>
+<hr>
+        <h2 class="nad-page-title"><?= $this->title ?></h2>
 <div class="proposal-view">
     <?php Pjax::begin(['id' => 'proposal-view-detailview-pjax']) ?>
         <div class="row">

@@ -21,6 +21,8 @@ $className = get_class($model);
 $uploadedFiles = $model->getFiles('file');
 ?>
 
+<h2 class="nad-page-title"><?= $this->title ?></h2>
+
 <?= ActionButtons::widget([
     'buttons' => [
         'create-category' => [
@@ -114,13 +116,25 @@ $uploadedFiles = $model->getFiles('file');
                     <?= $form->field($model, 'proposalId')->widget(
                         Select2::class,
                         [
-                            'data' => $model->getExpertProposalsForDropdown($proposalConsumerCode)
+                            'data' => $model->getExpertProposalsForDropdown($proposalConsumerCode),
+                            'options' => [
+                                'placeholder' => 'انتخاب کنید...'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
                         ]
                     ) ?>
                     <?= $form->field($model, 'reportId')->widget(
                         Select2::class,
                         [
-                            'data' => $model->getExpertReportsForDropdown($reportConsumerCode)
+                            'data' => $model->getExpertReportsForDropdown($reportConsumerCode),
+                            'options' => [
+                                'placeholder' => 'انتخاب کنید...'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
                         ]
                     ) ?>
                     <?= $form->field($model, 'categoryId')->widget(

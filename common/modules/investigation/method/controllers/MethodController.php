@@ -93,19 +93,22 @@ class MethodController extends BaseInvestigationController
     public function actionCertificate($id)
     {
         $method = $this->findModel($id);
+        $source = $method->source;
         $proposal = $method->proposal;
-        $source = $proposal->source;
         $report = $method->report;
 
-        $report->referenceClassName = $method->referenceClassName;
-        $proposal->referenceClassName = $method->referenceClassName;
-        $source->referenceClassName = $method->referenceClassName;
+        if(isset($source))
+            $source->referenceClassName = $method->referenceClassName;
+        if(isset($proposal))
+            $proposal->referenceClassName = $method->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $method->referenceClassName;
 
         return $this->render('certificate', [
-            'method' => $method,
-            'report' => $report,
+            'source' => $source,
             'proposal' => $proposal,
-            'source' => $source
+            'report' => $report,
+            'method' => $method,
         ]);
     }
 
@@ -152,19 +155,27 @@ class MethodController extends BaseInvestigationController
     public function actionArchivedCertificate($id)
     {
         $method = $this->findArchivedModel($id);
-        $proposal = $method->proposal;
-        $source = $proposal->source;
         $report = $method->report;
+        $proposal = $method->proposal;
 
-        $report->referenceClassName = $method->referenceClassName;
-        $proposal->referenceClassName = $method->referenceClassName;
-        $source->referenceClassName = $method->referenceClassName;
+        $source = null;
+        if(isset($proposal))
+            $source = $proposal->source;
+        elseif(isset($report))
+            $source = $report->proposal->source;
+
+        if(isset($source))
+            $source->referenceClassName = $method->referenceClassName;
+        if(isset($proposal))
+            $proposal->referenceClassName = $method->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $method->referenceClassName;
 
         return $this->render('certificate_archived', [
-            'method' => $method,
-            'report' => $report,
+            'source' => $source,
             'proposal' => $proposal,
-            'source' => $source
+            'report' => $report,
+            'method' => $method,
         ]);
     }
 

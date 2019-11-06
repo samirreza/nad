@@ -32,6 +32,9 @@ use nad\common\modules\investigation\report\models\Report;
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو'
+                        ],
+                        'options' => [
+                            'width' => '40px'
                         ]
                     ],
                     // [
@@ -67,15 +70,15 @@ use nad\common\modules\investigation\report\models\Report;
                             ]
                         ])
                     ],
-                    [
-                        'attribute' => 'createdAt',
-                        'value' => function ($model) {
-                            return Yii::$app->formatter->asDate(
-                                $model->createdAt,
-                                'Y-M-d'
-                            );
-                        }
-                    ],
+                    // [
+                    //     'attribute' => 'createdAt',
+                    //     'value' => function ($model) {
+                    //         return Yii::$app->formatter->asDate(
+                    //             $model->createdAt,
+                    //             'Y-M-d'
+                    //         );
+                    //     }
+                    // ],
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
@@ -92,8 +95,11 @@ use nad\common\modules\investigation\report\models\Report;
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'header' => 'روند',
+                        'header' => 'دسترسی',
                         'template' => '{view} {certificate}',
+                        'options' => [
+                            'width' => '50px'
+                        ],
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(
