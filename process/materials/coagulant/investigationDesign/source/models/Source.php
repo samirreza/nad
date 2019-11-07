@@ -1,0 +1,24 @@
+<?php
+
+namespace nad\process\materials\coagulant\investigationDesign\source\models;
+
+use nad\process\materials\coagulant\investigationDesign\reference\models\Reference;
+use nad\common\modules\investigation\source\models\Source as BaseSource;
+
+class Source extends BaseSource
+{
+    const CONSUMER_CODE = Source::class;
+
+    public $moduleId = 'coagulant';
+    public $referenceClassName = Reference::class;
+
+    public function getBaseViewRoute()
+    {
+        return '/coagulant/investigationDesign/source/manage/view';
+    }
+
+    public static function find()
+    {
+        return parent::find()->andWhere(['nad_investigation_source.consumer' => self::CONSUMER_CODE]);
+    }
+}

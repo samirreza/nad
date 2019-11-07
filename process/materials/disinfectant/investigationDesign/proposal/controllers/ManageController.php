@@ -38,7 +38,7 @@ class ManageController extends ProposalController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['disinfectant.investigation']
+                            'roles' => ['disinfectant.investigationDesign']
                         ]
                     ]
                 ]
