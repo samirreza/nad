@@ -67,8 +67,8 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
-                'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/cartridge/investigation/reference/manage/index'])
+                'title' => 'دستورالعمل',
+                'titleUrl' => Url::to(['/cartridge/investigation/instruction/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -104,7 +104,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' => '#'
+            'titleUrl' =>  Url::to(['/cartridge/investigation/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -124,7 +124,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'گزارش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/report/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده گزارش',
-            'titleUrl' => '#'
+            'titleUrl' =>  Url::to(['/cartridge/investigation/report/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -144,7 +144,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده روش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -164,7 +164,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'دستورالعمل ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/cartridge/investigation/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
