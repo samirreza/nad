@@ -12,10 +12,10 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/certificate', [
+<?= $this->render('@nad/common/modules/investigation/report/views/report/certificate', [
     'source' => $source,
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'microbial',
-    'baseRoute' => '/microbial/investigationMonitor'
+    'baseRoute' => '/microbial/investigationMonitor-monitor'
 ]);

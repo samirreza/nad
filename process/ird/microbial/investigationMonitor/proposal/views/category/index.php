@@ -1,17 +1,17 @@
 <?php
 
-$this->title = 'لیست پروپوزال‌های تایید شده';
+$this->title = 'رده‌بندی پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation-monitor']],
+    ['label' => 'بررسی پایش', 'url' => ['/microbial/manage/investigation-monitor']],
     $this->title
 ];
 
 ?>
 
-<?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/accepted-index', [
+<?= $this->render('@nad/common/modules/investigation/proposal/views/category/index', [
     'dataProvider' => $dataProvider,
     'searchModel' => $searchModel
 ]);

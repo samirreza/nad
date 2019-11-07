@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h2 class="nad-page-title">بررسی فرایندی</h2>
+<h2 class="nad-page-title">بررسی پایش</h2>
 <?php Panel::begin([
                     'title' => 'برنامه ها',
                     'showCollapseButton' => true
@@ -67,8 +67,8 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
-                'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/microbial/investigationMonitor/reference/manage/index'])
+                'title' => 'دستورالعمل',
+                'titleUrl' => Url::to(['/microbial/investigationMonitor/instruction/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -104,7 +104,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -124,7 +124,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'گزارش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/report/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده گزارش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/report/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -144,7 +144,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده روش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -164,7 +164,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'دستورالعمل ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/microbial/investigationMonitor/method/manage/index-history'])
         ]) ?>
     </div>
 </div>

@@ -20,7 +20,7 @@ $this->params['horizontalMenuItems'] = [
         'url' => ['/microbial/investigationMonitor/source/manage/archived-index']
     ],
     [
-        'label' => 'داده گاه روندهای منشا',
+        'label' => 'داده گاه روند منشا',
         'url' => ['/microbial/investigationMonitor/source/manage/index-history']
     ],
     [

@@ -61,7 +61,7 @@ class SideMenu extends \theme\widgets\Menu
                                 'url' => ['/wastewater']
                             ],
                             [
-                                'label' => 'میکروبی',
+                                'label' => 'میکروبیولوژی',
                                 'icon' => 'angle-right',
                                 'url' => ['/microbial']
                             ],

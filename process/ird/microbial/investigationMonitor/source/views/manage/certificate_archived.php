@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 ];
 $this->params['horizontalMenuItems'] = [
     [
-        'label' => 'لیست داده گاه منشا',
+        'label' => 'برنامه منشا',
+        'url' => ['/microbial/investigationMonitor/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
         'url' => ['/microbial/investigationMonitor/source/manage/archived-index']
+    ],
+    [
+        'label' => 'داده گاه روند منشا',
+        'url' => ['/microbial/investigationMonitor/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/microbial/investigationMonitor/reference/manage/index']
     ]
 ];
 
@@ -22,5 +34,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate_archived', [
     'source' => $source,
     'moduleId' => 'microbial',
-    'baseRoute' => '/microbial/investigationMonitor'
+    'baseRoute' => '/microbial/investigationMonitor-monitor'
 ]);
