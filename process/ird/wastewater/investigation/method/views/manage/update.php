@@ -1,14 +1,17 @@
 <?php
 
+use nad\process\ird\wastewater\investigation\method\models\Category;
 use nad\process\ird\wastewater\investigation\reference\models\Reference;
+use nad\process\ird\wastewater\investigation\proposal\models\Proposal;
+use nad\process\ird\wastewater\investigation\report\models\Report;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/wastewater/manage/investigation']],
-    ['label' => 'لیست گزارش', 'url' => ['index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/wastewater/manage/investigation']],
+    ['label' => 'لیست روش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];
@@ -18,6 +21,9 @@ $this->params['breadcrumbs'] = [
 <div class="method-update">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/_form', [
         'model' => $model,
-        'referenceConsumerCode' => Reference::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
+        'reportConsumerCode' => Report::CONSUMER_CODE,
     ]) ?>
 </div>

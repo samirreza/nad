@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/ro/manage/investigation-monitor']],
+    ['label' => 'بررسی پایش', 'url' => ['/ro/manage/investigation-monitor']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
 ];
@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'ro',
-    'baseRoute' => '/ro/investigationMonitor'
+    'baseRoute' => '/ro/investigationMonitor-monitor'
 ]);

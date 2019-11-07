@@ -11,7 +11,7 @@ use nad\common\modules\investigation\instruction\models\Instruction;
 
 ?>
 
-<h3 class="nad-page-title">برنامه دستورالعمل</h3>
+<h3 class="nad-page-title">دستورالعمل های برنامه</h3>
 <div class="instruction-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'instruction-index-gridviewpjax']) ?>
@@ -32,6 +32,9 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو'
+                        ],
+                        'options' => [
+                            'width' => '40px'
                         ]
                     ],
                     [
@@ -55,26 +58,32 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                             ]
                         ])
                     ],
-                    [
-                        'attribute' => 'createdAt',
-                        'value' => function ($model) {
-                            return Yii::$app->formatter->asDate(
-                                $model->createdAt,
-                                'Y-M-d'
-                            );
-                        }
-                    ],
+                    // [
+                    //     'attribute' => 'createdAt',
+                    //     'value' => function ($model) {
+                    //         return Yii::$app->formatter->asDate(
+                    //             $model->createdAt,
+                    //             'Y-M-d'
+                    //         );
+                    //     }
+                    // ],
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
                             return Instruction::getStatusLables()[$model->status];
                         },
-                        'filter' => Instruction::getStatusLables()
+                        'filter' => Instruction::getStatusLables(),
+                        'options' => [
+                            'width' => '150px'
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'header' => 'روند',
+                        'header' => 'دسترسی',
                         'template' => '{view} {certificate}',
+                        'options' => [
+                            'width' => '50px'
+                        ],
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(

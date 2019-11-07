@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\ro\investigationMonitor\proposal\Module',
             'report' => 'nad\process\ird\ro\investigationMonitor\report\Module',
             'reference' => 'nad\process\ird\ro\investigationMonitor\reference\Module',
-            'method' => 'nad\process\ird\ro\investigationMonitor\method\Module'
+            'method' => 'nad\process\ird\ro\investigationMonitor\method\Module',
+            'instruction' => 'nad\process\ird\ro\investigationMonitor\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/ro/investigationMonitor/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/ro/investigationMonitor/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -188,6 +193,19 @@ class Module extends \yii\base\Module
                                 'url' => ['/ro/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/ro/investigationMonitor/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/ro/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

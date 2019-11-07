@@ -1,7 +1,8 @@
 <?php
 
-use nad\process\ird\sedimentation\investigationMonitor\category\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\report\models\Category;
 use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
 
 $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
@@ -19,5 +20,6 @@ $this->params['breadcrumbs'] = [
         'model' => $model,
         'categoryConsumerCode' => Category::CONSUMER_CODE,
         'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>

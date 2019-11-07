@@ -11,6 +11,8 @@ class Module extends BaseModule
     public function init()
     {
         parent::init();
+
+
         $this->horizontalMenuItems = [
             [
                 'label' => 'برنامه ها',

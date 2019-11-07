@@ -26,7 +26,7 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['cartridge.investigationMonitor']
+                            'roles' => ['cartridge.investigation']
                         ]
                     ]
                 ]

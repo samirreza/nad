@@ -96,12 +96,16 @@ class InstructionController extends BaseInvestigationController
         $method = $instruction->method;
         $proposal = $instruction->proposal;
         $report = $instruction->report;
-        $source = $proposal->source;
+        $source = $instruction->source;
 
-        $method->referenceClassName = $instruction->referenceClassName;
-        $report->referenceClassName = $instruction->referenceClassName;
-        $proposal->referenceClassName = $instruction->referenceClassName;
-        $source->referenceClassName = $instruction->referenceClassName;
+        if(isset($source))
+            $source->referenceClassName = $instruction->referenceClassName;
+        if(isset($proposal))
+            $proposal->referenceClassName = $instruction->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $instruction->referenceClassName;
+        if(isset($method))
+            $method->referenceClassName = $instruction->referenceClassName;
 
         return $this->render('certificate', [
             'method' => $method,
@@ -158,12 +162,16 @@ class InstructionController extends BaseInvestigationController
         $method = $instruction->method;
         $proposal = $instruction->proposal;
         $report = $instruction->report;
-        $source = $proposal->source;
+        $source = $instruction->source;
 
-        $method->referenceClassName = $instruction->referenceClassName;
-        $report->referenceClassName = $instruction->referenceClassName;
-        $proposal->referenceClassName = $instruction->referenceClassName;
-        $source->referenceClassName = $instruction->referenceClassName;
+        if(isset($source))
+            $source->referenceClassName = $instruction->referenceClassName;
+        if(isset($proposal))
+            $proposal->referenceClassName = $instruction->referenceClassName;
+        if(isset($report))
+            $report->referenceClassName = $instruction->referenceClassName;
+        if(isset($method))
+            $method->referenceClassName = $instruction->referenceClassName;
 
         return $this->render('certificate_archived', [
             'method' => $method,

@@ -20,7 +20,7 @@ $this->params['horizontalMenuItems'] = [
         'url' => ['/sedimentation/investigationMonitor/source/manage/archived-index']
     ],
     [
-        'label' => 'داده گاه روندهای منشا',
+        'label' => 'داده گاه روند منشا',
         'url' => ['/sedimentation/investigationMonitor/source/manage/index-history']
     ],
     [

@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\sedimentation\investigationMonitor\proposal\Module',
             'report' => 'nad\process\ird\sedimentation\investigationMonitor\report\Module',
             'reference' => 'nad\process\ird\sedimentation\investigationMonitor\reference\Module',
-            'method' => 'nad\process\ird\sedimentation\investigationMonitor\method\Module'
+            'method' => 'nad\process\ird\sedimentation\investigationMonitor\method\Module',
+            'instruction' => 'nad\process\ird\sedimentation\investigationMonitor\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/sedimentation/investigationMonitor/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -188,6 +193,19 @@ class Module extends \yii\base\Module
                                 'url' => ['/sedimentation/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

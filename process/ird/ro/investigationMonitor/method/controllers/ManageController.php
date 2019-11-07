@@ -5,13 +5,17 @@ namespace nad\process\ird\ro\investigationMonitor\method\controllers;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use nad\process\ird\ro\investigationMonitor\method\models\Method;
+use nad\process\ird\ro\investigationMonitor\method\models\MethodArchived;
 use nad\process\ird\ro\investigationMonitor\method\models\MethodSearch;
+use nad\process\ird\ro\investigationMonitor\method\models\MethodArchivedSearch;
 use nad\common\modules\investigation\method\controllers\MethodController;
 
 class ManageController extends MethodController
 {
     public function init()
     {
+        $this->archivedClassName = MethodArchived::class;
+        $this->archivedSearchClassName = MethodArchivedSearch::class;
         $this->modelClass = Method::class;
         $this->searchClass = MethodSearch::class;
     }
@@ -29,9 +33,12 @@ class ManageController extends MethodController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
-                            'roles' => ['ro.investigationMonitor']
+                            'roles' => ['ro.investigation']
                         ]
                     ]
                 ]

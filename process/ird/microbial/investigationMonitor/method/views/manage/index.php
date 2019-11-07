@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست روش‌ها';
+$this->title = 'لیست روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation-monitor']],
+    ['label' => 'بررسی پایش', 'url' => ['/microbial/manage/investigation-monitor']],
     $this->title
 ];
 

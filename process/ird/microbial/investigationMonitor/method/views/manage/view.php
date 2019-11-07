@@ -5,8 +5,8 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation-monitor']],
-    ['label' => 'لیست روش‌ها', 'url' => ['index']],
+    ['label' => 'بررسی پایش', 'url' => ['/microbial/manage/investigation-monitor']],
+    ['label' => 'لیست روش', 'url' => ['index']],
     $this->title
 ];
 
@@ -15,6 +15,6 @@ $this->params['breadcrumbs'] = [
 <div class="method-view">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/view', [
         'model' => $model,
-        'moduleId' => 'method'
+        'moduleId' => 'microbial'
     ]) ?>
 </div>

@@ -20,7 +20,7 @@ $this->params['horizontalMenuItems'] = [
         'url' => ['/ro/investigation/source/manage/archived-index']
     ],
     [
-        'label' => 'داده گاه روندهای منشا',
+        'label' => 'داده گاه روند منشا',
         'url' => ['/ro/investigation/source/manage/index-history']
     ],
     [

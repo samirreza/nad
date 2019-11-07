@@ -34,7 +34,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
 ?>
 <hr>
     <?php Pjax::begin(['id' => 'instruction-view-detailview-pjax']) ?>
-        <h2 class="nad-page-title"><?= $this->title ?></h2>
+        <h3 class="nad-page-title"><?= $this->title ?></h3>
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin([

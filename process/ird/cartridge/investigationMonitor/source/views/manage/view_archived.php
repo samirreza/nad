@@ -12,8 +12,20 @@ $this->params['breadcrumbs'] = [
 ];
 $this->params['horizontalMenuItems'] = [
     [
-        'label' => 'لیست داده گاه منشا',
+        'label' => 'برنامه منشا',
+        'url' => ['/cartridge/investigationMonitor/source/manage/index']
+    ],
+    [
+        'label' => 'داده گاه منشا',
         'url' => ['/cartridge/investigationMonitor/source/manage/archived-index']
+    ],
+    [
+        'label' => 'داده گاه روند منشا',
+        'url' => ['/cartridge/investigationMonitor/source/manage/index-history']
+    ],
+    [
+        'label' => 'داده گاه منابع',
+        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 

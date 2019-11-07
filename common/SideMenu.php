@@ -61,7 +61,7 @@ class SideMenu extends \theme\widgets\Menu
                                 'url' => ['/wastewater']
                             ],
                             [
-                                'label' => 'میکروبی',
+                                'label' => 'میکروبیولوژی',
                                 'icon' => 'angle-right',
                                 'url' => ['/microbial']
                             ],
@@ -105,6 +105,26 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'جی آر اس',
                                 'icon' => 'angle-right',
                                 'url' => ['/grs']
+                            ],
+                            [
+                                'label' => 'ضدرسوب',
+                                'icon' => 'angle-right',
+                                'url' => ['/antisediment']
+                            ],
+                            [
+                                'label' => 'ضدمیکروب',
+                                'icon' => 'angle-right',
+                                'url' => ['/antimicrobial']
+                            ],
+                            [
+                                'label' => 'رنگ ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/colors']
+                            ],
+                            [
+                                'label' => 'لاک بیرنگ',
+                                'icon' => 'angle-right',
+                                'url' => ['/lacquer']
                             ],
                         ],
                     ],

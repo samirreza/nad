@@ -9,6 +9,7 @@ use nad\common\widgets\treeView\TreeView;
 
 ?>
 
+<h2 class="nad-page-title">رده بندی روشها</h2>
 <div class="method-category-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -19,18 +20,12 @@ use nad\common\widgets\treeView\TreeView;
                     'data-gridpjaxid' => 'method-category-gridviewpjax',
                     'id' => 'createCategoryBtn'
                 ]
-            ],
-            'methods' => [
-                'label' => 'لیست روش',
-                'url' => ['manage/index'],
-                'type' => 'success',
-                'icon' => 'list'
             ]
         ]
     ]) ?>
     <div class="sliding-form-wrapper"></div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
             <?php Panel::begin(['title' => 'لیست رده‌ها']) ?>
                 <?php Pjax::begin([
                     'id' => 'method-category-gridviewpjax',
@@ -40,10 +35,13 @@ use nad\common\widgets\treeView\TreeView;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'class' => 'yii\grid\SerialColumn',
+                                'options' => ['style' => 'width:10px'],
+                            ],
                             [
                                 'class' => 'nad\common\code\CodeGridColumn',
-                                'options' => ['style' => 'width:30%']
+                                'options' => ['style' => 'width:70px'],
                             ],
                             'title',
                             [
@@ -51,22 +49,23 @@ use nad\common\widgets\treeView\TreeView;
                                 'filter' => $searchModel->getDepthList(),
                                 'value' => function ($model) {
                                     return $model->getDepthTitle();
-                                }
+                                },
+                                'options' => ['style' => 'width:80px'],
                             ],
                             [
+                                'header' => 'دسترسی',
                                 'class' => 'core\grid\AjaxActionColumn',
                                 'template' => '{view} {update} {delete} {tree}',
-                                'options' => ['style' => 'width:20%'],
+                                'options' => ['style' => 'width:90px'],
                                 'buttons' => [
                                     'tree' => function ($url, $model, $key) {
                                         return Html::a(
                                             '<span class="fa fa-tree"></span>',
-                                            '#',
+                                            ['tree-list', 'id' => $model->id],
                                             [
-                                                'title' => 'نمایش درخت',
-                                                'data-pjax' => 0,
-                                                'data-rootid' => $model->id,
-                                                'class' => 'reload-tree'
+                                                // 'target' => '_blank',
+                                                'title' => 'نمایش درختی رده های روش',
+                                                'data-pjax' => 0
                                             ]
                                         );
                                     },
@@ -76,9 +75,6 @@ use nad\common\widgets\treeView\TreeView;
                     ]) ?>
                 <?php Pjax::end(); ?>
             <?php Panel::end() ?>
-        </div>
-        <div class="col-md-5">
-            <?= TreeView::widget() ?>
         </div>
     </div>
 </div>

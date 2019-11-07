@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\microbial\investigationMonitor\proposal\Module',
             'report' => 'nad\process\ird\microbial\investigationMonitor\report\Module',
             'reference' => 'nad\process\ird\microbial\investigationMonitor\reference\Module',
-            'method' => 'nad\process\ird\microbial\investigationMonitor\method\Module'
+            'method' => 'nad\process\ird\microbial\investigationMonitor\method\Module',
+            'instruction' => 'nad\process\ird\microbial\investigationMonitor\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/microbial/investigationMonitor/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/microbial/investigationMonitor/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -188,6 +193,19 @@ class Module extends \yii\base\Module
                                 'url' => ['/microbial/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/microbial/investigationMonitor/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/microbial/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

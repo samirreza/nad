@@ -211,6 +211,9 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 ]
             ]
         ]) ?>
+        <hr>
+        <h3 class="nad-page-title"><?= $this->title ?></h3>
+
         <div class="sliding-form-wrapper"></div>
         <?php if ($model->canHaveConverstation()) : ?>
             <div class="col-md-12">

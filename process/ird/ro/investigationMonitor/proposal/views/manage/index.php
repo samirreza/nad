@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست پروپوزال';
+$this->title = 'لیست پروپوزالهای برنامه';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/ro/manage/investigation-monitor']],
+    ['label' => 'بررسی پایش', 'url' => ['/ro/manage/investigation-monitor']],
     $this->title
 ];
 

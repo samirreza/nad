@@ -195,6 +195,19 @@ class Module extends \yii\base\Module
                         ]
                     ]
                 ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/sedimentation/investigation/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/sedimentation/investigation/reference/manage/index#class_ajaxcreate']
+                    ]
+                ]
             ]
         ];
         parent::init();

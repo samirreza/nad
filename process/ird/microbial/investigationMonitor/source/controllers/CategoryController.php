@@ -26,7 +26,7 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['microbial.investigationMonitor']
+                            'roles' => ['microbial.investigation']
                         ]
                     ]
                 ]

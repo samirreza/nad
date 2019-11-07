@@ -5,13 +5,17 @@ namespace nad\process\ird\sedimentation\investigationMonitor\proposal\controller
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchived;
 use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalSearch;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchivedSearch;
 use nad\common\modules\investigation\proposal\controllers\ProposalController;
 
 class ManageController extends ProposalController
 {
     public function init()
     {
+        $this->archivedClassName = ProposalArchived::class;
+        $this->archivedSearchClassName = ProposalArchivedSearch::class;
         $this->modelClass = Proposal::class;
         $this->searchClass = ProposalSearch::class;
     }
@@ -29,9 +33,12 @@ class ManageController extends ProposalController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
-                            'roles' => ['sedimentation.investigationMonitor']
+                            'roles' => ['sedimentation.investigation']
                         ]
                     ]
                 ]

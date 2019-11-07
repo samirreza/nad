@@ -32,6 +32,9 @@ use nad\common\modules\investigation\method\models\Method;
                         'filterInputOptions' => [
                             'class' => 'form-control',
                             'placeholder' => 'جست‌و‌جو'
+                        ],
+                        'options' => [
+                            'width' => '40px'
                         ]
                     ],
                     [
@@ -55,26 +58,32 @@ use nad\common\modules\investigation\method\models\Method;
                             ]
                         ])
                     ],
-                    [
-                        'attribute' => 'createdAt',
-                        'value' => function ($model) {
-                            return Yii::$app->formatter->asDate(
-                                $model->createdAt,
-                                'Y-M-d'
-                            );
-                        }
-                    ],
+                    // [
+                    //     'attribute' => 'createdAt',
+                    //     'value' => function ($model) {
+                    //         return Yii::$app->formatter->asDate(
+                    //             $model->createdAt,
+                    //             'Y-M-d'
+                    //         );
+                    //     }
+                    // ],
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
                             return Method::getStatusLables()[$model->status];
                         },
-                        'filter' => Method::getStatusLables()
+                        'filter' => Method::getStatusLables(),
+                        'options' => [
+                            'width' => '150px'
+                        ]
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',
-                        'header' => 'روند',
+                        'header' => 'دسترسی',
                         'template' => '{view} {certificate}',
+                        'options' => [
+                            'width' => '50px'
+                        ],
                         'buttons' => [
                             'view' => function ($url, $model) {
                                 return Html::a(

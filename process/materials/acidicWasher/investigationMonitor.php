@@ -8,7 +8,7 @@ $this->title = 'بررسی پایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده قلیایی', 'url' => ['/acidicWasher/manage/index']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     $this->title
 ];
 

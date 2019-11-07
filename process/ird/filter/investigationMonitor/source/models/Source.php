@@ -2,7 +2,6 @@
 
 namespace nad\process\ird\filter\investigationMonitor\source\models;
 
-use nad\process\ird\filter\investigationMonitor\proposal\models\Proposal;
 use nad\process\ird\filter\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\source\models\Source as BaseSource;
 
@@ -12,11 +11,6 @@ class Source extends BaseSource
 
     public $moduleId = 'filter';
     public $referenceClassName = Reference::class;
-
-    public function getProposals()
-    {
-        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
-    }
 
     public function getBaseViewRoute()
     {

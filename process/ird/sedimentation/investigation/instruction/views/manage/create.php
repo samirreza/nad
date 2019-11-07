@@ -6,7 +6,7 @@ use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
 use nad\process\ird\sedimentation\investigation\report\models\Report;
 use nad\process\ird\sedimentation\investigation\method\models\Method;
 
-$this->title = 'افزودن روش';
+$this->title = 'افزودن دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',

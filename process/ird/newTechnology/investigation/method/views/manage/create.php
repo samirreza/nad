@@ -1,13 +1,16 @@
 <?php
 
-use nad\process\ird\newTechnology\investigation\method\models\Method;
+use nad\process\ird\newTechnology\investigation\method\models\Category;
+use nad\process\ird\newTechnology\investigation\reference\models\Reference;
+use nad\process\ird\newTechnology\investigation\proposal\models\Proposal;
+use nad\process\ird\newTechnology\investigation\report\models\Report;
 
-$this->title = 'درج روش';
+$this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/newTechnology/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/newTechnology/manage/investigation']],
     $this->title
 ];
 
@@ -16,6 +19,9 @@ $this->params['breadcrumbs'] = [
 <div class="method-create">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/_form', [
         'model' => $model,
-        'consumer' => Method::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
+        'reportConsumerCode' => Report::CONSUMER_CODE,
     ]) ?>
 </div>

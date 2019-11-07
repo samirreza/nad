@@ -21,6 +21,7 @@ $className = get_class($model);
 $uploadedFiles = $model->getFiles('file');
 ?>
 
+<h2 class="nad-page-title"><?= $this->title ?></h2>
 <?= ActionButtons::widget([
     'buttons' => [
         'create-category' => [
