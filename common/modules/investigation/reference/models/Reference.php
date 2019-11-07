@@ -159,7 +159,10 @@ class Reference extends \yii\db\ActiveRecord implements Codable
 
     public function getUniqueCode() : string
     {
-        return $this->uniqueCode;
+        //TODO use category feature instead asap
+        // return $this->uniqueCode;
+        $types = self::getTypeLabels();
+        return isset($types[$this->type])?$types[$this->type]:'';
     }
 
     public function getClientsQuery()
