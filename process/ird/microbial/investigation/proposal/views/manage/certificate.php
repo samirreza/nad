@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/microbial/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
 ];

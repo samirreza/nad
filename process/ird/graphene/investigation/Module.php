@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\graphene\investigation\proposal\Module',
             'report' => 'nad\process\ird\graphene\investigation\report\Module',
             'reference' => 'nad\process\ird\graphene\investigation\reference\Module',
-            'method' => 'nad\process\ird\graphene\investigation\method\Module'
+            'method' => 'nad\process\ird\graphene\investigation\method\Module',
+            'instruction' => 'nad\process\ird\graphene\investigation\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/graphene/investigation/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/graphene/investigation/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -188,6 +193,19 @@ class Module extends \yii\base\Module
                                 'url' => ['/graphene/investigation/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/graphene/investigation/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/graphene/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

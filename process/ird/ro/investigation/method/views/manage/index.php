@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست روش‌ها';
+$this->title = 'لیست روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/ro/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/ro/manage/investigation']],
     $this->title
 ];
 

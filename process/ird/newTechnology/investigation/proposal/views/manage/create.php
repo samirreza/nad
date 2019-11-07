@@ -1,13 +1,15 @@
 <?php
 
-use nad\process\ird\newTechnology\investigation\proposal\models\Proposal;
+use nad\process\ird\newTechnology\investigation\source\models\Source;
+use nad\process\ird\newTechnology\investigation\proposal\models\Category;
+use nad\process\ird\newTechnology\investigation\reference\models\Reference;
 
-$this->title = 'درج پروپوزال';
+$this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/newTechnology/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/newTechnology/manage/investigation']],
     $this->title
 ];
 
@@ -16,6 +18,8 @@ $this->params['breadcrumbs'] = [
 <div class="proposal-create">
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/_form', [
         'model' => $model,
-        'consumer' => Proposal::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'sourceConsumerCode' => Source::CONSUMER_CODE
     ]) ?>
 </div>

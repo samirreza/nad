@@ -2,7 +2,7 @@
 
 namespace nad\process\ird\microbial\investigation\report\models;
 
-use nad\process\ird\microbial\investigation\proposal\models\Proposal;
+use nad\process\ird\microbial\investigation\report\models\Report;
 use nad\process\ird\microbial\investigation\reference\models\Reference;
 use nad\common\modules\investigation\report\models\Report as BaseReport;
 
@@ -10,12 +10,17 @@ class Report extends BaseReport
 {
     const CONSUMER_CODE = Report::class;
 
-    public $moduleId = 'report';
+    public $moduleId = 'microbial';
     public $referenceClassName = Reference::class;
 
-    public function getProposal()
+    // public function getProposal()
+    // {
+    //     return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+    // }
+
+    public function getBaseViewRoute()
     {
-        return $this->hasOne(Proposal::class, ['id' => 'proposalId']);
+        return '/microbial/investigation/report/manage/view';
     }
 
     public static function find()

@@ -20,7 +20,7 @@ $this->params['horizontalMenuItems'] = [
         'url' => ['/wastewater/investigation/source/manage/archived-index']
     ],
     [
-        'label' => 'داده گاه روندهای منشا',
+        'label' => 'داده گاه روند منشا',
         'url' => ['/wastewater/investigation/source/manage/index-history']
     ],
     [

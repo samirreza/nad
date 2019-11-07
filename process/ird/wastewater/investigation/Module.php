@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\ird\wastewater\investigation\proposal\Module',
             'report' => 'nad\process\ird\wastewater\investigation\report\Module',
             'reference' => 'nad\process\ird\wastewater\investigation\reference\Module',
-            'method' => 'nad\process\ird\wastewater\investigation\method\Module'
+            'method' => 'nad\process\ird\wastewater\investigation\method\Module',
+            'instruction' => 'nad\process\ird\wastewater\investigation\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -104,6 +105,10 @@ class Module extends \yii\base\Module
                                 'label' => 'لیست رده های گزارش',
                                 'url' => ['/wastewater/investigation/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/wastewater/investigation/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -188,6 +193,19 @@ class Module extends \yii\base\Module
                                 'url' => ['/wastewater/investigation/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/wastewater/investigation/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/wastewater/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

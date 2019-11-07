@@ -1,7 +1,8 @@
 <?php
 
-use nad\process\ird\ro\investigation\category\models\Category;
+use nad\process\ird\ro\investigation\report\models\Category;
 use nad\process\ird\ro\investigation\reference\models\Reference;
+use nad\process\ird\ro\investigation\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
@@ -21,5 +22,6 @@ $this->params['breadcrumbs'] = [
         'model' => $model,
         'categoryConsumerCode' => Category::CONSUMER_CODE,
         'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>

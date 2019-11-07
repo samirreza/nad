@@ -1,8 +1,10 @@
 <?php
 
-use nad\process\ird\newTechnology\investigation\report\models\Report;
+use nad\process\ird\newTechnology\investigation\report\models\Category;
+use nad\process\ird\newTechnology\investigation\reference\models\Reference;
+use nad\process\ird\newTechnology\investigation\proposal\models\Proposal;
 
-$this->title = 'درج گزارش';
+$this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -16,6 +18,8 @@ $this->params['breadcrumbs'] = [
 <div class="report-create">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/_form', [
         'model' => $model,
-        'consumer' => Report::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>

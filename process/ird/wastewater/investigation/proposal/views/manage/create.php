@@ -1,5 +1,7 @@
 <?php
 
+use nad\process\ird\wastewater\investigation\source\models\Source;
+use nad\process\ird\wastewater\investigation\proposal\models\Category;
 use nad\process\ird\wastewater\investigation\reference\models\Reference;
 
 $this->title = 'افزودن پروپوزال';
@@ -7,7 +9,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/wastewater/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/wastewater/manage/investigation']],
     $this->title
 ];
 
@@ -16,6 +18,8 @@ $this->params['breadcrumbs'] = [
 <div class="proposal-create">
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/_form', [
         'model' => $model,
-        'referenceConsumerCode' => Reference::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'sourceConsumerCode' => Source::CONSUMER_CODE
     ]) ?>
 </div>
