@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $method->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     ['label' => 'لیست روش', 'url' => ['index']],
     $this->title
 ];
@@ -17,6 +17,6 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'method' => $method,
-    'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
+    'moduleId' => 'cartridge',
+    'baseRoute' => '/cartridge/investigationMonitor-monitor'
 ]);

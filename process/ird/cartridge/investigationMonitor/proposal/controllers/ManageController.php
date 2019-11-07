@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\proposal\controllers;
+namespace nad\process\ird\cartridge\investigationMonitor\proposal\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchived;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalSearch;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchivedSearch;
+use nad\process\ird\cartridge\investigationMonitor\proposal\models\Proposal;
+use nad\process\ird\cartridge\investigationMonitor\proposal\models\ProposalArchived;
+use nad\process\ird\cartridge\investigationMonitor\proposal\models\ProposalSearch;
+use nad\process\ird\cartridge\investigationMonitor\proposal\models\ProposalArchivedSearch;
 use nad\common\modules\investigation\proposal\controllers\ProposalController;
 
 class ManageController extends ProposalController
@@ -38,7 +38,7 @@ class ManageController extends ProposalController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['cartridge.investigation']
                         ]
                     ]
                 ]

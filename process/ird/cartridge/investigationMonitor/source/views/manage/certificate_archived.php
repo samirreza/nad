@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     'داده گاه منشا',
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/sedimentation/investigationMonitor/source/manage/index']
+        'url' => ['/cartridge/investigationMonitor/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/sedimentation/investigationMonitor/source/manage/archived-index']
+        'url' => ['/cartridge/investigationMonitor/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/sedimentation/investigationMonitor/source/manage/index-history']
+        'url' => ['/cartridge/investigationMonitor/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 
@@ -33,6 +33,6 @@ $this->params['horizontalMenuItems'] = [
 
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate_archived', [
     'source' => $source,
-    'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
+    'moduleId' => 'cartridge',
+    'baseRoute' => '/cartridge/investigationMonitor-monitor'
 ]);

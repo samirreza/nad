@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\reference;
+namespace nad\process\ird\cartridge\investigationMonitor\reference;
 
-use nad\process\ird\sedimentation\investigationMonitor\Module as BaseModule;
+use nad\process\ird\cartridge\investigationMonitor\Module as BaseModule;
 
 class Module extends BaseModule
 {
@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/sedimentation/investigationMonitor/source/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/sedimentation/investigationMonitor/proposal/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/sedimentation/investigationMonitor/report/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/sedimentation/investigationMonitor/method/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/sedimentation/investigationMonitor/instruction/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/sedimentation/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/cartridge/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/sedimentation/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/cartridge/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/sedimentation/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/cartridge/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/sedimentation/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/cartridge/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/sedimentation/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/cartridge/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/sedimentation/investigationMonitor/source/manage/index-history']
+                        'url' => ['/cartridge/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/sedimentation/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/cartridge/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/sedimentation/investigationMonitor/report/manage/index-history']
+                        'url' => ['/cartridge/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/sedimentation/investigationMonitor/method/manage/index-history']
+                        'url' => ['/cartridge/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/sedimentation/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/cartridge/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+                        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/cartridge/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

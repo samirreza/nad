@@ -4,8 +4,8 @@ $this->title = 'رده‌بندی گزارش‌ها';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation-monitor']],
     $this->title
 ];
 

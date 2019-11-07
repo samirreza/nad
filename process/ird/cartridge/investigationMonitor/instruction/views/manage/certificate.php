@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $instruction->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     $this->title
 ];
@@ -18,6 +18,6 @@ $this->params['breadcrumbs'] = [
     'report' => $report,
     'method' => $method,
     'instruction' => $instruction,
-    'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
+    'moduleId' => 'cartridge',
+    'baseRoute' => '/cartridge/investigationMonitor-monitor'
 ]);

@@ -26,7 +26,7 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['filter.investigationMonitor']
+                            'roles' => ['filter.investigation']
                         ]
                     ]
                 ]

@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     'داده گاه روندهای روش',
     ['label' => 'لیست داده گاه روندهای روش', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/sedimentation/investigationMonitor/method/manage/index']
+        'url' => ['/cartridge/investigationMonitor/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/sedimentation/investigationMonitor/method/manage/archived-index']
+        'url' => ['/cartridge/investigationMonitor/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/sedimentation/investigationMonitor/method/manage/index-history']
+        'url' => ['/cartridge/investigationMonitor/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 
@@ -38,6 +38,6 @@ $this->params['horizontalMenuItems'] = [
         'logs' => $logs,
         'logCounter' => $logCounter,
         'allComments' =>$allComments,
-        'moduleId' => 'sedimentation'
+        'moduleId' => 'cartridge'
     ]) ?>
 </div>

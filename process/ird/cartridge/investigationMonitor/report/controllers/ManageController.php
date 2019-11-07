@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\report\controllers;
+namespace nad\process\ird\cartridge\investigationMonitor\report\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\Report;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\ReportArchived;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\ReportSearch;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\ReportArchivedSearch;
+use nad\process\ird\cartridge\investigationMonitor\report\models\Report;
+use nad\process\ird\cartridge\investigationMonitor\report\models\ReportArchived;
+use nad\process\ird\cartridge\investigationMonitor\report\models\ReportSearch;
+use nad\process\ird\cartridge\investigationMonitor\report\models\ReportArchivedSearch;
 use nad\common\modules\investigation\report\controllers\ReportController;
 
 class ManageController extends ReportController
@@ -38,7 +38,7 @@ class ManageController extends ReportController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['cartridge.investigation']
                         ]
                     ]
                 ]

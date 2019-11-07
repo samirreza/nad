@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method\models;
+namespace nad\process\ird\cartridge\investigationMonitor\method\models;
 
 use nad\common\modules\investigation\method\models\MethodSearchTrait;
 

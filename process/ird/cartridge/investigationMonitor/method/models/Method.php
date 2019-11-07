@@ -1,16 +1,16 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method\models;
+namespace nad\process\ird\cartridge\investigationMonitor\method\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\method\models\Method;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\cartridge\investigationMonitor\method\models\Method;
+use nad\process\ird\cartridge\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\method\models\Method as BaseMethod;
 
 class Method extends BaseMethod
 {
     const CONSUMER_CODE = Method::class;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'cartridge';
     public $referenceClassName = Reference::class;
 
     // public function getProposal()
@@ -20,7 +20,7 @@ class Method extends BaseMethod
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/method/manage/view';
+        return '/cartridge/investigationMonitor/method/manage/view';
     }
 
     public static function find()

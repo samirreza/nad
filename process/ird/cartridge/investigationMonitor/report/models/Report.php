@@ -1,16 +1,16 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\report\models;
+namespace nad\process\ird\cartridge\investigationMonitor\report\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\report\models\Report;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\cartridge\investigationMonitor\report\models\Report;
+use nad\process\ird\cartridge\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\report\models\Report as BaseReport;
 
 class Report extends BaseReport
 {
     const CONSUMER_CODE = Report::class;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'cartridge';
     public $referenceClassName = Reference::class;
 
     // public function getProposal()
@@ -20,7 +20,7 @@ class Report extends BaseReport
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/report/manage/view';
+        return '/cartridge/investigationMonitor/report/manage/view';
     }
 
     public static function find()

@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     $this->title
 ];
@@ -15,6 +15,6 @@ $this->params['breadcrumbs'] = [
 <div class="instruction-view">
     <?= $this->render('@nad/common/modules/investigation/instruction/views/instruction/view', [
         'model' => $model,
-        'moduleId' => 'sedimentation'
+        'moduleId' => 'cartridge'
     ]) ?>
 </div>

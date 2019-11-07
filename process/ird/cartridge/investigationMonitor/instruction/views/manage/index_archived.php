@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
     'داده گاه دستورالعمل',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/sedimentation/investigationMonitor/instruction/manage/index']
+        'url' => ['/cartridge/investigationMonitor/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/sedimentation/investigationMonitor/instruction/manage/archived-index']
+        'url' => ['/cartridge/investigationMonitor/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/sedimentation/investigationMonitor/instruction/manage/index-history']
+        'url' => ['/cartridge/investigationMonitor/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 

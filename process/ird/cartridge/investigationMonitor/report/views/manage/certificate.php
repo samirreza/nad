@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $report->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation-monitor']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
     'source' => $source,
     'proposal' => $proposal,
     'report' => $report,
-    'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
+    'moduleId' => 'cartridge',
+    'baseRoute' => '/cartridge/investigationMonitor-monitor'
 ]);

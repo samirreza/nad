@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\reference\models;
+namespace nad\process\ird\cartridge\investigationMonitor\reference\models;
 
 use nad\common\modules\investigation\reference\models\Reference as BaseReference;
 
@@ -8,7 +8,7 @@ class Reference extends BaseReference
 {
     const CONSUMER_CODE = Reference::class;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'cartridge';
 
     public static function find()
     {
