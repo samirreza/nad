@@ -1,9 +1,8 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\source\models;
+namespace nad\process\ird\sedimentation\investigation\source\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
 use nad\common\modules\investigation\source\models\Source as BaseSource;
 
 class Source extends BaseSource
@@ -13,14 +12,9 @@ class Source extends BaseSource
     public $moduleId = 'sedimentation';
     public $referenceClassName = Reference::class;
 
-    public function getProposals()
-    {
-        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
-    }
-
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/source/manage/view';
+        return '/sedimentation/investigation/source/manage/view';
     }
 
     public static function find()

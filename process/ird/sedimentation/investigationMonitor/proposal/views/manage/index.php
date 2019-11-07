@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست پروپوزال';
+$this->title = 'لیست پروپوزالهای برنامه';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
     $this->title
 ];
 

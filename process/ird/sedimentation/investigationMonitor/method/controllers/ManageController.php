@@ -1,17 +1,21 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method\controllers;
+namespace nad\process\ird\sedimentation\investigation\method\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\Method;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodSearch;
+use nad\process\ird\sedimentation\investigation\method\models\Method;
+use nad\process\ird\sedimentation\investigation\method\models\MethodArchived;
+use nad\process\ird\sedimentation\investigation\method\models\MethodSearch;
+use nad\process\ird\sedimentation\investigation\method\models\MethodArchivedSearch;
 use nad\common\modules\investigation\method\controllers\MethodController;
 
 class ManageController extends MethodController
 {
     public function init()
     {
+        $this->archivedClassName = MethodArchived::class;
+        $this->archivedSearchClassName = MethodArchivedSearch::class;
         $this->modelClass = Method::class;
         $this->searchClass = MethodSearch::class;
     }
@@ -29,9 +33,12 @@ class ManageController extends MethodController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
-                            'roles' => ['sedimentation.investigationMonitor']
+                            'roles' => ['sedimentation.investigation']
                         ]
                     ]
                 ]

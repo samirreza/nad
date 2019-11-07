@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method;
+namespace nad\process\ird\sedimentation\investigation\method;
 
-use nad\process\ird\sedimentation\investigationMonitor\Module as BaseModule;
+use nad\process\ird\sedimentation\investigation\Module as BaseModule;
 
 class Module extends BaseModule
 {

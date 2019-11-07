@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\source\models;
+namespace nad\process\ird\sedimentation\investigation\source\models;
 
 use nad\common\modules\investigation\source\models\Category as BaseCategory;
 

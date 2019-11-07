@@ -1,14 +1,15 @@
 <?php
 
-use nad\process\ird\sedimentation\investigationMonitor\category\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigation\report\models\Category;
+use nad\process\ird\sedimentation\investigation\reference\models\Reference;
+use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
@@ -21,5 +22,6 @@ $this->params['breadcrumbs'] = [
         'model' => $model,
         'categoryConsumerCode' => Category::CONSUMER_CODE,
         'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>

@@ -1,17 +1,21 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\report\controllers;
+namespace nad\process\ird\sedimentation\investigation\report\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\Report;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\ReportSearch;
+use nad\process\ird\sedimentation\investigation\report\models\Report;
+use nad\process\ird\sedimentation\investigation\report\models\ReportArchived;
+use nad\process\ird\sedimentation\investigation\report\models\ReportSearch;
+use nad\process\ird\sedimentation\investigation\report\models\ReportArchivedSearch;
 use nad\common\modules\investigation\report\controllers\ReportController;
 
 class ManageController extends ReportController
 {
     public function init()
     {
+        $this->archivedClassName = ReportArchived::class;
+        $this->archivedSearchClassName = ReportArchivedSearch::class;
         $this->modelClass = Report::class;
         $this->searchClass = ReportSearch::class;
     }
@@ -29,9 +33,12 @@ class ManageController extends ReportController
                             'actions' => [
                                 'index',
                                 'view',
-                                'create'
+                                'create',
+                                'certificate',
+                                'view-history',
+                                'index-history'
                             ],
-                            'roles' => ['sedimentation.investigationMonitor']
+                            'roles' => ['sedimentation.investigation']
                         ]
                     ]
                 ]
