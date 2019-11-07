@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\cartridge\investigationMonitor;
+namespace nad\process\ird\sedimentation\investigationMonitor;
 
 class Module extends \yii\base\Module
 {
@@ -9,11 +9,12 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->modules = [
-            'source' => 'nad\process\ird\cartridge\investigationMonitor\source\Module',
-            'proposal' => 'nad\process\ird\cartridge\investigationMonitor\proposal\Module',
-            'report' => 'nad\process\ird\cartridge\investigationMonitor\report\Module',
-            'reference' => 'nad\process\ird\cartridge\investigationMonitor\reference\Module',
-            'method' => 'nad\process\ird\cartridge\investigationMonitor\method\Module'
+            'source' => 'nad\process\ird\sedimentation\investigationMonitor\source\Module',
+            'proposal' => 'nad\process\ird\sedimentation\investigationMonitor\proposal\Module',
+            'report' => 'nad\process\ird\sedimentation\investigationMonitor\report\Module',
+            'reference' => 'nad\process\ird\sedimentation\investigationMonitor\reference\Module',
+            'method' => 'nad\process\ird\sedimentation\investigationMonitor\method\Module',
+            'instruction' => 'nad\process\ird\sedimentation\investigationMonitor\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -24,15 +25,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/cartridge/investigationMonitor/source/manage/create']
+                                'url' => ['/sedimentation/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/cartridge/investigationMonitor/source/manage/index']
+                                'url' => ['/sedimentation/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/cartridge/investigationMonitor/source/category/index']
+                                'url' => ['/sedimentation/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -41,11 +42,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/cartridge/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/sedimentation/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/cartridge/investigationMonitor/source/manage/index-history']
+                                'url' => ['/sedimentation/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -59,15 +60,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/cartridge/investigationMonitor/proposal/manage/create']
+                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/cartridge/investigationMonitor/proposal/manage/index']
+                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/cartridge/investigationMonitor/proposal/category/index']
+                                'url' => ['/sedimentation/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -76,11 +77,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/cartridge/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/cartridge/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -94,16 +95,20 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/cartridge/investigationMonitor/report/manage/create']
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/cartridge/investigationMonitor/report/manage/index']
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/cartridge/investigationMonitor/report/category/index']
+                                'url' => ['/sedimentation/investigationMonitor/report/category/index']
                             ],
+                            [
+                                'label' => 'گراف گزارشات',
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/generate-graph']
+                            ]
                         ]
                     ],
                     [
@@ -111,11 +116,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/cartridge/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/cartridge/investigationMonitor/report/manage/index-history']
+                                'url' => ['/sedimentation/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -129,15 +134,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/cartridge/investigationMonitor/method/manage/create']
+                                'url' => ['/sedimentation/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/cartridge/investigationMonitor/method/manage/index']
+                                'url' => ['/sedimentation/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/cartridge/investigationMonitor/method/category/index']
+                                'url' => ['/sedimentation/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -146,11 +151,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/cartridge/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/sedimentation/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/cartridge/investigationMonitor/method/manage/index-history']
+                                'url' => ['/sedimentation/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -164,15 +169,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/cartridge/investigationMonitor/instruction/manage/create']
+                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/cartridge/investigationMonitor/instruction/manage/index']
+                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/cartridge/investigationMonitor/instruction/category/index']
+                                'url' => ['/sedimentation/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -181,13 +186,26 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/cartridge/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/cartridge/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'داده گاه منابع',
+                'items' => [
+                    [
+                        'label' => 'لیست منابع',
+                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+                    ],
+                    [
+                        'label' => 'افزودن منبع',
+                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

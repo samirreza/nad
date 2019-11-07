@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];
@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigation'
+    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
 ]);

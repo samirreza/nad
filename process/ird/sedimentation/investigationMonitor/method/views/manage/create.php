@@ -1,16 +1,16 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\method\models\Category;
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
-use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigation\report\models\Report;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigationMonitor\report\models\Report;
 
 $this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
     $this->title
 ];
 

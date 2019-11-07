@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\source\controllers;
+namespace nad\process\ird\sedimentation\investigationMonitor\source\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigation\source\models\Category;
-use nad\process\ird\sedimentation\investigation\source\models\CategorySearch;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\CategorySearch;
 use nad\common\modules\investigation\source\controllers\SourceCategoryController;
 
 class CategoryController extends SourceCategoryController

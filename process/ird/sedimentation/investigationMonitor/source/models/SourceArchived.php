@@ -1,9 +1,9 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\source\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\source\models;
 
-use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\source\models\SourceArchived as BaseSourceArchived;
 
 class SourceArchived extends BaseSourceArchived
@@ -20,7 +20,7 @@ class SourceArchived extends BaseSourceArchived
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigation/source/manage/view';
+        return '/sedimentation/investigationMonitor/source/manage/view';
     }
 
     public static function find()

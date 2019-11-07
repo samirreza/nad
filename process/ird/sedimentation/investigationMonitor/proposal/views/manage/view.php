@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
 ];
@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
     <?= $this->render('@nad/common/modules/investigation/proposal/views/proposal/view', [
         'model' => $model,
         'moduleId' => 'sedimentation',
-        'creatReportRoute' => '/sedimentation/investigation/report/manage/create'
+        'creatReportRoute' => '/sedimentation/investigationMonitor/report/manage/create'
     ]) ?>
 </div>

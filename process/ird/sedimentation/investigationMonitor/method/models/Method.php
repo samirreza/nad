@@ -1,9 +1,9 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\method\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\method\models;
 
-use nad\process\ird\sedimentation\investigation\method\models\Method;
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\Method;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\method\models\Method as BaseMethod;
 
 class Method extends BaseMethod
@@ -20,7 +20,7 @@ class Method extends BaseMethod
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigation/method/manage/view';
+        return '/sedimentation/investigationMonitor/method/manage/view';
     }
 
     public static function find()

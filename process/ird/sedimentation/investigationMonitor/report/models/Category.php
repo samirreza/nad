@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\report\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\report\models;
 
 use nad\common\modules\investigation\report\models\Category as BaseCategory;
 

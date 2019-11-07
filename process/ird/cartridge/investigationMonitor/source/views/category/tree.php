@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
-    ['label' => 'رده های منشاها', 'url' => ['/cartridge/investigationMonitor/source/category/index']],
+    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    ['label' => 'رده های منشاها', 'url' => ['/sedimentation/investigationMonitor/source/category/index']],
     $this->title
 ];
 

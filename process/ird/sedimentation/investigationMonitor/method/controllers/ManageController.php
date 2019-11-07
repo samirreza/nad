@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\method\controllers;
+namespace nad\process\ird\sedimentation\investigationMonitor\method\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigation\method\models\Method;
-use nad\process\ird\sedimentation\investigation\method\models\MethodArchived;
-use nad\process\ird\sedimentation\investigation\method\models\MethodSearch;
-use nad\process\ird\sedimentation\investigation\method\models\MethodArchivedSearch;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\Method;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodArchived;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodSearch;
+use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodArchivedSearch;
 use nad\common\modules\investigation\method\controllers\MethodController;
 
 class ManageController extends MethodController

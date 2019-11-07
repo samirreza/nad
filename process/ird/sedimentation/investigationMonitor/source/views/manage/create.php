@@ -1,14 +1,14 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\source\models\Category;
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
 
 $this->title = 'افزودن منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
     'برنامه منشا',
     $this->title
 ];

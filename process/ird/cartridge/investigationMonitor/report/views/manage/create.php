@@ -1,14 +1,15 @@
 <?php
 
-use nad\process\ird\cartridge\investigationMonitor\category\models\Category;
-use nad\process\ird\cartridge\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\report\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
 
 $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation-monitor']],
+    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
     $this->title
 ];
 
@@ -19,5 +20,6 @@ $this->params['breadcrumbs'] = [
         'model' => $model,
         'categoryConsumerCode' => Category::CONSUMER_CODE,
         'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\cartridge\investigationMonitor\proposal\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\proposal\models;
 
 use nad\common\modules\investigation\proposal\models\ProposalSearchTrait;
 

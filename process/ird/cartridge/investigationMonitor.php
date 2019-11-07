@@ -8,13 +8,13 @@ $this->title = 'بررسی پایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
+    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
     $this->title
 ];
 
 ?>
 
-<h2 class="nad-page-title">بررسی فرایندی</h2>
+<h2 class="nad-page-title">بررسی پایش</h2>
 <?php Panel::begin([
                     'title' => 'برنامه ها',
                     'showCollapseButton' => true
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/cartridge/investigationMonitor/source/manage/index'])
+                'titleUrl' => Url::to(['/sedimentation/investigationMonitor/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/cartridge/investigationMonitor/proposal/manage/index'])
+                'titleUrl' => Url::to(['/sedimentation/investigationMonitor/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش',
-                'titleUrl' => Url::to(['/cartridge/investigationMonitor/report/manage/index'])
+                'titleUrl' => Url::to(['/sedimentation/investigationMonitor/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
-                'titleUrl' => Url::to(['/cartridge/investigationMonitor/method/manage/index'])
+                'titleUrl' => Url::to(['/sedimentation/investigationMonitor/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -67,8 +67,8 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
-                'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/cartridge/investigationMonitor/reference/manage/index'])
+                'title' => 'دستورالعمل',
+                'titleUrl' => Url::to(['/sedimentation/investigationMonitor/instruction/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منشاها',
-            'titleUrl' => Url::to(['/cartridge/investigationMonitor/source/manage/archived-index'])
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/source/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => Url::to(['/cartridge/investigationMonitor/source/manage/index-history'])
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -104,7 +104,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -124,7 +124,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'گزارش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/report/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده گزارش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/report/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -144,7 +144,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روش ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده روش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -164,7 +164,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'دستورالعمل ها',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -184,7 +184,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منابع',
-            'titleUrl' => Url::to(['/cartridge/investigationMonitor/reference/manage/index'])
+            'titleUrl' => Url::to(['/sedimentation/investigationMonitor/reference/manage/index'])
         ])
         ?>
     </div>

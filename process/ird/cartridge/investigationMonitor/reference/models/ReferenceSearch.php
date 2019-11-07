@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\cartridge\investigationMonitor\reference\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\reference\models;
 
 use nad\common\modules\investigation\reference\models\ReferenceSearchTrait;
 

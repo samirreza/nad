@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\proposal\controllers;
+namespace nad\process\ird\sedimentation\investigationMonitor\proposal\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigation\proposal\models\ProposalArchived;
-use nad\process\ird\sedimentation\investigation\proposal\models\ProposalSearch;
-use nad\process\ird\sedimentation\investigation\proposal\models\ProposalArchivedSearch;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchived;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalSearch;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\ProposalArchivedSearch;
 use nad\common\modules\investigation\proposal\controllers\ProposalController;
 
 class ManageController extends ProposalController

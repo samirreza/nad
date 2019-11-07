@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست روش‌ها';
+$this->title = 'لیست روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/cartridge/manage/investigation-monitor']],
+    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
     $this->title
 ];
 

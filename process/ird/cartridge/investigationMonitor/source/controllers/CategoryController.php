@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\process\ird\cartridge\investigationMonitor\source\controllers;
+namespace nad\process\ird\sedimentation\investigationMonitor\source\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\cartridge\investigationMonitor\source\models\Category;
-use nad\process\ird\cartridge\investigationMonitor\source\models\CategorySearch;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\CategorySearch;
 use nad\common\modules\investigation\source\controllers\SourceCategoryController;
 
 class CategoryController extends SourceCategoryController
@@ -26,7 +26,7 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['cartridge.investigationMonitor']
+                            'roles' => ['sedimentation.investigation']
                         ]
                     ]
                 ]

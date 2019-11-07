@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
+    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     $this->title
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'] = [
 <div class="source-view">
     <?= $this->render('@nad/common/modules/investigation/source/views/source/view', [
         'model' => $model,
-        'moduleId' => 'cartridge',
-        'creatProposalRoute' => '/cartridge/investigationMonitor/proposal/manage/create'
+        'moduleId' => 'sedimentation',
+        'creatProposalRoute' => '/sedimentation/investigationMonitor/proposal/manage/create'
     ]) ?>
 </div>

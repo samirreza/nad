@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\proposal\models;
+namespace nad\process\ird\sedimentation\investigationMonitor\proposal\models;
 
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
 use nad\common\modules\investigation\proposal\models\Proposal as BaseProposal;
 
 class Proposal extends BaseProposal
@@ -14,7 +14,7 @@ class Proposal extends BaseProposal
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigation/proposal/manage/view';
+        return '/sedimentation/investigationMonitor/proposal/manage/view';
     }
 
     public static function find()

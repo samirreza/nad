@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigation\source\controllers;
+namespace nad\process\ird\sedimentation\investigationMonitor\source\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigation\source\models\Source;
-use nad\process\ird\sedimentation\investigation\source\models\SourceArchived;
-use nad\process\ird\sedimentation\investigation\source\models\SourceSearch;
-use nad\process\ird\sedimentation\investigation\source\models\SourceArchivedSearch;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\Source;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\SourceArchived;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\SourceSearch;
+use nad\process\ird\sedimentation\investigationMonitor\source\models\SourceArchivedSearch;
 use nad\common\modules\investigation\source\controllers\SourceController;
 
 class ManageController extends SourceController

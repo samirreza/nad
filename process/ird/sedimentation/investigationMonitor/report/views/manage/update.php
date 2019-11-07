@@ -1,15 +1,15 @@
 <?php
 
-use nad\process\ird\sedimentation\investigation\report\models\Category;
-use nad\process\ird\sedimentation\investigation\reference\models\Reference;
-use nad\process\ird\sedimentation\investigation\proposal\models\Proposal;
+use nad\process\ird\sedimentation\investigationMonitor\report\models\Category;
+use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
