@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method\controllers;
+namespace nad\engineering\piping\stage\investigationImprovement\method\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\CategorySearch;
+use nad\engineering\piping\stage\investigationImprovement\method\models\Category;
+use nad\engineering\piping\stage\investigationImprovement\method\models\CategorySearch;
 use nad\common\modules\investigation\method\controllers\MethodCategoryController;
 
 class CategoryController extends MethodCategoryController
@@ -26,7 +26,7 @@ class CategoryController extends MethodCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['stage.investigationImprovement']
                         ]
                     ]
                 ]

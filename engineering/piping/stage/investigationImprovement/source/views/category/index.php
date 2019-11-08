@@ -2,10 +2,10 @@
 
 $this->title = 'رده‌بندی منشا';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     $this->title
 ];
 

@@ -1,20 +1,20 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\source\models;
+namespace nad\engineering\piping\stage\investigationImprovement\source\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
 use nad\common\modules\investigation\source\models\Source as BaseSource;
 
 class Source extends BaseSource
 {
     const CONSUMER_CODE = Source::class;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'stage';
     public $referenceClassName = Reference::class;
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/source/manage/view';
+        return '/stage/investigationImprovement/source/manage/view';
     }
 
     public static function find()

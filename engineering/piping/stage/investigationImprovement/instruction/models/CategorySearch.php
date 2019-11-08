@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\instruction\models;
+namespace nad\engineering\piping\stage\investigationImprovement\instruction\models;
 
 use nad\common\modules\investigation\instruction\models\CategorySearchTrait;
 

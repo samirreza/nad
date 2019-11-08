@@ -1,8 +1,8 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\report;
+namespace nad\engineering\piping\stage\investigationImprovement\report;
 
-use nad\process\ird\sedimentation\investigationMonitor\Module as BaseModule;
+use nad\engineering\piping\stage\investigationImprovement\Module as BaseModule;
 
 class Module extends BaseModule
 {

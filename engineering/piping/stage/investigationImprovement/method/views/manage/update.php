@@ -1,16 +1,16 @@
 <?php
 
-use nad\process\ird\sedimentation\investigationMonitor\method\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigationMonitor\report\models\Report;
+use nad\engineering\piping\stage\investigationImprovement\method\models\Category;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigationImprovement\report\models\Report;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     ['label' => 'لیست روش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

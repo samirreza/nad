@@ -2,10 +2,10 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     ['label' => 'لیست روش', 'url' => ['index']],
     $this->title
 ];
@@ -15,6 +15,6 @@ $this->params['breadcrumbs'] = [
 <div class="method-view">
     <?= $this->render('@nad/common/modules/investigation/method/views/method/view', [
         'model' => $model,
-        'moduleId' => 'sedimentation'
+        'moduleId' => 'stage'
     ]) ?>
 </div>

@@ -1,16 +1,16 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\instruction\models;
+namespace nad\engineering\piping\stage\investigationImprovement\instruction\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\instruction\models\Instruction;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\instruction\models\Instruction;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
 use nad\common\modules\investigation\instruction\models\Instruction as BaseInstruction;
 
 class Instruction extends BaseInstruction
 {
     const CONSUMER_CODE = Instruction::class;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'stage';
     public $referenceClassName = Reference::class;
 
     // public function getProposal()
@@ -20,7 +20,7 @@ class Instruction extends BaseInstruction
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/instruction/manage/view';
+        return '/stage/investigationImprovement/instruction/manage/view';
     }
 
     public static function find()

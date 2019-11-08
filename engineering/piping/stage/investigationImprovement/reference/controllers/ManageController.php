@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\reference\controllers;
+namespace nad\engineering\piping\stage\investigationImprovement\reference\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\ReferenceSearch;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\ReferenceSearch;
 use nad\common\modules\investigation\reference\controllers\ReferenceController;
 
 class ManageController extends ReferenceController
@@ -26,7 +26,7 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['stage.investigationImprovement']
                         ]
                     ]
                 ]

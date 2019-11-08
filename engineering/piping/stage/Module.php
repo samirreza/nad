@@ -5,6 +5,7 @@ class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
+    public $title = 'لوله کشی  - مراحل';
     public $department = 'فنی';
     public $pluralLabel = 'مراحل';
     public $singularLabel = 'مرحله';

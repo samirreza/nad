@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor;
+namespace nad\engineering\piping\stage\investigationImprovement;
 
 class Module extends \yii\base\Module
 {
@@ -9,12 +9,12 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->modules = [
-            'source' => 'nad\process\ird\sedimentation\investigationMonitor\source\Module',
-            'proposal' => 'nad\process\ird\sedimentation\investigationMonitor\proposal\Module',
-            'report' => 'nad\process\ird\sedimentation\investigationMonitor\report\Module',
-            'reference' => 'nad\process\ird\sedimentation\investigationMonitor\reference\Module',
-            'method' => 'nad\process\ird\sedimentation\investigationMonitor\method\Module',
-            'instruction' => 'nad\process\ird\sedimentation\investigationMonitor\instruction\Module',
+            'source' => 'nad\engineering\piping\stage\investigationImprovement\source\Module',
+            'proposal' => 'nad\engineering\piping\stage\investigationImprovement\proposal\Module',
+            'report' => 'nad\engineering\piping\stage\investigationImprovement\report\Module',
+            'reference' => 'nad\engineering\piping\stage\investigationImprovement\reference\Module',
+            'method' => 'nad\engineering\piping\stage\investigationImprovement\method\Module',
+            'instruction' => 'nad\engineering\piping\stage\investigationImprovement\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -25,15 +25,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/sedimentation/investigationMonitor/source/manage/create']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/sedimentation/investigationMonitor/source/manage/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/sedimentation/investigationMonitor/source/category/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/source/category/index']
                             ],
                         ]
                     ],
@@ -42,11 +42,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/sedimentation/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/sedimentation/investigationMonitor/source/manage/index-history']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -60,15 +60,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/create']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/sedimentation/investigationMonitor/proposal/category/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/proposal/category/index']
                             ],
                         ]
                     ],
@@ -77,11 +77,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/sedimentation/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -95,19 +95,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/sedimentation/investigationMonitor/report/manage/create']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/sedimentation/investigationMonitor/report/manage/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/sedimentation/investigationMonitor/report/category/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/sedimentation/investigationMonitor/report/manage/generate-graph']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -116,11 +116,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/sedimentation/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/sedimentation/investigationMonitor/report/manage/index-history']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -134,15 +134,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/sedimentation/investigationMonitor/method/manage/create']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/sedimentation/investigationMonitor/method/manage/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/sedimentation/investigationMonitor/method/category/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/method/category/index']
                             ],
                         ]
                     ],
@@ -151,11 +151,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/sedimentation/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/sedimentation/investigationMonitor/method/manage/index-history']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -169,15 +169,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/create']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/sedimentation/investigationMonitor/instruction/category/index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/instruction/category/index']
                             ],
                         ]
                     ],
@@ -186,11 +186,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/sedimentation/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/engineering/piping/stage/investigationImprovement/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -201,11 +201,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index']
+                        'url' => ['/engineering/piping/stage/investigationImprovement/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/sedimentation/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/engineering/piping/stage/investigationImprovement/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

@@ -1,22 +1,22 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\proposal\models;
+namespace nad\engineering\piping\stage\investigationImprovement\proposal\models;
 
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
 use nad\common\modules\investigation\proposal\models\ProposalArchived as BaseProposalArchived;
 
 class ProposalArchived extends BaseProposalArchived
 {
     const CONSUMER_CODE = Proposal::CONSUMER_CODE;
 
-    public $moduleId = 'sedimentation';
+    public $moduleId = 'stage';
     public $referenceClassName = Reference::class;
 
 
     public function getBaseViewRoute()
     {
-        return '/sedimentation/investigationMonitor/proposal/manage/view';
+        return '/stage/investigationImprovement/proposal/manage/view';
     }
 
     public static function find()

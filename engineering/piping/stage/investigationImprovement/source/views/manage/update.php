@@ -1,14 +1,14 @@
 <?php
 
-use nad\process\ird\sedimentation\investigationMonitor\source\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\source\models\Category;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
 
 $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],

@@ -2,10 +2,10 @@
 
 $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     $this->title
@@ -15,6 +15,6 @@ $this->params['breadcrumbs'] = [
 
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate', [
     'source' => $source,
-    'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigationMonitor-monitor'
+    'moduleId' => 'stage',
+    'baseRoute' => '/stage/investigationImprovement-monitor'
 ]);

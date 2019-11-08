@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\proposal\controllers;
+namespace nad\engineering\piping\stage\investigationImprovement\proposal\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\CategorySearch;
+use nad\engineering\piping\stage\investigationImprovement\proposal\models\Category;
+use nad\engineering\piping\stage\investigationImprovement\proposal\models\CategorySearch;
 use nad\common\modules\investigation\proposal\controllers\ProposalCategoryController;
 
 class CategoryController extends ProposalCategoryController
@@ -26,7 +26,7 @@ class CategoryController extends ProposalCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['stage.investigationImprovement']
                         ]
                     ]
                 ]

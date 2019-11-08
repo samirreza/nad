@@ -2,11 +2,11 @@
 
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/sedimentation/manage/investigation-monitor']],
-    ['label' => 'رده های دستورالعملها', 'url' => ['/sedimentation/investigationMonitor/instruction/category/index']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
+    ['label' => 'رده های دستورالعملها', 'url' => ['/engineering/piping/stage/investigationImprovement/instruction/category/index']],
     $this->title
 ];
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace nad\process\ird\sedimentation\investigationMonitor\method\controllers;
+namespace nad\engineering\piping\stage\investigationImprovement\method\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\Method;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodArchived;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodSearch;
-use nad\process\ird\sedimentation\investigationMonitor\method\models\MethodArchivedSearch;
+use nad\engineering\piping\stage\investigationImprovement\method\models\Method;
+use nad\engineering\piping\stage\investigationImprovement\method\models\MethodArchived;
+use nad\engineering\piping\stage\investigationImprovement\method\models\MethodSearch;
+use nad\engineering\piping\stage\investigationImprovement\method\models\MethodArchivedSearch;
 use nad\common\modules\investigation\method\controllers\MethodController;
 
 class ManageController extends MethodController
@@ -38,7 +38,7 @@ class ManageController extends MethodController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['stage.investigationImprovement']
                         ]
                     ]
                 ]

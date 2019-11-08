@@ -1,15 +1,15 @@
 <?php
 
-use nad\process\ird\sedimentation\investigationMonitor\report\models\Category;
-use nad\process\ird\sedimentation\investigationMonitor\reference\models\Reference;
-use nad\process\ird\sedimentation\investigationMonitor\proposal\models\Proposal;
+use nad\engineering\piping\stage\investigationImprovement\report\models\Category;
+use nad\engineering\piping\stage\investigationImprovement\reference\models\Reference;
+use nad\engineering\piping\stage\investigationImprovement\proposal\models\Proposal;
 
 $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/sedimentation/manage/investigation-monitor']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     $this->title
 ];
 
