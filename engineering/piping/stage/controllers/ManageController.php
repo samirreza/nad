@@ -31,8 +31,7 @@ class ManageController extends ParentController
                                 'view',
                                 'create',
                                 'update',
-                                'start',
-                                'investigation'
+                                'investigation-improvement'
                             ],
                             // 'roles' => ['nad.engineering.piping.stage']
                             'roles' => ['@']
@@ -43,13 +42,13 @@ class ManageController extends ParentController
         );
     }
 
-    public function actionStart()
+    public function actionIndex()
     {
-        return $this->render('@nad/engineering/piping/stage/start');
+        return $this->render('@nad/engineering/piping/stage/index');
     }
 
-    public function actionInvestigation()
+    public function actionInvestigationImprovement()
     {
-        return $this->render('@nad/engineering/piping/stage/investigation');
+        return $this->render('@nad/engineering/piping/stage/investigationImprovement');
     }
 }

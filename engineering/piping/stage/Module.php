@@ -12,10 +12,13 @@ class Module extends \yii\base\Module
     public $categoryListBtnLabel = 'لیست مراحل';
     public $categoryCreateBtnLabel = 'افزودن رده مراحل';
 
-    public $defaultRoute = 'manage/start';
+    public $defaultRoute = 'manage/index';
 
     public function init()
     {
+        $this->modules = [
+            'investigationImprovement' => 'nad\engineering\piping\stage\investigationImprovement\Module',
+        ];
 
         $this->horizontalMenuItems = [
             [

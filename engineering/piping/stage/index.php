@@ -12,7 +12,22 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-    <br><h1 style="text-align: center">داده گاه ها (این صفحه موقت است)</h1><br>
+<h2 class="nad-page-title">فعالیت ها  (این صفحه موقت است)</h2>
+<br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'بررسی بهبود',
+            'titleUrl' => Url::to(['/engineering/piping/stage/manage/investigation-improvement'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+
+<h2 class="nad-page-title">داده گاه ها (این صفحه موقت است)</h2><br>
     <br>
 
     <div class="row">
