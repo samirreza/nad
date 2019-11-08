@@ -224,7 +224,7 @@ class SideMenu extends \theme\widgets\Menu
                             [
                                 'label' => 'دستگاه ها',
                                 'icon' => 'angle-right',
-                                'url' => '#' //['/engineering/piping/equipment']
+                                'url' => ['/engineering/piping/device']
                             ]
                         ]
                     ],

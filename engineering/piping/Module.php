@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
     {
         $this->modules = [
             'stage' => 'nad\engineering\piping\stage\Module',            
+            'device' => 'nad\engineering\piping\device\Module',      
             'location' => 'nad\engineering\piping\location\Module',
             'document' => 'nad\engineering\piping\document\Module',
         ];

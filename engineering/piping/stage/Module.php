@@ -5,22 +5,25 @@ class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
+    public $title = 'لوله کشی  - مراحل';
     public $department = 'فنی';
-    public $pluralLabel = 'مراحل';    
+    public $pluralLabel = 'مراحل';
     public $singularLabel = 'مرحله';
 
     public $categoryListBtnLabel = 'لیست مراحل';
     public $categoryCreateBtnLabel = 'افزودن رده مراحل';
 
-    public $defaultRoute = 'manage/start';
+    public $defaultRoute = 'manage/index';
 
     public function init()
-    {                
-        $this->modules = [  
-            'investigation' => 'nad\engineering\piping\stage\investigation\Module', 
+    {
+        $this->modules = [
+            'investigationImprovement' => 'nad\engineering\piping\stage\investigationImprovement\Module',
+            'investigationMonitorMethods' => 'nad\engineering\piping\stage\investigationMonitorMethods\Module',
+            'investigationDesign' => 'nad\engineering\piping\stage\investigationDesign\Module',
         ];
 
-        $this->horizontalMenuItems = [                        
+        $this->horizontalMenuItems = [
             [
                 'label' => 'مراحل',
                 'items' => [
@@ -33,20 +36,7 @@ class Module extends \yii\base\Module
                         'url' => ['/engineering/piping/stage/category/index#class_ajaxcreate']
                     ]
                 ]
-            ],
-            // [
-            //     'label' => 'بسته مدارک',
-            //     'items' => [
-            //         [
-            //             'label' => 'لیست تمام گروه ها',
-            //             'url' => ['/engineering/piping/location/manage/index']
-            //         ],
-            //         [
-            //             'label' => 'افزودن گروه مدارگ',
-            //             'url' => ['/engineering/piping/location/manage/index#class_ajaxcreate']
-            //         ]
-            //     ]
-            // ],
+            ]
         ];
 
         parent::init();
