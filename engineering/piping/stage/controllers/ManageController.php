@@ -31,10 +31,29 @@ class ManageController extends ParentController
                                 'view',
                                 'create',
                                 'update',
-                                'investigation-improvement'
                             ],
-                            // 'roles' => ['nad.engineering.piping.stage']
                             'roles' => ['@']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-improvement',
+                            ],
+                            'roles' => ['stage.investigationImprovement']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-monitor-methods'
+                            ],
+                            'roles' => ['stage.investigationMonitorMethods']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-design'
+                            ],
+                            'roles' => ['stage.investigationDesign']
                         ]
                     ]
                 ]
@@ -50,5 +69,15 @@ class ManageController extends ParentController
     public function actionInvestigationImprovement()
     {
         return $this->render('@nad/engineering/piping/stage/investigationImprovement');
+    }
+
+    public function actionInvestigationMonitorMethods()
+    {
+        return $this->render('@nad/engineering/piping/stage/investigationMonitorMethods');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/engineering/piping/stage/investigationDesign');
     }
 }
