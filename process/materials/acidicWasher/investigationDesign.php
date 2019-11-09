@@ -8,7 +8,7 @@ $this->title = 'بررسی طراحی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ته نشینی', 'url' => ['/acidicWasher/manage/index']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
     $this->title
 ];
 

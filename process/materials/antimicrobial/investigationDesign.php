@@ -8,7 +8,7 @@ $this->title = 'بررسی طراحی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ته نشینی', 'url' => ['/antimicrobial/manage/index']],
+    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
     $this->title
 ];
 

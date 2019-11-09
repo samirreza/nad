@@ -8,7 +8,7 @@ $this->title = 'بررسی طراحی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ته نشینی', 'url' => ['/disinfectant/manage/index']],
+    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
     $this->title
 ];
 
