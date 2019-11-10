@@ -87,6 +87,7 @@ $module = $this->context->module;
                     ],
                     [
                         'header' => 'مدرک',
+                        'format' => 'raw',
                         'value' => function($model){
                             if (!$model->hasFile('file')) {
                                 return null;

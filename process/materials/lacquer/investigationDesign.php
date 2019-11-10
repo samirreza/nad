@@ -8,7 +8,7 @@ $this->title = 'بررسی طراحی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ته نشینی', 'url' => ['/lacquer/manage/index']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
     $this->title
 ];
 
