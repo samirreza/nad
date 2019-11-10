@@ -29,16 +29,16 @@ $uploadedFiles = $model->getFiles('file');
             <div class="row">
                 <div class="col-md-8">
                     <?= $form->field($model, 'title')->textInput() ?>
-                </div>                
+                </div>
             </div>
             <div class="row">
-                <div class="col-md-4">            
+                <div class="col-md-4">
                     <?= $form->field($model, 'documentType')->dropDownList(
                         Lookup::items('nad.stage.document.Type'),
-                        ['prompt'=>'انتخاب کنید'] 
+                        ['prompt'=>'انتخاب کنید']
                     ) ?>
                 </div>
-                <div class="col-md-4">                    
+                <div class="col-md-4">
                     <?= $model->getAttributeLabel('uniqueCode'); ?>
                     <?=
                     Html::textInput(
@@ -103,7 +103,7 @@ $uploadedFiles = $model->getFiles('file');
                         'icon' => 'undo'
                     ])
                 ?>
-            <?php Panel::end() ?>            
+            <?php Panel::end() ?>
             <?php Panel::begin() ?>
             <?php
             if(isset($uploadedFiles) && !empty($uploadedFiles)){
@@ -113,7 +113,7 @@ $uploadedFiles = $model->getFiles('file');
                         'model' => $model,
                         'group' => 'file',
                     ]) ?>
-            <?php              
+            <?php
             }else{
                 ?>
                 <label>فایل مستندات</label>
@@ -122,7 +122,7 @@ $uploadedFiles = $model->getFiles('file');
                     'group' => 'file',
                 ]) ?>
             <?php
-            } Panel::end() 
+            } Panel::end()
             ?>
 
             <?php Panel::begin() ?>
@@ -134,7 +134,7 @@ $uploadedFiles = $model->getFiles('file');
                         'model' => $model,
                         'group' => 'fileRevised',
                     ]) ?>
-            <?php              
+            <?php
             }else{
                 ?>
                 <label>مستندات بازنگری</label>
@@ -143,7 +143,7 @@ $uploadedFiles = $model->getFiles('file');
                     'group' => 'fileRevised',
                 ]) ?>
             <?php
-            } Panel::end() 
+            } Panel::end()
             ?>
         </div>
     </div>
