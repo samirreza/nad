@@ -6,7 +6,7 @@ use nad\common\modules\engineering\document\models\Document as ParentDocument;
 
 class Document extends ParentDocument
 {
-    const CONSUMER_CODE = 'nad\engineering\piping';
+    const CONSUMER_CODE = Document::class; //'nad\engineering\piping';
 
     public $moduleId = 'pipping';
 

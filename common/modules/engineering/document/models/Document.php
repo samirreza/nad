@@ -11,12 +11,12 @@ class Document extends \yii\db\ActiveRecord implements Codable
 {
     use CodableTrait;
 
-    const LOOKUP_DOCUMENT_TYPE = 'nad.stage.document.Type';    
+    const LOOKUP_DOCUMENT_TYPE = 'nad.stage.document.Type';
 
     public static function tableName()
     {
         return 'nad_eng_stage_document';
-    }    
+    }
 
     public function behaviors()
     {
@@ -25,7 +25,8 @@ class Document extends \yii\db\ActiveRecord implements Codable
             [
                 'core\behaviors\TimestampBehavior',
                 [
-                    'class' => FileBehavior::className(),                    
+                    'class' => FileBehavior::className(),
+                    'customModelClassName' => static::CONSUMER_CODE,
                     'groups' => [
                         'file' => [
                             'type' => FileBehavior::TYPE_FILE,
@@ -52,7 +53,7 @@ class Document extends \yii\db\ActiveRecord implements Codable
         return [
             [['title', 'groupId', 'documentType'], 'required'],
             [['title'], 'trim'],
-            [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],        
+            [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],
             [['groupId', 'documentType', 'revisionNumber'], 'integer'],
             [['description'], 'string'],
             [['title', 'producerName', 'verifierName', 'description'], FarsiCharactersValidator::className()],
@@ -61,7 +62,7 @@ class Document extends \yii\db\ActiveRecord implements Codable
 
     public function attributeLabels()
     {
-        return [            
+        return [
             'uniqueCode' => 'شناسه مدرک',
             'title' => 'عنوان مدرک',
             'producerName' => 'نام تهیه کننده',
@@ -83,13 +84,13 @@ class Document extends \yii\db\ActiveRecord implements Codable
     }
 
     public function beforeValidate()
-    {        
+    {
         return parent::beforeValidate();
     }
 
     public function beforeSave($insert)
     {
-        if ($insert) {            
+        if ($insert) {
             $this->consumer = static::CONSUMER_CODE;
         }
         $this->setUniqueCode();
@@ -97,7 +98,7 @@ class Document extends \yii\db\ActiveRecord implements Codable
     }
 
     public function setUniqueCode()
-    {        
+    {
         $this->uniqueCode = $this->location->uniqueCode . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
     }
 
@@ -111,8 +112,8 @@ class Document extends \yii\db\ActiveRecord implements Codable
         $group = $this->location;
         if(!isset($group)){
             $group = Location::findOne($this->groupId);
-        }        
-        
+        }
+
         return $group->category->code . '.' . $group->code . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . $this->documentType : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
-    }    
+    }
 }
