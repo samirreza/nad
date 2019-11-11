@@ -15,7 +15,7 @@ trait DocumentSearchTrait
     }
 
     public function search($params)
-    {        
+    {
         $query = Parent::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -25,10 +25,10 @@ trait DocumentSearchTrait
             $query->where('0=1');
             return $dataProvider;
         }
-                               
-        $query->andFilterWhere(['like', 'title', $this->title]);        
+
+        $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
-        $query->andFilterWhere(['like', 'groupId', $this->groupId]);
+        $query->andFilterWhere(['groupId' => $this->groupId]);
         return $dataProvider;
-    }    
+    }
 }
