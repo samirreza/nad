@@ -106,6 +106,8 @@ use nad\common\modules\investigation\report\models\Report;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     $url,
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
@@ -116,6 +118,8 @@ use nad\common\modules\investigation\report\models\Report;
                                     '<span class="glyphicon glyphicon-book"></span>',
                                     ['certificate', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]

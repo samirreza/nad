@@ -91,6 +91,8 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     ['view-history', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
