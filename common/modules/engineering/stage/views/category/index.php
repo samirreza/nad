@@ -95,7 +95,7 @@ $module = $this->context->module;
                                     '<span class="fa fa-tree"></span>',
                                     ['tree-list', 'id' => $model->id],
                                     [
-                                        'target' => '_blank',
+                                        // 'target' => '_blank',
                                         'title' => 'نمایش درختی رده های ' . $module->pluralLabel,
                                         'data-pjax' => 0
                                     ]
