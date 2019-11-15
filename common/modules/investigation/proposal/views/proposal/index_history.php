@@ -14,6 +14,13 @@ use nad\common\modules\investigation\proposal\models\ProposalReason;
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای پروپوزال</h2>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index-history'
+]) ?>
+
 <div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'proposal-index-gridviewpjax']) ?>

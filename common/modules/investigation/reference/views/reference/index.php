@@ -9,6 +9,13 @@ use nad\common\modules\investigation\reference\models\Reference;
 ?>
 
 <h3 class="nad-page-title">لیست منابع</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="reference-index">
     <?= ActionButtons::widget([
         'buttons' => [

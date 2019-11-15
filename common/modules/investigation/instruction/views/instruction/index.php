@@ -12,6 +12,13 @@ use nad\common\modules\investigation\instruction\models\Instruction;
 ?>
 
 <h3 class="nad-page-title">دستورالعمل های برنامه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="instruction-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'instruction-index-gridviewpjax']) ?>

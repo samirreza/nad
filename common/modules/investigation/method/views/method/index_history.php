@@ -14,6 +14,13 @@ use nad\common\modules\investigation\method\models\MethodReason;
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای روش</h2>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index-history'
+]) ?>
+
 <div class="method-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'method-index-gridviewpjax']) ?>

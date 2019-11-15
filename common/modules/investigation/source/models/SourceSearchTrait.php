@@ -6,15 +6,17 @@ use yii\data\ActiveDataProvider;
 
 trait SourceSearchTrait
 {
+    public $tag;
+
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['category.title']);
+        return array_merge(parent::attributes(), ['category.title', 'tag']);
     }
 
     public function rules()
     {
         return [
-            [['title', 'uniqueCode', 'category.title'], 'string'],
+            [['title', 'uniqueCode', 'category.title', 'tag'], 'string'],
             [['createdBy', 'mainReasonId', 'status'], 'integer']
         ];
     }
@@ -47,6 +49,14 @@ trait SourceSearchTrait
             ->andFilterWhere(['like', 'nad_investigation_source.title', $this->title])
             ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode])
             ->andFilterWhere(['like', 'isArchived', $this->isArchived]);
+
+        if (!empty($this->tag)) {
+            $query->andWhere([
+                'in',
+                'nad_investigation_source.id',
+                $this->getModelIdsHaveExactTags($this->tag)
+            ]);
+        }
 
         $query->joinWith('category AS category')
             ->andFilterWhere(

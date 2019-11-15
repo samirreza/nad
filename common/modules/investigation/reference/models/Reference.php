@@ -9,8 +9,8 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use core\behaviors\PreventDeleteBehavior;
 use extensions\file\behaviors\FileBehavior;
-use extensions\tag\behaviors\TaggableBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
+use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class Reference extends \yii\db\ActiveRecord implements Codable
@@ -25,6 +25,7 @@ class Reference extends \yii\db\ActiveRecord implements Codable
     const TYPE_WEBSITE = 'W';
 
     public $moduleId = 'reference';
+    public $ownerClassName = __NAMESPACE__ . '\Reference';
 
     private $_referenceUses;
 
@@ -76,7 +77,8 @@ class Reference extends \yii\db\ActiveRecord implements Codable
             ],
             'tags' => [
                 'class' => TaggableBehavior::class,
-                'moduleId' => $this->moduleId
+                'moduleId' => $this->moduleId,
+                'customOwner' => $this->ownerClassName
             ]
         ];
     }

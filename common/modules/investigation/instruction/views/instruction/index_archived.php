@@ -14,6 +14,13 @@ use nad\common\modules\investigation\instruction\models\Instruction;
 ?>
 
 <h3 class="nad-page-title">دستورالعملهای داده گاه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'archived-index'
+]) ?>
+
 <div class="sliding-form-wrapper"></div>
 <div class="instruction-index">
     <?php Panel::begin(['title' => $this->title]) ?>

@@ -14,6 +14,13 @@ use nad\common\modules\investigation\report\models\ReportReason;
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای گزارش</h2>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index-history'
+]) ?>
+
 <div class="report-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'report-index-gridviewpjax']) ?>

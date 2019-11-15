@@ -15,6 +15,13 @@ use nad\common\modules\investigation\proposal\models\ProposalReason;
 ?>
 
 <h3 class="nad-page-title">پروپوزالهای داده گاه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'archived-index'
+]) ?>
+
 <div class="sliding-form-wrapper"></div>
 <div class="proposal-index">
     <?php Panel::begin(['title' => $this->title]) ?>

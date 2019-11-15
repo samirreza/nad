@@ -12,6 +12,13 @@ use nad\common\modules\investigation\report\models\Report;
 ?>
 
 <h3 class="nad-page-title">گزارشهای برنامه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="report-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'report-index-gridviewpjax']) ?>

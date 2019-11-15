@@ -14,6 +14,13 @@ use nad\common\modules\investigation\source\models\SourceReason;
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای منشا</h2>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index-history'
+]) ?>
+
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
