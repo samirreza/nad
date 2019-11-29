@@ -12,6 +12,13 @@ use nad\common\modules\investigation\instruction\models\Instruction;
 ?>
 
 <h3 class="nad-page-title">دستورالعمل های برنامه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="instruction-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'instruction-index-gridviewpjax']) ?>
@@ -90,6 +97,8 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     $url,
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
@@ -100,6 +109,8 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                                     '<span class="glyphicon glyphicon-book"></span>',
                                     ['certificate', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]

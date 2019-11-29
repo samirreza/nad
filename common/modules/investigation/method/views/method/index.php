@@ -12,6 +12,13 @@ use nad\common\modules\investigation\method\models\Method;
 ?>
 
 <h3 class="nad-page-title">روشهای برنامه</h3>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="method-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'method-index-gridviewpjax']) ?>
@@ -90,6 +97,8 @@ use nad\common\modules\investigation\method\models\Method;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     $url,
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
@@ -100,6 +109,8 @@ use nad\common\modules\investigation\method\models\Method;
                                     '<span class="glyphicon glyphicon-book"></span>',
                                     ['certificate', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]

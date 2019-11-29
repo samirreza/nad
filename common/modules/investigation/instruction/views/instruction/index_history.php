@@ -14,6 +14,13 @@ use nad\common\modules\investigation\instruction\models\InstructionReason;
 ?>
 
 <h2 class="nad-page-title">داده گاه روندهای دستورالعمل</h2>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index-history'
+]) ?>
+
 <div class="instruction-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'instruction-index-gridviewpjax']) ?>
@@ -91,6 +98,8 @@ use nad\common\modules\investigation\instruction\models\InstructionReason;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     ['view-history', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]

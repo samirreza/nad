@@ -138,4 +138,65 @@ class TaggableBehavior extends Behavior
             ->where(['title' => $tag])
             ->scalar();
     }
+
+    // from TaggableQueryBehavior
+
+    public function getModelIdsHaveAnyTags($tagTitles)
+    {
+        if (!$tagTitles) {
+            return '';
+        }else{
+            $tagTitles = $this->prepareTagTitles($tagTitles);
+        }
+
+        return (new Query())
+            ->select(['modelId'])
+            ->distinct()
+            ->from('tag_module')
+            ->where([
+                'moduleId' => $this->moduleId,
+                'modelClassName' => (new \ReflectionClass($this->customOwner))
+                ->getShortName()
+            ])
+            ->andWhere(['in', 'tagId', $this->getTagIds($tagTitles)])
+            ->column();
+    }
+
+    public function getModelIdsHaveExactTags($tagTitles)
+    {
+        if (!$tagTitles) {
+            return '';
+        }else{
+            $tagTitles = $this->prepareTagTitles($tagTitles);
+        }
+
+        return (new Query())
+            ->select(['modelId'])
+            ->distinct()
+            ->from('tag_module')
+            ->where([
+                'moduleId' => $this->moduleId,
+                'modelClassName' => (new \ReflectionClass($this->customOwner))
+                ->getShortName()
+            ])
+            ->andWhere(['in', 'tagId', $this->getTagIds($tagTitles)])
+            ->groupBy('modelId')
+            ->having('COUNT(modelId) = ' . count($tagTitles))
+            ->column();
+    }
+
+    private function getTagIds($tagTitles)
+    {
+        return (new \yii\db\Query())
+            ->select('id')
+            ->from('tag')
+            ->andWhere(['in', 'title', $tagTitles])
+            ->column();
+    }
+
+    public function prepareTagTitles($tagTitles){
+        return array_map(function($item) {
+            return trim($item);
+        }, explode('-', $tagTitles));
+    }
 }

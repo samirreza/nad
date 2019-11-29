@@ -1,11 +1,13 @@
 
 
 <div class="research-investigation-certificate">
-    <?= $this->render('_base_source_certificate', [
-        'source' => $source,
-        'moduleId' => $moduleId,
-        'baseRoute' => $baseRoute
-    ]) ?>
+    <?php if (isset($source)) : ?>
+        <?= $this->render('_base_source_certificate', [
+            'source' => $source,
+            'moduleId' => $moduleId,
+            'baseRoute' => $baseRoute
+        ]) ?>
+    <?php endif; ?>
     <?php if (isset($proposal)) : ?>
         <?= $this->render('_base_proposal_certificate', [
             'proposal' => $proposal,

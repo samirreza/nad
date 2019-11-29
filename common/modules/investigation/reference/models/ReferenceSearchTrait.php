@@ -6,10 +6,12 @@ use yii\data\ActiveDataProvider;
 
 trait ReferenceSearchTrait
 {
+    public $tag;
+
     public function rules()
     {
         return [
-            [['title', 'type', 'uniqueCode'], 'string']
+            [['title', 'type', 'uniqueCode', 'tag'], 'string']
         ];
     }
 
@@ -36,6 +38,14 @@ trait ReferenceSearchTrait
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['type' => $this->type])
             ->andFilterWhere(['like', 'uniqueCode', $this->uniqueCode]);
+
+        if (!empty($this->tag)) {
+            $query->andWhere([
+                'in',
+                'nad_investigation_reference.id',
+                $this->getModelIdsHaveExactTags($this->tag)
+            ]);
+        }
 
         return $dataProvider;
     }

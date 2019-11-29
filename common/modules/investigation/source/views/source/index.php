@@ -15,6 +15,13 @@ use nad\common\modules\investigation\source\models\SourceReason;
 
 <h2 class="nad-page-title">منشاهای برنامه</h2>
 <div class="sliding-form-wrapper"></div>
+
+<?= $this->render('@nad/common/modules/investigation/common/views/_search',
+[
+    'model' => $searchModel,
+    'route' => 'index'
+]) ?>
+
 <div class="source-index">
     <?php Panel::begin(['title' => $this->title]) ?>
         <?php Pjax::begin(['id' => 'source-index-gridviewpjax']) ?>
@@ -92,6 +99,8 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                     $url,
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'روند',
                                         'style' => 'color: green'
                                     ]
@@ -102,6 +111,8 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                     '<span class="glyphicon glyphicon-book"></span>',
                                     ['certificate', 'id' => $model->id],
                                     [
+                                        'target' => '_blank',
+                                        'data-pjax' => 0,
                                         'title' => 'شناسنامه',
                                         'style' => 'color: green'
                                     ]
