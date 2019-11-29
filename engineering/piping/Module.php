@@ -14,10 +14,11 @@ class Module extends \yii\base\Module
     public function init()
     {
         $this->modules = [
-            'stage' => 'nad\engineering\piping\stage\Module',            
-            'device' => 'nad\engineering\piping\device\Module',      
+            'stage' => 'nad\engineering\piping\stage\Module',
+            'device' => 'nad\engineering\piping\device\Module',
             'location' => 'nad\engineering\piping\location\Module',
             'document' => 'nad\engineering\piping\document\Module',
+            'site' => 'nad\engineering\piping\site\Module',
         ];
         parent::init();
     }
