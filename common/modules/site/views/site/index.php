@@ -32,7 +32,8 @@ $module = $this->context->module;
             'tree' => [
                 'label' => 'نمایش درختی',
                 'icon' => 'tree',
-                'url' => ['tree-list']
+                'url' => ['tree-list'],
+                'type' => 'success',
             ]
         ],
     ]); ?>

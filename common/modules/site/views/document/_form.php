@@ -23,7 +23,7 @@ $uploadedFiles = $model->getFiles('file');
         'showCloseButton' => true
     ]) ?>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-7">
             <?php Panel::begin() ?>
             <?= Html::activeHiddenInput($model, 'siteId'); ?>
             <div class="row">
@@ -32,17 +32,6 @@ $uploadedFiles = $model->getFiles('file');
                         Lookup::items('nad.site.document.Type'),
                         ['prompt'=>'انتخاب کنید']
                     ) ?>
-                </div>
-                <div class="col-md-4">
-                    <?=
-                    $form->field($model, 'uniqueCode')->textInput(
-                        [
-                            'class' => 'form-control',
-                            'dir' => 'ltr',
-                            'disabled' => 'true'
-                        ]
-                    );
-                    ?>
                 </div>
             </div>
             <div class="row">

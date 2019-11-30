@@ -22,6 +22,12 @@ use nad\common\modules\site\models\Site;
                 'model' => $model,
                 'attributes' => [
                     [
+                        'attribute' => 'stageCategoryId',
+                        'value' => function($model){
+                            return $model->stage->title;
+                        }
+                    ],
+                    [
                         'attribute' => 'uniqueCode',
                         'value' => function($model){
                             return $model->getUniqueCode();

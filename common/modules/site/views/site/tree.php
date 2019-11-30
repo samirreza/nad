@@ -23,7 +23,7 @@ $this->title = 'نمایش درختی';
             'materials' => [
                 'label' => 'لیست مکانها',
                 'url' => ['index'],
-                'type' => 'info',
+                'type' => 'success',
                 'icon' => 'list'
             ]
         ]
