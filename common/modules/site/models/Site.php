@@ -88,7 +88,7 @@ class Site extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->stage->code . $this->code;
+        $this->uniqueCode = $this->stage->code . '.' . $this->code;
     }
 
     public function getUniqueCode() : string

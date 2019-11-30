@@ -61,15 +61,11 @@ class SiteController extends \core\controllers\AjaxAdminController
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $roots = StageCategory::find()->roots()->all();
         $tree = [];
-        foreach ($roots as $root) {
+        $reversedRoots = array_reverse($roots); // don't know why?!
+        foreach ($reversedRoots as $root) {
             $tree[] = $root->getFamilyTreeArrayForWidget();
         }
         return $tree;
-    }
-
-    public function actionReport()
-    {
-        return $this->render('report');
     }
 
     public function actionIndex()

@@ -30,7 +30,7 @@ $module = $this->context->module;
             ],
             'siteIndex' => [
                 'label' => 'لیست مکان ها',
-                // 'icon' => 'book',
+                'icon' => 'list',
                 'url' => $this->params['siteIndex'],
                 'type' => 'success'
             ]
@@ -59,7 +59,7 @@ $module = $this->context->module;
                     [
                         'attribute' => 'type',
                         'value' => function ($model) {
-                            return $model->type;
+                            return Lookup::item(Document::LOOKUP_DOCUMENT_TYPE, $model->type);
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,

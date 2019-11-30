@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use core\tree\NestedSetsBehavior;
 use nad\common\code\CodableTrait;
+use nad\common\modules\site\models\Site;
 use core\behaviors\PreventDeleteBehavior;
 use nad\common\code\CodableCategoryBehavior;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
@@ -45,7 +46,7 @@ class Category extends ActiveRecord implements Codable
             ],
             [
                 'class' => CodableCategoryBehavior::class,
-                'leafsDepth' => 4
+                'leafsDepth' => 2
             ]
         ];
     }
@@ -104,8 +105,8 @@ class Category extends ActiveRecord implements Codable
     {
         return [
             0 => 'مرحله 1',
-            1 => 'مرحله 2',            
-            2 => 'مرحله 3',            
+            1 => 'مرحله 2',
+            2 => 'مرحله 3',
         ];
     }
 
@@ -124,11 +125,46 @@ class Category extends ActiveRecord implements Codable
 
     /**
      * Overrides CodableTrait::getCodedTitle()
-     * 
+     *
      * @return string
      */
     public function getCodedTitle() : string
     {
         return $this->title . ' - ' . $this->code;
+    }
+
+    public function getSites()
+    {
+        return $this->hasMany(Site::class, ['stageCategoryId' => 'id']);
+    }
+
+    public function getFamilyTreeArrayForWidget()
+    {
+        $attributes = [
+            'id' => $this->id,
+            'name' => $this->htmlCodedTitle,
+            'code' => $this->uniqueCode,
+            'depth' => $this->depth
+        ];
+        if ($this->children(1)->count() != 0) {
+            $children = [];
+            foreach ($this->children(1)->all() as $child) {
+                $children[] = $child->getFamilyTreeArrayForWidget();
+            }
+        } elseif ($this->getSites()->count() != 0) {
+            foreach ($this->sites as $site) {
+                $children[] = [
+                    'id' => $site->id,
+                    'name' => $site->deviceTitle,
+                    'code' => $site->uniqueCode,
+                    'depth' => $this->leafsDepth + 1
+                ];
+            }
+        }
+        if (!empty($children)) {
+            $attributes['children'] = $children;
+        }
+
+        return $attributes;
     }
 }
