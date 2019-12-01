@@ -11,7 +11,7 @@ namespace nad\common\helpers;
  * @property integer $position
  */
 class Lookup extends \yii\db\ActiveRecord
-{   
+{
     private static $_items = [];
 
     /**
@@ -20,18 +20,23 @@ class Lookup extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'lookup';
-    }    
+    }
+
+    public function getCodedName(){
+        return $this->code . '. ' . $this->name;
+    }
 
     /**
      * Returns the items for the specified type.
      * @param string item type.
+     * @param boolean useCodedNames.
      * @return array item names indexed by item code. The items are order by their order values.
      * An empty array is returned if the item type does not exist.
      */
-    public static function items($type)
+    public static function items($type, $useCodedNames = false)
     {
         if (!isset(self::$_items[$type])) {
-            self::loadItems($type);
+            self::loadItems($type, $useCodedNames);
         }
         return self::$_items[$type];
     }
@@ -50,19 +55,21 @@ class Lookup extends \yii\db\ActiveRecord
     }
     /**
      * Loads the lookup items for the specified type from the database.
-     * @param string the item type
+     * @param string the item type.
+     * @param boolean useCodedNames.
      */
-    private static function loadItems($type)
+    private static function loadItems($type, $useCodedNames = false)
     {
         self::$_items[$type] = array();
         $models = self::find()
             ->where([
-                'type' => $type,                
+                'type' => $type,
             ])
             ->orderBy('position')
             ->all();
+
         foreach ($models as $model) {
-            self::$_items[$type][$model->code] = $model->name;
+            self::$_items[$type][$model->code] = (($useCodedNames) ? $model->getCodedName() : $model->name);
         }
     }
 }
