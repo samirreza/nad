@@ -29,7 +29,7 @@ $uploadedFiles = $model->getFiles('file');
             <div class="row">
                 <div class="col-md-4">
                     <?= $form->field($model, 'type')->dropDownList(
-                        Lookup::items('nad.site.document.Type'),
+                        Lookup::items('nad.site.document.Type', true),
                         ['prompt'=>'انتخاب کنید']
                     ) ?>
                 </div>

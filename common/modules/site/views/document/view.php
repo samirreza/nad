@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use theme\widgets\ActionButtons;
-use nad\common\modules\engineering\document\models\Document;
+use nad\common\modules\site\models\Document;
 
 ?>
 <div class="view">
