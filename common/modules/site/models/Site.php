@@ -98,11 +98,12 @@ class Site extends \yii\db\ActiveRecord implements Codable
 
     public static function getAllStages(){
         $stages = StageCategory::find()
-        // ->andWhere([
-        //     'depth' => 2
-        //     ])
-        ->all();
+                ->orderBy(['code' => SORT_ASC])
+                // ->andWhere([
+                //     'depth' => 2
+                //     ])
+                ->all();
 
-        return ArrayHelper::map($stages, 'id', 'title');
+        return ArrayHelper::map($stages, 'id', 'codedTitle');
     }
 }
