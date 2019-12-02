@@ -13,15 +13,15 @@ class m191202_182909_fill_table_nad_office_expert extends Migration
     public function safeUp()
     {
         $this->execute('
-        INSERT INTO nad_office_expert ( userId, createdAt, updatedAt, departmentId ) SELECT
+        INSERT INTO `nad_office_expert` ( userId, createdAt, updatedAt, departmentId ) SELECT
             id,
             UNIX_TIMESTAMP( ),
             UNIX_TIMESTAMP( ),
             0
             FROM
-            USER
+            `user`
             WHERE
-                id NOT IN ( SELECT userId FROM nad_office_expert )
+                id NOT IN ( SELECT userId FROM `nad_office_expert` )
         ');
     }
 
