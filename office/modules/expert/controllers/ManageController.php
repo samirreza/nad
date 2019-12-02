@@ -28,8 +28,11 @@ class ManageController extends AjaxAdminController
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'allow' => true,
-                            'roles' => ['office.manageExpert']
+                            // 'allow' => true,
+                            // 'roles' => ['office.manageExpert']
+                            // temporarily disables Expert CRUD till further decisions
+                            'allow' => false,
+                            'roles' => ['@']
                         ]
                     ]
                 ]

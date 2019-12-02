@@ -464,17 +464,17 @@ class SideMenu extends \theme\widgets\Menu
                 'label' => 'مالی',
                 'icon' => 'angle-right'
             ],
-            [
-                'label' => 'اداری',
-                'icon' => 'angle-right',
-                'items' => [
-                    [
-                        'label' => 'کارشناسان',
-                        'url' => ['/office/expert/manage/index'],
-                        'visible' => $user->can('office.manageExpert')
-                    ]
-                ]
-            ],
+            // [
+            //     'label' => 'اداری',
+            //     'icon' => 'angle-right',
+            //     'items' => [
+            //         [
+            //             'label' => 'کارشناسان',
+            //             'url' => ['/office/expert/manage/index'],
+            //             'visible' => $user->can('office.manageExpert')
+            //         ]
+            //     ]
+            // ],
             [
                 'label' => 'بندر',
                 'icon' => 'angle-right'
