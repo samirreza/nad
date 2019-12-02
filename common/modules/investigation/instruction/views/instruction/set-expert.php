@@ -29,8 +29,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         Select2::class,
                         [
                             'data' => ArrayHelper::map(
-                                Expert::getDepartmentExpertsByPermission(
-                                    $departmentId,
+                                Expert::getExpertsByPermission(
                                     $permission
                                 ),
                                 'id',

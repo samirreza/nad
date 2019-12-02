@@ -11,6 +11,7 @@ use extensions\file\behaviors\FileBehavior;
 class Expert extends ActiveRecord
 {
     const DEPARTMENT_PROCESS = 0;
+    const DEPARTMENT_ENGINEERING = 1;
 
     public function behaviors()
     {
@@ -100,7 +101,8 @@ class Expert extends ActiveRecord
     public static function getDepartmentLabels()
     {
         return [
-            self::DEPARTMENT_PROCESS => 'فرایند'
+            self::DEPARTMENT_PROCESS => 'فرایند',
+            self::DEPARTMENT_ENGINEERING => 'فنی',
         ];
     }
 
@@ -111,6 +113,14 @@ class Expert extends ActiveRecord
             ->all();
     }
 
+    /**
+     * TODO We don't have department anymore, so remove this function asap.
+     * Use getExpertsByPermission() instead.
+     *
+     * @param integer $departmentId
+     * @param string $permission
+     * @return void
+     */
     public static function getDepartmentExpertsByPermission($departmentId, $permission)
     {
         $experts = [];
