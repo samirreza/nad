@@ -56,8 +56,8 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => false,
                 'showCount' => false,
-                'title' => 'دستگاه ها',
-                'titleUrl' => Url::to(['/engineering/piping/device/category/index'])
+                'title' => 'تجهیزات',
+                'titleUrl' => Url::to(['/engineering/piping/device/device/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-5">
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'مکان ها',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
     </div>
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'مکان های داده برداری',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
         <div class="col-md-5">
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'داده های بهره برداری',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
     </div>
@@ -99,7 +99,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'منابع پایش',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
         <div class="col-md-5">
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'منابع طراحی',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
     </div>
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'نتایج پایش ها',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
         <div class="col-md-5">
@@ -127,7 +127,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'نتایج طراحی ها',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
     </div>
@@ -139,7 +139,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'روندهای اجرا شده پایش',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
         <div class="col-md-5">
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'روندهای اجرا شده طراحی',
-                'titleUrl' => Url::to(['@web'])
+                'titleUrl' => '#'
             ]) ?>
         </div>
     </div>

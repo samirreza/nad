@@ -11,6 +11,7 @@ use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\extensions\graphGenerator\behaviors\GraphBehavior;
 use nad\common\modules\investigation\report\models\Report;
+use nad\common\modules\investigation\method\models\Method;
 use nad\common\modules\investigation\proposal\models\Proposal;
 use nad\common\modules\investigation\proposal\models\ProposalArchived;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
