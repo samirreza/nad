@@ -91,7 +91,7 @@ class DevicePartDocument extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->part->uniqueCode . '.' . $this->code;
+        $this->uniqueCode = $this->part->uniqueCode . '.D.' . $this->code;
     }
 
     public function getUniqueCode() : string

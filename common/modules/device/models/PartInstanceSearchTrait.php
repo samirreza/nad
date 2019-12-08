@@ -17,7 +17,7 @@ trait PartInstanceSearchTrait
     public function rules()
     {
         return [
-            [['partId', 'code', 'deviceUniqueCode', 'uniqueCode', 'partTitle'], 'safe'],
+            [['partId', 'code', 'deviceInstanceId', 'uniqueCode', 'partTitle'], 'safe'],
         ];
     }
 
@@ -37,7 +37,7 @@ trait PartInstanceSearchTrait
         $query->andFilterWhere(['=', 'partId', $this->partId]);
         $query->andFilterWhere(['like', 'nad_eng_device_part_instance.code', $this->code]);
         $query->andFilterWhere(['like', 'nad_eng_device_part_instance.uniqueCode', $this->uniqueCode]);
-        $query->andFilterWhere(['like', 'nad_eng_device_part_instance.deviceUniqueCode', $this->deviceUniqueCode]);
+        $query->andFilterWhere(['like', 'nad_eng_device_part_instance.deviceInstanceId', $this->deviceInstanceId]);
         $query->andFilterWhere(['like', 'part.title', $this->partTitle]);
 
         return $dataProvider;

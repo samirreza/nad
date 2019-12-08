@@ -91,7 +91,7 @@ class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->instance->uniqueCode . '.' . $this->code;
+        $this->uniqueCode = $this->instance->uniqueCode . '.D.' . $this->code;
     }
 
     public function getUniqueCode() : string

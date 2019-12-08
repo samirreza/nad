@@ -54,13 +54,24 @@ $module = $this->context->module;
                 'columns' => [
                     [
                         'header' => 'شمارنده',
-                        'class' => 'yii\grid\SerialColumn'
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:20px'
+                        ]
                     ],
-                    'uniqueCode',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
+                    ],
                     'title',
                     [
                         'header' => 'مدارک',
                         'format' => 'raw',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:100px'
+                        ],
                         'value' => function($model){
                             if (!$model->hasFile('file')) {
                                 return null;

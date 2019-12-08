@@ -7,6 +7,7 @@ use nad\common\code\CodableTrait;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\Device;
 use nad\common\modules\device\models\DevicePart;
+use nad\common\modules\device\models\DeviceInstance;
 
 class PartInstance extends \yii\db\ActiveRecord implements Codable
 {
@@ -30,12 +31,12 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['partId', 'code'], 'required'],
-            [['code', 'deviceUniqueCode'], 'trim'],
-            [['code', 'deviceUniqueCode'], 'string', 'max' => 255],
+            [['partId', 'deviceInstanceId', 'code'], 'required'],
+            [['code'], 'trim'],
+            [['code'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['partId'], 'integer'],
-            [['code', 'deviceUniqueCode'], FarsiCharactersValidator::className()],
+            [['partId', 'deviceInstanceId'], 'integer'],
+            [['code'], FarsiCharactersValidator::className()],
             [
                 'code',
                 'unique',
@@ -50,8 +51,8 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
         return [
             'code' => 'شناسه',
             'uniqueCode' => 'شناسه یکتا',
-            'deviceUniqueCode' => 'شناسه تجهیزی که قطعه روی آن نصب شده',
             'partId' => 'قطعه',
+            'deviceInstanceId' => 'شناسه تجهیزی که قطعه روی آن نصب شده',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
@@ -60,6 +61,11 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
     public function getPart()
     {
         return $this->hasOne(DevicePart::className(), ['id' => 'partId']);
+    }
+
+    public function getDeviceInstance()
+    {
+        return $this->hasOne(DeviceInstance::className(), ['id' => 'deviceInstanceId']);
     }
 
     public function getDocuments()
@@ -90,5 +96,16 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
     public function getUniqueCode() : string
     {
         return $this->uniqueCode;
+    }
+
+    public static function getRelatedDeviceInstances($deviceId){
+        $deviceInstances = DeviceInstance::find()
+                ->orderBy(['uniqueCode' => SORT_ASC])
+                ->andWhere([
+                    'deviceId' => $deviceId
+                    ])
+                ->all();
+
+        return ArrayHelper::map($deviceInstances, 'id', 'uniqueCode');
     }
 }

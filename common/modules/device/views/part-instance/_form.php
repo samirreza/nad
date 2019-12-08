@@ -33,8 +33,19 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
                 </div>
                 <div class="col-md-6">
-                <?= $form->field($model, 'deviceUniqueCode')->textInput([
-                        'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
+                    <?= $form->field($model, 'deviceInstanceId')->widget(
+                            Select2::class,
+                            [
+                                'data' => PartInstance::getRelatedDeviceInstances($model->part->deviceId),
+                                'options' => [
+                                    'placeholder' => 'انتخاب کنید...'
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]
+                        )
+                    ?>
                 </div>
             </div>
             <?php Panel::end() ?>

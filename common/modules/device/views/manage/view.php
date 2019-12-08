@@ -29,9 +29,9 @@ use nad\common\modules\device\models\Device;
                     ],
                     [
                         'attribute' => 'uniqueCode',
-                        'value' => function($model){
-                            return $model->getUniqueCode();
-                        }
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
                     ],
                     'title',
                     'category.familyTreeTitle',

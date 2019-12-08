@@ -90,7 +90,7 @@ class DevicePart extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->device->uniqueCode . '.' . $this->code;
+        $this->uniqueCode = $this->device->uniqueCode . '.S.' . $this->code;
     }
 
     public function getUniqueCode() : string

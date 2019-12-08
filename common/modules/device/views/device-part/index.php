@@ -57,11 +57,17 @@ $this->title = 'لیست قطعات';
                 'columns' => [
                     [
                         'header' => 'شمارنده',
-                        'class' => 'yii\grid\SerialColumn'
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\grid\Column',

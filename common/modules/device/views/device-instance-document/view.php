@@ -22,7 +22,12 @@ use nad\common\modules\device\models\DeviceInstance;
                 'model' => $model,
                 'attributes' => [
                     'title',
-                    'uniqueCode',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

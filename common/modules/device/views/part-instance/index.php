@@ -54,11 +54,17 @@ $this->title = 'لیست قطعات';
                 'columns' => [
                     [
                         'header' => 'شمارنده',
-                        'class' => 'yii\grid\SerialColumn'
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\grid\Column',
@@ -71,7 +77,11 @@ $this->title = 'لیست قطعات';
                     [
                         'class' => 'nad\common\grid\Column',
                         'label' => 'شناسه یکتا تجهیز',
-                        'attribute' => 'deviceUniqueCode',
+                        'attribute' => 'deviceInstanceId',
+                        'value' => function($model){
+                            $deviceInstance = $model->deviceInstance;
+                            return isset($deviceInstance)?$deviceInstance->uniqueCode : null;
+                        }
                     ],
                     [
                         'label' => 'لیست مدارک',
