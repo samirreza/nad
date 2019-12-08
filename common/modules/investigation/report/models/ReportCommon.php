@@ -13,6 +13,7 @@ use nad\extensions\graphGenerator\behaviors\GraphBehavior;
 use nad\common\modules\investigation\report\models\Report;
 use nad\common\modules\investigation\method\models\Method;
 use nad\common\modules\investigation\proposal\models\Proposal;
+use nad\common\modules\investigation\instruction\models\Instruction;
 use nad\common\modules\investigation\proposal\models\ProposalArchived;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
@@ -68,8 +69,12 @@ class ReportCommon extends BaseInvestigationModel
                     'class' => PreventDeleteBehavior::class,
                     'relations' => [
                         [
-                            'relationMethod' => 'getMethod',
-                            'relationName' => 'گزارش'
+                            'relationMethod' => 'getMethods',
+                            'relationName' => 'روش'
+                        ],
+                        [
+                            'relationMethod' => 'getInstructions',
+                            'relationName' => 'دستورالعمل'
                         ]
                     ]
                 ],
@@ -285,40 +290,24 @@ class ReportCommon extends BaseInvestigationModel
         return $this->proposal->title;
     }
 
-    public function getMethod()
+    public function getMethods()
     {
         // TODO Rewrite with ActiveRecord::exists()
-        $method = Method::findOne($this->methodId);
-        if(isset($method))
-            return $this->hasOne(Method::class, ['id' => 'methodId']);
+        $methods = Method::findAll(['reportId' => $this->id]);
+        if(isset($methods))
+            return $this->hasMany(Method::class, ['reportId' => 'id']);
         else
-            return $this->hasOne(MethodArchived::class, ['id' => 'methodId']);
+            return $this->hasMany(MethodArchived::class, ['reportId' => 'id']);
     }
 
-    public function getMethodAsString()
-    {
-        if(!isset($this->method)){
-            return null;
-        }
-        return $this->method->title;
-    }
-
-    public function getInstruction()
+    public function getInstructions()
     {
         // TODO Rewrite with ActiveRecord::exists()
-        $instruction = Instruction::findOne($this->instructionId);
-        if(isset($instruction))
-            return $this->hasOne(Instruction::class, ['id' => 'instructionId']);
+        $instructions = Instruction::findAll(['reportId' => $this->id]);
+        if(isset($instructions))
+            return $this->hasMany(Instruction::class, ['reportId' => 'id']);
         else
-            return $this->hasOne(InstructionArchived::class, ['id' => 'instructionId']);
-    }
-
-    public function getInstructionAsString()
-    {
-        if(!isset($this->instruction)){
-            return null;
-        }
-        return $this->instruction->title;
+            return $this->hasMany(InstructionArchived::class, ['reportId' => 'id']);
     }
 
     public function getSourceAsString()
