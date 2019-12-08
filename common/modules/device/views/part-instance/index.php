@@ -80,8 +80,8 @@ $this->title = 'لیست قطعات';
                             return Html::a(
                                     '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
                                     [
-                                        'part-instance-document/index',
-                                    'PartInstanceDocumentSearch[instanceId]' => $model->id
+                                        'device-part-document/index',
+                                    'DevicePartDocumentSearch[partId]' => $model->partId
                                     ],
                                     [
                                         'title' => 'لیست مدارک',
