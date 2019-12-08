@@ -14,7 +14,7 @@ $module = $this->context->module;
 
 ?>
 
-<h4 class="nad-page-title">لیست مدارک</h4>
+<h4 class="nad-page-title">لیست مدارک <span class="nad-page-title-focus"><?= $partModel->title . ' ' . $partModel->device->title ?></span></h4>
 <div class="document-index">
     <?= ActionButtons::widget([
         'buttons' => [

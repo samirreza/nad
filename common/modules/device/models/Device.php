@@ -78,6 +78,11 @@ class Device extends \yii\db\ActiveRecord implements Codable
         return $this->hasMany(DeviceInstance::className(), ['deviceId' => 'id']);
     }
 
+    public function getDocuments()
+    {
+        return $this->hasMany(DeviceDocument::className(), ['deviceId' => 'id']);
+    }
+
     public function beforeValidate()
     {
         $this->code = strtoupper($this->code);
