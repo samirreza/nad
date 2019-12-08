@@ -31,7 +31,7 @@ $module = $this->context->module;
             'deviceIndex' => [
                 'label' => 'لیست تجهیزات',
                 'icon' => 'list',
-                'url' => ['device-instance/index'],
+                'url' => ['manage/index'],
                 'type' => 'success'
             ]
         ],
