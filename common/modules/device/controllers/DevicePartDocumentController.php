@@ -4,7 +4,7 @@ namespace nad\common\modules\device\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use nad\common\modules\device\models\Device;
+use nad\common\modules\device\models\DevicePart;
 use nad\common\modules\device\models\DevicePartDocument;
 use nad\common\modules\document\models\DevicePartDocumentSearch;
 
@@ -46,12 +46,16 @@ class DevicePartDocumentController extends \core\controllers\AjaxAdminController
 
     public function actionIndex()
     {
+        $partId = Yii::$app->request->queryParams['DevicePartDocumentSearch']['partId'];
+        $partModel = DevicePart::findOne($partId);
+
         $searchModel = new $this->searchClass;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'partModel' => $partModel
         ]);
     }
 }

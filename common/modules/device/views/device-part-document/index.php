@@ -14,7 +14,7 @@ $module = $this->context->module;
 
 ?>
 
-<h4 class="nad-page-title">لیست مدارک</h4>
+<h4 class="nad-page-title">لیست مدارک <span class="nad-page-title-focus"><?= $partModel->title . ' ' . $partModel->device->title ?></span></h4>
 <div class="document-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -54,11 +54,17 @@ $module = $this->context->module;
                 'columns' => [
                     [
                         'header' => 'شمارنده',
-                        'class' => 'yii\grid\SerialColumn'
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     [
                         'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:40px'
+                        ]
                     ],
                     'title',
                     [

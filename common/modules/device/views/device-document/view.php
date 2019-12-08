@@ -33,7 +33,12 @@ use nad\common\modules\device\models\DeviceDocument;
                             return Lookup::item(DeviceDocument::LOOKUP_DOCUMENT_NAME, $model->title);
                         }
                     ],
-                    'uniqueCode',
+                    [
+                        'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

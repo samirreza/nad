@@ -16,25 +16,40 @@ use nad\common\modules\device\models\Device;
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin([
-                'title' => 'اطلاعات اصلی'
+                'title' => 'شناسنامه'
             ]) ?>
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
+                    'title',
                     [
-                        'attribute' => 'categoryId',
-                        'value' => function($model){
-                            return $model->category->title;
-                        }
+                        'attribute' => 'category.familyTreeTitle',
+                        'label' => 'شاخه',
                     ],
                     [
                         'attribute' => 'uniqueCode',
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
+                    ],
+                    [
+                        'label' => 'تعداد قطعات',
                         'value' => function($model){
-                            return $model->getUniqueCode();
+                            return $model->getParts()->count();
                         }
                     ],
-                    'title',
-                    'category.familyTreeTitle',
+                    [
+                        'label' => 'تعداد اتصالات',
+                        'value' => function($model){
+                            return $model->getInstances()->count();
+                        }
+                    ],
+                    [
+                        'label' => 'تعداد مدارک',
+                        'value' => function($model){
+                            return $model->getDocuments()->count();
+                        }
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

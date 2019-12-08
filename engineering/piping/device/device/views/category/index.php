@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'رده‌بندی دستورالعملها';
+$this->title = 'رده‌بندی تجهیزات';
 $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',

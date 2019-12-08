@@ -23,12 +23,18 @@ use nad\common\modules\device\models\PartInstance;
                 'attributes' => [
                     [
                         'attribute' => 'uniqueCode',
-                        'value' => function($model){
-                            return $model->getUniqueCode();
-                        }
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
                     ],
                     'part.title',
-                    'deviceUniqueCode',
+                    [
+                        'label' => 'شناسه یکتا تجهیز',
+                        'attribute' => 'deviceInstanceId',
+                        'value' => function($model){
+                            return $model->part->device->uniqueCode;
+                        }
+                    ],
                     'createdAt:date',
                     'updatedAt:datetime',
                 ],

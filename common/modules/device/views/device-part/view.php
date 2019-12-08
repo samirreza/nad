@@ -23,9 +23,9 @@ use nad\common\modules\device\models\DevicePart;
                 'attributes' => [
                     [
                         'attribute' => 'uniqueCode',
-                        'value' => function($model){
-                            return $model->getUniqueCode();
-                        }
+                        'contentOptions' => [
+                            'style' => 'direction: ltr; width:160px'
+                        ]
                     ],
                     'title',
                     [

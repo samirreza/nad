@@ -14,4 +14,5 @@ $this->params['breadcrumbs'] = [
 <?= $this->render('@nad/common/modules/device/views/device-part-document/index', [
     'dataProvider' => $dataProvider,
     'searchModel' => $searchModel,
+    'partModel' => $partModel
 ]);
