@@ -29,14 +29,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/grs/investigationDesign/report/manage/index']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/grs/investigationDesign/method/manage/index']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/grs/investigationDesign/instruction/manage/index']
-                    // ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/grs/investigationDesign/method/manage/index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/grs/investigationDesign/instruction/manage/index']
+                    ],
                 ]
             ],
             [
@@ -54,14 +54,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/grs/investigationDesign/report/manage/archived-index']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/grs/investigationDesign/method/manage/archived-index']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/grs/investigationDesign/instruction/manage/archived-index']
-                    // ]
+                    [
+                        'label' => 'روش',
+                        'url' => ['/grs/investigationDesign/method/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/grs/investigationDesign/instruction/manage/archived-index']
+                    ]
                 ]
             ],
             [
@@ -79,14 +79,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/grs/investigationDesign/report/manage/index-history']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/grs/investigationDesign/method/manage/index-history']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/grs/investigationDesign/instruction/manage/index-history']
-                    // ]
+                    [
+                        'label' => 'روش',
+                        'url' => ['/grs/investigationDesign/method/manage/index-history']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/grs/investigationDesign/instruction/manage/index-history']
+                    ]
                 ]
             ],
             [

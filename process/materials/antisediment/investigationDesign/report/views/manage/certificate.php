@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/antisediment/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/antisediment/manage/investigation-design']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];
@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'antisediment',
-    'baseRoute' => '/antisediment/investigationDesign-monitor'
+    'baseRoute' => '/antisediment/investigation-design'
 ]);

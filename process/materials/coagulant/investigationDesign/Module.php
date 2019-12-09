@@ -13,8 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\coagulant\investigationDesign\proposal\Module',
             'report' => 'nad\process\materials\coagulant\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\coagulant\investigationDesign\reference\Module',
-            // 'method' => 'nad\process\materials\coagulant\investigationDesign\method\Module',
-            // 'instruction' => 'nad\process\materials\coagulant\investigationDesign\instruction\Module',
+            'method' => 'nad\process\materials\coagulant\investigationDesign\method\Module',
+            'instruction' => 'nad\process\materials\coagulant\investigationDesign\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -126,76 +126,76 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            // [
-            //     'label' => 'روش',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن روش',
-            //                     'url' => ['/coagulant/investigationDesign/method/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ روشهای برنامه',
-            //                     'url' => ['/coagulant/investigationDesign/method/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های روش',
-            //                     'url' => ['/coagulant/investigationDesign/method/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'روشها',
-            //                     'url' => ['/coagulant/investigationDesign/method/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای روش',
-            //                     'url' => ['/coagulant/investigationDesign/method/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
-            // [
-            //     'label' => 'دستورالعمل',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن دستورالعمل',
-            //                     'url' => ['/coagulant/investigationDesign/instruction/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
-            //                     'url' => ['/coagulant/investigationDesign/instruction/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های دستورالعمل',
-            //                     'url' => ['/coagulant/investigationDesign/instruction/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'دستورالعملها',
-            //                     'url' => ['/coagulant/investigationDesign/instruction/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای دستورالعمل',
-            //                     'url' => ['/coagulant/investigationDesign/instruction/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/coagulant/investigationDesign/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/coagulant/investigationDesign/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/coagulant/investigationDesign/method/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/coagulant/investigationDesign/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/coagulant/investigationDesign/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/coagulant/investigationDesign/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/coagulant/investigationDesign/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/coagulant/investigationDesign/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/coagulant/investigationDesign/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/coagulant/investigationDesign/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [

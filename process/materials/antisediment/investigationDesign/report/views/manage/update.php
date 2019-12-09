@@ -9,7 +9,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/antisediment/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/antisediment/manage/investigation-design']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

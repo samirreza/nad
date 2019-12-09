@@ -37,5 +37,5 @@ $this->params['horizontalMenuItems'] = [
    'report' => $report,
    'method' => $method,
     'moduleId' => 'grs',
-    'baseRoute' => '/grs/investigationDesign-monitor'
+    'baseRoute' => '/grs/investigation-design'
 ]);

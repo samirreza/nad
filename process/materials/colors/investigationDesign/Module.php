@@ -13,8 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\colors\investigationDesign\proposal\Module',
             'report' => 'nad\process\materials\colors\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\colors\investigationDesign\reference\Module',
-            // 'method' => 'nad\process\materials\colors\investigationDesign\method\Module',
-            // 'instruction' => 'nad\process\materials\colors\investigationDesign\instruction\Module',
+            'method' => 'nad\process\materials\colors\investigationDesign\method\Module',
+            'instruction' => 'nad\process\materials\colors\investigationDesign\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -126,76 +126,76 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            // [
-            //     'label' => 'روش',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن روش',
-            //                     'url' => ['/colors/investigationDesign/method/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ روشهای برنامه',
-            //                     'url' => ['/colors/investigationDesign/method/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های روش',
-            //                     'url' => ['/colors/investigationDesign/method/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'روشها',
-            //                     'url' => ['/colors/investigationDesign/method/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای روش',
-            //                     'url' => ['/colors/investigationDesign/method/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
-            // [
-            //     'label' => 'دستورالعمل',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن دستورالعمل',
-            //                     'url' => ['/colors/investigationDesign/instruction/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
-            //                     'url' => ['/colors/investigationDesign/instruction/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های دستورالعمل',
-            //                     'url' => ['/colors/investigationDesign/instruction/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'دستورالعملها',
-            //                     'url' => ['/colors/investigationDesign/instruction/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای دستورالعمل',
-            //                     'url' => ['/colors/investigationDesign/instruction/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/colors/investigationDesign/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/colors/investigationDesign/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/colors/investigationDesign/method/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/colors/investigationDesign/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/colors/investigationDesign/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/colors/investigationDesign/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/colors/investigationDesign/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/colors/investigationDesign/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/colors/investigationDesign/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/colors/investigationDesign/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [

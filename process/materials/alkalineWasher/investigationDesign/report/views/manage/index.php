@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/alkalineWasher/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation-design']],
     $this->title
 ];
 

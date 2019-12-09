@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/colors/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/colors/manage/investigation-design']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];

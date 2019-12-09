@@ -12,6 +12,6 @@ class Reference extends BaseReference
 
     public static function find()
     {
-        return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
+        return parent::find()->andWhere(['nad_investigation_reference.consumer' => self::CONSUMER_CODE]);
     }
 }

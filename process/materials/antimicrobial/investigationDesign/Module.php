@@ -13,8 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\antimicrobial\investigationDesign\proposal\Module',
             'report' => 'nad\process\materials\antimicrobial\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\antimicrobial\investigationDesign\reference\Module',
-            // 'method' => 'nad\process\materials\antimicrobial\investigationDesign\method\Module',
-            // 'instruction' => 'nad\process\materials\antimicrobial\investigationDesign\instruction\Module',
+            'method' => 'nad\process\materials\antimicrobial\investigationDesign\method\Module',
+            'instruction' => 'nad\process\materials\antimicrobial\investigationDesign\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -126,76 +126,76 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            // [
-            //     'label' => 'روش',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن روش',
-            //                     'url' => ['/antimicrobial/investigationDesign/method/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ روشهای برنامه',
-            //                     'url' => ['/antimicrobial/investigationDesign/method/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های روش',
-            //                     'url' => ['/antimicrobial/investigationDesign/method/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'روشها',
-            //                     'url' => ['/antimicrobial/investigationDesign/method/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای روش',
-            //                     'url' => ['/antimicrobial/investigationDesign/method/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
-            // [
-            //     'label' => 'دستورالعمل',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن دستورالعمل',
-            //                     'url' => ['/antimicrobial/investigationDesign/instruction/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
-            //                     'url' => ['/antimicrobial/investigationDesign/instruction/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های دستورالعمل',
-            //                     'url' => ['/antimicrobial/investigationDesign/instruction/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'دستورالعملها',
-            //                     'url' => ['/antimicrobial/investigationDesign/instruction/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای دستورالعمل',
-            //                     'url' => ['/antimicrobial/investigationDesign/instruction/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/antimicrobial/investigationDesign/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/antimicrobial/investigationDesign/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/antimicrobial/investigationDesign/method/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/antimicrobial/investigationDesign/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/antimicrobial/investigationDesign/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/antimicrobial/investigationDesign/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/antimicrobial/investigationDesign/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/antimicrobial/investigationDesign/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/antimicrobial/investigationDesign/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/antimicrobial/investigationDesign/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [

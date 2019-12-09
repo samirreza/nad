@@ -13,8 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\disinfectant\investigationDesign\proposal\Module',
             'report' => 'nad\process\materials\disinfectant\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\disinfectant\investigationDesign\reference\Module',
-            // 'method' => 'nad\process\materials\disinfectant\investigationDesign\method\Module',
-            // 'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module',
+            'method' => 'nad\process\materials\disinfectant\investigationDesign\method\Module',
+            'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -126,76 +126,76 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            // [
-            //     'label' => 'روش',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن روش',
-            //                     'url' => ['/disinfectant/investigationDesign/method/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ روشهای برنامه',
-            //                     'url' => ['/disinfectant/investigationDesign/method/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های روش',
-            //                     'url' => ['/disinfectant/investigationDesign/method/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'روشها',
-            //                     'url' => ['/disinfectant/investigationDesign/method/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای روش',
-            //                     'url' => ['/disinfectant/investigationDesign/method/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
-            // [
-            //     'label' => 'دستورالعمل',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن دستورالعمل',
-            //                     'url' => ['/disinfectant/investigationDesign/instruction/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
-            //                     'url' => ['/disinfectant/investigationDesign/instruction/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های دستورالعمل',
-            //                     'url' => ['/disinfectant/investigationDesign/instruction/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'دستورالعملها',
-            //                     'url' => ['/disinfectant/investigationDesign/instruction/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای دستورالعمل',
-            //                     'url' => ['/disinfectant/investigationDesign/instruction/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/disinfectant/investigationDesign/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/disinfectant/investigationDesign/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/disinfectant/investigationDesign/method/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/disinfectant/investigationDesign/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/disinfectant/investigationDesign/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/disinfectant/investigationDesign/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/disinfectant/investigationDesign/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/disinfectant/investigationDesign/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/disinfectant/investigationDesign/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/disinfectant/investigationDesign/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [
