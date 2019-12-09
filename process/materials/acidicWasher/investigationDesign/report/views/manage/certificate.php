@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/acidicWasher/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/acidicWasher/manage/investigation-design']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];
@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'acidicWasher',
-    'baseRoute' => '/acidicWasher/investigationDesign-monitor'
+    'baseRoute' => '/acidicWasher/investigation-design'
 ]);

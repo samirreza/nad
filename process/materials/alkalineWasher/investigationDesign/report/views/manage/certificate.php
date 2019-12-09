@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/alkalineWasher/manage/investigation-design']],
+    ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation-design']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];
@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'alkalineWasher',
-    'baseRoute' => '/alkalineWasher/investigationDesign-monitor'
+    'baseRoute' => '/alkalineWasher/investigation-design'
 ]);

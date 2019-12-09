@@ -38,6 +38,6 @@ class Proposal extends BaseProposal
 
     public static function find()
     {
-        return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
+        return parent::find()->andWhere(['nad_investigation_proposal.consumer' => self::CONSUMER_CODE]);
     }
 }

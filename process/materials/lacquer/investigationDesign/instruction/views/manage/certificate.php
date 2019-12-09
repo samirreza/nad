@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'lacquer',
-    'baseRoute' => '/lacquer/investigationDesign-monitor'
+    'baseRoute' => '/lacquer/investigation-design'
 ]);

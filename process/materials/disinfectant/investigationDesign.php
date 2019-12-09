@@ -50,18 +50,18 @@ $this->params['breadcrumbs'] = [
                 'titleUrl' => Url::to(['/disinfectant/investigationDesign/report/manage/index'])
             ]) ?>
         </div>
-        <!-- <div class="col-md-3">
+        <div class="col-md-3">
             <?= InfoBox::widget([
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
                 'titleUrl' => Url::to(['/disinfectant/investigationDesign/method/manage/index'])
             ]) ?>
-        </div> -->
+        </div>
         <div class="col-md-3"></div>
     </div>
     <br>
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <?= InfoBox::widget([
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'] = [
                 'titleUrl' => Url::to(['/disinfectant/investigationDesign/instruction/manage/index'])
             ]) ?>
         </div>
-    </div> -->
+    </div>
     <?php Panel::end() ?>
     <?php Panel::begin([
                     'title' => 'داده گاه ها',
@@ -136,7 +136,7 @@ $this->params['breadcrumbs'] = [
         ]) ?>
     </div>
 </div>
-<!-- <br><br>
+<br><br>
 <div class="row" style="text-align: center">
     <div class="col-md-1"></div>
     <div class="col-md-5">
@@ -155,8 +155,8 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => Url::to(['/disinfectant/investigationDesign/method/manage/index-history'])
         ]) ?>
     </div>
-</div> -->
-<!-- <br><br>
+</div>
+<br><br>
 <div class="row" style="text-align: center">
     <div class="col-md-1"></div>
     <div class="col-md-5">
@@ -174,7 +174,7 @@ $this->params['breadcrumbs'] = [
             'title' => 'روندهای اجرا شده دستورالعمل',
             'titleUrl' => Url::to(['/disinfectant/investigationDesign/method/manage/index-history'])
         ]) ?>
-    </div> -->
+    </div>
 </div>
 <br><br>
 <div class="row" style="text-align: center">

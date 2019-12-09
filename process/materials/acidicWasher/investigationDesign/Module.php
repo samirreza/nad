@@ -13,8 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\acidicWasher\investigationDesign\proposal\Module',
             'report' => 'nad\process\materials\acidicWasher\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\acidicWasher\investigationDesign\reference\Module',
-            // 'method' => 'nad\process\materials\acidicWasher\investigationDesign\method\Module',
-            // 'instruction' => 'nad\process\materials\acidicWasher\investigationDesign\instruction\Module',
+            'method' => 'nad\process\materials\acidicWasher\investigationDesign\method\Module',
+            'instruction' => 'nad\process\materials\acidicWasher\investigationDesign\instruction\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -126,76 +126,76 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
-            // [
-            //     'label' => 'روش',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن روش',
-            //                     'url' => ['/acidicWasher/investigationDesign/method/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ روشهای برنامه',
-            //                     'url' => ['/acidicWasher/investigationDesign/method/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های روش',
-            //                     'url' => ['/acidicWasher/investigationDesign/method/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'روشها',
-            //                     'url' => ['/acidicWasher/investigationDesign/method/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای روش',
-            //                     'url' => ['/acidicWasher/investigationDesign/method/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
-            // [
-            //     'label' => 'دستورالعمل',
-            //     'items' => [
-            //         [
-            //             'label' => 'برنامه',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'افزودن دستورالعمل',
-            //                     'url' => ['/acidicWasher/investigationDesign/instruction/manage/create']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
-            //                     'url' => ['/acidicWasher/investigationDesign/instruction/manage/index']
-            //                 ],
-            //                 [
-            //                     'label' => 'لیست رده های دستورالعمل',
-            //                     'url' => ['/acidicWasher/investigationDesign/instruction/category/index']
-            //                 ],
-            //             ]
-            //         ],
-            //         [
-            //             'label' => 'داده گاه ها',
-            //             'items' => [
-            //                 [
-            //                     'label' => 'دستورالعملها',
-            //                     'url' => ['/acidicWasher/investigationDesign/instruction/manage/archived-index']
-            //                 ],
-            //                 [
-            //                     'label' => 'روندهای دستورالعمل',
-            //                     'url' => ['/acidicWasher/investigationDesign/instruction/manage/index-history']
-            //                 ],
-            //             ]
-            //         ]
-            //     ]
-            // ],
+            [
+                'label' => 'روش',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن روش',
+                                'url' => ['/acidicWasher/investigationDesign/method/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ روشهای برنامه',
+                                'url' => ['/acidicWasher/investigationDesign/method/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های روش',
+                                'url' => ['/acidicWasher/investigationDesign/method/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'روشها',
+                                'url' => ['/acidicWasher/investigationDesign/method/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای روش',
+                                'url' => ['/acidicWasher/investigationDesign/method/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'دستورالعمل',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن دستورالعمل',
+                                'url' => ['/acidicWasher/investigationDesign/instruction/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ دستورالعملهای برنامه',
+                                'url' => ['/acidicWasher/investigationDesign/instruction/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های دستورالعمل',
+                                'url' => ['/acidicWasher/investigationDesign/instruction/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'دستورالعملها',
+                                'url' => ['/acidicWasher/investigationDesign/instruction/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندهای دستورالعمل',
+                                'url' => ['/acidicWasher/investigationDesign/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [

@@ -29,14 +29,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/disinfectant/investigationDesign/report/manage/index']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/disinfectant/investigationDesign/method/manage/index']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/disinfectant/investigationDesign/instruction/manage/index']
-                    // ],
+                    [
+                        'label' => 'روش',
+                        'url' => ['/disinfectant/investigationDesign/method/manage/index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/disinfectant/investigationDesign/instruction/manage/index']
+                    ],
                 ]
             ],
             [
@@ -54,14 +54,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/disinfectant/investigationDesign/report/manage/archived-index']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/disinfectant/investigationDesign/method/manage/archived-index']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/disinfectant/investigationDesign/instruction/manage/archived-index']
-                    // ]
+                    [
+                        'label' => 'روش',
+                        'url' => ['/disinfectant/investigationDesign/method/manage/archived-index']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/disinfectant/investigationDesign/instruction/manage/archived-index']
+                    ]
                 ]
             ],
             [
@@ -79,14 +79,14 @@ class Module extends BaseModule
                         'label' => 'گزارش',
                         'url' => ['/disinfectant/investigationDesign/report/manage/index-history']
                     ],
-                    // [
-                    //     'label' => 'روش',
-                    //     'url' => ['/disinfectant/investigationDesign/method/manage/index-history']
-                    // ],
-                    // [
-                    //     'label' => 'دستورالعمل',
-                    //     'url' => ['/disinfectant/investigationDesign/instruction/manage/index-history']
-                    // ]
+                    [
+                        'label' => 'روش',
+                        'url' => ['/disinfectant/investigationDesign/method/manage/index-history']
+                    ],
+                    [
+                        'label' => 'دستورالعمل',
+                        'url' => ['/disinfectant/investigationDesign/instruction/manage/index-history']
+                    ]
                 ]
             ],
             [
