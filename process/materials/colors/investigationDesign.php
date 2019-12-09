@@ -50,14 +50,14 @@ $this->params['breadcrumbs'] = [
                 'titleUrl' => Url::to(['/colors/investigationDesign/report/manage/index'])
             ]) ?>
         </div>
-        <!-- <div class="col-md-3">
+        <div class="col-md-3">
             <?= InfoBox::widget([
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
                 'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/index'])
             ]) ?>
-        </div> -->
+        </div>
         <div class="col-md-3"></div>
     </div>
     <br>
