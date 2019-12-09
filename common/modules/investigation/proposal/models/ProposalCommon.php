@@ -10,8 +10,10 @@ use nad\office\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\report\models\Report;
+use nad\common\modules\investigation\method\models\Method;
 use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceArchived;
+use nad\common\modules\investigation\instruction\models\Instruction;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\proposal\behaviors\PartnersBehavior;
@@ -68,6 +70,14 @@ class ProposalCommon extends BaseInvestigationModel
                         [
                             'relationMethod' => 'getReport',
                             'relationName' => 'گزارش'
+                        ],
+                        [
+                            'relationMethod' => 'getMethods',
+                            'relationName' => 'روش'
+                        ],
+                        [
+                            'relationMethod' => 'getInstructions',
+                            'relationName' => 'دستورالعمل'
                         ]
                     ]
                 ],
@@ -277,17 +287,41 @@ class ProposalCommon extends BaseInvestigationModel
         return $this->source->title;
     }
 
+    // TODO fix this for many reports relation
     public function getReport()
     {
         return $this->hasOne(Report::class, ['proposalId' => 'id']);
     }
 
+    // TODO fix this for many reports relation
     public function getReportAsString()
     {
         if (!isset($this->Report)) {
             return null;
         }
-        return $this->Report->title;
+        return ''; //$this->Report->title;
+    }
+
+    public function getMethods()
+    {
+        // TODO Rewrite with ActiveRecord::exists()
+        $methods = Method::findAll(['proposalId' => $this->id]);
+        if (isset($methods)) {
+            return $this->hasMany(Method::class, ['proposalId' => 'id']);
+        } else {
+            return $this->hasMany(MethodArchived::class, ['proposalId' => 'id']);
+        }
+    }
+
+    public function getInstructions()
+    {
+        // TODO Rewrite with ActiveRecord::exists()
+        $instructions = Instruction::findAll(['proposalId' => $this->id]);
+        if (isset($instructions)) {
+            return $this->hasMany(Instruction::class, ['proposalId' => 'id']);
+        } else {
+            return $this->hasMany(InstructionArchived::class, ['proposalId' => 'id']);
+        }
     }
 
     public function getReportExpert()

@@ -63,15 +63,15 @@ class InstructionCommon extends BaseInvestigationModel
                     'determinativeColumn' => 'categoryId'
                 ],
                 'partners' => PartnersBehavior::class,
-                [
-                    'class' => PreventDeleteBehavior::class,
-                    'relations' => [
-                        [
-                            'relationMethod' => 'getInstruction',
-                            'relationName' => 'دستورالعمل'
-                        ]
-                    ]
-                ],
+                // [
+                //     'class' => PreventDeleteBehavior::class,
+                //     'relations' => [
+                //         [
+                //             'relationMethod' => '',
+                //             'relationName' => ''
+                //         ]
+                //     ]
+                // ],
                 [
                     'class' => FileBehavior::class,
                     'groups' => [
@@ -410,7 +410,9 @@ class InstructionCommon extends BaseInvestigationModel
                                     Proposal::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION,
                                     Proposal::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION,
                                 ]
-                            ])
+                            ])->andWhere([
+                                'consumer' => $proposalConsumerCode
+                                ])
                             ->all();
         }else{
             $expertProposals = Proposal::find()
@@ -447,7 +449,9 @@ class InstructionCommon extends BaseInvestigationModel
                                     Report::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION,
                                     Report::STATUS_IN_NEXT_STEP_FOR_SOURCE_METHOD_INSTRUCTION,
                                 ]
-                            ])
+                            ])->andWhere([
+                                'consumer' => $reportConsumerCode
+                                ])
                             ->all();
         }else{
             $expertReports = Report::find()
@@ -483,7 +487,9 @@ class InstructionCommon extends BaseInvestigationModel
                                     Method::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION,
                                     Method::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION,
                                 ]
-                            ])
+                            ])->andWhere([
+                                'consumer' => $methodConsumerCode
+                                ])
                             ->all();
         }else{
             $expertMethods = Method::find()

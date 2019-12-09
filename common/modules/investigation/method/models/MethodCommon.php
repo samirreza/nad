@@ -14,6 +14,7 @@ use nad\common\modules\investigation\method\models\Method;
 use nad\common\modules\investigation\report\models\Report;
 use nad\common\modules\investigation\report\models\ReportArchived;
 use nad\common\modules\investigation\proposal\models\Proposal;
+use nad\common\modules\investigation\instruction\models\Instruction;
 use nad\common\modules\investigation\proposal\models\ProposalArchived;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
@@ -65,7 +66,7 @@ class MethodCommon extends BaseInvestigationModel
                     'class' => PreventDeleteBehavior::class,
                     'relations' => [
                         [
-                            'relationMethod' => 'getInstruction',
+                            'relationMethod' => 'getInstructions',
                             'relationName' => 'دستورالعمل'
                         ]
                     ]
@@ -340,6 +341,17 @@ class MethodCommon extends BaseInvestigationModel
         return $this->report->title;
     }
 
+    public function getInstructions()
+    {
+        // TODO Rewrite with ActiveRecord::exists()
+        $instructions = Instruction::findAll(['methodId' => $this->id]);
+        if (isset($instructions)) {
+            return $this->hasMany(Instruction::class, ['methodId' => 'id']);
+        } else {
+            return $this->hasMany(InstructionArchived::class, ['methodId' => 'id']);
+        }
+    }
+
     public function getExpert()
     {
         return $this->hasOne(Expert::class, ['id' => 'expertId']);
@@ -371,6 +383,8 @@ class MethodCommon extends BaseInvestigationModel
                                     Proposal::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION,
                                     Proposal::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION,
                                 ]
+                            ])->andWhere([
+                                'consumer' => $proposalConsumerCode
                             ])
                             ->all();
         }else{
@@ -408,6 +422,8 @@ class MethodCommon extends BaseInvestigationModel
                                     Report::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION,
                                     Report::STATUS_IN_NEXT_STEP_FOR_SOURCE_METHOD_INSTRUCTION,
                                 ]
+                            ])->andWhere([
+                                'consumer' => $reportConsumerCode
                             ])
                             ->all();
         }else{
