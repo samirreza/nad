@@ -8,7 +8,7 @@ use theme\widgets\Button;
 use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
 use extensions\file\widgets\singleupload\SingleFileUpload;
-use nad\common\modules\device\models\DeviceDocument;
+use nad\common\modules\device\models\DeviceCategoryDocument;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $className = get_class($model);
@@ -25,19 +25,22 @@ $uploadedFiles = $model->getFiles('file');
     <div class="row">
         <div class="col-md-7">
             <?php Panel::begin() ?>
-            <?= Html::activeHiddenInput($model, 'deviceId'); ?>
+            <?= Html::activeHiddenInput($model, 'categoryId'); ?>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'title')->dropDownList(
-                        Lookup::items(DeviceDocument::LOOKUP_DOCUMENT_NAME, false),
-                        ['prompt'=>'انتخاب کنید']
-                    ) ?>
+                    <?= $form->field($model, 'title')->textInput() ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'format')->dropDownList(
-                        Lookup::items(DeviceDocument::LOOKUP_DOCUMENT_FORMAT, false),
+                        Lookup::items(DeviceCategoryDocument::LOOKUP_DOCUMENT_FORMAT, false),
                         ['prompt'=>'انتخاب کنید']
                     ) ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <?= $form->field($model, 'code')->textInput(['maxlength' => 1,
+                        'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
                 </div>
             </div>
             <?php Panel::end() ?>

@@ -6,17 +6,18 @@ use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\Device;
+use nad\common\modules\device\models\Category;
 
-class DeviceDocument extends \yii\db\ActiveRecord implements Codable
+class DeviceCategoryDocument extends \yii\db\ActiveRecord implements Codable
 {
     use CodableTrait;
 
-    const LOOKUP_DOCUMENT_FORMAT = 'nad.device.DeviceDocument.docFormat';
-    const LOOKUP_DOCUMENT_NAME = 'nad.device.DeviceDocument.docName';
+    const LOOKUP_DOCUMENT_FORMAT = 'nad.device.categoryDocument.docFormat';
+    // const LOOKUP_DOCUMENT_NAME = 'nad.device.DeviceCategoryDocument.docName';
 
     public static function tableName()
     {
-        return 'nad_eng_device_document';
+        return 'nad_eng_device_category_document';
     }
 
     public function behaviors()
@@ -45,17 +46,17 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['format', 'title', 'deviceId'], 'required'],
-            [['format', 'title', 'deviceId'], 'integer'],
-            // [['code'], 'trim'],
-            // [['code'], 'string', 'max' => 255],
-            // ['code', 'string', 'max' => 1, 'min' => 1],
-            // [['code'], FarsiCharactersValidator::className()],
+            [['format', 'title', 'categoryId', 'code'], 'required'],
+            [['format', 'categoryId'], 'integer'],
+            [['code', 'title'], 'trim'],
+            [['code', 'title'], 'string', 'max' => 255],
+            ['code', 'string', 'max' => 1, 'min' => 1],
+            [['code', 'title'], FarsiCharactersValidator::className()],
             [
-                'title',
+                'code',
                 'unique',
-                'targetAttribute' => ['title', 'format', 'deviceId'],
-                'message' => 'ترکیب نام و نوع مدرک تکراری است.'
+                'targetAttribute' => ['code', 'categoryId'],
+                'message' => 'این شناسه پیش تر ثبت شده است.'
             ],
         ];
     }
@@ -63,19 +64,19 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            // 'code' => 'شمارنده',
+            'code' => 'شمارنده',
             'title' => 'نام مدرک',
             'uniqueCode' => 'شناسه مدرک',
             'format' => 'نوع مدرک',
-            'deviceId' => 'شناسه تجهیز',
+            'categoryId' => 'شناسه رده',
             'createdAt' => 'تاریخ درج',
             'updatedAt' => 'آخرین بروزرسانی'
         ];
     }
 
-    public function getDevice()
+    public function getCategory()
     {
-        return $this->hasOne(Device::className(), ['id' => 'deviceId']);
+        return $this->hasOne(Category::className(), ['id' => 'categoryId']);
     }
 
     public function beforeValidate()
@@ -85,7 +86,7 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        // dd($this->deviceId);
+        // dd($this->categoryId);
         // if ($insert) {
         //     $this->consumer = static::CONSUMER_CODE;
         // }
@@ -95,7 +96,7 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->device->uniqueCode . '.D' . '.' . $this->getNameCode() . '.' . $this->getFormatCode();
+        $this->uniqueCode = $this->category->uniqueCode . '.D.' . $this->getFormatCode() . '.' . $this->code;
     }
 
     public function getUniqueCode() : string
@@ -105,25 +106,10 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function getFormatCode(){
         $codes = [
-            1 => 'P',
-            2 => 'D',
-            3 => 'S',
-            4 => 'C',
+            1 => 'B', // Book
+            2 => 'A', // Paper ??
         ];
 
         return $codes[$this->format];
-    }
-
-    public function getNameCode(){
-        $codes = [
-            1 => 'E',
-            2 => 'A',
-            3 => 'F',
-            4 => 'M',
-            5 => 'C',
-            6 => 'D'
-        ];
-
-        return $codes[$this->title];
     }
 }
