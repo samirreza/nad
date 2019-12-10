@@ -59,6 +59,23 @@ use nad\common\widgets\treeView\TreeView;
                                 'options' => ['style' => 'width:80px'],
                             ],
                             [
+                                'label' => 'لیست مدارک',
+                                'format' => 'html',
+                                'value' => function ($model) {
+                                    return Html::a(
+                                            '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
+                                            [
+                                                'device-category-document/index',
+                                            'DeviceCategoryDocumentSearch[categoryId]' => $model->id
+                                            ],
+                                            [
+                                                'title' => 'لیست مدارک',
+                                                'data-pjax' => 0
+                                            ]
+                                        );
+                                }
+                            ],
+                            [
                                 'header' => 'دسترسی',
                                 'class' => 'core\grid\AjaxActionColumn',
                                 'template' => '{view} {update} {delete} {tree}',
