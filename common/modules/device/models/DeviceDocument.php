@@ -45,17 +45,17 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['format', 'title', 'deviceId', 'code'], 'required'],
+            [['format', 'title', 'deviceId'], 'required'],
             [['format', 'title', 'deviceId'], 'integer'],
-            [['code'], 'trim'],
-            [['code'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 1, 'min' => 1],
-            [['code'], FarsiCharactersValidator::className()],
+            // [['code'], 'trim'],
+            // [['code'], 'string', 'max' => 255],
+            // ['code', 'string', 'max' => 1, 'min' => 1],
+            // [['code'], FarsiCharactersValidator::className()],
             [
-                'code',
+                'title',
                 'unique',
-                'targetAttribute' => ['code', 'deviceId'],
-                'message' => 'این شناسه پیش تر ثبت شده است.'
+                'targetAttribute' => ['title', 'format', 'deviceId'],
+                'message' => 'ترکیب نام و نوع مدرک تکراری است.'
             ],
         ];
     }
@@ -63,7 +63,7 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
     public function attributeLabels()
     {
         return [
-            'code' => 'شمارنده',
+            // 'code' => 'شمارنده',
             'title' => 'نام مدرک',
             'uniqueCode' => 'شناسه مدرک',
             'format' => 'نوع مدرک',
@@ -95,11 +95,35 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->device->uniqueCode . '.D.' . $this->code;
+        $this->uniqueCode = $this->device->uniqueCode . '.D' . '.' . $this->getNameCode() . '.' . $this->getFormatCode();
     }
 
     public function getUniqueCode() : string
     {
         return isset($this->uniqueCode)?$this->uniqueCode:'';
+    }
+
+    public function getFormatCode(){
+        $codes = [
+            1 => 'P',
+            2 => 'D',
+            3 => 'S',
+            4 => 'C',
+        ];
+
+        return $codes[$this->format];
+    }
+
+    public function getNameCode(){
+        $codes = [
+            1 => 'E',
+            2 => 'A',
+            3 => 'F',
+            4 => 'M',
+            5 => 'C',
+            6 => 'D'
+        ];
+
+        return $codes[$this->title];
     }
 }
