@@ -67,6 +67,12 @@ use nad\common\modules\investigation\source\models\SourceReason;
                             ]
                         ])
                     ],
+                    [
+                        'attribute' => 'experts',
+                        'value' => function ($model) {
+                            return $model->getExpertFullNamesAsString();
+                        }
+                    ],
                     // [
                     //     'attribute' => 'createdAt',
                     //     'format' => ['date', 'Y-M-d']
