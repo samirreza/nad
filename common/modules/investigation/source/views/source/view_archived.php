@@ -82,11 +82,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' => function ($model) {
-                                        // TODO move it to a state in "Source::getUserHolderLables()"
-                                        if($model->hasAnyExpert() && $model->status == Source::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش پروپوزال';
-                                        }
-                                        return Source::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     }
                                 ],
                                 [
