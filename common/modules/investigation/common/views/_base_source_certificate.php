@@ -66,28 +66,24 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             //     'label' => 'علل فرعی منشا',
             //     'value' => $source->reasons
             // ],
-            [
-                'attribute' => 'references',
-                'label' => 'منابع منشا',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getClickableReferencesAsString();
-                }
-            ],
-            [
-                'attribute' => 'tags',
-                'label' => 'کلید واژه‌ها منشا',
-                'value' => $source->getTagsAsString()
-            ],
+            // [
+            //     'attribute' => 'references',
+            //     'label' => 'منابع منشا',
+            //     'format' => 'raw',
+            //     'value' => function ($model) {
+            //         return $model->getClickableReferencesAsString();
+            //     }
+            // ],
+            // [
+            //     'attribute' => 'tags',
+            //     'label' => 'کلید واژه‌ها منشا',
+            //     'value' => $source->getTagsAsString()
+            // ],
             [
                 'attribute' => 'status',
                 'label' => 'وضعیت منشا',
-                'value' => function($model){
-                    // TODO move it to a state in "Source::getUserHolderLables()"
-                    if($model->hasAnyExpert() && $model->status != Source::STATUS_IN_NEXT_STEP && $model->status != Source::STATUS_LOCKED){
-                        return 'منتظر ارسال جهت نگارش پروپوزال';
-                    }
-                    return Source::getStatusLables()[$model->status];
+                'value' => function ($model) {
+                    return $model->getStatusLabel();
                 }
             ],
             [
