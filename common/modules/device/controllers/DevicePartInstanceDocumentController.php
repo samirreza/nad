@@ -5,10 +5,10 @@ namespace nad\common\modules\device\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use nad\common\modules\device\models\PartInstance;
-use nad\common\modules\device\models\PartInstanceSearch;
-use nad\common\modules\device\models\PartInstanceDocument;
+use nad\common\modules\device\models\DevicePartInstanceDocument;
+use nad\common\modules\document\models\DevicePartInstanceDocumentSearch;
 
-class PartInstanceController extends \core\controllers\AjaxAdminController
+class DevicePartInstanceDocumentController extends \core\controllers\AjaxAdminController
 {
     public function behaviors()
     {
@@ -25,10 +25,12 @@ class PartInstanceController extends \core\controllers\AjaxAdminController
                                 'view',
                                 'create',
                                 'delete',
+                                'tree-list',
+                                'get-json-tree',
                                 'update'
                             ],
                             'roles' => ['@']
-                        ]
+                        ],
                     ]
                 ]
             ]
@@ -37,23 +39,23 @@ class PartInstanceController extends \core\controllers\AjaxAdminController
 
     public function init()
     {
-        $this->modelClass = PartInstance::className();
-        $this->searchClass = PartInstanceSearch::className();
+        $this->modelClass = DevicePartInstanceDocument::className();
+        $this->searchClass = DevicePartInstanceDocumentSearch::className();
         parent::init();
     }
 
     public function actionIndex()
     {
+        $instanceId = Yii::$app->request->queryParams['DevicePartInstanceDocumentSearch']['instanceId'];
+        $instanceModel = PartInstance::findOne($instanceId);
+
         $searchModel = new $this->searchClass;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $partId = Yii::$app->request->queryParams['PartInstanceSearch']['partId'];
-        $partModel = PartInstance::findOne($partId);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'partModel' => $partModel,
+            'instanceModel' => $instanceModel
         ]);
     }
 }

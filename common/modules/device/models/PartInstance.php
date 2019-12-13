@@ -5,9 +5,6 @@ use nad\common\code\Codable;
 use yii\helpers\ArrayHelper;
 use nad\common\code\CodableTrait;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\common\modules\device\models\Device;
-use nad\common\modules\device\models\DevicePart;
-use nad\common\modules\device\models\DeviceInstance;
 
 class PartInstance extends \yii\db\ActiveRecord implements Codable
 {
@@ -70,7 +67,7 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
 
     public function getDocuments()
     {
-        return $this->hasMany(PartInstanceDocument::className(), ['instanceId' => 'id']);
+        return $this->hasMany(DevciePartInstanceDocument::className(), ['instanceId' => 'id']);
     }
 
     public function beforeValidate()
