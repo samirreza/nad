@@ -29,7 +29,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'isActive' => ($model->canUserDeliverToManager() || $model->canAcceptOrRejectOrSendForCorrection() || $model->canSendToWriteProposal() || Yii::$app->user->can('superuser')),
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteProposal() || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -85,7 +85,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Source::STATUS_WAITING_FOR_SESSION
+                                'newStatus' => Source::STATUS_WAITING_FOR_SESSION_DATE
                             ]
                         ],
                         'set-session-date' => [
@@ -132,7 +132,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -145,7 +145,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => 'رد',
                     'type' => 'info',
                     'icon' => 'close',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -287,11 +287,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' => function ($model) {
-                                        // TODO move it to a state in "Source::getUserHolderLables()"
-                                        if($model->hasAnyExpert() && $model->status == Source::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش پروپوزال';
-                                        }
-                                        return Source::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     }
                                 ],
                                 [
@@ -321,7 +317,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'title' => 'سابقه پیدایش',
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
@@ -331,7 +327,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'title' => 'شرح عنوان',
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
@@ -342,7 +338,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'title' => 'نتیجه جلسه',
                         'showCollapseButton' => true
                         ]) ?>
-                        <div class="well">
+                        <div>
                             <?= $model->proceedings ?>
                         </div>
                     <?php Panel::end() ?>

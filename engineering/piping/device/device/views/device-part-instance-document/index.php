@@ -1,7 +1,7 @@
 <?php
 
-$this->title = 'لیست قطعات';
-// $this->params['stageCategoriesIndex'] = ['/engineering/piping/stage/category/index'];
+$this->title = 'لیست مدارک';
+$this->params['deviceIndex'] = ['/engineering/piping/device/device/manage/index'];
 $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',
@@ -11,8 +11,8 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<?= $this->render('@nad/common/modules/device/views/part-instance/index', [
+<?= $this->render('@nad/common/modules/device/views/device-part-instance-document/index', [
     'dataProvider' => $dataProvider,
     'searchModel' => $searchModel,
-    'partModel' => $partModel
+    'instanceModel' => $instanceModel
 ]);

@@ -92,19 +92,19 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     );
                 }
             ],
-            [
-                'attribute' => 'references',
-                'label' => 'منابع روش',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getClickableReferencesAsString();
-                }
-            ],
-            [
-                'attribute' => 'tags',
-                'label' => 'کلید واژه‌ها روش',
-                'value' => $method->getTagsAsString()
-            ],
+            // [
+            //     'attribute' => 'references',
+            //     'label' => 'منابع روش',
+            //     'format' => 'raw',
+            //     'value' => function ($model) {
+            //         return $model->getClickableReferencesAsString();
+            //     }
+            // ],
+            // [
+            //     'attribute' => 'tags',
+            //     'label' => 'کلید واژه‌ها روش',
+            //     'value' => $method->getTagsAsString()
+            // ],
             [
                 'attribute' => 'status',
                 'label' => 'وضعیت روش',

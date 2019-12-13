@@ -92,19 +92,19 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     );
                 }
             ],
-            [
-                'attribute' => 'references',
-                'label' => 'منابع گزارش',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getClickableReferencesAsString();
-                }
-            ],
-            [
-                'attribute' => 'tags',
-                'label' => 'کلید واژه‌ها گزارش',
-                'value' => $report->getTagsAsString()
-            ],
+            // [
+            //     'attribute' => 'references',
+            //     'label' => 'منابع گزارش',
+            //     'format' => 'raw',
+            //     'value' => function ($model) {
+            //         return $model->getClickableReferencesAsString();
+            //     }
+            // ],
+            // [
+            //     'attribute' => 'tags',
+            //     'label' => 'کلید واژه‌ها گزارش',
+            //     'value' => $report->getTagsAsString()
+            // ],
             [
                 'attribute' => 'status',
                 'label' => 'وضعیت گزارش',

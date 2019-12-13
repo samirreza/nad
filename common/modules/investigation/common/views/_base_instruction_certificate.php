@@ -92,19 +92,19 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     );
                 }
             ],
-            [
-                'attribute' => 'references',
-                'label' => 'منابع دستورالعمل',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getClickableReferencesAsString();
-                }
-            ],
-            [
-                'attribute' => 'tags',
-                'label' => 'کلید واژه‌ها دستورالعمل',
-                'value' => $instruction->getTagsAsString()
-            ],
+            // [
+            //     'attribute' => 'references',
+            //     'label' => 'منابع دستورالعمل',
+            //     'format' => 'raw',
+            //     'value' => function ($model) {
+            //         return $model->getClickableReferencesAsString();
+            //     }
+            // ],
+            // [
+            //     'attribute' => 'tags',
+            //     'label' => 'کلید واژه‌ها دستورالعمل',
+            //     'value' => $instruction->getTagsAsString()
+            // ],
             [
                 'attribute' => 'status',
                 'label' => 'وضعیت دستورالعمل',

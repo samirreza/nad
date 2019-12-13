@@ -15,7 +15,7 @@ $this->title = 'لیست قطعات';
 // ];
 ?>
 
-<h4 class="nad-page-title">لیست قطعات</h4>
+<h4 class="nad-page-title">لیست قطعات <span class="nad-page-title-focus"><?= $partModel->part->device->title ?></span></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
@@ -90,8 +90,8 @@ $this->title = 'لیست قطعات';
                             return Html::a(
                                     '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
                                     [
-                                        'device-part-document/index',
-                                    'DevicePartDocumentSearch[partId]' => $model->partId
+                                        'device-part-instance-document/index',
+                                    'DevicePartInstanceDocumentSearch[instanceId]' => $model->partId
                                     ],
                                     [
                                         'title' => 'لیست مدارک',
