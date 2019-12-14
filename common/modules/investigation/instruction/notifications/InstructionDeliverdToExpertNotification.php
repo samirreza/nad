@@ -8,7 +8,7 @@ class InstructionDeliverdToExpertNotification extends Notification
 {
     public $instruction;
     public $moduleId = 'instruction';
-    public $category = 'دستورالعمل نیازمند اصلاح';
+    public $category = 'دستورالعمل';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class InstructionDeliverdToExpertNotification extends Notification
 
     public function getTitle()
     {
-        return "دستورالعمل «{$this->instruction->title}» جهت اصلاح مجددا به شما ارسال شده است.";
+        return "{$this->instruction->title}";
     }
 
     public function getRoute()

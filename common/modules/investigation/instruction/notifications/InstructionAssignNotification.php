@@ -9,7 +9,7 @@ class InstructionAssignNotification extends Notification
 {
     public $instruction;
     public $moduleId = 'instruction';
-    public $category = 'نگارش';
+    public $category = 'دستورالعمل';
     public $baseViewRoute;
 
     public function getChannels()
@@ -19,20 +19,20 @@ class InstructionAssignNotification extends Notification
 
     public function getTitle()
     {
-        switch ($this->instruction->status) {
-            case InstructionCommon::STATUS_IN_NEXT_STEP :
-                $this->category .= ' منشا';
-                break;
-            // case InstructionCommon::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION :
-            //     $this->category .= ' دستورالعمل';
-            //     break;
-            // case InstructionCommon::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION :
-            //     $this->category .= ' منشا/دستورالعمل';
-            //     break;
-            default:
-                break;
-        }
-        return "دستورالعمل «{$this->instruction->title}» برای {$this->category} به شما تحویل داده شد.";
+        // switch ($this->instruction->status) {
+        //     case InstructionCommon::STATUS_IN_NEXT_STEP :
+        //         $this->category = ' منشا';
+        //         break;
+        //     // case InstructionCommon::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION :
+        //     //     $this->category .= ' دستورالعمل';
+        //     //     break;
+        //     // case InstructionCommon::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION :
+        //     //     $this->category .= ' منشا/دستورالعمل';
+        //     //     break;
+        //     default:
+        //         break;
+        // }
+        return "{$this->instruction->title}";
     }
 
     public function getRoute()

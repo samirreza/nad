@@ -8,7 +8,7 @@ class ProposalDeliverdToExpertNotification extends Notification
 {
     public $proposal;
     public $moduleId = 'proposal';
-    public $category = 'پروپوزال نیازمند اصلاح';
+    public $category = 'پروپوزال';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class ProposalDeliverdToExpertNotification extends Notification
 
     public function getTitle()
     {
-        return "پروپوزال «{$this->proposal->title}» جهت اصلاح مجددا به شما ارسال شده است.";
+        return "{$this->proposal->title}";
     }
 
     public function getRoute()

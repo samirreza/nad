@@ -8,7 +8,7 @@ class SourceDeliverdToExpertNotification extends Notification
 {
     public $source;
     public $moduleId = 'source';
-    public $category = 'منشا نیازمند اصلاح';
+    public $category = 'منشا';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class SourceDeliverdToExpertNotification extends Notification
 
     public function getTitle()
     {
-        return "منشا «{$this->source->title}» جهت اصلاح مجددا به شما ارسال شده است.";
+        return "{$this->source->title}";
     }
 
     public function getRoute()

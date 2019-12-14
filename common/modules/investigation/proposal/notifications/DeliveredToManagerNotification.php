@@ -8,7 +8,7 @@ class DeliveredToManagerNotification extends Notification
 {
     public $proposal;
     public $moduleId = 'proposal';
-    public $category = 'ارسال پروپوزال';
+    public $category = 'پروپوزال';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class DeliveredToManagerNotification extends Notification
 
     public function getTitle()
     {
-        return "پروپوزال {$this->proposal->title} برای شما ارسال شده است.";
+        return "{$this->proposal->title}";
     }
 
     public function getRoute()

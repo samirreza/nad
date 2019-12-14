@@ -8,7 +8,7 @@ class DeliveredToManagerNotification extends Notification
 {
     public $report;
     public $moduleId = 'report';
-    public $category = 'ارسال گزارش';
+    public $category = 'گزارش';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class DeliveredToManagerNotification extends Notification
 
     public function getTitle()
     {
-        return "گزارش {$this->report->title} برای شما ارسال شده است.";
+        return "{$this->report->title}";
     }
 
     public function getRoute()
