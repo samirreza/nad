@@ -66,7 +66,10 @@ $module = $this->context->module;
                             'style' => 'direction: ltr; width:40px'
                         ]
                     ],
-                    'title',
+                    [
+                        'class' => 'nad\common\grid\Column',
+                        'attribute' => 'title',
+                    ],
                     [
                         'header' => 'مدارک',
                         'format' => 'raw',
