@@ -117,17 +117,17 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'newStatus' => Source::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'type' => 'info',
-                    'icon' => 'refresh',
-                    'isActive' => $model->canSetForCorrection(),
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Source::STATUS_NEED_CORRECTION
-                    ]
-                ],
+                // 'need-correction' => [
+                //     'label' => 'نیازمند اصلاح',
+                //     'type' => 'info',
+                //     'icon' => 'refresh',
+                //     'isActive' => $model->canSetForCorrection(),
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Source::STATUS_NEED_CORRECTION
+                //     ]
+                // ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
