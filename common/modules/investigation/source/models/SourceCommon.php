@@ -399,7 +399,13 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     public function canManagerDeliverToExpert(){
-        return Yii::$app->user->can('superuser') && $this->status == self::STATUS_NEED_CORRECTION && $this->userHolder != self::USER_HOLDER_EXPERT;
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_ACCEPTED &&  (
+            $this->status == self::STATUS_NEED_CORRECTION
+            ||
+            self::STATUS_WAITING_FOR_NEXT_STATUS
+            ||
+            ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
+        ) && $this->userHolder == self::USER_HOLDER_MANAGER;
     }
 
     public function canSetWaitForSession(){
@@ -415,7 +421,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function canSetSessionDate()
     {
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && ($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION_DATE);
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION_DATE) || ($this->sessionDate != null && $this->status == self::STATUS_WAITING_FOR_SESSION_RESULT));
     }
 
     public function canWriteProceedings()
@@ -450,6 +456,7 @@ class SourceCommon extends BaseInvestigationModel
         return false;
     }
 
+    // TODO This function is not used anymore, remove asap
     public function canSetForCorrection()
     {
         if(Yii::$app->user->can('superuser') &&
