@@ -67,7 +67,7 @@ $module = $this->context->module;
                         ]
                     ],
                     [
-                        'class' => 'nad\common\grid\Column',
+                        'class' => 'nad\common\code\CodeGridColumn',
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [
                             'style' => 'direction: ltr; width:160px'

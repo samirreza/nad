@@ -44,7 +44,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                             'placeholder' => 'جست‌و‌جو شناسه'
                         ],
                         'options' => [
-                            'width' => '40px'
+                            'width' => '40px',
                         ]
                     ],
                     [

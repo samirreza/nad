@@ -60,7 +60,7 @@ $this->title = 'لیست قطعات';
                         ]
                     ],
                     [
-                        'class' => 'nad\common\grid\Column',
+                        'class' => 'nad\common\code\CodeGridColumn',
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [
                             'style' => 'direction: ltr; width:40px'

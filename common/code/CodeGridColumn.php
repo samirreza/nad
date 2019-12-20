@@ -4,8 +4,9 @@ namespace nad\common\code;
 
 use yii\helpers\Html;
 use yii\grid\DataColumn;
+use nad\common\grid\Column;
 
-class CodeGridColumn extends DataColumn
+class CodeGridColumn extends Column
 {
     public $isAjaxGrid = false;
 
@@ -17,7 +18,9 @@ class CodeGridColumn extends DataColumn
         if (empty($this->options)) {
             $this->options = ['style' => 'width:20%'];
         }
+
         $this->format = 'raw';
-        $this->contentOptions = ['style' => 'direction:ltr'];
+        $this->contentOptions = ['style' => 'direction:ltr; font-family:Tahoma'];
+        $this->filterInputOptions['style'] = [';direction:ltr; font-family:Tahoma'];
     }
 }
