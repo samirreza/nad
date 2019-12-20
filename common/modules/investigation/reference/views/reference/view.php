@@ -39,12 +39,12 @@ use nad\common\modules\investigation\reference\models\Reference;
                                 return $model->getTagsAsString();
                             }
                         ],
-                        [
-                            'attribute' => 'referenceUses',
-                            'value' => function ($model) {
-                                return $model->getCodesAsString();
-                            }
-                        ],
+                        // [
+                        //     'attribute' => 'referenceUses',
+                        //     'value' => function ($model) {
+                        //         return $model->getCodesAsString();
+                        //     }
+                        // ],
                         [
                             'label' => 'فایل',
                             'format' => 'raw',

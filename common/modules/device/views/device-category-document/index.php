@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
+use nad\common\modules\device\models\DocNameLookup;
 use nad\common\modules\device\models\DeviceCategoryDocument;
 use theme\widgets\ActionButtons;
 
@@ -67,8 +68,21 @@ $module = $this->context->module;
                         ]
                     ],
                     [
-                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'title',
+                        'value' => function($model){
+                            return DocNameLookup::item(DocNameLookup::TYPE_DEVICE_CATEGORY,$model->title);
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'title',
+                            'data' => DocNameLookup::items(DocNameLookup::TYPE_DEVICE_CATEGORY),
+                            'options' => [
+                                'placeholder' => 'جست‌وجو'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ])
                     ],
                     [
                         'attribute' => 'format',

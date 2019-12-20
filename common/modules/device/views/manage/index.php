@@ -40,6 +40,12 @@ $module = $this->context->module;
                 'icon' => 'tree',
                 'url' => ['tree-list'],
                 'type' => 'success',
+            ],
+            'lookupIndex' => [
+                'label' => 'تعریف نام مدارک',
+                'icon' => 'list',
+                'url' => ['doc-name-lookup/index'],
+                'type' => 'success',
             ]
         ],
     ]); ?>

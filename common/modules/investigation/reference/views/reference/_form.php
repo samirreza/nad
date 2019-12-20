@@ -38,20 +38,25 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
                         <?= $form->field($model, 'publishedYear')->textInput() ?>
                         <?= $form->field($model, 'publisher')->textInput() ?>
                         <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
-                        <?= $form->field($model, 'referenceUses')->widget(
-                            Select2::class,
-                            [
-                                'data' => ReferenceUses::getCodes(),
-                                'options' => [
-                                    'multiple' => true,
-                                    'placeholder' => 'انتخاب کنید ...',
-                                    'value' => $model->getCodesAsArray()
-                                ],
-                                'pluginOptions' => [
-                                    'allowClear' => true
+
+                        <!-- a dirty hack to select all uses, refer to ReferenceUses::getCodes() (Requested by Dehghanpour) -->
+                        <div style="display:none">
+                            <?= $form->field($model, 'referenceUses')->widget(
+                                Select2::class,
+                                [
+                                    'data' => ReferenceUses::getCodes(),
+                                    'options' => [
+                                        'multiple' => true,
+                                        'placeholder' => 'انتخاب کنید ...',
+                                        'value' => $model->getCodesAsArray()
+                                    ],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ]
                                 ]
-                            ]
-                        ) ?>
+                            ) ?>
+                        </div>
+
                         <div class="input-medium">
                             <?= SingleFileUpload::widget([
                                 'model' => $model,

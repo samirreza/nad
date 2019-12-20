@@ -22,7 +22,15 @@ class Lookup extends \yii\db\ActiveRecord
         return 'lookup';
     }
 
-    public function getCodedName(){
+    public function getCodedName($useExtraAsCode = false){
+        if ($useExtraAsCode) {
+            if (!isset($this->extra) || empty($this->extra)) {
+                return 'فاقد کد' . ' - ' . $this->name;
+            }else {
+                return $this->extra . ' - ' . $this->name;
+            }
+        }
+
         return $this->code . '. ' . $this->name;
     }
 
@@ -46,10 +54,10 @@ class Lookup extends \yii\db\ActiveRecord
      * @param integer the item code (corresponding to the 'code' column value)
      * @return string the item name for the specified the code. False is returned if the item type or code does not exist.
      */
-    public static function item($type, $code)
+    public static function item($type, $code, $useCodedName = false)
     {
         if (!isset(self::$_items[$type])) {
-            self::loadItems($type);
+            self::loadItems($type, $useCodedName);
         }
         return isset(self::$_items[$type][$code]) ? self::$_items[$type][$code] : false;
     }
@@ -70,6 +78,29 @@ class Lookup extends \yii\db\ActiveRecord
 
         foreach ($models as $model) {
             self::$_items[$type][$model->code] = (($useCodedNames) ? $model->getCodedName() : $model->name);
+        }
+    }
+
+    public static function extras($type, $useCodedNames = false)
+    {
+        if (!isset(self::$_items[$type])) {
+            self::loadExtras($type, $useCodedNames);
+        }
+        return self::$_items[$type];
+    }
+
+    private static function loadExtras($type, $useCodedNames = false)
+    {
+        self::$_items[$type] = array();
+        $models = self::find()
+            ->where([
+                'type' => $type,
+            ])
+            ->orderBy('position')
+            ->all();
+
+        foreach ($models as $model) {
+            self::$_items[$type][$model->code] = (($useCodedNames) ? $model->getCodedName(true) : $model->extra);
         }
     }
 }

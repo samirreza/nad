@@ -221,11 +221,15 @@ class Reference extends \yii\db\ActiveRecord implements Codable
     }
 
     public function getCodesAsArray(){
-        $uses = $this->getReferenceUses()->all();
-        $codes= [];
-        foreach ($uses as $item) {
-            $codes[]=$item->code;
-        }
+        // $uses = $this->getReferenceUses()->all();
+        // $codes= [];
+        // foreach ($uses as $item) {
+        //     $codes[]=$item->code;
+        // }
+
+        // a dirty hack to select all uses (Requested by Dehghanpour)
+        $codes = array_keys(ReferenceUses::getCodes());
+
         return $codes;
     }
 

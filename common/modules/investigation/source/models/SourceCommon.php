@@ -27,6 +27,9 @@ class SourceCommon extends BaseInvestigationModel
     const STATUS_WAITING_FOR_SESSION_RESULT = 32;
     const STATUS_WAITING_FOR_NEXT_STATUS = 33;
     const STATUS_WAITING_FOR_CORRECTION_BY_EXPERT = 34;
+    const STATUS_WAITING_FOR_SEND_TO_WRITE_PROPOSAL = -1;
+    const STATUS_IN_NEXT_STEP_ONE_PROPOSAL = -2;
+    const STATUS_IN_NEXT_STEP_MORE_PROPOSALS = -3;
 
     public $moduleId = 'source';
     public $ownerClassName = __NAMESPACE__ . '\Source';
@@ -111,7 +114,13 @@ class SourceCommon extends BaseInvestigationModel
             [
                 ['title', 'reasonForGenesis', 'necessity', 'description', 'proceedings', 'negotiationResult'],
                 FarsiCharactersValidator::class
-            ]
+            ],
+            [
+                'title',
+                'unique',
+                'targetAttribute' => ['title', 'categoryId'],
+                'message' => 'ترکیب عنوان و رده تکراری است'
+            ],
         ];
     }
 
@@ -248,24 +257,28 @@ class SourceCommon extends BaseInvestigationModel
         return 'nad_investigation_source';
     }
 
+    // TODO remove unused statuses asap
     public static function getStatusLables()
     {
         return [
-            self::STATUS_INPROGRESS => 'در دست نگارش',
-            self::STATUS_IN_MANAGER_HAND => 'نزد مدیر',
-            self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه', // not used
+            // self::STATUS_IN_MANAGER_HAND => 'نزد مدیر', // not used
+            // self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه', // not used
             // self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره', // not used
+            self::STATUS_INPROGRESS => 'در دست نگارش',
             self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
-            self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
-            self::STATUS_REJECTED => 'رد',
-            self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_IN_NEXT_STEP => 'منتظر نگارش پروپوزال اول/دوم/...',
-            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
             self::STATUS_WAITING_FOR_CHECK_BY_MANAGER => 'منتظر بررسی توسط مدیر',
             self::STATUS_WAITING_FOR_SESSION_DATE => 'منتظر تعیین زمان جلسه',
             self::STATUS_WAITING_FOR_SESSION_RESULT => 'منتظر جلسه و ثبت نتیجه',
-            self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
+            self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
             self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'منتظر اصلاح',
+            self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
+            self::STATUS_WAITING_FOR_SEND_TO_WRITE_PROPOSAL => 'منتظر ارسال جهت نگارش پروپوزال',
+            self::STATUS_IN_NEXT_STEP_ONE_PROPOSAL => 'منتظر نگارش پروپوزال اول',
+            self::STATUS_IN_NEXT_STEP_MORE_PROPOSALS => 'منتظر نگارش پروپوزال دوم/سوم/...',
+            // self::STATUS_IN_NEXT_STEP => 'منتظر نگارش پروپوزال اول/دوم/...', // don't remove it, it IS used.
+            self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
+            self::STATUS_LOCKED => 'قفل شده',
+            self::STATUS_REJECTED => 'رد',
         ];
     }
 

@@ -6,6 +6,7 @@ use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use theme\widgets\ActionButtons;
 use nad\common\modules\device\models\DevicePartDocument;
+use nad\common\modules\device\models\DocNameLookup;
 
 ?>
 <div class="view">
@@ -21,7 +22,12 @@ use nad\common\modules\device\models\DevicePartDocument;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'title',
+                    [
+                        'attribute' => 'title',
+                        'value' => function($model){
+                            return DocNameLookup::item(DocNameLookup::TYPE_DEVICE_PART, $model->title);
+                        }
+                    ],
                     [
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [

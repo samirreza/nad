@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use theme\widgets\ActionButtons;
+use nad\common\modules\device\models\DocNameLookup;
 use nad\common\modules\device\models\DeviceCategoryDocument;
 
 ?>
@@ -27,7 +28,12 @@ use nad\common\modules\device\models\DeviceCategoryDocument;
                             return Lookup::item(DeviceCategoryDocument::LOOKUP_DOCUMENT_FORMAT, $model->format);
                         }
                     ],
-                    'title',
+                    [
+                        'attribute' => 'title',
+                        'value' => function($model){
+                            return DocNameLookup::item(DocNameLookup::TYPE_DEVICE_CATEGORY,$model->title);
+                        }
+                    ],
                     [
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [

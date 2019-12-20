@@ -6,6 +6,7 @@ use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use theme\widgets\ActionButtons;
 use nad\common\modules\device\models\DeviceDocument;
+use nad\common\modules\device\models\DocNameLookup;
 
 ?>
 <div class="view">
@@ -30,7 +31,7 @@ use nad\common\modules\device\models\DeviceDocument;
                     [
                         'attribute' => 'title',
                         'value' => function($model){
-                            return Lookup::item(DeviceDocument::LOOKUP_DOCUMENT_NAME, $model->title);
+                            return DocNameLookup::item(DocNameLookup::TYPE_DEVICE, $model->title);
                         }
                     ],
                     [

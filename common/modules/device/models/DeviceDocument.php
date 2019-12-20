@@ -2,10 +2,13 @@
 namespace nad\common\modules\device\models;
 
 use nad\common\code\Codable;
+use nad\common\helpers\Utility;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\Device;
+use nad\common\modules\device\models\DocNameLookup;
+use yii\web\ServerErrorHttpException;
 
 class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 {
@@ -115,15 +118,9 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
     }
 
     public function getNameCode(){
-        $codes = [
-            1 => 'E',
-            2 => 'A',
-            3 => 'F',
-            4 => 'M',
-            5 => 'C',
-            6 => 'D'
-        ];
+        $codes = DocNameLookup::extras(DocNameLookup::TYPE_DEVICE);
+        $result = $codes[$this->title];
 
-        return $codes[$this->title];
+        return $result;
     }
 }
