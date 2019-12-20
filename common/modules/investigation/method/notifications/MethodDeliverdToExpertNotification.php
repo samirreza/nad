@@ -8,7 +8,7 @@ class MethodDeliverdToExpertNotification extends Notification
 {
     public $method;
     public $moduleId = 'method';
-    public $category = 'روش نیازمند اصلاح';
+    public $category = 'روش';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class MethodDeliverdToExpertNotification extends Notification
 
     public function getTitle()
     {
-        return "روش «{$this->method->title}» جهت اصلاح مجددا به شما ارسال شده است.";
+        return "{$this->method->title}";
     }
 
     public function getRoute()

@@ -40,6 +40,12 @@ $module = $this->context->module;
                 'icon' => 'tree',
                 'url' => ['tree-list'],
                 'type' => 'success',
+            ],
+            'lookupIndex' => [
+                'label' => 'تعریف نام مدارک',
+                'icon' => 'list',
+                'url' => ['doc-name-lookup/index'],
+                'type' => 'success',
             ]
         ],
     ]); ?>
@@ -67,7 +73,7 @@ $module = $this->context->module;
                         ]
                     ],
                     [
-                        'class' => 'nad\common\grid\Column',
+                        'class' => 'nad\common\code\CodeGridColumn',
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [
                             'style' => 'direction: ltr; width:160px'

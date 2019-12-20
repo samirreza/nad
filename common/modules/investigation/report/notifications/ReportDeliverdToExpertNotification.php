@@ -8,7 +8,7 @@ class ReportDeliverdToExpertNotification extends Notification
 {
     public $report;
     public $moduleId = 'report';
-    public $category = 'گزارش نیازمند اصلاح';
+    public $category = 'گزارش ';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class ReportDeliverdToExpertNotification extends Notification
 
     public function getTitle()
     {
-        return "گزارش «{$this->report->title}» جهت اصلاح مجددا به شما ارسال شده است.";
+        return "{$this->report->title}";
     }
 
     public function getRoute()

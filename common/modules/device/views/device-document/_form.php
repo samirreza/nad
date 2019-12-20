@@ -8,6 +8,7 @@ use theme\widgets\Button;
 use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
 use extensions\file\widgets\singleupload\SingleFileUpload;
+use nad\common\modules\device\models\DocNameLookup;
 use nad\common\modules\device\models\DeviceDocument;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
@@ -29,7 +30,7 @@ $uploadedFiles = $model->getFiles('file');
             <div class="row">
                 <div class="col-md-4">
                     <?= $form->field($model, 'title')->dropDownList(
-                        Lookup::items(DeviceDocument::LOOKUP_DOCUMENT_NAME, false),
+                        DocNameLookup::extras(DocNameLookup::TYPE_DEVICE, true),
                         ['prompt'=>'انتخاب کنید']
                     ) ?>
                 </div>

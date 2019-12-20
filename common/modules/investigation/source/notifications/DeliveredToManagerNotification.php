@@ -8,7 +8,7 @@ class DeliveredToManagerNotification extends Notification
 {
     public $source;
     public $moduleId = 'source';
-    public $category = 'ارسال منشا';
+    public $category = 'منشا';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class DeliveredToManagerNotification extends Notification
 
     public function getTitle()
     {
-        return "منشا {$this->source->title} برای شما ارسال شده است.";
+        return "{$this->source->title}";
     }
 
     public function getRoute()

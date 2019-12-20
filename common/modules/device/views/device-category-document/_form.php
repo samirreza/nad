@@ -9,6 +9,7 @@ use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
 use extensions\file\widgets\singleupload\SingleFileUpload;
 use nad\common\modules\device\models\DeviceCategoryDocument;
+use nad\common\modules\device\models\DocNameLookup;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 $className = get_class($model);
@@ -28,7 +29,10 @@ $uploadedFiles = $model->getFiles('file');
             <?= Html::activeHiddenInput($model, 'categoryId'); ?>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'title')->textInput() ?>
+                <?= $form->field($model, 'title')->dropDownList(
+                        Lookup::items(DocNameLookup::TYPE_DEVICE_CATEGORY, false),
+                        ['prompt'=>'انتخاب کنید']
+                    ) ?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'format')->dropDownList(

@@ -8,7 +8,7 @@ class SourceAssignNotification extends Notification
 {
     public $source;
     public $moduleId = 'source';
-    public $category = 'نگارش پروپوزال';
+    public $category = 'منشا';
     public $baseViewRoute;
 
     public function getChannels()
@@ -18,7 +18,7 @@ class SourceAssignNotification extends Notification
 
     public function getTitle()
     {
-        return "منشا {$this->source->title} برای نگارش پروپوزال به شما تحویل داده شد.";
+        return "{$this->source->title}";
     }
 
     public function getRoute()

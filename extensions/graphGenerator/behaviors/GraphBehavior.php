@@ -125,11 +125,13 @@ class GraphBehavior extends Behavior
     {
         $query = new Query();
         $links = $query->select(['p1.title AS parent'])
-            ->from($this->owner->tableName().' AS p1')
-            ->innerJoin($this->graphTableName.' AS g', 'p1.id = g.parent_id')
-            ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = '.$this->owner->id)
+            ->from($this->owner->tableName() . ' AS p1')
+            ->innerJoin($this->graphTableName . ' AS g', 'p1.id = g.parent_id')
+            ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = g.child_id')
+            ->where('p2.id = ' . $this->owner->id)
             ->column();
 
+            // dd ($links);
         return implode(' , ', $links);
     }
 }

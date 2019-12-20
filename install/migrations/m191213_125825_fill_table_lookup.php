@@ -16,12 +16,12 @@ class m191213_125825_fill_table_lookup extends Migration
         DELETE FROM `lookup` WHERE type = 'nad.device.deviceDocument.docName';
         -- ------------------------------------------------------------------
         INSERT INTO `lookup` (`id`, `name`, `type`, `code`, `position`) VALUES
-        (NULL, 'E - نقشه انفجاری', 'nad.device.deviceDocument.docName', '1', '1'),
-        (NULL, 'A - نقشه مونتاژ', 'nad.device.deviceDocument.docName', '2', '2'),
-        (NULL, 'F - نقشه ساخت', 'nad.device.deviceDocument.docName', '3', '3'),
-        (NULL, 'M - دستورالعمل نگهداری', 'nad.device.deviceDocument.docName', '4', '4'),
-        (NULL, 'C - کاتالوگ', 'nad.device.deviceDocument.docName', '5', '5'),
-        (NULL, 'D - نمودار پمپ', 'nad.device.deviceDocument.docName', '6', '6');
+        (NULL, 'نقشه انفجاری', 'nad.device.deviceDocument.docName', '1', '1' , 'E'),
+        (NULL, 'نقشه مونتاژ', 'nad.device.deviceDocument.docName', '2', '2', 'A'),
+        (NULL, 'نقشه ساخت', 'nad.device.deviceDocument.docName', '3', '3', 'F'),
+        (NULL, 'دستورالعمل نگهداری', 'nad.device.deviceDocument.docName', '4', '4', 'M'),
+        (NULL, 'کاتالوگ', 'nad.device.deviceDocument.docName', '5', '5', 'C'),
+        (NULL, 'نمودار پمپ', 'nad.device.deviceDocument.docName', '6', '6', 'D');
         ");
     }
 

@@ -44,7 +44,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                             'placeholder' => 'جست‌و‌جو شناسه'
                         ],
                         'options' => [
-                            'width' => '40px'
+                            'width' => '40px',
                         ]
                     ],
                     [
@@ -72,7 +72,22 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         'attribute' => 'experts',
                         'value' => function ($model) {
                             return $model->getExpertFullNamesAsString();
-                        }
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'expertsQuery.userId',
+                            'data' => ArrayHelper::map(
+                                Expert::find()->all(),
+                                'userId',
+                                'user.fullName'
+                            ),
+                            'options' => [
+                                'placeholder' => 'جست‌وجو'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ])
                     ],
                     // [
                     //     'attribute' => 'createdAt',
@@ -119,45 +134,8 @@ use nad\common\modules\investigation\source\models\SourceReason;
                                         'style' => 'color: green'
                                     ]
                                 );
-                            },
-                            'set-experts' => function ($url, $model) {
-                                return Html::a(
-                                    '<span class="fa fa-graduation-cap"></span>',
-                                    ['set-experts', 'id' => $model->id],
-                                    [
-                                        'title' => $model->hasAnyExpert() ? 'تغییر کارشناسان' : 'تعیین کارشناسان',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
-                            'send-for-proposal' => function ($url, $model) {
-                                if (!$model->hasAnyExpert()) {
-                                    return;
-                                }
-                                return Html::a(
-                                    '<span class="fa fa-check"></span>',
-                                    [
-                                        'change-status',
-                                        'id' => $model->id,
-                                        'newStatus' => Source::STATUS_IN_NEXT_STEP
-                                    ],
-                                    [
-                                        'title' => 'ارسال برای نگارش پروپوزال',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
+                            }
                         ],
-                        'visibleButtons' => [
-                            'set-experts' => $searchModel->status == Source::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser(),
-                            'send-for-proposal' => $searchModel->status == Source::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser()
-                        ]
                     ]
                 ]
             ]) ?>

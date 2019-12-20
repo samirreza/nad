@@ -49,7 +49,10 @@ use nad\common\widgets\treeView\TreeView;
                                 'class' => 'nad\common\code\CodeGridColumn',
                                 'options' => ['style' => 'width:70px'],
                             ],
-                            'title',
+                            [
+                                'class' => 'nad\common\grid\Column',
+                                'attribute' => 'title',
+                            ],
                             [
                                 'attribute' => 'depth',
                                 'filter' => $searchModel->getDepthList(),

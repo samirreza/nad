@@ -8,6 +8,7 @@ use theme\widgets\Panel;
 use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
 use nad\common\modules\device\models\DeviceDocument;
+use nad\common\modules\device\models\DocNameLookup;
 use theme\widgets\ActionButtons;
 
 $module = $this->context->module;
@@ -60,7 +61,7 @@ $module = $this->context->module;
                         ]
                     ],
                     [
-                        'class' => 'nad\common\grid\Column',
+                        'class' => 'nad\common\code\CodeGridColumn',
                         'attribute' => 'uniqueCode',
                         'contentOptions' => [
                             'style' => 'direction: ltr; width:40px'
@@ -69,12 +70,12 @@ $module = $this->context->module;
                     [
                         'attribute' => 'title',
                         'value' => function ($model) {
-                            return Lookup::item(DeviceDocument::LOOKUP_DOCUMENT_NAME, $model->title);
+                            return DocNameLookup::item(DocNameLookup::TYPE_DEVICE, $model->title);
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'title',
-                            'data' => Lookup::items(DeviceDocument::LOOKUP_DOCUMENT_NAME),
+                            'data' => DocNameLookup::extras(DocNameLookup::TYPE_DEVICE, true),
                             'options' => [
                                 'placeholder' => 'جست‌وجو'
                             ],
