@@ -23,6 +23,12 @@ $module = $this->context->module;
                 'class' => 'ajaxcreate',
                 'data-gridpjaxid' => 'categories-gridviewpjax'
             ]
+        ],
+        'tree' => [
+            'label' => 'نمایش درختی',
+            'icon' => 'tree',
+            'url' => ['tree-list'],
+            'type' => 'success',
         ]
     ],
 ]); ?>
