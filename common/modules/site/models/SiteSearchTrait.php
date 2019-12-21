@@ -15,7 +15,7 @@ trait SiteSearchTrait
     public function rules()
     {
         return [
-            [['stageCategoryId', 'code', 'deviceTitle', 'deviceCode', 'stage.title', 'stage.familyTreeTitle' , 'uniqueCode'], 'safe'],
+            [['coordinates', 'stageCategoryId', 'code', 'deviceTitle', 'deviceCode', 'stage.title', 'stage.familyTreeTitle' , 'uniqueCode'], 'safe'],
         ];
     }
 

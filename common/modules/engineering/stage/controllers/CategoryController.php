@@ -74,11 +74,18 @@ class CategoryController extends \core\controllers\AjaxAdminController
     public function actionGetJsonTree($id)
     {
         if ($id == '0') {
-            $root = Category::find()->roots()->one();
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            $roots = Category::find()->roots()->all();
+            $tree = [];
+            $reversedRoots = array_reverse($roots); // don't know why?!
+            foreach ($reversedRoots as $root) {
+                $tree[] = $root->getFamilyTreeArrayForWidget();
+            }
+            return $tree;
         } else {
             $root = $this->findModel($id);
+            return $root ? [$root->getFamilyTreeArrayForWidget()] : [];
         }
-        return $root ? [$root->getFamilyTreeArrayForWidget()] : [];
     }
 
     public function actionCreate()

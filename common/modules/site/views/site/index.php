@@ -55,12 +55,25 @@ $module = $this->context->module;
                 'columns' => [
                     [
                         'header' => 'شمارنده',
-                        'class' => 'yii\grid\SerialColumn'
+                        'class' => 'yii\grid\SerialColumn',
+                        'options' => ['width' => '10px']
                     ],
-                    'coordinates',
+                    [
+                        'class' => 'nad\common\grid\Column',
+                        'attribute' => 'coordinates',
+                        'filterInputOptions' => [
+                            'class' => 'form-control',
+                            'style' => 'direction:ltr'
+                        ]
+                    ],
                     [
                         'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
+                        'options' => ['width' => '130px'],
+                        'filterInputOptions' => [
+                            'class' => 'form-control',
+                            'style' => 'direction:ltr'
+                        ]
                     ],
                     [
                         // 'class' => 'nad\common\grid\Column',
@@ -75,6 +88,11 @@ $module = $this->context->module;
                     [
                         'class' => 'nad\common\grid\Column',
                         'attribute' => 'deviceCode',
+                        'options' => ['width' => '130px'],
+                        'filterInputOptions' => [
+                            'class' => 'form-control',
+                            'style' => 'direction:ltr'
+                        ]
                     ],
                     // 'createdAt:datetime',
                     [
@@ -98,6 +116,7 @@ $module = $this->context->module;
                         'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete}',
+                        'options' => ['width' => '90px']
                     ]
                 ],
             ]); ?>
