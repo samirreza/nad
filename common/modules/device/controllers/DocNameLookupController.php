@@ -25,7 +25,7 @@ class DocNameLookupController extends \core\controllers\AjaxAdminController
                                 'delete',
                                 'update',
                             ],
-                            'roles' => ['@']
+                            'roles' => ['superuser']
                         ]
                     ]
                 ]

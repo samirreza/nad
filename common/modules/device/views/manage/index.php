@@ -46,6 +46,7 @@ $module = $this->context->module;
                 'icon' => 'list',
                 'url' => ['doc-name-lookup/index'],
                 'type' => 'success',
+                'visible' => Yii::$app->user->can('manager')
             ]
         ],
     ]); ?>

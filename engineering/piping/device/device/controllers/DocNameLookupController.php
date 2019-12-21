@@ -27,7 +27,7 @@ class DocNameLookupController extends BaseDocNameLookupController
                         [
                             'allow' => true,
                             // 'roles' => ['device.device'],
-                            'roles' => ['@']
+                            'roles' => ['superuser']
                         ]
                     ]
                 ]
