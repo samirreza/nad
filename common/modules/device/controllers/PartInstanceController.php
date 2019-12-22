@@ -4,6 +4,7 @@ namespace nad\common\modules\device\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use nad\common\modules\device\models\DevicePart;
 use nad\common\modules\device\models\PartInstance;
 use nad\common\modules\device\models\PartInstanceSearch;
 use nad\common\modules\device\models\PartInstanceDocument;
@@ -48,7 +49,7 @@ class PartInstanceController extends \core\controllers\AjaxAdminController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $partId = Yii::$app->request->queryParams['PartInstanceSearch']['partId'];
-        $partModel = PartInstance::findOne($partId);
+        $partModel = DevicePart::findOne($partId);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
