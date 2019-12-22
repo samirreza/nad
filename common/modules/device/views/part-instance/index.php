@@ -15,7 +15,7 @@ $this->title = 'لیست قطعات';
 // ];
 ?>
 
-<h4 class="nad-page-title">لیست قطعات <span class="nad-page-title-focus"><?= $partModel->part->device->title ?></span></h4>
+<h4 class="nad-page-title">لیست قطعات <span class="nad-page-title-focus"><?= $partModel->device->title ?></span></h4>
 <div class="resource-index">
     <?= ActionButtons::widget([
         'buttons' => [
