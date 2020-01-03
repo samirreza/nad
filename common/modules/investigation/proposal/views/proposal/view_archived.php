@@ -98,7 +98,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 [
                                     'attribute' => 'status',
                                     'value' => function ($model) {
-                                        return Proposal::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     }
                                 ],
                                 [
