@@ -121,11 +121,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Method::getUserHolderLables()"
-                                        if($model->expertId != null && $model->status == Method::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش منشا/دستورالعمل';
-                                        }
-                                        return Method::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [
@@ -160,7 +156,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'title' => $model->getAttributeLabel('abstract') . ' نسخه نهایی',
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->abstract ?>
                     </div>
                 <?php Panel::end() ?>
@@ -172,7 +168,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'title' => $model->getAttributeLabel('description') . ' نسخه نهایی',
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->description ?>
                     </div>
                 <?php Panel::end() ?>
@@ -185,7 +181,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'title' => 'نتیجه جلسه' . ' نسخه نهایی',
                         'showCollapseButton' => true
                         ]) ?>
-                        <div class="well">
+                        <div>
                             <?= $model->proceedings ?>
                         </div>
                     <?php Panel::end() ?>
@@ -199,7 +195,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'title' => 'تاریخ جلسه توجیهی' . ' نسخه نهایی',
                         'showCollapseButton' => true
                         ]) ?>
-                        <div class="well">
+                        <div>
                             <?= Yii::$app->formatter->asDateTime($model->sessionDate) ?>
                         </div>
                     <?php Panel::end() ?>

@@ -31,7 +31,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'isActive' => ($model->canUserDeliverToManager() || $model->canAcceptOrRejectOrSendForCorrection() || $model->canSendToWriteReport() || Yii::$app->user->can('superuser')),
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteReport() || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -41,7 +41,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'visible' => true
                         ],
                         'send-to-expert' => [
-                            'label' => 'به کارشناس',
+                            'label' => 'به کارشناس جهت اصلاح',
                             'icon' => 'reply',
                             'isActive' => $model->canManagerDeliverToExpert(),
                             'visible' => true,
@@ -109,7 +109,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Proposal::STATUS_WAITING_FOR_SESSION
+                                'newStatus' => Proposal::STATUS_WAITING_FOR_SESSION_DATE
                             ]
                         ],
                         'set-session-date' => [
@@ -141,22 +141,22 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         'newStatus' => Proposal::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'type' => 'info',
-                    'icon' => 'refresh',
-                    'isActive' => $model->canSetForCorrection(),
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Proposal::STATUS_NEED_CORRECTION
-                    ]
-                ],
+                // 'need-correction' => [
+                //     'label' => 'نیازمند اصلاح',
+                //     'type' => 'info',
+                //     'icon' => 'refresh',
+                //     'isActive' => $model->canSetForCorrection(),
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Proposal::STATUS_NEED_CORRECTION
+                //     ]
+                // ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -193,12 +193,12 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'label' => '&nbsp;&nbsp;&nbsp;قفل&nbsp;&nbsp;&nbsp;',
                     'type' => 'danger',
                     'icon' => 'lock',
-                    'isActive' => (Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
+                    'isActive' =>  false, //(Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
                     'items' => [
                         'lock' => [
                             'label' => 'بستن قفل',
                             'icon' => 'lock',
-                            'isActive' => $model->canLock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canLock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
@@ -209,7 +209,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         'unlock' => [
                             'label' => 'باز کردن قفل',
                             'icon' => 'unlock',
-                            'isActive' => $model->canUnlock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canUnlock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
@@ -317,11 +317,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Proposal::getUserHolderLables()"
-                                        if($model->reportExpertId != null && $model->status == Proposal::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش گزارش/روش/دستورالعمل';
-                                        }
-                                        return Proposal::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [

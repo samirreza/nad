@@ -31,7 +31,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'isActive' => ($model->canUserDeliverToManager() || $model->canAcceptOrRejectOrSendForCorrection() || $model->canSendToWriteSource() || Yii::$app->user->can('superuser')),
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteSource() || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -41,7 +41,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'visible' => true
                         ],
                         'send-to-expert' => [
-                            'label' => 'به کارشناس',
+                            'label' => 'به کارشناس جهت اصلاح',
                             'icon' => 'reply',
                             'isActive' => $model->canManagerDeliverToExpert(),
                             'visible' => true,
@@ -87,7 +87,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Instruction::STATUS_WAITING_FOR_SESSION
+                                'newStatus' => Instruction::STATUS_WAITING_FOR_SESSION_DATE
                             ]
                         ],
                         'set-session-date' => [
@@ -119,22 +119,22 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'newStatus' => Instruction::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'type' => 'info',
-                    'icon' => 'refresh',
-                    'isActive' => $model->canSetForCorrection(),
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Instruction::STATUS_NEED_CORRECTION
-                    ]
-                ],
+                // 'need-correction' => [
+                //     'label' => 'نیازمند اصلاح',
+                //     'type' => 'info',
+                //     'icon' => 'refresh',
+                //     'isActive' => $model->canSetForCorrection(),
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Instruction::STATUS_NEED_CORRECTION
+                //     ]
+                // ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -171,12 +171,12 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => '&nbsp;&nbsp;&nbsp;قفل&nbsp;&nbsp;&nbsp;',
                     'type' => 'danger',
                     'icon' => 'lock',
-                    'isActive' => (Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
+                    'isActive' =>  false, //(Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
                     'items' => [
                         'lock' => [
                             'label' => 'بستن قفل',
                             'icon' => 'lock',
-                            'isActive' => $model->canLock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canLock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
@@ -187,7 +187,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'unlock' => [
                             'label' => 'باز کردن قفل',
                             'icon' => 'unlock',
-                            'isActive' => $model->canUnlock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canUnlock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
@@ -315,11 +315,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Instruction::getUserHolderLables()"
-                                        if($model->expertId != null && $model->status == Instruction::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش منشا';
-                                        }
-                                        return Instruction::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [

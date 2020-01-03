@@ -116,11 +116,7 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Instruction::getUserHolderLables()"
-                                        if($model->expertId != null && $model->status == Instruction::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش منشا';
-                                        }
-                                        return Instruction::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [

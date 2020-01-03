@@ -4,6 +4,7 @@ namespace nad\common\modules\investigation\method\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use nad\common\helpers\Utility;
 use core\behaviors\PreventDeleteBehavior;
 use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
@@ -31,6 +32,16 @@ class MethodCommon extends BaseInvestigationModel
     // const STATUS_IN_NEXT_STEP = 8; this one is for "source step" & is defined in BaseInvestigationModel
     const STATUS_IN_NEXT_STEP_FOR_INSTRUCTION = 11;
     const STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION = 13;
+
+    const STATUS_WAITING_FOR_CHECK_BY_MANAGER = 30; // I chose 30 to make sure no conflict would happen with prev status codes. It could be less though.
+    const STATUS_WAITING_FOR_SESSION_DATE = 31;
+    const STATUS_WAITING_FOR_SESSION_RESULT = 32;
+    const STATUS_WAITING_FOR_NEXT_STATUS = 33;
+    const STATUS_WAITING_FOR_CORRECTION_BY_EXPERT = 34;
+
+    const STATUS_WAITING_FOR_SEND_TO_WRITE_SOURCE = -1;
+    const STATUS_WAITING_FOR_SEND_TO_WRITE_INSTRUCTION = -2;
+    const STATUS_WAITING_FOR_SEND_TO_WRITE_SOURCE_INSTRUCTION = -3;
 
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
@@ -163,7 +174,13 @@ class MethodCommon extends BaseInvestigationModel
                 ['proposalId', 'reportId'],
                 'validateOneAttributeOnly',
                 'skipOnEmpty' => false
-            ]
+            ],
+            [
+                'title',
+                'unique',
+                'targetAttribute' => ['title', 'categoryId'],
+                'message' => 'ترکیب عنوان و رده تکراری است'
+            ],
         ];
     }
 
@@ -456,18 +473,83 @@ class MethodCommon extends BaseInvestigationModel
     public static function getStatusLables()
     {
         return [
-            self::STATUS_INPROGRESS => 'در دست تهیه',
-            self::STATUS_IN_MANAGER_HAND => 'نزد مدیر',
-            self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه',
-            self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره',
+            // self::STATUS_IN_MANAGER_HAND => 'نزد مدیر', // not used
+            // self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه', // not used
+            // self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره', // not used
+            // self::STATUS_REJECTED => 'رد', // we don't have "reject" in proposal
+            self::STATUS_INPROGRESS => 'در دست نگارش',
             self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
-            self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
+            self::STATUS_WAITING_FOR_CHECK_BY_MANAGER => 'منتظر بررسی توسط مدیر',
+            self::STATUS_WAITING_FOR_SESSION_DATE => 'منتظر تعیین زمان جلسه',
+            self::STATUS_WAITING_FOR_SESSION_RESULT => 'منتظر جلسه و ثبت نتیجه',
+            self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
+            self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'نزد کارشناس جهت اصلاح',
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_IN_NEXT_STEP => 'منتظر منشا جدید',
-            self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION => 'منتظر دستورالعمل جدید',
-            self::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION => 'منتظر منشا و دستورالعمل جدید',
             self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
+            self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
+
+            // -----------------------------------------
+            self::STATUS_WAITING_FOR_SEND_TO_WRITE_SOURCE => 'منتظر ارسال جهت نگارش منشا',
+            self::STATUS_WAITING_FOR_SEND_TO_WRITE_INSTRUCTION => 'منتظر ارسال جهت نگارش دستورالعمل',
+            self::STATUS_WAITING_FOR_SEND_TO_WRITE_SOURCE_INSTRUCTION => 'منتظر ارسال جهت نگارش منشا و دستورالعمل',
+            // -------------------------------------------------
+            self::STATUS_IN_NEXT_STEP => 'منتظر نگارش منشا اول/دوم/...',
+            self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION => 'منتظر نگارش دستورالعمل اول/دوم/...',
+            self::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION => 'منتظر نگارش منشا و دستورالعمل اول/دوم/...',
         ];
+    }
+
+    public function getStatusLabel(){
+        $result = '';
+
+        if($this->status == self::STATUS_ACCEPTED && $this->expertId != null){
+            return 'منتظر ارسال جهت نگارش منشا/دستورالعمل';
+        } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // source
+            $result = 'منتظر ارسال جهت نگارش دستورالعمل';
+            $result .= ' - ' . $this->getExtraStatusLabel('sources' , 'منشا');
+        } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
+            $result =  'منتظر ارسال جهت نگارش منشا';
+            $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
+        } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION){
+            $result .= ' - ' . $this->getExtraStatusLabel('sources' , 'منشا');
+            $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
+        } else{
+            return self::getStatusLables()[$this->status];
+        }
+
+        return $result;
+    }
+
+    public function getExtraStatusLabel($relatedEntity, $customLabel){
+        $entityGetFunction = 'get' . ucfirst($relatedEntity);
+        $entityCount = isset($this->relatedEntity) ? $this->$entityGetFunction()->count(): 0;
+            $label = 'منتظر نگارش  ' . $customLabel . ' ';
+
+            switch ($entityCount + 1) {
+                case 1:
+                    $label .= 'اول';
+                    break;
+                case 2:
+                    $label .= 'دوم';
+                    break;
+                case 3:
+                    $label .= 'سوم';
+                    break;
+                case 4:
+                    $label .= 'چهارم';
+                    break;
+                case 5:
+                    $label .= 'پنجم';
+                    break;
+                default:
+                    $label .= Utility::convertNumberToPersianWords($entityCount + 1);
+                    break;
+            }
+
+            if($entityCount > 0)
+                $label .= '/بایگانی';
+
+            return $label;
     }
 
     public static function getUserHolderLables()
@@ -482,7 +564,7 @@ class MethodCommon extends BaseInvestigationModel
     {
         if(self::isInAnyOfNextSteps($newStatus) && $this->status != self::STATUS_LOCKED)
             $this->userHolder = self::USER_HOLDER_EXPERT;
-        else if($newStatus == self::STATUS_WAITING_FOR_SESSION){
+        else if($newStatus == self::STATUS_WAITING_FOR_SESSION_DATE){
             $this->proceedings = null;
             $this->sessionDate = null;
         }
@@ -506,10 +588,9 @@ class MethodCommon extends BaseInvestigationModel
         if ($this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
             return true;
         }
-        if ($this->status != self::STATUS_REJECTED &&
-            $this->userHolder == self::USER_HOLDER_EXPERT &&
+        if ($this->userHolder == self::USER_HOLDER_EXPERT &&
             (
-                $this->status == self::STATUS_NEED_CORRECTION ||
+                $this->status == self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT ||
                 $this->status == self::STATUS_INPROGRESS
             )
         ) {
@@ -523,7 +604,15 @@ class MethodCommon extends BaseInvestigationModel
 
     public function canUserDeliverToManager()
     {
-        if (!self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_REJECTED && $this->userHolder != self::USER_HOLDER_MANAGER && ($this->userHolder == self::USER_HOLDER_EXPERT || Yii::$app->user->can('superuser'))) {
+        if (!self::isInAnyOfNextSteps($this->status) &&
+         $this->status != self::STATUS_REJECTED &&
+         $this->status != self::STATUS_LOCKED &&
+         $this->userHolder != self::USER_HOLDER_MANAGER &&
+          (
+              $this->userHolder == self::USER_HOLDER_EXPERT
+               ||
+               Yii::$app->user->can('superuser')
+          )) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -534,20 +623,37 @@ class MethodCommon extends BaseInvestigationModel
     }
 
     public function canManagerDeliverToExpert(){
-        return $this->status != self::STATUS_REJECTED && $this->canAcceptOrRejectOrSendForCorrection() && $this->userHolder != self::USER_HOLDER_EXPERT;
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_ACCEPTED && (
+            $this->status == self::STATUS_NEED_CORRECTION
+            ||
+            self::STATUS_WAITING_FOR_NEXT_STATUS
+            ||
+            ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
+         ) && $this->userHolder == self::USER_HOLDER_MANAGER;
     }
 
     public function canSetWaitForSession(){
-        return ($this->status != self::STATUS_REJECTED && $this->userHolder == Method::USER_HOLDER_MANAGER &&
+        return ($this->status != self::STATUS_REJECTED && $this->userHolder == Proposal::USER_HOLDER_MANAGER &&
         Yii::$app->user->can('superuser') &&
-        $this->status != self::STATUS_ACCEPTED
-        // && $this->status != Method::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
-        && !self::isInAnyOfNextSteps($this->status) && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
+        $this->status != self::STATUS_ACCEPTED &&
+        $this->status != self::STATUS_NEED_CORRECTION &&
+        $this->status != self::STATUS_WAITING_FOR_SESSION_DATE &&
+        $this->status != self::STATUS_WAITING_FOR_SESSION_RESULT &&
+        // && $this->status != Proposal::STATUS_WAITING_FOR_SESSION // commented so user can set multiple sessions
+        !self::isInAnyOfNextSteps($this->status) && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
     public function canSetSessionDate()
     {
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION) || $this->sessionDate != null);
+        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && (
+            (
+                $this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION_DATE
+            )
+            ||
+            (
+                $this->sessionDate != null && $this->status == self::STATUS_WAITING_FOR_SESSION_RESULT
+            )
+        );
     }
 
     public function canWriteProceedings()
@@ -562,7 +668,9 @@ class MethodCommon extends BaseInvestigationModel
     public function canStartConverstation()
     {
         if ($this->status != self::STATUS_ACCEPTED &&
-        $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION) || ($this->status == self::STATUS_WAITING_FOR_SESSION && $this->proceedings))) {
+        $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION && !self::isInAnyOfNextSteps($this->status) && $this->status != self::STATUS_LOCKED &&
+        $this->status != self::STATUS_NEED_CORRECTION &&
+        ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE && $this->status != self::STATUS_WAITING_FOR_SESSION_RESULT)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 ['investigation' => $this]
@@ -582,52 +690,37 @@ class MethodCommon extends BaseInvestigationModel
         return false;
     }
 
+    // TODO This function is not used anymore, remove asap
     public function canSetForCorrection()
     {
-        if($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_NEED_CORRECTION && Yii::$app->user->can('superuser')){
-            if (
-                $this->status == self::STATUS_INPROGRESS
-                ||
-                $this->status == self::STATUS_ACCEPTED
-                ||
-                (
-                    $this->status == self::STATUS_WAITING_FOR_SESSION &&
-                    $this->proceedings
-                )
-                ||
-                (
-                    $this->status == self::STATUS_WAIT_FOR_CONVERSATION &&
-                    $this->comments
-                )
-            ) {
-                return true;
-            }
+        if(Yii::$app->user->can('superuser') &&
+        (
+            $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS
+            ||
+            ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
+         )
+        ){
+            return true;
         }
 
         return false;
     }
 
-    public function canAcceptOrRejectOrSendForCorrection()
+    public function canAcceptOrReject()
     {
         if (Yii::$app->user->can('superuser')) {
-            if ($this->status == self::STATUS_INPROGRESS) {
-                return true;
-            } elseif ($this->status == self::STATUS_NEED_CORRECTION) {
-                return true;
-            } elseif (
-                $this->status == self::STATUS_WAITING_FOR_SESSION &&
-                $this->proceedings
-            ) {
-                return true;
-            } elseif (
-                $this->status == self::STATUS_WAIT_FOR_NEGOTIATION &&
-                $this->negotiationResult
+            if (
+                $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS // This is for session flow
             ) {
                 return true;
             } elseif (
                 $this->status == self::STATUS_WAIT_FOR_CONVERSATION &&
                 $this->comments
             ) {
+                return true;
+            } elseif(
+                $this->status == self::STATUS_WAITING_FOR_CHECK_BY_MANAGER
+            ){
                 return true;
             }
         }

@@ -76,7 +76,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return Proposal::getStatusLables()[$model->status];
+                            return $model->getStatusLabel();
                         },
                         'filter' => Proposal::getStatusLables()
                     ],
@@ -109,43 +109,6 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     ]
                                 );
                             },
-                            'set-expert' => function ($url, $model) {
-                                return Html::a(
-                                    '<span class="fa fa-graduation-cap"></span>',
-                                    ['set-expert', 'id' => $model->id],
-                                    [
-                                        'title' => $model->reportExpertId ? 'تغییر کارشناس' : 'تعیین کارشناس',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            },
-                            'send-for-report' => function ($url, $model) {
-                                if (!$model->reportExpertId) {
-                                    return;
-                                }
-                                return Html::a(
-                                    '<span class="fa fa-check"></span>',
-                                    [
-                                        'change-status',
-                                        'id' => $model->id,
-                                        'newStatus' => Proposal::STATUS_IN_NEXT_STEP
-                                    ],
-                                    [
-                                        'title' => 'ارسال برای نگارش گزارش',
-                                        'data-pjax' => '0',
-                                        'class' => 'ajaxupdate',
-                                        'style' => 'color: green'
-                                    ]
-                                );
-                            }
-                        ],
-                        'visibleButtons' => [
-                            'set-expert' => $searchModel->status == Proposal::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser(),
-                            'send-for-report' => $searchModel->status == Proposal::STATUS_ACCEPTED &&
-                                Yii::$app->user->isSuperuser()
                         ]
                     ]
                 ]

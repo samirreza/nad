@@ -74,11 +74,7 @@ use nad\common\modules\investigation\method\models\MethodReason;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            // TODO move it to a state in "Method::getUserHolderLables()"
-                            if($model->expertId != null && $model->status == Method::STATUS_ACCEPTED){
-                                return 'منتظر ارسال جهت نگارش منشا/دستورالعمل';
-                            }
-                            return Method::getStatusLables()[$model->status];
+                            return $model->getStatusLabel();
                         },
                         'filter' => Method::getStatusLables(),
                         'options' => [

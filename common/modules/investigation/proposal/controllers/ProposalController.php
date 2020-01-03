@@ -89,7 +89,7 @@ class ProposalController extends BaseInvestigationController
         // TODO find a better way than manually setting this shit
         $source->referenceClassName = $proposal->referenceClassName;
         if(isset($report))
-            $report->referenceClassName = $proposal->referenceClassName;        
+            $report->referenceClassName = $proposal->referenceClassName;
 
         return $this->render('certificate', [
             'source' => $source,
@@ -202,6 +202,7 @@ class ProposalController extends BaseInvestigationController
         $model = static::findModel($id);
         $model->userHolder = Proposal::USER_HOLDER_MANAGER;
         $model->deliverToManagerDate = time();
+        $model->status = Proposal::STATUS_WAITING_FOR_CHECK_BY_MANAGER;
         $model->save();
         Yii::$app->session->addFlash(
             'success',
@@ -214,12 +215,54 @@ class ProposalController extends BaseInvestigationController
     {
         $model = static::findModel($id);
         $model->userHolder = Proposal::USER_HOLDER_EXPERT;
+        $model->status = Proposal::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT;
         $model->save();
         Yii::$app->session->addFlash(
             'success',
             'آیتم مورد نظر با موفقیت به کارشناس ارسال شد.'
         );
         return $this->redirect(['view', 'id' => $id]);
+    }
+
+    public function actionSetSessionDate($id)
+    {
+        $model = static::findModel($id);
+        $model->scenario = Proposal::SCENARIO_SET_SESSION_DATE;
+        $model->status = Proposal::STATUS_WAITING_FOR_SESSION_RESULT;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->addFlash(
+                    'success',
+                    'تاریخ جلسه توجیهی با موفقیت در سیستم درج شد.'
+                );
+                return $this->redirect(['view', 'id' => $id]);
+            }
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/set-session-date', [
+                'model' => $model
+            ])
+        ]);
+        exit;
+    }
+
+    public function actionWriteProceedings($id)
+    {
+        $model = static::findModel($id);
+        $model->status = Proposal::STATUS_WAITING_FOR_NEXT_STATUS;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            echo Json::encode([
+                'status' => 'success',
+                'message' => 'نتیجه برگزاری جلسه با موفقیت در سیستم درج شد.'
+            ]);
+            exit;
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/write-proceedings', [
+                'model' => $model
+            ])
+        ]);
+        exit;
     }
 
     protected function findArchivedModel($id)
