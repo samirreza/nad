@@ -193,12 +193,12 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'label' => '&nbsp;&nbsp;&nbsp;قفل&nbsp;&nbsp;&nbsp;',
                     'type' => 'danger',
                     'icon' => 'lock',
-                    'isActive' => (Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
+                    'isActive' =>  false, //(Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
                     'items' => [
                         'lock' => [
                             'label' => 'بستن قفل',
                             'icon' => 'lock',
-                            'isActive' => $model->canLock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canLock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
@@ -209,7 +209,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         'unlock' => [
                             'label' => 'باز کردن قفل',
                             'icon' => 'unlock',
-                            'isActive' => $model->canUnlock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  false, //$model->canUnlock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
                                 'change-status',
