@@ -39,7 +39,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'visible' => true
                         ],
                         'send-to-expert' => [
-                            'label' => 'به کارشناس',
+                            'label' => 'به کارشناس جهت اصلاح',
                             'icon' => 'reply',
                             'isActive' => $model->canManagerDeliverToExpert(),
                             'visible' => true,
