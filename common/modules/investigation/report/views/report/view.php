@@ -31,7 +31,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'isActive' => ($model->canUserDeliverToManager() || $model->canAcceptOrRejectOrSendForCorrection() || $model->canSendToWriteSource() || Yii::$app->user->can('superuser')),
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteSource() || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -41,7 +41,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'visible' => true
                         ],
                         'send-to-expert' => [
-                            'label' => 'به کارشناس',
+                            'label' => 'به کارشناس جهت اصلاح',
                             'icon' => 'reply',
                             'isActive' => $model->canManagerDeliverToExpert(),
                             'visible' => true,
@@ -109,7 +109,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Report::STATUS_WAITING_FOR_SESSION
+                                'newStatus' => Report::STATUS_WAITING_FOR_SESSION_DATE
                             ]
                         ],
                         'set-session-date' => [
@@ -141,22 +141,22 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'newStatus' => Report::STATUS_WAIT_FOR_CONVERSATION
                     ]
                 ],
-                'need-correction' => [
-                    'label' => 'نیازمند اصلاح',
-                    'type' => 'info',
-                    'icon' => 'refresh',
-                    'isActive' => $model->canSetForCorrection(),
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Report::STATUS_NEED_CORRECTION
-                    ]
-                ],
+                // 'need-correction' => [
+                //     'label' => 'نیازمند اصلاح',
+                //     'type' => 'info',
+                //     'icon' => 'refresh',
+                //     'isActive' => $model->canSetForCorrection(),
+                //     'url' => [
+                //         'change-status',
+                //         'id' => $model->id,
+                //         'newStatus' => Report::STATUS_NEED_CORRECTION
+                //     ]
+                // ],
                 'accept' => [
                     'label' => 'تایید',
                     'type' => 'info',
                     'icon' => 'check',
-                    'isActive' => $model->canAcceptOrRejectOrSendForCorrection() &&
+                    'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -333,11 +333,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Report::getUserHolderLables()"
-                                        if($model->expertId != null && $model->status == Report::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش منشا/روش/دستورالعمل';
-                                        }
-                                        return Report::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [

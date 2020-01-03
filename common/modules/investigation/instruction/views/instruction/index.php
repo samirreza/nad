@@ -77,7 +77,7 @@ use nad\common\modules\investigation\instruction\models\Instruction;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return Instruction::getStatusLables()[$model->status];
+                            return $model->getStatusLabel();
                         },
                         'filter' => Instruction::getStatusLables(),
                         'options' => [

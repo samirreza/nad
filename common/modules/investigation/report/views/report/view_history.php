@@ -115,11 +115,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 [
                                     'attribute' => 'status',
                                     'value' =>  function ($model) {
-                                        // TODO move it to a state in "Report::getUserHolderLables()"
-                                        if($model->expertId != null && $model->status == Report::STATUS_ACCEPTED){
-                                            return 'منتظر ارسال جهت نگارش منشا/روش/دستورالعمل';
-                                        }
-                                        return Report::getStatusLables()[$model->status];
+                                        return $model->getStatusLabel();
                                     },
                                 ],
                                 [

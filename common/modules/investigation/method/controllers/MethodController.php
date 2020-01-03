@@ -223,6 +223,7 @@ class MethodController extends BaseInvestigationController
         $model = static::findModel($id);
         $model->userHolder = Method::USER_HOLDER_MANAGER;
         $model->deliverToManagerDate = time();
+        $model->status = Method::STATUS_WAITING_FOR_CHECK_BY_MANAGER;
         $model->save();
         Yii::$app->session->addFlash(
             'success',
@@ -235,12 +236,54 @@ class MethodController extends BaseInvestigationController
     {
         $model = static::findModel($id);
         $model->userHolder = Method::USER_HOLDER_EXPERT;
+        $model->status = Method::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT;
         $model->save();
         Yii::$app->session->addFlash(
             'success',
             'آیتم مورد نظر با موفقیت به کارشناس ارسال شد.'
         );
         return $this->redirect(['view', 'id' => $id]);
+    }
+
+    public function actionSetSessionDate($id)
+    {
+        $model = static::findModel($id);
+        $model->scenario = Method::SCENARIO_SET_SESSION_DATE;
+        $model->status = Method::STATUS_WAITING_FOR_SESSION_RESULT;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->addFlash(
+                    'success',
+                    'تاریخ جلسه توجیهی با موفقیت در سیستم درج شد.'
+                );
+                return $this->redirect(['view', 'id' => $id]);
+            }
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/set-session-date', [
+                'model' => $model
+            ])
+        ]);
+        exit;
+    }
+
+    public function actionWriteProceedings($id)
+    {
+        $model = static::findModel($id);
+        $model->status = Method::STATUS_WAITING_FOR_NEXT_STATUS;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            echo Json::encode([
+                'status' => 'success',
+                'message' => 'نتیجه برگزاری جلسه با موفقیت در سیستم درج شد.'
+            ]);
+            exit;
+        }
+        echo Json::encode([
+            'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/write-proceedings', [
+                'model' => $model
+            ])
+        ]);
+        exit;
     }
 
     protected function findArchivedModel($id)
