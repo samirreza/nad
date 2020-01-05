@@ -10,13 +10,13 @@ trait MethodSearchTrait
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['category.title', 'tag']);
+        return array_merge(parent::attributes(), ['category.title', 'tag', 'expert.userId']);
     }
 
     public function rules()
     {
         return [
-            [['title', 'uniqueCode', 'category.title', 'tag'], 'string'],
+            [['title', 'uniqueCode', 'category.title', 'tag', 'expert.userId'], 'string'],
             [['createdBy', 'status', 'proposalId'], 'integer']
         ];
     }
@@ -61,6 +61,11 @@ trait MethodSearchTrait
             ->andFilterWhere(
                 ['like', 'category.title', $this->getAttribute('category.title')]
             );
+
+        $query->joinWith('expert AS expert');
+        $query->andFilterWhere(
+            ['=', 'expert.userId', $this->getAttribute('expert.userId')]
+        );
 
         return $dataProvider;
     }
