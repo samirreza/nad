@@ -69,6 +69,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                         ])
                     ],
                     [
+                        'header' => 'کارشناس مرحله بعد',
                         'attribute' => 'experts',
                         'value' => function ($model) {
                             return $model->getExpertFullNamesAsString();

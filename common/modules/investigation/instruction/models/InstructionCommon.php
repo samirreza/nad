@@ -19,6 +19,7 @@ use nad\common\modules\investigation\report\models\ReportArchived;
 use nad\common\modules\investigation\proposal\models\Proposal;
 use nad\common\modules\investigation\proposal\models\ProposalArchived;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
+use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\instruction\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
@@ -55,6 +56,10 @@ class InstructionCommon extends BaseInvestigationModel
         return array_merge(
             parent::behaviors(),
             [
+                'experts' => [
+                    'class' => ExpertsBehavior::class,
+                    'expertRelation' => 'expert'
+                ],
                 'tags' => [
                     'class' => TaggableBehavior::class,
                     'moduleId' => $this->moduleId,
@@ -560,7 +565,7 @@ class InstructionCommon extends BaseInvestigationModel
         if($this->status == self::STATUS_ACCEPTED && $this->expertId != null){
             return 'منتظر ارسال جهت نگارش منشا';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // source
-            $result .= $this->getExtraStatusLabel('sources' , 'منشا');
+            $result = $this->getExtraStatusLabel('sources' , 'منشا');
         } else{
             return self::getStatusLables()[$this->status];
         }
@@ -571,7 +576,8 @@ class InstructionCommon extends BaseInvestigationModel
 
     public function getExtraStatusLabel($relatedEntity, $customLabel){
         $entityGetFunction = 'get' . ucfirst($relatedEntity);
-        $entityCount = isset($this->relatedEntity) ? $this->$entityGetFunction()->count(): 0;
+        $relatedEntities = $this->$entityGetFunction();
+        $entityCount = isset($relatedEntities) ? $relatedEntities->count(): 0;
             $label = 'منتظر نگارش  ' . $customLabel . ' ';
 
             switch ($entityCount + 1) {

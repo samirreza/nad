@@ -58,7 +58,8 @@ class ExpertsBehavior extends TaggableBehavior
     public function getExpertFullNamesAsString()
     {
         $output = '';
-        foreach ($this->owner->getExpertsQuery()->all() as $expert) {
+        $getFunction = 'get' . ucfirst($this->expertRelation);
+        foreach ($this->owner->$getFunction()->all() as $expert) {
             $output .= $expert->user->fullName . ', ';
         }
         return rtrim($output, ', ');

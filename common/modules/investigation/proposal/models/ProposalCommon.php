@@ -16,6 +16,7 @@ use nad\common\modules\investigation\source\models\Source;
 use nad\common\modules\investigation\source\models\SourceArchived;
 use nad\common\modules\investigation\instruction\models\Instruction;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
+use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\proposal\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
@@ -64,6 +65,10 @@ class ProposalCommon extends BaseInvestigationModel
         return array_merge(
             parent::behaviors(),
             [
+                'experts' => [
+                    'class' => ExpertsBehavior::class,
+                    'expertRelation' => 'reportExpert'
+                ],
                 'tags' => [
                     'class' => TaggableBehavior::class,
                     'moduleId' => $this->moduleId,
@@ -450,28 +455,28 @@ class ProposalCommon extends BaseInvestigationModel
         if($this->status == self::STATUS_ACCEPTED && $this->reportExpertId != null){
             return 'منتظر ارسال جهت نگارش گزارش/روش/دستورالعمل';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // report
-            $result = 'منتظر ارسال جهت نگارش روش/دستورالعمل';
-            $result .= ' - ' . $this->getExtraStatusLabel('reports' , 'گزارش');
+            // $result = 'منتظر ارسال جهت نگارش روش/دستورالعمل';
+            $result = $this->getExtraStatusLabel('report' , 'گزارش');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
-            $result =  'منتظر ارسال جهت نگارش گزارش/روش';
-            $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
+            // $result =  'منتظر ارسال جهت نگارش گزارش/روش';
+            $result = $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_METHOD){
-            $result =  'منتظر ارسال جهت نگارش گزارش/دستورالعمل';
-            $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
+            // $result =  'منتظر ارسال جهت نگارش گزارش/دستورالعمل';
+            $result = $this->getExtraStatusLabel('methods' , 'روش');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_METHOD_INSTRUCTION){
-            $result =  'منتظر ارسال جهت نگارش گزارش';
-            $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
+            // $result =  'منتظر ارسال جهت نگارش گزارش';
+            $result = $this->getExtraStatusLabel('methods' , 'روش');
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION){
-            $result =  'منتظر ارسال جهت نگارش روش';
-            $result .= ' - ' . $this->getExtraStatusLabel('reports' , 'گزارش');
+            // $result =  'منتظر ارسال جهت نگارش روش';
+            $result = $this->getExtraStatusLabel('report' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD){
-            $result =  'منتظر ارسال جهت نگارش دستورالعمل';
-            $result .= ' - ' . $this->getExtraStatusLabel('reports' , 'گزارش');
+            // $result =  'منتظر ارسال جهت نگارش دستورالعمل';
+            $result = $this->getExtraStatusLabel('report' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION){
-            $result .= $this->getExtraStatusLabel('reports' , 'گزارش');
+            $result = $this->getExtraStatusLabel('report' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         }else{
@@ -484,7 +489,8 @@ class ProposalCommon extends BaseInvestigationModel
 
     public function getExtraStatusLabel($relatedEntity, $customLabel){
         $entityGetFunction = 'get' . ucfirst($relatedEntity);
-        $entityCount = isset($this->relatedEntity) ? $this->$entityGetFunction()->count(): 0;
+        $relatedEntities = $this->$entityGetFunction();
+        $entityCount = isset($relatedEntities) ? $relatedEntities->count(): 0;
             $label = 'منتظر نگارش  ' . $customLabel . ' ';
 
             switch ($entityCount + 1) {
@@ -530,7 +536,7 @@ class ProposalCommon extends BaseInvestigationModel
             $this->proceedings = null;
             $this->sessionDate = null;
         }
-        else if($newStatus == self::STATUS_IN_MANAGER_HAND)
+        else if($newStatus == self::STATUS_IN_MANAGER_HAND) // TODO remove this elseif asap
             $this->userHolder = self::USER_HOLDER_MANAGER;
 
         $this->status = $newStatus;

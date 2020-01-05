@@ -10,13 +10,13 @@ trait ProposalSearchTrait
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['category.title', 'tag']);
+        return array_merge(parent::attributes(), ['category.title', 'tag', 'reportExpert.userId']);
     }
 
     public function rules()
     {
         return [
-            [['title', 'uniqueCode', 'category.title', 'tag'], 'string'],
+            [['title', 'uniqueCode', 'category.title', 'tag', 'reportExpert.userId'], 'string'],
             [['createdBy', 'status'], 'integer']
         ];
     }
@@ -61,6 +61,11 @@ trait ProposalSearchTrait
             ->andFilterWhere(
                 ['like', 'category.title', $this->getAttribute('category.title')]
             );
+
+        $query->joinWith('reportExpert AS reportExpert');
+        $query->andFilterWhere(
+            ['=', 'reportExpert.userId', $this->getAttribute('reportExpert.userId')]
+        );
 
         // OMG
         // $proposalCountSubQuery = (new Query())->select('sourceId')->from('nad_investigation_proposal')->groupBy(['sourceId']);

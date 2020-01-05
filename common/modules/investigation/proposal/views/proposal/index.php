@@ -44,6 +44,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         ]
                     ],
                     [
+                        'header' => 'کارشناس',
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
                             return $model->researcher->fullName;
@@ -51,6 +52,27 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
+                            'data' => ArrayHelper::map(
+                                Expert::find()->all(),
+                                'userId',
+                                'user.fullName'
+                            ),
+                            'options' => [
+                                'placeholder' => 'جست‌وجو'
+                            ],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ]
+                        ])
+                    ],
+                    [
+                        'header' => 'کارشناس مرحله بعد',
+                        'value' => function ($model) {
+                            return $model->getExpertFullNamesAsString();
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'reportExpert.userId',
                             'data' => ArrayHelper::map(
                                 Expert::find()->all(),
                                 'userId',
