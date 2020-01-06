@@ -803,4 +803,8 @@ class MethodCommon extends BaseInvestigationModel
 
         return false;
     }
+
+    public function getEfectiveProposalId(){
+        return $this->proposalId ? $this->proposalId : $this->report->proposalId;
+    }
 }
