@@ -51,8 +51,13 @@ use nad\common\modules\investigation\report\models\Report;
                                 ],
                                 [
                                     'attribute' => 'proposalId',
+                                    'format' => 'html',
                                     'value' => function($model){
-                                        return $model->getProposalAsString();
+                                        $proposal = $model->getProposalAsString();
+                                        if($proposal)
+                                            return Html::a($proposal, ['proposal/manage/view', 'id' => $model->proposalId]);
+                                        else
+                                            return null;
                                     }
                                 ],
                                 'createdAt:date',

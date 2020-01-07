@@ -56,8 +56,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 ],
                                 [
                                     'attribute' => 'sourceId',
+                                    'format' => 'html',
                                     'value' => function($model){
-                                        return $model->getSourceAsString();
+                                        $source = $model->getSourceAsString();
+                                        if($source)
+                                            return Html::a($source, ['source/manage/view', 'id' => $model->sourceId]);
+                                        else
+                                            return null;
                                     }
                                 ],
                                 'createdAt:date',

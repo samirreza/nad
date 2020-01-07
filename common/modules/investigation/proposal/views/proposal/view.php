@@ -354,28 +354,28 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin(['title' => $model->getAttributeLabel('reasonForGenesis')]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
                 <?php Panel::begin(['title' => $model->getAttributeLabel('necessity')]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
                 <?php Panel::begin(['title' => $model->getAttributeLabel('methodDesc')]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->methodDesc ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
                 <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost')]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->estimatedCost ?>
                     </div>
                 <?php Panel::end() ?>
@@ -383,7 +383,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
                     <?php Panel::begin(['title' => 'نتیجه جلسه']) ?>
-                        <div class="well">
+                        <div>
                             <?= $model->proceedings ?>
                         </div>
                     <?php Panel::end() ?>
@@ -392,7 +392,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             <?php if ($model->negotiationResult) : ?>
                 <div class="col-md-12">
                     <?php Panel::begin(['title' => 'نتیجه مذاکره']) ?>
-                        <div class="well">
+                        <div>
                             <?= $model->negotiationResult ?>
                         </div>
                     <?php Panel::end() ?>

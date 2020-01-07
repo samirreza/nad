@@ -22,6 +22,22 @@ class ManageController extends \yii\web\Controller
                                 'investigation'
                             ],
                             'roles' => ['graphene.investigation']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',                                
+                                'investigation-monitor'
+                            ],
+                            'roles' => ['graphene.investigationMonitor']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'investigation-design'
+                            ],
+                            'roles' => ['graphene.investigationDesign']
                         ]
                     ]
                 ]
@@ -37,5 +53,15 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigation()
     {
         return $this->render('@nad/process/ird/graphene/investigation');
+    }
+
+    public function actionInvestigationMonitor()
+    {
+        return $this->render('@nad/process/ird/graphene/investigationMonitor');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/process/ird/graphene/investigationDesign');
     }
 }

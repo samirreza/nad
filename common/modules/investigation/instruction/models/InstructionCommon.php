@@ -56,10 +56,6 @@ class InstructionCommon extends BaseInvestigationModel
         return array_merge(
             parent::behaviors(),
             [
-                'experts' => [
-                    'class' => ExpertsBehavior::class,
-                    'expertRelation' => 'expert'
-                ],
                 'tags' => [
                     'class' => TaggableBehavior::class,
                     'moduleId' => $this->moduleId,
@@ -826,5 +822,43 @@ class InstructionCommon extends BaseInvestigationModel
         }
 
         return false;
+    }
+
+    public function getEfectiveProposalId(){
+        if (isset($this->proposalId)) {
+            return $this->proposalId;
+        }elseif(isset($this->reportId)){
+            return $this->report->proposalId;
+        }elseif(isset($this->methodId)){
+            $myMethod = $this->method;
+            if(isset($myMethod->proposalId)){
+                return $myMethod->proposalId;
+            }elseif(isset($myMethod->reportId)){
+                return $myMethod->report->proposalId;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+    public function getEfectiveReportId(){
+        if (isset($this->reportId)) {
+            return $this->reportId;
+        }elseif(isset($this->methodId)){
+            $this->method->reportId;
+        }
+    }
+
+    public function getExpertFullNamesAsString()
+    {
+        $output = '';
+        $expert = $this->getExpert()->one();
+        if(isset($expert)){
+            $output .= $expert->user->fullName ;
+        }
+
+        return $output;
     }
 }

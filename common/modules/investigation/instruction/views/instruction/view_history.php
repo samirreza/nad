@@ -56,20 +56,35 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 ],
                                 [
                                     'attribute' => 'proposalId',
+                                    'format' => 'html',
                                     'value' => function($model){
-                                        return $model->getProposalAsString();
+                                        $proposal = $model->getProposalAsString();
+                                        if($proposal)
+                                            return Html::a($proposal, ['proposal/manage/view', 'id' => $model->getEfectiveProposalId()]);
+                                        else
+                                            return null;
                                     }
                                 ],
                                 [
                                     'attribute' => 'reportId',
+                                    'format' => 'html',
                                     'value' => function($model){
-                                        return $model->getReportAsString();
+                                        $report = $model->getReportAsString();
+                                        if($report)
+                                            return Html::a($report, ['report/manage/view', 'id' => $model->getEfectiveReportId()]);
+                                        else
+                                            return null;
                                     }
                                 ],
                                 [
                                     'attribute' => 'methodId',
+                                    'format' => 'html',
                                     'value' => function($model){
-                                        return $model->getMethodAsString();
+                                        $method = $model->getMethodAsString();
+                                        if($method)
+                                            return Html::a($method, ['method/manage/view', 'id' => $model->methodId]);
+                                        else
+                                            return null;
                                     }
                                 ],
                                 'createdAt:date',

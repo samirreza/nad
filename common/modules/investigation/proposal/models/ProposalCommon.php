@@ -65,10 +65,6 @@ class ProposalCommon extends BaseInvestigationModel
         return array_merge(
             parent::behaviors(),
             [
-                'experts' => [
-                    'class' => ExpertsBehavior::class,
-                    'expertRelation' => 'reportExpert'
-                ],
                 'tags' => [
                     'class' => TaggableBehavior::class,
                     'moduleId' => $this->moduleId,
@@ -793,5 +789,16 @@ class ProposalCommon extends BaseInvestigationModel
         }
 
         return false;
+    }
+
+    public function getExpertFullNamesAsString()
+    {
+        $output = '';
+        $expert = $this->getReportExpert()->one();
+        if(isset($expert)){
+            $output .= $expert->user->fullName ;
+        }
+
+        return $output;
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Url;
+use theme\widgets\Panel;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'بررسی';
+$this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
@@ -13,9 +14,11 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<br><br>
-<div class="well">
-    <br><br>
+<h2 class="nad-page-title">بررسی فرایندی</h2>
+<?php Panel::begin([
+                    'title' => 'برنامه ها',
+                    'showCollapseButton' => true
+                    ]) ?>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -43,7 +46,7 @@ $this->params['breadcrumbs'] = [
              <?= InfoBox::widget([
                 'icon' => 'file-text',
                 'showCount' => false,
-                'title' => 'گزارش‌ها',
+                'title' => 'گزارش',
                 'titleUrl' => Url::to(['/introduction/investigation/report/manage/index'])
             ]) ?>
         </div>
@@ -51,7 +54,7 @@ $this->params['breadcrumbs'] = [
             <?= InfoBox::widget([
                 'icon' => 'bell',
                 'showCount' => false,
-                'title' => 'روش‌ها',
+                'title' => 'روش',
                 'titleUrl' => Url::to(['/introduction/investigation/method/manage/index'])
             ]) ?>
         </div>
@@ -59,15 +62,140 @@ $this->params['breadcrumbs'] = [
     </div>
     <br>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
-                'title' => 'منابع',
-                'titleUrl' => Url::to(['/introduction/investigation/reference/manage/index'])
+                'title' => 'دستورالعمل',
+                'titleUrl' => Url::to(['/introduction/investigation/instruction/manage/index'])
             ]) ?>
         </div>
     </div>
-    <br><br>
+    <?php Panel::end() ?>
+    <?php Panel::begin([
+                    'title' => 'داده گاه ها',
+                    'showCollapseButton' => true
+                    ]) ?>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'منشاها',
+            'titleUrl' => Url::to(['/introduction/investigation/source/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده منشا',
+            'titleUrl' => Url::to(['/introduction/investigation/source/manage/index-history'])
+        ]) ?>
+    </div>
 </div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'پروپوزال ها',
+            'titleUrl' => Url::to(['/introduction/investigation/proposal/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده پروپوزال',
+            'titleUrl' =>  Url::to(['/introduction/investigation/proposal/manage/index-history'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'گزارش ها',
+            'titleUrl' => Url::to(['/introduction/investigation/report/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده گزارش',
+            'titleUrl' =>  Url::to(['/introduction/investigation/report/manage/index-history'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روش ها',
+            'titleUrl' => Url::to(['/introduction/investigation/method/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده روش',
+            'titleUrl' => Url::to(['/introduction/investigation/method/manage/index-history'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'دستورالعمل ها',
+            'titleUrl' => Url::to(['/introduction/investigation/method/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده دستورالعمل',
+            'titleUrl' => Url::to(['/introduction/investigation/method/manage/index-history'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'منابع',
+            'titleUrl' => Url::to(['/introduction/investigation/reference/manage/index'])
+        ])
+        ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'اقدامات بررسی',
+            'titleUrl' => '#'
+        ]) ?>
+    </div>
+</div>
+<?php Panel::end() ?>
+<br><br><br>
