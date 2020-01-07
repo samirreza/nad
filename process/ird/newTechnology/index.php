@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => '#'//Url::to(['/newTechnology/manage/investigation-monitor'])
+            'titleUrl' => Url::to(['/newTechnology/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی طراحی',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/newTechnology/manage/investigation-design'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">

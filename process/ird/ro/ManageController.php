@@ -30,6 +30,14 @@ class ManageController extends \yii\web\Controller
                                 'investigation-monitor'
                             ],
                             'roles' => ['ro.investigationMonitor']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'investigation-design'
+                            ],
+                            'roles' => ['ro.investigationDesign']
                         ]
                     ]
                 ]
@@ -50,5 +58,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigationMonitor()
     {
         return $this->render('@nad/process/ird/ro/investigationMonitor');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/process/ird/ro/investigationDesign');
     }
 }

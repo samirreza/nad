@@ -12,7 +12,8 @@ class Module extends \yii\base\Module
     {
         $this->modules = [
             'investigation' => 'nad\process\ird\cartridge\investigation\Module',
-            'investigationMonitor' => 'nad\process\ird\cartridge\investigationMonitor\Module'
+            'investigationMonitor' => 'nad\process\ird\cartridge\investigationMonitor\Module',
+            'investigationDesign' => 'nad\process\ird\cartridge\investigationDesign\Module'
         ];
         parent::init();
     }

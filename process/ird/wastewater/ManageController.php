@@ -22,6 +22,22 @@ class ManageController extends \yii\web\Controller
                                 'investigation'
                             ],
                             'roles' => ['wastewater.investigation']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'investigation-monitor'
+                            ],
+                            'roles' => ['wastewater.investigationMonitor']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'investigation-design'
+                            ],
+                            'roles' => ['wastewater.investigationDesign']
                         ]
                     ]
                 ]
@@ -37,5 +53,15 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigation()
     {
         return $this->render('@nad/process/ird/wastewater/investigation');
+    }
+
+    public function actionInvestigationMonitor()
+    {
+        return $this->render('@nad/process/ird/wastewater/investigationMonitor');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/process/ird/wastewater/investigationDesign');
     }
 }
