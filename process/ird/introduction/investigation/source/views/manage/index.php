@@ -1,11 +1,12 @@
 <?php
 
-$this->title = 'لیست منشا';
+$this->title = 'لیست منشاهای برنامه';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/introduction/manage/investigation']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/introduction/manage/investigation']],
+    'برنامه منشا',
     $this->title
 ];
 

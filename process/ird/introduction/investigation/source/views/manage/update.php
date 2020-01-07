@@ -1,14 +1,16 @@
 <?php
 
-use nad\process\ird\introduction\investigation\source\models\Source;
+use nad\process\ird\introduction\investigation\source\models\Category;
+use nad\process\ird\introduction\investigation\reference\models\Reference;
 
-$this->title = 'ویرایش';
+$this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/introduction/manage/investigation']],
-    ['label' => 'لیست منشا', 'url' => ['index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/introduction/manage/investigation']],
+    'برنامه منشا',
+    ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];
@@ -18,6 +20,7 @@ $this->params['breadcrumbs'] = [
 <div class="source-update">
     <?= $this->render('@nad/common/modules/investigation/source/views/source/_form', [
         'model' => $model,
-        'consumer' => Source::CONSUMER_CODE
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
     ]) ?>
 </div>

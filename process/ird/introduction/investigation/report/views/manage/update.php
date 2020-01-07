@@ -1,6 +1,8 @@
 <?php
 
-use nad\process\ird\introduction\investigation\report\models\Report;
+use nad\process\ird\introduction\investigation\report\models\Category;
+use nad\process\ird\introduction\investigation\reference\models\Reference;
+use nad\process\ird\introduction\investigation\proposal\models\Proposal;
 
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
@@ -18,6 +20,8 @@ $this->params['breadcrumbs'] = [
 <div class="report-update">
     <?= $this->render('@nad/common/modules/investigation/report/views/report/_form', [
         'model' => $model,
-        'consumer' => Report::CONSUMER_CODE
+        'categoryConsumerCode' => Category::CONSUMER_CODE,
+        'referenceConsumerCode' => Reference::CONSUMER_CODE,
+        'proposalConsumerCode' => Proposal::CONSUMER_CODE,
     ]) ?>
 </div>
