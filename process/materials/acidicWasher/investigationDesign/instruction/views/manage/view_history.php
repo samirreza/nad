@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/acidicWasher/manage/investigation-design']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/acidicWasher/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     ['label' => 'لیست داده گاه روندهای دستورالعمل', 'url' => ['index-history']],
     $this->title
