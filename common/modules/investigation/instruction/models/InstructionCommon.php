@@ -546,7 +546,7 @@ class InstructionCommon extends BaseInvestigationModel
             self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
             self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'نزد کارشناس جهت اصلاح',
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
+            self::STATUS_LOCKED => 'قفل شده',
             self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
 
             self::STATUS_WAITING_FOR_SEND_TO_WRITE_SOURCE => 'منتظر ارسال جهت نگارش منشا',
@@ -561,46 +561,13 @@ class InstructionCommon extends BaseInvestigationModel
         if($this->status == self::STATUS_ACCEPTED && $this->expertId != null){
             return 'منتظر ارسال جهت نگارش منشا';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // source
-            $result = $this->getExtraStatusLabel('sources' , 'منشا');
+            $result = 'منتظر نگارش منشا';
         } else{
             return self::getStatusLables()[$this->status];
         }
 
         return $result;
 
-    }
-
-    public function getExtraStatusLabel($relatedEntity, $customLabel){
-        $entityGetFunction = 'get' . ucfirst($relatedEntity);
-        $relatedEntities = $this->$entityGetFunction();
-        $entityCount = isset($relatedEntities) ? $relatedEntities->count(): 0;
-            $label = 'منتظر نگارش  ' . $customLabel . ' ';
-
-            switch ($entityCount + 1) {
-                case 1:
-                    $label .= 'اول';
-                    break;
-                case 2:
-                    $label .= 'دوم';
-                    break;
-                case 3:
-                    $label .= 'سوم';
-                    break;
-                case 4:
-                    $label .= 'چهارم';
-                    break;
-                case 5:
-                    $label .= 'پنجم';
-                    break;
-                default:
-                    $label .= Utility::convertNumberToPersianWords($entityCount + 1);
-                    break;
-            }
-
-            if($entityCount > 0)
-                $label .= '/بایگانی';
-
-            return $label;
     }
 
     public static function getUserHolderLables()
@@ -636,7 +603,7 @@ class InstructionCommon extends BaseInvestigationModel
     // TODO move all "can" functions to "BaseInvestigationModel" class if other classes need them.
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
+        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
@@ -674,10 +641,10 @@ class InstructionCommon extends BaseInvestigationModel
     }
 
     public function canManagerDeliverToExpert(){
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_ACCEPTED && (
+        return Yii::$app->user->can('superuser') && (
             $this->status == self::STATUS_NEED_CORRECTION
             ||
-            self::STATUS_WAITING_FOR_NEXT_STATUS
+            $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS
             ||
             ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
          ) && $this->userHolder == self::USER_HOLDER_MANAGER;
@@ -795,7 +762,7 @@ class InstructionCommon extends BaseInvestigationModel
      * @return boolean
      */
     public function canLock(){
-        return self::isInAnyOfNextSteps($this->status);
+        return $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_LOCKED;
     }
 
     /**

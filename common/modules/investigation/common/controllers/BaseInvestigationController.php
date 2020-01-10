@@ -48,6 +48,28 @@ class BaseInvestigationController extends AdminController
         return $this->redirect(['view', 'id' => $id]);
     }
 
+    public function actionLock($id)
+    {
+        static::findModel($id)->changeStatus(BaseInvestigationModel::STATUS_LOCKED);
+        Yii::$app->session->addFlash(
+            'success',
+            'آیتم مورد نظر قفل شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    public function actionUnlock($id)
+    {
+        $model = static::findModel($id);
+        $newStatus = $model->getLastStatusBeforeLock();
+        $model->changeStatus($newStatus);
+        Yii::$app->session->addFlash(
+            'success',
+            'قفل آیتم مورد نظر باز شد.'
+        );
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
     public function actionSetSessionDate($id)
     {
         $model = static::findModel($id);

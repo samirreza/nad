@@ -197,7 +197,7 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
             self::STATUS_NEED_CORRECTION => 'نیازمند اصلاح',
             self::STATUS_REJECTED => 'رد',
             self::STATUS_ACCEPTED => 'قبول',
-            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)'
+            self::STATUS_LOCKED => 'قفل شده'
         ];
     }
 }
