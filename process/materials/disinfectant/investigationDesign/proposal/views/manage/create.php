@@ -9,7 +9,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/disinfectant/manage/investigation-design']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/disinfectant/manage/investigation-design']],
     $this->title
 ];
 

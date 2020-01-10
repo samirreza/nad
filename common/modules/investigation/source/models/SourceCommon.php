@@ -352,7 +352,7 @@ class SourceCommon extends BaseInvestigationModel
     // TODO move all "can" functions to "BaseInvestigationModel" class if other classes need them.
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
+        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
@@ -399,10 +399,10 @@ class SourceCommon extends BaseInvestigationModel
     }
 
     public function canManagerDeliverToExpert(){
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_ACCEPTED &&  (
+        return Yii::$app->user->can('superuser') &&  (
             $this->status == self::STATUS_NEED_CORRECTION
             ||
-            self::STATUS_WAITING_FOR_NEXT_STATUS
+            $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS
             ||
             ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
         ) && $this->userHolder == self::USER_HOLDER_MANAGER;
@@ -508,7 +508,7 @@ class SourceCommon extends BaseInvestigationModel
      * @return boolean
      */
     public function canLock(){
-        return $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_IN_NEXT_STEP;
+        return $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_LOCKED;
     }
 
     /**

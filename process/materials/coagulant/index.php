@@ -63,7 +63,7 @@ $this->params['breadcrumbs'] = [
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
-            'title' => 'بررسی طراحی',
+            'title' => 'مطالعات کلی و دستورالعمل ها',
             'titleUrl' => Url::to(['/coagulant/manage/investigation-design'])
         ]) ?>
     </div>

@@ -193,28 +193,26 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                     'label' => '&nbsp;&nbsp;&nbsp;قفل&nbsp;&nbsp;&nbsp;',
                     'type' => 'danger',
                     'icon' => 'lock',
-                    'isActive' =>  false, //(Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
+                    'isActive' =>  (Yii::$app->user->can('superuser') && ($model->canLock() || $model->canUnlock())),
                     'items' => [
                         'lock' => [
                             'label' => 'بستن قفل',
                             'icon' => 'lock',
-                            'isActive' =>  false, //$model->canLock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  $model->canLock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
-                                'change-status',
-                                'id' => $model->id,
-                                'newStatus' => Proposal::STATUS_LOCKED
+                                'lock',
+                                'id' => $model->id
                             ]
                         ],
                         'unlock' => [
                             'label' => 'باز کردن قفل',
                             'icon' => 'unlock',
-                            'isActive' =>  false, //$model->canUnlock() && Yii::$app->user->can('superuser'),
+                            'isActive' =>  $model->canUnlock() && Yii::$app->user->can('superuser'),
                             'visible' => true,
                             'url' => [
-                                'change-status',
-                                'id' => $model->id,
-                                'newStatus' => Proposal::STATUS_IN_NEXT_STEP
+                                'unlock',
+                                'id' => $model->id
                             ]
                         ]
                     ]

@@ -486,7 +486,7 @@ class MethodCommon extends BaseInvestigationModel
             self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
             self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'نزد کارشناس جهت اصلاح',
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_LOCKED => 'در انتظار بایگانی (قفل شده)',
+            self::STATUS_LOCKED => 'قفل شده',
             self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
 
             // -----------------------------------------
@@ -507,12 +507,12 @@ class MethodCommon extends BaseInvestigationModel
             return 'منتظر ارسال جهت نگارش منشا/دستورالعمل';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // source
             // $result = 'منتظر ارسال جهت نگارش دستورالعمل';
-            $result = $this->getExtraStatusLabel('sources' , 'منشا');
+            $result = 'منتظر نگارش منشا';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
             // $result =  'منتظر ارسال جهت نگارش منشا';
             $result = $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_SOURCE_INSTRUCTION){
-            $result = $this->getExtraStatusLabel('sources' , 'منشا');
+            $result = 'منتظر نگارش منشا';
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } else{
             return self::getStatusLables()[$this->status];
@@ -587,7 +587,7 @@ class MethodCommon extends BaseInvestigationModel
     // TODO move all "can" functions to "BaseInvestigationModel" class if other classes need them.
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
+        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
@@ -625,10 +625,10 @@ class MethodCommon extends BaseInvestigationModel
     }
 
     public function canManagerDeliverToExpert(){
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_ACCEPTED && (
+        return Yii::$app->user->can('superuser') && (
             $this->status == self::STATUS_NEED_CORRECTION
             ||
-            self::STATUS_WAITING_FOR_NEXT_STATUS
+            $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS
             ||
             ($this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->comments)
          ) && $this->userHolder == self::USER_HOLDER_MANAGER;
@@ -752,7 +752,7 @@ class MethodCommon extends BaseInvestigationModel
      * @return boolean
      */
     public function canLock(){
-        return self::isInAnyOfNextSteps($this->status);
+        return $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_LOCKED;
     }
 
     /**

@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/antimicrobial/manage/investigation-design']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antimicrobial/manage/investigation-design']],
     'داده گاه دستورالعمل',
     ['label' => 'لیست داده گاه دستورالعمل', 'url' => ['archived-index']],
     $this->title

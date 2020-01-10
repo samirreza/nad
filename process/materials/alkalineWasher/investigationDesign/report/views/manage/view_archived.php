@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/alkalineWasher/manage/investigation-design']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigation-design']],
     'داده گاه گزارش',
     ['label' => 'لیست داده گاه گزارش', 'url' => ['archived-index']],
     $this->title

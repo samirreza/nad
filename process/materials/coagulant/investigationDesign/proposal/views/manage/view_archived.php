@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
     ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/coagulant/manage/investigation-design']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/coagulant/manage/investigation-design']],
     'داده گاه پروپوزال',
     ['label' => 'لیست داده گاه پروپوزال', 'url' => ['archived-index']],
     $this->title
