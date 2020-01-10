@@ -16,50 +16,8 @@ $this->params['breadcrumbs'] = [
 <h2>فعالیت ها:</h2>
 <br>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3" style="text-align: center">
-    <?= InfoBox::widget([
-            'icon' => false,
-            'showCount' => false,
-            'title' => 'بررسی فرایندی',
-            'titleUrl' => '#' // Url::to(['/coagulant/manage/investigation'])
-        ]) ?>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-        <?= InfoBox::widget([
-            'icon' => false,
-            'showCount' => false,
-            'title' => 'تامین',
-            'titleUrl' => '#'
-        ]) ?>
-    </div>
-    <div class="col-md-3"></div>
-</div>
-<br>
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3" style="text-align: center">
-    <?= InfoBox::widget([
-            'icon' => false,
-            'showCount' => false,
-            'title' => 'بررسی پایش',
-            'titleUrl' => '#'//Url::to(['/coagulant/manage/investigation-monitor'])
-        ]) ?>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-        <?= InfoBox::widget([
-            'icon' => false,
-            'showCount' => false,
-            'title' => 'پایش',
-            'titleUrl' => '#'
-        ]) ?>
-    </div>
-    <div class="col-md-3"></div>
-</div>
-<br>
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3" style="text-align: center">
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="text-align: center">
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
@@ -67,13 +25,27 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => Url::to(['/coagulant/manage/investigation-design'])
         ]) ?>
     </div>
-    <div class="col-md-3" style="text-align: center">
+    <div class="col-md-4" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'آزمایشات و نتایج',
+            'titleUrl' => '#' // Url::to(['/coagulant/manage/investigation'])
+        ]) ?>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="text-align: center">
         <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
-            'title' => 'طراحی',
+            'title' => 'تامین',
             'titleUrl' => '#'
         ]) ?>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-4"></div>
 </div>
+<br>
