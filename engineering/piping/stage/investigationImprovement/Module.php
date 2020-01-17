@@ -15,6 +15,8 @@ class Module extends \yii\base\Module
             'reference' => 'nad\engineering\piping\stage\investigationImprovement\reference\Module',
             'method' => 'nad\engineering\piping\stage\investigationImprovement\method\Module',
             'instruction' => 'nad\engineering\piping\stage\investigationImprovement\instruction\Module',
+            'subject' => 'nad\engineering\piping\stage\investigationImprovement\subject\Module',
+            'otherreport' => 'nad\engineering\piping\stage\investigationImprovement\otherreport\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -191,6 +193,54 @@ class Module extends \yii\base\Module
                             [
                                 'label' => 'روندهای دستورالعمل',
                                 'url' => ['/engineering/piping/stage/investigationImprovement/instruction/manage/index-history']
+                            ],
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه موضوع',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعها',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/index']
+                            ],
+                            [
+                                'label' => 'لیست رده های موضوع',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/subject/category/index']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'برنامه گزارش',
+                        'items' => [
+                            [
+                                'label' => 'افزودن گزارش',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ گزارشها',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه ها',
+                        'items' => [
+                            [
+                                'label' => 'گزارشها',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/archived-index']
+                            ],
+                            [
+                                'label' => 'روندها',
+                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/index-history']
                             ],
                         ]
                     ]

@@ -62,13 +62,21 @@ $this->params['breadcrumbs'] = [
     </div>
     <br>
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستورالعمل',
                 'titleUrl' => Url::to(['/disinfectant/investigationDesign/instruction/manage/index'])
+            ]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => '',
+                'showCount' => false,
+                'title' => 'سایر گزارشها',
+                'titleUrl' => Url::to(['/disinfectant/investigationDesign/subject/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -173,6 +181,26 @@ $this->params['breadcrumbs'] = [
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
             'titleUrl' => Url::to(['/disinfectant/investigationDesign/method/manage/index-history'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row" style="text-align: center">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'سایرگزارشها',
+            'titleUrl' => Url::to(['/disinfectant/investigationDesign/subject/manage/archived-index'])
+        ]) ?>
+    </div>
+    <div class="col-md-5">
+        <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'روندهای اجرا شده سایرگزارشها',
+            'titleUrl' => Url::to(['/disinfectant/investigationDesign/subject/manage/index-history'])
         ]) ?>
     </div>
 </div>

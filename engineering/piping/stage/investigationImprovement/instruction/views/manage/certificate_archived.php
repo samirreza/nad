@@ -38,5 +38,5 @@ $this->params['horizontalMenuItems'] = [
    'method' => $method,
    'instruction' => $instruction,
     'moduleId' => 'stage',
-    'baseRoute' => '/stage/investigationImprovement-monitor'
+    'baseRoute' => '/engineering/piping/stage/investigationImprovement-monitor'
 ]);

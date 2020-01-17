@@ -9,7 +9,7 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'nad\engineering\piping';
 
     /**
-     * @todo the name of module "location" should be changed to "group" (group of documents) but does not matter for now...
+     * TODO the name of module "location" should be changed to "group" (group of documents) but does not matter for now...
      */
     public function init()
     {
