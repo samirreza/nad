@@ -16,6 +16,6 @@ $this->params['breadcrumbs'] = [
 <br>
 <div class="tree-view">
     <?= $this->render('@nad/common/modules/investigation/method/views/category/tree', [
-        'moduleId' => 'piping'
+        'moduleId' => 'materials'
     ]) ?>
 </div>

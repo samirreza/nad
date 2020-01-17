@@ -10,6 +10,7 @@ class ReferenceUses extends \yii\db\ActiveRecord
     const CODE_REPORT = 3;
     const CODE_METHOD = 4;
     const CODE_INSTRUCTION = 5;
+    const CODE_OTHER_REPORT = 6;
 
     public $moduleId = 'reference';
 
@@ -38,6 +39,7 @@ class ReferenceUses extends \yii\db\ActiveRecord
             self::CODE_REPORT => 'گزارش',
             self::CODE_METHOD => 'روش',
             self::CODE_INSTRUCTION => 'دستورالعمل',
+            self::CODE_OTHER_REPORT => 'سایر گزارشها'
         ];
     }
 }

@@ -1,0 +1,17 @@
+<?php
+
+$this->title = 'لیست موضوع';
+$this->params['breadcrumbs'] = [
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
+    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
+    $this->title
+];
+
+?>
+
+<?= $this->render('@nad/common/modules/investigation/subject/views/subject/index', [
+    'dataProvider' => $dataProvider,
+    'searchModel' => $searchModel
+]);
