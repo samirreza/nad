@@ -27,6 +27,15 @@ class CategoryController extends BaseCategoryController
                         [
                             'allow' => true,
                             // 'roles' => ['device.device'],
+                            'roles' => ['device.device']
+                        ],
+                        [
+                            'allow' => false,
+                            'actions' => [
+                                'create',
+                                'update',
+                                'delete',
+                            ],
                             'roles' => ['@']
                         ]
                     ]
