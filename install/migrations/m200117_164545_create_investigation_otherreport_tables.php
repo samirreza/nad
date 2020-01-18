@@ -14,21 +14,6 @@ class m200117_164545_create_investigation_otherreport_tables extends Migration
     {
         $this->execute('
             -- ----------------------------
-            -- Table structure for nad_investigation_otherreport_partner_relation
-            -- ----------------------------
-
-            CREATE TABLE `nad_investigation_otherreport_partner_relation`  (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `otherreportId` int(11) NOT NULL,
-            `expertId` int(11) NOT NULL,
-            PRIMARY KEY (`id`) USING BTREE,
-            INDEX `nad_investigation_instruction_partner_relation_instructionId`(`otherreportId`) USING BTREE,
-            INDEX `nad_investigation_instruction_partner_relation_expertId`(`expertId`) USING BTREE,
-            CONSTRAINT `nad_investigation_otherreport_partner_relation_ibfk_1` FOREIGN KEY (`expertId`) REFERENCES `nad_office_expert` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-            CONSTRAINT `nad_investigation_otherreport_partner_relation_ibfk_2` FOREIGN KEY (`otherreportId`) REFERENCES `nad_investigation_otherreport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-            ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
-
-            -- ----------------------------
             -- Table structure for nad_investigation_otherreport
             -- ----------------------------
 
@@ -56,6 +41,21 @@ class m200117_164545_create_investigation_otherreport_tables extends Migration
             INDEX `subjectId`(`subjectId`) USING BTREE,
             CONSTRAINT `nad_investigation_otherreport_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `nad_investigation_subject` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
             ) ENGINE = InnoDB AUTO_INCREMENT = 252 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+
+            -- ----------------------------
+            -- Table structure for nad_investigation_otherreport_partner_relation
+            -- ----------------------------
+
+            CREATE TABLE `nad_investigation_otherreport_partner_relation`  (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `otherreportId` int(11) NOT NULL,
+            `expertId` int(11) NOT NULL,
+            PRIMARY KEY (`id`) USING BTREE,
+            INDEX `nad_investigation_instruction_partner_relation_instructionId`(`otherreportId`) USING BTREE,
+            INDEX `nad_investigation_instruction_partner_relation_expertId`(`expertId`) USING BTREE,
+            CONSTRAINT `nad_investigation_otherreport_partner_relation_ibfk_1` FOREIGN KEY (`expertId`) REFERENCES `nad_office_expert` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+            CONSTRAINT `nad_investigation_otherreport_partner_relation_ibfk_2` FOREIGN KEY (`otherreportId`) REFERENCES `nad_investigation_otherreport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
         ');
     }
 
