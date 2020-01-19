@@ -6,7 +6,7 @@ $this->params['breadcrumbs'] = [
     'لوله کشی',
     ['label' => 'مراحل', 'url' => ['/process/materials/disinfectant/manage/index']],
     ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/disinfectant/manage/investigation-design']],
-    ['label' => 'رده های موضوعها', 'url' => ['/process/materials/disinfectant/investigationDesign/subject/category/index']],
+    ['label' => 'رده های موضوعها', 'url' => ['/disinfectant/investigationDesign/subject/category/index']],
     $this->title
 ];
 
