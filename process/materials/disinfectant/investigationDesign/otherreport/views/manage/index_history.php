@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/index']
+        'url' => ['/disinfectant/investigationDesign/otherreport/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/archived-index']
+        'url' => ['/disinfectant/investigationDesign/otherreport/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/index-history']
+        'url' => ['/disinfectant/investigationDesign/otherreport/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/process/materials/disinfectant/investigationDesign/reference/manage/index']
+        'url' => ['/disinfectant/investigationDesign/reference/manage/index']
     ]
 ];
 ?>

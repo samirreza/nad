@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه موضوع',
-        'url' => ['/process/materials/disinfectant/investigationDesign/subject/manage/index']
+        'url' => ['/disinfectant/investigationDesign/subject/manage/index']
     ],
     [
         'label' => 'داده گاه موضوع',
-        'url' => ['/process/materials/disinfectant/investigationDesign/subject/manage/archived-index']
+        'url' => ['/disinfectant/investigationDesign/subject/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند موضوع',
-        'url' => ['/process/materials/disinfectant/investigationDesign/subject/manage/index-history']
+        'url' => ['/disinfectant/investigationDesign/subject/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/process/materials/disinfectant/investigationDesign/reference/manage/index']
+        'url' => ['/disinfectant/investigationDesign/reference/manage/index']
     ]
 ];
 
@@ -34,5 +34,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/subject/views/subject/certificate_archived', [
    'subject' => $subject,
     'moduleId' => 'disinfectant',
-    'baseRoute' => '/process/materials/disinfectant/investigationDesign'
+    'baseRoute' => '/disinfectant/investigationDesign'
 ]);

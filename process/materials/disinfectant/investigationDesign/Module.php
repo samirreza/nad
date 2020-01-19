@@ -206,15 +206,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/subject/manage/create']
+                                'url' => ['/disinfectant/investigationDesign/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعها',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/subject/manage/index']
+                                'url' => ['/disinfectant/investigationDesign/subject/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های موضوع',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/subject/category/index']
+                                'url' => ['/disinfectant/investigationDesign/subject/category/index']
                             ],
                         ]
                     ],
@@ -223,11 +223,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/create']
+                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشها',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/index']
+                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/index']
                             ]
                         ]
                     ],
@@ -236,11 +236,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/archived-index']
+                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندها',
-                                'url' => ['/process/materials/disinfectant/investigationDesign/otherreport/manage/index-history']
+                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/index-history']
                             ],
                         ]
                     ]
