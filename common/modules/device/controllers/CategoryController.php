@@ -8,6 +8,21 @@ use core\controllers\AjaxAdminController;
 
 class CategoryController extends AjaxAdminController
 {
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                [
+                    'class' => ContentNegotiator::class,
+                    'only' => ['get-json-tree'],
+                    'formats' => [
+                        'application/json' => Response::FORMAT_JSON
+                    ]
+                ]
+            ]
+        );
+    }
 
     public function actions()
     {

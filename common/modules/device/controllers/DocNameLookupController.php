@@ -8,6 +8,30 @@ use nad\common\modules\device\models\DocNameLookup;
 
 class DocNameLookupController extends \core\controllers\AjaxAdminController
 {
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'update',
+                            ],
+                            'roles' => ['superuser']
+                        ]
+                    ]
+                ]
+            ]
+        );
+    }
 
     public function init()
     {

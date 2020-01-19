@@ -10,6 +10,32 @@ use nad\common\modules\document\models\DeviceCategoryDocumentSearch;
 
 class DeviceCategoryDocumentController extends \core\controllers\AjaxAdminController
 {
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'index',
+                                'view',
+                                'create',
+                                'delete',
+                                'tree-list',
+                                'get-json-tree',
+                                'update'
+                            ],
+                            'roles' => ['@']
+                        ],
+                    ]
+                ]
+            ]
+        );
+    }
 
     public function init()
     {

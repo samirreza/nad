@@ -29,21 +29,11 @@ class ManageController extends ParentController
                             'actions' => [
                                 'index',
                                 'view',
-                                'tree-list',
-                                'get-json-tree',
-                                'get-device-title-and-code'
-                            ],
-                            'roles' => ['@']
-                        ],
-                        [
-                            'allow' => true,
-                            'actions' => [
-                                'index',
-                                'view',
                                 'create',
                                 'update'
                             ],
-                            'roles' => ['device.device']
+                            // 'roles' => ['nad.engineering.piping.device.device']
+                            'roles' => ['@']
                         ]
                     ]
                 ]
