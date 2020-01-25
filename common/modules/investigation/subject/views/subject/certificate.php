@@ -11,17 +11,6 @@ use theme\widgets\Panel;
         'moduleId' => $moduleId,
         'baseRoute' => $baseRoute
     ]) ?>
-    <?php if ($subject->otherreports) : ?>
-        <?php foreach ($subject->otherreports as $index => $otherreport) : ?>
-            <?php Panel::begin(['title' => 'گزارش ' . Yii::$app->formatter->asFarsiNumber($index + 1)]) ?>
-                <?= $this->render('@nad/common/modules/investigation/common/views/_base_otherreport_certificate', [
-                    'otherreport' => $otherreport,
-                    'moduleId' => $moduleId,
-                    'baseRoute' => $baseRoute
-                ]) ?>
-            <?php Panel::end() ?>
-        <?php endforeach; ?>
-    <?php endif; ?>
 </div>
 
 <?php $this->registerCss('

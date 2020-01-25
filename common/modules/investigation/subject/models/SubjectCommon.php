@@ -3,21 +3,25 @@
 namespace nad\common\modules\investigation\subject\models;
 
 use Yii;
+use nad\common\helpers\Lookup;
 use nad\common\helpers\Utility;
 use core\behaviors\PreventDeleteBehavior;
+use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\otherreport\models\Otherreport;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
-// use nad\common\modules\investigation\subject\behaviors\ReasonsBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 use nad\common\modules\investigation\subject\behaviors\NotificationBehavior;
+use nad\common\modules\investigation\otherreport\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class SubjectCommon extends BaseInvestigationModel
 {
+    const LOOKUP_MISSION_TYPE = 'nad.investigation.subject.missionType';
+
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
 
@@ -29,12 +33,78 @@ class SubjectCommon extends BaseInvestigationModel
     const STATUS_WAITING_FOR_SESSION_RESULT = 32;
     const STATUS_WAITING_FOR_NEXT_STATUS = 33;
     const STATUS_WAITING_FOR_CORRECTION_BY_EXPERT = 34;
-    const STATUS_WAITING_FOR_SEND_TO_WRITE_PROPOSAL = -1;
-    const STATUS_IN_NEXT_STEP_ONE_PROPOSAL = -2;
-    const STATUS_IN_NEXT_STEP_MORE_PROPOSALS = -3;
+    const STATUS_WAITING_FOR_EXPERT_ACCEPT = 40;
+    const STATUS_ACCEPTED_BY_EXPERT = 41;
+    const STATUS_REPORT_ACCEPTED = 42;
+    const STATUS_REPORT_REJECTED = 43;
+    const STATUS_WAITING_FOR_SEND_TO_WRITE_REPORT = -1;
 
     public $moduleId = 'subject';
     public $ownerClassName = __NAMESPACE__ . '\Subject';
+
+    private $_unitCode;
+    public function getUnitCode()
+    {
+        if(!empty($this->_unitCode))
+            return $this->_unitCode;
+        elseif(!empty($this->uniqueCode))
+            return explode('.', $this->uniqueCode)[0];
+
+        return null;
+    }
+
+    public function setUnitCode($value)
+    {
+        $this->_unitCode = trim($value);
+    }
+
+    private $_creatorExpertCode;
+    public function getCreatorExpertCode()
+    {
+        if(!empty($this->_creatorExpertCode))
+            return $this->_creatorExpertCode;
+        elseif(!empty($this->uniqueCode))
+            return explode('.', $this->uniqueCode)[1];
+
+        return null;
+    }
+
+    public function setCreatorExpertCode($value)
+    {
+        $this->_creatorExpertCode = trim($value);
+    }
+
+    private $_seoCode;
+    public function getSeoCode()
+    {
+        if(!empty($this->_seoCode))
+            return $this->_seoCode;
+        elseif(!empty($this->uniqueCode))
+            return explode('.', $this->uniqueCode)[2];
+
+        return null;
+    }
+
+    public function setSeoCode($value)
+    {
+        $this->_seoCode = trim($value);
+    }
+
+    private $_reportExpertCode;
+    public function getReportExpertCode()
+    {
+        if(!empty($this->_reportExpertCode))
+            return $this->_reportExpertCode;
+        elseif(!empty($this->uniqueCode))
+            return explode('.', $this->uniqueCode)[1];
+
+        return null;
+    }
+
+    public function setReportExpertCode($value)
+    {
+        $this->_reportExpertCode = trim($value);
+    }
 
     const EVENT_SET_EXPERT = 'set-expert';
     const EVENT_DELIVERD_TO_MANAGER = 'deliverd-to-manager';
@@ -55,16 +125,70 @@ class SubjectCommon extends BaseInvestigationModel
                     'moduleId' => $this->moduleId,
                     'customOwner' => $this->ownerClassName
                 ],
+                'partners' => PartnersBehavior::class,
                 'codeNumerator' => [
                     'class' => CodeNumeratorBehavior::class,
-                    'determinativeColumn' => 'categoryId'
+                    'determinativeColumn' => 'consumer'
                 ],
                 [
-                    'class' => PreventDeleteBehavior::class,
-                    'relations' => [
-                        [
-                            'relationMethod' => 'getOtherreports',
-                            'relationName' => 'گزارش'
+                    'class' => FileBehavior::class,
+                    'groups' => [
+                        'subjectFile' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 100 * 1024 * 1024
+                            ]
+                        ],
+                        'reportFile' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 100 * 1024 * 1024
+                            ]
+                        ],
+                        'reportFile2' => [
+                            'type' => FileBehavior::TYPE_FILE,
+                            'rules' => [
+                                'extensions' => [
+                                    'png',
+                                    'jpg',
+                                    'jpeg',
+                                    'pdf',
+                                    'doc',
+                                    'docx',
+                                    'xls',
+                                    'xlsx',
+                                    'ppt',
+                                    'pptx',
+                                    'zip'
+                                ],
+                                'maxSize' => 100 * 1024 * 1024
+                            ]
                         ]
                     ]
                 ],
@@ -76,23 +200,23 @@ class SubjectCommon extends BaseInvestigationModel
     public function rules()
     {
         return [
-            [['text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace'], 'trim'],
+            [['text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'trim'],
             [
                 [
                     'title',
                     'createdAt',
                     'text',
-                    'categoryId'
+                    'unitCode',
+                    'creatorExpertCode',
+                    'seoCode'
                 ],
                 'required'
             ],
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
-            ['proceedings', 'required', 'on' => self::SCENARIO_WRITE_PROCEEDINGS],
-            ['negotiationResult', 'required', 'on' => self::SCENARIO_WRITE_NEGOTIATION_RESULT],
-            [['expertId', 'missionObjective'], 'required', 'on' => self::SCENARIO_SET_EXPERT],
-            [['title', 'englishTitle', 'missionPlace'], 'string', 'max' => 255],
+            [['expertId', 'missionObjective', 'reportExpertCode'], 'required', 'on' => self::SCENARIO_SET_EXPERT],
+            [['title', 'englishTitle', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'string', 'max' => 255],
             [['text', 'description', 'proceedings', 'negotiationResult', 'missionObjective'], 'string'],
-            [['tags'], 'safe'],
+            [['partners', 'tags', 'references'], 'safe'],
             [['englishTitle', 'missionPlace'], 'default', 'value' => null],
             ['isMissionNeeded', 'integer'],
             [
@@ -103,7 +227,7 @@ class SubjectCommon extends BaseInvestigationModel
                 }
             ],
             [
-                ['sessionDate', 'missionDate'],
+                ['sessionDate', 'missionDate', 'reportDeadlineDate'],
                 JalaliDateToTimestamp::class,
                 'hourAttr' => 'sessionHourAttribute',
                 'minuteAttr' => 'sessionMinuteAttribute',
@@ -118,7 +242,7 @@ class SubjectCommon extends BaseInvestigationModel
             [
                 'title',
                 'unique',
-                'targetAttribute' => ['title', 'categoryId'],
+                'targetAttribute' => ['title', 'consumer'],
                 'message' => 'ترکیب عنوان و رده تکراری است'
             ],
         ];
@@ -127,7 +251,7 @@ class SubjectCommon extends BaseInvestigationModel
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SET_EXPERT] = ['expertId', 'missionObjective', 'isMissionNeeded', 'missionPlace', 'missionDate'];
+        $scenarios[self::SCENARIO_SET_EXPERT] = ['expertId', 'missionObjective', 'isMissionNeeded', 'missionPlace', 'missionDate', 'reportDeadlineDate', 'missionType', 'reportExpertCode'];
         return $scenarios;
     }
 
@@ -137,24 +261,32 @@ class SubjectCommon extends BaseInvestigationModel
             'title' => 'عنوان',
             'englishTitle' => 'عنوان انگلیسی',
             'createdAt' => 'تاریخ درج',
-            'text' => 'متن موضوع',
+            'text' => 'متن',
             'description' => 'توضیحات',
-            'categoryId' => 'رده',
+            'references' => 'منابع',
+            'partners' => 'همکاران',
+            'tags' => 'کلید واژه‌ها',
             'tags' => 'کلید واژه‌ها',
             'status' => 'وضعیت',
             'userHolder' => 'نزد',
-            'createdBy' => 'کارشناس',
+            'createdBy' => 'پیشنهاددهنده',
             'updatedAt' => 'آخرین بروزرسانی',
             'deliverToManagerDate' => 'تاریخ تحویل به مدیر',
             'sessionDate' => 'تاریخ جلسه توجیهی',
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'expertId' => 'کارشناس نگارش گزارش',
+            'expertId' => 'کارشناس گزارش/ماموریت',
             'missionObjective' => 'هدف گزارش/ماموریت',
             'isMissionNeeded' => 'نیاز به ماموریت دارد',
             'missionPlace' => 'مکان ماموریت',
             'missionDate' => 'زمان ماموریت',
+            'reportDeadlineDate' => 'زمان تحویل گزارش',
+            'missionType' => 'نوع ماموریت',
+            'unitCode' => 'کد واحد',
+            'creatorExpertCode' => 'کد کارشناس',
+            'reportExpertCode' => 'کد کارشناس',
+            'seoCode' => 'کد SEO'
         ];
     }
 
@@ -176,6 +308,8 @@ class SubjectCommon extends BaseInvestigationModel
         if($this->isMissionNeeded == self::IS_MISSION_NEEDED_NO){
             $this->missionPlace = null;
             $this->missionDate = null;
+            $this->reportDeadlineDate = null;
+            $this->missionType = null;
         }
 
         $this->setUniqueCode();
@@ -184,10 +318,15 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = $this->category->uniqueCode . '.' .
-            $this->numberPartOfUniqueCode;
+        $this->uniqueCode = trim($this->unitCode . '.' . ($this->isReport()?$this->reportExpertCode:$this->creatorExpertCode) . '.' . $this->seoCode . '.' . $this->numberPartOfUniqueCode . (isset($this->missionType)? '.' . Lookup::item(self::LOOKUP_MISSION_TYPE, $this->missionType):''), '.');
         // $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
             // '.' . $this->numberPartOfUniqueCode;
+    }
+
+    public function getPartnersQuery()
+    {
+        return $this->hasMany(Expert::class, ['id' => 'expertId'])
+            ->viaTable('nad_investigation_subject_partner_relation', ['subjectId' => 'id']);
     }
 
     public function afterSave($insert, $changedAttributes)
@@ -195,7 +334,7 @@ class SubjectCommon extends BaseInvestigationModel
         if (
             isset($changedAttributes['status']) &&
             $changedAttributes['status'] == self::STATUS_ACCEPTED &&
-            $this->status == self::STATUS_IN_NEXT_STEP
+            $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT
         ) {
             $this->trigger(self::EVENT_SET_EXPERT);
         }elseif(
@@ -215,11 +354,6 @@ class SubjectCommon extends BaseInvestigationModel
         parent::afterSave($insert, $changedAttributes);
     }
 
-    public function getCategory()
-    {
-        return $this->hasOne(Category::class, ['id' => 'categoryId']);
-    }
-
     public function getExpert()
     {
         return $this->hasOne(Expert::class, ['id' => 'expertId']);
@@ -233,23 +367,6 @@ class SubjectCommon extends BaseInvestigationModel
         return $this->expert->user->fullName;
     }
 
-    public function getOtherreports()
-    {
-        return $this->hasMany(Otherreport::class, ['subjectId' => 'id']);
-    }
-
-    // TODO this function is NOT used anymore. Remove asap.
-    public function canUserCreateOtherreport()
-    {
-        if ($this->status == self::STATUS_IN_NEXT_STEP) {
-            if (Yii::$app->user->can('superuser')) {
-                return true;
-            }
-            return $this->expertId != null;
-        }
-        return false;
-    }
-
     public static function tableName()
     {
         return 'nad_investigation_subject';
@@ -259,62 +376,37 @@ class SubjectCommon extends BaseInvestigationModel
     public static function getStatusLables()
     {
         return [
-            // self::STATUS_IN_MANAGER_HAND => 'نزد مدیر', // not used
-            // self::STATUS_WAITING_FOR_SESSION => 'نوبت جلسه', // not used
-            // self::STATUS_WAIT_FOR_NEGOTIATION => 'نوبت مذاکره', // not used
-            self::STATUS_INPROGRESS => 'در حال انجام',
+            self::STATUS_INPROGRESS => 'در حال انجام', // for subject
+            self::STATUS_ACCEPTED_BY_EXPERT => 'در حال انجام', // for report
             self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
-            self::STATUS_WAITING_FOR_CHECK_BY_MANAGER => 'منتظر بررسی موضوع',
+            self::STATUS_WAITING_FOR_CHECK_BY_MANAGER => 'منتظر بررسی',
             self::STATUS_WAITING_FOR_SESSION_DATE => 'منتظر تعیین زمان جلسه',
             self::STATUS_WAITING_FOR_SESSION_RESULT => 'منتظر جلسه و ثبت نتیجه',
-            // self::STATUS_NEED_CORRECTION => 'منتظر ارسال به کارشناس جهت اصلاح',
-            self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'نزد کارشناس جهت اصلاح',
+            self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'منتظر اصلاح',
             self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
-            self::STATUS_WAITING_FOR_SEND_TO_WRITE_PROPOSAL => 'منتظر ارسال جهت نگارش گزارش',
-            // self::STATUS_IN_NEXT_STEP_ONE_PROPOSAL => 'منتظر نگارش گزارش اول',
-            // self::STATUS_IN_NEXT_STEP_MORE_PROPOSALS => 'منتظر نگارش گزارش دوم/سوم/...',
-            self::STATUS_IN_NEXT_STEP => 'منتظر نگارش گزارش اول/دوم/...', // don't remove it, it IS used.
+            self::STATUS_WAITING_FOR_SEND_TO_WRITE_REPORT => 'منتظر ارسال جهت نگارش گزارش',
             self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
             self::STATUS_LOCKED => 'قفل شده',
-            self::STATUS_REJECTED => 'رد',
+            self::STATUS_REJECTED => 'رد شده',
+            self::STATUS_REPORT_ACCEPTED => 'تایید شده',
+            self::STATUS_REPORT_REJECTED => 'رد شده',
+            self::STATUS_WAITING_FOR_EXPERT_ACCEPT => 'منتظر دریافت کارشناس'
         ];
     }
 
     public function getStatusLabel(){
         if($this->status == self::STATUS_ACCEPTED && $this->expertId != null){
             return 'منتظر ارسال جهت نگارش گزارش';
-        } elseif ($this->status == self::STATUS_IN_NEXT_STEP) {
-            $otherreportsCount = isset($this->otherreports) ? $this->getOtherreports()->count(): 0;
-            $label = 'منتظر نگارش گزارش ';
-
-            switch ($otherreportsCount + 1) {
-                case 1:
-                    $label .= 'اول';
-                    break;
-                case 2:
-                    $label .= 'دوم';
-                    break;
-                case 3:
-                    $label .= 'سوم';
-                    break;
-                case 4:
-                    $label .= 'چهارم';
-                    break;
-                case 5:
-                    $label .= 'پنجم';
-                    break;
-                default:
-                    $label .= Utility::convertNumberToPersianWords($otherreportsCount + 1);
-                    break;
-            }
-
-            if($otherreportsCount > 0)
-                $label .= '/بایگانی';
-
-            return $label;
         }
 
-        return self::getStatusLables()[$this->status];
+        $postfix = '';
+        if($this->isReport()){
+            $postfix = ' (گزارش)';
+        }else{
+            $postfix = ' (موضوع)';
+        }
+
+        return self::getStatusLables()[$this->status] . $postfix;
     }
 
     public static function getUserHolderLables()
@@ -327,10 +419,11 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function changeStatus($newStatus)
     {
-        if($newStatus == self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED)
+        if ($newStatus == self::STATUS_WAITING_FOR_EXPERT_ACCEPT && $this->status != self::STATUS_LOCKED) {
             $this->userHolder = self::USER_HOLDER_EXPERT;
+        }
         else if($newStatus == self::STATUS_WAITING_FOR_SESSION_DATE){
-            $this->proceedings = null;
+            // $this->proceedings = null;
             $this->sessionDate = null;
         }
         else if($newStatus == self::STATUS_IN_MANAGER_HAND)
@@ -347,21 +440,46 @@ class SubjectCommon extends BaseInvestigationModel
         $this->save(false);
     }
 
-    // TODO move all "can" functions to "BaseInvestigationModel" class if other classes need them.
+    // TODO this function is NOT used anymore. Remove asap.
+    public function canUserCreateReport()
+    {
+        if ($this->status == self::STATUS_ACCEPTED_BY_EXPERT) {
+            if (Yii::$app->user->can('superuser')) {
+                return true;
+            }
+            return $this->expertId != null;
+        }
+        return false;
+    }
+
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED && Yii::$app->user->can('superuser')) {
+        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED &&$this->status != self::STATUS_REPORT_REJECTED && Yii::$app->user->can('superuser')) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
             (
+                (
+                    $this->isReport() && $this->expertId == Yii::$app->user->identity->expert->id
+                )
+                ||
+                (
+                    !$this->isReport()
+                )
+            )
+            &&
+            (
                 $this->status == self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT ||
-                $this->status == self::STATUS_INPROGRESS
+                $this->status == self::STATUS_INPROGRESS ||
+                $this->status == self::STATUS_ACCEPTED_BY_EXPERT
             )
         ) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
-                ['investigation' => $this]
+                [
+                    'investigation' => $this,
+                    'allowSecondExpert' => true
+                ]
             );
         }
         return false;
@@ -370,26 +488,32 @@ class SubjectCommon extends BaseInvestigationModel
     public function canUserDeliverToManager()
     {
         if (
-            $this->status != self::STATUS_IN_NEXT_STEP &&
+            $this->status != self::STATUS_REPORT_ACCEPTED &&
+            $this->status != self::STATUS_REPORT_REJECTED &&
             $this->status != self::STATUS_REJECTED &&
             $this->status != self::STATUS_LOCKED &&
             $this->userHolder != self::USER_HOLDER_MANAGER &&
             (
-                $this->userHolder == self::USER_HOLDER_EXPERT
+                ($this->userHolder == self::USER_HOLDER_EXPERT && !$this->isReport()) ||
+                ($this->userHolder == self::USER_HOLDER_EXPERT && $this->isReport() && $this->expertId == Yii::$app->user->identity->expert->id)
                 ||
                 (
                     Yii::$app->user->can('superuser')
                     &&
                     (
                         $this->status == self::STATUS_INPROGRESS ||
-                        $this->status = self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT
+                        $this->status == self::STATUS_ACCEPTED_BY_EXPERT ||
+                        $this->status == self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT
                     )
                 )
             )
         ) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
-                ['investigation' => $this]
+                [
+                    'investigation' => $this,
+                    'allowSecondExpert' => true
+                ]
             );
 
         }
@@ -407,37 +531,46 @@ class SubjectCommon extends BaseInvestigationModel
     }
 
     public function canSetWaitForSession(){
-        return ($this->status != self::STATUS_REJECTED && $this->userHolder == Subject::USER_HOLDER_MANAGER &&
-        Yii::$app->user->can('superuser') &&
-        $this->status != self::STATUS_ACCEPTED &&
-        $this->status != self::STATUS_NEED_CORRECTION &&
-        $this->status != self::STATUS_WAITING_FOR_SESSION_DATE &&
-        $this->status != self::STATUS_WAITING_FOR_SESSION_RESULT &&
+        return (
+            $this->userHolder == Subject::USER_HOLDER_MANAGER &&
+            Yii::$app->user->can('superuser') &&
+            $this->status != self::STATUS_ACCEPTED &&
+            $this->status != self::STATUS_REJECTED &&
+            $this->status != self::STATUS_REPORT_ACCEPTED &&
+            $this->status != self::STATUS_REPORT_REJECTED &&
+            $this->status != self::STATUS_NEED_CORRECTION &&
+            $this->status != self::STATUS_WAITING_FOR_SESSION_DATE &&
         // $this->status != Subject::STATUS_WAITING_FOR_SESSION && // commented so user can set multiple sessions
-        $this->status != self::STATUS_IN_NEXT_STEP && !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
+        !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
     }
 
     public function canSetSessionDate()
     {
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->sessionDate == null && $this->status == self::STATUS_WAITING_FOR_SESSION_DATE) || ($this->sessionDate != null && $this->status == self::STATUS_WAITING_FOR_SESSION_RESULT));
-    }
-
-    public function canWriteProceedings()
-    {
-        return Yii::$app->user->can('superuser') && $this->status != self::STATUS_REJECTED &&
-        $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED &&
-            $this->sessionDate != null &&
-            ($this->proceedings == null && $this->status == self::STATUS_WAITING_FOR_SESSION_RESULT);
+        return Yii::$app->user->can('superuser') &&
+        (
+            $this->status == self::STATUS_WAITING_FOR_SESSION_DATE
+            ||
+            (
+                $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS &&
+                $this->sessionDate != null
+            )
+        );
     }
 
     public function canStartConverstation()
     {
         if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION &&
         $this->status != self::STATUS_NEED_CORRECTION &&
-        $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && (($this->status != self::STATUS_WAITING_FOR_SESSION_DATE) && ($this->status != self::STATUS_WAITING_FOR_SESSION_RESULT))) {
+        (
+            $this->status != self::STATUS_REPORT_ACCEPTED &&
+            $this->status != self::STATUS_REPORT_REJECTED
+        ) && $this->status != self::STATUS_LOCKED && ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
-                ['investigation' => $this]
+                [
+                    'investigation' => $this,
+                    'allowSecondExpert' => true
+                ]
             );
         }
         return false;
@@ -445,10 +578,22 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canHaveConverstation()
     {
-        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_WAIT_FOR_CONVERSATION && $this->status != self::STATUS_IN_NEXT_STEP && $this->status != self::STATUS_LOCKED && !($this->status == self::STATUS_WAITING_FOR_SESSION && !$this->proceedings)) {
+        if (
+            $this->status != self::STATUS_ACCEPTED &&
+            $this->status != self::STATUS_REJECTED &&
+            $this->status == self::STATUS_WAIT_FOR_CONVERSATION &&
+            (
+                $this->status != self::STATUS_REPORT_ACCEPTED &&
+                $this->status != self::STATUS_REPORT_REJECTED
+            )
+            && $this->status != self::STATUS_LOCKED
+            && !($this->status == self::STATUS_WAITING_FOR_SESSION)) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
-                ['investigation' => $this]
+                [
+                    'investigation' => $this,
+                    'allowSecondExpert' => true
+                ]
             );
         }
         return false;
@@ -492,12 +637,25 @@ class SubjectCommon extends BaseInvestigationModel
         return false;
     }
 
-    public function canSendToWriteOtherreport(){
+    public function canSendToWriteReport(){
         return ($this->status == self::STATUS_ACCEPTED && $this->expertId != null && Yii::$app->user->can('superuser'));
     }
 
     public function canSetExpert(){
-        return (Yii::$app->user->can('superuser') && ($this->status == self::STATUS_ACCEPTED || $this->status == self::STATUS_IN_NEXT_STEP));
+        return (
+            Yii::$app->user->can('superuser') &&
+            ($this->status == self::STATUS_ACCEPTED || $this->expertId != null) &&
+            (
+                $this->status != self::STATUS_REPORT_ACCEPTED &&
+                $this->status != self::STATUS_REPORT_REJECTED
+            )
+        );
+    }
+
+    public function canExpertAccept(){
+        return $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT
+        && $this->userHolder == self::USER_HOLDER_EXPERT
+        && Yii::$app->user->identity->expert->id == $this->expertId;
     }
 
     /**
@@ -506,7 +664,12 @@ class SubjectCommon extends BaseInvestigationModel
      * @return boolean
      */
     public function canLock(){
-        return $this->status != self::STATUS_REJECTED && $this->status != self::STATUS_LOCKED;
+        return $this->status != self::STATUS_REJECTED
+        && $this->status != self::STATUS_LOCKED
+        &&
+        (
+            $this->status != self::STATUS_REPORT_REJECTED
+        );
     }
 
     /**
@@ -515,7 +678,7 @@ class SubjectCommon extends BaseInvestigationModel
      * @return boolean
      */
     public function canUnlock(){
-        return $this->status != self::STATUS_REJECTED && $this->status == self::STATUS_LOCKED;
+        return $this->status == self::STATUS_LOCKED;
     }
 
     public function getExpertFullNamesAsString()
@@ -527,5 +690,12 @@ class SubjectCommon extends BaseInvestigationModel
         }
 
         return $output;
+    }
+
+    public function isReport(){
+        if($this->expertId != null)
+            return true;
+
+        return false;
     }
 }

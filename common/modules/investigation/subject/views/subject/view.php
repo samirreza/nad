@@ -4,10 +4,12 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
+use nad\common\helpers\Lookup;
 use theme\widgets\ActionButtons;
 use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\subject\models\Subject;
 use nad\extensions\comment\widgets\commentList\CommentList;
+use nad\common\modules\investigation\subject\models\SubjectCommon;
 
 ?>
 
@@ -18,6 +20,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             'modelID' => $model->id,
             'buttons' => [
                 'update' => [
+                    'label' => ($model->isReport()?'نگارش گزارش' : 'ویرایش موضوع'),
                     'type' => 'warning',
                     'isActive' => $model->canUserUpdateOrDelete()
                 ],
@@ -30,7 +33,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'label' => '&nbsp;&nbsp;&nbsp;ارسال&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'send',
-                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteOtherreport() || Yii::$app->user->can('superuser')),
+                    'isActive' => ($model->canUserDeliverToManager() || $model->canManagerDeliverToExpert() || $model->canSendToWriteReport() || Yii::$app->user->can('superuser')),
                     'items' => [
                         'send-to-manager' => [
                             'label' => 'به مدیر',
@@ -49,12 +52,12 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         'send-for-otherreport' => [
                             'label' => 'جهت نگارش گزارش',
                             'icon' => 'reply',
-                            'isActive' => $model->canSendToWriteOtherreport(),
+                            'isActive' => $model->canSendToWriteReport(),
                             'visible' => true,
                             'url' => [
                                 'change-status',
                                 'id' => $model->id,
-                                'newStatus' => Subject::STATUS_IN_NEXT_STEP
+                                'newStatus' => Subject::STATUS_WAITING_FOR_EXPERT_ACCEPT
                             ]
                         ],
                         'send-to-archive' => [
@@ -71,12 +74,38 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         ],
                     ]
                 ],
+                'accept' => [
+                    'label' => 'تایید ' . ($model->isReport()? 'گزارش' : 'موضوع'),
+                    'type' => 'info',
+                    'icon' => 'check',
+                    'isActive' => $model->canAcceptOrReject() &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
+                    'url' => [
+                        'change-status',
+                        'id' => $model->id,
+                        'newStatus' => ( $model->isReport() ? Subject::STATUS_REPORT_ACCEPTED : Subject::STATUS_ACCEPTED)
+                    ]
+                ],
+                'reject' => [
+                    'label' => 'رد ' . ($model->isReport()? 'گزارش' : 'موضوع'),
+                    'type' => 'info',
+                    'icon' => 'close',
+                    'isActive' => $model->canAcceptOrReject() &&
+                    Yii::$app->user->can('superuser'),
+                    // 'visibleFor' => ['superuser'],
+                    'url' => [
+                        'change-status',
+                        'id' => $model->id,
+                        'newStatus' => ( $model->isReport() ? Subject::STATUS_REPORT_REJECTED : Subject::STATUS_REJECTED)
+                    ]
+                ],
                 'session' => [
                     'isDropDown' => true,
                     'label' => '&nbsp;&nbsp;&nbsp;جلسه&nbsp;&nbsp;&nbsp;',
                     'type' => 'info',
                     'icon' => 'users',
-                    'isActive' => ($model->canSetWaitForSession() || $model->canSetSessionDate() || $model->canWriteProceedings()),
+                    'isActive' => ($model->canSetWaitForSession() || $model->canSetSessionDate()),
                     'items' => [
                         'wait-for-session' => [
                             'label' => 'نیازمند جلسه',
@@ -96,15 +125,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'visible' => true,
                             'url' => ['set-session-date', 'id' => $model->id],
                             'options' => ['class' => 'ajaxupdate']
-                        ],
-                        'write-proceedings' => [
-                            'label' => (isset($model->proceedings) ? 'ویرایش' : 'ثبت') .  ' نتیجه جلسه',
-                            'icon' => 'newspaper-o',
-                            'isActive' => $model->canWriteProceedings(),
-                            'visible' => true,
-                            'url' => ['write-proceedings', 'id' => $model->id],
-                            'options' => ['class' => 'ajaxupdate']
-                        ],
+                        ]
                     ]
                 ],
                 'wait-for-converstation' => [
@@ -129,40 +150,26 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                 //         'newStatus' => Subject::STATUS_NEED_CORRECTION
                 //     ]
                 // ],
-                'accept' => [
-                    'label' => 'تایید',
-                    'type' => 'info',
-                    'icon' => 'check',
-                    'isActive' => $model->canAcceptOrReject() &&
-                    Yii::$app->user->can('superuser'),
-                    // 'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Subject::STATUS_ACCEPTED
-                    ]
-                ],
-                'reject' => [
-                    'label' => 'رد',
-                    'type' => 'info',
-                    'icon' => 'close',
-                    'isActive' => $model->canAcceptOrReject() &&
-                    Yii::$app->user->can('superuser'),
-                    // 'visibleFor' => ['superuser'],
-                    'url' => [
-                        'change-status',
-                        'id' => $model->id,
-                        'newStatus' => Subject::STATUS_REJECTED
-                    ]
-                ],
                 'set-experts' => [
-                    'label' => $model->expertId != null ? 'تغییر کارشناس' : 'انتخاب کارشناس',
+                    'label' => ($model->isReport()?'تصحیح':'انتخاب کارشناس'),
                     'type' => 'info',
                     'icon' => 'graduation-cap',
                     'isActive' => $model->canSetExpert(),
                     // 'visibleFor' => ['superuser'],
                     'url' => ['set-expert', 'id' => $model->id],
                     'options' => ['class' => 'ajaxupdate']
+                ],
+                'accept-by-expert' => [
+                    'label' => 'دریافت',
+                    'type' => 'info',
+                    'icon' => 'graduation-cap',
+                    'isActive' => $model->canExpertAccept(),
+                    // 'visibleFor' => ['superuser'],
+                    'url' => [
+                        'change-status',
+                        'id' => $model->id,
+                        'newStatus' => Subject::STATUS_ACCEPTED_BY_EXPERT
+                    ]
                 ],
                 'change-lock' => [
                     'isDropDown' => true,
@@ -192,18 +199,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             ]
                         ]
                     ]
-                ],
-                'go-to-history' => [
-                    'label' => 'روندهای اجرا شده',
-                    'type' => 'success',
-                    'icon' => 'sort-amount-desc',
-                    'url' => ['view-history', 'id' => $model->id],
-                    'isActive' => true,
-                    'visible' => true,
-                    'options' => [
-                        'data-pjax' => 0,
-                        'target' => '_blank'
-                    ]
                 ]
             ]
         ]) ?>
@@ -224,7 +219,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin([
-                    'title' => 'مشخصات موضوع',
+                    'title' => 'مشخصات ' . ($model->isReport()? 'گزارش' : 'موضوع'),
                     'showCollapseButton' => true
                     ]) ?>
                     <div class="col-md-6">
@@ -233,20 +228,75 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'attributes' => [
                                 'title',
                                 'englishTitle',
-                                'uniqueCode',
+                                [
+                                    'attribute' => 'uniqueCode',
+                                    'contentOptions' => [
+                                        'style' => 'direction: ltr; text-align: right'
+                                    ]
+                                ],
                                 [
                                     'attribute' => 'createdBy',
                                     'value' => function ($model) {
                                         return $model->researcherTitle;
                                     }
                                 ],
-                                'createdAt:date',
                                 [
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'partners',
+                                    'value' => function ($model) {
+                                        return $model->getPartnerFullNamesAsString();
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableReferencesAsString();
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'expertId',
+                                    'value' => function ($model) {
+                                        if ($model->expertId) {
+                                            return Expert::findOne($model->expertId)
+                                                ->user
+                                                ->fullName;
+                                        }
                                     }
-                                ]
+                                ],
+                                [
+                                    'attribute' => 'missionObjective',
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'missionPlace',
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                                [
+                                    'attribute' => 'missionDate',
+                                    'format' => 'date',
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                                [
+                                    'attribute' => 'reportDeadlineDate',
+                                    'format' => 'date',
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                                [
+                                    'attribute' => 'missionType',
+                                    'value' => function($model){
+                                        return Lookup::item(SubjectCommon::LOOKUP_MISSION_TYPE, $model->missionType);
+                                    },
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
                             ]
                         ]) ?>
                     </div>
@@ -256,6 +306,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'attributes' => [
                                 'deliverToManagerDate:date',
                                 'sessionDate:dateTime',
+                                'createdAt:date',
                                 'updatedAt:date',
                                 [
                                     'attribute' => 'status',
@@ -271,17 +322,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     'visible' => function ($model){
                                         return !($model->userHolder == Subject::USER_HOLDER_MANAGER && $model->status == Subject::STATUS_IN_MANAGER_HAND);
                                     }
-                                ],
-                                [
-                                    'attribute' => 'expertId',
-                                    'value' => function ($model) {
-                                        if ($model->expertId) {
-                                            return Expert::findOne($model->expertId)
-                                                ->user
-                                                ->fullName;
-                                        }
-                                    }
-                                ],
+                                ]
                             ]
                         ]) ?>
                     </div>
@@ -291,7 +332,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin([
-                    'title' => 'متن موضوع',
+                    'title' => 'متن ' . ($model->isReport()? 'گزارش' : 'موضوع'),
                     'showCollapseButton' => true
                     ]) ?>
                     <div>
@@ -309,18 +350,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     </div>
                 <?php Panel::end() ?>
             </div>
-            <?php if ($model->proceedings) : ?>
-                <div class="col-md-12">
-                    <?php Panel::begin([
-                        'title' => 'نتیجه جلسه',
-                        'showCollapseButton' => true
-                        ]) ?>
-                        <div>
-                            <?= $model->proceedings ?>
-                        </div>
-                    <?php Panel::end() ?>
-                </div>
-            <?php endif; ?>
             <?php if ($model->status != Subject::STATUS_WAIT_FOR_CONVERSATION && $model->comments) : ?>
                 <div class="col-md-12">
                     <?= CommentList::widget([

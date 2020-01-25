@@ -6,9 +6,11 @@ use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use nad\common\helpers\Lookup;
 use core\widgets\select2\Select2;
 use nad\office\modules\expert\models\Expert;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
+use nad\common\modules\investigation\subject\models\SubjectCommon;
 
 Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
 ?>
@@ -20,14 +22,16 @@ $this->registerJs(
     if($('#{$checkboxId}').is(':checked')){
         $('#missionDetailsContainer input').prop('disabled', false);
         $('#missionDetailsContainer input').prop('readonly', false);
+        $('#missionDetailsContainer select').prop('disabled', false);
     }else{
         $('#missionDetailsContainer input').prop('disabled', true);
         $('#missionDetailsContainer input').prop('readonly', true);
+        $('#missionDetailsContainer select').prop('disabled', true);
     }
 
     $('#{$checkboxId}').on('click', function(event) {
         let isChecked = $(this).prop('checked');
-        $('#missionDetailsContainer input').each(function(){
+        $('#missionDetailsContainer input, #missionDetailsContainer select').each(function(){
             $(this).val('');
             $(this).prop('disabled', !isChecked);
             $(this).prop('readonly', !isChecked);
@@ -79,10 +83,24 @@ $this->registerJs(
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <?= $form->field($model, 'missionObjective')->textArea()?>
+                        <div class="row">
+                            <?= $form->field($model, 'missionObjective')->textArea()?>
+                        </div>
+                        <div class="row">
+                            <?= $form->field($model, 'reportExpertCode')->textInput()?>
+                        </div>
                     </div>
                     <div class="col-md-6" id="missionDetailsContainer">
                         <div class="row">
+                            <div class="col-md-12">
+                                <?= $form->field($model, 'missionType')->dropDownList(
+                                    Lookup::items(SubjectCommon::LOOKUP_MISSION_TYPE, false),
+                                    [
+                                        'prompt'=>'انتخاب کنید',
+                                        'disabled' => 'disabled',
+                                        ]
+                                ) ?>
+                            </div>
                             <div class="col-md-12">
                                 <?= $form->field($model, 'missionPlace')->textInput([
                                     'disabled' => 'disabled',
@@ -91,6 +109,19 @@ $this->registerJs(
                             </div>
                             <div class="col-md-12">
                                 <?= $form->field($model, 'missionDate')->widget(
+                                    JalaliDatePicker::class,
+                                    [
+                                        'options' => [
+                                            'class' => 'form-control input-medium',
+                                            'autocomplete' => 'off',
+                                            'disabled' => '',
+                                            'readonly' => ''
+                                        ]
+                                    ]
+                                ) ?>
+                            </div>
+                            <div class="col-md-12">
+                                <?= $form->field($model, 'reportDeadlineDate')->widget(
                                     JalaliDatePicker::class,
                                     [
                                         'options' => [

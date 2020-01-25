@@ -4,13 +4,15 @@ use yii\helpers\Html;
 use theme\widgets\Panel;
 use core\helpers\Utility;
 use yii\widgets\DetailView;
+use nad\common\helpers\Lookup;
 use nad\common\modules\investigation\subject\models\Subject;
 use nad\extensions\comment\widgets\commentList\CommentList;
+use nad\common\modules\investigation\subject\models\SubjectCommon;
 
 ?>
 
 <?php Panel::begin([
-    'title' => 'موضوع',
+    'title' => 'گزارش',
     'showCollapseButton' => true
 ]) ?>
     <?= Html::a(
@@ -21,109 +23,168 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         ],
         [
             'class' => 'external-link',
-            'title' => 'مشاهده موضوع',
+            'title' => 'مشاهده',
             'target' => '_blank'
         ]
     ) ?>
     <?= DetailView::widget([
         'model' => $subject,
-        'template' => "<tr><th class=\"attribute-label\">{label}</th><td class=\"attribute-value\">{value}</td></tr>",
+        // 'template' => "<tr><th class=\"attribute-label\">{label}</th><td class=\"attribute-value\">{value}</td></tr>",
         'attributes' => [
             [
                 'attribute' => 'title',
-                'label' => 'عنوان موضوع',
+                'label' => 'عنوان',
                 'value' => $subject->title
             ],
             [
                 'attribute' => 'englishTitle',
-                'label' => 'عنوان انگلیسی موضوع',
+                'label' => 'عنوان انگلیسی',
                 'value' => $subject->englishTitle
             ],
             [
                 'attribute' => 'uniqueCode',
-                'label' => 'شناسه موضوع',
-                'value' => $subject->uniqueCode
+                'label' => 'شناسه',
+                'value' => $subject->uniqueCode,
+                'contentOptions' => [
+                    'style' => 'direction: ltr; text-align: right'
+                ]
             ],
             [
                 'attribute' => 'createdBy',
-                'label' => 'کارشناس نگارش موضوع',
-                'value' => $subject->researcher->email
+                'value' => $subject->researcher->fullName
             ],
             [
                 'attribute' => 'createdAt',
                 'format' => 'date',
-                'label' => 'تاریخ درج موضوع',
+                'label' => 'تاریخ درج',
                 'value' => $subject->createdAt
             ],
             [
                 'label' => 'فایل موضوع',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    if ($model->hasFile('file')) {
+                    if ($model->hasFile('subjectFile')) {
                         return Html::a(
                             'دانلود فایل',
-                            $model->getFile('file')->getUrl(),
+                            $model->getFile('subjectFile')->getUrl(),
                             [
                                 'data-pjax' => '0'
                             ]
                         );
                     }
                     return null;
-                }
+                },
+                'visible' => !$subject->isReport()
             ],
             [
-                'attribute' => 'categoryId',
-                'label' => 'رده موضوع',
+                'label' => 'فایل گزارش',
                 'format' => 'raw',
-                'value' => $subject->category->htmlCodedTitle
+                'value' => function ($model) {
+                    if ($model->hasFile('reportFile')) {
+                        return Html::a(
+                            'دانلود فایل',
+                            $model->getFile('reportFile')->getUrl(),
+                            [
+                                'data-pjax' => '0'
+                            ]
+                        );
+                    }
+                    return null;
+                },
+                'visible' => $subject->isReport()
             ],
-            // [
-            //     'attribute' => 'references',
-            //     'label' => 'منابع موضوع',
-            //     'format' => 'raw',
-            //     'value' => function ($model) {
-            //         return $model->getClickableReferencesAsString();
-            //     }
-            // ],
-            // [
-            //     'attribute' => 'tags',
-            //     'label' => 'کلید واژه‌ها موضوع',
-            //     'value' => $subject->getTagsAsString()
-            // ],
             [
-                'attribute' => 'status',
-                'label' => 'وضعیت موضوع',
-                'value' => Subject::getStatusLables()[$subject->status]
+                'label' => 'مدارک گزارش',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if ($model->hasFile('reportFile2')) {
+                        return Html::a(
+                            'دانلود فایل',
+                            $model->getFile('reportFile2')->getUrl(),
+                            [
+                                'data-pjax' => '0'
+                            ]
+                        );
+                    }
+                    return null;
+                },
+                'visible' => $subject->isReport()
             ],
             [
                 'attribute' => 'text',
-                'label' => 'متن موضوع',
+                'label' => 'متن',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($subject->text, 100)
             ],
             [
                 'attribute' => 'description',
-                'label' => 'توضیحات موضوع',
+                'label' => 'توضیحات',
                 'format' => 'raw',
                 'value' => Utility::makeStringShorten($subject->description, 100)
             ],
             [
+                'attribute' => 'tags',
+                'value' => function ($subject) {
+                    return $subject->getTagsAsString();
+                },
+                'visible' => $subject->isReport()
+            ],
+            [
+                'attribute' => 'partners',
+                'value' => function ($subject) {
+                    return $subject->getPartnerFullNamesAsString();
+                },
+                'visible' => $subject->isReport()
+            ],
+            [
+                'attribute' => 'references',
+                'format' => 'raw',
+                'value' => function ($subject) {
+                    return $subject->getClickableReferencesAsString();
+                },
+                'visible' => $subject->isReport()
+            ],
+            [
+                'attribute' => 'missionObjective',
+                'visible' => $subject->isReport()
+            ],
+            [
+                'attribute' => 'missionPlace',
+                'visible' => $subject->isReport() && $subject->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+            ],
+            [
+                'attribute' => 'missionDate',
+                'format' => 'date',
+                'visible' => $subject->isReport() && $subject->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+            ],
+            [
+                'attribute' => 'reportDeadlineDate',
+                'format' => 'date',
+                'visible' => $subject->isReport() && $subject->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+            ],
+            [
+                'attribute' => 'missionType',
+                'value' => function($model){
+                    return Lookup::item(SubjectCommon::LOOKUP_MISSION_TYPE, $model->missionType);
+                },
+                'visible' => $subject->isReport() && $subject->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+            ],
+            [
+                'attribute' => 'status',
+                'label' => 'وضعیت',
+                'value' => Subject::getStatusLables()[$subject->status]
+            ],
+            [
                 'attribute' => 'deliverToManagerDate',
                 'format' => 'date',
-                'label' => 'تاریخ تحویل موضوع به مدیر',
+                'label' => 'تاریخ تحویل به مدیر',
                 'value' => $subject->deliverToManagerDate
             ],
             [
                 'attribute' => 'sessionDate',
                 'format' => 'date',
-                'label' => 'تاریخ جلسه موضوع',
+                'label' => 'تاریخ جلسه',
                 'value' => $subject->sessionDate
-            ],
-            [
-                'attribute' => 'proceedings',
-                'label' => 'نتیجه جلسه موضوع',
-                'format' => 'raw',
-                'value' => Utility::makeStringShorten($subject->proceedings, 100)
             ]
         ]
     ]) ?>
