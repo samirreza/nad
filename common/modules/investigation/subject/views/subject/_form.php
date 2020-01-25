@@ -8,35 +8,21 @@ use yii\helpers\ArrayHelper;
 use core\widgets\editor\Editor;
 use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
+use nad\office\modules\expert\models\Expert;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
-use nad\common\modules\investigation\subject\models\Category;
-use nad\common\modules\investigation\subject\models\SubjectReason;
+use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
+use nad\common\modules\investigation\reference\models\ReferenceUses;
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 $className = get_class($model);
-$uploadedFiles = $model->getFiles('file');
+$subjectFiles = $model->getFiles('subjectFile');
+$reportFiles = $model->getFiles('reportFile');
+$reportFiles2 = $model->getFiles('reportFile2');
 ?>
 
 <h2 class="nad-page-title"><?= $this->title ?></h2>
-
-<?= ActionButtons::widget([
-    'buttons' => [
-        'create-category' => [
-            'label' => 'افزودن رده',
-            'type' => 'info',
-            'icon' => 'plus',
-            'url' => [
-                'category/index#id_createCategoryBtn'
-            ],
-            'options' => [
-                'target' => '_blank'
-            ]
-        ]
-    ]
-]);
-?>
 
 <div class="subject-form">
     <?php Panel::begin(['title' => 'مشخصات موضوع']) ?>
@@ -62,16 +48,87 @@ $uploadedFiles = $model->getFiles('file');
                             ]
                         ]
                     ) ?>
+                    <?php if(!$model->isReport()): ?>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'seoCode')->textInput([
+                                    'maxlength' => 255,
+                                    'class' => 'form-control input-large',
+                                    'dir' => 'ltr'
+                                ])->label('شناسه موضوع') ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'creatorExpertCode')->textInput([
+                                    'maxlength' => 255,
+                                    'class' => 'form-control input-large',
+                                    'dir' => 'ltr'
+                                ])->label('کد کارشناس') ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?= $form->field($model, 'unitCode')->textInput([
+                                    'maxlength' => 255,
+                                    'class' => 'form-control input-large',
+                                    'dir' => 'ltr'
+                                ])->label('کد واحد') ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="row">
+                    <?php if($model->isReport()): ?>
                         <div class="col-md-8">
                             <?php
-                            if(isset($uploadedFiles) && !empty($uploadedFiles)){
+                            if(isset($reportFiles) && !empty($reportFiles)){
+                                Panel::begin();
+                            ?>
+                                    <label>فایل گزارش</label>
+                                    <?= SingleFileUpload::widget([
+                                        'model' => $model,
+                                        'group' => 'reportFile',
+                                    ]) ?>
+                            <?php
+                                Panel::end();
+                            }
+                            ?>
+                            <?php Panel::begin() ?>
+                                <label>فایل گزارش</label>
+                                <?= SingleFileUpload::widget([
+                                    'model' => new $className,
+                                    'group' => 'reportFile',
+                                ]) ?>
+                            <?php Panel::end() ?>
+                        </div>
+                        <div class="col-md-8">
+                            <?php
+                            if(isset($reportFiles2) && !empty($reportFiles2)){
+                                Panel::begin();
+                            ?>
+                                    <label>مدارک</label>
+                                    <?= SingleFileUpload::widget([
+                                        'model' => $model,
+                                        'group' => 'reportFile2',
+                                    ]) ?>
+                            <?php
+                                Panel::end();
+                            }
+                            ?>
+                            <?php Panel::begin() ?>
+                                <label>مدارک</label>
+                                <?= SingleFileUpload::widget([
+                                    'model' => new $className,
+                                    'group' => 'reportFile2',
+                                ]) ?>
+                            <?php Panel::end() ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="col-md-8">
+                            <?php
+                            if(isset($subjectFiles) && !empty($subjectFiles)){
                                 Panel::begin();
                             ?>
                                     <label>فایل موضوع</label>
                                     <?= SingleFileUpload::widget([
                                         'model' => $model,
-                                        'group' => 'file',
+                                        'group' => 'subjectFile',
                                     ]) ?>
                             <?php
                                 Panel::end();
@@ -81,10 +138,12 @@ $uploadedFiles = $model->getFiles('file');
                                 <label>فایل موضوع</label>
                                 <?= SingleFileUpload::widget([
                                     'model' => new $className,
-                                    'group' => 'file',
+                                    'group' => 'subjectFile',
                                 ]) ?>
                             <?php Panel::end() ?>
                         </div>
+                    <?php endif; ?>
+
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -99,21 +158,35 @@ $uploadedFiles = $model->getFiles('file');
                             'url' => $backLink
                         ]) ?>
                     </div>
-                    <br><br>
-                    <?= $form->field($model, 'categoryId')->widget(
-                        Select2::class,
-                        [
-                            'data' => ArrayHelper::map(
-                                Category::find()->andWhere([
-                                    'depth' => 3,
-                                    'consumer' => $categoryConsumerCode
-                                ])->all(),
-                                'id',
-                                'codedTitle'
-                            )
-                        ]
-                    ) ?>
-                    <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                    <?php if($model->isReport()): ?>
+                        <br><br>
+                        <?= $form->field($model, 'partners')->widget(
+                            Select2::class,
+                            [
+                                'data' => ArrayHelper::map(
+                                    Expert::find()->all(),
+                                    'id',
+                                    'user.fullname'
+                                ),
+                                'options' => [
+                                    'multiple' => true,
+                                    'placeholder' => 'همکاران را انتخاب کنید ...',
+                                    'value' => $model->getPartnersAsArray()
+                                ],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ]
+                            ]
+                        ) ?>
+                        <?= $form->field($model, 'references')->widget(
+                            SelectReference::class,
+                            [
+                                'consumer' => $referenceConsumerCode,
+                                'code' => ReferenceUses::CODE_OTHER_REPORT
+                            ]
+                        ) ?>
+                        <?= $form->field($model, 'tags')->widget(SelectTag::class) ?>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="row">

@@ -37,13 +37,15 @@ class SubjectController extends BaseInvestigationController
                             'actions' => [
                                 'update',
                                 'delete',
-                                'deliver-to-manager'
+                                'deliver-to-manager',
+                                'change-status'
                             ],
                             'roles' => ['investigation.manageOwnInvestigation'],
                             'roleParams' => function() {
-                                return ['investigation' => Subject::findOne([
-                                    'id' => Yii::$app->request->get('id')]
-                                )];
+                                return [
+                                    'investigation' => Subject::findOne(['id' => Yii::$app->request->get('id')]),
+                                    'allowSecondExpert' => true
+                                ];
                             }
                         ],
                         [
@@ -53,7 +55,8 @@ class SubjectController extends BaseInvestigationController
                                 'archived-view',
                                 'archived-index',
                                 'change-archive',
-                                'deliver-to-expert'
+                                'deliver-to-expert',
+                                'change-status'
                             ],
                             'roles' => ['superuser']
                         ]
@@ -92,7 +95,7 @@ class SubjectController extends BaseInvestigationController
         $logs = $subject->getLogsGroupedByUpdateTime(
             $includeFields = [
                 'text',
-                'proceedings',
+                // 'proceedings',
                 'sessionDate'
                 // 'title',
                 // 'englishTitle',
@@ -200,7 +203,7 @@ class SubjectController extends BaseInvestigationController
     {
         $model = static::findModel($id);
         $model->scenario = Subject::SCENARIO_SET_SESSION_DATE;
-        $model->status = Subject::STATUS_WAITING_FOR_SESSION_RESULT;
+        $model->status = Subject::STATUS_WAITING_FOR_NEXT_STATUS;
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
                 Yii::$app->session->addFlash(
@@ -212,25 +215,6 @@ class SubjectController extends BaseInvestigationController
         }
         echo Json::encode([
             'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/set-session-date', [
-                'model' => $model
-            ])
-        ]);
-        exit;
-    }
-
-    public function actionWriteProceedings($id)
-    {
-        $model = static::findModel($id);
-        $model->status = Subject::STATUS_WAITING_FOR_NEXT_STATUS;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            echo Json::encode([
-                'status' => 'success',
-                'message' => 'نتیجه برگزاری جلسه با موفقیت در سیستم درج شد.'
-            ]);
-            exit;
-        }
-        echo Json::encode([
-            'content' => $this->renderAjax('@nad/common/modules/investigation/common/views/write-proceedings', [
                 'model' => $model
             ])
         ]);

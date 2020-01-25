@@ -202,47 +202,21 @@ class Module extends \yii\base\Module
                 'label' => 'سایرگزارشها',
                 'items' => [
                     [
-                        'label' => 'برنامه موضوع',
+                        'label' => 'برنامه',
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
                                 'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/create']
                             ],
                             [
-                                'label' => 'لیست‌ موضوعها',
+                                'label' => 'لیست‌ موضوعهای فعال',
                                 'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/index']
-                            ],
-                            [
-                                'label' => 'لیست رده های موضوع',
-                                'url' => ['/engineering/piping/stage/investigationImprovement/subject/category/index']
-                            ],
-                        ]
-                    ],
-                    [
-                        'label' => 'برنامه گزارش',
-                        'items' => [
-                            [
-                                'label' => 'افزودن گزارش',
-                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/create']
-                            ],
-                            [
-                                'label' => 'لیست‌ گزارشها',
-                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/index']
                             ]
                         ]
                     ],
                     [
-                        'label' => 'داده گاه ها',
-                        'items' => [
-                            [
-                                'label' => 'گزارشها',
-                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/archived-index']
-                            ],
-                            [
-                                'label' => 'روندها',
-                                'url' => ['/engineering/piping/stage/investigationImprovement/otherreport/manage/index-history']
-                            ],
-                        ]
+                        'label' => 'داده گاه',
+                        'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/archived-index']
                     ]
                 ]
             ],
