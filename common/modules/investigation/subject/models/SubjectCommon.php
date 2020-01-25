@@ -10,17 +10,17 @@ use extensions\file\behaviors\FileBehavior;
 use nad\office\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\common\modules\investigation\otherreport\models\Otherreport;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 use nad\common\modules\investigation\subject\behaviors\NotificationBehavior;
-use nad\common\modules\investigation\otherreport\behaviors\PartnersBehavior;
+use nad\common\modules\investigation\subject\behaviors\PartnersBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
 class SubjectCommon extends BaseInvestigationModel
 {
     const LOOKUP_MISSION_TYPE = 'nad.investigation.subject.missionType';
+    const LOOKUP_SEO_CODE = 'nad.investigation.subject.seoCode';
 
     const USER_HOLDER_MANAGER = 0;
     const USER_HOLDER_EXPERT = 1;
@@ -79,8 +79,9 @@ class SubjectCommon extends BaseInvestigationModel
     {
         if(!empty($this->_seoCode))
             return $this->_seoCode;
-        elseif(!empty($this->uniqueCode))
-            return explode('.', $this->uniqueCode)[2];
+        elseif(!empty($this->uniqueCode)){
+            return $this->getSeoCodeAsNumber((explode('.', $this->uniqueCode)[2]));
+        }
 
         return null;
     }
@@ -318,7 +319,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = trim($this->unitCode . '.' . ($this->isReport()?$this->reportExpertCode:$this->creatorExpertCode) . '.' . $this->seoCode . '.' . $this->numberPartOfUniqueCode . (isset($this->missionType)? '.' . Lookup::item(self::LOOKUP_MISSION_TYPE, $this->missionType):''), '.');
+        $this->uniqueCode = trim($this->unitCode . '.' . ($this->isReport()?$this->reportExpertCode:$this->creatorExpertCode) . '.' . $this->getSeoCodeAsChar() . '.' . $this->numberPartOfUniqueCode . (isset($this->missionType)? '.' . Lookup::item(self::LOOKUP_MISSION_TYPE, $this->missionType):''), '.');
         // $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
             // '.' . $this->numberPartOfUniqueCode;
     }
@@ -492,6 +493,7 @@ class SubjectCommon extends BaseInvestigationModel
             $this->status != self::STATUS_REPORT_REJECTED &&
             $this->status != self::STATUS_REJECTED &&
             $this->status != self::STATUS_LOCKED &&
+            $this->status != self::STATUS_WAITING_FOR_EXPERT_ACCEPT &&
             $this->userHolder != self::USER_HOLDER_MANAGER &&
             (
                 ($this->userHolder == self::USER_HOLDER_EXPERT && !$this->isReport()) ||
@@ -697,5 +699,20 @@ class SubjectCommon extends BaseInvestigationModel
             return true;
 
         return false;
+    }
+
+    public function getSeoCodeAsChar(){
+        $codes = Lookup::extras(self::LOOKUP_SEO_CODE);
+        $result = $codes[$this->seoCode];
+
+        return $result;
+    }
+
+    public function getSeoCodeAsNumber($input){
+        Lookup::$_items = []; // a nasty hack cause $_items is a shared static variable with unexptected initial value!!
+        $codes = Lookup::extras(self::LOOKUP_SEO_CODE, false);
+        $result = array_search($input, $codes);
+
+        return $result;
     }
 }

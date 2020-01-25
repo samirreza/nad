@@ -5,6 +5,7 @@ use theme\widgets\Panel;
 use theme\widgets\Button;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use nad\common\helpers\Lookup;
 use core\widgets\editor\Editor;
 use theme\widgets\ActionButtons;
 use core\widgets\select2\Select2;
@@ -12,8 +13,10 @@ use nad\office\modules\expert\models\Expert;
 use extensions\tag\widgets\selectTag\SelectTag;
 use theme\widgets\jalalidatepicker\JalaliDatePicker;
 use extensions\file\widgets\singleupload\SingleFileUpload;
-use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
+use nad\common\modules\investigation\subject\models\SubjectCommon;
 use nad\common\modules\investigation\reference\models\ReferenceUses;
+use nad\common\modules\investigation\reference\widgets\selectReference\SelectReference;
+
 
 $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 $className = get_class($model);
@@ -51,11 +54,13 @@ $reportFiles2 = $model->getFiles('reportFile2');
                     <?php if(!$model->isReport()): ?>
                         <div class="row">
                             <div class="col-md-4">
-                                <?= $form->field($model, 'seoCode')->textInput([
-                                    'maxlength' => 255,
-                                    'class' => 'form-control input-large',
-                                    'dir' => 'ltr'
-                                ])->label('شناسه موضوع') ?>
+                                <?= $form->field($model, 'seoCode')->dropDownList(
+                                    Lookup::extras(SubjectCommon::LOOKUP_SEO_CODE, true),
+                                    [
+                                        'prompt'=>'انتخاب کنید'
+                                    ]
+                                )->label('شناسه موضوع')
+                                ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $form->field($model, 'creatorExpertCode')->textInput([

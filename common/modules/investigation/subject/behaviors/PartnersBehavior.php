@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\common\modules\investigation\otherreport\behaviors;
+namespace nad\common\modules\investigation\subject\behaviors;
 
 use creocoder\taggable\TaggableBehavior;
 
