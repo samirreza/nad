@@ -12,7 +12,7 @@ namespace nad\common\helpers;
  */
 class Lookup extends \yii\db\ActiveRecord
 {
-    private static $_items = [];
+    public static $_items = [];
 
     /**
      * @return string the associated database table name
@@ -98,6 +98,7 @@ class Lookup extends \yii\db\ActiveRecord
             ])
             ->orderBy('position')
             ->all();
+
 
         foreach ($models as $model) {
             self::$_items[$type][$model->code] = (($useCodedNames) ? $model->getCodedName(true) : $model->extra);
