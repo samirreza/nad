@@ -14,9 +14,7 @@ class Module extends \yii\base\Module
             'report' => 'nad\process\materials\disinfectant\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\disinfectant\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\disinfectant\investigationDesign\method\Module',
-            'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module',
-            'subject' => 'nad\process\materials\disinfectant\investigationDesign\subject\Module',
-            'otherreport' => 'nad\process\materials\disinfectant\investigationDesign\otherreport\Module',
+            'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module'            
         ];
         $this->horizontalMenuItems = [
             [
@@ -197,55 +195,7 @@ class Module extends \yii\base\Module
                         ]
                     ]
                 ]
-            ],
-            [
-                'label' => 'سایرگزارشها',
-                'items' => [
-                    [
-                        'label' => 'برنامه موضوع',
-                        'items' => [
-                            [
-                                'label' => 'افزودن موضوع',
-                                'url' => ['/disinfectant/investigationDesign/subject/manage/create']
-                            ],
-                            [
-                                'label' => 'لیست‌ موضوعها',
-                                'url' => ['/disinfectant/investigationDesign/subject/manage/index']
-                            ],
-                            [
-                                'label' => 'لیست رده های موضوع',
-                                'url' => ['/disinfectant/investigationDesign/subject/category/index']
-                            ],
-                        ]
-                    ],
-                    [
-                        'label' => 'برنامه گزارش',
-                        'items' => [
-                            [
-                                'label' => 'افزودن گزارش',
-                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/create']
-                            ],
-                            [
-                                'label' => 'لیست‌ گزارشها',
-                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/index']
-                            ]
-                        ]
-                    ],
-                    [
-                        'label' => 'داده گاه ها',
-                        'items' => [
-                            [
-                                'label' => 'گزارشها',
-                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/archived-index']
-                            ],
-                            [
-                                'label' => 'روندها',
-                                'url' => ['/disinfectant/investigationDesign/otherreport/manage/index-history']
-                            ],
-                        ]
-                    ]
-                ]
-            ],
+            ],            
             [
                 'label' => 'داده گاه منابع',
                 'items' => [
