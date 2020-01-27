@@ -13,7 +13,7 @@ class m200124_222357_fill_lookup_table extends Migration
     public function safeUp()
     {
         $this->execute("
-        INSERT INTO `lookup` (`id`, `name`, `type`, `code`, `position`, `extra`) VALUES (NULL, 'MC', 'nad.investigation.subject.missionType', '1', '1', NULL), (NULL, 'MP', 'nad.investigation.subject.missionType', '2', '2', NULL)
+        INSERT INTO `lookup` (`id`, `name`, `type`, `code`, `position`, `extra`) VALUES (NULL, 'موردی MC', 'nad.investigation.subject.missionType', '1', '1', 'MC'), (NULL, 'برنامه ای MP', 'nad.investigation.subject.missionType', '2', '2', 'MP')
         ");
     }
 

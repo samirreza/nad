@@ -94,7 +94,7 @@ $this->registerJs(
                         <div class="row">
                             <div class="col-md-12">
                                 <?= $form->field($model, 'missionType')->dropDownList(
-                                    Lookup::items(SubjectCommon::LOOKUP_MISSION_TYPE, false),
+                                    Lookup::extras(SubjectCommon::LOOKUP_MISSION_TYPE, true),
                                     [
                                         'prompt'=>'انتخاب کنید',
                                         'disabled' => 'disabled',
