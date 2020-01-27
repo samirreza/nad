@@ -36,7 +36,7 @@ class SubjectCommon extends BaseInvestigationModel
     const STATUS_WAITING_FOR_EXPERT_ACCEPT = 40;
     const STATUS_ACCEPTED_BY_EXPERT = 41;
     const STATUS_REPORT_ACCEPTED = 42;
-    const STATUS_REPORT_REJECTED = 43;
+    const STATUS_REPORT_REJECTED = 43; // TODO not used, remove it asap
     const STATUS_WAITING_FOR_SEND_TO_WRITE_REPORT = -1;
 
     public $moduleId = 'subject';
@@ -47,8 +47,13 @@ class SubjectCommon extends BaseInvestigationModel
     {
         if(!empty($this->_unitCode))
             return $this->_unitCode;
-        elseif(!empty($this->uniqueCode))
-            return explode('.', $this->uniqueCode)[0];
+        elseif(!empty($this->uniqueCode)){
+            if(isset(explode('.', $this->uniqueCode)[0])){
+                return explode('.', $this->uniqueCode)[0];
+            }else{
+                return null;
+            }
+        }
 
         return null;
     }
@@ -63,8 +68,13 @@ class SubjectCommon extends BaseInvestigationModel
     {
         if(!empty($this->_creatorExpertCode))
             return $this->_creatorExpertCode;
-        elseif(!empty($this->uniqueCode))
-            return explode('.', $this->uniqueCode)[1];
+        elseif(!empty($this->uniqueCode)){
+            if(isset(explode('.', $this->uniqueCode)[1])){
+                return explode('.', $this->uniqueCode)[1];
+            }else{
+                return null;
+            }
+        }
 
         return null;
     }
@@ -80,7 +90,11 @@ class SubjectCommon extends BaseInvestigationModel
         if(!empty($this->_seoCode))
             return $this->_seoCode;
         elseif(!empty($this->uniqueCode)){
-            return $this->getSeoCodeAsNumber((explode('.', $this->uniqueCode)[2]));
+            if(isset(explode('.', $this->uniqueCode)[2])){
+                return $this->getSeoCodeAsNumber((explode('.', $this->uniqueCode)[2]));
+            }else{
+                return null;
+            }
         }
 
         return null;
@@ -96,8 +110,13 @@ class SubjectCommon extends BaseInvestigationModel
     {
         if(!empty($this->_reportExpertCode))
             return $this->_reportExpertCode;
-        elseif(!empty($this->uniqueCode))
-            return explode('.', $this->uniqueCode)[1];
+        elseif(!empty($this->uniqueCode)){
+            if(isset(explode('.', $this->uniqueCode)[1])){
+                return explode('.', $this->uniqueCode)[1];
+            }else{
+                return null;
+            }
+        }
 
         return null;
     }
@@ -201,11 +220,12 @@ class SubjectCommon extends BaseInvestigationModel
     public function rules()
     {
         return [
-            [['text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'trim'],
+            [['text2', 'text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'trim'],
             [
                 [
                     'title',
                     'createdAt',
+                    'text2',
                     'text',
                     'unitCode',
                     'creatorExpertCode',
@@ -216,7 +236,7 @@ class SubjectCommon extends BaseInvestigationModel
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             [['expertId', 'missionObjective', 'reportExpertCode'], 'required', 'on' => self::SCENARIO_SET_EXPERT],
             [['title', 'englishTitle', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'string', 'max' => 255],
-            [['text', 'description', 'proceedings', 'negotiationResult', 'missionObjective'], 'string'],
+            [['text2', 'text', 'description', 'proceedings', 'missionObjective'], 'string'],
             [['partners', 'tags', 'references'], 'safe'],
             [['englishTitle', 'missionPlace'], 'default', 'value' => null],
             ['isMissionNeeded', 'integer'],
@@ -237,15 +257,16 @@ class SubjectCommon extends BaseInvestigationModel
                 }
             ],
             [
-                ['title', 'text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace'],
+                ['title', 'text2', 'text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace'],
                 FarsiCharactersValidator::class
             ],
-            [
-                'title',
-                'unique',
-                'targetAttribute' => ['title', 'consumer'],
-                'message' => 'ترکیب عنوان و رده تکراری است'
-            ],
+            // TODO This has bugs so I commented it
+            // [
+            //     'title',
+            //     'unique',
+            //     'targetAttribute' => ['title', 'consumer'],
+            //     'message' => 'ترکیب عنوان و رده تکراری است'
+            // ],
         ];
     }
 
@@ -262,7 +283,8 @@ class SubjectCommon extends BaseInvestigationModel
             'title' => 'عنوان',
             'englishTitle' => 'عنوان انگلیسی',
             'createdAt' => 'تاریخ درج',
-            'text' => 'متن',
+            'text' => 'متن موضوع',
+            'text2' => 'متن گزارش',
             'description' => 'توضیحات',
             'references' => 'منابع',
             'partners' => 'همکاران',
@@ -319,7 +341,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function setUniqueCode()
     {
-        $this->uniqueCode = trim($this->unitCode . '.' . ($this->isReport()?$this->reportExpertCode:$this->creatorExpertCode) . '.' . $this->getSeoCodeAsChar() . '.' . $this->numberPartOfUniqueCode . (isset($this->missionType)? '.' . Lookup::item(self::LOOKUP_MISSION_TYPE, $this->missionType):''), '.');
+        $this->uniqueCode = trim($this->unitCode . '.' . ($this->isReport()?$this->reportExpertCode:$this->creatorExpertCode) . '.' . $this->getSeoCodeAsChar() . '.' . $this->numberPartOfUniqueCode . (isset($this->missionType)? '.' . Lookup::extra(self::LOOKUP_MISSION_TYPE, $this->missionType):''), '.');
         // $this->uniqueCode = static::CONSUMER_CODE . '.' . $this->mainReason->code .
             // '.' . $this->numberPartOfUniqueCode;
     }
@@ -390,7 +412,7 @@ class SubjectCommon extends BaseInvestigationModel
             self::STATUS_LOCKED => 'قفل شده',
             self::STATUS_REJECTED => 'رد شده',
             self::STATUS_REPORT_ACCEPTED => 'تایید شده',
-            self::STATUS_REPORT_REJECTED => 'رد شده',
+            // self::STATUS_REPORT_REJECTED => 'رد شده', // TODO not used, remove it asap
             self::STATUS_WAITING_FOR_EXPERT_ACCEPT => 'منتظر دریافت کارشناس'
         ];
     }
@@ -494,6 +516,7 @@ class SubjectCommon extends BaseInvestigationModel
             $this->status != self::STATUS_REJECTED &&
             $this->status != self::STATUS_LOCKED &&
             $this->status != self::STATUS_WAITING_FOR_EXPERT_ACCEPT &&
+            !($this->expertId != null && $this->status == self::STATUS_WAIT_FOR_CONVERSATION) &&
             $this->userHolder != self::USER_HOLDER_MANAGER &&
             (
                 ($this->userHolder == self::USER_HOLDER_EXPERT && !$this->isReport()) ||
@@ -534,6 +557,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canSetWaitForSession(){
         return (
+            $this->isReport() &&
             $this->userHolder == Subject::USER_HOLDER_MANAGER &&
             Yii::$app->user->can('superuser') &&
             $this->status != self::STATUS_ACCEPTED &&
@@ -561,7 +585,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canStartConverstation()
     {
-        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser') && $this->status != self::STATUS_WAIT_FOR_CONVERSATION &&
+        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && (($this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser')) || ($this->userHolder == self::USER_HOLDER_EXPERT && $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT)) && $this->status != self::STATUS_WAIT_FOR_CONVERSATION &&
         $this->status != self::STATUS_NEED_CORRECTION &&
         (
             $this->status != self::STATUS_REPORT_ACCEPTED &&
@@ -619,7 +643,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canAcceptOrReject()
     {
-        if (Yii::$app->user->can('superuser')) {
+        if (Yii::$app->user->can('superuser') && $this->userHolder == self::USER_HOLDER_MANAGER) {
             if (
                 $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS // This is for session flow
             ) {
@@ -645,17 +669,22 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canSetExpert(){
         return (
-            Yii::$app->user->can('superuser') &&
-            ($this->status == self::STATUS_ACCEPTED || $this->expertId != null) &&
+            Yii::$app->user->can('superuser') && $this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REPORT_ACCEPTED &&
             (
-                $this->status != self::STATUS_REPORT_ACCEPTED &&
-                $this->status != self::STATUS_REPORT_REJECTED
+                ($this->isReport() && $this->status != self::STATUS_INPROGRESS) ||
+                (
+                    ($this->status == self::STATUS_ACCEPTED || $this->expertId != null) &&
+                    (
+                        $this->status != self::STATUS_REPORT_ACCEPTED &&
+                        $this->status != self::STATUS_REPORT_REJECTED
+                    )
+                )
             )
         );
     }
 
     public function canExpertAccept(){
-        return $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT
+        return ($this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT || (($this->expertId != null && $this->status == self::STATUS_WAIT_FOR_CONVERSATION)))
         && $this->userHolder == self::USER_HOLDER_EXPERT
         && Yii::$app->user->identity->expert->id == $this->expertId;
     }

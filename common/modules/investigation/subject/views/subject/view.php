@@ -88,17 +88,27 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                     ]
                 ],
                 'reject' => [
-                    'label' => 'رد ' . ($model->isReport()? 'گزارش' : 'موضوع'),
+                    'label' => 'رد موضوع',
                     'type' => 'info',
                     'icon' => 'close',
                     'isActive' => $model->canAcceptOrReject() &&
                     Yii::$app->user->can('superuser'),
-                    // 'visibleFor' => ['superuser'],
+                    'visible' => !$model->isReport(),
                     'url' => [
                         'change-status',
                         'id' => $model->id,
                         'newStatus' => ( $model->isReport() ? Subject::STATUS_REPORT_REJECTED : Subject::STATUS_REJECTED)
                     ]
+                ],
+                'reject-report-and-set-expert' => [
+                    'label' => 'رد گزارش',
+                    'type' => 'info',
+                    'icon' => 'close',
+                    'isActive' => $model->canAcceptOrReject() &&
+                    Yii::$app->user->can('superuser'),
+                    'visible' => $model->isReport(),
+                    'url' => ['set-expert', 'id' => $model->id],
+                    'options' => ['class' => 'ajaxupdate']
                 ],
                 'session' => [
                     'isDropDown' => true,
@@ -332,11 +342,21 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin([
-                    'title' => 'متن ' . ($model->isReport()? 'گزارش' : 'موضوع'),
+                    'title' => 'متن موضوع',
                     'showCollapseButton' => true
                     ]) ?>
                     <div>
                         <?= $model->text ?>
+                    </div>
+                <?php Panel::end() ?>
+            </div>
+            <div class="col-md-12">
+                <?php Panel::begin([
+                    'title' => 'متن گزارش',
+                    'showCollapseButton' => true
+                    ]) ?>
+                    <div>
+                        <?= $model->text2 ?>
                     </div>
                 <?php Panel::end() ?>
             </div>

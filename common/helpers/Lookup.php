@@ -104,4 +104,12 @@ class Lookup extends \yii\db\ActiveRecord
             self::$_items[$type][$model->code] = (($useCodedNames) ? $model->getCodedName(true) : $model->extra);
         }
     }
+
+    public static function extra($type, $code, $useCodedName = false)
+    {
+        if (!isset(self::$_items[$type])) {
+            self::loadExtras($type, $useCodedName);
+        }
+        return isset(self::$_items[$type][$code]) ? self::$_items[$type][$code] : false;
+    }
 }

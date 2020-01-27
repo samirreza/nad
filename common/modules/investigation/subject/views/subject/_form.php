@@ -196,10 +196,25 @@ $reportFiles2 = $model->getFiles('reportFile2');
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <?= $form->field($model, 'text')->widget(
-                        Editor::class,
-                        ['preset' => 'advanced']
-                    ) ?>
+                    <?php if($model->isReport()): ?>
+                        <?= $form->field($model, 'text')->hiddenInput()->label(false) ?>
+                        <?= $form->field($model, 'unitCode')->hiddenInput()->label(false) ?>
+                        <?= $form->field($model, 'creatorExpertCode')->hiddenInput()->label(false) ?>
+                        <?= $form->field($model, 'seoCode')->hiddenInput()->label(false) ?>
+                        <?= $form->field($model, 'text2')->widget(
+                            Editor::class,
+                            ['preset' => 'advanced']
+                        ) ?>
+                    <?php else: ?>
+                        <?= $form->field($model, 'text')->widget(
+                            Editor::class,
+                            ['preset' => 'advanced']
+                        ) ?>
+                        <?php
+                        $model->text2 = '-';
+                        echo  $form->field($model, 'text2')->hiddenInput()->label(false);
+                        ?>
+                    <?php endif; ?>
                     <?= $form->field($model, 'description')->widget(
                         Editor::class,
                         ['preset' => 'advanced']
