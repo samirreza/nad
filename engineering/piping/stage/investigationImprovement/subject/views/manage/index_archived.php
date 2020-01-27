@@ -19,10 +19,6 @@ $this->params['horizontalMenuItems'] = [
         'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/archived-index']
     ],
     [
-        'label' => 'داده گاه روند موضوع',
-        'url' => ['/engineering/piping/stage/investigationImprovement/subject/manage/index-history']
-    ],
-    [
         'label' => 'داده گاه منابع',
         'url' => ['/engineering/piping/stage/investigationImprovement/reference/manage/index']
     ]
