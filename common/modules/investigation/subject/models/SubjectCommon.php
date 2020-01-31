@@ -316,9 +316,6 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function beforeSave($insert)
     {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
         if ($insert) {
             $this->consumer = static::CONSUMER_CODE;
 
@@ -336,7 +333,12 @@ class SubjectCommon extends BaseInvestigationModel
             $this->missionType = null;
         }
 
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
         $this->setUniqueCode();
+
         return true;
     }
 
