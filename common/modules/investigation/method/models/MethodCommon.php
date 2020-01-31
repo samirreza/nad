@@ -218,10 +218,10 @@ class MethodCommon extends BaseInvestigationModel
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'proposalId' => 'پروپوزال',
+            'proposalId' => 'دسترسی به پروپوزال',
             'expertId' => 'کارشناس نگارش منشا/دستورالعمل',
             'userHolder' => 'نزد',
-            'reportId' => 'گزارش',
+            'reportId' => 'دسترسی به گزارش',
         ];
     }
 

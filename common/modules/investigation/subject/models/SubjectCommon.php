@@ -239,6 +239,7 @@ class SubjectCommon extends BaseInvestigationModel
             [['text2', 'text', 'description', 'proceedings', 'missionObjective'], 'string'],
             [['partners', 'tags', 'references'], 'safe'],
             [['englishTitle', 'missionPlace'], 'default', 'value' => null],
+            [['missionType'], 'default', 'value' => 1],
             ['isMissionNeeded', 'integer'],
             [
                 'createdAt',
@@ -401,12 +402,12 @@ class SubjectCommon extends BaseInvestigationModel
         return [
             self::STATUS_INPROGRESS => 'در حال انجام', // for subject
             self::STATUS_ACCEPTED_BY_EXPERT => 'در حال انجام', // for report
-            self::STATUS_WAIT_FOR_CONVERSATION => 'تبادل نظر',
+            self::STATUS_WAIT_FOR_CONVERSATION => 'نظر/سوال',
             self::STATUS_WAITING_FOR_CHECK_BY_MANAGER => 'منتظر بررسی',
             self::STATUS_WAITING_FOR_SESSION_DATE => 'منتظر تعیین زمان جلسه',
             self::STATUS_WAITING_FOR_SESSION_RESULT => 'منتظر جلسه و ثبت نتیجه',
             self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT => 'منتظر اصلاح',
-            self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس',
+            self::STATUS_ACCEPTED => 'منتظر تعیین کارشناس گزارش',
             self::STATUS_WAITING_FOR_SEND_TO_WRITE_REPORT => 'منتظر ارسال جهت نگارش گزارش',
             self::STATUS_WAITING_FOR_NEXT_STATUS => 'منتظر تعیین وضعیت',
             self::STATUS_LOCKED => 'قفل شده',
@@ -423,10 +424,12 @@ class SubjectCommon extends BaseInvestigationModel
         }
 
         $postfix = '';
-        if($this->isReport()){
-            $postfix = ' (گزارش)';
-        }else{
-            $postfix = ' (موضوع)';
+        if ($this->status != self::STATUS_ACCEPTED) {
+            if ($this->isReport()) {
+                $postfix = ' (گزارش)';
+            } else {
+                $postfix = ' (موضوع)';
+            }
         }
 
         return self::getStatusLables()[$this->status] . $postfix;
@@ -477,7 +480,7 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REJECTED &&$this->status != self::STATUS_REPORT_REJECTED && Yii::$app->user->can('superuser')) {
+        if ($this->status != self::STATUS_LOCKED && Yii::$app->user->can('superuser')) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
@@ -557,7 +560,6 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canSetWaitForSession(){
         return (
-            $this->isReport() &&
             $this->userHolder == Subject::USER_HOLDER_MANAGER &&
             Yii::$app->user->can('superuser') &&
             $this->status != self::STATUS_ACCEPTED &&
@@ -669,7 +671,10 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canSetExpert(){
         return (
-            Yii::$app->user->can('superuser') && $this->status != self::STATUS_LOCKED && $this->status != self::STATUS_REPORT_ACCEPTED &&
+            Yii::$app->user->can('superuser') &&
+            $this->status != self::STATUS_LOCKED &&
+            $this->status != self::STATUS_REPORT_ACCEPTED &&
+            $this->status != self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT &&
             (
                 ($this->isReport() && $this->status != self::STATUS_INPROGRESS) ||
                 (

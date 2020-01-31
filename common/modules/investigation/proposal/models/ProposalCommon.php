@@ -220,7 +220,7 @@ class ProposalCommon extends BaseInvestigationModel
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'sourceId' => 'منشا',
+            'sourceId' => 'دسترسی به منشا',
             'reportExpertId' => 'کارشناس نگارش گزارش/روش/دستورالعمل',
             'categoryId' => 'رده',
             'userHolder' => 'نزد'

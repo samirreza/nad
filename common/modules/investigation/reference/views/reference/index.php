@@ -37,6 +37,7 @@ use nad\common\modules\investigation\reference\models\Reference;
                 'filterModel' => $searchModel,
                 'columns' => [
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'uniqueCode',
                         'filterInputOptions' => [
                             'class' => 'form-control',
@@ -47,6 +48,7 @@ use nad\common\modules\investigation\reference\models\Reference;
                         ]
                     ],
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'title',
                         'filterInputOptions' => [
                             'class' => 'form-control',

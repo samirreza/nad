@@ -139,28 +139,28 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('reasonForGenesis')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('reasonForGenesis'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('necessity')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('necessity'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('methodDesc')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('methodDesc'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->methodDesc ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->estimatedCost ?>
                     </div>

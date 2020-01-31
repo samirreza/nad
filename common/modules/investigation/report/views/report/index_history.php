@@ -30,6 +30,7 @@ use nad\common\modules\investigation\report\models\ReportReason;
                 'filterUrl' => ['index'],
                 'columns' => [
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'title',
                         'filterInputOptions' => [
                             'class' => 'form-control',

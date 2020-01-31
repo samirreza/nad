@@ -247,7 +247,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         <?php endif; ?>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'مشخصات پروپوزال']) ?>
+                <?php Panel::begin(['title' => 'مشخصات پروپوزال', 'showCollapseButton' => true]) ?>
                     <div class="col-md-6">
                         <?= DetailView::widget([
                             'model' => $model,
@@ -351,28 +351,28 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('reasonForGenesis')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('reasonForGenesis'), 'showCollapseButton' => true]) ?>
                     <div>
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('necessity')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('necessity'), 'showCollapseButton' => true]) ?>
                     <div>
                         <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('methodDesc')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('methodDesc'), 'showCollapseButton' => true]) ?>
                     <div>
                         <?= $model->methodDesc ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('estimatedCost'), 'showCollapseButton' => true]) ?>
                     <div>
                         <?= $model->estimatedCost ?>
                     </div>
@@ -380,7 +380,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه جلسه']) ?>
+                    <?php Panel::begin(['title' => 'نتیجه جلسه', 'showCollapseButton' => true]) ?>
                         <div>
                             <?= $model->proceedings ?>
                         </div>
@@ -389,7 +389,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
             <?php endif; ?>
             <?php if ($model->negotiationResult) : ?>
                 <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه مذاکره']) ?>
+                    <?php Panel::begin(['title' => 'نتیجه مذاکره', 'showCollapseButton' => true]) ?>
                         <div>
                             <?= $model->negotiationResult ?>
                         </div>
