@@ -167,14 +167,14 @@ use nad\common\modules\investigation\instruction\models\Instruction;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('abstract')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('abstract'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->abstract ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => $model->getAttributeLabel('description')]) ?>
+                <?php Panel::begin(['title' => $model->getAttributeLabel('description'), 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->description ?>
                     </div>

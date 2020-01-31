@@ -30,6 +30,7 @@ use nad\common\modules\investigation\source\models\SourceReason;
                 'filterUrl' => ['index'],
                 'columns' => [
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'title',
                         'filterInputOptions' => [
                             'class' => 'form-control',

@@ -224,7 +224,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         <?php endif; ?>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'مشخصات دستورالعمل']) ?>
+                <?php Panel::begin(['title' => 'مشخصات دستورالعمل', 'showCollapseButton' => true]) ?>
                     <div class="col-md-6">
                         <?= DetailView::widget([
                             'model' => $model,
@@ -371,14 +371,14 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         </div>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'چکیده']) ?>
+                <?php Panel::begin(['title' => 'چکیده', 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->abstract ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin(['title' => 'توضیحات']) ?>
+                <?php Panel::begin(['title' => 'توضیحات', 'showCollapseButton' => true]) ?>
                     <div class="well">
                         <?= $model->description ?>
                     </div>
@@ -386,7 +386,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             </div>
             <?php if ($model->proceedings) : ?>
                 <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه جلسه']) ?>
+                    <?php Panel::begin(['title' => 'نتیجه جلسه', 'showCollapseButton' => true]) ?>
                         <div class="well">
                             <?= $model->proceedings ?>
                         </div>
@@ -395,7 +395,7 @@ use nad\extensions\comment\widgets\commentList\CommentList;
             <?php endif; ?>
             <?php if ($model->negotiationResult) : ?>
                 <div class="col-md-12">
-                    <?php Panel::begin(['title' => 'نتیجه مذاکره']) ?>
+                    <?php Panel::begin(['title' => 'نتیجه مذاکره', 'showCollapseButton' => true]) ?>
                         <div class="well">
                             <?= $model->negotiationResult ?>
                         </div>

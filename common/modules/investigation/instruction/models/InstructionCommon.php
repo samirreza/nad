@@ -221,11 +221,11 @@ class InstructionCommon extends BaseInvestigationModel
             'proceedings' => 'نتیجه جلسه',
             'negotiationResult' => 'نتیجه مذاکره',
             'uniqueCode' => 'شناسه',
-            'proposalId' => 'پروپوزال',
+            'proposalId' => 'دسترسی به پروپوزال',
             'expertId' => 'کارشناس نگارش منشا',
             'userHolder' => 'نزد',
-            'reportId' => 'گزارش',
-            'methodId' => 'روش',
+            'reportId' => 'دسترسی به گزارش',
+            'methodId' => 'دسترسی به روش',
         ];
     }
 

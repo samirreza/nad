@@ -32,6 +32,7 @@ use nad\common\modules\investigation\method\models\MethodReason;
                 'filterUrl' => ['archived-index'],
                 'columns' => [
                     [
+                        'class' => 'nad\common\grid\Column',
                         'attribute' => 'title',
                         'filterInputOptions' => [
                             'class' => 'form-control',
