@@ -77,7 +77,22 @@ $this->registerJs(
                         ) ?>
                     </div>
                     <div class="col-md-6">
-                        <br>
+                        <?= Button::widget([
+                            'label' => 'انصراف',
+                            'options' => [
+                                'class' => 'btn-lg close-sliding-form-button pull-left'
+                            ],
+                            'type' => 'warning',
+                            'icon' => 'undo'
+                        ]) ?>
+                        <?= Html::submitButton(
+                            '<i class="fa fa-save"></i> ذخیره',
+                            [
+                                'class' => 'btn btn-xs btn-warning pull-left'
+                            ]
+                        ) ?>
+                        <br/>
+                        <br/>
                         <?= $form->field($model, 'isMissionNeeded')->checkbox()?>
                     </div>
                 </div>
@@ -90,17 +105,8 @@ $this->registerJs(
                             <?= $form->field($model, 'reportExpertCode')->textInput()?>
                         </div>
                     </div>
-                    <div class="col-md-6" id="missionDetailsContainer">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'missionType')->dropDownList(
-                                    Lookup::extras(SubjectCommon::LOOKUP_MISSION_TYPE, true),
-                                    [
-                                        'prompt'=>'انتخاب کنید',
-                                        'disabled' => 'disabled',
-                                        ]
-                                ) ?>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="row" id="missionDetailsContainer">
                             <div class="col-md-12">
                                 <?= $form->field($model, 'missionPlace')->textInput([
                                     'disabled' => 'disabled',
@@ -120,15 +126,15 @@ $this->registerJs(
                                     ]
                                 ) ?>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 <?= $form->field($model, 'reportDeadlineDate')->widget(
                                     JalaliDatePicker::class,
                                     [
                                         'options' => [
                                             'class' => 'form-control input-medium',
-                                            'autocomplete' => 'off',
-                                            'disabled' => '',
-                                            'readonly' => ''
+                                            'autocomplete' => 'off'
                                         ]
                                     ]
                                 ) ?>
@@ -136,21 +142,6 @@ $this->registerJs(
                         </div>
                     </div>
                 </div>
-                    <br>
-                    <?= Html::submitButton(
-                        '<i class="fa fa-save"></i> ذخیره',
-                        [
-                            'class' => 'btn btn-xs btn-warning'
-                        ]
-                    ) ?>
-                    <?= Button::widget([
-                        'label' => 'انصراف',
-                        'options' => [
-                            'class' => 'btn-lg close-sliding-form-button'
-                        ],
-                        'type' => 'warning',
-                        'icon' => 'undo'
-                    ]) ?>
                 <?php ActiveForm::end() ?>
             </div>
         <?php Panel::end() ?>

@@ -139,7 +139,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                     ]
                 ],
                 'wait-for-converstation' => [
-                    'label' => 'تبادل نظر',
+                    'label' => 'نظر/سوال',
                     'type' => 'info',
                     'icon' => 'comments',
                     'isActive' => $model->canStartConverstation(),
@@ -161,18 +161,27 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                 //     ]
                 // ],
                 'set-experts' => [
-                    'label' => ($model->isReport()?'تصحیح':'انتخاب کارشناس'),
+                    'isDropDown' => true,
+                    'label' => ($model->isReport()?'&nbsp;&nbsp;&nbsp;تصحیح&nbsp;&nbsp;&nbsp;':'&nbsp;&nbsp;&nbsp;انتخاب کارشناس&nbsp;&nbsp;&nbsp;'),
                     'type' => 'info',
-                    'icon' => 'graduation-cap',
+                    'icon' => 'pencil',
                     'isActive' => $model->canSetExpert(),
+                    'items' => [
+                        'set-expert-and-mission-details' => [
+                            'label' => 'تصحیح تصمیمات گزارش',
+                            'icon' => 'pencil',
+                            'isActive' => $model->canSetExpert(),
+                            'visible' => true,
+                            'url' => ['set-expert', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
+                    ]
                     // 'visibleFor' => ['superuser'],
-                    'url' => ['set-expert', 'id' => $model->id],
-                    'options' => ['class' => 'ajaxupdate']
                 ],
                 'accept-by-expert' => [
                     'label' => 'دریافت',
                     'type' => 'info',
-                    'icon' => 'graduation-cap',
+                    'icon' => 'thumbs-up',
                     'isActive' => $model->canExpertAccept(),
                     // 'visibleFor' => ['superuser'],
                     'url' => [
@@ -298,7 +307,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                 [
                                     'attribute' => 'reportDeadlineDate',
                                     'format' => 'date',
-                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                    'visible' => $model->isReport()
                                 ],
                                 [
                                     'attribute' => 'missionType',

@@ -130,7 +130,7 @@ $reportFiles2 = $model->getFiles('reportFile2');
                             if(isset($subjectFiles) && !empty($subjectFiles)){
                                 Panel::begin();
                             ?>
-                                    <label>فایل موضوع</label>
+                                    <label>مستندات موضوع</label>
                                     <?= SingleFileUpload::widget([
                                         'model' => $model,
                                         'group' => 'subjectFile',
@@ -140,7 +140,7 @@ $reportFiles2 = $model->getFiles('reportFile2');
                             }
                             ?>
                             <?php Panel::begin() ?>
-                                <label>فایل موضوع</label>
+                                <label>مستندات موضوع</label>
                                 <?= SingleFileUpload::widget([
                                     'model' => new $className,
                                     'group' => 'subjectFile',
