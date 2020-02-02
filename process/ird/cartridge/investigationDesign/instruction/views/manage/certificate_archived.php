@@ -38,5 +38,5 @@ $this->params['horizontalMenuItems'] = [
    'method' => $method,
    'instruction' => $instruction,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigation-design'
+    'baseRoute' => '/cartridge/investigationDesign'
 ]);

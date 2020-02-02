@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'device',
-    'baseRoute' => '/device/investigationImprovement-monitor'
+    'baseRoute' => '/device/investigationImprovement'
 ]);

@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'alkalineWasher',
-    'baseRoute' => '/alkalineWasher/investigation-design'
+    'baseRoute' => '/alkalineWasher/investigationDesign'
 ]);

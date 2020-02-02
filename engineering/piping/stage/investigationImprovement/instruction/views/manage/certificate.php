@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'stage',
-    'baseRoute' => '/engineering/piping/stage/investigationImprovement-monitor'
+    'baseRoute' => '/engineering/piping/stage/investigationImprovement'
 ]);

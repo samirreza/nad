@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigation-design'
+    'baseRoute' => '/cartridge/investigationDesign'
 ]);

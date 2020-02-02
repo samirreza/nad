@@ -34,5 +34,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate_archived', [
     'source' => $source,
     'moduleId' => 'graphene',
-    'baseRoute' => '/graphene/investigation-design'
+    'baseRoute' => '/graphene/investigationDesign'
 ]);
