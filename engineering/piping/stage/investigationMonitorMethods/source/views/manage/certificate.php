@@ -16,5 +16,5 @@ $this->params['breadcrumbs'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate', [
     'source' => $source,
     'moduleId' => 'stage',
-    'baseRoute' => '/stage/investigationMonitorMethods-monitor'
+    'baseRoute' => '/stage/investigationMonitorMethods'
 ]);

@@ -36,5 +36,5 @@ $this->params['horizontalMenuItems'] = [
    'proposal' => $proposal,
    'report' => $report,
     'moduleId' => 'microbial',
-    'baseRoute' => '/microbial/investigation-design'
+    'baseRoute' => '/microbial/investigationDesign'
 ]);

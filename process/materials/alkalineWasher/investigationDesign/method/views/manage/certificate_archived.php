@@ -37,5 +37,5 @@ $this->params['horizontalMenuItems'] = [
    'report' => $report,
    'method' => $method,
     'moduleId' => 'alkalineWasher',
-    'baseRoute' => '/alkalineWasher/investigation-design'
+    'baseRoute' => '/alkalineWasher/investigationDesign'
 ]);

@@ -36,5 +36,5 @@ $this->params['horizontalMenuItems'] = [
    'proposal' => $proposal,
    'report' => $report,
     'moduleId' => 'coagulant',
-    'baseRoute' => '/coagulant/investigation-design'
+    'baseRoute' => '/coagulant/investigationDesign'
 ]);

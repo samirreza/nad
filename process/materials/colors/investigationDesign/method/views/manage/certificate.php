@@ -18,5 +18,5 @@ $this->params['breadcrumbs'] = [
     'report' => $report,
     'method' => $method,
     'moduleId' => 'colors',
-    'baseRoute' => '/colors/investigation-design'
+    'baseRoute' => '/colors/investigationDesign'
 ]);
