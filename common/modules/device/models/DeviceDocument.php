@@ -9,6 +9,7 @@ use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\Device;
 use nad\common\modules\device\models\DocNameLookup;
 use yii\web\ServerErrorHttpException;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
 class DeviceDocument extends \yii\db\ActiveRecord implements Codable
 {
@@ -27,6 +28,10 @@ class DeviceDocument extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
                 [
                     'class' => FileBehavior::className(),

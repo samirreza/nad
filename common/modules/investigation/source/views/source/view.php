@@ -302,6 +302,19 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     'value' => function ($model) {
                                         return $model->getExpertFullNamesAsString();
                                     }
+                                ],
+                                [
+                                    'label' => 'دسترسی به مرحله بعد',
+                                    'format' => 'html',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['certificate', 'id' => $model->id],
+                                            [
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
+                                    }
                                 ]
                             ]
                         ]) ?>

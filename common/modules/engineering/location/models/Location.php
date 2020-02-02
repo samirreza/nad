@@ -4,6 +4,7 @@ namespace nad\common\modules\engineering\location\models;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\engineering\stage\models\Category;
 
@@ -21,6 +22,10 @@ class Location extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
                 [
                     'class' => FileBehavior::className(),
@@ -90,7 +95,7 @@ class Location extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        if ($insert) {            
+        if ($insert) {
             $this->consumer = static::CONSUMER_CODE;
         }
         $this->setUniqueCode();
@@ -101,14 +106,14 @@ class Location extends \yii\db\ActiveRecord implements Codable
     {
         $this->uniqueCode = $this->category->uniqueCode . '.' . $this->code;
     }
-    
+
     public function getUniqueCode() : string
     {
         $category = $this->category;
         if(!isset($category)){
             $category = Category::findOne($this->categoryId);
         }
-        
+
         return $category->code . '.' . $this->code;
     }
 }

@@ -30,9 +30,20 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         'template' => "<tr><th class=\"attribute-label\">{label}</th><td class=\"attribute-value\">{value}</td></tr>",
         'attributes' => [
             [
-                'attribute' => 'title',
-                'label' => 'عنوان گزارش',
-                'value' => $report->title
+                'label' => 'دسترسی به گزارش',
+                'format' => 'html',
+                'value' => function ($model) use ($baseRoute) {
+                    return '<b>' . Html::a(
+                        $model->title,
+                        [
+                            ($model->isArchived == $model::IS_SOURCE_ARCHIVED_YES) ? "$baseRoute/report/manage/archived-view" : "$baseRoute/report/manage/view",
+                            'id' => $model->id
+                        ],
+                        [
+                            'data-pjax' => '0',
+                            'style' => 'margin:5px'
+                        ]) . '</b>';
+                }
             ],
             [
                 'attribute' => 'englishTitle',

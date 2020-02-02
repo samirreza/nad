@@ -9,6 +9,7 @@ use nad\common\modules\device\models\DeviceDocument;
 use nad\common\modules\device\models\DevicePart;
 use nad\common\modules\device\models\DeviceInstance;
 use nad\common\modules\device\models\Category;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
 class Device extends \yii\db\ActiveRecord implements Codable
 {
@@ -24,6 +25,10 @@ class Device extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
             ]
         );

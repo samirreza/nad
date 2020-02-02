@@ -130,6 +130,19 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
                                     }
+                                ],
+                                [
+                                    'label' => 'دسترسی به مرحله بعد',
+                                    'format' => 'html',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['archived-certificate', 'id' => $model->id],
+                                            [
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
+                                    }
                                 ]
                             ]
                         ]) ?>
