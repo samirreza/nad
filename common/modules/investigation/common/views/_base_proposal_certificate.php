@@ -31,9 +31,20 @@ use nad\common\modules\investigation\proposal\models\Proposal;
         'template' => "<tr><th class=\"attribute-label\">{label}</th><td class=\"attribute-value\">{value}</td></tr>",
         'attributes' => [
             [
-                'attribute' => 'title',
-                'label' => 'عنوان پروپوزال',
-                'value' => $proposal->title
+                'label' => 'دسترسی به پروپوزال',
+                'format' => 'html',
+                'value' => function ($model) use ($baseRoute) {
+                    return '<b>' . Html::a(
+                        $model->title,
+                        [
+                            ($model->isArchived == $model::IS_SOURCE_ARCHIVED_YES) ? "$baseRoute/proposal/manage/archived-view" : "$baseRoute/proposal/manage/view",
+                            'id' => $model->id
+                        ],
+                        [
+                            'data-pjax' => '0',
+                            'style' => 'margin:5px'
+                        ]) . '</b>';
+                }
             ],
             [
                 'attribute' => 'englishTitle',
