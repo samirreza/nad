@@ -11,6 +11,7 @@ use nad\common\modules\site\models\Site;
 use core\behaviors\PreventDeleteBehavior;
 use nad\common\code\CodableCategoryBehavior;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\engineering\location\models\Location;
 
@@ -26,6 +27,10 @@ class Category extends ActiveRecord implements Codable
     public function behaviors()
     {
         return [
+            [
+                'class' => AuditTrailBehavior::class,
+                'relations' => []
+            ],
             'core\behaviors\TimestampBehavior',
             [
                 'class' => PreventDeleteBehavior::class,

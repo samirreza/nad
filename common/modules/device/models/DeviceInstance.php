@@ -7,6 +7,7 @@ use nad\common\code\CodableTrait;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\DeviceDocument;
 use nad\common\modules\device\models\Device;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
 class DeviceInstance extends \yii\db\ActiveRecord implements Codable
 {
@@ -22,6 +23,10 @@ class DeviceInstance extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
             ]
         );

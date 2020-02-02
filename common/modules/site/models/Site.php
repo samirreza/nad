@@ -7,6 +7,7 @@ use nad\common\code\CodableTrait;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\site\models\Document;
 use nad\common\modules\engineering\stage\models\Category as StageCategory;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
 class Site extends \yii\db\ActiveRecord implements Codable
 {
@@ -24,6 +25,10 @@ class Site extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
             ]
         );

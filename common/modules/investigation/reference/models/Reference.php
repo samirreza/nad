@@ -9,6 +9,7 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use core\behaviors\PreventDeleteBehavior;
 use extensions\file\behaviors\FileBehavior;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
@@ -32,6 +33,10 @@ class Reference extends \yii\db\ActiveRecord implements Codable
     public function behaviors()
     {
         return [
+            [
+                'class' => AuditTrailBehavior::class,
+                'relations' => []
+            ],
             TimestampBehavior::class,
             [
                 'class' => PreventDeleteBehavior::class,

@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Stage extends \yii\db\ActiveRecord implements Codable
@@ -26,6 +27,10 @@ class Stage extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
                 [
                     'class' => FileBehavior::className(),
@@ -50,7 +55,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             [['title', 'code'], 'trim'],
             [['title'], 'string', 'max' => 255],
             ['code', 'string', 'max' => 1, 'min' => 1],
-            [['categoryId', 'parentId'], 'integer'],            
+            [['categoryId', 'parentId'], 'integer'],
             [['description'], 'string'],
             [['title'], FarsiCharactersValidator::className()],
             [
@@ -70,7 +75,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
             'title' => 'عنوان',
             'description' => 'توضیحات',
             'categoryId' => 'شاخه',
-            'parentId' => 'مرحله پدر',            
+            'parentId' => 'مرحله پدر',
             'category.title' => 'شاخه',
             'category.familyTreeTitle' => 'شاخه',
             'createdAt' => 'تاریخ درج',
@@ -86,7 +91,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
     public function getParent()
     {
         return $this->hasOne(self::className(), ['id' => 'parentId']);
-    }    
+    }
 
     public function beforeValidate()
     {
@@ -96,7 +101,7 @@ class Stage extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        if ($insert) {            
+        if ($insert) {
             $this->consumer = static::CONSUMER_CODE;
         }
         $this->setUniqueCode();

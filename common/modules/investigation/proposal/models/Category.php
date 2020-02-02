@@ -9,6 +9,7 @@ use nad\common\code\CodableTrait;
 use core\behaviors\PreventDeleteBehavior;
 use nad\common\code\CodableCategoryBehavior;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
 class Category extends ActiveRecord implements Codable
@@ -18,6 +19,10 @@ class Category extends ActiveRecord implements Codable
     public function behaviors()
     {
         return [
+            [
+                'class' => AuditTrailBehavior::class,
+                'relations' => []
+            ],
             [
                 'class' => PreventDeleteBehavior::class,
                 'relations' => [

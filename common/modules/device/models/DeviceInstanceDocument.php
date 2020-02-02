@@ -6,6 +6,7 @@ use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\device\models\DeviceInstance;
+use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
 class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
 {
@@ -21,6 +22,10 @@ class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
+                [
+                    'class' => AuditTrailBehavior::class,
+                    'relations' => []
+                ],
                 'core\behaviors\TimestampBehavior',
                 [
                     'class' => FileBehavior::className(),
