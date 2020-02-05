@@ -4,6 +4,7 @@ namespace nad\extensions\graphGenerator\behaviors;
 
 use yii;
 use yii\db\Query;
+use yii\helpers\Html;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\validators\Validator;
@@ -16,14 +17,14 @@ class GraphBehavior extends Behavior
     public $graphTableName = null;
 
     public function init()
-	{
-		if ( empty($this->graphTableName)) {
-			throw new InvalidConfigException(
-				'graphTableName property must be set.'
-			);
-		}
-		parent::init();
-	}
+    {
+        if (empty($this->graphTableName)) {
+            throw new InvalidConfigException(
+                'graphTableName property must be set.'
+            );
+        }
+        parent::init();
+    }
 
     public function getThingLinks()
     {
@@ -62,7 +63,8 @@ class GraphBehavior extends Behavior
             if (!$this->owner->isNewRecord) {
                 Yii::$app->db->createCommand()->delete(
                     $this->graphTableName,
-                    'child_id = ' . $this->owner->id)
+                    'child_id = ' . $this->owner->id
+                )
                 ->execute();
             }
             if (!empty($this->_thingLinks)) {
@@ -111,7 +113,7 @@ class GraphBehavior extends Behavior
             ->orWhere(["in", "id", $subquery2])
             ->all();
 
-        return array_map(function($node) {
+        return array_map(function ($node) {
             return $node['title'];
         }, $nodes);
     }
@@ -124,14 +126,30 @@ class GraphBehavior extends Behavior
     public function getFormattedThingLinks()
     {
         $query = new Query();
-        $links = $query->select(['p1.title AS parent'])
+        $links = $query->select(['p1.title AS parent', 'p1.id AS parentId'])
             ->from($this->owner->tableName() . ' AS p1')
             ->innerJoin($this->graphTableName . ' AS g', 'p1.id = g.parent_id')
-            ->innerJoin($this->owner->tableName().' AS p2', 'p2.id = g.child_id')
+            ->innerJoin($this->owner->tableName() . ' AS p2', 'p2.id = g.child_id')
             ->where('p2.id = ' . $this->owner->id)
-            ->column();
+            ->all();
 
-            // dd ($links);
-        return implode(' , ', $links);
+        if (isset($links) && !empty($links)) {
+            $clickableLinks = '<ul>';
+            foreach ($links as $link) {
+                $clickableLinks .= '<li>' . Html::a(
+                $link['parent'],
+                ['view', 'id' => $link['parentId']],
+                [
+                    'target' => '_blank',
+                    'data-pjax' => '0'
+                ]
+            ) . '</li>';
+            }
+            $clickableLinks .= '</ul>';
+
+            return $clickableLinks;
+        }
+
+        return null;
     }
 }

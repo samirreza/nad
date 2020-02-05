@@ -252,24 +252,50 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 ],
                                 [
                                     'attribute' => 'proposalId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $proposal = $model->getProposalAsString();
                                         if($proposal)
-                                            return Html::a($proposal, ['proposal/manage/view', 'id' => $model->getEfectiveProposalId()]);
+                                            return Html::a($proposal,
+                                            ['proposal/manage/view', 'id' => $model->getEfectiveProposalId()],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
                                         else
                                             return null;
                                     }
                                 ],
                                 [
                                     'attribute' => 'reportId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $report = $model->getReportAsString();
                                         if($report)
-                                            return Html::a($report, ['report/manage/view', 'id' => $model->reportId]);
+                                            return Html::a($report,
+                                            ['report/manage/view', 'id' => $model->reportId],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
                                         else
                                             return null;
+                                    }
+                                ],
+                                [
+                                    'label' => 'دسترسی به مرحله بعد',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['certificate', 'id' => $model->id],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
                                     }
                                 ],
                                 'createdAt:date',
@@ -362,19 +388,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         return $model->getClickableReferencesAsString();
-                                    }
-                                ],
-                                [
-                                    'label' => 'دسترسی به مرحله بعد',
-                                    'format' => 'html',
-                                    'value' => function ($model) {
-                                        return Html::a(
-                                            'شناسنامه',
-                                            ['certificate', 'id' => $model->id],
-                                            [
-                                                'data-pjax' => '0',
-                                                'style' => 'margin:5px'
-                                            ]);
                                     }
                                 ]
                             ]

@@ -93,12 +93,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 ],
                                 [
                                     'label' => 'دسترسی به مرحله بعد',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function ($model) {
                                         return Html::a(
                                             'شناسنامه',
                                             ['archived-certificate', 'id' => $model->id],
                                             [
+                                                'target' => '_blank',
                                                 'data-pjax' => '0',
                                                 'style' => 'margin:5px'
                                             ]);

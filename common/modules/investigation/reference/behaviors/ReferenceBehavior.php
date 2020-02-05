@@ -102,16 +102,24 @@ class ReferenceBehavior extends \yii\base\Behavior
 
     public function getClickableReferencesAsString()
     {
-        $output = '';
-        foreach ($this->owner->getReferences() as $reference) {
-            $output .= Html::a(
-                $reference->title,
-                $reference->getFile('resource')->getUrl(),
-                [
-                    'data-pjax' => '0',
-                    'style' => 'margin:5px'
-                ]) . ', ';
+        $references = $this->owner->getReferences();
+
+        if (isset($references) && !empty($references)) {
+            $output = '<ul>';
+            foreach ($this->owner->getReferences() as $reference) {
+                $output .= '<li>' . Html::a(
+                    $reference->title,
+                    $reference->getFile('resource')->getUrl(),
+                    [
+                        'data-pjax' => '0'
+                    ]
+                ) . '</li>';
+            }
+            $output .= '</ul>';
+
+            return $output;
         }
-        return rtrim($output, ', ');
+
+        return null;
     }
 }

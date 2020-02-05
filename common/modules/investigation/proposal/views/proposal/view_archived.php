@@ -51,13 +51,33 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                 ],
                                 [
                                     'attribute' => 'sourceId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $source = $model->getSourceAsString();
                                         if($source)
-                                            return Html::a($source, ['source/manage/view', 'id' => $model->sourceId]);
+                                            return Html::a($source,
+                                            ['source/manage/view', 'id' => $model->sourceId],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
                                         else
                                             return null;
+                                    }
+                                ],
+                                [
+                                    'label' => 'دسترسی به مرحله بعد',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['archived-certificate', 'id' => $model->id],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
                                     }
                                 ],
                                 'createdAt:date',
@@ -129,19 +149,6 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
-                                    }
-                                ],
-                                [
-                                    'label' => 'دسترسی به مرحله بعد',
-                                    'format' => 'html',
-                                    'value' => function ($model) {
-                                        return Html::a(
-                                            'شناسنامه',
-                                            ['archived-certificate', 'id' => $model->id],
-                                            [
-                                                'data-pjax' => '0',
-                                                'style' => 'margin:5px'
-                                            ]);
                                     }
                                 ]
                             ]
