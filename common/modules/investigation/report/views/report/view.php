@@ -263,13 +263,33 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                 ],
                                 [
                                     'attribute' => 'proposalId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $proposal = $model->getProposalAsString();
                                         if($proposal)
-                                            return Html::a($proposal, ['proposal/manage/view', 'id' => $model->proposalId]);
+                                            return Html::a($proposal,
+                                            ['proposal/manage/view', 'id' => $model->proposalId],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
                                         else
                                             return null;
+                                    }
+                                ],
+                                [
+                                    'label' => 'دسترسی به مرحله بعد',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['certificate', 'id' => $model->id],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
                                     }
                                 ],
                                 'createdAt:date',
@@ -311,12 +331,12 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     }
                                 ],
                                 [
-                                    'attribute' => 'references',
-                                    'format' => 'raw',
+                                    'attribute' => 'partners',
                                     'value' => function ($model) {
-                                        return $model->getClickableReferencesAsString();
+                                        return $model->getPartnerFullNamesAsString();
                                     }
-                                ]
+                                ],
+                                'deliverToManagerDate:date',
                             ]
                         ]) ?>
                     </div>
@@ -324,13 +344,6 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                         <?= DetailView::widget([
                             'model' => $model,
                             'attributes' => [
-                                [
-                                    'attribute' => 'partners',
-                                    'value' => function ($model) {
-                                        return $model->getPartnerFullNamesAsString();
-                                    }
-                                ],
-                                'deliverToManagerDate:date',
                                 'sessionDate:dateTime',
                                 'updatedAt:date',
                                 [
@@ -365,23 +378,17 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     }
                                 ],
                                 [
-                                    'label' => 'گزارش های پدر',
+                                    'label' => 'دسترسی به گزارشهای پدر',
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         return $model->getFormattedThingLinks();
                                     }
                                 ],
                                 [
-                                    'label' => 'دسترسی به مرحله بعد',
-                                    'format' => 'html',
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
                                     'value' => function ($model) {
-                                        return Html::a(
-                                            'شناسنامه',
-                                            ['certificate', 'id' => $model->id],
-                                            [
-                                                'data-pjax' => '0',
-                                                'style' => 'margin:5px'
-                                            ]);
+                                        return $model->getClickableReferencesAsString();
                                     }
                                 ]
                             ]

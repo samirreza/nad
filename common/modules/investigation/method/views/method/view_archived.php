@@ -53,37 +53,63 @@ use nad\common\modules\investigation\method\models\Method;
                                 ],
                                 [
                                     'attribute' => 'proposalId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $proposal = $model->getProposalAsString();
                                         if($proposal)
-                                            return Html::a($proposal, ['proposal/manage/view', 'id' => $model->getEfectiveProposalId()]);
+                                            return Html::a($proposal,
+                                            ['proposal/manage/view', 'id' => $model->getEfectiveProposalId()],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
                                         else
                                             return null;
                                     }
                                 ],
                                 [
                                     'attribute' => 'reportId',
-                                    'format' => 'html',
+                                    'format' => 'raw',
                                     'value' => function($model){
                                         $report = $model->getReportAsString();
                                         if($report)
-                                            return Html::a($report, ['report/manage/view', 'id' => $model->reportId]);
+                                            return Html::a($report,
+                                            ['report/manage/view', 'id' => $model->reportId],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                            ]
+                                        );
                                         else
                                             return null;
                                     }
                                 ],
-                                'createdAt:date',
                                 [
-                                    'label' => 'مدارک',
+                                    'label' => 'دسترسی به مرحله بعد',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        if (!$model->getFile('file')) {
+                                        return Html::a(
+                                            'شناسنامه',
+                                            ['archived-certificate', 'id' => $model->id],
+                                            [
+                                                'target' => '_blank',
+                                                'data-pjax' => '0',
+                                                'style' => 'margin:5px'
+                                            ]);
+                                    }
+                                ],
+                                'createdAt:date',
+                                [
+                                    'label' => 'فایل روش',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->hasFile('methodDoc')) {
                                             return;
                                         }
                                         return Html::a(
                                             'دانلود مدارک',
-                                            $model->getFile('file')->getUrl(),
+                                            $model->getFile('methodDoc')->getUrl(),
                                             [
                                                 'data-pjax' => '0'
                                             ]
@@ -91,16 +117,24 @@ use nad\common\modules\investigation\method\models\Method;
                                     }
                                 ],
                                 [
-                                    'attribute' => 'partners',
-                                    'value' => function ($model) {
-                                        return $model->getPartnerFullNamesAsString();
-                                    }
+                                    'attribute' => 'categoryId',
+                                    'format' => 'raw',
+                                    'value' => $model->category->htmlCodedTitle
                                 ],
                                 [
-                                    'attribute' => 'references',
+                                    'label' => 'مدارک',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        return $model->getClickableReferencesAsString();
+                                        if (!$model->getFile('doc')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود مدارک',
+                                            $model->getFile('doc')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
                                     }
                                 ]
                             ]
@@ -148,19 +182,6 @@ use nad\common\modules\investigation\method\models\Method;
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
-                                    }
-                                ],
-                                [
-                                    'label' => 'دسترسی به مرحله بعد',
-                                    'format' => 'html',
-                                    'value' => function ($model) {
-                                        return Html::a(
-                                            'شناسنامه',
-                                            ['archived-certificate', 'id' => $model->id],
-                                            [
-                                                'data-pjax' => '0',
-                                                'style' => 'margin:5px'
-                                            ]);
                                     }
                                 ]
                             ]
