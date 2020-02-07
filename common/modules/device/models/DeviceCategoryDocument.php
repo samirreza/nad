@@ -55,7 +55,7 @@ class DeviceCategoryDocument extends \yii\db\ActiveRecord implements Codable
             [['format', 'categoryId'], 'integer'],
             [['code', 'title'], 'trim'],
             [['code', 'title'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 1, 'min' => 1],
+            ['code', 'string', 'max' => 3, 'min' => 1],
             [['code', 'title'], FarsiCharactersValidator::className()],
             [
                 'code',

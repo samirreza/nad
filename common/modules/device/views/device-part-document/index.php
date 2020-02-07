@@ -47,7 +47,7 @@ $module = $this->context->module;
     ]) ?>
         <?php Pjax::begin([
             'id' => 'document-gridviewpjax',
-            'enablePushState' => false,
+            'enablePushState' => true,
         ]); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
