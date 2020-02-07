@@ -19,12 +19,6 @@ use core\widgets\editor\Editor;
                         'data-sliding-form-wrapper-id' => 'comment-sliding-form-wrapper',
                     ]
                 ]) ?>
-                    <?= $form->field($comment, 'content')
-                        ->widget(
-                            Editor::class,
-                            ['preset' => 'simple']
-                        )
-                    ?>
                     <?= Html::submitButton(
                         '<i class="fa fa-save"></i> ذخیره',
                         [
@@ -40,6 +34,12 @@ use core\widgets\editor\Editor;
                             'type' => 'warning',
                             'icon' => 'undo'
                         ])
+                    ?>
+                    <?= $form->field($comment, 'content')
+                        ->widget(
+                            Editor::class,
+                            ['preset' => 'simple']
+                        )
                     ?>
                 <?php ActiveForm::end() ?>
             <?php Panel::end() ?>

@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'لیست موضوع';
+$this->title = 'لیست موضوع های فعال';
 $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',

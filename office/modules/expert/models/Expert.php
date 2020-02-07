@@ -46,7 +46,7 @@ class Expert extends ActiveRecord
     public function rules()
     {
         return [
-            ['departmentId', 'required']
+            [['departmentId', 'personnelId'], 'required']
         ];
     }
 
@@ -57,7 +57,8 @@ class Expert extends ActiveRecord
             'userId' => 'کاربر',
             'departmentId' => 'دپارتمان',
             'createdAt' => 'تاریخ درج',
-            'updatedAt' => 'آخرین بروزرسانی'
+            'updatedAt' => 'آخرین بروزرسانی',
+            'personnelId' => 'شماره پرسنلی'
         ];
     }
 

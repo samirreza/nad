@@ -35,8 +35,6 @@ class ManageController extends SubjectController
                                 'view',
                                 'create',
                                 'certificate',
-                                'view-history',
-                                'index-history'
                             ],
                             'roles' => ['stage.investigationImprovement']
                         ]

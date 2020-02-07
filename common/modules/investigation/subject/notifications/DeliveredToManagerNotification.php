@@ -8,7 +8,7 @@ class DeliveredToManagerNotification extends Notification
 {
     public $subject;
     public $moduleId = 'subject';
-    public $category = 'موضوع';
+    public $category = 'موضوع/گزارش';
     public $baseViewRoute;
 
     public function getChannels()

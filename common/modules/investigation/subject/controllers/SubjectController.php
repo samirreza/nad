@@ -55,8 +55,7 @@ class SubjectController extends BaseInvestigationController
                                 'archived-view',
                                 'archived-index',
                                 'change-archive',
-                                'deliver-to-expert',
-                                'change-status'
+                                'deliver-to-expert'
                             ],
                             'roles' => ['superuser']
                         ]
@@ -89,17 +88,11 @@ class SubjectController extends BaseInvestigationController
         return $this->render('certificate', ['subject' => $subject]);
     }
 
-    public function actionViewHistory($id)
+    public function actionView($id)
     {
         $subject = $this->findModel($id);
         $logs = $subject->getLogsGroupedByUpdateTime(
-            $includeFields = [
-                'text',
-                // 'proceedings',
-                'sessionDate'
-                // 'title',
-                // 'englishTitle',
-            ],
+            $includeFields = [],
             $excludeFields = [],
             $onlyChangedFields = false,
             $sortType = 'DESC'
@@ -108,23 +101,12 @@ class SubjectController extends BaseInvestigationController
         $logCounter = count($logs);
         $allComments = $subject->comments;
 
-        return $this->render('view_history', [
+        return $this->render('view', [
             'model' => $subject,
             'logs' => $logs,
             'logCounter' => $logCounter,
             'allComments' =>$allComments
             ]);
-    }
-
-    public function actionIndexHistory()
-    {
-        $searchModel = new $this->searchClass;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index_history', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
     }
 
     public function actionArchivedCertificate($id)
