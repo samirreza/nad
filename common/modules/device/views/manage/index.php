@@ -141,6 +141,23 @@ $module = $this->context->module;
                         }
                     ],
                     [
+                        'label' => 'بسته مدارک',
+                        'format' => 'html',
+                        'value' => function ($model) {
+                            return Html::a(
+                                    '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
+                                    [
+                                        'document-group/index',
+                                    'DocumentGroupSearch[deviceId]' => $model->id
+                                    ],
+                                    [
+                                        'title' => 'بسته مدارک',
+                                        'data-pjax' => 0
+                                    ]
+                                );
+                        }
+                    ],
+                    [
                         'header' => 'دسترسی',
                         'class' => 'core\grid\AjaxActionColumn',
                         'template' => '{view} {update} {delete}',
