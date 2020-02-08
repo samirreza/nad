@@ -24,26 +24,26 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => Url::to(['/engineering/construction/device/manage/investigation-improvement'])
         ]) ?>
     </div>
-    <div class="col-md-5" style="text-align: center">
+    <!-- <div class="col-md-5" style="text-align: center">
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی روشهای پایش',
             'titleUrl' => Url::to(['/engineering/construction/device/manage/investigation-monitor-methods'])
         ]) ?>
-    </div>
+    </div> -->
 </div>
 <br><br>
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-5" style="text-align: center">
+    <!-- <div class="col-md-5" style="text-align: center">
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی طراحی',
             'titleUrl' => Url::to(['/engineering/construction/device/manage/investigation-design'])
         ]) ?>
-    </div>
+    </div> -->
 </div>
 <br><br>
 

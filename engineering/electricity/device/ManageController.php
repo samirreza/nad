@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-improvement'
                             ],
-                            'roles' => ['device.investigationImprovement']
+                            // 'roles' => ['device.investigationImprovement']
+                            'roles' => ['@']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor-methods'
                             ],
-                            'roles' => ['device.investigationMonitorMethods']
+                            // 'roles' => ['device.investigationMonitorMethods']
+                            'roles' => ['@']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['device.investigationDesign']
+                            // 'roles' => ['device.investigationDesign']
+                            'roles' => ['@']
                         ]
                     ]
                 ]
