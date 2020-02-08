@@ -39,7 +39,7 @@ class ManageController extends ParentController
                             'actions' => [
                                 'investigation-improvement',
                             ],
-                            'roles' => ['stage.investigationImprovement']
+                            'roles' => ['@']
                         ],
                         [
                             'allow' => true,

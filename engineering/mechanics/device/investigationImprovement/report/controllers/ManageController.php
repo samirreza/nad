@@ -38,7 +38,7 @@ class ManageController extends ReportController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['device.investigationImprovement']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

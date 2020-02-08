@@ -36,7 +36,7 @@ class ManageController extends SubjectController
                                 'create',
                                 'certificate',
                             ],
-                            'roles' => ['stage.investigationImprovement']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

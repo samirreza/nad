@@ -38,7 +38,7 @@ class ManageController extends SourceController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['device.investigationImprovement']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

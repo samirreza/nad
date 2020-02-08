@@ -21,7 +21,7 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-improvement'
                             ],
-                            // 'roles' => ['device.investigationImprovement']
+                            // 'roles' => ['@']
                             'roles' => ['@']
                         ],
                         [

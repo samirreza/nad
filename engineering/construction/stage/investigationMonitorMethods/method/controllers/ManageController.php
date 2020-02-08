@@ -38,7 +38,7 @@ class ManageController extends MethodController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['stage.investigationMonitorMethods']
+                            'roles' => ['@']
                         ]
                     ]
                 ]
