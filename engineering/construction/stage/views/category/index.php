@@ -1,12 +1,12 @@
 <?php
 
-$this->title = 'لیست مکانها';
+$this->title = 'مراحل';
 $this->params['breadcrumbs'] = [
-    'فنی',    
-    ['label' => 'لیست مراحل', 'url' => ['/engineering/construction/stage/category/index']],    
+    'فنی',
+    'ساختمان',
+    ['label' => 'مراحل', 'url' => ['/engineering/construction/stage/manage/start']],
     $this->title
 ];
-
 ?>
 
 <?= $this->render('@nad/common/modules/engineering/stage/views/category/index', [

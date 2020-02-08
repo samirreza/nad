@@ -34,6 +34,7 @@ class NotificationBehavior extends \yii\base\Behavior
         $users[] = new User(['id' => $this->owner->createdBy]);
         SubjectDeliverdToExpertNotification::create([
             'subject' => $this->owner,
+            'category' => ($this->owner->isReport() ? 'گزارش' : 'موضوع'),
             'recipients' => $users,
             'baseViewRoute' => $this->owner->getBaseViewRoute()
         ])->send();
@@ -49,6 +50,7 @@ class NotificationBehavior extends \yii\base\Behavior
 
         DeliveredToManagerNotification::create([
             'subject' => $this->owner,
+            'category' => ($this->owner->isReport() ? 'گزارش' : 'موضوع'),
             'recipients' => $users,
             'baseViewRoute' => $this->owner->getBaseViewRoute()
         ])->send();

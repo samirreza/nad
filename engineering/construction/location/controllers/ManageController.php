@@ -1,11 +1,11 @@
 <?php
 
-namespace nad\engineering\piping\location\controllers;
+namespace nad\engineering\construction\location\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use nad\engineering\piping\location\models\Location;
-use nad\engineering\piping\location\models\LocationSearch;
+use nad\engineering\construction\location\models\Location;
+use nad\engineering\construction\location\models\LocationSearch;
 use nad\common\modules\engineering\location\controllers\ManageController as ParentController;
 
 class ManageController extends ParentController
@@ -30,9 +30,10 @@ class ManageController extends ParentController
                                 'index',
                                 'view',
                                 'create',
-                                'update'                                
+                                'update'
                             ],
-                            'roles' => ['engineering.piping']
+                            // 'roles' => ['nad.engineering.construction.location']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

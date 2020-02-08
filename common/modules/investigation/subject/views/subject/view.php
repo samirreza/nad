@@ -5,6 +5,7 @@ use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use yii\widgets\DetailView;
 use nad\common\helpers\Lookup;
+use nad\common\helpers\Utility;
 use theme\widgets\ActionButtons;
 use nad\office\modules\expert\models\Expert;
 use nad\common\modules\investigation\subject\models\Subject;
@@ -392,3 +393,203 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
         </div>
     <?php Pjax::end() ?>
 </div>
+
+<?php if($model->status != Subject::STATUS_REPORT_ACCEPTED): ?>
+    <?php Panel::begin([
+        'title' => 'سوابق گزارش',
+        'showCollapseButton' => true,
+        'collapsed' => true
+    ]) ?>
+    <div class="subject-history-view">
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                foreach ($logs as $logUpdatedAt => $log) :
+                    $counterTitle = ' ' . 'نسخه ' . Utility::convertNumberToPersianWords($logCounter);
+                ?>
+                    <?php
+                    // inject comments into history
+                    $filteredComments = array_filter($allComments, function($comment) use ($logUpdatedAt){
+                        return $comment->insertedAt >= $logUpdatedAt;
+                    });
+                    if(!Utility::IsNullOrEmpty($filteredComments)):
+                    ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <hr>
+                                <?= CommentList::widget([
+                                    'model' => $model,
+                                    'moduleId' => $moduleId,
+                                    'comments' => $filteredComments,
+                                    'showCreateButton' => false,
+                                    'showEditDeleteButton' => false
+                                ]) ?>
+                            </div>
+                        </div>
+                    <?php
+                    endif;
+                    // removes already displayed comments to avoid duplication
+                    foreach ($filteredComments as $key => $value) {
+                        unset($allComments[$key]);
+                    }
+                    ?>
+
+                    <hr>
+                    <span class="label label-primary">
+                        <?= 'تاریخ ویرایش: ' . Yii::$app->formatter->asDateTime($logUpdatedAt) ?>
+                    </span>
+
+                    <div class="col-md-12">
+                    <?php Panel::begin([
+                        'title' => 'مشخصات ' . ($log['expertId'] != null ? 'گزارش' : 'موضوع') . $counterTitle,
+                        'showCollapseButton' => true
+                        ]) ?>
+                        <div class="col-md-6">
+                            <?= DetailView::widget([
+                                'model' => $log,
+                                'attributes' => [
+                                    'title:text:' . $model->getAttributeLabel('title'),
+                                    'englishTitle:text:' . $model->getAttributeLabel('englishTitle'),
+                                    [
+                                        'label' => $model->getAttributeLabel('uniqueCode'),
+                                        'attribute' => 'uniqueCode',
+                                        'contentOptions' => [
+                                            'style' => 'direction: ltr; text-align: right'
+                                        ]
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('createdBy'),
+                                        'attribute' => 'createdBy',
+                                        'value' => function ($model) {
+                                            return isset($model['researcherTitle']) ? $model['researcherTitle'] : null;
+                                        },
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('expertId'),
+                                        'attribute' => 'expertId',
+                                        'value' => function ($model) {
+                                            if ($model['expertId']) {
+                                                return Expert::findOne($model['expertId'])
+                                                    ->user
+                                                    ->fullName;
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('missionObjective'),
+                                        'attribute' => 'missionObjective',
+                                        'visible' => $log['expertId'] != null
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('missionPlace'),
+                                        'attribute' => 'missionPlace',
+                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('missionDate'),
+                                        'attribute' => 'missionDate',
+                                        'format' => 'date',
+                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('reportDeadlineDate'),
+                                        'attribute' => 'reportDeadlineDate',
+                                        'format' => 'date',
+                                        'visible' => $log['expertId'] != null
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('missionType'),
+                                        'attribute' => 'missionType',
+                                        'value' => function($model){
+                                            return Lookup::item(SubjectCommon::LOOKUP_MISSION_TYPE, $model['missionType']);
+                                        },
+                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                    ],
+                                ]
+                            ]) ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= DetailView::widget([
+                                'model' => $log,
+                                'attributes' => [
+                                    'deliverToManagerDate:date:' . $model->getAttributeLabel('deliverToManagerDate'),
+                                    'sessionDate:dateTime:' . $model->getAttributeLabel('sessionDate'),
+                                    'createdAt:date:' . $model->getAttributeLabel('createdAt'),
+                                    'updatedAt:date:' . $model->getAttributeLabel('updatedAt'),
+                                    [
+                                        'label' => $model->getAttributeLabel('userHolder'),
+                                        'attribute' => 'userHolder',
+                                        'value' => function ($model) {
+                                            return Subject::getUserHolderLables()[$model['userHolder']];
+                                        },
+                                        'visible' => function ($model){
+                                            return !($model['userHolder'] == Subject::USER_HOLDER_MANAGER && $model['status'] == Subject::STATUS_IN_MANAGER_HAND);
+                                        }
+                                    ]
+                                ]
+                            ]) ?>
+                        </div>
+                    <?php Panel::end() ?>
+                </div>
+                    <?php if(isset($log['text'])): ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php Panel::begin([
+                                    'title' => $model->getAttributeLabel('text') . $counterTitle,
+                                    'showCollapseButton' => true
+                                    ]) ?>
+                                        <?= $log['text'] ?>
+                                <?php Panel::end() ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(isset($log['text2']) && $log['text2'] != '-' && $log['text2'] != '<p>-</p>'): ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php Panel::begin([
+                                    'title' => $model->getAttributeLabel('text2') . $counterTitle,
+                                    'showCollapseButton' => true
+                                    ]) ?>
+                                        <?= $log['text2'] ?>
+                                <?php Panel::end() ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(isset($log['description'])): ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php Panel::begin([
+                                    'title' => $model->getAttributeLabel('description') . $counterTitle,
+                                    'showCollapseButton' => true
+                                    ]) ?>
+                                        <?= $log['description'] ?>
+                                <?php Panel::end() ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php
+                    $logCounter -= 1;
+                endforeach;
+                ?>
+            </div>
+        </div>
+        <!-- remaining comments -->
+        <?php if(!empty($allComments)): ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?= CommentList::widget([
+                        'model' => $model,
+                        'moduleId' => $moduleId,
+                        'comments' =>  $allComments,
+                        'showCreateButton' => false,
+                        'showEditDeleteButton' => false
+                    ]) ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+<?php Panel::end() ?>
+<br>
+<br>
+<br>

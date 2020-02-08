@@ -35,7 +35,7 @@ $category = Category::findOne(['id' => $model->categoryId]);
                         'class' => 'form-control input-large']) ?>
                 </div>
                 <div class="col-md-3">
-                <?= $form->field($model, 'code')->textInput(['maxlength' => 1,
+                <?= $form->field($model, 'code')->textInput(['maxlength' => 3,
                         'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
                 </div>
             </div>

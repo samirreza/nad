@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\engineering\piping\location\controllers;
+namespace nad\engineering\control\location\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
@@ -34,7 +34,8 @@ class CategoryController extends ParentController
                                 'get-json-tree',
                                 'update'
                             ],
-                            'roles' => ['engineering.piping']
+                            // 'roles' => ['nad.engineering.control.location']
+                            'roles' => ['@']
                         ]
                     ]
                 ]

@@ -101,9 +101,6 @@ $this->registerJs(
                         <div class="row">
                             <?= $form->field($model, 'missionObjective')->textArea()?>
                         </div>
-                        <div class="row">
-                            <?= $form->field($model, 'reportExpertCode')->textInput()?>
-                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row" id="missionDetailsContainer">

@@ -30,13 +30,54 @@ class ManageController extends ParentController
                                 'index',
                                 'view',
                                 'create',
-                                'update'
+                                'update',
                             ],
-                            'roles' => ['engineering.control']
+                            'roles' => ['@']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-improvement',
+                            ],
+                            'roles' => ['@']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-monitor-methods'
+                            ],
+                            'roles' => ['stage.investigationMonitorMethods']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-design'
+                            ],
+                            'roles' => ['stage.investigationDesign']
                         ]
                     ]
                 ]
             ]
         );
+    }
+
+    public function actionIndex()
+    {
+        return $this->render('@nad/engineering/control/stage/index');
+    }
+
+    public function actionInvestigationImprovement()
+    {
+        return $this->render('@nad/engineering/control/stage/investigationImprovement');
+    }
+
+    public function actionInvestigationMonitorMethods()
+    {
+        return $this->render('@nad/engineering/control/stage/investigationMonitorMethods');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/engineering/control/stage/investigationDesign');
     }
 }

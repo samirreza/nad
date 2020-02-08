@@ -15,9 +15,7 @@ class Subject extends SubjectCommon
                 [
                     'class' => AuditTrailBehavior::class,
                     'relations' => [
-                        'referencesAsString',
                         'expertFullNamesAsString',
-                        'tagsAsString', // TODO has bugs, fix it!
                         'researcherTitle'
                     ]
                 ],

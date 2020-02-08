@@ -2,9 +2,10 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'فنی', 
-    'لوله کشی',
-    ['label' => 'لیست مکانها', 'url' => ['/piping/location/manage/index']],        
+    'فنی',
+    'ساختمان',
+    ['label' => 'مراحل', 'url' => ['/engineering/construction/stage/manage/index']],
+    ['label' => 'لیست گروه های مدارک', 'url' => ['/engineering/construction/location/manage/index']],
     $this->title
 ];
 
@@ -13,6 +14,6 @@ $this->params['breadcrumbs'] = [
 <div class="location-view">
     <?= $this->render('@nad/common/modules/engineering/location/views/manage/view', [
         'model' => $model,
-        'moduleId' => 'piping'        
+        'moduleId' => 'construction'
     ]) ?>
 </div>

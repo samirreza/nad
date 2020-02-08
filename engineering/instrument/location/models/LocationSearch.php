@@ -1,6 +1,6 @@
 <?php
 
-namespace nad\engineering\piping\location\models;
+namespace nad\engineering\instrument\location\models;
 
 use nad\common\modules\engineering\location\models\LocationSearchTrait;
 

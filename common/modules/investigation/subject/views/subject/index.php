@@ -13,7 +13,7 @@ use nad\common\modules\investigation\subject\models\SubjectReason;
 
 ?>
 
-<h2 class="nad-page-title">موضوعهای برنامه</h2>
+<h2 class="nad-page-title">لیست موضوع های فعال</h2>
 <div class="sliding-form-wrapper"></div>
 
 <!-- <?= $this->render('@nad/common/modules/investigation/common/views/_search',

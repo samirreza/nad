@@ -60,7 +60,7 @@ $module = $this->context->module;
     ]) ?>
         <?php Pjax::begin([
             'id' => 'part-gridviewpjax',
-            'enablePushState' => false,
+            'enablePushState' => true,
         ]); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -135,6 +135,23 @@ $module = $this->context->module;
                                     ],
                                     [
                                         'title' => 'لیست مدارک',
+                                        'data-pjax' => 0
+                                    ]
+                                );
+                        }
+                    ],
+                    [
+                        'label' => 'بسته مدارک',
+                        'format' => 'html',
+                        'value' => function ($model) {
+                            return Html::a(
+                                    '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
+                                    [
+                                        'document-group/index',
+                                    'DocumentGroupSearch[deviceId]' => $model->id
+                                    ],
+                                    [
+                                        'title' => 'بسته مدارک',
                                         'data-pjax' => 0
                                     ]
                                 );

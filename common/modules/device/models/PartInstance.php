@@ -36,7 +36,7 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
             [['partId', 'deviceInstanceId', 'code'], 'required'],
             [['code'], 'trim'],
             [['code'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 1, 'min' => 1],
+            ['code', 'string', 'max' => 3, 'min' => 1],
             [['partId', 'deviceInstanceId'], 'integer'],
             [['code'], FarsiCharactersValidator::className()],
             [

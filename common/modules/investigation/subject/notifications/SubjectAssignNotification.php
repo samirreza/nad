@@ -8,7 +8,7 @@ class SubjectAssignNotification extends Notification
 {
     public $subject;
     public $moduleId = 'subject';
-    public $category = 'موضوع';
+    public $category = 'گزارش';
     public $baseViewRoute;
 
     public function getChannels()

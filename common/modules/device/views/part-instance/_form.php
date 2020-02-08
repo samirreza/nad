@@ -29,7 +29,7 @@ Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = false;
             <?= $form->field($model, 'partId')->hiddenInput()->label(false); ?>
             <div class="row">
                 <div class="col-md-3">
-                <?= $form->field($model, 'code')->textInput(['maxlength' => 1,
+                <?= $form->field($model, 'code')->textInput(['maxlength' => 3,
                         'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
                 </div>
                 <div class="col-md-6">

@@ -314,6 +314,20 @@ class SubjectCommon extends BaseInvestigationModel
         ];
     }
 
+    public function beforeValidate()
+    {
+        if (parent::beforeValidate()) {
+            if($this->isNewRecord)
+                $this->creatorExpertCode = Yii::$app->user->identity->expert->personnelId;
+            elseif($this->scenario == self::SCENARIO_SET_EXPERT){
+                $myExpert = Expert::findOne($this->expertId);
+                $this->reportExpertCode = $myExpert->personnelId;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public function beforeSave($insert)
     {
         if ($insert) {
@@ -326,11 +340,25 @@ class SubjectCommon extends BaseInvestigationModel
             }
         }
 
+        if($this->getOldAttribute('status') != $this->status && $this->status == self::STATUS_ACCEPTED){
+            $this->deleteComments();
+        }
+
         if($this->isMissionNeeded == self::IS_MISSION_NEEDED_NO){
             $this->missionPlace = null;
             $this->missionDate = null;
-            $this->reportDeadlineDate = null;
             $this->missionType = null;
+        }
+
+        if($this->getOldAttribute('expertId') != $this->expertId && $this->status == self::STATUS_ACCEPTED){
+            $this->deleteComments();
+        }
+
+        if($this->getOldAttribute('expertId') != $this->expertId && $this->getOldAttribute('expertId') != null){
+            $this->text2 = '-'; // dash is for passing dummy validation LOL
+            $this->status = self::STATUS_ACCEPTED;
+            $this->deliverToManagerDate = null;
+            $this->sessionDate = null;
         }
 
         if (!parent::beforeSave($insert)) {
@@ -359,8 +387,8 @@ class SubjectCommon extends BaseInvestigationModel
     {
         if (
             isset($changedAttributes['status']) &&
-            $changedAttributes['status'] == self::STATUS_ACCEPTED &&
-            $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT
+            ($changedAttributes['status'] == self::STATUS_ACCEPTED &&
+            $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT)
         ) {
             $this->trigger(self::EVENT_SET_EXPERT);
         }elseif(
@@ -482,7 +510,13 @@ class SubjectCommon extends BaseInvestigationModel
 
     public function canUserUpdateOrDelete()
     {
-        if ($this->status != self::STATUS_LOCKED && Yii::$app->user->can('superuser')) {
+        if ($this->userHolder == self::USER_HOLDER_MANAGER && $this->status != self::STATUS_LOCKED && Yii::$app->user->can('superuser') &&
+        (
+            ($this->isReport() && $this->text2 != '-' && $this->text2 != null)
+            ||
+            (!$this->isReport())
+        )
+        ) {
             return true;
         }
         if ($this->userHolder == self::USER_HOLDER_EXPERT &&
@@ -492,7 +526,7 @@ class SubjectCommon extends BaseInvestigationModel
                 )
                 ||
                 (
-                    !$this->isReport()
+                    !$this->isReport() && $this->createdBy == Yii::$app->user->id
                 )
             )
             &&
@@ -516,25 +550,30 @@ class SubjectCommon extends BaseInvestigationModel
     public function canUserDeliverToManager()
     {
         if (
+            (
+                ($this->isReport() && $this->text2 != '<p>-</p>' && $this->text2 != '-' && $this->text2 != null)
+                ||
+                !$this->isReport()
+            )
+            &&
             $this->status != self::STATUS_REPORT_ACCEPTED &&
             $this->status != self::STATUS_REPORT_REJECTED &&
             $this->status != self::STATUS_REJECTED &&
             $this->status != self::STATUS_LOCKED &&
             $this->status != self::STATUS_WAITING_FOR_EXPERT_ACCEPT &&
             !($this->expertId != null && $this->status == self::STATUS_WAIT_FOR_CONVERSATION) &&
-            $this->userHolder != self::USER_HOLDER_MANAGER &&
+            $this->userHolder == self::USER_HOLDER_EXPERT &&
             (
-                ($this->userHolder == self::USER_HOLDER_EXPERT && !$this->isReport()) ||
-                ($this->userHolder == self::USER_HOLDER_EXPERT && $this->isReport() && $this->expertId == Yii::$app->user->identity->expert->id)
+                (
+                    !$this->isReport()
+                    &&
+                    $this->createdBy == Yii::$app->user->id
+                )
                 ||
                 (
-                    Yii::$app->user->can('superuser')
+                    $this->isReport()
                     &&
-                    (
-                        $this->status == self::STATUS_INPROGRESS ||
-                        $this->status == self::STATUS_ACCEPTED_BY_EXPERT ||
-                        $this->status == self::STATUS_WAITING_FOR_CORRECTION_BY_EXPERT
-                    )
+                    $this->expertId == Yii::$app->user->identity->expert->id
                 )
             )
         ) {
@@ -594,14 +633,22 @@ class SubjectCommon extends BaseInvestigationModel
         (
             $this->status != self::STATUS_REPORT_ACCEPTED &&
             $this->status != self::STATUS_REPORT_REJECTED
-        ) && $this->status != self::STATUS_LOCKED && ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE)) {
-            return Yii::$app->user->can(
-                'investigation.manageOwnInvestigation',
-                [
-                    'investigation' => $this,
-                    'allowSecondExpert' => true
-                ]
-            );
+        ) && $this->status != self::STATUS_LOCKED && ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE)
+        &&
+        (
+            ($this->isReport() && ($this->expertId == Yii::$app->user->identity->expert->id || Yii::$app->user->can('superuser')))
+            ||
+            (!$this->isReport() && (($this->createdBy == Yii::$app->user->id) || Yii::$app->user->can('superuser')))
+        )
+        ) {
+                return true;
+            // return Yii::$app->user->can(
+            //     'investigation.manageOwnInvestigation',
+            //     [
+            //         'investigation' => $this,
+            //         'allowSecondExpert' => true
+            //     ]
+            // );
         }
         return false;
     }
@@ -617,7 +664,14 @@ class SubjectCommon extends BaseInvestigationModel
                 $this->status != self::STATUS_REPORT_REJECTED
             )
             && $this->status != self::STATUS_LOCKED
-            && !($this->status == self::STATUS_WAITING_FOR_SESSION)) {
+            && !($this->status == self::STATUS_WAITING_FOR_SESSION)
+            &&
+            (
+                ($this->isReport() && ($this->expertId == Yii::$app->user->identity->expert->id || Yii::$app->user->can('superuser')))
+                ||
+                (!$this->isReport())
+            )
+            ) {
             return Yii::$app->user->can(
                 'investigation.manageOwnInvestigation',
                 [

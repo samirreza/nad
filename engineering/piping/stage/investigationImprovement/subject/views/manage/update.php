@@ -11,7 +11,7 @@ $this->params['breadcrumbs'] = [
     'لوله کشی',
     ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
     ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
-    ['label' => 'لیست موضوع', 'url' => ['index']],
+    ['label' => 'لیست موضوع های فعال', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];

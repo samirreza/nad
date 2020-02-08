@@ -40,7 +40,7 @@ class Device extends \yii\db\ActiveRecord implements Codable
             [['categoryId', 'code'], 'required'],
             [['title', 'code'], 'trim'],
             [['title', 'code'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 1, 'min' => 1],
+            ['code', 'string', 'max' => 3, 'min' => 1],
             [['categoryId'], 'integer'],
             [['code', 'title'], FarsiCharactersValidator::className()],
             [

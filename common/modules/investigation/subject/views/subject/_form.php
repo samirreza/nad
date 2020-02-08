@@ -28,7 +28,7 @@ $reportFiles2 = $model->getFiles('reportFile2');
 <h2 class="nad-page-title"><?= $this->title ?></h2>
 
 <div class="subject-form">
-    <?php Panel::begin(['title' => 'مشخصات موضوع']) ?>
+    <?php Panel::begin(['title' => ($model->isReport()? 'مشخصات گزارش' : 'مشخصات موضوع')]) ?>
         <?php $form = ActiveForm::begin(
             ['options' => ['enctype' => 'multipart/form-data']]
         ) ?>
@@ -61,13 +61,6 @@ $reportFiles2 = $model->getFiles('reportFile2');
                                     ]
                                 )->label('شناسه موضوع')
                                 ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($model, 'creatorExpertCode')->textInput([
-                                    'maxlength' => 255,
-                                    'class' => 'form-control input-large',
-                                    'dir' => 'ltr'
-                                ])->label('کد کارشناس') ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $form->field($model, 'unitCode')->textInput([

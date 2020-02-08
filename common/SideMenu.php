@@ -74,7 +74,18 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'تکنولوژی های نو',
                                 'icon' => 'angle-right',
                                 'url' => ['/newTechnology']
+                            ],
+                            [
+                                'label' => 'هیدرولیک',
+                                'icon' => 'angle-right',
+                                'url' => ['/hydraulic']
+                            ],
+                            [
+                                'label' => 'انتقال حرارت',
+                                'icon' => 'angle-right',
+                                'url' => ['/heattransfer']
                             ]
+
                         ]
                     ],
                     [
@@ -231,141 +242,98 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'مکانیک',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/mechanics']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/mechanics/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/mechanics/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/mechanics/device']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'برق',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/electricity']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/electricity/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/electricity/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/electricity/device']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'ابزاردقیق',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/instrument']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/instrument/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/instrument/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/instrument/device']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'کنترل',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/control']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/control/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/control/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/control/device']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'ساختمان',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/construction']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/construction/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/construction/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/construction/device']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'ژئوتکنیک',
                         'icon' => 'angle-right',
-                        'url' => ['/engineering/well']
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'items' => [
-                        //             [
-                        //                 'label' => 'تعریف',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => ['/engineering/well/stage/manage/index']
-                        //             ],
-                        //             [
-                        //                 'label' => 'مدارک',
-                        //                 'icon' => 'angle-right',
-                        //                 'url' => '#'
-                        //             ],
-                        //         ]
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'مراحل',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/geotechnics/stage']
+                            ],
+                            [
+                                'label' => 'دستگاه ها',
+                                'icon' => 'angle-right',
+                                'url' => ['/engineering/geotechnics/device']
+                            ]
+                        ]
                     ],
                     // [
                     //     'label' => 'منابع',

@@ -46,7 +46,7 @@ $this->title = 'لیست قطعات';
     ]) ?>
         <?php Pjax::begin([
             'id' => 'part-instance-gridviewpjax',
-            'enablePushState' => false,
+            'enablePushState' => true,
         ]); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,

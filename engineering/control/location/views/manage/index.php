@@ -1,9 +1,12 @@
 <?php
 
-$this->title = 'لیست مکانهای لوله کشی';
+$this->title = 'لیست گروه های مدارک';
+$this->params['stageCategoriesIndex'] = ['/engineering/control/stage/category/index'];
 $this->params['breadcrumbs'] = [
-    'فنی',    
-    // ['label' => 'لیست مکانها', 'url' => ['/piping/location/manage/index']],    
+    'فنی',
+    'کنترل',
+    ['label' => 'مراحل', 'url' => ['/engineering/control/stage/manage/start']],
+    ['label' => 'لیست مراحل', 'url' => ['/engineering/control/stage/category']],
     $this->title
 ];
 
@@ -11,5 +14,6 @@ $this->params['breadcrumbs'] = [
 
 <?= $this->render('@nad/common/modules/engineering/location/views/manage/index', [
     'dataProvider' => $dataProvider,
-    'searchModel' => $searchModel
+    'searchModel' => $searchModel,
+    'categoryModel' => $categoryModel
 ]);
