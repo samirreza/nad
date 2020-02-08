@@ -30,13 +30,54 @@ class ManageController extends ParentController
                                 'index',
                                 'view',
                                 'create',
-                                'update'
+                                'update',
                             ],
-                            'roles' => ['engineering.instrument']
+                            'roles' => ['@']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-improvement',
+                            ],
+                            'roles' => ['stage.investigationImprovement']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-monitor-methods'
+                            ],
+                            'roles' => ['stage.investigationMonitorMethods']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'investigation-design'
+                            ],
+                            'roles' => ['stage.investigationDesign']
                         ]
                     ]
                 ]
             ]
         );
+    }
+
+    public function actionIndex()
+    {
+        return $this->render('@nad/engineering/instrument/stage/index');
+    }
+
+    public function actionInvestigationImprovement()
+    {
+        return $this->render('@nad/engineering/instrument/stage/investigationImprovement');
+    }
+
+    public function actionInvestigationMonitorMethods()
+    {
+        return $this->render('@nad/engineering/instrument/stage/investigationMonitorMethods');
+    }
+
+    public function actionInvestigationDesign()
+    {
+        return $this->render('@nad/engineering/instrument/stage/investigationDesign');
     }
 }

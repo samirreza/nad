@@ -2,9 +2,9 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'فنی', 
-    'ساختمان',  
-    ['label' => 'لیست رده ها', 'url' => ['/engineering/construction/stage/category/index']],        
+    'فنی',
+    'ساختمان',
+    ['label' => 'لیست مراحل', 'url' => ['/engineering/construction/stage/category/index']],
     $this->title
 ];
 
@@ -13,6 +13,6 @@ $this->params['breadcrumbs'] = [
 <div class="category-view">
     <?= $this->render('@nad/common/modules/engineering/stage/views/category/view', [
         'model' => $model,
-        'moduleId' => 'piping'        
+        'moduleId' => 'construction'
     ]) ?>
 </div>

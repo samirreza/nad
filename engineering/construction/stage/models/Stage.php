@@ -11,7 +11,7 @@ class Stage extends ParentStage
     public $moduleId = 'construction';
 
     public static function find()
-    {    	
+    {
         return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
     }
 }

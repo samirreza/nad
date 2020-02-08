@@ -34,7 +34,8 @@ class CategoryController extends ParentController
                                 'get-json-tree',
                                 'update'
                             ],
-                            'roles' => ['engineering.construction']
+                            // 'roles' => ['nad.engineering.construction.stage']
+                            'roles' => ['@']
                         ]
                     ]
                 ]
