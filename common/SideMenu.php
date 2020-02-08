@@ -74,7 +74,18 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'تکنولوژی های نو',
                                 'icon' => 'angle-right',
                                 'url' => ['/newTechnology']
+                            ],
+                            [
+                                'label' => 'هیدرولیک',
+                                'icon' => 'angle-right',
+                                'url' => ['/hydraulic']
+                            ],
+                            [
+                                'label' => 'انتقال حرارت',
+                                'icon' => 'angle-right',
+                                'url' => ['/heattransfer']
                             ]
+
                         ]
                     ],
                     [
