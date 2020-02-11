@@ -31,8 +31,8 @@ use nad\extensions\comment\widgets\commentList\CommentList;
     <?php Pjax::begin(['id' => 'subject-view-detailview-pjax']) ?>
         <div class="row">
             <div class="col-md-12">
-                <?php Panel::begin([
-                    'title' => 'مشخصات موضوع',
+            <?php Panel::begin([
+                    'title' => 'مشخصات ' . ($model->isReport()? 'گزارش' : 'موضوع'),
                     'showCollapseButton' => true
                     ]) ?>
                     <div class="col-md-6">
@@ -41,37 +41,39 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                             'attributes' => [
                                 'title',
                                 'englishTitle',
-                                'uniqueCode',
+                                [
+                                    'attribute' => 'uniqueCode',
+                                    'contentOptions' => [
+                                        'style' => 'direction: ltr; text-align: right'
+                                    ]
+                                ],
                                 [
                                     'attribute' => 'createdBy',
                                     'value' => function ($model) {
                                         return $model->researcherTitle;
                                     }
                                 ],
-                                'createdAt:date',
-                                // TODO remove 'reasons' asap
-                                //'reasons',
                                 [
                                     'attribute' => 'tags',
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
-                                    }
-                                ]
-                            ]
-                        ]) ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?= DetailView::widget([
-                            'model' => $model,
-                            'attributes' => [
-                                'deliverToManagerDate:date',
-                                'sessionDate:dateTime',
-                                'updatedAt:date',
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
                                 [
-                                    'attribute' => 'status',
+                                    'attribute' => 'partners',
                                     'value' => function ($model) {
-                                        return $model->getStatusLabel();
-                                    }
+                                        return $model->getPartnerFullNamesAsString();
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'references',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        return $model->getClickableReferencesAsString();
+                                    },
+                                    'visible' => $model->isReport()
                                 ],
                                 [
                                     'attribute' => 'expertId',
@@ -83,6 +85,61 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                         }
                                     }
                                 ],
+                                [
+                                    'attribute' => 'missionObjective',
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'workshopInfo',
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'missionPlace',
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                                [
+                                    'attribute' => 'missionDate',
+                                    'format' => 'date',
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                                [
+                                    'attribute' => 'reportDeadlineDate',
+                                    'format' => 'date',
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'attribute' => 'missionType',
+                                    'value' => function($model){
+                                        return Lookup::item(SubjectCommon::LOOKUP_MISSION_TYPE, $model->missionType);
+                                    },
+                                    'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
+                                ],
+                            ]
+                        ]) ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= DetailView::widget([
+                            'model' => $model,
+                            'attributes' => [
+                                'deliverToManagerDate:date',
+                                'sessionDate:dateTime',
+                                'createdAt:date',
+                                'updatedAt:date',
+                                [
+                                    'attribute' => 'status',
+                                    'value' => function ($model) {
+                                        return $model->getStatusLabel();
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'userHolder',
+                                    'value' => function ($model) {
+                                        return Subject::getUserHolderLables()[$model->userHolder];
+                                    },
+                                    'visible' => function ($model){
+                                        return !($model->userHolder == Subject::USER_HOLDER_MANAGER && $model->status == Subject::STATUS_IN_MANAGER_HAND);
+                                    }
+                                ]
                             ]
                         ]) ?>
                     </div>
@@ -95,23 +152,31 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                     'title' => 'متن موضوع',
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->text ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
-            <?php if ($model->proceedings) : ?>
-                <div class="col-md-12">
-                    <?php Panel::begin([
-                        'title' => 'نتیجه جلسه',
-                        'showCollapseButton' => true
-                        ]) ?>
-                        <div class="well">
-                            <?= $model->proceedings ?>
-                        </div>
-                    <?php Panel::end() ?>
-                </div>
-            <?php endif; ?>
+            <div class="col-md-12">
+                <?php Panel::begin([
+                    'title' => 'متن گزارش',
+                    'showCollapseButton' => true
+                    ]) ?>
+                    <div>
+                        <?= $model->text2 ?>
+                    </div>
+                <?php Panel::end() ?>
+            </div>
+            <div class="col-md-12">
+                <?php Panel::begin([
+                    'title' => 'توضیحات',
+                    'showCollapseButton' => true
+                    ]) ?>
+                    <div>
+                        <?= $model->description ?>
+                    </div>
+                <?php Panel::end() ?>
+            </div>
             <?php if ($model->status != Subject::STATUS_WAIT_FOR_CONVERSATION && $model->comments) : ?>
                 <div class="col-md-12">
                     <?= CommentList::widget([

@@ -92,8 +92,9 @@ class SubjectController extends BaseInvestigationController
     {
         $subject = $this->findModel($id);
         $logs = $subject->getLogsGroupedByUpdateTime(
-            $includeFields = [],
+            $includeFields = ['expertId'],
             $excludeFields = [],
+            // $excludeFields = ['updatedAt', 'status', 'userHolder', 'deliverToManagerDate', 'unitCode', 'creatorExpertCode', 'reportExpertCode', 'seoCode'],
             $onlyChangedFields = false,
             $sortType = 'DESC'
         );

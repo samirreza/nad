@@ -163,15 +163,23 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                 // ],
                 'set-experts' => [
                     'isDropDown' => true,
-                    'label' => ($model->isReport()?'&nbsp;&nbsp;&nbsp;تصحیح&nbsp;&nbsp;&nbsp;':'&nbsp;&nbsp;&nbsp;انتخاب کارشناس&nbsp;&nbsp;&nbsp;'),
+                    'label' => 'تصمیمات گزارش',
                     'type' => 'info',
                     'icon' => 'pencil',
                     'isActive' => $model->canSetExpert(),
                     'items' => [
                         'set-expert-and-mission-details' => [
-                            'label' => 'تصحیح تصمیمات گزارش',
+                            'label' => 'تعیین',
                             'icon' => 'pencil',
-                            'isActive' => $model->canSetExpert(),
+                            'isActive' => $model->canSetExpert() && !$model->isReport(),
+                            'visible' => true,
+                            'url' => ['set-expert', 'id' => $model->id],
+                            'options' => ['class' => 'ajaxupdate']
+                        ],
+                        'change-expert-and-mission-details' => [
+                            'label' => 'تصحیح',
+                            'icon' => 'pencil',
+                            'isActive' => $model->canSetExpert() && $model->isReport(),
                             'visible' => true,
                             'url' => ['set-expert', 'id' => $model->id],
                             'options' => ['class' => 'ajaxupdate']
@@ -297,6 +305,10 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                     'visible' => $model->isReport()
                                 ],
                                 [
+                                    'attribute' => 'workshopInfo',
+                                    'visible' => $model->isReport()
+                                ],
+                                [
                                     'attribute' => 'missionPlace',
                                     'visible' => $model->isReport() && $model->isMissionNeeded == Subject::IS_MISSION_NEEDED_YES
                                 ],
@@ -342,7 +354,58 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                     'visible' => function ($model){
                                         return !($model->userHolder == Subject::USER_HOLDER_MANAGER && $model->status == Subject::STATUS_IN_MANAGER_HAND);
                                     }
-                                ]
+                                ],
+                                [
+                                    'label' => 'مستندات موضوع',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->getFile('subjectFile')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود مستندات موضوع',
+                                            $model->getFile('subjectFile')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    },
+                                    'visible' => !$model->isReport()
+                                ],
+                                [
+                                    'label' => 'فایل گزارش',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->getFile('reportFile')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود فایل گزارش',
+                                            $model->getFile('reportFile')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
+                                [
+                                    'label' => 'مدارک',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->getFile('reportFile2')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود مدارک',
+                                            $model->getFile('reportFile2')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
                             ]
                         ]) ?>
                     </div>
@@ -394,7 +457,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
     <?php Pjax::end() ?>
 </div>
 
-<?php if($model->status != Subject::STATUS_REPORT_ACCEPTED): ?>
+<?php if($model->status != Subject::STATUS_REPORT_ACCEPTED && !empty($logs)): ?>
     <?php Panel::begin([
         'title' => 'سوابق گزارش',
         'showCollapseButton' => true,
@@ -407,33 +470,6 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                 foreach ($logs as $logUpdatedAt => $log) :
                     $counterTitle = ' ' . 'نسخه ' . Utility::convertNumberToPersianWords($logCounter);
                 ?>
-                    <?php
-                    // inject comments into history
-                    $filteredComments = array_filter($allComments, function($comment) use ($logUpdatedAt){
-                        return $comment->insertedAt >= $logUpdatedAt;
-                    });
-                    if(!Utility::IsNullOrEmpty($filteredComments)):
-                    ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <hr>
-                                <?= CommentList::widget([
-                                    'model' => $model,
-                                    'moduleId' => $moduleId,
-                                    'comments' => $filteredComments,
-                                    'showCreateButton' => false,
-                                    'showEditDeleteButton' => false
-                                ]) ?>
-                            </div>
-                        </div>
-                    <?php
-                    endif;
-                    // removes already displayed comments to avoid duplication
-                    foreach ($filteredComments as $key => $value) {
-                        unset($allComments[$key]);
-                    }
-                    ?>
-
                     <hr>
                     <span class="label label-primary">
                         <?= 'تاریخ ویرایش: ' . Yii::$app->formatter->asDateTime($logUpdatedAt) ?>
@@ -441,7 +477,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
 
                     <div class="col-md-12">
                     <?php Panel::begin([
-                        'title' => 'مشخصات ' . ($log['expertId'] != null ? 'گزارش' : 'موضوع') . $counterTitle,
+                        'title' => 'مشخصات ' . (isset($log['expertId']) ? 'گزارش' : 'موضوع') . $counterTitle,
                         'showCollapseButton' => true
                         ]) ?>
                         <div class="col-md-6">
@@ -458,44 +494,44 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                         ]
                                     ],
                                     [
-                                        'label' => $model->getAttributeLabel('createdBy'),
-                                        'attribute' => 'createdBy',
-                                        'value' => function ($model) {
-                                            return isset($model['researcherTitle']) ? $model['researcherTitle'] : null;
-                                        },
-                                    ],
-                                    [
                                         'label' => $model->getAttributeLabel('expertId'),
                                         'attribute' => 'expertId',
                                         'value' => function ($model) {
-                                            if ($model['expertId']) {
+                                            if (isset($model['expertId'])) {
                                                 return Expert::findOne($model['expertId'])
                                                     ->user
                                                     ->fullName;
                                             }
+
+                                            return null;
                                         }
                                     ],
                                     [
                                         'label' => $model->getAttributeLabel('missionObjective'),
                                         'attribute' => 'missionObjective',
-                                        'visible' => $log['expertId'] != null
+                                        'visible' => isset($log['expertId'])
+                                    ],
+                                    [
+                                        'label' => $model->getAttributeLabel('workshopInfo'),
+                                        'attribute' => 'workshopInfo',
+                                        'visible' => isset($log['expertId'])
                                     ],
                                     [
                                         'label' => $model->getAttributeLabel('missionPlace'),
                                         'attribute' => 'missionPlace',
-                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                        'visible' => isset($log['expertId']) && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
                                     ],
                                     [
                                         'label' => $model->getAttributeLabel('missionDate'),
                                         'attribute' => 'missionDate',
                                         'format' => 'date',
-                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                        'visible' => isset($log['expertId']) && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
                                     ],
                                     [
                                         'label' => $model->getAttributeLabel('reportDeadlineDate'),
                                         'attribute' => 'reportDeadlineDate',
                                         'format' => 'date',
-                                        'visible' => $log['expertId'] != null
+                                        'visible' => isset($log['expertId'])
                                     ],
                                     [
                                         'label' => $model->getAttributeLabel('missionType'),
@@ -503,7 +539,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                         'value' => function($model){
                                             return Lookup::item(SubjectCommon::LOOKUP_MISSION_TYPE, $model['missionType']);
                                         },
-                                        'visible' => $log['expertId'] != null && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
+                                        'visible' => isset($log['expertId']) && $log['isMissionNeeded'] == Subject::IS_MISSION_NEEDED_YES
                                     ],
                                 ]
                             ]) ?>
@@ -515,17 +551,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                     'deliverToManagerDate:date:' . $model->getAttributeLabel('deliverToManagerDate'),
                                     'sessionDate:dateTime:' . $model->getAttributeLabel('sessionDate'),
                                     'createdAt:date:' . $model->getAttributeLabel('createdAt'),
-                                    'updatedAt:date:' . $model->getAttributeLabel('updatedAt'),
-                                    [
-                                        'label' => $model->getAttributeLabel('userHolder'),
-                                        'attribute' => 'userHolder',
-                                        'value' => function ($model) {
-                                            return Subject::getUserHolderLables()[$model['userHolder']];
-                                        },
-                                        'visible' => function ($model){
-                                            return !($model['userHolder'] == Subject::USER_HOLDER_MANAGER && $model['status'] == Subject::STATUS_IN_MANAGER_HAND);
-                                        }
-                                    ]
+                                    'updatedAt:date:' . $model->getAttributeLabel('updatedAt')
                                 ]
                             ]) ?>
                         </div>
@@ -573,23 +599,9 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                 ?>
             </div>
         </div>
-        <!-- remaining comments -->
-        <?php if(!empty($allComments)): ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <?= CommentList::widget([
-                        'model' => $model,
-                        'moduleId' => $moduleId,
-                        'comments' =>  $allComments,
-                        'showCreateButton' => false,
-                        'showEditDeleteButton' => false
-                    ]) ?>
-                </div>
-            </div>
-        <?php endif; ?>
     </div>
+    <?php Panel::end() ?>
 <?php endif; ?>
-<?php Panel::end() ?>
 <br>
 <br>
 <br>

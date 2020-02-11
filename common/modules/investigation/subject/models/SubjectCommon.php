@@ -220,7 +220,7 @@ class SubjectCommon extends BaseInvestigationModel
     public function rules()
     {
         return [
-            [['text2', 'text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'trim'],
+            [['text2', 'text', 'description', 'proceedings', 'negotiationResult', 'missionObjective', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode', 'workshopInfo'], 'trim'],
             [
                 [
                     'title',
@@ -236,7 +236,7 @@ class SubjectCommon extends BaseInvestigationModel
             ['sessionDate', 'required', 'on' => self::SCENARIO_SET_SESSION_DATE],
             [['expertId', 'missionObjective', 'reportExpertCode'], 'required', 'on' => self::SCENARIO_SET_EXPERT],
             [['title', 'englishTitle', 'missionPlace', 'unitCode', 'creatorExpertCode', 'seoCode', 'reportExpertCode'], 'string', 'max' => 255],
-            [['text2', 'text', 'description', 'proceedings', 'missionObjective'], 'string'],
+            [['text2', 'text', 'description', 'proceedings', 'missionObjective', 'workshopInfo'], 'string'],
             [['partners', 'tags', 'references'], 'safe'],
             [['englishTitle', 'missionPlace'], 'default', 'value' => null],
             [['missionType'], 'default', 'value' => 1],
@@ -274,7 +274,7 @@ class SubjectCommon extends BaseInvestigationModel
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_SET_EXPERT] = ['expertId', 'missionObjective', 'isMissionNeeded', 'missionPlace', 'missionDate', 'reportDeadlineDate', 'missionType', 'reportExpertCode'];
+        $scenarios[self::SCENARIO_SET_EXPERT] = ['expertId', 'missionObjective', 'isMissionNeeded', 'missionPlace', 'missionDate', 'reportDeadlineDate', 'missionType', 'reportExpertCode', 'workshopInfo'];
         return $scenarios;
     }
 
@@ -310,7 +310,8 @@ class SubjectCommon extends BaseInvestigationModel
             'unitCode' => 'کد واحد',
             'creatorExpertCode' => 'کد کارشناس',
             'reportExpertCode' => 'کد کارشناس',
-            'seoCode' => 'کد SEO'
+            'seoCode' => 'کد SEO',
+            'workshopInfo' => 'مشخصات کارگاه'
         ];
     }
 
@@ -359,6 +360,7 @@ class SubjectCommon extends BaseInvestigationModel
             $this->status = self::STATUS_ACCEPTED;
             $this->deliverToManagerDate = null;
             $this->sessionDate = null;
+            $this->proceedings = null;
         }
 
         if (!parent::beforeSave($insert)) {
@@ -479,7 +481,7 @@ class SubjectCommon extends BaseInvestigationModel
             $this->userHolder = self::USER_HOLDER_EXPERT;
         }
         else if($newStatus == self::STATUS_WAITING_FOR_SESSION_DATE){
-            // $this->proceedings = null;
+            $this->proceedings = null;
             $this->sessionDate = null;
         }
         else if($newStatus == self::STATUS_IN_MANAGER_HAND)
