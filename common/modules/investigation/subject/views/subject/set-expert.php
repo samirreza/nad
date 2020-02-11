@@ -101,6 +101,9 @@ $this->registerJs(
                         <div class="row">
                             <?= $form->field($model, 'missionObjective')->textArea()?>
                         </div>
+                        <div class="row">
+                            <?= $form->field($model, 'workshopInfo')->textArea()?>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row" id="missionDetailsContainer">
