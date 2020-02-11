@@ -19,8 +19,8 @@ class Module extends \yii\base\Module
     {
         $this->modules = [
             'investigationImprovement' => 'nad\engineering\geotechnics\stage\investigationImprovement\Module',
-            'investigationMonitorMethods' => 'nad\engineering\geotechnics\stage\investigationMonitorMethods\Module',
-            'investigationDesign' => 'nad\engineering\geotechnics\stage\investigationDesign\Module',
+            // 'investigationMonitorMethods' => 'nad\engineering\geotechnics\stage\investigationMonitorMethods\Module',
+            // 'investigationDesign' => 'nad\engineering\geotechnics\stage\investigationDesign\Module',
         ];
 
         $this->horizontalMenuItems = [
