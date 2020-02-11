@@ -124,23 +124,6 @@ $module = $this->context->module;
                     //     'attribute' => 'code',
                     // ],
                     [
-                        'label' => 'لیست مدارک',
-                        'format' => 'html',
-                        'value' => function ($model) {
-                            return Html::a(
-                                    '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
-                                    [
-                                        'device-document/index',
-                                    'DeviceDocumentSearch[deviceId]' => $model->id
-                                    ],
-                                    [
-                                        'title' => 'لیست مدارک',
-                                        'data-pjax' => 0
-                                    ]
-                                );
-                        }
-                    ],
-                    [
                         'label' => 'بسته مدارک',
                         'format' => 'html',
                         'value' => function ($model) {
