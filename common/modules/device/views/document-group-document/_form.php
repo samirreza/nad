@@ -39,6 +39,14 @@ $uploadedFiles = $model->getFiles('file');
                     ) ?>
                 </div>
                 <div class="col-md-4">
+                    <?= $form->field($model, 'revisionNumber')->textInput(
+                        [
+                            'class' => 'form-control',
+                            'dir' => 'ltr'
+                        ]
+                    ) ?>
+                </div>
+                <div class="col-md-4">
                     <?= $model->getAttributeLabel('uniqueCode'); ?>
                     <?=
                     Html::textInput(
@@ -57,7 +65,7 @@ $uploadedFiles = $model->getFiles('file');
                 <div class="col-md-11">
                     <p class="help-block">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    پس از ذخیره فرم، شناسه مدرک با شماره نوع مدرک انتخاب شده، بروز خواهد شد.
+                    پس از ذخیره فرم، شناسه مدرک با کد نوع مدرک و شمارنده انتخاب شده، بروز خواهد شد.
                     </p>
                 </div>
             </div>

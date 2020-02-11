@@ -26,11 +26,11 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
         return array_merge(
             parent::behaviors(),
             [
-                'codeNumerator' => [
-                    'class' => CodeNumeratorBehavior::class,
-                    'determinativeColumn' => 'groupId',
-                    'lastCodeNumberColumn' => 'revisionNumber'
-                ],
+                // 'codeNumerator' => [
+                //     'class' => CodeNumeratorBehavior::class,
+                //     'determinativeColumn' => 'groupId',
+                //     'lastCodeNumberColumn' => 'revisionNumber'
+                // ],
                 [
                     'class' => AuditTrailBehavior::class,
                     'relations' => []
@@ -63,7 +63,7 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['title', 'groupId', 'documentType'], 'required'],
+            [['title', 'groupId', 'documentType', 'revisionNumber'], 'required'],
             [['title'], 'trim'],
             [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],
             [['groupId', 'documentType', 'revisionNumber'], 'integer'],
@@ -80,7 +80,7 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
             'producerName' => 'نام تهیه کننده',
             'verifierName' => 'نام تایید کننده',
             'documentType' => 'نوع مدرک',
-            'revisionNumber' => 'شماره بازنگری',
+            'revisionNumber' => 'شمارنده',
             'description' => 'توضیحات',
             'groupId' => 'شناسه گروه مدارک',
             'documentGroup.title' => 'عنوان گروه مدارک',
@@ -113,18 +113,8 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
         $this->uniqueCode = $this->documentGroup->uniqueCode . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . Lookup::extra('nad.device.DocumentGroupDocument.Type', $this->documentType) : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
     }
 
-    // public function getUniqueCode() : string
-    // {
-    //     return $this->uniqueCode;
-    // }
-
     public function getUniqueCode() : string
     {
-        $group = $this->documentGroup;
-        if(!isset($group)){
-            $group = DocumentGroup::findOne($this->groupId);
-        }
-
-        return $group->uniqueCode . ((isset($this->documentType) && !empty($this->documentType)) ? '.' . Lookup::extra('nad.device.DocumentGroupDocument.Type', $this->documentType) : '') . ((isset($this->revisionNumber) && !empty($this->revisionNumber)) ? '.' . $this->revisionNumber : '');
+        return isset($this->uniqueCode) ? $this->uniqueCode : '';
     }
 }
