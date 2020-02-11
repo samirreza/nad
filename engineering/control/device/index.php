@@ -29,7 +29,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی روشهای پایش',
-            'titleUrl' => Url::to(['/engineering/control/device/manage/investigation-monitor-methods'])
+            'titleUrl' => '#' // Url::to(['/engineering/control/device/manage/investigation-monitor-methods'])
         ]) ?>
     </div>
 </div>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی طراحی',
-            'titleUrl' => Url::to(['/engineering/control/device/manage/investigation-design'])
+            'titleUrl' => '#' // Url::to(['/engineering/control/device/manage/investigation-design'])
         ]) ?>
     </div>
 </div>

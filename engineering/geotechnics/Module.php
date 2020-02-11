@@ -15,10 +15,10 @@ class Module extends \yii\base\Module
     {
         $this->modules = [
             'stage' => 'nad\engineering\geotechnics\stage\Module',
-            'device' => 'nad\engineering\geotechnics\device\Module',
+            // 'device' => 'nad\engineering\geotechnics\device\Module',
             'location' => 'nad\engineering\geotechnics\location\Module',
             'document' => 'nad\engineering\geotechnics\document\Module',
-            'site' => 'nad\engineering\geotechnics\site\Module',
+            // 'site' => 'nad\engineering\geotechnics\site\Module',
         ];
         parent::init();
     }

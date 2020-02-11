@@ -243,11 +243,11 @@ class SideMenu extends \theme\widgets\Menu
                         'label' => 'مکانیک',
                         'icon' => 'angle-right',
                         'items' => [
-                            [
-                                'label' => 'مراحل',
-                                'icon' => 'angle-right',
-                                'url' => ['/engineering/mechanics/stage']
-                            ],
+                            // [
+                            //     'label' => 'مراحل',
+                            //     'icon' => 'angle-right',
+                            //     'url' => ['/engineering/mechanics/stage']
+                            // ],
                             [
                                 'label' => 'دستگاه ها',
                                 'icon' => 'angle-right',
@@ -312,11 +312,11 @@ class SideMenu extends \theme\widgets\Menu
                                 'icon' => 'angle-right',
                                 'url' => ['/engineering/construction/stage']
                             ],
-                            [
-                                'label' => 'دستگاه ها',
-                                'icon' => 'angle-right',
-                                'url' => ['/engineering/construction/device']
-                            ]
+                            // [
+                            //     'label' => 'دستگاه ها',
+                            //     'icon' => 'angle-right',
+                            //     'url' => ['/engineering/construction/device']
+                            // ]
                         ]
                     ],
                     [
@@ -328,11 +328,11 @@ class SideMenu extends \theme\widgets\Menu
                                 'icon' => 'angle-right',
                                 'url' => ['/engineering/geotechnics/stage']
                             ],
-                            [
-                                'label' => 'دستگاه ها',
-                                'icon' => 'angle-right',
-                                'url' => ['/engineering/geotechnics/device']
-                            ]
+                            // [
+                            //     'label' => 'دستگاه ها',
+                            //     'icon' => 'angle-right',
+                            //     'url' => ['/engineering/geotechnics/device']
+                            // ]
                         ]
                     ],
                     // [

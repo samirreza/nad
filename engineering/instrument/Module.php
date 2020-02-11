@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
             'device' => 'nad\engineering\instrument\device\Module',
             'location' => 'nad\engineering\instrument\location\Module',
             'document' => 'nad\engineering\instrument\document\Module',
-            'site' => 'nad\engineering\instrument\site\Module',
+            // 'site' => 'nad\engineering\instrument\site\Module',
         ];
         parent::init();
     }

@@ -65,7 +65,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => false,
                 'showCount' => false,
                 'title' => 'مکان ها',
-                'titleUrl' => Url::to(['/engineering/geotechnics/site/site/index'])
+                'titleUrl' => '#' // Url::to(['/engineering/geotechnics/site/site/index'])
             ]) ?>
         </div>
     </div>
