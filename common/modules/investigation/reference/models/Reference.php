@@ -73,10 +73,7 @@ class Reference extends \yii\db\ActiveRecord implements Codable
             ],
             'codeNumerator' => [
                 'class' => CodeNumeratorBehavior::class,
-                'determinativeColumn' => 'type',
-                'tableName' => $this->tableName(),
-                'condition' => 'consumer = :consumer',
-                'conditionParams' => [':consumer' => static::CONSUMER_CODE]
+                'determinativeColumn' => 'type'
             ],
             [
                 'class' => BlameableBehavior::class,
