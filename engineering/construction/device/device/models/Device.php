@@ -8,7 +8,7 @@ class Device extends ParentDevice
 {
     const CONSUMER_CODE = Device::class;
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'construction';
 
     public function getBaseViewRoute()
     {
