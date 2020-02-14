@@ -573,7 +573,30 @@ class SideMenu extends \theme\widgets\Menu
             // ],
             [
                 'label' => 'بندر',
-                'icon' => 'angle-right'
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'بندر',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/seaport/wayside/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/seaport/wayside/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/seaport/wayside/unit3']
+                            ],
+                        ]
+                    ]
+                ]
             ],
             [
                 'label' => 'کاربران',
