@@ -7,7 +7,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'فعالیت د';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3']],
     $this->title
 ];

@@ -3,7 +3,7 @@
 $this->title = 'لیست داده گاه روندهای پروپوزال';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/build/well/unit3/manage/investigation5']],
     'داده گاه روندهای پروپوزال',

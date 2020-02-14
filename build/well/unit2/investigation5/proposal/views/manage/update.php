@@ -7,7 +7,7 @@ use nad\build\well\unit2\investigation5\reference\models\Reference;
 $this->title = 'ویرایش پروپوزال';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 2', 'url' => ['/build/well/unit2/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/build/well/unit2/manage/investigation5']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],

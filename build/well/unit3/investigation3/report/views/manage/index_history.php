@@ -3,7 +3,7 @@
 $this->title = 'لیست داده گاه روندهای گزارش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/build/well/unit3/manage/investigation3']],
     'داده گاه روندهای گزارش',

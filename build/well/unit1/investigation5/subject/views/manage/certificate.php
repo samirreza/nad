@@ -3,7 +3,7 @@
 $this->title = 'شناسنامه ' . $subject->title;
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 1', 'url' => ['/build/well/unit1/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/build/well/unit1/manage/investigation5']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],

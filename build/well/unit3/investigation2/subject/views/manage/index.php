@@ -3,7 +3,7 @@
 $this->title = 'لیست موضوع های فعال';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3/manage/index']],
     ['label' => 'فعالیت ب', 'url' => ['/build/well/unit3/manage/investigation2']],
     $this->title

@@ -6,7 +6,7 @@ use nad\build\equipment\unit2\investigation5\reference\models\Reference;
 $this->title = 'افزودن منشا';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 2', 'url' => ['/build/equipment/unit2/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/build/equipment/unit2/manage/investigation5']],
     'برنامه منشا',

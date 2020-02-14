@@ -5,7 +5,7 @@ class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
-    public $title = 'احداث - ساختمان - واحد 3';
+    public $title = 'احداث - تجهیزات - واحد 3';
     public $department = 'احداث';
     public $pluralLabel = 'واحد 3';
     public $singularLabel = 'واحد 3';

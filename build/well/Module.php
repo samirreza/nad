@@ -4,7 +4,7 @@ namespace nad\build\well;
 
 class Module extends \yii\base\Module
 {
-    public $title = 'ساختمان';
+    public $title = 'چاه';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\build\well';
 

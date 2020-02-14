@@ -4,7 +4,7 @@ namespace nad\build\equipment;
 
 class Module extends \yii\base\Module
 {
-    public $title = 'ساختمان';
+    public $title = 'تجهیزات';
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\build\equipment';
 

@@ -3,7 +3,7 @@
 $this->title = 'رده‌بندی گزارش‌ها';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 1', 'url' => ['/build/equipment/unit1/manage/index']],
     ['label' => 'فعالیت الف', 'url' => ['/build/equipment/unit1/manage/investigation1']],
     $this->title

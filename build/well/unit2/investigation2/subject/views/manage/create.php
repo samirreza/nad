@@ -8,7 +8,7 @@ use nad\build\well\unit2\investigation2\method\models\Method;
 $this->title = 'افزودن موضوع';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 2', 'url' => ['/build/well/unit2/manage/index']],
     ['label' => 'فعالیت ب', 'url' => ['/build/well/unit2/manage/investigation2']],
     $this->title

@@ -8,7 +8,7 @@ use nad\build\equipment\unit1\investigation5\report\models\Report;
 $this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 1', 'url' => ['/build/equipment/unit1/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/build/equipment/unit1/manage/investigation5']],
     $this->title

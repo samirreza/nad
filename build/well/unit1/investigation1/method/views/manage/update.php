@@ -8,7 +8,7 @@ use nad\build\well\unit1\investigation1\report\models\Report;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 1', 'url' => ['/build/well/unit1/manage/index']],
     ['label' => 'فعالیت الف', 'url' => ['/build/well/unit1/manage/investigation1']],
     ['label' => 'لیست روش', 'url' => ['index']],

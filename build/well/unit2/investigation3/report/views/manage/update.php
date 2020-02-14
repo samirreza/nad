@@ -7,7 +7,7 @@ use nad\build\well\unit2\investigation3\proposal\models\Proposal;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 2', 'url' => ['/build/well/unit2/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/build/well/unit2/manage/investigation3']],
     ['label' => 'لیست گزارش', 'url' => ['index']],

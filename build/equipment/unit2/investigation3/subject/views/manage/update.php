@@ -8,7 +8,7 @@ use nad\build\equipment\unit2\investigation3\method\models\Method;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 2', 'url' => ['/build/equipment/unit2/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/build/equipment/unit2/manage/investigation3']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],

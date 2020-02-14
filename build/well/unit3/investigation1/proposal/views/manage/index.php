@@ -3,7 +3,7 @@
 $this->title = 'لیست پروپوزالهای برنامه';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3/manage/index']],
     ['label' => 'فعالیت الف', 'url' => ['/build/well/unit3/manage/investigation1']],
     $this->title

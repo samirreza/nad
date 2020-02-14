@@ -9,7 +9,7 @@ use nad\build\well\unit3\investigation2\method\models\Method;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'چاه',
     ['label' => 'واحد 3', 'url' => ['/build/well/unit3/manage/index']],
     ['label' => 'فعالیت ب', 'url' => ['/build/well/unit3/manage/investigation2']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],

@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'ساختمان';
+$this->title = 'چاه';
 $this->params['breadcrumbs'] = [
     'احداث',
     $this->title,

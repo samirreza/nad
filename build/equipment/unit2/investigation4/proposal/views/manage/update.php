@@ -7,7 +7,7 @@ use nad\build\equipment\unit2\investigation4\reference\models\Reference;
 $this->title = 'ویرایش پروپوزال';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 2', 'url' => ['/build/equipment/unit2/manage/index']],
     ['label' => 'فعالیت د', 'url' => ['/build/equipment/unit2/manage/investigation4']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],

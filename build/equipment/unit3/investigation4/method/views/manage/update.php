@@ -8,7 +8,7 @@ use nad\build\equipment\unit3\investigation4\report\models\Report;
 $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 3', 'url' => ['/build/equipment/unit3/manage/index']],
     ['label' => 'فعالیت د', 'url' => ['/build/equipment/unit3/manage/investigation4']],
     ['label' => 'لیست روش', 'url' => ['index']],

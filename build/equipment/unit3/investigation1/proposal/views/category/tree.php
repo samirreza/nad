@@ -3,7 +3,7 @@
 $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'احداث',
-    'ساختمان',
+    'تجهیزات',
     ['label' => 'واحد 3', 'url' => ['/build/equipment/unit3/manage/index']],
     ['label' => 'فعالیت الف', 'url' => ['/build/equipment/unit3/manage/investigation1']],
     ['label' => 'رده های پروپوزالها', 'url' => ['/build/equipment/unit3/investigation1/proposal/category/index']],
