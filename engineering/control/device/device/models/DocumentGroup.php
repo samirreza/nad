@@ -8,15 +8,15 @@ class DocumentGroup extends ParentDocumentGroup
 {
     const CONSUMER_CODE = DocumentGroup::class;
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'control';
 
     public function getBaseViewRoute()
     {
         return '/control/device/device/document-group/view';
     }
 
-    // public static function find()
-    // {
-    //     return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
-    // }
+    public static function find()
+    {
+        return parent::find()->andWhere([parent::tableName() . '.consumer' => self::CONSUMER_CODE]);
+    }
 }

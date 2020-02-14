@@ -75,9 +75,9 @@ class Category extends ActiveRecord implements Codable
         if (!parent::beforeSave($insert)) {
             return false;
         }
-        // if ($insert) {
-        //     $this->consumer = static::CONSUMER_CODE;
-        // }
+        if ($insert) {
+            $this->consumer = static::CONSUMER_CODE;
+        }
         return true;
     }
 

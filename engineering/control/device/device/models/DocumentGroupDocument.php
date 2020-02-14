@@ -8,7 +8,7 @@ class DocumentGroupDocument extends ParentDocument
 {
     const CONSUMER_CODE = DocumentGroupDocument::class; //'nad\engineering\control';
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'control';
 
     public function getBaseViewRoute()
     {
@@ -17,6 +17,6 @@ class DocumentGroupDocument extends ParentDocument
 
     public static function find()
     {
-        return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
+        return parent::find()->andWhere([parent::tableName() . '.consumer' => self::CONSUMER_CODE]);
     }
 }

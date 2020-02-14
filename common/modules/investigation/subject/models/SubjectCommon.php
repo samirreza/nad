@@ -148,7 +148,10 @@ class SubjectCommon extends BaseInvestigationModel
                 'partners' => PartnersBehavior::class,
                 'codeNumerator' => [
                     'class' => CodeNumeratorBehavior::class,
-                    'determinativeColumn' => 'consumer'
+                    'determinativeColumn' => 'consumer',
+                    'tableName' => $this->tableName(),
+                    // 'condition' => 'consumer = :consumer',
+                    // 'conditionParams' => [':consumer' => static::CONSUMER_CODE]
                 ],
                 [
                     'class' => FileBehavior::class,
@@ -801,7 +804,7 @@ class SubjectCommon extends BaseInvestigationModel
     }
 
     public function getSeoCodeAsNumber($input){
-        Lookup::$_items = []; // a nasty hack cause $_items is a shared static variable with unexptected initial value!!
+        Lookup::$_items = []; // a nasty hack cause $_items is a shared static variable with unexpected initial value!!
         $codes = Lookup::extras(self::LOOKUP_SEO_CODE, false);
         $result = array_search($input, $codes);
 

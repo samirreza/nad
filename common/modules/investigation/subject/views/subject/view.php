@@ -424,14 +424,20 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
-                <?php Panel::begin([
+                <?php
+                if ($model->isReport()) {
+                    Panel::begin([
                     'title' => 'متن گزارش',
                     'showCollapseButton' => true
-                    ]) ?>
+                    ]);
+                ?>
                     <div>
                         <?= $model->text2 ?>
                     </div>
-                <?php Panel::end() ?>
+                <?php
+                    Panel::end();
+                }
+                ?>
             </div>
             <div class="col-md-12">
                 <?php Panel::begin([

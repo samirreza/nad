@@ -6,9 +6,9 @@ use nad\common\modules\device\models\DocumentGroupDocument as ParentDocument;
 
 class DocumentGroupDocument extends ParentDocument
 {
-    const CONSUMER_CODE = DocumentGroupDocument::class; //'nad\engineering\mechanics';
+    const CONSUMER_CODE = DocumentGroupDocument::class;
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'mechanics';
 
     public function getBaseViewRoute()
     {
@@ -17,6 +17,6 @@ class DocumentGroupDocument extends ParentDocument
 
     public static function find()
     {
-        return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
+        return parent::find()->andWhere([self::tableName() . '.consumer' => self::CONSUMER_CODE]);
     }
 }

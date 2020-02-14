@@ -78,7 +78,10 @@ class ReportCommon extends BaseInvestigationModel
                 ],
                 'codeNumerator' => [
                     'class' => CodeNumeratorBehavior::class,
-                    'determinativeColumn' => 'categoryId'
+                    'determinativeColumn' => 'categoryId',
+                    'tableName' => $this->tableName(),
+                    // 'condition' => 'consumer = :consumer',
+                    // 'conditionParams' => [':consumer' => static::CONSUMER_CODE]
                 ],
                 'partners' => PartnersBehavior::class,
                 [

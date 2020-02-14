@@ -83,9 +83,9 @@ class PartInstance extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        // if ($insert) {
-        //     $this->consumer = static::CONSUMER_CODE;
-        // }
+        if ($insert) {
+            $this->consumer = static::CONSUMER_CODE;
+        }
         $this->setUniqueCode();
         return parent::beforeSave($insert);
     }

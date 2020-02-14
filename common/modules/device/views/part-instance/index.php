@@ -91,7 +91,7 @@ $this->title = 'لیست قطعات';
                                     '<i class="fa fa-external-link-square fa-2x" style="color:#398439"></i>',
                                     [
                                         'device-part-instance-document/index',
-                                    'DevicePartInstanceDocumentSearch[instanceId]' => $model->partId
+                                    'DevicePartInstanceDocumentSearch[instanceId]' => $model->id
                                     ],
                                     [
                                         'title' => 'لیست مدارک',
