@@ -385,9 +385,68 @@ class SideMenu extends \theme\widgets\Menu
                 'icon' => 'angle-right',
                 'items' => [
                     [
-                        'label' => 'مصالح ساختمانی',
-                        'url' => ['/build/material/manage/index']
-                    ]
+                        'label' => 'ساختمان',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/construction/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/construction/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/construction/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'تجهیزات',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/equipment/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/equipment/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/equipment/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'چاه',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/well/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/well/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/build/well/unit3']
+                            ],
+                        ]
+                    ],
                 ]
             ],
             [
