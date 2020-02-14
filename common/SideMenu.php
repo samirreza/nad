@@ -450,6 +450,75 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
+                'label' => 'کارخانه',
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'تولید',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/production/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/production/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/production/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'احداث',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/build/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/build/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/build/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'پشتیبانی',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/support/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/support/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/support/unit3']
+                            ],
+                        ]
+                    ],
+                ]
+            ],
+            [
                 'label' => 'بازرگانی',
                 'icon' => 'angle-right',
                 'items' => [
