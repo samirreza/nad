@@ -58,8 +58,8 @@ class SourceCommon extends BaseInvestigationModel
                     'class' => CodeNumeratorBehavior::class,
                     'determinativeColumn' => 'categoryId',
                     'tableName' => $this->tableName(),
-                    'condition' => 'consumer = :consumer',
-                    'conditionParams' => [':consumer' => static::CONSUMER_CODE]
+                    // 'condition' => 'consumer = :consumer',
+                    // 'conditionParams' => [':consumer' => static::CONSUMER_CODE]
                 ],
                 [
                     'class' => PreventDeleteBehavior::class,
