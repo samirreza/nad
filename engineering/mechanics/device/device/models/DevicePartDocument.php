@@ -8,15 +8,15 @@ class DevicePartDocument extends ParentDocument
 {
     const CONSUMER_CODE = DevicePartDocument::class;
 
-    public $moduleId = 'pipping';
+    public $moduleId = 'mechanics';
 
     public function getBaseViewRoute()
     {
         return '/mechanics/device/device/device-part-document/view';
     }
 
-    // public static function find()
-    // {
-    //     return parent::find()->andWhere(['consumer' => self::CONSUMER_CODE]);
-    // }
+    public static function find()
+    {
+        return parent::find()->andWhere([self::tableName() . '.consumer' => self::CONSUMER_CODE]);
+    }
 }
