@@ -450,6 +450,96 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
+                'label' => 'موقت',
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'تامین',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'خرید',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/supply/unit1']
+                            ],
+                            [
+                                'label' => 'ساخت و تعمیر',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/supply/unit2']
+                            ],
+                            [
+                                'label' => 'جابجایی',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/supply/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'آی تی',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/informationtech/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/informationtech/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/informationtech/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'مالی',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/financial/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/financial/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/financial/unit3']
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'اداری',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/administrative/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/administrative/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/temporary/administrative/unit3']
+                            ],
+                        ]
+                    ],
+                ]
+            ],
+            [
                 'label' => 'کارخانه',
                 'icon' => 'angle-right',
                 'items' => [
