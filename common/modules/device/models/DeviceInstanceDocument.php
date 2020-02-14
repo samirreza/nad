@@ -86,10 +86,9 @@ class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
 
     public function beforeSave($insert)
     {
-        // dd($this->instanceId);
-        // if ($insert) {
-        //     $this->consumer = static::CONSUMER_CODE;
-        // }
+        if ($insert) {
+            $this->consumer = static::CONSUMER_CODE;
+        }
         $this->setUniqueCode();
         return parent::beforeSave($insert);
     }

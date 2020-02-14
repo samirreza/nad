@@ -47,7 +47,7 @@ $category = Category::findOne(['id' => $model->categoryId]);
                             'data' => ArrayHelper::map(
                                 Category::find()->andWhere([
                                     'depth' => 2,
-                                    // 'consumer' => $categoryConsumerCode
+                                    'consumer' => $categoryConsumerCode
                                 ])->all(),
                                 'id',
                                 'codedTitle'
