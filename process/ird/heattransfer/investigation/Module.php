@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\ird\heattransfer\investigation\reference\Module',
             'method' => 'nad\process\ird\heattransfer\investigation\method\Module',
             'instruction' => 'nad\process\ird\heattransfer\investigation\instruction\Module',
+            'subject' => 'nad\process\ird\heattransfer\investigation\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -180,19 +181,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/heattransfer/investigation/instruction/category/index']
                             ],
                         ]
-                    ],
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
                     [
-                        'label' => 'داده گاه ها',
+                        'label' => 'برنامه',
                         'items' => [
                             [
-                                'label' => 'دستورالعملها',
-                                'url' => ['/heattransfer/investigation/instruction/manage/archived-index']
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/heattransfer/investigation/subject/manage/create']
                             ],
                             [
-                                'label' => 'روندهای دستورالعمل',
-                                'url' => ['/heattransfer/investigation/instruction/manage/index-history']
-                            ],
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/heattransfer/investigation/subject/manage/index']
+                            ]
                         ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/heattransfer/investigation/subject/manage/archived-index']
                     ]
                 ]
             ],

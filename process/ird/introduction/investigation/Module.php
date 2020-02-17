@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\ird\introduction\investigation\reference\Module',
             'method' => 'nad\process\ird\introduction\investigation\method\Module',
             'instruction' => 'nad\process\ird\introduction\investigation\instruction\Module',
+            'subject' => 'nad\process\ird\introduction\investigation\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/introduction/investigation/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/introduction/investigation/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/introduction/investigation/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/introduction/investigation/subject/manage/archived-index']
                     ]
                 ]
             ],
