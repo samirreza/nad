@@ -209,19 +209,16 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'کلی',
                         'icon' => 'angle-right',
-                        'url' => '#'
-                        // 'items' => [
-                        //     [
-                        //         'label' => 'مکانها',
-                        //         'icon' => 'angle-right',
-                        //         'url' => '#'
-                        //     ],
-                        //     [
-                        //         'label' => 'مراحل',
-                        //         'icon' => 'angle-right',
-                        //         'url' => '#'
-                        //     ]
-                        // ]
+                        'items' => [
+                            [
+                                'label' => 'ابزار و لوازم مصرفی',
+                                'url' => ['/equipment/tool/manage/index']
+                            ],
+                            [
+                                'label' => 'مواد سرویس ونگهداری',
+                                'url' => ['/equipment/material/manage/index']
+                            ]
+                        ]
                     ],
                     [
                         'label' => 'لوله کشی',
@@ -359,28 +356,6 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
-                'label' => 'تجهیزات',
-                'icon' => 'angle-right',
-                'items' => [
-                    [
-                        'label' => 'ابزار و لوازم مصرفی',
-                        'url' => ['/equipment/tool/manage/index']
-                    ],
-                    [
-                        'label' => 'مدل',
-                        'url' => ['/equipment/model/manage/index']
-                    ],
-                    [
-                        'label' => 'نمونه‌ها',
-                        'url' => ['/equipment/sample/manage/index']
-                    ],
-                    [
-                        'label' => 'مواد سرویس ونگهداری',
-                        'url' => ['/equipment/material/manage/index']
-                    ]
-                ]
-            ],
-            [
                 'label' => 'احداث',
                 'icon' => 'angle-right',
                 'items' => [
@@ -472,6 +447,12 @@ class SideMenu extends \theme\widgets\Menu
                                 'icon' => 'angle-right',
                                 'url' => ['/temporary/supply/unit3']
                             ],
+                            [
+                                'label' => 'داده گاه تامین کنندگان',
+                                'icon' => 'angle-right',
+                                'url' => ['/supplier/manage/index'],
+                                'visible' => $user->canAccessAny(['supplier.create', 'supplier.delete', 'supplier.update'])
+                            ]
                         ]
                     ],
                     [
@@ -493,6 +474,23 @@ class SideMenu extends \theme\widgets\Menu
                                 'icon' => 'angle-right',
                                 'url' => ['/temporary/informationtech/unit3']
                             ],
+                            [
+                                'label' => 'شناسه تجهیزات',
+                                'icon' => 'angle-right',
+                                'url' => ['/it/equipment/type/manage/index'],
+                                'visible' => $user->can('it.equipment-type'),
+                            ],
+                            [
+                                'label' => 'گزارش های مدیریتی',
+                                'icon' => 'angle-right',
+                                'items' => [
+                                    [
+                                        'label' => 'شناسه تجهیزات',
+                                        'url' => ['/it/equipment/type/manage/report'],
+                                        'visible' => $user->can('manager')
+                                    ]
+                                ]
+                            ]
                         ]
                     ],
                     [
@@ -608,48 +606,6 @@ class SideMenu extends \theme\widgets\Menu
                     ],
                 ]
             ],
-            [
-                'label' => 'بازرگانی',
-                'icon' => 'angle-right',
-                'items' => [
-                    [
-                        'label' => 'داده گاه تامین کنندگان',
-                        'icon' => 'angle-right',
-                        'url' => ['/supplier/manage/index'],
-                        'visible' => $user->canAccessAny(['supplier.create', 'supplier.delete', 'supplier.update'])
-                    ]
-                ]
-            ],
-            [
-                'label' => 'پشتیبانی',
-                'icon' => 'angle-right'
-            ],
-            [
-                'label' => 'آی تی',
-                'icon' => 'angle-right',
-                'items' => [
-                    [
-                        'label' => 'شناسه تجهیزات',
-                        'icon' => 'angle-right',
-                        'url' => ['/it/equipment/type/manage/index'],
-                        'visible' => $user->can('it.equipment-type'),
-                    ],
-                    [
-                        'label' => 'گزارش های مدیریتی',
-                        'items' => [
-                            [
-                                'label' => 'شناسه تجهیزات',
-                                'url' => ['/it/equipment/type/manage/report'],
-                                'visible' => $user->can('manager')
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'label' => 'مالی',
-                'icon' => 'angle-right'
-            ],
             // [
             //     'label' => 'اداری',
             //     'icon' => 'angle-right',
@@ -687,6 +643,16 @@ class SideMenu extends \theme\widgets\Menu
                         ]
                     ]
                 ]
+            ],
+            [
+                'label' => 'مدل',
+                'url' => ['/equipment/model/manage/index'],
+                'icon' => 'angle-right'
+            ],
+            [
+                'label' => 'نمونه‌ها',
+                'url' => ['/equipment/sample/manage/index'],
+                'icon' => 'angle-right',
             ],
             [
                 'label' => 'کاربران',

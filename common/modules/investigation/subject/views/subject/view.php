@@ -465,7 +465,7 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
 
 <?php if($model->status != Subject::STATUS_REPORT_ACCEPTED && !empty($logs)): ?>
     <?php Panel::begin([
-        'title' => 'سوابق گزارش',
+        'title' => 'سوابق',
         'showCollapseButton' => true,
         'collapsed' => true
     ]) ?>

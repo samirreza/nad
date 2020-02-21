@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
             'proposal' => 'nad\process\materials\acidicWasher\investigation\proposal\Module',
             'report' => 'nad\process\materials\acidicWasher\investigation\report\Module',
             'reference' => 'nad\process\materials\acidicWasher\investigation\reference\Module',
-            'method' => 'nad\process\materials\acidicWasher\investigation\method\Module'
+            'method' => 'nad\process\materials\acidicWasher\investigation\method\Module',
+            'subject' => 'nad\process\materials\acidicWasher\investigation\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -156,38 +157,60 @@ class Module extends \yii\base\Module
                     ]
                 ]
             ],
+            // [
+            //     'label' => 'دستورالعمل',
+            //     'items' => [
+            //         [
+            //             'label' => 'برنامه',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'افزودن دستورالعمل',
+            //                     'url' => ['/acidicWasher/investigation/instruction/manage/create']
+            //                 ],
+            //                 [
+            //                     'label' => 'لیست‌ دستورالعملهای برنامه',
+            //                     'url' => ['/acidicWasher/investigation/instruction/manage/index']
+            //                 ],
+            //                 [
+            //                     'label' => 'لیست رده های دستورالعمل',
+            //                     'url' => ['/acidicWasher/investigation/instruction/category/index']
+            //                 ],
+            //             ]
+            //         ],
+            //         [
+            //             'label' => 'داده گاه ها',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'دستورالعملها',
+            //                     'url' => ['/acidicWasher/investigation/instruction/manage/archived-index']
+            //                 ],
+            //                 [
+            //                     'label' => 'روندهای دستورالعمل',
+            //                     'url' => ['/acidicWasher/investigation/instruction/manage/index-history']
+            //                 ],
+            //             ]
+            //         ]
+            //     ]
+            // ],
             [
-                'label' => 'دستورالعمل',
+                'label' => 'سایرگزارشها',
                 'items' => [
                     [
                         'label' => 'برنامه',
                         'items' => [
                             [
-                                'label' => 'افزودن دستورالعمل',
-                                'url' => ['/acidicWasher/investigation/instruction/manage/create']
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/acidicWasher/investigation/subject/manage/create']
                             ],
                             [
-                                'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/acidicWasher/investigation/instruction/manage/index']
-                            ],
-                            [
-                                'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/acidicWasher/investigation/instruction/category/index']
-                            ],
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/acidicWasher/investigation/subject/manage/index']
+                            ]
                         ]
                     ],
                     [
-                        'label' => 'داده گاه ها',
-                        'items' => [
-                            [
-                                'label' => 'دستورالعملها',
-                                'url' => ['/acidicWasher/investigation/instruction/manage/archived-index']
-                            ],
-                            [
-                                'label' => 'روندهای دستورالعمل',
-                                'url' => ['/acidicWasher/investigation/instruction/manage/index-history']
-                            ],
-                        ]
+                        'label' => 'داده گاه',
+                        'url' => ['/acidicWasher/investigation/subject/manage/archived-index']
                     ]
                 ]
             ]
