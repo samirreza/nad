@@ -339,6 +339,8 @@ class SubjectCommon extends BaseInvestigationModel
 
             if(Yii::$app->user->can('superuser')){
                 $this->userHolder = self::USER_HOLDER_MANAGER;
+                $this->status = self::STATUS_ACCEPTED;
+                $this->deliverToManagerDate = time();
             }else{
                 $this->userHolder = self::USER_HOLDER_EXPERT;
             }
