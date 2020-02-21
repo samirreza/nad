@@ -339,7 +339,7 @@ class SubjectCommon extends BaseInvestigationModel
 
             if(Yii::$app->user->can('superuser')){
                 $this->userHolder = self::USER_HOLDER_MANAGER;
-                $this->status = self::STATUS_ACCEPTED;
+                $this->status = self::STATUS_WAITING_FOR_CHECK_BY_MANAGER;
                 $this->deliverToManagerDate = time();
             }else{
                 $this->userHolder = self::USER_HOLDER_EXPERT;
@@ -617,7 +617,15 @@ class SubjectCommon extends BaseInvestigationModel
             $this->status != self::STATUS_NEED_CORRECTION &&
             $this->status != self::STATUS_WAITING_FOR_SESSION_DATE &&
         // $this->status != Subject::STATUS_WAITING_FOR_SESSION && // commented so user can set multiple sessions
-        !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED);
+        !($this->status == self::STATUS_WAIT_FOR_CONVERSATION && !$this->comments) && $this->status != self::STATUS_LOCKED)
+        &&
+        (
+            $this->isReport()
+            ||
+            (
+                !$this->isReport() && !(($this->createdBy == Yii::$app->user->id) && Yii::$app->user->can('superuser'))
+            )
+        );
     }
 
     public function canSetSessionDate()
@@ -630,23 +638,51 @@ class SubjectCommon extends BaseInvestigationModel
                 $this->status == self::STATUS_WAITING_FOR_NEXT_STATUS &&
                 $this->sessionDate != null
             )
+        )
+        &&
+        (
+            $this->isReport()
+            ||
+            (
+                !$this->isReport() && !(($this->createdBy == Yii::$app->user->id) && Yii::$app->user->can('superuser'))
+            )
         );
     }
 
     public function canStartConverstation()
     {
-        if ($this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED && (($this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser')) || ($this->userHolder == self::USER_HOLDER_EXPERT && $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT)) && $this->status != self::STATUS_WAIT_FOR_CONVERSATION &&
-        $this->status != self::STATUS_NEED_CORRECTION &&
-        (
-            $this->status != self::STATUS_REPORT_ACCEPTED &&
-            $this->status != self::STATUS_REPORT_REJECTED
-        ) && $this->status != self::STATUS_LOCKED && ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE)
-        &&
-        (
-            ($this->isReport() && ($this->expertId == Yii::$app->user->identity->expert->id || Yii::$app->user->can('superuser')))
-            ||
-            (!$this->isReport() && (($this->createdBy == Yii::$app->user->id) || Yii::$app->user->can('superuser')))
-        )
+        if (
+            $this->status != self::STATUS_ACCEPTED && $this->status != self::STATUS_REJECTED
+            &&
+            (
+                (
+                    $this->userHolder == self::USER_HOLDER_MANAGER && Yii::$app->user->can('superuser')
+                )
+                ||
+                (
+                    $this->userHolder == self::USER_HOLDER_EXPERT && $this->status == self::STATUS_WAITING_FOR_EXPERT_ACCEPT && $this->expertId == Yii::$app->user->identity->expert->id
+                )
+            )
+            &&
+            $this->status != self::STATUS_WAIT_FOR_CONVERSATION &&
+            $this->status != self::STATUS_NEED_CORRECTION &&
+            (
+                $this->status != self::STATUS_REPORT_ACCEPTED &&
+                $this->status != self::STATUS_REPORT_REJECTED
+            )
+            &&
+            $this->status != self::STATUS_LOCKED &&
+            ($this->status != self::STATUS_WAITING_FOR_SESSION_DATE)
+            &&
+            (
+                (
+                    $this->isReport() && ($this->expertId == Yii::$app->user->identity->expert->id || Yii::$app->user->can('superuser'))
+                )
+                ||
+                (
+                    !$this->isReport() && !(($this->createdBy == Yii::$app->user->id) && Yii::$app->user->can('superuser'))
+                )
+            )
         ) {
                 return true;
             // return Yii::$app->user->can(
