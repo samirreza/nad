@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\materials\antimicrobial\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\antimicrobial\investigationDesign\method\Module',
             'instruction' => 'nad\process\materials\antimicrobial\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\antimicrobial\investigationDesign\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/antimicrobial/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/antimicrobial/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/antimicrobial/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/antimicrobial/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],
