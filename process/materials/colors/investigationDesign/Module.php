@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\materials\colors\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\colors\investigationDesign\method\Module',
             'instruction' => 'nad\process\materials\colors\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\colors\investigationDesign\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/colors/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/colors/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/colors/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/colors/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],

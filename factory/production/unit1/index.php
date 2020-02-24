@@ -7,7 +7,7 @@ $this->title = 'تولید';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     $this->title,
-    'واحد 1'
+    'فنی'
 ];
 
 ?>

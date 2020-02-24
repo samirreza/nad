@@ -4,7 +4,7 @@ $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 2', 'url' => ['/factory/production/unit2/manage/index']],
+    ['label' => 'آزمایشگاه', 'url' => ['/factory/production/unit2/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/factory/production/unit2/manage/investigation3']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title

@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\materials\acidicWasher\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\acidicWasher\investigationDesign\method\Module',
             'instruction' => 'nad\process\materials\acidicWasher\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\acidicWasher\investigationDesign\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/acidicWasher/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/acidicWasher/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/acidicWasher/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/acidicWasher/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],

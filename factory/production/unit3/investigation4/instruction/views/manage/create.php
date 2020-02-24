@@ -10,7 +10,7 @@ $this->title = 'افزودن دستورالعمل';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 3', 'url' => ['/factory/production/unit3/manage/index']],
+    ['label' => 'تولید', 'url' => ['/factory/production/unit3/manage/index']],
     ['label' => 'فعالیت د', 'url' => ['/factory/production/unit3/manage/investigation4']],
     $this->title
 ];

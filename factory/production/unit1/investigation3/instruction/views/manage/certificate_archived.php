@@ -4,7 +4,7 @@ $this->title = 'شناسنامه ' . $instruction->title;
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 1', 'url' => ['/factory/production/unit1/manage/index']],
+    ['label' => 'فنی', 'url' => ['/factory/production/unit1/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/factory/production/unit1/manage/investigation3']],
     'داده گاه دستورالعمل',
     ['label' => 'لیست داده گاه دستورالعمل', 'url' => ['archived-index']],

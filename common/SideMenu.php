@@ -212,11 +212,23 @@ class SideMenu extends \theme\widgets\Menu
                         'items' => [
                             [
                                 'label' => 'ابزار و لوازم مصرفی',
-                                'url' => ['/equipment/tool/manage/index']
+                                'url' => ['/equipment/tool/manage/index'],
+                                'icon' => 'angle-right'
                             ],
                             [
                                 'label' => 'مواد سرویس ونگهداری',
-                                'url' => ['/equipment/material/manage/index']
+                                'url' => ['/equipment/material/manage/index'],
+                                'icon' => 'angle-right'
+                            ],
+                            [
+                                'label' => 'مدل',
+                                'url' => ['/equipment/model/manage/index'],
+                                'icon' => 'angle-right'
+                            ],
+                            [
+                                'label' => 'نمونه‌ها',
+                                'url' => ['/equipment/sample/manage/index'],
+                                'icon' => 'angle-right',
                             ]
                         ]
                     ],
@@ -546,19 +558,29 @@ class SideMenu extends \theme\widgets\Menu
                         'icon' => 'angle-right',
                         'items' => [
                             [
-                                'label' => 'واحد 1',
+                                'label' => 'فنی',
                                 'icon' => 'angle-right',
                                 'url' => ['/factory/production/unit1']
                             ],
                             [
-                                'label' => 'واحد 2',
+                                'label' => 'آزمایشگاه',
                                 'icon' => 'angle-right',
                                 'url' => ['/factory/production/unit2']
                             ],
                             [
-                                'label' => 'واحد 3',
+                                'label' => 'تولید',
                                 'icon' => 'angle-right',
                                 'url' => ['/factory/production/unit3']
+                            ],
+                            [
+                                'label' => 'تعمیرات و نگهداری',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/production/unit4']
+                            ],
+                            [
+                                'label' => 'انبار',
+                                'icon' => 'angle-right',
+                                'url' => ['/factory/production/unit5']
                             ],
                         ]
                     ],
@@ -641,18 +663,16 @@ class SideMenu extends \theme\widgets\Menu
                                 'url' => ['/seaport/wayside/unit3']
                             ],
                         ]
+                    ],
+                    [
+                        'label' => 'مالی',
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'پشتیبانی',
+                        'icon' => 'angle-right',
                     ]
                 ]
-            ],
-            [
-                'label' => 'مدل',
-                'url' => ['/equipment/model/manage/index'],
-                'icon' => 'angle-right'
-            ],
-            [
-                'label' => 'نمونه‌ها',
-                'url' => ['/equipment/sample/manage/index'],
-                'icon' => 'angle-right',
             ],
             [
                 'label' => 'کاربران',

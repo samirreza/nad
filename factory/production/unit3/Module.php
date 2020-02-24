@@ -5,10 +5,10 @@ class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
-    public $title = 'کارخانه - تولید - واحد 3';
+    public $title = 'کارخانه - تولید - تولید';
     public $department = 'کارخانه';
-    public $pluralLabel = 'واحد 3';
-    public $singularLabel = 'واحد 3';
+    public $pluralLabel = 'تولید';
+    public $singularLabel = 'تولید';
 
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\factory\production\unit3';
