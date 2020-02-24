@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\materials\alkalineWasher\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\alkalineWasher\investigationDesign\method\Module',
             'instruction' => 'nad\process\materials\alkalineWasher\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\alkalineWasher\investigationDesign\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/alkalineWasher/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/alkalineWasher/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/alkalineWasher/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/alkalineWasher/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],
