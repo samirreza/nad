@@ -4,7 +4,7 @@ $this->title = 'لیست داده گاه گزارش';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 2', 'url' => ['/factory/production/unit2/manage/index']],
+    ['label' => 'آزمایشگاه', 'url' => ['/factory/production/unit2/manage/index']],
     ['label' => 'فعالیت ب', 'url' => ['/factory/production/unit2/manage/investigation2']],
     'داده گاه گزارش',
     $this->title

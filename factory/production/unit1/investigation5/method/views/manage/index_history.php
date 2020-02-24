@@ -4,7 +4,7 @@ $this->title = 'لیست داده گاه روندهای روش';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 1', 'url' => ['/factory/production/unit1/manage/index']],
+    ['label' => 'فنی', 'url' => ['/factory/production/unit1/manage/index']],
     ['label' => 'فعالیت ه', 'url' => ['/factory/production/unit1/manage/investigation5']],
     'داده گاه روندهای روش',
     $this->title

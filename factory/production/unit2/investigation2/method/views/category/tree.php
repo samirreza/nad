@@ -4,7 +4,7 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 2', 'url' => ['/factory/production/unit2/manage/index']],
+    ['label' => 'آزمایشگاه', 'url' => ['/factory/production/unit2/manage/index']],
     ['label' => 'فعالیت ب', 'url' => ['/factory/production/unit2/manage/investigation2']],
     ['label' => 'رده های روشها', 'url' => ['/factory/production/unit2/investigation2/method/category/index']],
     $this->title

@@ -8,7 +8,7 @@ $this->title = 'فعالیت ب';
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 1', 'url' => ['/factory/production/unit1']],
+    ['label' => 'فنی', 'url' => ['/factory/production/unit1']],
     $this->title
 ];
 

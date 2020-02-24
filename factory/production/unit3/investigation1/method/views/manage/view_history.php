@@ -4,7 +4,7 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 3', 'url' => ['/factory/production/unit3/manage/index']],
+    ['label' => 'تولید', 'url' => ['/factory/production/unit3/manage/index']],
     ['label' => 'فعالیت الف', 'url' => ['/factory/production/unit3/manage/investigation1']],
     'داده گاه روندهای روش',
     ['label' => 'لیست داده گاه روندهای روش', 'url' => ['index-history']],

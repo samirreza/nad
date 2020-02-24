@@ -4,7 +4,7 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 3', 'url' => ['/factory/production/unit3/manage/index']],
+    ['label' => 'تولید', 'url' => ['/factory/production/unit3/manage/index']],
     ['label' => 'فعالیت د', 'url' => ['/factory/production/unit3/manage/investigation4']],
     'داده گاه موضوع',
     ['label' => 'لیست داده گاه موضوع', 'url' => ['archived-index']],

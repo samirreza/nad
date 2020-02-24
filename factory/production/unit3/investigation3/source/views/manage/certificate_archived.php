@@ -4,7 +4,7 @@ $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'کارخانه',
     'تولید',
-    ['label' => 'واحد 3', 'url' => ['/factory/production/unit3/manage/index']],
+    ['label' => 'تولید', 'url' => ['/factory/production/unit3/manage/index']],
     ['label' => 'فعالیت ج', 'url' => ['/factory/production/unit3/manage/investigation3']],
     'داده گاه منشا',
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],

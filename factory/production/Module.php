@@ -14,6 +14,8 @@ class Module extends \yii\base\Module
             'unit1' => 'nad\factory\production\unit1\Module',
             'unit2' => 'nad\factory\production\unit2\Module',
             'unit3' => 'nad\factory\production\unit3\Module',
+            'unit4' => 'nad\factory\production\unit3\Module',
+            'unit5' => 'nad\factory\production\unit3\Module',
         ];
         parent::init();
     }
