@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $subject->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigationDesign']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigation-design']],
     'داده گاه موضوع',
     ['label' => 'لیست داده گاه موضوع', 'url' => ['archived-index']],
     $this->title

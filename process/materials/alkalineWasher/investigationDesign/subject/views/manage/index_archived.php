@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigationDesign']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigation-design']],
     'داده گاه موضوع',
     $this->title
 ];
