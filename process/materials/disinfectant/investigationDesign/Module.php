@@ -14,7 +14,8 @@ class Module extends \yii\base\Module
             'report' => 'nad\process\materials\disinfectant\investigationDesign\report\Module',
             'reference' => 'nad\process\materials\disinfectant\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\disinfectant\investigationDesign\method\Module',
-            'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module'            
+            'instruction' => 'nad\process\materials\disinfectant\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\disinfectant\investigationDesign\subject\Module'
         ];
         $this->horizontalMenuItems = [
             [
@@ -195,7 +196,29 @@ class Module extends \yii\base\Module
                         ]
                     ]
                 ]
-            ],            
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/disinfectant/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/disinfectant/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/disinfectant/investigationDesign/subject/manage/archived-index']
+                    ]
+                ]
+            ],
             [
                 'label' => 'داده گاه منابع',
                 'items' => [

@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\process\materials\antisediment\investigationDesign\reference\Module',
             'method' => 'nad\process\materials\antisediment\investigationDesign\method\Module',
             'instruction' => 'nad\process\materials\antisediment\investigationDesign\instruction\Module',
+            'subject' => 'nad\process\materials\antisediment\investigationDesign\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/antisediment/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/antisediment/investigationDesign/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/antisediment/investigationDesign/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/antisediment/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],
