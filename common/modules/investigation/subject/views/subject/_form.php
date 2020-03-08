@@ -117,7 +117,7 @@ $reportFiles2 = $model->getFiles('reportFile2');
                                 ]) ?>
                             <?php Panel::end() ?>
                         </div>
-                    <?php else: ?>
+                    <?php endif; ?>
                         <div class="col-md-8">
                             <?php
                             if(isset($subjectFiles) && !empty($subjectFiles)){
@@ -140,7 +140,6 @@ $reportFiles2 = $model->getFiles('reportFile2');
                                 ]) ?>
                             <?php Panel::end() ?>
                         </div>
-                    <?php endif; ?>
 
                     </div>
                 </div>
