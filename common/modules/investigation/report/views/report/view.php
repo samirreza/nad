@@ -318,12 +318,12 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     'label' => 'مدارک',
                                     'format' => 'raw',
                                     'value' => function ($model) {
-                                        if (!$model->getFile('doc')) {
+                                        if (!$model->getFile('file')) {
                                             return;
                                         }
                                         return Html::a(
                                             'دانلود مدارک',
-                                            $model->getFile('doc')->getUrl(),
+                                            $model->getFile('file')->getUrl(),
                                             [
                                                 'data-pjax' => '0'
                                             ]
