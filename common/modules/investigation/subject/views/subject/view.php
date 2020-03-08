@@ -406,6 +406,23 @@ use nad\common\modules\investigation\subject\models\SubjectCommon;
                                     },
                                     'visible' => $model->isReport()
                                 ],
+                                [
+                                    'label' => 'فایل موضوع',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        if (!$model->getFile('subjectFile')) {
+                                            return;
+                                        }
+                                        return Html::a(
+                                            'دانلود فایل موضوع',
+                                            $model->getFile('subjectFile')->getUrl(),
+                                            [
+                                                'data-pjax' => '0'
+                                            ]
+                                        );
+                                    },
+                                    'visible' => $model->isReport()
+                                ],
                             ]
                         ]) ?>
                     </div>
