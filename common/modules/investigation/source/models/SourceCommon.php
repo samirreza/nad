@@ -9,6 +9,7 @@ use nad\office\modules\expert\models\Expert;
 use extensions\i18n\validators\JalaliDateToTimestamp;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\proposal\models\Proposal;
+use nad\common\modules\investigation\proposal\models\ProposalCommon;
 use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 use nad\common\modules\investigation\source\behaviors\ExpertsBehavior;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
@@ -238,7 +239,7 @@ class SourceCommon extends BaseInvestigationModel
 
     public function getProposals()
     {
-        return $this->hasMany(Proposal::class, ['sourceId' => 'id']);
+        return $this->hasMany(ProposalCommon::class, ['sourceId' => 'id']);
     }
 
     // TODO this function is NOT used anymore. Remove asap.
