@@ -7,6 +7,7 @@ use nad\common\grid\Column;
 class TitleColumn extends Column
 {
     public $isAjaxGrid = false;
+    public $useHyperLink = true;
 
     public function init()
     {
@@ -16,10 +17,14 @@ class TitleColumn extends Column
         $this->format = 'raw';
         $this->value = function ($model) {
             $attribute = $this->attribute;
-            return Html::a($model->$attribute, ['view', 'id'=>$model->id], [
-                'title' => \Yii::t('yii', 'View'),
-                'class' => $this->isAjaxGrid ? 'ajaxview' : ''
-            ]);
+            if($this->useHyperLink){
+                return Html::a($model->$attribute, ['view', 'id'=>$model->id], [
+                    'title' => \Yii::t('yii', 'View'),
+                    'class' => $this->isAjaxGrid ? 'ajaxview' : ''
+                ]);
+            }else{
+                return $model->$attribute;
+            }
         };
     }
 }

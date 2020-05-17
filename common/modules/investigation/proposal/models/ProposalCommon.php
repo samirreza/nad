@@ -378,12 +378,12 @@ class ProposalCommon extends BaseInvestigationModel
                             ->all();
         }else{
             $expertSources = Source::find()
-                        ->alias('src')
+                        // ->alias('src')
                         ->innerJoinWith('expertsQuery exp')
                         ->andWhere([
-                            'src.status' => Source::STATUS_IN_NEXT_STEP,
+                            Source::tableName() . '.status' => Source::STATUS_IN_NEXT_STEP,
                             'exp.id' => Yii::$app->user->identity->expert->id,
-                            'src.consumer' => $sourceConsumerCode
+                            Source::tableName() . '.consumer' => $sourceConsumerCode
                             ])
                         ->all();
         }

@@ -675,16 +675,40 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
-                'label' => 'کاربران',
-                'url' => ['/user/manage/index'],
+                'label' => 'پیش نمایش داده گاه ها',
+                'url' => ['/rla/manage/preview'],
                 'icon' => 'angle-right',
-                'visible' => $user->can('superuser')
+                'visible' =>  !$user->can('superuser'),
             ],
             [
-                'label' => 'تنظیمات سیستم',
-                'url' => ['/setting/manage/index'],
+                'label' => 'عملیات مدیریتی',
                 'icon' => 'angle-right',
-                'visible' =>  $user->can('superuser')
+                'visible' =>  $user->can('superuser'),
+                'items' => [
+                    [
+                        'label' => 'تنظیمات سیستم',
+                        'url' => ['/setting/manage/index'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'کاربران',
+                        'url' => ['/user/manage/index'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'دسترسی تک رکورد',
+                        'url' => [
+                            '/rla/manage/index',
+                            'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
+                        ],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'دسترسی پیش نمایش',
+                        'url' => ['/rla/manage/grant-revoke-preview'],
+                        'icon' => 'angle-right',
+                    ],
+                ]
             ],
             // [
             //     'label' => 'تاریخچه تغییرات',

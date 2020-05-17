@@ -3,14 +3,16 @@
 namespace nad\common\modules\investigation\common\models;
 
 use Yii;
+use nad\common\models\BaseModel;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
+use nad\rla\behaviors\RowLevelAccessBehavior;
 use nad\common\modules\investigation\reference\behaviors\ReferenceBehavior;
 
-class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
+class BaseInvestigationModel extends BaseModel implements Codable
 {
     use CodableTrait;
 
@@ -56,7 +58,10 @@ class BaseInvestigationModel extends \yii\db\ActiveRecord implements Codable
                 'class' => ReferenceBehavior::class,
                 'moduleId' => $this->moduleId,
                 'referenceClassName' => $this->referenceClassName
-            ]
+            ],
+            [
+                'class' => RowLevelAccessBehavior::class
+            ],
         ];
     }
 
