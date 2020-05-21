@@ -102,39 +102,42 @@ class ManageController extends Controller
         try {
             Yii::$app->db->createCommand()->delete(RowLevelAccess::tableName(), ['in', 'seq_access_id', $model->seqAccessIds])->execute();
 
-            $rows = [];
-            foreach ($model->seqAccessIds as $seqId) {
-                foreach ($model->userIds as $userId) {
-                    $formatter = new IntlDateFormatter(
-                        'en_US@calendar=persian',
-                        IntlDateFormatter::SHORT,
-                        IntlDateFormatter::NONE,
-                        'Asia/Tehran',
-                        IntlDateFormatter::TRADITIONAL,
-                        "yyyy/MM/dd"
-                    ); // lol
-                    $expireDate = isset($model->expireDates[$userId])?$formatter->parse($model->expireDates[$userId]):time();
+            if (isset($model->userIds) && is_array($model->userIds) && !empty($model->userIds)) {
+                $rows = [];
+                foreach ($model->seqAccessIds as $seqId) {
+                    foreach ($model->userIds as $userId) {
+                        $formatter = new IntlDateFormatter(
+                            'en_US@calendar=persian',
+                            IntlDateFormatter::SHORT,
+                            IntlDateFormatter::NONE,
+                            'Asia/Tehran',
+                            IntlDateFormatter::TRADITIONAL,
+                            "yyyy/MM/dd"
+                        ); // lol
+                        $expireDate = isset($model->expireDates[$userId])?$formatter->parse($model->expireDates[$userId]):time();
 
-                    $tmp = [
+                        $tmp = [
                         $seqId,
                         $userId,
                         $model->accessTypes[$userId],
                         $expireDate
                     ];
 
-                    $rows[] = $tmp;
+                        $rows[] = $tmp;
+                    }
                 }
-            }
 
-            Yii::$app->db->createCommand()->batchInsert(RowLevelAccess::tableName(),
-                [
+                Yii::$app->db->createCommand()->batchInsert(
+                    RowLevelAccess::tableName(),
+                    [
                     'seq_access_id',
                     'user_id',
                     'access_type',
                     'expire_date'
                 ],
-                $rows
-            )->execute();
+                    $rows
+                )->execute();
+            }
             $transaction->commit();
         } catch (\Exception $e) {
             $transaction->rollBack();

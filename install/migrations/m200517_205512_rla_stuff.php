@@ -13,6 +13,7 @@ class m200517_205512_rla_stuff extends Migration
     public function safeUp()
     {
         $this->execute("
+CREATE SEQUENCE seq_access START WITH 1 INCREMENT BY 1;
 -- ADD seq_access_id COLUMN
 -- alter table audit_trail add column seq_access_id BIGINT UNIQUE null;
 --  alter table auth_assignment add column seq_access_id BIGINT UNIQUE null;
@@ -85,7 +86,7 @@ class m200517_205512_rla_stuff extends Migration
  alter table nad_investigation_report add column seq_access_id BIGINT UNIQUE null;
  alter table nad_investigation_report_category add column seq_access_id BIGINT UNIQUE null;
  alter table nad_investigation_report_partner_relation add column seq_access_id BIGINT UNIQUE null;
- -- alter table nad_investigation_source add column seq_access_id BIGINT UNIQUE null;
+ alter table nad_investigation_source add column seq_access_id BIGINT UNIQUE null;
  alter table nad_investigation_source_category add column seq_access_id BIGINT UNIQUE null;
  alter table nad_investigation_source_expert_relation add column seq_access_id BIGINT UNIQUE null;
  alter table nad_investigation_source_reason add column seq_access_id BIGINT UNIQUE null;
@@ -217,7 +218,7 @@ class m200517_205512_rla_stuff extends Migration
  update nad_investigation_report set seq_access_id = nextval(seq_access) where seq_access_id is null;
  update nad_investigation_report_category set seq_access_id = nextval(seq_access) where seq_access_id is null;
  update nad_investigation_report_partner_relation set seq_access_id = nextval(seq_access) where seq_access_id is null;
- -- update nad_investigation_source set seq_access_id = nextval(seq_access) where seq_access_id is null;
+ update nad_investigation_source set seq_access_id = nextval(seq_access) where seq_access_id is null;
  update nad_investigation_source_category set seq_access_id = nextval(seq_access) where seq_access_id is null;
  update nad_investigation_source_expert_relation set seq_access_id = nextval(seq_access) where seq_access_id is null;
  update nad_investigation_source_reason set seq_access_id = nextval(seq_access) where seq_access_id is null;
