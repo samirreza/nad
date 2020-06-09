@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['heattransfer.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['heattransfer.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['heattransfer.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['heattransfer.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['heattransfer.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['heattransfer.investigationDesign']
                         ]
                     ]
                 ]

@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['disinfectant.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['disinfectant.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['disinfectant.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['disinfectant.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['disinfectant.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['disinfectant.investigationDesign']
                         ]
                     ]
                 ]

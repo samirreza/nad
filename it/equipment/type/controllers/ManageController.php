@@ -38,7 +38,8 @@ class ManageController extends AjaxAdminController
                                 'tree-list',
                                 'get-json-tree'
                             ],
-                            'roles' => ['it.equipment-type']
+                            'roles' => ['@']
+                            //'roles' => ['it.equipment-type']
                         ],
                         [
                             'allow' => true,

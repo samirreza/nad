@@ -31,7 +31,8 @@ class ManageController extends MethodController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['grs.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['grs.investigationMonitor']
                         ]
                     ]
                 ]

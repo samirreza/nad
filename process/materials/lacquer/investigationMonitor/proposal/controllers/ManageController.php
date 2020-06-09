@@ -31,7 +31,8 @@ class ManageController extends ProposalController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['lacquer.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationMonitor']
                         ]
                     ]
                 ]

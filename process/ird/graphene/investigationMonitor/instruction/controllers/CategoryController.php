@@ -26,7 +26,8 @@ class CategoryController extends InstructionCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['graphene.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigation']
                         ]
                     ]
                 ]

@@ -38,7 +38,8 @@ class ManageController extends InstructionController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['filter.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['filter.investigation']
                         ]
                     ]
                 ]

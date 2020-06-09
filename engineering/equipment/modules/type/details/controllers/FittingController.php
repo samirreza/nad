@@ -29,7 +29,8 @@ class FittingController extends AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['equipment.type']
+                            'roles' => ['@']
+                            //'roles' => ['equipment.type']
                         ]
                     ]
                 ]

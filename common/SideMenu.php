@@ -696,17 +696,23 @@ class SideMenu extends \theme\widgets\Menu
                         'icon' => 'angle-right',
                     ],
                     [
-                        'label' => 'دسترسی تک رکورد',
-                        'url' => [
-                            '/rla/manage/index',
-                            'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
-                        ],
+                        'label' => 'دسترسی',
                         'icon' => 'angle-right',
-                    ],
-                    [
-                        'label' => 'دسترسی پیش نمایش',
-                        'url' => ['/rla/manage/grant-revoke-preview'],
-                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'لیست داده گاه ها',
+                                'url' => ['/rla/manage/grant-revoke-preview'],
+                                'icon' => 'angle-right',
+                            ],
+                            [
+                                'label' => 'مدارک',
+                                'url' => [
+                                    '/rla/manage/index',
+                                    'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
+                                ],
+                                'icon' => 'angle-right',
+                            ],
+                        ]
                     ],
                 ]
             ],

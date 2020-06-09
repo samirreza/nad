@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['hydraulic.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['hydraulic.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['hydraulic.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['hydraulic.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['hydraulic.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['hydraulic.investigationDesign']
                         ]
                     ]
                 ]

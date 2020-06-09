@@ -38,7 +38,8 @@ class ManageController extends InstructionController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['graphene.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigation']
                         ]
                     ]
                 ]

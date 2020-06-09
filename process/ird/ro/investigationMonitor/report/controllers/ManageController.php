@@ -38,7 +38,8 @@ class ManageController extends ReportController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['ro.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['ro.investigation']
                         ]
                     ]
                 ]

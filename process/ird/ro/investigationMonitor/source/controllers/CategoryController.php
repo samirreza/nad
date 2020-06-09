@@ -26,7 +26,8 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['ro.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['ro.investigation']
                         ]
                     ]
                 ]

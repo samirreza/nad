@@ -26,7 +26,8 @@ class CategoryController extends ProposalCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['disinfectant.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['disinfectant.investigationDesign']
                         ]
                     ]
                 ]

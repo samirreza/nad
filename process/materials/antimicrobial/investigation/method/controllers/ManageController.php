@@ -31,7 +31,8 @@ class ManageController extends MethodController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['antimicrobial.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['antimicrobial.investigation']
                         ]
                     ]
                 ]

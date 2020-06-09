@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['grs.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['grs.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['grs.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['grs.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['grs.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['grs.investigationDesign']
                         ]
                     ]
                 ]

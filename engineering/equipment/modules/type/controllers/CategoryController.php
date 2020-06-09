@@ -42,7 +42,8 @@ class CategoryController extends AjaxAdminController
                                 'delete',
                                 'get-json-tree'
                             ],
-                            'roles' => ['equipment.type']
+                            'roles' => ['@']
+                            //'roles' => ['equipment.type']
                         ],
                         [
                             'allow' => true,

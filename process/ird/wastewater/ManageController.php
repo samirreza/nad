@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['wastewater.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['wastewater.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['wastewater.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['wastewater.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['wastewater.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['wastewater.investigationDesign']
                         ]
                     ]
                 ]

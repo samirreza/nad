@@ -19,7 +19,7 @@ class ModelController extends AjaxAdminController
         $this->searchClass = ModelSearch::class;
         parent::init();
     }
-    
+
     public function behaviors()
     {
         return array_merge(
@@ -30,7 +30,8 @@ class ModelController extends AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['equipment.type']
+                            'roles' => ['@']
+                            //'roles' => ['equipment.type']
                         ]
                     ]
                 ]
