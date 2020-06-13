@@ -36,7 +36,8 @@ class ManageController extends AdminController
                                 'ajax-find-equipments',
                                 'material'
                             ],
-                            'roles' => ['equipment.type']
+                            'roles' => ['@']
+                            //'roles' => ['equipment.type']
                         ],
                         [
                             'allow' => true,

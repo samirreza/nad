@@ -38,7 +38,8 @@ class ManageController extends ProposalController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['hydraulic.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['hydraulic.investigation']
                         ]
                     ]
                 ]

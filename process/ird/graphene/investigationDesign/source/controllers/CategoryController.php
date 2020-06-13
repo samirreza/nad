@@ -26,7 +26,8 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['graphene.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigationDesign']
                         ]
                     ]
                 ]

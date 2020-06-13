@@ -4,6 +4,7 @@ namespace nad\common;
 
 use Yii;
 use extensions\notification\models\Notification;
+use nad\rla\models\RowLevelAccessRequest;
 
 class SideMenu extends \theme\widgets\Menu
 {
@@ -675,16 +676,69 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
-                'label' => 'کاربران',
-                'url' => ['/user/manage/index'],
+                'label' => 'پیش نمایش داده گاه ها',
+                'url' => ['/rla/manage/preview'],
                 'icon' => 'angle-right',
-                'visible' => $user->can('superuser')
+                'visible' =>  !$user->can('superuser'),
             ],
             [
-                'label' => 'تنظیمات سیستم',
-                'url' => ['/setting/manage/index'],
+                'label' => 'درخواست دسترسی',
                 'icon' => 'angle-right',
-                'visible' =>  $user->can('superuser')
+                'visible' =>  !$user->can('superuser'),
+                'items' => [
+                    [
+                        'label' => 'درخواست پیش نمایش',
+                        'url' => ['/rla/request/index', 'RowLevelAccessRequestSearch[type]' => '1'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'درخواست مدرک',
+                        'url' => ['/rla/request/index', 'RowLevelAccessRequestSearch[type]' => '2'],
+                        'icon' => 'angle-right',
+                    ],
+                ]
+            ],
+            [
+                'label' => 'عملیات مدیریتی',
+                'icon' => 'angle-right',
+                'visible' =>  $user->can('superuser'),
+                'items' => [
+                    [
+                        'label' => 'تنظیمات سیستم',
+                        'url' => ['/setting/manage/index'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'کاربران',
+                        'url' => ['/user/manage/index'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'دسترسی',
+                        'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'لیست داده گاه ها',
+                                'url' => ['/rla/manage/grant-revoke-preview'],
+                                'icon' => 'angle-right',
+                            ],
+                            [
+                                'label' => 'مدارک',
+                                'url' => [
+                                    '/rla/manage/index',
+                                    'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
+                                ],
+                                'icon' => 'angle-right',
+                            ],
+                            [
+                                'label' => 'درخواست ها',
+                                'url' => ['/rla/request/index'],
+                                'icon' => 'angle-right',
+                                'badge' => RowLevelAccessRequest::getUnreadReuqestsCount(),
+                            ],
+                        ]
+                    ],
+                ]
             ],
             // [
             //     'label' => 'تاریخچه تغییرات',

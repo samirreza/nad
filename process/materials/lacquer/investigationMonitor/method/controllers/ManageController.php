@@ -31,7 +31,8 @@ class ManageController extends MethodController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['lacquer.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationMonitor']
                         ]
                     ]
                 ]

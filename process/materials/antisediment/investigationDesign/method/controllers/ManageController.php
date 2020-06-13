@@ -38,7 +38,8 @@ class ManageController extends MethodController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['antisediment.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['antisediment.investigationDesign']
                         ]
                     ]
                 ]
