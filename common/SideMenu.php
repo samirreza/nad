@@ -4,6 +4,7 @@ namespace nad\common;
 
 use Yii;
 use extensions\notification\models\Notification;
+use nad\rla\models\RowLevelAccessRequest;
 
 class SideMenu extends \theme\widgets\Menu
 {
@@ -681,6 +682,23 @@ class SideMenu extends \theme\widgets\Menu
                 'visible' =>  !$user->can('superuser'),
             ],
             [
+                'label' => 'درخواست دسترسی',
+                'icon' => 'angle-right',
+                'visible' =>  !$user->can('superuser'),
+                'items' => [
+                    [
+                        'label' => 'درخواست پیش نمایش',
+                        'url' => ['/rla/request/index', 'RowLevelAccessRequestSearch[type]' => '1'],
+                        'icon' => 'angle-right',
+                    ],
+                    [
+                        'label' => 'درخواست مدرک',
+                        'url' => ['/rla/request/index', 'RowLevelAccessRequestSearch[type]' => '2'],
+                        'icon' => 'angle-right',
+                    ],
+                ]
+            ],
+            [
                 'label' => 'عملیات مدیریتی',
                 'icon' => 'angle-right',
                 'visible' =>  $user->can('superuser'),
@@ -711,6 +729,12 @@ class SideMenu extends \theme\widgets\Menu
                                     'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
                                 ],
                                 'icon' => 'angle-right',
+                            ],
+                            [
+                                'label' => 'درخواست ها',
+                                'url' => ['/rla/request/index'],
+                                'icon' => 'angle-right',
+                                'badge' => RowLevelAccessRequest::getUnreadReuqestsCount(),
                             ],
                         ]
                     ],
