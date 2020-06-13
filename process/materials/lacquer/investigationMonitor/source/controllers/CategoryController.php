@@ -26,7 +26,8 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['lacquer.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationMonitor']
                         ]
                     ]
                 ]

@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['sedimentation.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['sedimentation.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['sedimentation.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['sedimentation.investigationMonitor']
                         ]
                     ]
                 ]

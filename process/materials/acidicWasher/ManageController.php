@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['acidicWasher.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['acidicWasher.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['acidicWasher.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['acidicWasher.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['acidicWasher.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['acidicWasher.investigationDesign']
                         ]
                     ]
                 ]

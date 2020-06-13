@@ -38,7 +38,8 @@ class ManageController extends ProposalController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['stage.investigationMonitorMethods']
+                            'roles' => ['@']
+                            //'roles' => ['stage.investigationMonitorMethods']
                         ]
                     ]
                 ]

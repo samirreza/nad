@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['newTechnology.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['newTechnology.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['newTechnology.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['newTechnology.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['newTechnology.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['newTechnology.investigationDesign']
                         ]
                     ]
                 ]

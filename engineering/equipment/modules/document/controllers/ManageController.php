@@ -16,7 +16,7 @@ class ManageController extends AjaxAdminController
         $this->searchClass = DocumentSearch::class;
         parent::init();
     }
-    
+
     public function behaviors()
     {
         return array_merge(
@@ -27,7 +27,8 @@ class ManageController extends AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['equipment.document']
+                            'roles' => ['@']
+                            //'roles' => ['equipment.document']
                         ]
                     ]
                 ]

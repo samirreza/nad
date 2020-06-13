@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['alkalineWasher.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['alkalineWasher.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['alkalineWasher.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['alkalineWasher.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['alkalineWasher.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['alkalineWasher.investigationDesign']
                         ]
                     ]
                 ]

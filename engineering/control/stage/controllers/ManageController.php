@@ -46,14 +46,16 @@ class ManageController extends ParentController
                             'actions' => [
                                 'investigation-monitor-methods'
                             ],
-                            'roles' => ['stage.investigationMonitorMethods']
+                            'roles' => ['@']
+                            //'roles' => ['stage.investigationMonitorMethods']
                         ],
                         [
                             'allow' => true,
                             'actions' => [
                                 'investigation-design'
                             ],
-                            'roles' => ['stage.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['stage.investigationDesign']
                         ]
                     ]
                 ]

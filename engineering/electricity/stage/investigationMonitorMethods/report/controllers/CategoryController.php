@@ -26,7 +26,8 @@ class CategoryController extends ReportCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['stage.investigationMonitorMethods']
+                            'roles' => ['@']
+                            //'roles' => ['stage.investigationMonitorMethods']
                         ]
                     ]
                 ]

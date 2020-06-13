@@ -31,7 +31,8 @@ class ManageController extends ProposalController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['alkalineWasher.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['alkalineWasher.investigation']
                         ]
                     ]
                 ]

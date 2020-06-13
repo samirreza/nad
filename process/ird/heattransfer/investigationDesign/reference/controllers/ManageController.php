@@ -26,7 +26,8 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['heattransfer.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['heattransfer.investigationDesign']
                         ]
                     ]
                 ]

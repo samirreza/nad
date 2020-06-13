@@ -38,7 +38,8 @@ class ManageController extends MethodController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['lacquer.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationDesign']
                         ]
                     ]
                 ]

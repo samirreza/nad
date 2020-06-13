@@ -26,7 +26,8 @@ class CategoryController extends SourceCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['cartridge.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.investigationDesign']
                         ]
                     ]
                 ]

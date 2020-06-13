@@ -29,7 +29,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor-methods'
                             ],
-                            'roles' => ['device.investigationMonitorMethods']
+                            'roles' => ['@']
+                            //'roles' => ['device.investigationMonitorMethods']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +38,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['device.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['device.investigationDesign']
                         ]
                     ]
                 ]

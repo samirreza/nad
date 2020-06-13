@@ -38,7 +38,8 @@ class ManageController extends ProposalController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['graphene.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigationDesign']
                         ]
                     ]
                 ]

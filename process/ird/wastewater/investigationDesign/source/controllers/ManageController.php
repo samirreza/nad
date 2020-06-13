@@ -38,7 +38,8 @@ class ManageController extends SourceController
                                 'view-history',
                                 'index-history'
                             ],
-                            'roles' => ['wastewater.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['wastewater.investigationDesign']
                         ]
                     ]
                 ]

@@ -31,7 +31,8 @@ class ManageController extends ReportController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['colors.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['colors.investigationMonitor']
                         ]
                     ]
                 ]

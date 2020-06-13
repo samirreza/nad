@@ -31,7 +31,8 @@ class ManageController extends ReportController
                                 'view',
                                 'create'
                             ],
-                            'roles' => ['alkalineWasher.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['alkalineWasher.investigationMonitor']
                         ]
                     ]
                 ]

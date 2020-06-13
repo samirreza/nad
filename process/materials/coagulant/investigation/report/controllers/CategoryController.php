@@ -26,7 +26,8 @@ class CategoryController extends ReportCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['coagulant.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['coagulant.investigation']
                         ]
                     ]
                 ]

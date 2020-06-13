@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['cartridge.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['cartridge.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['cartridge.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.investigationDesign']
                         ]
                     ]
                 ]

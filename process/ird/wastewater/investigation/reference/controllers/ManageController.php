@@ -26,7 +26,8 @@ class ManageController extends ReferenceController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['wastewater.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['wastewater.investigation']
                         ]
                     ]
                 ]

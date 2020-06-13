@@ -26,7 +26,8 @@ class CategoryController extends MethodCategoryController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['cartridge.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.investigation']
                         ]
                     ]
                 ]

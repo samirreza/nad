@@ -29,7 +29,8 @@ class ManageController extends AjaxAdminController
                     'rules' => [
                         [
                             'allow' => true,
-                            'roles' => ['research.material']
+                            'roles' => ['@']
+                            //'roles' => ['research.material']
                         ]
                     ]
                 ]

@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['antisediment.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['antisediment.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['antisediment.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['antisediment.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['antisediment.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['antisediment.investigationDesign']
                         ]
                     ]
                 ]

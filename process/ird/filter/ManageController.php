@@ -19,17 +19,19 @@ class ManageController extends \yii\web\Controller
                             'allow' => true,
                             'actions' => [
                                 'index',
-                                'investigation'                                
+                                'investigation'
                             ],
-                            'roles' => ['filter.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['filter.investigation']
                         ],
                         [
                             'allow' => true,
                             'actions' => [
-                                'index',                                
+                                'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['filter.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['filter.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['filter.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['filter.investigationDesign']
                         ]
                     ]
                 ]

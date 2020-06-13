@@ -21,7 +21,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['lacquer.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigation']
                         ],
                         [
                             'allow' => true,
@@ -29,7 +30,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['lacquer.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['lacquer.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['lacquer.investigationDesign']
                         ]
                     ]
                 ]

@@ -21,15 +21,17 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation'
                             ],
-                            'roles' => ['graphene.investigation']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigation']
                         ],
                         [
                             'allow' => true,
                             'actions' => [
-                                'index',                                
+                                'index',
                                 'investigation-monitor'
                             ],
-                            'roles' => ['graphene.investigationMonitor']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigationMonitor']
                         ],
                         [
                             'allow' => true,
@@ -37,7 +39,8 @@ class ManageController extends \yii\web\Controller
                                 'index',
                                 'investigation-design'
                             ],
-                            'roles' => ['graphene.investigationDesign']
+                            'roles' => ['@']
+                            //'roles' => ['graphene.investigationDesign']
                         ]
                     ]
                 ]
