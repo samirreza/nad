@@ -62,13 +62,21 @@ $this->params['breadcrumbs'] = [
     </div>
     <br>
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
             <?= InfoBox::widget([
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستورالعمل',
-                'titleUrl' => Url::to(['/engineering/control/device/investigationImprovement/instruction/manage/index'])
+                'titleUrl' => Url::to(['/engineering/control/stage/investigationImprovement/instruction/manage/index'])
+            ]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= InfoBox::widget([
+                'icon' => '-',
+                'showCount' => false,
+                'title' => 'سایرگزارشها',
+                'titleUrl' => Url::to(['/engineering/control/stage/investigationImprovement/subject/manage/index'])
             ]) ?>
         </div>
     </div>
