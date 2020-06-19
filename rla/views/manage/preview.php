@@ -18,11 +18,9 @@ RlaAssetBundle::register($this);
 
 <h3 class="nad-page-title"><?= $this->title ?></h3>
 
-<?= $this->render('@nad/rla/views/manage/_search',
+<?= $this->render('@nad/rla/views/manage/_preview_search',
 [
-    'searchModel' => $searchModel,
-    'model' => $instanceModel,
-    'itemTypes' => $itemTypes,
+    'allowedItemTypes' => $allowedItemTypes,
     'route' => 'preview'
 ]) ?>
 

@@ -8,6 +8,7 @@ use yii\helpers\Json;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use nad\office\modules\expert\models\Expert;
 use nad\office\modules\expert\models\ExpertSearch;
 use nad\office\modules\expert\models\ExpertForm;
@@ -38,6 +39,7 @@ class ManageController extends Controller
                             'get-access-modal',
                             'grant-revoke-access',
                             'grant-revoke-preview',
+                            'get-users-by-item-type'
                         ],
                         'roles' => ['superuser']
                     ],
@@ -45,6 +47,7 @@ class ManageController extends Controller
                         'allow' => true,
                         'actions' => [
                             'preview',
+                            'preview-index',
                         ],
                         'roles' => ['@']
                     ]
@@ -59,7 +62,7 @@ class ManageController extends Controller
         $instanceModel = $myClass->newInstance();
         $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination->pageSize = 100;
-        $itemTypes = RowLevelAccess::getItemTypes();
+        $itemTypes = RowLevelAccess::getCommonItemTypes();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -148,30 +151,54 @@ class ManageController extends Controller
         }
     }
 
-    public function actionPreview($searchModel = null){
+    public function actionPreviewIndex(){
         $allowedPreviews = RowLevelAccessPreview::find()->where(['user_id' => Yii::$app->user->id])->all();
-        $allItemTypes = RowLevelAccess::getItemTypes();
-        $itemTypes = [];
-        foreach ($allowedPreviews as $preview) {
-            $itemTypes[$preview->item_type] = $allItemTypes[$preview->item_type];
-        }
+        $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($allowedPreviews);
 
-        if(empty($itemTypes)){
+        if(empty($allowedItemTypes)){
             throw new \yii\web\HttpException(403, 'شما به هیچ داده گاهی، دسترسی پیش نمایش ندارید! لطفا با مدیر سایت تماس بگیرید.');
         }
 
-        if(!isset($searchModel))
-            $searchModel = array_keys($itemTypes)[0];
+        return $this->render('preview_index', [
+            'allowedItemTypes' => $allowedItemTypes
+        ]);
+    }
+
+    public function actionPreview($searchModel){
+        $allowedPreviews = RowLevelAccessPreview::find()->where([
+            'user_id' => Yii::$app->user->id,
+            'item_type' => $searchModel
+            ])->all();
+
+        $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($allowedPreviews);
 
         $myClass = new \ReflectionClass($searchModel);
         $instanceModel = $myClass->newInstance();
+        $instanceModel->load(Yii::$app->request->get());
 
-        $count = Yii::$app->db->createCommand('
-            SELECT COUNT(*) FROM nad_investigation_report
-        ')->queryScalar();
+        $countQuery = (new \yii\db\Query())
+            ->select('count(*)')
+            ->from($instanceModel::tableName())
+            ->where(['consumer' => $searchModel::CONSUMER_CODE])
+            ->andFilterWhere(['like', 'title', $instanceModel->title])
+            ->andFilterWhere(['like', 'uniqueCode', $instanceModel->uniqueCode]);
+
+        $sqlQuery = (new \yii\db\Query())
+            ->select(['uniqueCode', 'title', 'createdAt', 'updatedAt'])
+            ->from($instanceModel::tableName())
+            ->where(['consumer' => $searchModel::CONSUMER_CODE])
+            ->andFilterWhere(['like', 'title', $instanceModel->title])
+            ->andFilterWhere(['like', 'uniqueCode', $instanceModel->uniqueCode]);
+
+        if($allowedPreviews == null || empty($allowedPreviews)){
+            $countQuery->andWhere('1=0');
+            $sqlQuery->andWhere('1=0');
+        }
+        $count  = $countQuery->createCommand()->queryScalar();
+        $rawSql = $sqlQuery->createCommand()->getRawSql();
 
         $dataProvider = new SqlDataProvider([
-            'sql' => 'SELECT `uniqueCode`, `title`, `createdAt`, `updatedAt` FROM ' . RowLevelAccess::getItemTypeTable($searchModel),
+            'sql' => $rawSql,
             'totalCount' => $count,
             'pagination' => [
                 'pageSize' => 20,
@@ -190,7 +217,7 @@ class ManageController extends Controller
             'searchModel' => $searchModel,
             'instanceModel' => $instanceModel,
             'dataProvider' => $dataProvider,
-            'itemTypes' => $itemTypes
+            'allowedItemTypes' => $allowedItemTypes
         ]);
     }
 
@@ -199,14 +226,19 @@ class ManageController extends Controller
         $modelTemplate = new RowLevelAccessPreview();
 
         if($modelTemplate->load(Yii::$app->request->post())){
+            $modelTemplate->itemTypes = Json::decode($modelTemplate->itemTypes);
+
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                Yii::$app->db->createCommand()->delete(RowLevelAccessPreview::tableName(), '1=1')->execute();
+                Yii::$app->db->createCommand()->delete(
+                    RowLevelAccessPreview::tableName(),
+                    ['in', 'item_type', $modelTemplate->itemTypes]
+                )->execute();
 
                 $rows = [];
-                foreach ($modelTemplate->itemTypes as $key => $itemType) {
-                    if(isset($modelTemplate->userIds[$key]) && is_array($modelTemplate->userIds[$key])){
-                        $itemUserIds = $modelTemplate->userIds[$key];
+                foreach ($modelTemplate->itemTypes as $itemType) {
+                    if(isset($modelTemplate->userIds) && is_array($modelTemplate->userIds)){
+                        $itemUserIds = $modelTemplate->userIds;
                         foreach ($itemUserIds as $userId) {
                             $tmp = [
                                 $itemType,
@@ -228,10 +260,7 @@ class ManageController extends Controller
 
                 $transaction->commit();
 
-                Yii::$app->session->addFlash(
-                    'success',
-                    'عملیات مورد نظر با موفقیت در سیستم ثبت شد.'
-                );
+                return  'عملیات مورد نظر با موفقیت در سیستم ثبت شد.';
 
             } catch (\Exception $e) {
                 $transaction->rollBack();
@@ -240,6 +269,8 @@ class ManageController extends Controller
                 $transaction->rollBack();
                 throw $e;
             }
+        }else if($modelTemplate->hasErrors()){
+            return $modelTemplate->getFirstErrors();
         }
 
         return $this->render('grant_revoke_preview', [
@@ -247,5 +278,20 @@ class ManageController extends Controller
             'itemTypes' => $itemTypes,
             'experts' => Expert::find()->all()
         ]);
+    }
+
+    public function actionGetUsersByItemType($itemTypes){
+        $decodedItemTypes = Json::decode($itemTypes);
+        $users = ArrayHelper::getColumn(
+            RowLevelAccessPreview::find()->where(['in', 'item_type', $decodedItemTypes])->Select('user_id')->distinct()->all(),
+            'user_id'
+        );
+
+        $finalUsers = [];
+        foreach ($users as $user) {
+            $finalUsers[] = strval($user);
+        }
+
+        return Json::encode($finalUsers);
     }
 }

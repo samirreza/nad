@@ -677,7 +677,7 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'پیش نمایش داده گاه ها',
-                'url' => ['/rla/manage/preview'],
+                'url' => ['/rla/manage/preview-index'],
                 'icon' => 'angle-right',
                 'visible' =>  !$user->can('superuser'),
             ],
