@@ -16,7 +16,6 @@ class Module extends \yii\base\Module
             'method' => 'nad\engineering\instrument\stage\investigationImprovement\method\Module',
             'instruction' => 'nad\engineering\instrument\stage\investigationImprovement\instruction\Module',
             'subject' => 'nad\engineering\instrument\stage\investigationImprovement\subject\Module',
-            'otherreport' => 'nad\engineering\instrument\stage\investigationImprovement\otherreport\Module',
         ];
         $this->horizontalMenuItems = [
             [

@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
             'reference' => 'nad\engineering\instrument\device\investigationImprovement\reference\Module',
             'method' => 'nad\engineering\instrument\device\investigationImprovement\method\Module',
             'instruction' => 'nad\engineering\instrument\device\investigationImprovement\instruction\Module',
+            'subject' => 'nad\engineering\instrument\device\investigationImprovement\subject\Module',
         ];
         $this->horizontalMenuItems = [
             [
@@ -193,6 +194,28 @@ class Module extends \yii\base\Module
                                 'url' => ['/engineering/instrument/device/investigationImprovement/instruction/manage/index-history']
                             ],
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'سایرگزارشها',
+                'items' => [
+                    [
+                        'label' => 'برنامه',
+                        'items' => [
+                            [
+                                'label' => 'افزودن موضوع',
+                                'url' => ['/engineering/instrument/device/investigationImprovement/subject/manage/create']
+                            ],
+                            [
+                                'label' => 'لیست‌ موضوعهای فعال',
+                                'url' => ['/engineering/instrument/device/investigationImprovement/subject/manage/index']
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'داده گاه',
+                        'url' => ['/engineering/instrument/device/investigationImprovement/subject/manage/archived-index']
                     ]
                 ]
             ],
