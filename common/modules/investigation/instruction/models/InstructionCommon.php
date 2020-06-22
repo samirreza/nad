@@ -102,7 +102,8 @@ class InstructionCommon extends BaseInvestigationModel
                                     'pptx',
                                     'zip'
                                 ],
-                                'maxSize' => 100 * 1024 * 1024
+                                'maxSize' => 100 * 1024 * 1024,
+                                'required' => true
                             ]
                         ],
                         'instructionDoc' => [
@@ -121,7 +122,8 @@ class InstructionCommon extends BaseInvestigationModel
                                     'pptx',
                                     'zip'
                                 ],
-                                'maxSize' => 100 * 1024 * 1024
+                                'maxSize' => 100 * 1024 * 1024,
+                                'required' => true
                             ]
                         ]
                     ]

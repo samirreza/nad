@@ -26,14 +26,14 @@ $this->registerJS("$(function(){
         });
         let tmpValue = JSON.stringify(finalSelectedModules);
         if(tmpValue == '[]'){
-            showNotification('لطفا داده گاه را انتخاب کنید', 'error');
+            notify('لطفا داده گاه را انتخاب کنید', 'error');
 
             return false;
         }
         $('#RowLevelAccessPreview_itemTypes').val(tmpValue);
 
         $.post($('#rla_grant_revoke_preview').attr('action'), $('#rla_grant_revoke_preview').serialize(), function(response) {
-            showNotification(response, 'info');
+            notify(response, 'info');
 
         });
 
