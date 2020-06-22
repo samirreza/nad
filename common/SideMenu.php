@@ -677,7 +677,7 @@ class SideMenu extends \theme\widgets\Menu
             ],
             [
                 'label' => 'پیش نمایش داده گاه ها',
-                'url' => ['/rla/manage/preview-index'],
+                'url' => ['/rla/manage/preview'],
                 'icon' => 'angle-right',
                 'visible' =>  !$user->can('superuser'),
             ],
@@ -726,7 +726,6 @@ class SideMenu extends \theme\widgets\Menu
                                 'label' => 'مدارک',
                                 'url' => [
                                     '/rla/manage/index',
-                                    'searchModel' => 'nad\common\modules\investigation\source\models\SourceSearch'
                                 ],
                                 'icon' => 'angle-right',
                             ],

@@ -97,6 +97,7 @@ $uploadedFiles = $model->getFiles('file');
                                     'group' => 'file',
                                 ]) ?>
                             <?php Panel::end() ?>
+                            <div class="alert alert-info" role="alert">توجه: آپلود فایل اجباری است</div>
                         </div>
                     </div>
                 </div>

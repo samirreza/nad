@@ -56,20 +56,28 @@ class ManageController extends Controller
         ];
     }
 
-    public function actionIndex($searchModel = 'nad\common\modules\investigation\source\models\SourceSearch')
+    public function actionIndex($searchModel = null)
     {
-        $myClass = new \ReflectionClass($searchModel);
-        $instanceModel = $myClass->newInstance();
-        $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize = 100;
-        $itemTypes = RowLevelAccess::getCommonItemTypes();
+        // TODO fix function parameter
+        $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($dummy = []);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'instanceModel' => $instanceModel,
-            'dataProvider' => $dataProvider,
-            'itemTypes' => $itemTypes
-        ]);
+        if (isset($searchModel)) {
+            $myClass = new \ReflectionClass($searchModel);
+            $instanceModel = $myClass->newInstance();
+            $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
+            $dataProvider->pagination->pageSize = 100;
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'instanceModel' => $instanceModel,
+                'dataProvider' => $dataProvider,
+                'allowedItemTypes' => $allowedItemTypes
+            ]);
+        }else{
+            return $this->render('index', [
+                'allowedItemTypes' => $allowedItemTypes
+            ]);
+        }
     }
 
     public function actionGetAccessModal($ids){
@@ -151,74 +159,40 @@ class ManageController extends Controller
         }
     }
 
-    public function actionPreviewIndex(){
-        $allowedPreviews = RowLevelAccessPreview::find()->where(['user_id' => Yii::$app->user->id])->all();
-        $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($allowedPreviews);
-
-        if(empty($allowedItemTypes)){
-            throw new \yii\web\HttpException(403, 'شما به هیچ داده گاهی، دسترسی پیش نمایش ندارید! لطفا با مدیر سایت تماس بگیرید.');
-        }
-
-        return $this->render('preview_index', [
-            'allowedItemTypes' => $allowedItemTypes
-        ]);
-    }
-
-    public function actionPreview($searchModel){
-        $allowedPreviews = RowLevelAccessPreview::find()->where([
+    public function actionPreview($searchModel = null){
+        if (isset($searchModel)) {
+            $allowedPreviews = RowLevelAccessPreview::find()->where([
             'user_id' => Yii::$app->user->id,
             'item_type' => $searchModel
             ])->all();
 
-        $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($allowedPreviews);
+            // TODO fix faucntion parameter
+            $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($dummy = []);
 
-        $myClass = new \ReflectionClass($searchModel);
-        $instanceModel = $myClass->newInstance();
-        $instanceModel->load(Yii::$app->request->get());
+            $myClass = new \ReflectionClass($searchModel);
+            $instanceModel = $myClass->newInstance();
+            $instanceModel->load(Yii::$app->request->get());
+            $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
 
-        $countQuery = (new \yii\db\Query())
-            ->select('count(*)')
-            ->from($instanceModel::tableName())
-            ->where(['consumer' => $searchModel::CONSUMER_CODE])
-            ->andFilterWhere(['like', 'title', $instanceModel->title])
-            ->andFilterWhere(['like', 'uniqueCode', $instanceModel->uniqueCode]);
+            return $this->render('preview', [
+                'searchModel' => $searchModel,
+                'instanceModel' => $instanceModel,
+                'dataProvider' => $dataProvider,
+                'allowedItemTypes' => $allowedItemTypes
+            ]);
+        }else{
+            $allowedPreviews = RowLevelAccessPreview::find()->where(['user_id' => Yii::$app->user->id])->all();
+            // TODO fix faucntion parameter
+            $allowedItemTypes = RowLevelAccess::getAllowedItemTypesForTree($dummy = []);
 
-        $sqlQuery = (new \yii\db\Query())
-            ->select(['uniqueCode', 'title', 'createdAt', 'updatedAt'])
-            ->from($instanceModel::tableName())
-            ->where(['consumer' => $searchModel::CONSUMER_CODE])
-            ->andFilterWhere(['like', 'title', $instanceModel->title])
-            ->andFilterWhere(['like', 'uniqueCode', $instanceModel->uniqueCode]);
+            if(empty($allowedItemTypes)){
+                throw new \yii\web\HttpException(403, 'شما به هیچ داده گاهی، دسترسی پیش نمایش ندارید! لطفا با مدیر سایت تماس بگیرید.');
+            }
 
-        if($allowedPreviews == null || empty($allowedPreviews)){
-            $countQuery->andWhere('1=0');
-            $sqlQuery->andWhere('1=0');
+            return $this->render('preview', [
+                'allowedItemTypes' => $allowedItemTypes
+            ]);
         }
-        $count  = $countQuery->createCommand()->queryScalar();
-        $rawSql = $sqlQuery->createCommand()->getRawSql();
-
-        $dataProvider = new SqlDataProvider([
-            'sql' => $rawSql,
-            'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-            'sort' => [
-                'attributes' => [
-                    'title',
-                    'uniqueCode',
-                    'createdAt',
-                    'updatedAt'
-                ],
-            ],
-        ]);
-
-        return $this->render('preview', [
-            'searchModel' => $searchModel,
-            'instanceModel' => $instanceModel,
-            'dataProvider' => $dataProvider,
-            'allowedItemTypes' => $allowedItemTypes
-        ]);
     }
 
     public function actionGrantRevokePreview(){
@@ -249,7 +223,6 @@ class ManageController extends Controller
                         }
                     }
                 }
-
                 Yii::$app->db->createCommand()->batchInsert(RowLevelAccessPreview::tableName(),
                     [
                         'item_type',
