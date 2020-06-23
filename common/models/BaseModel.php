@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Url;
 use nad\rla\models\RowLevelAccess;
+use nad\rla\models\RowLevelAccessPreview;
 
 class BaseModel extends ActiveRecord
 {
@@ -25,7 +26,17 @@ class BaseModel extends ActiveRecord
                     ->from('row_level_access_preview')
                     ->where([
                         'user_id' => $userId
-                    ]);
+                    ])
+                    ->andWhere(
+                        ['or',
+                            ['access_type' => RowLevelAccessPreview::ROW_LEVEL_ACCESS_TYPE_PERMANENT],
+                            [
+                                'and',
+                                    ['access_type' => RowLevelAccessPreview::ROW_LEVEL_ACCESS_TYPE_TEMPORARY],
+                                    ['>', 'expire_date', time()]
+                            ]
+                        ]
+                    );;
 
                 return parent::find()->andWhere(['in', $baseTableName . '.`consumer` collate utf8_general_ci ', $subQuery]); // in case any error happens we use collate to cast encoding! wtf!
             }else{

@@ -128,11 +128,11 @@ class ManageController extends Controller
                         $expireDate = isset($model->expireDates[$userId])?$formatter->parse($model->expireDates[$userId]):time();
 
                         $tmp = [
-                        $seqId,
-                        $userId,
-                        $model->accessTypes[$userId],
-                        $expireDate
-                    ];
+                            $seqId,
+                            $userId,
+                            $model->accessTypes[$userId],
+                            $expireDate
+                        ];
 
                         $rows[] = $tmp;
                     }
@@ -214,9 +214,24 @@ class ManageController extends Controller
                     if(isset($modelTemplate->userIds) && is_array($modelTemplate->userIds)){
                         $itemUserIds = $modelTemplate->userIds;
                         foreach ($itemUserIds as $userId) {
+                            $formatter = new IntlDateFormatter(
+                                'en_US@calendar=persian',
+                                IntlDateFormatter::SHORT,
+                                IntlDateFormatter::NONE,
+                                'Asia/Tehran',
+                                IntlDateFormatter::TRADITIONAL,
+                                "yyyy/MM/dd"
+                            ); // lol
+                            $expireDate = isset($modelTemplate->expireDates[$userId])?$formatter->parse($modelTemplate->expireDates[$userId]):time();
+
+                            if($modelTemplate->accessTypes[$userId] == RowLevelAccess::ROW_LEVEL_ACCESS_TYPE_PERMANENT)
+                                $expireDate = null; // overrides time() value
+
                             $tmp = [
                                 $itemType,
                                 $userId,
+                                $modelTemplate->accessTypes[$userId],
+                                $expireDate
                             ];
 
                             $rows[] = $tmp;
@@ -227,6 +242,8 @@ class ManageController extends Controller
                     [
                         'item_type',
                         'user_id',
+                        'access_type',
+                        'expire_date'
                     ],
                     $rows
                 )->execute();

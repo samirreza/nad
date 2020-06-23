@@ -16,8 +16,13 @@ use yii\helpers\Html;
  */
 class RowLevelAccessPreview extends \yii\db\ActiveRecord
 {
+    public const ROW_LEVEL_ACCESS_TYPE_PERMANENT = 1;
+    public const ROW_LEVEL_ACCESS_TYPE_TEMPORARY = 2;
+
     public $userIds;
     public $itemTypes;
+    public $accessTypes;
+    public $expireDates;
 
     /**
      * {@inheritdoc}
@@ -34,7 +39,7 @@ class RowLevelAccessPreview extends \yii\db\ActiveRecord
     {
         return [
             [['itemTypes'], 'required'],
-            [['userIds'], 'safe'],
+            [['userIds', 'accessTypes', 'expireDates'], 'safe'],
         ];
     }
 
@@ -47,6 +52,8 @@ class RowLevelAccessPreview extends \yii\db\ActiveRecord
             'id' => 'ID',
             'itemTypes' => 'لیست داده گاه های قابل پیش نمایش',
             'user_id' => 'User ID',
+            'access_type' => 'دسترسی زماندار',
+            'expire_date' => 'Expire Date',
         ];
     }
 }
