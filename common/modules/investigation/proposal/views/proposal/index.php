@@ -54,7 +54,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'userId',
                                 'user.fullName'
                             ),
@@ -75,7 +75,7 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                             'model' => $searchModel,
                             'attribute' => 'reportExpert.userId',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'userId',
                                 'user.fullName'
                             ),

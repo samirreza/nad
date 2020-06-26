@@ -3,6 +3,7 @@
 namespace nad\office\modules\expert\models;
 
 use yii\data\ActiveDataProvider;
+use modules\user\backend\models\User;
 
 class ExpertSearch extends Expert
 {
@@ -43,6 +44,8 @@ class ExpertSearch extends Expert
         $query->andFilterWhere(['like', 'user.name', $this->name])
             ->andFilterWhere(['like', 'user.surname', $this->surname])
             ->andFilterWhere(['like', 'user.email', $this->email]);
+
+        $query->andWhere(['<>', 'user.status', User::STATUS_SOFT_DELETED]);
 
         return $dataProvider;
     }

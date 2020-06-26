@@ -88,7 +88,7 @@ $this->params['breadcrumbs'] = [
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'userId',
                                 'user.fullName'
                             ),

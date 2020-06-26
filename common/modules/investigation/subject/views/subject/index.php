@@ -57,7 +57,7 @@ use nad\common\modules\investigation\subject\models\SubjectReason;
                             'model' => $searchModel,
                             'attribute' => 'createdBy',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'userId',
                                 'user.fullName'
                             ),
@@ -79,7 +79,7 @@ use nad\common\modules\investigation\subject\models\SubjectReason;
                             'model' => $searchModel,
                             'attribute' => 'expert.userId',
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'userId',
                                 'user.fullName'
                             ),
