@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'model' => $searchModel,
                             'attribute' => 'email',
                             'data' => ArrayHelper::map(
-                                User::find()->all(),
+                                User::find(['<>', 'status', User::STATUS_SOFT_DELETED])->all(),
                                 'email',
                                 'email'
                             ),
