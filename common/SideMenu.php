@@ -716,26 +716,7 @@ class SideMenu extends \theme\widgets\Menu
                     [
                         'label' => 'دسترسی',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'لیست داده گاه ها',
-                                'url' => ['/rla/manage/grant-revoke-preview'],
-                                'icon' => 'angle-right',
-                            ],
-                            [
-                                'label' => 'مدارک',
-                                'url' => [
-                                    '/rla/manage/index',
-                                ],
-                                'icon' => 'angle-right',
-                            ],
-                            [
-                                'label' => 'درخواست ها',
-                                'url' => ['/rla/request/index'],
-                                'icon' => 'angle-right',
-                                'badge' => RowLevelAccessRequest::getUnreadReuqestsCount(),
-                            ],
-                        ]
+                        'url' => ['/rla/manage/start']
                     ],
                 ]
             ],
