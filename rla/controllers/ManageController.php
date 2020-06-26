@@ -39,7 +39,8 @@ class ManageController extends Controller
                             'get-access-modal',
                             'grant-revoke-access',
                             'grant-revoke-preview',
-                            'get-users-by-item-type'
+                            'get-users-by-item-type',
+                            'start'
                         ],
                         'roles' => ['superuser']
                     ],
@@ -54,6 +55,10 @@ class ManageController extends Controller
                 ]
             ]
         ];
+    }
+
+    public function actionStart(){
+        return $this->render('start');
     }
 
     public function actionIndex($searchModel = null)
@@ -127,11 +132,14 @@ class ManageController extends Controller
                         ); // lol
                         $expireDate = isset($model->expireDates[$userId])?$formatter->parse($model->expireDates[$userId]):time();
 
+                        $createTime = time();
+
                         $tmp = [
                             $seqId,
                             $userId,
                             $model->accessTypes[$userId],
-                            $expireDate
+                            $expireDate,
+                            $createTime
                         ];
 
                         $rows[] = $tmp;
@@ -144,7 +152,8 @@ class ManageController extends Controller
                     'seq_access_id',
                     'user_id',
                     'access_type',
-                    'expire_date'
+                    'expire_date',
+                    'createdAt'
                 ],
                     $rows
                 )->execute();
@@ -173,6 +182,9 @@ class ManageController extends Controller
             $instanceModel = $myClass->newInstance();
             $instanceModel->load(Yii::$app->request->get());
             $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
+            $query = $dataProvider->query;
+            $conditions = RowLevelAccess::removePotentialArchivedCondition($query->where);
+            $query->where($conditions);
 
             return $this->render('preview', [
                 'searchModel' => $searchModel,
@@ -227,11 +239,14 @@ class ManageController extends Controller
                             if($modelTemplate->accessTypes[$userId] == RowLevelAccess::ROW_LEVEL_ACCESS_TYPE_PERMANENT)
                                 $expireDate = null; // overrides time() value
 
+                            $createTime = time();
+
                             $tmp = [
                                 $itemType,
                                 $userId,
                                 $modelTemplate->accessTypes[$userId],
-                                $expireDate
+                                $expireDate,
+                                $createTime
                             ];
 
                             $rows[] = $tmp;
@@ -243,7 +258,8 @@ class ManageController extends Controller
                         'item_type',
                         'user_id',
                         'access_type',
-                        'expire_date'
+                        'expire_date',
+                        'createdAt'
                     ],
                     $rows
                 )->execute();

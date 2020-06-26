@@ -176,4 +176,9 @@ class Expert extends ActiveRecord
             }
         }
     }
+
+    public static function find()
+    {
+        return parent::find()->joinWith('user')->andWhere(['user.status' => User::STATUS_ACTIVE]);
+    }
 }

@@ -4,6 +4,7 @@ namespace nad\rla\models;
 
 use Yii;
 use yii\helpers\Html;
+use core\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "row_level_access".
@@ -54,6 +55,16 @@ class RowLevelAccessPreview extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'access_type' => 'دسترسی زماندار',
             'expire_date' => 'Expire Date',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false
+            ],
         ];
     }
 }

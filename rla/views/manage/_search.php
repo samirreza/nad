@@ -29,7 +29,7 @@ $this->registerJS("$(function(){
             // this if is a dirty fix for unusual behaviour of jstree's `state` plugin
             if(window.location.href.indexOf(myUrl) <= 0 && window.location.href.indexOf('&page=') <= 0){
                 window.location = myUrl;
-                notify('لطفا تا بارگذاری صفحه صبر کنید...', 'info');
+                notify('لطفا تا بارگذاری صفحه صبر کنید...', 'info', true);
             }
         }else{
             notify('گزینه انتخاب شده از نوع داده گاه نیست!', 'error');
