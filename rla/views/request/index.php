@@ -42,6 +42,12 @@ $this->params['breadcrumbs'] = [
                 'filterUrl' => ['index'],
                 'columns' => [
                     [
+                        'class' => 'yii\grid\SerialColumn',
+                        'options' => [
+                            'width' => '20px'
+                        ]
+                    ],
+                    [
                         'attribute' => 'type',
                         'value' => function ($model) {
                             return Lookup::item('nad.rla.request.Type', $model->type);
