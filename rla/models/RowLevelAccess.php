@@ -4,6 +4,7 @@ namespace nad\rla\models;
 
 use Yii;
 use yii\helpers\Html;
+use core\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "row_level_access".
@@ -56,6 +57,16 @@ class RowLevelAccess extends \yii\db\ActiveRecord
             'access_type' => 'دسترسی زماندار',
             'expire_date' => 'Expire Date',
             'userIds' => 'لیست کاربران'
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false
+            ],
         ];
     }
 
@@ -4802,6 +4813,8 @@ class RowLevelAccess extends \yii\db\ActiveRecord
         return $finalAllowedTypes;
     }
 
+
+    // TODO This function is not used anymore, remove it asap
     public static function getCommonItemTypes(){
         return [
             'nad\common\modules\investigation\source\models\SourceSearch' => 'منشا',
@@ -4811,6 +4824,21 @@ class RowLevelAccess extends \yii\db\ActiveRecord
             'nad\common\modules\investigation\instruction\models\InstructionSearch' => 'دستورالعمل',
             'nad\common\modules\investigation\subject\models\SubjectSearch' => 'موضوع',
         ];
+    }
+
+    public static function removePotentialArchivedCondition($conditions){
+        $indexOfArchivedCondition = null;
+        foreach ($conditions as $index => $item) {
+            if(is_array($item) && isset($item['isArchived'])){
+                $indexOfArchivedCondition = $index;
+            }
+        }
+
+        if(isset($indexOfArchivedCondition)){
+            unset($conditions[$indexOfArchivedCondition]);
+        }
+
+        return $conditions;
     }
 
     /**
