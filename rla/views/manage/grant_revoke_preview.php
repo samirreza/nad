@@ -1,4 +1,4 @@
-o<?php
+<?php
 
 use yii\web\View;
 use theme\widgets\Panel;
@@ -80,8 +80,11 @@ $this->registerJS("$(function(){
         }
         $('#RowLevelAccessPreview_itemTypes').val(tmpValue);
 
+        let waitNotify = notify('لطفا صبر کنید...', 'info', true);
         $.post($('#rla_grant_revoke_preview').attr('action'), $('#rla_grant_revoke_preview').serialize(), function(response) {
             notify(response, 'success');
+        }).always(function(){
+            waitNotify.close();
         });
 
         return false;
