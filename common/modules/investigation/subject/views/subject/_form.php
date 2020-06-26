@@ -163,7 +163,7 @@ $reportFiles2 = $model->getFiles('reportFile2');
                             Select2::class,
                             [
                                 'data' => ArrayHelper::map(
-                                    Expert::find()->all(),
+                                    expert::getNotDeletedUsers()->all(),
                                     'id',
                                     'user.fullname'
                                 ),

@@ -167,7 +167,7 @@ $uploadedFiles = $model->getFiles('file');
                         Select2::class,
                         [
                             'data' => ArrayHelper::map(
-                                Expert::find()->all(),
+                                expert::getNotDeletedUsers()->all(),
                                 'id',
                                 'user.fullname'
                             ),

@@ -109,7 +109,7 @@ class Expert extends ActiveRecord
 
     public static function getDepartmentExperts($departmentId)
     {
-        return self::find()
+        return self::getNotDeletedUsers()
             ->andWhere(['departmentId' => $departmentId])
             ->all();
     }
@@ -137,7 +137,7 @@ class Expert extends ActiveRecord
 
     public static function getExpertsByPermission($permission)
     {
-        $allExperts = self::find()->all();
+        $allExperts = self::getNotDeletedUsers()->all();
         $experts = [];
         $authManager = Yii::$app->authManager;
         foreach ($allExperts as $expert) {
@@ -177,8 +177,8 @@ class Expert extends ActiveRecord
         }
     }
 
-    public static function find()
+    public static function getNotDeletedUsers()
     {
-        return parent::find()->joinWith('user')->andWhere(['user.status' => User::STATUS_ACTIVE]);
+        return self::find()->joinWith('user')->where(['<>', 'user.status', User::STATUS_SOFT_DELETED]);
     }
 }

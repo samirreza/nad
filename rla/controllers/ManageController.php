@@ -106,7 +106,7 @@ class ManageController extends Controller
         return $this->renderAjax('_access_modal', [
             'modelTemplate' => $modelTemplate,
             'models' => $models,
-            'experts' => Expert::find()->all()
+            'experts' => expert::getNotDeletedUsers()->all()
             ]);
     }
 
@@ -282,7 +282,7 @@ class ManageController extends Controller
         return $this->render('grant_revoke_preview', [
             'modelTemplate' => $modelTemplate,
             'itemTypes' => $itemTypes,
-            'experts' => Expert::find()->all()
+            'experts' => expert::getNotDeletedUsers()->all()
         ]);
     }
 
