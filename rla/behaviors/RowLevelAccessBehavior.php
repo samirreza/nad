@@ -44,7 +44,7 @@ class RowLevelAccessBehavior extends Behavior
      }
 
      public function setSeqAccessIdBeforeInsert(){
-        $sql = 'SELECT NEXTVAL(SEQ_ACCESS)';
+        $sql = 'SELECT NEXTVAL(seq_access)';
         $this->owner->seq_access_id = Yii::$app->db->createCommand($sql)->queryScalar();
      }
 }
