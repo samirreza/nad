@@ -1,6 +1,7 @@
 <?php
 namespace nad\common\modules\site\models;
 
+use nad\common\models\BaseModel;
 use nad\common\code\Codable;
 use yii\helpers\ArrayHelper;
 use nad\common\code\CodableTrait;
@@ -9,7 +10,7 @@ use nad\common\modules\site\models\Document;
 use nad\common\modules\engineering\stage\models\Category as StageCategory;
 use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
-class Site extends \yii\db\ActiveRecord implements Codable
+class Site extends BaseModel implements Codable
 {
     use CodableTrait;
 
