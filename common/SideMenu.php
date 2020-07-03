@@ -19,6 +19,12 @@ class SideMenu extends \theme\widgets\Menu
                 'url' => ['/notif/index']
             ],
             [
+                'label' => 'مدیریت',
+                'icon' => 'angle-right',
+                'url' => ['/general/manage/manager-actions'],
+                'visible' =>  $user->can('superuser'),
+            ],
+            [
                 'label' => 'فرایند',
                 'icon' => 'angle-right',
                 'items' => [
@@ -369,6 +375,32 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
+                'label' => 'بهره برداری',
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'تولید',
+                        'icon' => 'angle-right',
+                        'url' => '#'
+                    ],
+                    [
+                        'label' => 'تعمیرات',
+                        'icon' => 'angle-right',
+                        'url' => '#'
+                    ],
+                    [
+                        'label' => 'انبار',
+                        'icon' => 'angle-right',
+                        'url' => '#'
+                    ],
+                    [
+                        'label' => 'پشتیبانی',
+                        'icon' => 'angle-right',
+                        'url' => '#'
+                    ]
+                ]
+            ],
+            [
                 'label' => 'احداث',
                 'icon' => 'angle-right',
                 'items' => [
@@ -438,197 +470,218 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
-                'label' => 'موقت',
+                'label' => 'ساخت',
+                'icon' => 'angle-right',
+                'url' => '#'
+            ],
+            [
+                'label' => 'تامین',
                 'icon' => 'angle-right',
                 'items' => [
                     [
-                        'label' => 'تامین',
+                        'label' => 'خرید',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'خرید',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/supply/unit1']
-                            ],
-                            [
-                                'label' => 'ساخت و تعمیر',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/supply/unit2']
-                            ],
-                            [
-                                'label' => 'جابجایی',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/supply/unit3']
-                            ],
-                            [
-                                'label' => 'داده گاه تامین کنندگان',
-                                'icon' => 'angle-right',
-                                'url' => ['/supplier/manage/index'],
-                                'visible' => $user->canAccessAny(['supplier.create', 'supplier.delete', 'supplier.update'])
-                            ]
-                        ]
+                        'url' => ['/temporary/supply/unit1']
                     ],
                     [
-                        'label' => 'آی تی',
+                        'label' => 'ساخت و تعمیر',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/supply/unit2']
+                    ],
+                    [
+                        'label' => 'جابجایی',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/supply/unit3']
+                    ],
+                    [
+                        'label' => 'داده گاه تامین کنندگان',
+                        'icon' => 'angle-right',
+                        'url' => ['/supplier/manage/index'],
+                        'visible' => $user->canAccessAny(['supplier.create', 'supplier.delete', 'supplier.update'])
+                    ]
+                ]
+            ],
+            [
+                'label' => 'آی تی',
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'واحد 1',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/informationtech/unit1']
+                    ],
+                    [
+                        'label' => 'واحد 2',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/informationtech/unit2']
+                    ],
+                    [
+                        'label' => 'واحد 3',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/informationtech/unit3']
+                    ],
+                    [
+                        'label' => 'شناسه تجهیزات',
+                        'icon' => 'angle-right',
+                        'url' => ['/it/equipment/type/manage/index'],
+                        'visible' => $user->can('it.equipment-type'),
+                    ],
+                    [
+                        'label' => 'گزارش های مدیریتی',
                         'icon' => 'angle-right',
                         'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/informationtech/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/informationtech/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/informationtech/unit3']
-                            ],
                             [
                                 'label' => 'شناسه تجهیزات',
-                                'icon' => 'angle-right',
-                                'url' => ['/it/equipment/type/manage/index'],
-                                'visible' => $user->can('it.equipment-type'),
-                            ],
-                            [
-                                'label' => 'گزارش های مدیریتی',
-                                'icon' => 'angle-right',
-                                'items' => [
-                                    [
-                                        'label' => 'شناسه تجهیزات',
-                                        'url' => ['/it/equipment/type/manage/report'],
-                                        'visible' => $user->can('manager')
-                                    ]
-                                ]
+                                'url' => ['/it/equipment/type/manage/report'],
+                                'visible' => $user->can('manager')
                             ]
                         ]
+                    ]
+                ]
+            ],
+            [
+                'label' => 'مالی',
+                'icon' => 'angle-right',
+                'items' => [
+                    [
+                        'label' => 'واحد 1',
+                        'icon' => 'angle-right',
+                        'url' => ['/temporary/financial/unit1']
                     ],
                     [
-                        'label' => 'مالی',
+                        'label' => 'واحد 2',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/financial/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/financial/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/financial/unit3']
-                            ],
-                        ]
+                        'url' => ['/temporary/financial/unit2']
                     ],
                     [
-                        'label' => 'اداری',
+                        'label' => 'واحد 3',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/administrative/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/administrative/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/temporary/administrative/unit3']
-                            ],
-                        ]
+                        'url' => ['/temporary/financial/unit3']
                     ],
                 ]
             ],
             [
-                'label' => 'کارخانه',
+                'label' => 'پشتیبانی',
                 'icon' => 'angle-right',
                 'items' => [
                     [
-                        'label' => 'تولید',
+                        'label' => 'مرکز',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'فنی',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/production/unit1']
-                            ],
-                            [
-                                'label' => 'آزمایشگاه',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/production/unit2']
-                            ],
-                            [
-                                'label' => 'تولید',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/production/unit3']
-                            ],
-                            [
-                                'label' => 'تعمیرات و نگهداری',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/production/unit4']
-                            ],
-                            [
-                                'label' => 'انبار',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/production/unit5']
-                            ],
-                        ]
+                        'url' => '#'
                     ],
                     [
-                        'label' => 'احداث',
+                        'label' => 'منظقه',
                         'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/build/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/build/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/build/unit3']
-                            ],
-                        ]
-                    ],
-                    [
-                        'label' => 'پشتیبانی',
-                        'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/support/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/support/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/factory/support/unit3']
-                            ],
-                        ]
-                    ],
+                        'url' => '#'
+                    ]
                 ]
             ],
+            // [
+            //     'label' => 'موقت',
+            //     'icon' => 'angle-right',
+            //     'items' => [
+            //         [
+            //             'label' => 'اداری',
+            //             'icon' => 'angle-right',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'واحد 1',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/temporary/administrative/unit1']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 2',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/temporary/administrative/unit2']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 3',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/temporary/administrative/unit3']
+            //                 ],
+            //             ]
+            //         ],
+            //     ]
+            // ],
+            // [
+            //     'label' => 'کارخانه',
+            //     'icon' => 'angle-right',
+            //     'items' => [
+            //         [
+            //             'label' => 'تولید',
+            //             'icon' => 'angle-right',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'فنی',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/production/unit1']
+            //                 ],
+            //                 [
+            //                     'label' => 'آزمایشگاه',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/production/unit2']
+            //                 ],
+            //                 [
+            //                     'label' => 'تولید',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/production/unit3']
+            //                 ],
+            //                 [
+            //                     'label' => 'تعمیرات و نگهداری',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/production/unit4']
+            //                 ],
+            //                 [
+            //                     'label' => 'انبار',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/production/unit5']
+            //                 ],
+            //             ]
+            //         ],
+            //         [
+            //             'label' => 'احداث',
+            //             'icon' => 'angle-right',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'واحد 1',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/build/unit1']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 2',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/build/unit2']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 3',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/build/unit3']
+            //                 ],
+            //             ]
+            //         ],
+            //         [
+            //             'label' => 'پشتیبانی',
+            //             'icon' => 'angle-right',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'واحد 1',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/support/unit1']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 2',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/support/unit2']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 3',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/factory/support/unit3']
+            //                 ],
+            //             ]
+            //         ],
+            //     ]
+            // ],
             // [
             //     'label' => 'اداری',
             //     'icon' => 'angle-right',
@@ -640,41 +693,41 @@ class SideMenu extends \theme\widgets\Menu
             //         ]
             //     ]
             // ],
-            [
-                'label' => 'بندر',
-                'icon' => 'angle-right',
-                'items' => [
-                    [
-                        'label' => 'بندر',
-                        'icon' => 'angle-right',
-                        'items' => [
-                            [
-                                'label' => 'واحد 1',
-                                'icon' => 'angle-right',
-                                'url' => ['/seaport/wayside/unit1']
-                            ],
-                            [
-                                'label' => 'واحد 2',
-                                'icon' => 'angle-right',
-                                'url' => ['/seaport/wayside/unit2']
-                            ],
-                            [
-                                'label' => 'واحد 3',
-                                'icon' => 'angle-right',
-                                'url' => ['/seaport/wayside/unit3']
-                            ],
-                        ]
-                    ],
-                    [
-                        'label' => 'مالی',
-                        'icon' => 'angle-right',
-                    ],
-                    [
-                        'label' => 'پشتیبانی',
-                        'icon' => 'angle-right',
-                    ]
-                ]
-            ],
+            // [
+            //     'label' => 'بندر',
+            //     'icon' => 'angle-right',
+            //     'items' => [
+            //         [
+            //             'label' => 'بندر',
+            //             'icon' => 'angle-right',
+            //             'items' => [
+            //                 [
+            //                     'label' => 'واحد 1',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/seaport/wayside/unit1']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 2',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/seaport/wayside/unit2']
+            //                 ],
+            //                 [
+            //                     'label' => 'واحد 3',
+            //                     'icon' => 'angle-right',
+            //                     'url' => ['/seaport/wayside/unit3']
+            //                 ],
+            //             ]
+            //         ],
+            //         [
+            //             'label' => 'مالی',
+            //             'icon' => 'angle-right',
+            //         ],
+            //         [
+            //             'label' => 'پشتیبانی',
+            //             'icon' => 'angle-right',
+            //         ]
+            //     ]
+            // ],
             [
                 'label' => 'پیش نمایش داده گاه ها',
                 'url' => ['/rla/manage/preview'],
@@ -695,28 +748,6 @@ class SideMenu extends \theme\widgets\Menu
                         'label' => 'درخواست مدرک',
                         'url' => ['/rla/request/index', 'RowLevelAccessRequestSearch[type]' => '2'],
                         'icon' => 'angle-right',
-                    ],
-                ]
-            ],
-            [
-                'label' => 'عملیات مدیریتی',
-                'icon' => 'angle-right',
-                'visible' =>  $user->can('superuser'),
-                'items' => [
-                    [
-                        'label' => 'تنظیمات سیستم',
-                        'url' => ['/setting/manage/index'],
-                        'icon' => 'angle-right',
-                    ],
-                    [
-                        'label' => 'کاربران',
-                        'url' => ['/user/manage/index'],
-                        'icon' => 'angle-right',
-                    ],
-                    [
-                        'label' => 'دسترسی',
-                        'icon' => 'angle-right',
-                        'url' => ['/rla/manage/start']
                     ],
                 ]
             ],
