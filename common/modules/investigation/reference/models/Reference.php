@@ -2,6 +2,7 @@
 
 namespace nad\common\modules\investigation\reference\models;
 
+use nad\common\models\BaseModel;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
@@ -14,7 +15,7 @@ use extensions\i18n\validators\FarsiCharactersValidator;
 use nad\common\modules\investigation\common\behaviors\TaggableBehavior;
 use nad\common\modules\investigation\common\behaviors\CodeNumeratorBehavior;
 
-class Reference extends \yii\db\ActiveRecord implements Codable
+class Reference extends BaseModel implements Codable
 {
     use CodableTrait;
 

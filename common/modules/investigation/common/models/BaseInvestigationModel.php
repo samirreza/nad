@@ -9,7 +9,6 @@ use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
-use nad\rla\behaviors\RowLevelAccessBehavior;
 use nad\common\modules\investigation\reference\behaviors\ReferenceBehavior;
 
 class BaseInvestigationModel extends BaseModel implements Codable
@@ -44,25 +43,25 @@ class BaseInvestigationModel extends BaseModel implements Codable
 
     public function behaviors()
     {
-        return [
+        return array_merge(
+            parent::behaviors(),
             [
-                'class' => TimestampBehavior::class,
-                'createdAtAttribute' => false
-            ],
-            [
-                'class' => BlameableBehavior::class,
-                'createdByAttribute' => 'createdBy',
-                'updatedByAttribute' => false
-            ],
-            [
-                'class' => ReferenceBehavior::class,
-                'moduleId' => $this->moduleId,
-                'referenceClassName' => $this->referenceClassName
-            ],
-            [
-                'class' => RowLevelAccessBehavior::class
-            ],
-        ];
+                [
+                    'class' => TimestampBehavior::class,
+                    'createdAtAttribute' => false
+                ],
+                [
+                    'class' => BlameableBehavior::class,
+                    'createdByAttribute' => 'createdBy',
+                    'updatedByAttribute' => false
+                ],
+                [
+                    'class' => ReferenceBehavior::class,
+                    'moduleId' => $this->moduleId,
+                    'referenceClassName' => $this->referenceClassName
+                ],
+            ]
+        );
     }
 
     public function scenarios()

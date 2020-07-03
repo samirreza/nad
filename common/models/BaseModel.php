@@ -8,6 +8,7 @@ use yii\db\Query;
 use yii\helpers\Url;
 use nad\rla\models\RowLevelAccess;
 use nad\rla\models\RowLevelAccessPreview;
+use nad\rla\behaviors\RowLevelAccessBehavior;
 
 class BaseModel extends ActiveRecord
 {
@@ -61,5 +62,14 @@ class BaseModel extends ActiveRecord
                 return parent::find()->andWhere(['in', $baseTableName . '.seq_access_id', $subQuery]);
             }
         }
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => RowLevelAccessBehavior::class
+            ],
+        ];
     }
 }

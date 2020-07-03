@@ -7,16 +7,18 @@ use yii\grid\GridView;
 use theme\widgets\Panel;
 use theme\widgets\ActionButtons;
 use nad\rla\assetBundles\RlaAssetBundle;
+use nad\common\modules\investigation\common\models\BaseInvestigationModel;
 
-$this->title = 'اعطای دسترسی تک رکورد';
+$this->title = 'اعطا/لغو دسترسی تک رکورد';
 $this->params['breadcrumbs'] = [
     $this->title
 ];
 
 RlaAssetBundle::register($this);
+
 ?>
 
-<h3 class="nad-page-title">اعطا/لغو دسترسی تک رکورد</h3>
+<h3 class="nad-page-title"><?= $this->title ?></h3>
 
 <?= $this->render('@nad/rla/views/manage/_search',
 [
@@ -78,6 +80,24 @@ RlaAssetBundle::register($this);
                         [
                             'class' => 'nad\common\grid\TitleColumn',
                             'useHyperLink' => false,
+                        ],
+                        [
+                            'label' => 'وضعیت مدرک',
+                            'value' => function($model){
+                                $value = null;
+                                if (isset($model->status) && isset($model->isArchived)) {
+                                    $value = '';
+                                    if ($model->status == BaseInvestigationModel::STATUS_LOCKED) {
+                                        $value .= 'قفل شده - ';
+                                    }
+
+                                    if ($model->isArchived == BaseInvestigationModel::IS_SOURCE_ARCHIVED_YES) {
+                                        $value .= 'بایگانی شده';
+                                    }
+                                }
+
+                                return $value == '' ? null : $value;
+                            }
                         ],
                         [
                             'attribute' => 'createdAt',

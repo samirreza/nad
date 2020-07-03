@@ -1,6 +1,7 @@
 <?php
 namespace nad\common\modules\engineering\stage\models;
 
+use nad\common\models\BaseModel;
 use yii\helpers\ArrayHelper;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
@@ -8,7 +9,7 @@ use extensions\file\behaviors\FileBehavior;
 use extensions\auditTrail\behaviors\AuditTrailBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class Stage extends \yii\db\ActiveRecord implements Codable
+class Stage extends BaseModel implements Codable
 {
     use CodableTrait;
 

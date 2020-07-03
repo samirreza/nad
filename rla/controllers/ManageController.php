@@ -15,7 +15,6 @@ use nad\office\modules\expert\models\ExpertForm;
 use nad\rla\models\RowLevelAccess;
 use nad\rla\models\RowLevelAccessPreview;
 use modules\user\backend\models\User;
-use yii\data\SqlDataProvider;
 
 class ManageController extends Controller
 {
@@ -40,7 +39,7 @@ class ManageController extends Controller
                             'grant-revoke-access',
                             'grant-revoke-preview',
                             'get-users-by-item-type',
-                            'start'
+                            'start',
                         ],
                         'roles' => ['superuser']
                     ],
@@ -71,6 +70,10 @@ class ManageController extends Controller
             $instanceModel = $myClass->newInstance();
             $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
             $dataProvider->pagination->pageSize = 100;
+            $query = $dataProvider->query;
+            $conditions = RowLevelAccess::removePotentialArchivedCondition($query->where);
+            if(isset($conditions))
+                $query->where($conditions);
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
@@ -184,7 +187,8 @@ class ManageController extends Controller
             $dataProvider = $instanceModel->search(Yii::$app->request->queryParams);
             $query = $dataProvider->query;
             $conditions = RowLevelAccess::removePotentialArchivedCondition($query->where);
-            $query->where($conditions);
+            if(isset($conditions))
+                $query->where($conditions);
 
             return $this->render('preview', [
                 'searchModel' => $searchModel,

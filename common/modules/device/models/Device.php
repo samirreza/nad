@@ -1,6 +1,7 @@
 <?php
 namespace nad\common\modules\device\models;
 
+use nad\common\models\BaseModel;
 use nad\common\code\Codable;
 use yii\helpers\ArrayHelper;
 use nad\common\code\CodableTrait;
@@ -11,7 +12,7 @@ use nad\common\modules\device\models\DeviceInstance;
 use nad\common\modules\device\models\Category;
 use extensions\auditTrail\behaviors\AuditTrailBehavior;
 
-class Device extends \yii\db\ActiveRecord implements Codable
+class Device extends BaseModel implements Codable
 {
     use CodableTrait;
 

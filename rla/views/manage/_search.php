@@ -21,11 +21,18 @@ $widget = JsTree::widget([
     'dataArray' => $allowedItemTypes
 ]);
 
+
 $this->registerJS("$(function(){
     $('#jstree_container').on('select_node.jstree', function (e, data) {
+
+        let path = data.instance.get_path(data.node,' / ');
+        let breadcrumbContent = $('#breadcrumb-popover-btn').data('content');
+        let newBreadcrumb = $(breadcrumbContent).find('li:last-child').after('<li class=\"active\">' + path + '</li>').parent();
+        $('#breadcrumb-popover-btn').attr('data-content', $(newBreadcrumb).prop('outerHTML'));
+        document.title += ' - ' + path;
+
         if(!data.node.id.startsWith('j')){
             let myUrl = '" . Url::to([$route]) . "' + '?searchModel=' + data.node.id;
-            console.log(myUrl);
             // this if is a dirty fix for unusual behaviour of jstree's `state` plugin
             if(window.location.href.indexOf(myUrl) <= 0 && window.location.href.indexOf('&page=') <= 0){
                 window.location = myUrl;
