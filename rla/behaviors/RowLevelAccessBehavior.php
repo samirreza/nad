@@ -21,7 +21,7 @@ class RowLevelAccessBehavior extends Behavior
         if(!Yii::$app->user->can('superuser')){
            $userId = Yii::$app->user->id;
            $expireDate = time() + RowLevelAccess::ROW_LEVEL_ACCESS_EXPIRE_DURATION;
-           $insertSql = 'INSERT INTO `ROW_LEVEL_ACCESS` (seq_access_id, user_id, access_type, expire_date) VALUES (:SEQ_ACCESS_ID, :USER_ID, :ACCESS_TYPE, :EXPIRE_DATE)';
+           $insertSql = 'INSERT INTO row_level_access (seq_access_id, user_id, access_type, expire_date) VALUES (:SEQ_ACCESS_ID, :USER_ID, :ACCESS_TYPE, :EXPIRE_DATE)';
            Yii::$app->db->createCommand($insertSql)->bindValues([
               ':SEQ_ACCESS_ID' => $this->owner->seq_access_id,
               ':USER_ID' => $userId,
@@ -35,7 +35,7 @@ class RowLevelAccessBehavior extends Behavior
         if(!Yii::$app->user->can('superuser')){
             $userId = Yii::$app->user->id;
             $rowSeqId = $this->owner->seq_access_id;
-            $deleteSql = 'DELETE FROM `ROW_LEVEL_ACCESS` WHERE seq_access_id = :ROW_SEQ_ID AND user_id = :USER_ID';
+            $deleteSql = 'DELETE FROM row_level_access WHERE seq_access_id = :ROW_SEQ_ID AND user_id = :USER_ID';
             Yii::$app->db->createCommand($deleteSql)->bindValues([
                ':ROW_SEQ_ID' => $rowSeqId,
                ':USER_ID' => $userId,
@@ -44,7 +44,7 @@ class RowLevelAccessBehavior extends Behavior
      }
 
      public function setSeqAccessIdBeforeInsert(){
-        $sql = 'SELECT NEXTVAL(SEQ_ACCESS)';
+        $sql = 'SELECT NEXTVAL(seq_access)';
         $this->owner->seq_access_id = Yii::$app->db->createCommand($sql)->queryScalar();
      }
 }
