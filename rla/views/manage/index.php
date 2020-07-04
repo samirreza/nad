@@ -84,7 +84,6 @@ RlaAssetBundle::register($this);
                         [
                             'label' => 'وضعیت مدرک',
                             'value' => function($model){
-                                $value = null;
                                 if (isset($model->status) && isset($model->isArchived)) {
                                     $value = '';
                                     if ($model->status == BaseInvestigationModel::STATUS_LOCKED) {
@@ -94,9 +93,11 @@ RlaAssetBundle::register($this);
                                     if ($model->isArchived == BaseInvestigationModel::IS_SOURCE_ARCHIVED_YES) {
                                         $value .= 'بایگانی شده';
                                     }
+
+                                    return $value == '' ? 'در جریان' : $value;
                                 }
 
-                                return $value == '' ? null : $value;
+                                return null;
                             }
                         ],
                         [
