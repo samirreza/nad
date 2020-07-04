@@ -4,8 +4,8 @@ $this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/alkalineWasher/manage/investigation-monitor']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/process/materials/alkalineWasher/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/alkalineWasher/manage/investigation-monitor']],
     'داده گاه منابع',
     $this->title
 ];

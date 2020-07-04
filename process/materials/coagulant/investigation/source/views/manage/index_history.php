@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/coagulant/manage/investigation']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/coagulant/manage/investigation']],
     'داده گاه روندهای منشا',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/coagulant/investigation/source/manage/index']
+        'url' => ['/process/materials/coagulant/investigation/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/coagulant/investigation/source/manage/archived-index']
+        'url' => ['/process/materials/coagulant/investigation/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/coagulant/investigation/source/manage/index-history']
+        'url' => ['/process/materials/coagulant/investigation/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/coagulant/investigation/reference/manage/index']
+        'url' => ['/process/materials/coagulant/investigation/reference/manage/index']
     ]
 ];
 ?>

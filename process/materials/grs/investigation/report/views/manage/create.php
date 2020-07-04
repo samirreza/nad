@@ -7,8 +7,8 @@ $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/grs/manage/investigation']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/grs/manage/investigation']],
     $this->title
 ];
 

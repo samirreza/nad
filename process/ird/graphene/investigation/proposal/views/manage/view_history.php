@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/graphene/manage/investigation']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/graphene/manage/investigation']],
     'داده گاه روندهای پروپوزال',
     ['label' => 'لیست داده گاه روندهای پروپوزال', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه پروپوزال',
-        'url' => ['/graphene/investigation/proposal/manage/index']
+        'url' => ['/process/ird/graphene/investigation/proposal/manage/index']
     ],
     [
         'label' => 'داده گاه پروپوزال',
-        'url' => ['/graphene/investigation/proposal/manage/archived-index']
+        'url' => ['/process/ird/graphene/investigation/proposal/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند پروپوزال',
-        'url' => ['/graphene/investigation/proposal/manage/index-history']
+        'url' => ['/process/ird/graphene/investigation/proposal/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/graphene/investigation/reference/manage/index']
+        'url' => ['/process/ird/graphene/investigation/reference/manage/index']
     ]
 ];
 

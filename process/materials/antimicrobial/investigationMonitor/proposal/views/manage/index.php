@@ -4,8 +4,8 @@ $this->title = 'لیست پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/antimicrobial/manage/investigation-monitor']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/antimicrobial/manage/investigation-monitor']],
     $this->title
 ];
 

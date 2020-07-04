@@ -7,7 +7,7 @@ $this->title = 'بررسی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
+    ['label' => 'استخر', 'url' => ['/process/ird/pool/manage/index']],
     $this->title
 ];
 
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/pool/investigation/source/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/pool/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/pool/investigation/proposal/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/pool/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش‌ها',
-                'titleUrl' => Url::to(['/pool/investigation/report/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/pool/investigation/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش‌ها',
-                'titleUrl' => Url::to(['/pool/investigation/method/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/pool/investigation/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'منابع',
-                'titleUrl' => Url::to(['/pool/investigation/reference/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/pool/investigation/reference/manage/index'])
             ]) ?>
         </div>
     </div>

@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/lacquer/manage/investigation-design']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/lacquer/manage/investigation-design']],
     'داده گاه دستورالعمل',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/lacquer/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/lacquer/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/lacquer/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/lacquer/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/lacquer/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/lacquer/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/lacquer/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/lacquer/investigationDesign/reference/manage/index']
     ]
 ];
 

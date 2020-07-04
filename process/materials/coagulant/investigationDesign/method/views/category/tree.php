@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/coagulant/manage/investigation-design']],
-    ['label' => 'رده های روشها', 'url' => ['/coagulant/investigationDesign/method/category/index']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/coagulant/manage/investigation-design']],
+    ['label' => 'رده های روشها', 'url' => ['/process/materials/coagulant/investigationDesign/method/category/index']],
     $this->title
 ];
 

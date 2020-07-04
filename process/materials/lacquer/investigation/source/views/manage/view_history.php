@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/lacquer/manage/investigation']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/lacquer/manage/investigation']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/lacquer/investigation/source/manage/index-history']
+        'url' => ['/process/materials/lacquer/investigation/source/manage/index-history']
     ]
 ];
 

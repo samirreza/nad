@@ -26,15 +26,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/heattransfer/investigation/source/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/heattransfer/investigation/source/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/heattransfer/investigation/source/category/index']
+                                'url' => ['/process/ird/heattransfer/investigation/source/category/index']
                             ],
                         ]
                     ],
@@ -43,11 +43,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/heattransfer/investigation/source/manage/archived-index']
+                                'url' => ['/process/ird/heattransfer/investigation/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/heattransfer/investigation/source/manage/index-history']
+                                'url' => ['/process/ird/heattransfer/investigation/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -61,15 +61,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/heattransfer/investigation/proposal/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/heattransfer/investigation/proposal/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/heattransfer/investigation/proposal/category/index']
+                                'url' => ['/process/ird/heattransfer/investigation/proposal/category/index']
                             ],
                         ]
                     ],
@@ -78,11 +78,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/heattransfer/investigation/proposal/manage/archived-index']
+                                'url' => ['/process/ird/heattransfer/investigation/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/heattransfer/investigation/proposal/manage/index-history']
+                                'url' => ['/process/ird/heattransfer/investigation/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -96,19 +96,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/heattransfer/investigation/report/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/heattransfer/investigation/report/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/heattransfer/investigation/report/category/index']
+                                'url' => ['/process/ird/heattransfer/investigation/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/heattransfer/investigation/report/manage/generate-graph']
+                                'url' => ['/process/ird/heattransfer/investigation/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -117,11 +117,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/heattransfer/investigation/report/manage/archived-index']
+                                'url' => ['/process/ird/heattransfer/investigation/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/heattransfer/investigation/report/manage/index-history']
+                                'url' => ['/process/ird/heattransfer/investigation/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -135,15 +135,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/heattransfer/investigation/method/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/heattransfer/investigation/method/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/heattransfer/investigation/method/category/index']
+                                'url' => ['/process/ird/heattransfer/investigation/method/category/index']
                             ],
                         ]
                     ],
@@ -152,11 +152,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/heattransfer/investigation/method/manage/archived-index']
+                                'url' => ['/process/ird/heattransfer/investigation/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/heattransfer/investigation/method/manage/index-history']
+                                'url' => ['/process/ird/heattransfer/investigation/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -170,15 +170,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/heattransfer/investigation/instruction/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/heattransfer/investigation/instruction/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/heattransfer/investigation/instruction/category/index']
+                                'url' => ['/process/ird/heattransfer/investigation/instruction/category/index']
                             ],
                         ]
                     ]
@@ -192,17 +192,17 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/heattransfer/investigation/subject/manage/create']
+                                'url' => ['/process/ird/heattransfer/investigation/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعهای فعال',
-                                'url' => ['/heattransfer/investigation/subject/manage/index']
+                                'url' => ['/process/ird/heattransfer/investigation/subject/manage/index']
                             ]
                         ]
                     ],
                     [
                         'label' => 'داده گاه',
-                        'url' => ['/heattransfer/investigation/subject/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigation/subject/manage/archived-index']
                     ]
                 ]
             ],
@@ -211,11 +211,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/heattransfer/investigation/reference/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/heattransfer/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/heattransfer/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

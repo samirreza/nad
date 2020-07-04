@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $report->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/acidicWasher/manage/investigation']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/acidicWasher/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];

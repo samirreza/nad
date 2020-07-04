@@ -7,8 +7,8 @@ $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/disinfectant/manage/investigation-monitor']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/disinfectant/manage/investigation-monitor']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],

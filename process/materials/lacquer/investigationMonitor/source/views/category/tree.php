@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/lacquer/manage/investigation-monitor']],
-    ['label' => 'رده های منشاها', 'url' => ['/lacquer/investigationMonitor/source/category/index']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/lacquer/manage/investigation-monitor']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/lacquer/investigationMonitor/source/category/index']],
     $this->title
 ];
 

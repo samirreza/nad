@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/cartridge/manage/investigation-design']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/cartridge/manage/investigation-design']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/cartridge/investigationDesign/source/manage/index']
+        'url' => ['/process/ird/cartridge/investigationDesign/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/cartridge/investigationDesign/source/manage/archived-index']
+        'url' => ['/process/ird/cartridge/investigationDesign/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/cartridge/investigationDesign/source/manage/index-history']
+        'url' => ['/process/ird/cartridge/investigationDesign/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/cartridge/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/cartridge/investigationDesign/reference/manage/index']
     ]
 ];
 

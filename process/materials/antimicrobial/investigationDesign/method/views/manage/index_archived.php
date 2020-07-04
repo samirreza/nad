@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antimicrobial/manage/investigation-design']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/antimicrobial/manage/investigation-design']],
     'داده گاه روش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/antimicrobial/investigationDesign/method/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/antimicrobial/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/antimicrobial/investigationDesign/method/manage/index-history']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/antimicrobial/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/reference/manage/index']
     ]
 ];
 

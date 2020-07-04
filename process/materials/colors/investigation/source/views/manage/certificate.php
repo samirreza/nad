@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/colors/manage/investigation']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/colors/manage/investigation']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     $this->title

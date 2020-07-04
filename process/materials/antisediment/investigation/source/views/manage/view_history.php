@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/antisediment/manage/investigation']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/antisediment/manage/investigation']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/antisediment/investigation/source/manage/index-history']
+        'url' => ['/process/materials/antisediment/investigation/source/manage/index-history']
     ]
 ];
 

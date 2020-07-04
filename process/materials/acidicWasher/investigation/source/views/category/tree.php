@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/acidicWasher/manage/investigation']],
-    ['label' => 'رده های منشاها', 'url' => ['/acidicWasher/investigation/source/category/index']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/acidicWasher/manage/investigation']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/acidicWasher/investigation/source/category/index']],
     $this->title
 ];
 

@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/microbial/manage/investigation-monitor']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/microbial/manage/investigation-monitor']],
     'داده گاه روندهای روش',
     ['label' => 'لیست داده گاه روندهای روش', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/microbial/investigationMonitor/method/manage/index']
+        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/microbial/investigationMonitor/method/manage/archived-index']
+        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/microbial/investigationMonitor/method/manage/index-history']
+        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/microbial/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/microbial/investigationMonitor/reference/manage/index']
     ]
 ];
 

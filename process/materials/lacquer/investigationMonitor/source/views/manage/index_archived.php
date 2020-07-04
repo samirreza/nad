@@ -4,15 +4,15 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/lacquer/manage/investigation-monitor']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/lacquer/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/lacquer/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/materials/lacquer/investigationMonitor/source/manage/archived-index']
     ]
 ];
 

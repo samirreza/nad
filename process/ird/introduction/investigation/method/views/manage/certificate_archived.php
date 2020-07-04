@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $method->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/introduction/manage/investigation']],
+    ['label' => 'آشنایی', 'url' => ['/process/ird/introduction/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/introduction/manage/investigation']],
     'داده گاه روش',
     ['label' => 'لیست داده گاه روش', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/introduction/investigation/method/manage/index']
+        'url' => ['/process/ird/introduction/investigation/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/introduction/investigation/method/manage/archived-index']
+        'url' => ['/process/ird/introduction/investigation/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/introduction/investigation/method/manage/index-history']
+        'url' => ['/process/ird/introduction/investigation/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/introduction/investigation/reference/manage/index']
+        'url' => ['/process/ird/introduction/investigation/reference/manage/index']
     ]
 ];
 

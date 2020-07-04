@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/grs/manage/investigation-design']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/grs/manage/investigation-design']],
     'داده گاه دستورالعمل',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/grs/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/grs/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/grs/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/grs/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/grs/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/grs/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/reference/manage/index']
     ]
 ];
 

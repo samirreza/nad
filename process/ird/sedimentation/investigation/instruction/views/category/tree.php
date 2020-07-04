@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
-    ['label' => 'رده های دستورالعملها', 'url' => ['/sedimentation/investigation/instruction/category/index']],
+    ['label' => 'ته نشینی', 'url' => ['/process/ird/sedimentation/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/sedimentation/manage/investigation']],
+    ['label' => 'رده های دستورالعملها', 'url' => ['/process/ird/sedimentation/investigation/instruction/category/index']],
     $this->title
 ];
 

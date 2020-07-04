@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/colors/manage/investigation-monitor']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/colors/manage/investigation-monitor']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/colors/investigationMonitor/source/manage/index-history']
+        'url' => ['/process/materials/colors/investigationMonitor/source/manage/index-history']
     ]
 ];
 

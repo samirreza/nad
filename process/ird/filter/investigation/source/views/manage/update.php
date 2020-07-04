@@ -7,8 +7,8 @@ $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/filter/manage/investigation']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/filter/manage/investigation']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],

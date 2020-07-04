@@ -10,8 +10,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/cartridge/manage/investigation-design']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/cartridge/manage/investigation-design']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

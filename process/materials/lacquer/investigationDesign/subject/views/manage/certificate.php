@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $subject->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/lacquer/manage/investigation-design']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/lacquer/manage/investigation-design']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],
     $this->title
 ];

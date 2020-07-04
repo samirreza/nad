@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/newTechnology/manage/investigation']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/newTechnology/manage/investigation']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/newTechnology/investigation/source/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/newTechnology/investigation/source/manage/archived-index']
+        'url' => ['/process/ird/newTechnology/investigation/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/newTechnology/investigation/source/manage/index-history']
+        'url' => ['/process/ird/newTechnology/investigation/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/newTechnology/investigation/reference/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/reference/manage/index']
     ]
 ];
 

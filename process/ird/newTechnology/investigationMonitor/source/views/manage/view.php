@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/newTechnology/manage/investigation-monitor']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/newTechnology/manage/investigation-monitor']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     $this->title

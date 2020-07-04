@@ -9,8 +9,8 @@ $this->title = 'افزودن موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/heattransfer/manage/investigation']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/heattransfer/manage/investigation']],
     $this->title
 ];
 

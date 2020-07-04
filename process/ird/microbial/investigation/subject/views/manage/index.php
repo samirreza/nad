@@ -4,8 +4,8 @@ $this->title = 'لیست موضوع های فعال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/microbial/manage/investigation']],
     $this->title
 ];
 

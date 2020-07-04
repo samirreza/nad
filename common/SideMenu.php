@@ -40,57 +40,57 @@ class SideMenu extends \theme\widgets\Menu
                             [
                                 'label' => 'آشنایی',
                                 'icon' => 'angle-right',
-                                'url' => ['/introduction']
+                                'url' => ['/process/ird/introduction']
                             ],
                             [
                                 'label' => 'ته نشینی',
                                 'icon' => 'angle-right',
-                                'url' => ['/sedimentation']
+                                'url' => ['/process/ird/sedimentation']
                             ],
                             [
                                 'label' => 'فیلتر شنی',
                                 'icon' => 'angle-right',
-                                'url' => ['/filter']
+                                'url' => ['/process/ird/filter']
                             ],
                             [
                                 'label' => 'کارتریج',
                                 'icon' => 'angle-right',
-                                'url' => ['/cartridge']
+                                'url' => ['/process/ird/cartridge']
                             ],
                             [
                                 'label' => 'آر او',
                                 'icon' => 'angle-right',
-                                'url' => ['/ro']
+                                'url' => ['/process/ird/ro']
                             ],
                             [
                                 'label' => 'پساب',
                                 'icon' => 'angle-right',
-                                'url' => ['/wastewater']
+                                'url' => ['/process/ird/wastewater']
                             ],
                             [
                                 'label' => 'میکروبیولوژی',
                                 'icon' => 'angle-right',
-                                'url' => ['/microbial']
+                                'url' => ['/process/ird/microbial']
                             ],
                             [
                                 'label' => 'گرافن',
                                 'icon' => 'angle-right',
-                                'url' => ['/graphene']
+                                'url' => ['/process/ird/graphene']
                             ],
                             [
                                 'label' => 'تکنولوژی های نو',
                                 'icon' => 'angle-right',
-                                'url' => ['/newTechnology']
+                                'url' => ['/process/ird/newTechnology']
                             ],
                             [
                                 'label' => 'هیدرولیک',
                                 'icon' => 'angle-right',
-                                'url' => ['/hydraulic']
+                                'url' => ['/process/ird/hydraulic']
                             ],
                             [
                                 'label' => 'انتقال حرارت',
                                 'icon' => 'angle-right',
-                                'url' => ['/heattransfer']
+                                'url' => ['/process/ird/heattransfer']
                             ]
 
                         ]
@@ -102,53 +102,70 @@ class SideMenu extends \theme\widgets\Menu
                             [
                                 'label' => 'گندزدا',
                                 'icon' => 'angle-right',
-                                'url' => ['/disinfectant']
+                                'url' => ['/process/materials/disinfectant']
                             ],
                             [
                                 'label' => 'منعقدکننده',
                                 'icon' => 'angle-right',
-                                'url' => ['/coagulant']
+                                'url' => ['/process/materials/coagulant']
                             ],
                             [
                                 'label' => 'شوینده قلیایی',
                                 'icon' => 'angle-right',
-                                'url' => ['/alkalineWasher']
+                                'url' => ['/process/materials/alkalineWasher']
                             ],
                             [
                                 'label' => 'شوینده اسیدی',
                                 'icon' => 'angle-right',
-                                'url' => ['/acidicWasher']
+                                'url' => ['/process/materials/acidicWasher']
                             ],
                             [
                                 'label' => 'جی آر اس',
                                 'icon' => 'angle-right',
-                                'url' => ['/grs']
+                                'url' => ['/process/materials/grs']
                             ],
                             [
                                 'label' => 'ضدرسوب',
                                 'icon' => 'angle-right',
-                                'url' => ['/antisediment']
+                                'url' => ['/process/materials/antisediment']
                             ],
                             [
                                 'label' => 'ضدمیکروب',
                                 'icon' => 'angle-right',
-                                'url' => ['/antimicrobial']
+                                'url' => ['/process/materials/antimicrobial']
                             ],
                             [
                                 'label' => 'رنگ ها',
                                 'icon' => 'angle-right',
-                                'url' => ['/colors']
+                                'url' => ['/process/materials/colors']
                             ],
                             [
                                 'label' => 'لاک بیرنگ',
                                 'icon' => 'angle-right',
-                                'url' => ['/lacquer']
+                                'url' => ['/process/materials/lacquer']
                             ],
                         ],
                     ],
                     [
                         'label' => 'آزمایشگاه',
                         'icon' => 'angle-right',
+                        'items' => [
+                            [
+                                'label' => 'واحد 1',
+                                'icon' => 'angle-right',
+                                'url' => ['/process/laboratory/unit1']
+                            ],
+                            [
+                                'label' => 'واحد 2',
+                                'icon' => 'angle-right',
+                                'url' => ['/process/laboratory/unit2']
+                            ],
+                            [
+                                'label' => 'واحد 3',
+                                'icon' => 'angle-right',
+                                'url' => ['/process/laboratory/unit3']
+                            ],
+                        ]
                     ]
                 ]
             ],

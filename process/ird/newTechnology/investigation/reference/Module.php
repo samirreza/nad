@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/newTechnology/investigation/source/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/newTechnology/investigation/proposal/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/newTechnology/investigation/report/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/newTechnology/investigation/method/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/newTechnology/investigation/instruction/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/newTechnology/investigation/source/manage/archived-index']
+                        'url' => ['/process/ird/newTechnology/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/newTechnology/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/newTechnology/investigation/report/manage/archived-index']
+                        'url' => ['/process/ird/newTechnology/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/newTechnology/investigation/method/manage/archived-index']
+                        'url' => ['/process/ird/newTechnology/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/newTechnology/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/ird/newTechnology/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/newTechnology/investigation/source/manage/index-history']
+                        'url' => ['/process/ird/newTechnology/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/newTechnology/investigation/proposal/manage/index-history']
+                        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/newTechnology/investigation/report/manage/index-history']
+                        'url' => ['/process/ird/newTechnology/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/newTechnology/investigation/method/manage/index-history']
+                        'url' => ['/process/ird/newTechnology/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/newTechnology/investigation/instruction/manage/index-history']
+                        'url' => ['/process/ird/newTechnology/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/newTechnology/investigation/reference/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/newTechnology/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/newTechnology/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

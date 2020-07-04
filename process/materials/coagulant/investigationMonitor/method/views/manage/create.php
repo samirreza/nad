@@ -6,8 +6,8 @@ $this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/coagulant/manage/investigation-monitor']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/coagulant/manage/investigation-monitor']],
     $this->title
 ];
 

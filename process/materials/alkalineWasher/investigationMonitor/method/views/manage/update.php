@@ -6,8 +6,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation-monitor']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/process/materials/alkalineWasher/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/alkalineWasher/manage/investigation-monitor']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

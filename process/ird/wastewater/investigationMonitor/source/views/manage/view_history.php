@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/wastewater/manage/investigation-monitor']],
+    ['label' => 'پساب', 'url' => ['/process/ird/wastewater/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/wastewater/manage/investigation-monitor']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/wastewater/investigationMonitor/source/manage/index']
+        'url' => ['/process/ird/wastewater/investigationMonitor/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/wastewater/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/ird/wastewater/investigationMonitor/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/wastewater/investigationMonitor/source/manage/index-history']
+        'url' => ['/process/ird/wastewater/investigationMonitor/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/wastewater/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/wastewater/investigationMonitor/reference/manage/index']
     ]
 ];
 

@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/acidicWasher/manage/investigation']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/acidicWasher/manage/investigation']],
     'داده گاه منشا',
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],
     $this->title
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/acidicWasher/investigation/source/manage/archived-index']
+        'url' => ['/process/materials/acidicWasher/investigation/source/manage/archived-index']
     ]
 ];
 

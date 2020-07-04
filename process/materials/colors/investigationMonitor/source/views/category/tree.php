@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/colors/manage/investigation-monitor']],
-    ['label' => 'رده های منشاها', 'url' => ['/colors/investigationMonitor/source/category/index']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/colors/manage/investigation-monitor']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/colors/investigationMonitor/source/category/index']],
     $this->title
 ];
 

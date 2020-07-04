@@ -26,15 +26,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/alkalineWasher/investigationDesign/source/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/alkalineWasher/investigationDesign/source/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/alkalineWasher/investigationDesign/source/category/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/source/category/index']
                             ],
                         ]
                     ],
@@ -43,11 +43,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/alkalineWasher/investigationDesign/source/manage/archived-index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/alkalineWasher/investigationDesign/source/manage/index-history']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -61,15 +61,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/alkalineWasher/investigationDesign/proposal/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/alkalineWasher/investigationDesign/proposal/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/alkalineWasher/investigationDesign/proposal/category/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/proposal/category/index']
                             ],
                         ]
                     ],
@@ -78,11 +78,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/alkalineWasher/investigationDesign/proposal/manage/archived-index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/alkalineWasher/investigationDesign/proposal/manage/index-history']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -96,19 +96,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/alkalineWasher/investigationDesign/report/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/alkalineWasher/investigationDesign/report/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/alkalineWasher/investigationDesign/report/category/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/alkalineWasher/investigationDesign/report/manage/generate-graph']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -117,11 +117,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/alkalineWasher/investigationDesign/report/manage/archived-index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/alkalineWasher/investigationDesign/report/manage/index-history']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -135,15 +135,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/alkalineWasher/investigationDesign/method/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/alkalineWasher/investigationDesign/method/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/alkalineWasher/investigationDesign/method/category/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/method/category/index']
                             ],
                         ]
                     ],
@@ -152,11 +152,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/alkalineWasher/investigationDesign/method/manage/archived-index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/alkalineWasher/investigationDesign/method/manage/index-history']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -170,15 +170,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/alkalineWasher/investigationDesign/instruction/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/alkalineWasher/investigationDesign/instruction/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/alkalineWasher/investigationDesign/instruction/category/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/category/index']
                             ],
                         ]
                     ],
@@ -187,11 +187,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/alkalineWasher/investigationDesign/instruction/manage/archived-index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/alkalineWasher/investigationDesign/instruction/manage/index-history']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -205,17 +205,17 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/alkalineWasher/investigationDesign/subject/manage/create']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعهای فعال',
-                                'url' => ['/alkalineWasher/investigationDesign/subject/manage/index']
+                                'url' => ['/process/materials/alkalineWasher/investigationDesign/subject/manage/index']
                             ]
                         ]
                     ],
                     [
                         'label' => 'داده گاه',
-                        'url' => ['/alkalineWasher/investigationDesign/subject/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],
@@ -224,11 +224,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/alkalineWasher/investigationDesign/reference/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationDesign/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/alkalineWasher/investigationDesign/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/alkalineWasher/investigationDesign/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

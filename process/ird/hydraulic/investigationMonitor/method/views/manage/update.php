@@ -9,8 +9,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/hydraulic/manage/investigation-monitor']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/hydraulic/manage/investigation-monitor']],
     ['label' => 'لیست روش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

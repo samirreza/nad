@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/ro/manage/investigation']],
-    ['label' => 'رده های روشها', 'url' => ['/ro/investigation/method/category/index']],
+    ['label' => 'آر او', 'url' => ['/process/ird/ro/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/ro/manage/investigation']],
+    ['label' => 'رده های روشها', 'url' => ['/process/ird/ro/investigation/method/category/index']],
     $this->title
 ];
 

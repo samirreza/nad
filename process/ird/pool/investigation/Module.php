@@ -21,32 +21,32 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست‌ منشا',
-                        'url' => ['/pool/investigation/source/manage/index']
+                        'url' => ['/process/ird/pool/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'افزودن منشا',
-                        'url' => ['/pool/investigation/source/manage/create']
+                        'url' => ['/process/ird/pool/investigation/source/manage/create']
                     ]
                 ]
             ],
             [
                 'label' => 'لیست پروپوزال',
-                'url' => ['/pool/investigation/proposal/manage/index']
+                'url' => ['/process/ird/pool/investigation/proposal/manage/index']
             ],
             [
                 'label' => 'گزارش‌',
                 'items' => [
                     [
                         'label' => 'لیست گزارش',
-                        'url' => ['/pool/investigation/report/manage/index']
+                        'url' => ['/process/ird/pool/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'رده‌بندی گزارش‌ها',
-                        'url' => ['/pool/investigation/report/category/index']
+                        'url' => ['/process/ird/pool/investigation/report/category/index']
                     ],
                     [
                         'label' => 'گراف گزارش ها',
-                        'url' => ['/pool/investigation/report/manage/generate-graph']
+                        'url' => ['/process/ird/pool/investigation/report/manage/generate-graph']
                     ]
                 ]
             ],
@@ -55,17 +55,17 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست روش‌ها',
-                        'url' => ['/pool/investigation/method/manage/index']
+                        'url' => ['/process/ird/pool/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'افزودن روش',
-                        'url' => ['/pool/investigation/method/manage/create']
+                        'url' => ['/process/ird/pool/investigation/method/manage/create']
                     ]
                 ]
             ],
             [
                 'label' => 'لیست منابع',
-                'url' => ['/pool/investigation/reference/manage/index']
+                'url' => ['/process/ird/pool/investigation/reference/manage/index']
             ]
         ];
         parent::init();

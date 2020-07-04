@@ -25,15 +25,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/hydraulic/investigationDesign/source/manage/create']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/hydraulic/investigationDesign/source/manage/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/hydraulic/investigationDesign/source/category/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/source/category/index']
                             ],
                         ]
                     ],
@@ -42,11 +42,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/hydraulic/investigationDesign/source/manage/archived-index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/hydraulic/investigationDesign/source/manage/index-history']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -60,15 +60,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/hydraulic/investigationDesign/proposal/manage/create']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/hydraulic/investigationDesign/proposal/manage/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/hydraulic/investigationDesign/proposal/category/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/proposal/category/index']
                             ],
                         ]
                     ],
@@ -77,11 +77,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/hydraulic/investigationDesign/proposal/manage/archived-index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/hydraulic/investigationDesign/proposal/manage/index-history']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -95,19 +95,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/hydraulic/investigationDesign/report/manage/create']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/hydraulic/investigationDesign/report/manage/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/hydraulic/investigationDesign/report/category/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/hydraulic/investigationDesign/report/manage/generate-graph']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -116,11 +116,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/hydraulic/investigationDesign/report/manage/archived-index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/hydraulic/investigationDesign/report/manage/index-history']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -134,15 +134,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/hydraulic/investigationDesign/method/manage/create']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/hydraulic/investigationDesign/method/manage/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/hydraulic/investigationDesign/method/category/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/method/category/index']
                             ],
                         ]
                     ],
@@ -151,11 +151,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/hydraulic/investigationDesign/method/manage/archived-index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/hydraulic/investigationDesign/method/manage/index-history']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -169,15 +169,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/hydraulic/investigationDesign/instruction/manage/create']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/hydraulic/investigationDesign/instruction/manage/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/hydraulic/investigationDesign/instruction/category/index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/instruction/category/index']
                             ],
                         ]
                     ],
@@ -186,11 +186,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/hydraulic/investigationDesign/instruction/manage/archived-index']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/hydraulic/investigationDesign/instruction/manage/index-history']
+                                'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -201,11 +201,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/hydraulic/investigationDesign/reference/manage/index']
+                        'url' => ['/process/ird/hydraulic/investigationDesign/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/hydraulic/investigationDesign/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/hydraulic/investigationDesign/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

@@ -4,23 +4,23 @@ $this->title = 'لیست داده گاه موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'ته نشینی', 'url' => ['/process/ird/sedimentation/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/sedimentation/manage/investigation']],
     'داده گاه موضوع',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه موضوع',
-        'url' => ['/sedimentation/investigation/subject/manage/index']
+        'url' => ['/process/ird/sedimentation/investigation/subject/manage/index']
     ],
     [
         'label' => 'داده گاه موضوع',
-        'url' => ['/sedimentation/investigation/subject/manage/archived-index']
+        'url' => ['/process/ird/sedimentation/investigation/subject/manage/archived-index']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/sedimentation/investigation/reference/manage/index']
+        'url' => ['/process/ird/sedimentation/investigation/reference/manage/index']
     ]
 ];
 

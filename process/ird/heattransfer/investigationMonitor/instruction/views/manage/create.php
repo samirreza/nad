@@ -10,8 +10,8 @@ $this->title = 'افزودن دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/heattransfer/manage/investigation-monitor']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/heattransfer/manage/investigation-monitor']],
     $this->title
 ];
 

@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/newTechnology/manage/investigation-monitor']],
-    ['label' => 'رده های دستورالعملها', 'url' => ['/newTechnology/investigationMonitor/instruction/category/index']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/newTechnology/manage/investigation-monitor']],
+    ['label' => 'رده های دستورالعملها', 'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/category/index']],
     $this->title
 ];
 

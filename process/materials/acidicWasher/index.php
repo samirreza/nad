@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'مطالعات کلی و دستورالعمل ها',
-            'titleUrl' => Url::to(['/acidicWasher/manage/investigation-design'])
+            'titleUrl' => Url::to(['/process/materials/acidicWasher/manage/investigation-design'])
         ]) ?>
     </div>
     <div class="col-md-4" style="text-align: center">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'آزمایشات و نتایج',
-            'titleUrl' => '#' // Url::to(['/acidicWasher/manage/investigation'])
+            'titleUrl' => '#' // Url::to(['/process/materials/acidicWasher/manage/investigation'])
         ]) ?>
     </div>
     <div class="col-md-2"></div>

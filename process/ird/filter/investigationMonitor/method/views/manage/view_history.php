@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/filter/manage/investigation-monitor']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/filter/manage/investigation-monitor']],
     'داده گاه روندهای روش',
     ['label' => 'لیست داده گاه روندهای روش', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/filter/investigationMonitor/method/manage/index']
+        'url' => ['/process/ird/filter/investigationMonitor/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/filter/investigationMonitor/method/manage/archived-index']
+        'url' => ['/process/ird/filter/investigationMonitor/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/filter/investigationMonitor/method/manage/index-history']
+        'url' => ['/process/ird/filter/investigationMonitor/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/filter/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/filter/investigationMonitor/reference/manage/index']
     ]
 ];
 

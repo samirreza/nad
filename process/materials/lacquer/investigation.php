@@ -8,7 +8,7 @@ $this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
     $this->title
 ];
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/lacquer/investigation/source/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/lacquer/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/lacquer/investigation/proposal/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/lacquer/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش',
-                'titleUrl' => Url::to(['/lacquer/investigation/report/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/lacquer/investigation/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
-                'titleUrl' => Url::to(['/lacquer/investigation/method/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/lacquer/investigation/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/lacquer/investigation/reference/manage/index'])
+                'titleUrl' => '#' //Url::to(['/process/materials/lacquer/investigation/reference/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منشاها',
-            'titleUrl' => Url::to(['/lacquer/investigation/source/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/lacquer/investigation/source/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => Url::to(['/lacquer/investigation/source/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/lacquer/investigation/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -184,7 +184,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منابع',
-            'titleUrl' => Url::to(['/lacquer/investigation/reference/manage/index'])
+            'titleUrl' => Url::to(['/process/materials/lacquer/investigation/reference/manage/index'])
         ])
         ?>
     </div>

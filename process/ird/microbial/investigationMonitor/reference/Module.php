@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/microbial/investigationMonitor/source/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/microbial/investigationMonitor/proposal/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/microbial/investigationMonitor/report/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/microbial/investigationMonitor/method/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/microbial/investigationMonitor/instruction/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/microbial/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/microbial/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/microbial/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/microbial/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/microbial/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/microbial/investigationMonitor/source/manage/index-history']
+                        'url' => ['/process/ird/microbial/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/microbial/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/microbial/investigationMonitor/report/manage/index-history']
+                        'url' => ['/process/ird/microbial/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/microbial/investigationMonitor/method/manage/index-history']
+                        'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/microbial/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/microbial/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/microbial/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/microbial/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

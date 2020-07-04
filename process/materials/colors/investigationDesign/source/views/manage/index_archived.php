@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/colors/manage/investigation-design']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/colors/manage/investigation-design']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/colors/investigationDesign/source/manage/index']
+        'url' => ['/process/materials/colors/investigationDesign/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/colors/investigationDesign/source/manage/archived-index']
+        'url' => ['/process/materials/colors/investigationDesign/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/colors/investigationDesign/source/manage/index-history']
+        'url' => ['/process/materials/colors/investigationDesign/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/colors/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/colors/investigationDesign/reference/manage/index']
     ]
 ];
 

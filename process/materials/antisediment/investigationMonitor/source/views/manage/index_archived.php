@@ -4,15 +4,15 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/antisediment/manage/investigation-monitor']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/antisediment/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/antisediment/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/materials/antisediment/investigationMonitor/source/manage/archived-index']
     ]
 ];
 

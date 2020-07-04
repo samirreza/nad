@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/microbial/manage/investigation-design']],
-    ['label' => 'رده های روشها', 'url' => ['/microbial/investigationDesign/method/category/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/microbial/manage/investigation-design']],
+    ['label' => 'رده های روشها', 'url' => ['/process/ird/microbial/investigationDesign/method/category/index']],
     $this->title
 ];
 

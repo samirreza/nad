@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/heattransfer/manage/investigation-monitor']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/heattransfer/manage/investigation-monitor']],
     'داده گاه روندهای دستورالعمل',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/heattransfer/investigationMonitor/instruction/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/heattransfer/investigationMonitor/instruction/manage/archived-index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/heattransfer/investigationMonitor/instruction/manage/index-history']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/heattransfer/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/reference/manage/index']
     ]
 ];
 ?>

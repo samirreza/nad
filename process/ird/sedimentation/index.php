@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی فرایندی',
-            'titleUrl' => Url::to(['/sedimentation/manage/investigation'])
+            'titleUrl' => Url::to(['/process/ird/sedimentation/manage/investigation'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => Url::to(['/sedimentation/manage/investigation-monitor'])
+            'titleUrl' => Url::to(['/process/ird/sedimentation/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">

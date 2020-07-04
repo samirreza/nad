@@ -25,15 +25,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/microbial/investigationMonitor/source/manage/create']
+                                'url' => ['/process/ird/microbial/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/microbial/investigationMonitor/source/manage/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/microbial/investigationMonitor/source/category/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -42,11 +42,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/microbial/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/microbial/investigationMonitor/source/manage/index-history']
+                                'url' => ['/process/ird/microbial/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -60,15 +60,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/microbial/investigationMonitor/proposal/manage/create']
+                                'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/microbial/investigationMonitor/proposal/manage/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/microbial/investigationMonitor/proposal/category/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -77,11 +77,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/microbial/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/microbial/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/process/ird/microbial/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -95,19 +95,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/microbial/investigationMonitor/report/manage/create']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/microbial/investigationMonitor/report/manage/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/microbial/investigationMonitor/report/category/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/microbial/investigationMonitor/report/manage/generate-graph']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -116,11 +116,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/microbial/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/microbial/investigationMonitor/report/manage/index-history']
+                                'url' => ['/process/ird/microbial/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -134,15 +134,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/microbial/investigationMonitor/method/manage/create']
+                                'url' => ['/process/ird/microbial/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/microbial/investigationMonitor/method/manage/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/microbial/investigationMonitor/method/category/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -151,11 +151,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/microbial/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/microbial/investigationMonitor/method/manage/index-history']
+                                'url' => ['/process/ird/microbial/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -169,15 +169,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/microbial/investigationMonitor/instruction/manage/create']
+                                'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/microbial/investigationMonitor/instruction/manage/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/microbial/investigationMonitor/instruction/category/index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -186,11 +186,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/microbial/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/microbial/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/process/ird/microbial/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -201,11 +201,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/microbial/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/ird/microbial/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/microbial/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/microbial/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

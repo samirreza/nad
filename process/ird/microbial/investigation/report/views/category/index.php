@@ -4,8 +4,8 @@ $this->title = 'رده‌بندی گزارش‌ها';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/ird/microbial/manage/investigation']],
     $this->title
 ];
 

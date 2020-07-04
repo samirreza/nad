@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی فرایندی',
-            'titleUrl' => Url::to(['/graphene/manage/investigation'])
+            'titleUrl' => Url::to(['/process/ird/graphene/manage/investigation'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => Url::to(['/graphene/manage/investigation-monitor'])
+            'titleUrl' => Url::to(['/process/ird/graphene/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی طراحی',
-            'titleUrl' => Url::to(['/graphene/manage/investigation-design'])
+            'titleUrl' => Url::to(['/process/ird/graphene/manage/investigation-design'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">

@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigation-design']],
-    ['label' => 'رده های منشاها', 'url' => ['/alkalineWasher/investigationDesign/source/category/index']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/process/materials/alkalineWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/alkalineWasher/manage/investigation-design']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/alkalineWasher/investigationDesign/source/category/index']],
     $this->title
 ];
 

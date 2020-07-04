@@ -9,8 +9,8 @@ $this->title = 'افزودن موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/ro/manage/investigation']],
+    ['label' => 'آر او', 'url' => ['/process/ird/ro/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/ro/manage/investigation']],
     $this->title
 ];
 

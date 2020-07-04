@@ -8,8 +8,8 @@ $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/graphene/manage/investigation-design']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/ird/graphene/manage/investigation-design']],
     $this->title
 ];
 

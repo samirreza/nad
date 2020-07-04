@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/ro/investigation/source/manage/index']
+                        'url' => ['/process/ird/ro/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/ro/investigation/proposal/manage/index']
+                        'url' => ['/process/ird/ro/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/ro/investigation/report/manage/index']
+                        'url' => ['/process/ird/ro/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/ro/investigation/method/manage/index']
+                        'url' => ['/process/ird/ro/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/ro/investigation/instruction/manage/index']
+                        'url' => ['/process/ird/ro/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/ro/investigation/source/manage/archived-index']
+                        'url' => ['/process/ird/ro/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/ro/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/ird/ro/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/ro/investigation/report/manage/archived-index']
+                        'url' => ['/process/ird/ro/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/ro/investigation/method/manage/archived-index']
+                        'url' => ['/process/ird/ro/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/ro/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/ird/ro/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/ro/investigation/source/manage/index-history']
+                        'url' => ['/process/ird/ro/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/ro/investigation/proposal/manage/index-history']
+                        'url' => ['/process/ird/ro/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/ro/investigation/report/manage/index-history']
+                        'url' => ['/process/ird/ro/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/ro/investigation/method/manage/index-history']
+                        'url' => ['/process/ird/ro/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/ro/investigation/instruction/manage/index-history']
+                        'url' => ['/process/ird/ro/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/ro/investigation/reference/manage/index']
+                        'url' => ['/process/ird/ro/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/ro/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/ro/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

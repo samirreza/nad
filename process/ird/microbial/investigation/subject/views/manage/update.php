@@ -9,8 +9,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/microbial/manage/investigation']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/antimicrobial/investigationMonitor/source/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/antimicrobial/investigationMonitor/proposal/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/antimicrobial/investigationMonitor/report/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/antimicrobial/investigationMonitor/method/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/antimicrobial/investigationMonitor/instruction/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/antimicrobial/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/antimicrobial/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/antimicrobial/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/antimicrobial/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/antimicrobial/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/antimicrobial/investigationMonitor/source/manage/index-history']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/antimicrobial/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/antimicrobial/investigationMonitor/report/manage/index-history']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/antimicrobial/investigationMonitor/method/manage/index-history']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/antimicrobial/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/antimicrobial/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/antimicrobial/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/antimicrobial/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

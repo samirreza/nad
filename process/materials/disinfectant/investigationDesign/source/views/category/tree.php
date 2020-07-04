@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/disinfectant/manage/investigation-design']],
-    ['label' => 'رده های منشاها', 'url' => ['/disinfectant/investigationDesign/source/category/index']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/disinfectant/manage/investigation-design']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/disinfectant/investigationDesign/source/category/index']],
     $this->title
 ];
 

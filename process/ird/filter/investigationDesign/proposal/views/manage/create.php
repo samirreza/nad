@@ -8,8 +8,8 @@ $this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/filter/manage/investigation-design']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/filter/manage/investigation-design']],
     $this->title
 ];
 

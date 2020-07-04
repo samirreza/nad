@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/heattransfer/investigationMonitor/source/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/heattransfer/investigationMonitor/proposal/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/heattransfer/investigationMonitor/report/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/heattransfer/investigationMonitor/method/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/heattransfer/investigationMonitor/instruction/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/heattransfer/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/heattransfer/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/heattransfer/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/heattransfer/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/heattransfer/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/heattransfer/investigationMonitor/source/manage/index-history']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/heattransfer/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/heattransfer/investigationMonitor/report/manage/index-history']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/heattransfer/investigationMonitor/method/manage/index-history']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/heattransfer/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/heattransfer/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/heattransfer/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/heattransfer/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

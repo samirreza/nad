@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'search',
                 'showCount' => false,
                 'title' => 'بررسی',
-                'titleUrl' => Url::to(['/pool/manage/investigation'])
+                'titleUrl' => Url::to(['/process/ird/pool/manage/investigation'])
             ]) ?>
         </div>
         <div class="col-md-3">

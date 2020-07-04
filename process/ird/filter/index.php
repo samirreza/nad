@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی فرایندی',
-            'titleUrl' => Url::to(['/filter/manage/investigation'])
+            'titleUrl' => Url::to(['/process/ird/filter/manage/investigation'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی پایش',
-            'titleUrl' => Url::to(['/filter/manage/investigation-monitor'])
+            'titleUrl' => Url::to(['/process/ird/filter/manage/investigation-monitor'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'بررسی طراحی',
-            'titleUrl' => Url::to(['/filter/manage/investigation-design'])
+            'titleUrl' => Url::to(['/process/ird/filter/manage/investigation-design'])
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">

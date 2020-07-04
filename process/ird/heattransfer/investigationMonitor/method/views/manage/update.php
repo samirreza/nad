@@ -9,8 +9,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/heattransfer/manage/investigation-monitor']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/heattransfer/manage/investigation-monitor']],
     ['label' => 'لیست روش', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

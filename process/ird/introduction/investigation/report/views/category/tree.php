@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/introduction/manage/investigation']],
-    ['label' => 'رده های گزارشات', 'url' => ['/introduction/investigation/report/category/index']],
+    ['label' => 'آشنایی', 'url' => ['/process/ird/introduction/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/introduction/manage/investigation']],
+    ['label' => 'رده های گزارشات', 'url' => ['/process/ird/introduction/investigation/report/category/index']],
     $this->title
 ];
 

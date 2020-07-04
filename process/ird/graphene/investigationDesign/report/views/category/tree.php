@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/graphene/manage/investigation-design']],
-    ['label' => 'رده های گزارشات', 'url' => ['/graphene/investigationDesign/report/category/index']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/graphene/manage/investigation-design']],
+    ['label' => 'رده های گزارشات', 'url' => ['/process/ird/graphene/investigationDesign/report/category/index']],
     $this->title
 ];
 

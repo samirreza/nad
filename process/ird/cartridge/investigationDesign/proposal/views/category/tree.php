@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/cartridge/manage/investigation-design']],
-    ['label' => 'رده های پروپوزالها', 'url' => ['/cartridge/investigationDesign/proposal/category/index']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/cartridge/manage/investigation-design']],
+    ['label' => 'رده های پروپوزالها', 'url' => ['/process/ird/cartridge/investigationDesign/proposal/category/index']],
     $this->title
 ];
 

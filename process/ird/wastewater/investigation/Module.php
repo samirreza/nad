@@ -26,15 +26,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/wastewater/investigation/source/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/wastewater/investigation/source/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/wastewater/investigation/source/category/index']
+                                'url' => ['/process/ird/wastewater/investigation/source/category/index']
                             ],
                         ]
                     ],
@@ -43,11 +43,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/wastewater/investigation/source/manage/archived-index']
+                                'url' => ['/process/ird/wastewater/investigation/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/wastewater/investigation/source/manage/index-history']
+                                'url' => ['/process/ird/wastewater/investigation/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -61,15 +61,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/wastewater/investigation/proposal/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/wastewater/investigation/proposal/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/wastewater/investigation/proposal/category/index']
+                                'url' => ['/process/ird/wastewater/investigation/proposal/category/index']
                             ],
                         ]
                     ],
@@ -78,11 +78,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/wastewater/investigation/proposal/manage/archived-index']
+                                'url' => ['/process/ird/wastewater/investigation/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/wastewater/investigation/proposal/manage/index-history']
+                                'url' => ['/process/ird/wastewater/investigation/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -96,19 +96,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/wastewater/investigation/report/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/wastewater/investigation/report/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/wastewater/investigation/report/category/index']
+                                'url' => ['/process/ird/wastewater/investigation/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/wastewater/investigation/report/manage/generate-graph']
+                                'url' => ['/process/ird/wastewater/investigation/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -117,11 +117,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/wastewater/investigation/report/manage/archived-index']
+                                'url' => ['/process/ird/wastewater/investigation/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/wastewater/investigation/report/manage/index-history']
+                                'url' => ['/process/ird/wastewater/investigation/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -135,15 +135,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/wastewater/investigation/method/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/wastewater/investigation/method/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/wastewater/investigation/method/category/index']
+                                'url' => ['/process/ird/wastewater/investigation/method/category/index']
                             ],
                         ]
                     ],
@@ -152,11 +152,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/wastewater/investigation/method/manage/archived-index']
+                                'url' => ['/process/ird/wastewater/investigation/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/wastewater/investigation/method/manage/index-history']
+                                'url' => ['/process/ird/wastewater/investigation/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -170,15 +170,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/wastewater/investigation/instruction/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/wastewater/investigation/instruction/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/wastewater/investigation/instruction/category/index']
+                                'url' => ['/process/ird/wastewater/investigation/instruction/category/index']
                             ],
                         ]
                     ],
@@ -187,11 +187,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/wastewater/investigation/instruction/manage/archived-index']
+                                'url' => ['/process/ird/wastewater/investigation/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/wastewater/investigation/instruction/manage/index-history']
+                                'url' => ['/process/ird/wastewater/investigation/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -205,17 +205,17 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/wastewater/investigation/subject/manage/create']
+                                'url' => ['/process/ird/wastewater/investigation/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعهای فعال',
-                                'url' => ['/wastewater/investigation/subject/manage/index']
+                                'url' => ['/process/ird/wastewater/investigation/subject/manage/index']
                             ]
                         ]
                     ],
                     [
                         'label' => 'داده گاه',
-                        'url' => ['/wastewater/investigation/subject/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/subject/manage/archived-index']
                     ]
                 ]
             ],
@@ -224,11 +224,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/wastewater/investigation/reference/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/wastewater/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/wastewater/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

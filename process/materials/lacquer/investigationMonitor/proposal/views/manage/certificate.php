@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/lacquer/manage/investigation-monitor']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/lacquer/manage/investigation-monitor']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
 ];

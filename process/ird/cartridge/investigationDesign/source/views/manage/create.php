@@ -7,8 +7,8 @@ $this->title = 'افزودن منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/cartridge/manage/investigation-design']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/cartridge/manage/investigation-design']],
     'برنامه منشا',
     $this->title
 ];

@@ -4,8 +4,8 @@ $this->title = 'رده‌بندی منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/grs/manage/investigation-monitor']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/grs/manage/investigation-monitor']],
     $this->title
 ];
 

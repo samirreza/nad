@@ -4,8 +4,8 @@ $this->title = 'لیست منشاهای برنامه';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/coagulant/manage/investigation']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/coagulant/manage/investigation']],
     'برنامه منشا',
     $this->title
 ];

@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/microbial/manage/investigation-design']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/microbial/manage/investigation-design']],
     'داده گاه روندهای گزارش',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/microbial/investigationDesign/report/manage/index']
+        'url' => ['/process/ird/microbial/investigationDesign/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/microbial/investigationDesign/report/manage/archived-index']
+        'url' => ['/process/ird/microbial/investigationDesign/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/microbial/investigationDesign/report/manage/index-history']
+        'url' => ['/process/ird/microbial/investigationDesign/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/microbial/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/microbial/investigationDesign/reference/manage/index']
     ]
 ];
 ?>

@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/newTechnology/manage/investigation']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/newTechnology/manage/investigation']],
     'داده گاه گزارش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/newTechnology/investigation/report/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/newTechnology/investigation/report/manage/archived-index']
+        'url' => ['/process/ird/newTechnology/investigation/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/newTechnology/investigation/report/manage/index-history']
+        'url' => ['/process/ird/newTechnology/investigation/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/newTechnology/investigation/reference/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/reference/manage/index']
     ]
 ];
 

@@ -4,8 +4,8 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/grs/manage/investigation-design']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/grs/manage/investigation-design']],
     'داده گاه پروپوزال',
     ['label' => 'لیست داده گاه پروپوزال', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه پروپوزال',
-        'url' => ['/grs/investigationDesign/proposal/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/proposal/manage/index']
     ],
     [
         'label' => 'داده گاه پروپوزال',
-        'url' => ['/grs/investigationDesign/proposal/manage/archived-index']
+        'url' => ['/process/materials/grs/investigationDesign/proposal/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند پروپوزال',
-        'url' => ['/grs/investigationDesign/proposal/manage/index-history']
+        'url' => ['/process/materials/grs/investigationDesign/proposal/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/grs/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/reference/manage/index']
     ]
 ];
 

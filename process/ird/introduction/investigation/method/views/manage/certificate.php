@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $method->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/introduction/manage/investigation']],
+    ['label' => 'آشنایی', 'url' => ['/process/ird/introduction/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/introduction/manage/investigation']],
     ['label' => 'لیست روش', 'url' => ['index']],
     $this->title
 ];

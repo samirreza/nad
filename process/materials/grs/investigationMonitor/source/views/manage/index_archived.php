@@ -4,15 +4,15 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/grs/manage/investigation-monitor']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/grs/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/grs/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/materials/grs/investigationMonitor/source/manage/archived-index']
     ]
 ];
 

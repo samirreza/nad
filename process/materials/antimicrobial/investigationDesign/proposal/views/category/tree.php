@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antimicrobial/manage/investigation-design']],
-    ['label' => 'رده های پروپوزالها', 'url' => ['/antimicrobial/investigationDesign/proposal/category/index']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/antimicrobial/manage/investigation-design']],
+    ['label' => 'رده های پروپوزالها', 'url' => ['/process/materials/antimicrobial/investigationDesign/proposal/category/index']],
     $this->title
 ];
 

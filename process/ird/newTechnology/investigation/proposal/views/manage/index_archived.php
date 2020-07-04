@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/newTechnology/manage/investigation']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/newTechnology/manage/investigation']],
     'داده گاه پروپوزال',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه پروپوزال',
-        'url' => ['/newTechnology/investigation/proposal/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/index']
     ],
     [
         'label' => 'داده گاه پروپوزال',
-        'url' => ['/newTechnology/investigation/proposal/manage/archived-index']
+        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند پروپوزال',
-        'url' => ['/newTechnology/investigation/proposal/manage/index-history']
+        'url' => ['/process/ird/newTechnology/investigation/proposal/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/newTechnology/investigation/reference/manage/index']
+        'url' => ['/process/ird/newTechnology/investigation/reference/manage/index']
     ]
 ];
 

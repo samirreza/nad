@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/cartridge/investigation/source/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/cartridge/investigation/proposal/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/cartridge/investigation/report/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/cartridge/investigation/method/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/cartridge/investigation/instruction/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/cartridge/investigation/source/manage/archived-index']
+                        'url' => ['/process/ird/cartridge/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/cartridge/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/ird/cartridge/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/cartridge/investigation/report/manage/archived-index']
+                        'url' => ['/process/ird/cartridge/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/cartridge/investigation/method/manage/archived-index']
+                        'url' => ['/process/ird/cartridge/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/cartridge/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/ird/cartridge/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/cartridge/investigation/source/manage/index-history']
+                        'url' => ['/process/ird/cartridge/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/cartridge/investigation/proposal/manage/index-history']
+                        'url' => ['/process/ird/cartridge/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/cartridge/investigation/report/manage/index-history']
+                        'url' => ['/process/ird/cartridge/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/cartridge/investigation/method/manage/index-history']
+                        'url' => ['/process/ird/cartridge/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/cartridge/investigation/instruction/manage/index-history']
+                        'url' => ['/process/ird/cartridge/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/cartridge/investigation/reference/manage/index']
+                        'url' => ['/process/ird/cartridge/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/cartridge/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/cartridge/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

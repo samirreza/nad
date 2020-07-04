@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/alkalineWasher/investigationMonitor/source/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/alkalineWasher/investigationMonitor/proposal/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/alkalineWasher/investigationMonitor/report/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/alkalineWasher/investigationMonitor/method/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/alkalineWasher/investigationMonitor/instruction/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/alkalineWasher/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/alkalineWasher/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/alkalineWasher/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/alkalineWasher/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/alkalineWasher/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/alkalineWasher/investigationMonitor/source/manage/index-history']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/alkalineWasher/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/alkalineWasher/investigationMonitor/report/manage/index-history']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/alkalineWasher/investigationMonitor/method/manage/index-history']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/alkalineWasher/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/alkalineWasher/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/alkalineWasher/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/alkalineWasher/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/colors/manage/investigation']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/colors/manage/investigation']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];

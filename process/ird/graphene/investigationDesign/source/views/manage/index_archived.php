@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/graphene/manage/investigation-design']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/graphene/manage/investigation-design']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/graphene/investigationDesign/source/manage/index']
+        'url' => ['/process/ird/graphene/investigationDesign/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/graphene/investigationDesign/source/manage/archived-index']
+        'url' => ['/process/ird/graphene/investigationDesign/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/graphene/investigationDesign/source/manage/index-history']
+        'url' => ['/process/ird/graphene/investigationDesign/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/graphene/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/graphene/investigationDesign/reference/manage/index']
     ]
 ];
 

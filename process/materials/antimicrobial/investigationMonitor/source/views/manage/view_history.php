@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/antimicrobial/manage/investigation-monitor']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/antimicrobial/manage/investigation-monitor']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/antimicrobial/investigationMonitor/source/manage/index-history']
+        'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/index-history']
     ]
 ];
 

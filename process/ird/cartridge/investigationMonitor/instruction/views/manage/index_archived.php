@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/cartridge/manage/investigation-monitor']],
     'داده گاه دستورالعمل',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/cartridge/investigationMonitor/instruction/manage/index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/cartridge/investigationMonitor/instruction/manage/archived-index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/cartridge/investigationMonitor/instruction/manage/index-history']
+        'url' => ['/process/ird/cartridge/investigationMonitor/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 

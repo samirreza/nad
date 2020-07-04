@@ -26,15 +26,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/coagulant/investigationDesign/source/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/coagulant/investigationDesign/source/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/coagulant/investigationDesign/source/category/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/source/category/index']
                             ],
                         ]
                     ],
@@ -43,11 +43,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/coagulant/investigationDesign/source/manage/archived-index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/coagulant/investigationDesign/source/manage/index-history']
+                                'url' => ['/process/materials/coagulant/investigationDesign/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -61,15 +61,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/coagulant/investigationDesign/proposal/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/coagulant/investigationDesign/proposal/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/coagulant/investigationDesign/proposal/category/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/proposal/category/index']
                             ],
                         ]
                     ],
@@ -78,11 +78,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/coagulant/investigationDesign/proposal/manage/archived-index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/coagulant/investigationDesign/proposal/manage/index-history']
+                                'url' => ['/process/materials/coagulant/investigationDesign/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -96,19 +96,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/coagulant/investigationDesign/report/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/coagulant/investigationDesign/report/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/coagulant/investigationDesign/report/category/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/coagulant/investigationDesign/report/manage/generate-graph']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -117,11 +117,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/coagulant/investigationDesign/report/manage/archived-index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/coagulant/investigationDesign/report/manage/index-history']
+                                'url' => ['/process/materials/coagulant/investigationDesign/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -135,15 +135,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/coagulant/investigationDesign/method/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/coagulant/investigationDesign/method/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/coagulant/investigationDesign/method/category/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/method/category/index']
                             ],
                         ]
                     ],
@@ -152,11 +152,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/coagulant/investigationDesign/method/manage/archived-index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/coagulant/investigationDesign/method/manage/index-history']
+                                'url' => ['/process/materials/coagulant/investigationDesign/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -170,15 +170,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/coagulant/investigationDesign/instruction/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/coagulant/investigationDesign/instruction/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/coagulant/investigationDesign/instruction/category/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/instruction/category/index']
                             ],
                         ]
                     ],
@@ -187,11 +187,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/coagulant/investigationDesign/instruction/manage/archived-index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/coagulant/investigationDesign/instruction/manage/index-history']
+                                'url' => ['/process/materials/coagulant/investigationDesign/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -205,17 +205,17 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/coagulant/investigationDesign/subject/manage/create']
+                                'url' => ['/process/materials/coagulant/investigationDesign/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعهای فعال',
-                                'url' => ['/coagulant/investigationDesign/subject/manage/index']
+                                'url' => ['/process/materials/coagulant/investigationDesign/subject/manage/index']
                             ]
                         ]
                     ],
                     [
                         'label' => 'داده گاه',
-                        'url' => ['/coagulant/investigationDesign/subject/manage/archived-index']
+                        'url' => ['/process/materials/coagulant/investigationDesign/subject/manage/archived-index']
                     ]
                 ]
             ],
@@ -224,11 +224,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/coagulant/investigationDesign/reference/manage/index']
+                        'url' => ['/process/materials/coagulant/investigationDesign/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/coagulant/investigationDesign/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/coagulant/investigationDesign/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

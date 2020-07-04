@@ -8,8 +8,8 @@ $this->title = 'ویرایش پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/microbial/manage/investigation']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/microbial/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

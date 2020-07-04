@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/antisediment/manage/investigation-monitor']],
-    ['label' => 'رده های منشاها', 'url' => ['/antisediment/investigationMonitor/source/category/index']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/antisediment/manage/investigation-monitor']],
+    ['label' => 'رده های منشاها', 'url' => ['/process/materials/antisediment/investigationMonitor/source/category/index']],
     $this->title
 ];
 

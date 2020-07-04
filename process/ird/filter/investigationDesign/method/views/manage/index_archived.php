@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/filter/manage/investigation-design']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/filter/manage/investigation-design']],
     'داده گاه روش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/filter/investigationDesign/method/manage/index']
+        'url' => ['/process/ird/filter/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/filter/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/ird/filter/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/filter/investigationDesign/method/manage/index-history']
+        'url' => ['/process/ird/filter/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/filter/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/filter/investigationDesign/reference/manage/index']
     ]
 ];
 

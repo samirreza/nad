@@ -8,8 +8,8 @@ $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/colors/manage/investigation-design']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/colors/manage/investigation-design']],
     $this->title
 ];
 

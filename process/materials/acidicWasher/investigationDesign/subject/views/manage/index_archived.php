@@ -4,23 +4,23 @@ $this->title = 'لیست داده گاه موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/acidicWasher/manage/investigation-design']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/acidicWasher/manage/investigation-design']],
     'داده گاه موضوع',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه موضوع',
-        'url' => ['/acidicWasher/investigationDesign/subject/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/subject/manage/index']
     ],
     [
         'label' => 'داده گاه موضوع',
-        'url' => ['/acidicWasher/investigationDesign/subject/manage/archived-index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/subject/manage/archived-index']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/acidicWasher/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/reference/manage/index']
     ]
 ];
 

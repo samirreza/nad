@@ -8,7 +8,7 @@ $this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
     $this->title
 ];
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/microbial/investigation/source/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/microbial/investigation/proposal/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش',
-                'titleUrl' => Url::to(['/microbial/investigation/report/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
-                'titleUrl' => Url::to(['/microbial/investigation/method/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستورالعمل',
-                'titleUrl' => Url::to(['/microbial/investigation/instruction/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/instruction/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => '-',
                 'showCount' => false,
                 'title' => 'سایرگزارشها',
-                'titleUrl' => Url::to(['/microbial/investigation/subject/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/microbial/investigation/subject/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منشاها',
-            'titleUrl' => Url::to(['/microbial/investigation/source/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/source/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -100,7 +100,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => Url::to(['/microbial/investigation/source/manage/index-history'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => Url::to(['/microbial/investigation/proposal/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -120,7 +120,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' =>  Url::to(['/microbial/investigation/proposal/manage/index-history'])
+            'titleUrl' =>  Url::to(['/process/ird/microbial/investigation/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'گزارش ها',
-            'titleUrl' => Url::to(['/microbial/investigation/report/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/report/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -140,7 +140,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده گزارش',
-            'titleUrl' =>  Url::to(['/microbial/investigation/report/manage/index-history'])
+            'titleUrl' =>  Url::to(['/process/ird/microbial/investigation/report/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روش ها',
-            'titleUrl' => Url::to(['/microbial/investigation/method/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -160,7 +160,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده روش',
-            'titleUrl' => Url::to(['/microbial/investigation/method/manage/index-history'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'دستورالعمل ها',
-            'titleUrl' => Url::to(['/microbial/investigation/method/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -180,7 +180,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
-            'titleUrl' => Url::to(['/microbial/investigation/method/manage/index-history'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -192,7 +192,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منابع',
-            'titleUrl' => Url::to(['/microbial/investigation/reference/manage/index'])
+            'titleUrl' => Url::to(['/process/ird/microbial/investigation/reference/manage/index'])
         ])
         ?>
     </div>

@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/wastewater/manage/investigation']],
+    ['label' => 'پساب', 'url' => ['/process/ird/wastewater/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/wastewater/manage/investigation']],
     'داده گاه دستورالعمل',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/wastewater/investigation/instruction/manage/index']
+        'url' => ['/process/ird/wastewater/investigation/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/wastewater/investigation/instruction/manage/archived-index']
+        'url' => ['/process/ird/wastewater/investigation/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/wastewater/investigation/instruction/manage/index-history']
+        'url' => ['/process/ird/wastewater/investigation/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/wastewater/investigation/reference/manage/index']
+        'url' => ['/process/ird/wastewater/investigation/reference/manage/index']
     ]
 ];
 

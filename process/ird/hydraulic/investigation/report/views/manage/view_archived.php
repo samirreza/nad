@@ -4,8 +4,8 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/hydraulic/manage/investigation']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/hydraulic/manage/investigation']],
     'داده گاه گزارش',
     ['label' => 'لیست داده گاه گزارش', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/hydraulic/investigation/report/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/hydraulic/investigation/report/manage/archived-index']
+        'url' => ['/process/ird/hydraulic/investigation/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/hydraulic/investigation/report/manage/index-history']
+        'url' => ['/process/ird/hydraulic/investigation/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/hydraulic/investigation/reference/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/reference/manage/index']
     ]
 ];
 

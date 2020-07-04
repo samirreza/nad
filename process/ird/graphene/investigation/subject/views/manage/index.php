@@ -4,8 +4,8 @@ $this->title = 'لیست موضوع های فعال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/graphene/manage/investigation']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/graphene/manage/investigation']],
     $this->title
 ];
 

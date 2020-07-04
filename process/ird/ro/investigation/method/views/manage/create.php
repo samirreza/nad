@@ -9,8 +9,8 @@ $this->title = 'افزودن روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/ro/manage/investigation']],
+    ['label' => 'آر او', 'url' => ['/process/ird/ro/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/ro/manage/investigation']],
     $this->title
 ];
 
