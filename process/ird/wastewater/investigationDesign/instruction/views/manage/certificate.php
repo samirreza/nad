@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $instruction->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/wastewater/manage/investigation-design']],
+    ['label' => 'پساب', 'url' => ['/process/ird/wastewater/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/wastewater/manage/investigation-design']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     $this->title
 ];

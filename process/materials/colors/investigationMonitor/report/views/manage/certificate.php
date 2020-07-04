@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $report->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/colors/manage/investigation-monitor']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/colors/manage/investigation-monitor']],
     ['label' => 'لیست گزارش', 'url' => ['index']],
     $this->title
 ];

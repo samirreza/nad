@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/grs/manage/investigation-design']],
-    ['label' => 'رده های دستورالعملها', 'url' => ['/grs/investigationDesign/instruction/category/index']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/grs/manage/investigation-design']],
+    ['label' => 'رده های دستورالعملها', 'url' => ['/process/materials/grs/investigationDesign/instruction/category/index']],
     $this->title
 ];
 

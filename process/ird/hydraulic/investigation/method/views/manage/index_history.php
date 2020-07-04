@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/hydraulic/manage/investigation']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/hydraulic/manage/investigation']],
     'داده گاه روندهای روش',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/hydraulic/investigation/method/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/hydraulic/investigation/method/manage/archived-index']
+        'url' => ['/process/ird/hydraulic/investigation/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/hydraulic/investigation/method/manage/index-history']
+        'url' => ['/process/ird/hydraulic/investigation/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/hydraulic/investigation/reference/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/reference/manage/index']
     ]
 ];
 ?>

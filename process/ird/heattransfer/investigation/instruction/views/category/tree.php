@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/heattransfer/manage/investigation']],
-    ['label' => 'رده های دستورالعملها', 'url' => ['/heattransfer/investigation/instruction/category/index']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/heattransfer/manage/investigation']],
+    ['label' => 'رده های دستورالعملها', 'url' => ['/process/ird/heattransfer/investigation/instruction/category/index']],
     $this->title
 ];
 

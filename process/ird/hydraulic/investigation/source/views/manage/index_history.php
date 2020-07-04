@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/hydraulic/manage/investigation']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/hydraulic/manage/investigation']],
     'داده گاه روندهای منشا',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/hydraulic/investigation/source/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/hydraulic/investigation/source/manage/archived-index']
+        'url' => ['/process/ird/hydraulic/investigation/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/hydraulic/investigation/source/manage/index-history']
+        'url' => ['/process/ird/hydraulic/investigation/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/hydraulic/investigation/reference/manage/index']
+        'url' => ['/process/ird/hydraulic/investigation/reference/manage/index']
     ]
 ];
 ?>

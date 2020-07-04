@@ -8,7 +8,7 @@ $this->title = 'بررسی فرایندی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
     $this->title
 ];
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/coagulant/investigation/source/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/coagulant/investigation/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/coagulant/investigation/proposal/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/coagulant/investigation/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش',
-                'titleUrl' => Url::to(['/coagulant/investigation/report/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/coagulant/investigation/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
-                'titleUrl' => Url::to(['/coagulant/investigation/method/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/coagulant/investigation/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستور العمل',
-                'titleUrl' => '#' //Url::to(['/coagulant/investigation/reference/manage/index'])
+                'titleUrl' => '#' //Url::to(['/process/materials/coagulant/investigation/reference/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منشاها',
-            'titleUrl' => Url::to(['/coagulant/investigation/source/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/coagulant/investigation/source/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => Url::to(['/coagulant/investigation/source/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/coagulant/investigation/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -184,7 +184,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منابع',
-            'titleUrl' => Url::to(['/coagulant/investigation/reference/manage/index'])
+            'titleUrl' => Url::to(['/process/materials/coagulant/investigation/reference/manage/index'])
         ])
         ?>
     </div>

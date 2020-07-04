@@ -4,15 +4,15 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/coagulant/manage/investigation-monitor']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/coagulant/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/coagulant/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/materials/coagulant/investigationMonitor/source/manage/archived-index']
     ]
 ];
 

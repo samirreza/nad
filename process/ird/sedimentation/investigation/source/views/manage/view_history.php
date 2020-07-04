@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ته نشینی', 'url' => ['/sedimentation/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/sedimentation/manage/investigation']],
+    ['label' => 'ته نشینی', 'url' => ['/process/ird/sedimentation/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/sedimentation/manage/investigation']],
     'داده گاه روندهای منشا',
     ['label' => 'لیست داده گاه روندهای منشا', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/index']
+        'url' => ['/process/ird/sedimentation/investigation/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/sedimentation/investigation/source/manage/archived-index']
+        'url' => ['/process/ird/sedimentation/investigation/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/sedimentation/investigation/source/manage/index-history']
+        'url' => ['/process/ird/sedimentation/investigation/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/sedimentation/investigation/reference/manage/index']
+        'url' => ['/process/ird/sedimentation/investigation/reference/manage/index']
     ]
 ];
 

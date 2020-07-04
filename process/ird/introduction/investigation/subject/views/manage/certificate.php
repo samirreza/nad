@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $subject->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آشنایی', 'url' => ['/introduction/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/introduction/manage/investigation']],
+    ['label' => 'آشنایی', 'url' => ['/process/ird/introduction/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/introduction/manage/investigation']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],
     $this->title
 ];

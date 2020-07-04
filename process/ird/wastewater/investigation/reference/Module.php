@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/wastewater/investigation/source/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/wastewater/investigation/proposal/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/wastewater/investigation/report/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/wastewater/investigation/method/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/wastewater/investigation/instruction/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/wastewater/investigation/source/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/wastewater/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/wastewater/investigation/report/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/wastewater/investigation/method/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/wastewater/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/ird/wastewater/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/wastewater/investigation/source/manage/index-history']
+                        'url' => ['/process/ird/wastewater/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/wastewater/investigation/proposal/manage/index-history']
+                        'url' => ['/process/ird/wastewater/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/wastewater/investigation/report/manage/index-history']
+                        'url' => ['/process/ird/wastewater/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/wastewater/investigation/method/manage/index-history']
+                        'url' => ['/process/ird/wastewater/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/wastewater/investigation/instruction/manage/index-history']
+                        'url' => ['/process/ird/wastewater/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/wastewater/investigation/reference/manage/index']
+                        'url' => ['/process/ird/wastewater/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/wastewater/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/wastewater/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

@@ -4,8 +4,8 @@ $this->title = 'رده‌بندی گزارش‌ها';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/wastewater/manage/investigation-design']],
+    ['label' => 'پساب', 'url' => ['/process/ird/wastewater/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/ird/wastewater/manage/investigation-design']],
     $this->title
 ];
 

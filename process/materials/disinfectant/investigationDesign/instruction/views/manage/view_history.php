@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/disinfectant/manage/investigation-design']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/disinfectant/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     ['label' => 'لیست داده گاه روندهای دستورالعمل', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/disinfectant/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/disinfectant/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/disinfectant/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/disinfectant/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/disinfectant/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/reference/manage/index']
     ]
 ];
 

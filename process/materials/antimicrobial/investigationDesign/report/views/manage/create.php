@@ -8,8 +8,8 @@ $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/antimicrobial/manage/investigation-design']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/antimicrobial/manage/investigation-design']],
     $this->title
 ];
 

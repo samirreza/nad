@@ -4,15 +4,15 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/disinfectant/manage/investigation-monitor']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/disinfectant/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'لیست داده گاه منشا',
-        'url' => ['/disinfectant/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/materials/disinfectant/investigationMonitor/source/manage/archived-index']
     ]
 ];
 

@@ -4,8 +4,8 @@ $this->title = 'لیست گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/acidicWasher/manage/investigation-monitor']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/acidicWasher/manage/investigation-monitor']],
     $this->title
 ];
 

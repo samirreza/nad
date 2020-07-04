@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $instruction->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/graphene/manage/investigation-design']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/graphene/manage/investigation-design']],
     ['label' => 'لیست دستورالعمل', 'url' => ['index']],
     $this->title
 ];

@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $source->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/coagulant/manage/investigation-design']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/coagulant/manage/investigation-design']],
     'داده گاه منشا',
     ['label' => 'لیست داده گاه منشا', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/coagulant/investigationDesign/source/manage/index']
+        'url' => ['/process/materials/coagulant/investigationDesign/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/coagulant/investigationDesign/source/manage/archived-index']
+        'url' => ['/process/materials/coagulant/investigationDesign/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/coagulant/investigationDesign/source/manage/index-history']
+        'url' => ['/process/materials/coagulant/investigationDesign/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/coagulant/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/coagulant/investigationDesign/reference/manage/index']
     ]
 ];
 

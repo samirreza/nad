@@ -4,8 +4,8 @@ $this->title = 'لیست موضوع های فعال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/acidicWasher/manage/investigation']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/materials/acidicWasher/manage/investigation']],
     $this->title
 ];
 

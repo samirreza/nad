@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antisediment/manage/investigation-design']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/antisediment/manage/investigation-design']],
     'داده گاه روندهای گزارش',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/antisediment/investigationDesign/report/manage/index']
+        'url' => ['/process/materials/antisediment/investigationDesign/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/antisediment/investigationDesign/report/manage/archived-index']
+        'url' => ['/process/materials/antisediment/investigationDesign/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/antisediment/investigationDesign/report/manage/index-history']
+        'url' => ['/process/materials/antisediment/investigationDesign/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/antisediment/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/antisediment/investigationDesign/reference/manage/index']
     ]
 ];
 ?>

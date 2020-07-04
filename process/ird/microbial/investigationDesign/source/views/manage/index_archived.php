@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'میکروبیولوژی', 'url' => ['/microbial/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/microbial/manage/investigation-design']],
+    ['label' => 'میکروبیولوژی', 'url' => ['/process/ird/microbial/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/microbial/manage/investigation-design']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/microbial/investigationDesign/source/manage/index']
+        'url' => ['/process/ird/microbial/investigationDesign/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/microbial/investigationDesign/source/manage/archived-index']
+        'url' => ['/process/ird/microbial/investigationDesign/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/microbial/investigationDesign/source/manage/index-history']
+        'url' => ['/process/ird/microbial/investigationDesign/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/microbial/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/microbial/investigationDesign/reference/manage/index']
     ]
 ];
 

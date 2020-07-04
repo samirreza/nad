@@ -4,9 +4,9 @@ $this->title = 'نمایش درختی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'پساب', 'url' => ['/wastewater/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/wastewater/manage/investigation']],
-    ['label' => 'رده های گزارشات', 'url' => ['/wastewater/investigation/report/category/index']],
+    ['label' => 'پساب', 'url' => ['/process/ird/wastewater/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/wastewater/manage/investigation']],
+    ['label' => 'رده های گزارشات', 'url' => ['/process/ird/wastewater/investigation/report/category/index']],
     $this->title
 ];
 

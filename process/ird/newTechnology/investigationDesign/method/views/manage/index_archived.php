@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/newTechnology/manage/investigation-design']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/newTechnology/manage/investigation-design']],
     'داده گاه روش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/newTechnology/investigationDesign/method/manage/index']
+        'url' => ['/process/ird/newTechnology/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/newTechnology/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/ird/newTechnology/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/newTechnology/investigationDesign/method/manage/index-history']
+        'url' => ['/process/ird/newTechnology/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/newTechnology/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/newTechnology/investigationDesign/reference/manage/index']
     ]
 ];
 

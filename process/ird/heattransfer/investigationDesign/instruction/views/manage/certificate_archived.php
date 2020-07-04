@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $instruction->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/heattransfer/manage/investigation-design']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/heattransfer/manage/investigation-design']],
     'داده گاه دستورالعمل',
     ['label' => 'لیست داده گاه دستورالعمل', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/heattransfer/investigationDesign/instruction/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/heattransfer/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/ird/heattransfer/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/heattransfer/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/ird/heattransfer/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/heattransfer/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationDesign/reference/manage/index']
     ]
 ];
 

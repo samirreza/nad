@@ -24,15 +24,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/lacquer/investigation/source/manage/create']
+                                'url' => ['/process/materials/lacquer/investigation/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/lacquer/investigation/source/manage/index']
+                                'url' => ['/process/materials/lacquer/investigation/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/lacquer/investigation/source/category/index']
+                                'url' => ['/process/materials/lacquer/investigation/source/category/index']
                             ],
                         ]
                     ],
@@ -41,11 +41,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/lacquer/investigation/source/manage/archived-index']
+                                'url' => ['/process/materials/lacquer/investigation/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/lacquer/investigation/source/manage/index-history']
+                                'url' => ['/process/materials/lacquer/investigation/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -59,15 +59,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/lacquer/investigation/proposal/manage/create']
+                                'url' => ['/process/materials/lacquer/investigation/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/lacquer/investigation/proposal/manage/index']
+                                'url' => ['/process/materials/lacquer/investigation/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/lacquer/investigation/proposal/category/index']
+                                'url' => ['/process/materials/lacquer/investigation/proposal/category/index']
                             ],
                         ]
                     ],
@@ -76,11 +76,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/lacquer/investigation/proposal/manage/archived-index']
+                                'url' => ['/process/materials/lacquer/investigation/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/lacquer/investigation/proposal/manage/index-history']
+                                'url' => ['/process/materials/lacquer/investigation/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -94,15 +94,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/lacquer/investigation/report/manage/create']
+                                'url' => ['/process/materials/lacquer/investigation/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/lacquer/investigation/report/manage/index']
+                                'url' => ['/process/materials/lacquer/investigation/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/lacquer/investigation/report/category/index']
+                                'url' => ['/process/materials/lacquer/investigation/report/category/index']
                             ],
                         ]
                     ],
@@ -111,11 +111,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/lacquer/investigation/report/manage/archived-index']
+                                'url' => ['/process/materials/lacquer/investigation/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/lacquer/investigation/report/manage/index-history']
+                                'url' => ['/process/materials/lacquer/investigation/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -129,15 +129,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/lacquer/investigation/method/manage/create']
+                                'url' => ['/process/materials/lacquer/investigation/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/lacquer/investigation/method/manage/index']
+                                'url' => ['/process/materials/lacquer/investigation/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/lacquer/investigation/method/category/index']
+                                'url' => ['/process/materials/lacquer/investigation/method/category/index']
                             ],
                         ]
                     ],
@@ -146,11 +146,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/lacquer/investigation/method/manage/archived-index']
+                                'url' => ['/process/materials/lacquer/investigation/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/lacquer/investigation/method/manage/index-history']
+                                'url' => ['/process/materials/lacquer/investigation/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -164,15 +164,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/lacquer/investigation/instruction/manage/create']
+                                'url' => ['/process/materials/lacquer/investigation/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/lacquer/investigation/instruction/manage/index']
+                                'url' => ['/process/materials/lacquer/investigation/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/lacquer/investigation/instruction/category/index']
+                                'url' => ['/process/materials/lacquer/investigation/instruction/category/index']
                             ],
                         ]
                     ],
@@ -181,11 +181,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/lacquer/investigation/instruction/manage/archived-index']
+                                'url' => ['/process/materials/lacquer/investigation/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/lacquer/investigation/instruction/manage/index-history']
+                                'url' => ['/process/materials/lacquer/investigation/instruction/manage/index-history']
                             ],
                         ]
                     ]

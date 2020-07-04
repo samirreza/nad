@@ -7,8 +7,8 @@ $this->title = 'افزودن منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/antisediment/manage/investigation-monitor']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/antisediment/manage/investigation-monitor']],
     'برنامه منشا',
     $this->title
 ];

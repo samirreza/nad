@@ -4,8 +4,8 @@ $this->title = 'رده‌بندی منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/colors/manage/investigation']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/colors/manage/investigation']],
     $this->title
 ];
 

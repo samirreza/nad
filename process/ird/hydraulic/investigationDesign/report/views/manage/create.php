@@ -8,8 +8,8 @@ $this->title = 'افزودن گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/hydraulic/manage/investigation-design']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/ird/hydraulic/manage/investigation-design']],
     $this->title
 ];
 

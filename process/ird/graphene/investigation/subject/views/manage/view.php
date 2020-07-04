@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/graphene/manage/investigation']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/graphene/manage/investigation']],
     ['label' => 'لیست موضوع های فعال', 'url' => ['index']],
     $this->title
 ];

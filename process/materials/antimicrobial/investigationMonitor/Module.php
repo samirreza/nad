@@ -24,15 +24,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/antimicrobial/investigationMonitor/source/manage/create']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/antimicrobial/investigationMonitor/source/manage/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/antimicrobial/investigationMonitor/source/category/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -41,11 +41,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/antimicrobial/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/antimicrobial/investigationMonitor/source/manage/index-history']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -59,15 +59,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/antimicrobial/investigationMonitor/proposal/manage/create']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/antimicrobial/investigationMonitor/proposal/manage/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/antimicrobial/investigationMonitor/proposal/category/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -76,11 +76,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/antimicrobial/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/antimicrobial/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -94,15 +94,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/antimicrobial/investigationMonitor/report/manage/create']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/antimicrobial/investigationMonitor/report/manage/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/antimicrobial/investigationMonitor/report/category/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/report/category/index']
                             ],
                         ]
                     ],
@@ -111,11 +111,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/antimicrobial/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/antimicrobial/investigationMonitor/report/manage/index-history']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -129,15 +129,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/antimicrobial/investigationMonitor/method/manage/create']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/antimicrobial/investigationMonitor/method/manage/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/antimicrobial/investigationMonitor/method/category/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -146,11 +146,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/antimicrobial/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/antimicrobial/investigationMonitor/method/manage/index-history']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -164,15 +164,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/antimicrobial/investigationMonitor/instruction/manage/create']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/antimicrobial/investigationMonitor/instruction/manage/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/antimicrobial/investigationMonitor/instruction/category/index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -181,11 +181,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/antimicrobial/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/antimicrobial/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/process/materials/antimicrobial/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
                     ]

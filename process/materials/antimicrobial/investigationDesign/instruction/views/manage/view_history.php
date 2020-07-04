@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antimicrobial/manage/investigation-design']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/antimicrobial/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     ['label' => 'لیست داده گاه روندهای دستورالعمل', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/antimicrobial/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/antimicrobial/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/antimicrobial/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/antimicrobial/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigationDesign/reference/manage/index']
     ]
 ];
 

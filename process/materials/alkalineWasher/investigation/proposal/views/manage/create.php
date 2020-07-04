@@ -6,8 +6,8 @@ $this->title = 'افزودن پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/alkalineWasher/manage/investigation']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/process/materials/alkalineWasher/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/alkalineWasher/manage/investigation']],
     $this->title
 ];
 

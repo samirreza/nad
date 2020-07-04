@@ -4,23 +4,23 @@ $this->title = 'لیست داده گاه موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'لاک بیرنگ', 'url' => ['/lacquer/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/lacquer/manage/investigation-design']],
+    ['label' => 'لاک بیرنگ', 'url' => ['/process/materials/lacquer/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/lacquer/manage/investigation-design']],
     'داده گاه موضوع',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه موضوع',
-        'url' => ['/lacquer/investigationDesign/subject/manage/index']
+        'url' => ['/process/materials/lacquer/investigationDesign/subject/manage/index']
     ],
     [
         'label' => 'داده گاه موضوع',
-        'url' => ['/lacquer/investigationDesign/subject/manage/archived-index']
+        'url' => ['/process/materials/lacquer/investigationDesign/subject/manage/archived-index']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/lacquer/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/lacquer/investigationDesign/reference/manage/index']
     ]
 ];
 

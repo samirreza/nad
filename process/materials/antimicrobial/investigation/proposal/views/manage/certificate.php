@@ -4,8 +4,8 @@ $this->title = 'شناسنامه ' . $proposal->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/antimicrobial/manage/investigation']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/antimicrobial/manage/investigation']],
     ['label' => 'لیست پروپوزال', 'url' => ['index']],
     $this->title
 ];

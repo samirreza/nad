@@ -24,15 +24,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/antisediment/investigationMonitor/source/manage/create']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/antisediment/investigationMonitor/source/manage/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/antisediment/investigationMonitor/source/category/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -41,11 +41,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/antisediment/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/antisediment/investigationMonitor/source/manage/index-history']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -59,15 +59,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/antisediment/investigationMonitor/proposal/manage/create']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/antisediment/investigationMonitor/proposal/manage/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/antisediment/investigationMonitor/proposal/category/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -76,11 +76,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/antisediment/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/antisediment/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -94,15 +94,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/antisediment/investigationMonitor/report/manage/create']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/antisediment/investigationMonitor/report/manage/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/antisediment/investigationMonitor/report/category/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/report/category/index']
                             ],
                         ]
                     ],
@@ -111,11 +111,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/antisediment/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/antisediment/investigationMonitor/report/manage/index-history']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -129,15 +129,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/antisediment/investigationMonitor/method/manage/create']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/antisediment/investigationMonitor/method/manage/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/antisediment/investigationMonitor/method/category/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -146,11 +146,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/antisediment/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/antisediment/investigationMonitor/method/manage/index-history']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -164,15 +164,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/antisediment/investigationMonitor/instruction/manage/create']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/antisediment/investigationMonitor/instruction/manage/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/antisediment/investigationMonitor/instruction/category/index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -181,11 +181,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/antisediment/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/antisediment/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/process/materials/antisediment/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
                     ]

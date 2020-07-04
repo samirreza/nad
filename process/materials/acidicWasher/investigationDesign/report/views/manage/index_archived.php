@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/acidicWasher/manage/investigation-design']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/acidicWasher/manage/investigation-design']],
     'داده گاه گزارش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/acidicWasher/investigationDesign/report/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/acidicWasher/investigationDesign/report/manage/archived-index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/acidicWasher/investigationDesign/report/manage/index-history']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/acidicWasher/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/reference/manage/index']
     ]
 ];
 

@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/heattransfer/manage/investigation']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/heattransfer/manage/investigation']],
     'داده گاه روش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/heattransfer/investigation/method/manage/index']
+        'url' => ['/process/ird/heattransfer/investigation/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/heattransfer/investigation/method/manage/archived-index']
+        'url' => ['/process/ird/heattransfer/investigation/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/heattransfer/investigation/method/manage/index-history']
+        'url' => ['/process/ird/heattransfer/investigation/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/heattransfer/investigation/reference/manage/index']
+        'url' => ['/process/ird/heattransfer/investigation/reference/manage/index']
     ]
 ];
 

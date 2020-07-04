@@ -4,8 +4,8 @@ $this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'منعقدکننده', 'url' => ['/coagulant/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/coagulant/manage/investigation-monitor']],
+    ['label' => 'منعقدکننده', 'url' => ['/process/materials/coagulant/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/materials/coagulant/manage/investigation-monitor']],
     'داده گاه منابع',
     $this->title
 ];

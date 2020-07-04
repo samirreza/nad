@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ضدمیکروب', 'url' => ['/antimicrobial/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/antimicrobial/manage/investigation']],
+    ['label' => 'ضدمیکروب', 'url' => ['/process/materials/antimicrobial/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/antimicrobial/manage/investigation']],
     'داده گاه روندهای منشا',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/antimicrobial/investigation/source/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigation/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/antimicrobial/investigation/source/manage/archived-index']
+        'url' => ['/process/materials/antimicrobial/investigation/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روندهای منشا',
-        'url' => ['/antimicrobial/investigation/source/manage/index-history']
+        'url' => ['/process/materials/antimicrobial/investigation/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/antimicrobial/investigation/reference/manage/index']
+        'url' => ['/process/materials/antimicrobial/investigation/reference/manage/index']
     ]
 ];
 ?>

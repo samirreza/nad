@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/graphene/manage/investigation']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/ird/graphene/manage/investigation']],
     'داده گاه گزارش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/graphene/investigation/report/manage/index']
+        'url' => ['/process/ird/graphene/investigation/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/graphene/investigation/report/manage/archived-index']
+        'url' => ['/process/ird/graphene/investigation/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/graphene/investigation/report/manage/index-history']
+        'url' => ['/process/ird/graphene/investigation/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/graphene/investigation/reference/manage/index']
+        'url' => ['/process/ird/graphene/investigation/reference/manage/index']
     ]
 ];
 

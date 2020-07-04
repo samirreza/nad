@@ -4,8 +4,8 @@ $this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'بررسی فرایندی', 'url' => ['/disinfectant/manage/investigation']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'بررسی فرایندی', 'url' => ['/process/materials/disinfectant/manage/investigation']],
     'داده گاه منابع',
     $this->title
 ];

@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/filter/manage/investigation-monitor']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/filter/manage/investigation-monitor']],
     'داده گاه روندهای گزارش',
     ['label' => 'لیست داده گاه روندهای گزارش', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/filter/investigationMonitor/report/manage/index']
+        'url' => ['/process/ird/filter/investigationMonitor/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/filter/investigationMonitor/report/manage/archived-index']
+        'url' => ['/process/ird/filter/investigationMonitor/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/filter/investigationMonitor/report/manage/index-history']
+        'url' => ['/process/ird/filter/investigationMonitor/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/filter/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/filter/investigationMonitor/reference/manage/index']
     ]
 ];
 

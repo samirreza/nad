@@ -9,8 +9,8 @@ $this->title = 'افزودن موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'سایرگزارشها', 'url' => ['/cartridge/manage/investigation']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'سایرگزارشها', 'url' => ['/process/ird/cartridge/manage/investigation']],
     $this->title
 ];
 

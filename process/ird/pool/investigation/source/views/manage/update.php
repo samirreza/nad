@@ -6,8 +6,8 @@ $this->title = 'ویرایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'استخر', 'url' => ['/pool/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/pool/manage/investigation']],
+    ['label' => 'استخر', 'url' => ['/process/ird/pool/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/ird/pool/manage/investigation']],
     ['label' => 'لیست منشا', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title

@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/cartridge/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/cartridge/manage/investigation-monitor']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/cartridge/manage/investigation-monitor']],
     'داده گاه روندهای روش',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/cartridge/investigationMonitor/method/manage/index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/cartridge/investigationMonitor/method/manage/archived-index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/cartridge/investigationMonitor/method/manage/index-history']
+        'url' => ['/process/ird/cartridge/investigationMonitor/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/cartridge/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/cartridge/investigationMonitor/reference/manage/index']
     ]
 ];
 ?>

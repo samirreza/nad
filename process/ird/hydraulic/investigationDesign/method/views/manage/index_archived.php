@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه روش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/hydraulic/manage/investigation-design']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/hydraulic/manage/investigation-design']],
     'داده گاه روش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/hydraulic/investigationDesign/method/manage/index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/hydraulic/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/hydraulic/investigationDesign/method/manage/index-history']
+        'url' => ['/process/ird/hydraulic/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/hydraulic/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/reference/manage/index']
     ]
 ];
 

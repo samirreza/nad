@@ -4,8 +4,8 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده اسیدی', 'url' => ['/acidicWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/acidicWasher/manage/investigation-design']],
+    ['label' => 'شوینده اسیدی', 'url' => ['/process/materials/acidicWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/acidicWasher/manage/investigation-design']],
     'داده گاه دستورالعمل',
     ['label' => 'لیست داده گاه دستورالعمل', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/acidicWasher/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/acidicWasher/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/acidicWasher/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/acidicWasher/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/acidicWasher/investigationDesign/reference/manage/index']
     ]
 ];
 

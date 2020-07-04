@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'شوینده قلیایی', 'url' => ['/alkalineWasher/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/alkalineWasher/manage/investigation-design']],
+    ['label' => 'شوینده قلیایی', 'url' => ['/process/materials/alkalineWasher/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/alkalineWasher/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     ['label' => 'لیست داده گاه روندهای دستورالعمل', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/alkalineWasher/investigationDesign/instruction/manage/index']
+        'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/alkalineWasher/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/alkalineWasher/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/materials/alkalineWasher/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/alkalineWasher/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/alkalineWasher/investigationDesign/reference/manage/index']
     ]
 ];
 

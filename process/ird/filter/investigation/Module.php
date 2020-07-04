@@ -26,15 +26,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/filter/investigation/source/manage/create']
+                                'url' => ['/process/ird/filter/investigation/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/filter/investigation/source/manage/index']
+                                'url' => ['/process/ird/filter/investigation/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/filter/investigation/source/category/index']
+                                'url' => ['/process/ird/filter/investigation/source/category/index']
                             ],
                         ]
                     ],
@@ -43,11 +43,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/filter/investigation/source/manage/archived-index']
+                                'url' => ['/process/ird/filter/investigation/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/filter/investigation/source/manage/index-history']
+                                'url' => ['/process/ird/filter/investigation/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -61,15 +61,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/filter/investigation/proposal/manage/create']
+                                'url' => ['/process/ird/filter/investigation/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/filter/investigation/proposal/manage/index']
+                                'url' => ['/process/ird/filter/investigation/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/filter/investigation/proposal/category/index']
+                                'url' => ['/process/ird/filter/investigation/proposal/category/index']
                             ],
                         ]
                     ],
@@ -78,11 +78,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/filter/investigation/proposal/manage/archived-index']
+                                'url' => ['/process/ird/filter/investigation/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/filter/investigation/proposal/manage/index-history']
+                                'url' => ['/process/ird/filter/investigation/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -96,19 +96,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/filter/investigation/report/manage/create']
+                                'url' => ['/process/ird/filter/investigation/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/filter/investigation/report/manage/index']
+                                'url' => ['/process/ird/filter/investigation/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/filter/investigation/report/category/index']
+                                'url' => ['/process/ird/filter/investigation/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/filter/investigation/report/manage/generate-graph']
+                                'url' => ['/process/ird/filter/investigation/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -117,11 +117,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/filter/investigation/report/manage/archived-index']
+                                'url' => ['/process/ird/filter/investigation/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/filter/investigation/report/manage/index-history']
+                                'url' => ['/process/ird/filter/investigation/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -135,15 +135,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/filter/investigation/method/manage/create']
+                                'url' => ['/process/ird/filter/investigation/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/filter/investigation/method/manage/index']
+                                'url' => ['/process/ird/filter/investigation/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/filter/investigation/method/category/index']
+                                'url' => ['/process/ird/filter/investigation/method/category/index']
                             ],
                         ]
                     ],
@@ -152,11 +152,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/filter/investigation/method/manage/archived-index']
+                                'url' => ['/process/ird/filter/investigation/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/filter/investigation/method/manage/index-history']
+                                'url' => ['/process/ird/filter/investigation/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -170,15 +170,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/filter/investigation/instruction/manage/create']
+                                'url' => ['/process/ird/filter/investigation/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/filter/investigation/instruction/manage/index']
+                                'url' => ['/process/ird/filter/investigation/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/filter/investigation/instruction/category/index']
+                                'url' => ['/process/ird/filter/investigation/instruction/category/index']
                             ],
                         ]
                     ],
@@ -187,11 +187,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/filter/investigation/instruction/manage/archived-index']
+                                'url' => ['/process/ird/filter/investigation/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/filter/investigation/instruction/manage/index-history']
+                                'url' => ['/process/ird/filter/investigation/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -205,17 +205,17 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن موضوع',
-                                'url' => ['/filter/investigation/subject/manage/create']
+                                'url' => ['/process/ird/filter/investigation/subject/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ موضوعهای فعال',
-                                'url' => ['/filter/investigation/subject/manage/index']
+                                'url' => ['/process/ird/filter/investigation/subject/manage/index']
                             ]
                         ]
                     ],
                     [
                         'label' => 'داده گاه',
-                        'url' => ['/filter/investigation/subject/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigation/subject/manage/archived-index']
                     ]
                 ]
             ],
@@ -224,11 +224,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/filter/investigation/reference/manage/index']
+                        'url' => ['/process/ird/filter/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/filter/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/filter/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

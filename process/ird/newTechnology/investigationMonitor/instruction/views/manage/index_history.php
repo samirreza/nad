@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'تکنولوژی های نو', 'url' => ['/newTechnology/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/newTechnology/manage/investigation-monitor']],
+    ['label' => 'تکنولوژی های نو', 'url' => ['/process/ird/newTechnology/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/newTechnology/manage/investigation-monitor']],
     'داده گاه روندهای دستورالعمل',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/newTechnology/investigationMonitor/instruction/manage/index']
+        'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/newTechnology/investigationMonitor/instruction/manage/archived-index']
+        'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/newTechnology/investigationMonitor/instruction/manage/index-history']
+        'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/newTechnology/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/newTechnology/investigationMonitor/reference/manage/index']
     ]
 ];
 ?>

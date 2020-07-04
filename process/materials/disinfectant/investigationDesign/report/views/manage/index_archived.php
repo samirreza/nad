@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/disinfectant/manage/investigation-design']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/disinfectant/manage/investigation-design']],
     'داده گاه گزارش',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه گزارش',
-        'url' => ['/disinfectant/investigationDesign/report/manage/index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/report/manage/index']
     ],
     [
         'label' => 'داده گاه گزارش',
-        'url' => ['/disinfectant/investigationDesign/report/manage/archived-index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/report/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند گزارش',
-        'url' => ['/disinfectant/investigationDesign/report/manage/index-history']
+        'url' => ['/process/materials/disinfectant/investigationDesign/report/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/disinfectant/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/disinfectant/investigationDesign/reference/manage/index']
     ]
 ];
 

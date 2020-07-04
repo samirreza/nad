@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/acidicWasher/investigation/source/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/acidicWasher/investigation/proposal/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/acidicWasher/investigation/report/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/acidicWasher/investigation/method/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/acidicWasher/investigation/instruction/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/acidicWasher/investigation/source/manage/archived-index']
+                        'url' => ['/process/materials/acidicWasher/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/acidicWasher/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/materials/acidicWasher/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/acidicWasher/investigation/report/manage/archived-index']
+                        'url' => ['/process/materials/acidicWasher/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/acidicWasher/investigation/method/manage/archived-index']
+                        'url' => ['/process/materials/acidicWasher/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/acidicWasher/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/materials/acidicWasher/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/acidicWasher/investigation/source/manage/index-history']
+                        'url' => ['/process/materials/acidicWasher/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/acidicWasher/investigation/proposal/manage/index-history']
+                        'url' => ['/process/materials/acidicWasher/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/acidicWasher/investigation/report/manage/index-history']
+                        'url' => ['/process/materials/acidicWasher/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/acidicWasher/investigation/method/manage/index-history']
+                        'url' => ['/process/materials/acidicWasher/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/acidicWasher/investigation/instruction/manage/index-history']
+                        'url' => ['/process/materials/acidicWasher/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/acidicWasher/investigation/reference/manage/index']
+                        'url' => ['/process/materials/acidicWasher/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/acidicWasher/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/acidicWasher/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

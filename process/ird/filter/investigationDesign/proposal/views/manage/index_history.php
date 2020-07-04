@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'فیلترشنی', 'url' => ['/filter/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/filter/manage/investigation-design']],
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/filter/manage/investigation-design']],
     'داده گاه روندهای پروپوزال',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه پروپوزال',
-        'url' => ['/filter/investigationDesign/proposal/manage/index']
+        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/index']
     ],
     [
         'label' => 'داده گاه پروپوزال',
-        'url' => ['/filter/investigationDesign/proposal/manage/archived-index']
+        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند پروپوزال',
-        'url' => ['/filter/investigationDesign/proposal/manage/index-history']
+        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/filter/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/filter/investigationDesign/reference/manage/index']
     ]
 ];
 ?>

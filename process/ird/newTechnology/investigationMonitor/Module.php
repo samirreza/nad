@@ -25,15 +25,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/newTechnology/investigationMonitor/source/manage/create']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/newTechnology/investigationMonitor/source/manage/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/newTechnology/investigationMonitor/source/category/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -42,11 +42,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/newTechnology/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/newTechnology/investigationMonitor/source/manage/index-history']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -60,15 +60,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/newTechnology/investigationMonitor/proposal/manage/create']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/newTechnology/investigationMonitor/proposal/manage/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/newTechnology/investigationMonitor/proposal/category/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -77,11 +77,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/newTechnology/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/newTechnology/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -95,19 +95,19 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/newTechnology/investigationMonitor/report/manage/create']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/newTechnology/investigationMonitor/report/manage/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/newTechnology/investigationMonitor/report/category/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/category/index']
                             ],
                             [
                                 'label' => 'گراف گزارشات',
-                                'url' => ['/newTechnology/investigationMonitor/report/manage/generate-graph']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/manage/generate-graph']
                             ]
                         ]
                     ],
@@ -116,11 +116,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/newTechnology/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/newTechnology/investigationMonitor/report/manage/index-history']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -134,15 +134,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/newTechnology/investigationMonitor/method/manage/create']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/newTechnology/investigationMonitor/method/manage/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/newTechnology/investigationMonitor/method/category/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -151,11 +151,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/newTechnology/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/newTechnology/investigationMonitor/method/manage/index-history']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -169,15 +169,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/newTechnology/investigationMonitor/instruction/manage/create']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/newTechnology/investigationMonitor/instruction/manage/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/newTechnology/investigationMonitor/instruction/category/index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -186,11 +186,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/newTechnology/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/newTechnology/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/process/ird/newTechnology/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
                     ]
@@ -201,11 +201,11 @@ class Module extends \yii\base\Module
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/newTechnology/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/ird/newTechnology/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/newTechnology/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/newTechnology/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

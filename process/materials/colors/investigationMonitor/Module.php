@@ -24,15 +24,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن منشا',
-                                'url' => ['/colors/investigationMonitor/source/manage/create']
+                                'url' => ['/process/materials/colors/investigationMonitor/source/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ منشاهای برنامه',
-                                'url' => ['/colors/investigationMonitor/source/manage/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/source/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های منشا',
-                                'url' => ['/colors/investigationMonitor/source/category/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/source/category/index']
                             ],
                         ]
                     ],
@@ -41,11 +41,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'منشاها',
-                                'url' => ['/colors/investigationMonitor/source/manage/archived-index']
+                                'url' => ['/process/materials/colors/investigationMonitor/source/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای منشا',
-                                'url' => ['/colors/investigationMonitor/source/manage/index-history']
+                                'url' => ['/process/materials/colors/investigationMonitor/source/manage/index-history']
                             ],
                         ]
                     ]
@@ -59,15 +59,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن پروپوزال',
-                                'url' => ['/colors/investigationMonitor/proposal/manage/create']
+                                'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ پروپوزالهای برنامه',
-                                'url' => ['/colors/investigationMonitor/proposal/manage/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های پروپوزال',
-                                'url' => ['/colors/investigationMonitor/proposal/category/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/proposal/category/index']
                             ],
                         ]
                     ],
@@ -76,11 +76,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'پروپوزالها',
-                                'url' => ['/colors/investigationMonitor/proposal/manage/archived-index']
+                                'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای پروپوزال',
-                                'url' => ['/colors/investigationMonitor/proposal/manage/index-history']
+                                'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/index-history']
                             ],
                         ]
                     ]
@@ -94,15 +94,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن گزارش',
-                                'url' => ['/colors/investigationMonitor/report/manage/create']
+                                'url' => ['/process/materials/colors/investigationMonitor/report/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ گزارشهای برنامه',
-                                'url' => ['/colors/investigationMonitor/report/manage/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/report/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های گزارش',
-                                'url' => ['/colors/investigationMonitor/report/category/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/report/category/index']
                             ],
                         ]
                     ],
@@ -111,11 +111,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'گزارشها',
-                                'url' => ['/colors/investigationMonitor/report/manage/archived-index']
+                                'url' => ['/process/materials/colors/investigationMonitor/report/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای گزارش',
-                                'url' => ['/colors/investigationMonitor/report/manage/index-history']
+                                'url' => ['/process/materials/colors/investigationMonitor/report/manage/index-history']
                             ],
                         ]
                     ]
@@ -129,15 +129,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن روش',
-                                'url' => ['/colors/investigationMonitor/method/manage/create']
+                                'url' => ['/process/materials/colors/investigationMonitor/method/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ روشهای برنامه',
-                                'url' => ['/colors/investigationMonitor/method/manage/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/method/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های روش',
-                                'url' => ['/colors/investigationMonitor/method/category/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/method/category/index']
                             ],
                         ]
                     ],
@@ -146,11 +146,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'روشها',
-                                'url' => ['/colors/investigationMonitor/method/manage/archived-index']
+                                'url' => ['/process/materials/colors/investigationMonitor/method/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای روش',
-                                'url' => ['/colors/investigationMonitor/method/manage/index-history']
+                                'url' => ['/process/materials/colors/investigationMonitor/method/manage/index-history']
                             ],
                         ]
                     ]
@@ -164,15 +164,15 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'افزودن دستورالعمل',
-                                'url' => ['/colors/investigationMonitor/instruction/manage/create']
+                                'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/create']
                             ],
                             [
                                 'label' => 'لیست‌ دستورالعملهای برنامه',
-                                'url' => ['/colors/investigationMonitor/instruction/manage/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/index']
                             ],
                             [
                                 'label' => 'لیست رده های دستورالعمل',
-                                'url' => ['/colors/investigationMonitor/instruction/category/index']
+                                'url' => ['/process/materials/colors/investigationMonitor/instruction/category/index']
                             ],
                         ]
                     ],
@@ -181,11 +181,11 @@ class Module extends \yii\base\Module
                         'items' => [
                             [
                                 'label' => 'دستورالعملها',
-                                'url' => ['/colors/investigationMonitor/instruction/manage/archived-index']
+                                'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/archived-index']
                             ],
                             [
                                 'label' => 'روندهای دستورالعمل',
-                                'url' => ['/colors/investigationMonitor/instruction/manage/index-history']
+                                'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/index-history']
                             ],
                         ]
                     ]

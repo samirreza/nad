@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/colors/investigationMonitor/source/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/colors/investigationMonitor/proposal/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/colors/investigationMonitor/report/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/colors/investigationMonitor/method/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/colors/investigationMonitor/instruction/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/colors/investigationMonitor/source/manage/archived-index']
+                        'url' => ['/process/materials/colors/investigationMonitor/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/colors/investigationMonitor/proposal/manage/archived-index']
+                        'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/colors/investigationMonitor/report/manage/archived-index']
+                        'url' => ['/process/materials/colors/investigationMonitor/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/colors/investigationMonitor/method/manage/archived-index']
+                        'url' => ['/process/materials/colors/investigationMonitor/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/colors/investigationMonitor/instruction/manage/archived-index']
+                        'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/colors/investigationMonitor/source/manage/index-history']
+                        'url' => ['/process/materials/colors/investigationMonitor/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/colors/investigationMonitor/proposal/manage/index-history']
+                        'url' => ['/process/materials/colors/investigationMonitor/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/colors/investigationMonitor/report/manage/index-history']
+                        'url' => ['/process/materials/colors/investigationMonitor/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/colors/investigationMonitor/method/manage/index-history']
+                        'url' => ['/process/materials/colors/investigationMonitor/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/colors/investigationMonitor/instruction/manage/index-history']
+                        'url' => ['/process/materials/colors/investigationMonitor/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/colors/investigationMonitor/reference/manage/index']
+                        'url' => ['/process/materials/colors/investigationMonitor/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/colors/investigationMonitor/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/colors/investigationMonitor/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

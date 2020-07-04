@@ -4,23 +4,23 @@ $this->title = 'لیست داده گاه موضوع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/antisediment/manage/investigation-design']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/antisediment/manage/investigation-design']],
     'داده گاه موضوع',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه موضوع',
-        'url' => ['/antisediment/investigationDesign/subject/manage/index']
+        'url' => ['/process/materials/antisediment/investigationDesign/subject/manage/index']
     ],
     [
         'label' => 'داده گاه موضوع',
-        'url' => ['/antisediment/investigationDesign/subject/manage/archived-index']
+        'url' => ['/process/materials/antisediment/investigationDesign/subject/manage/archived-index']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/antisediment/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/antisediment/investigationDesign/reference/manage/index']
     ]
 ];
 

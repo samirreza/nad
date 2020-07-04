@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/lacquer/investigation/source/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/lacquer/investigation/proposal/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/lacquer/investigation/report/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/lacquer/investigation/method/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/lacquer/investigation/instruction/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/lacquer/investigation/source/manage/archived-index']
+                        'url' => ['/process/materials/lacquer/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/lacquer/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/materials/lacquer/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/lacquer/investigation/report/manage/archived-index']
+                        'url' => ['/process/materials/lacquer/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/lacquer/investigation/method/manage/archived-index']
+                        'url' => ['/process/materials/lacquer/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/lacquer/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/materials/lacquer/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/lacquer/investigation/source/manage/index-history']
+                        'url' => ['/process/materials/lacquer/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/lacquer/investigation/proposal/manage/index-history']
+                        'url' => ['/process/materials/lacquer/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/lacquer/investigation/report/manage/index-history']
+                        'url' => ['/process/materials/lacquer/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/lacquer/investigation/method/manage/index-history']
+                        'url' => ['/process/materials/lacquer/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/lacquer/investigation/instruction/manage/index-history']
+                        'url' => ['/process/materials/lacquer/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/lacquer/investigation/reference/manage/index']
+                        'url' => ['/process/materials/lacquer/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/lacquer/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/lacquer/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

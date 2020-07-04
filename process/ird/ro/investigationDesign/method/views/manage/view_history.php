@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آر او', 'url' => ['/ro/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/ro/manage/investigation-design']],
+    ['label' => 'آر او', 'url' => ['/process/ird/ro/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/ro/manage/investigation-design']],
     'داده گاه روندهای روش',
     ['label' => 'لیست داده گاه روندهای روش', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/ro/investigationDesign/method/manage/index']
+        'url' => ['/process/ird/ro/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/ro/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/ird/ro/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/ro/investigationDesign/method/manage/index-history']
+        'url' => ['/process/ird/ro/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/ro/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/ro/investigationDesign/reference/manage/index']
     ]
 ];
 

@@ -17,23 +17,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/grs/investigation/source/manage/index']
+                        'url' => ['/process/materials/grs/investigation/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/grs/investigation/proposal/manage/index']
+                        'url' => ['/process/materials/grs/investigation/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/grs/investigation/report/manage/index']
+                        'url' => ['/process/materials/grs/investigation/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/grs/investigation/method/manage/index']
+                        'url' => ['/process/materials/grs/investigation/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/grs/investigation/instruction/manage/index']
+                        'url' => ['/process/materials/grs/investigation/instruction/manage/index']
                     ],
                 ]
             ],
@@ -42,23 +42,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/grs/investigation/source/manage/archived-index']
+                        'url' => ['/process/materials/grs/investigation/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/grs/investigation/proposal/manage/archived-index']
+                        'url' => ['/process/materials/grs/investigation/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/grs/investigation/report/manage/archived-index']
+                        'url' => ['/process/materials/grs/investigation/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/grs/investigation/method/manage/archived-index']
+                        'url' => ['/process/materials/grs/investigation/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/grs/investigation/instruction/manage/archived-index']
+                        'url' => ['/process/materials/grs/investigation/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -67,23 +67,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/grs/investigation/source/manage/index-history']
+                        'url' => ['/process/materials/grs/investigation/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/grs/investigation/proposal/manage/index-history']
+                        'url' => ['/process/materials/grs/investigation/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/grs/investigation/report/manage/index-history']
+                        'url' => ['/process/materials/grs/investigation/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/grs/investigation/method/manage/index-history']
+                        'url' => ['/process/materials/grs/investigation/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/grs/investigation/instruction/manage/index-history']
+                        'url' => ['/process/materials/grs/investigation/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -92,11 +92,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/grs/investigation/reference/manage/index']
+                        'url' => ['/process/materials/grs/investigation/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/grs/investigation/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/materials/grs/investigation/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

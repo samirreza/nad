@@ -8,7 +8,7 @@ $this->title = 'مطالعات کلی و دستورالعمل ها';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'رنگ ها', 'url' => ['/colors/manage/index']],
+    ['label' => 'رنگ ها', 'url' => ['/process/materials/colors/manage/index']],
     $this->title
 ];
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'question-circle',
                 'showCount' => false,
                 'title' => 'منشا',
-                'titleUrl' => Url::to(['/colors/investigationDesign/source/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/source/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'graduation-cap',
                 'showCount' => false,
                 'title' => 'پروپوزال',
-                'titleUrl' => Url::to(['/colors/investigationDesign/proposal/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/proposal/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'file-text',
                 'showCount' => false,
                 'title' => 'گزارش',
-                'titleUrl' => Url::to(['/colors/investigationDesign/report/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/report/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'bell',
                 'showCount' => false,
                 'title' => 'روش',
-                'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/method/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3"></div>
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => 'book',
                 'showCount' => false,
                 'title' => 'دستورالعمل',
-                'titleUrl' => Url::to(['/colors/investigationDesign/instruction/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/instruction/manage/index'])
             ]) ?>
         </div>
         <div class="col-md-3">
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => '',
                 'showCount' => false,
                 'title' => 'سایرگزارشها',
-                'titleUrl' => Url::to(['/colors/investigationDesign/subject/manage/index'])
+                'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/subject/manage/index'])
             ]) ?>
         </div>
     </div>
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منشاها',
-            'titleUrl' => Url::to(['/colors/investigationDesign/source/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/source/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -100,7 +100,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده منشا',
-            'titleUrl' => Url::to(['/colors/investigationDesign/source/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/source/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'پروپوزال ها',
-            'titleUrl' => Url::to(['/colors/investigationDesign/proposal/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/proposal/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -120,7 +120,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده پروپوزال',
-            'titleUrl' => Url::to(['/colors/investigationDesign/proposal/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/proposal/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'گزارش ها',
-            'titleUrl' => Url::to(['/colors/investigationDesign/report/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/report/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -140,7 +140,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده گزارش',
-            'titleUrl' => Url::to(['/colors/investigationDesign/report/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/report/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روش ها',
-            'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -160,7 +160,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده روش',
-            'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'دستورالعمل ها',
-            'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/archived-index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/method/manage/archived-index'])
         ]) ?>
     </div>
     <div class="col-md-5">
@@ -180,7 +180,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'روندهای اجرا شده دستورالعمل',
-            'titleUrl' => Url::to(['/colors/investigationDesign/method/manage/index-history'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/method/manage/index-history'])
         ]) ?>
     </div>
 </div>
@@ -192,7 +192,7 @@ $this->params['breadcrumbs'] = [
             'icon' => false,
             'showCount' => false,
             'title' => 'منابع',
-            'titleUrl' => Url::to(['/colors/investigationDesign/reference/manage/index'])
+            'titleUrl' => Url::to(['/process/materials/colors/investigationDesign/reference/manage/index'])
         ])
         ?>
     </div>

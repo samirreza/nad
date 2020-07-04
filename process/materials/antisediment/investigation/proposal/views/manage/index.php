@@ -4,8 +4,8 @@ $this->title = 'لیست پروپوزال';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'مواد',
-    ['label' => 'ضدرسوب', 'url' => ['/antisediment/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/antisediment/manage/investigation']],
+    ['label' => 'ضدرسوب', 'url' => ['/process/materials/antisediment/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/antisediment/manage/investigation']],
     $this->title
 ];
 

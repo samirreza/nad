@@ -4,8 +4,8 @@ $this->title = 'لیست داده گاه روندهای دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گرافن', 'url' => ['/graphene/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/graphene/manage/investigation-design']],
+    ['label' => 'گرافن', 'url' => ['/process/ird/graphene/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/graphene/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     $this->title
 ];
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/graphene/investigationDesign/instruction/manage/index']
+        'url' => ['/process/ird/graphene/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/graphene/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/ird/graphene/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/graphene/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/ird/graphene/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/graphene/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/graphene/investigationDesign/reference/manage/index']
     ]
 ];
 ?>

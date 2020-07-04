@@ -4,8 +4,8 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'هیدرولیک', 'url' => ['/hydraulic/manage/index']],
-    ['label' => 'بررسی طراحی', 'url' => ['/hydraulic/manage/investigation-design']],
+    ['label' => 'هیدرولیک', 'url' => ['/process/ird/hydraulic/manage/index']],
+    ['label' => 'بررسی طراحی', 'url' => ['/process/ird/hydraulic/manage/investigation-design']],
     'داده گاه روندهای دستورالعمل',
     ['label' => 'لیست داده گاه روندهای دستورالعمل', 'url' => ['index-history']],
     $this->title
@@ -14,19 +14,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه دستورالعمل',
-        'url' => ['/hydraulic/investigationDesign/instruction/manage/index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/index']
     ],
     [
         'label' => 'داده گاه دستورالعمل',
-        'url' => ['/hydraulic/investigationDesign/instruction/manage/archived-index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند دستورالعمل',
-        'url' => ['/hydraulic/investigationDesign/instruction/manage/index-history']
+        'url' => ['/process/ird/hydraulic/investigationDesign/instruction/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/hydraulic/investigationDesign/reference/manage/index']
+        'url' => ['/process/ird/hydraulic/investigationDesign/reference/manage/index']
     ]
 ];
 

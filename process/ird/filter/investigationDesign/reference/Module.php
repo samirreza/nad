@@ -19,23 +19,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/filter/investigationDesign/source/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/source/manage/index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/filter/investigationDesign/proposal/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/filter/investigationDesign/report/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/report/manage/index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/filter/investigationDesign/method/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/method/manage/index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/filter/investigationDesign/instruction/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/instruction/manage/index']
                     ],
                 ]
             ],
@@ -44,23 +44,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/filter/investigationDesign/source/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigationDesign/source/manage/archived-index']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/filter/investigationDesign/proposal/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/archived-index']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/filter/investigationDesign/report/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigationDesign/report/manage/archived-index']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/filter/investigationDesign/method/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigationDesign/method/manage/archived-index']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/filter/investigationDesign/instruction/manage/archived-index']
+                        'url' => ['/process/ird/filter/investigationDesign/instruction/manage/archived-index']
                     ]
                 ]
             ],
@@ -69,23 +69,23 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'منشا',
-                        'url' => ['/filter/investigationDesign/source/manage/index-history']
+                        'url' => ['/process/ird/filter/investigationDesign/source/manage/index-history']
                     ],
                     [
                         'label' => 'پروپوزال',
-                        'url' => ['/filter/investigationDesign/proposal/manage/index-history']
+                        'url' => ['/process/ird/filter/investigationDesign/proposal/manage/index-history']
                     ],
                     [
                         'label' => 'گزارش',
-                        'url' => ['/filter/investigationDesign/report/manage/index-history']
+                        'url' => ['/process/ird/filter/investigationDesign/report/manage/index-history']
                     ],
                     [
                         'label' => 'روش',
-                        'url' => ['/filter/investigationDesign/method/manage/index-history']
+                        'url' => ['/process/ird/filter/investigationDesign/method/manage/index-history']
                     ],
                     [
                         'label' => 'دستورالعمل',
-                        'url' => ['/filter/investigationDesign/instruction/manage/index-history']
+                        'url' => ['/process/ird/filter/investigationDesign/instruction/manage/index-history']
                     ]
                 ]
             ],
@@ -94,11 +94,11 @@ class Module extends BaseModule
                 'items' => [
                     [
                         'label' => 'لیست منابع',
-                        'url' => ['/filter/investigationDesign/reference/manage/index']
+                        'url' => ['/process/ird/filter/investigationDesign/reference/manage/index']
                     ],
                     [
                         'label' => 'افزودن منبع',
-                        'url' => ['/filter/investigationDesign/reference/manage/index#class_ajaxcreate']
+                        'url' => ['/process/ird/filter/investigationDesign/reference/manage/index#class_ajaxcreate']
                     ]
                 ]
             ]

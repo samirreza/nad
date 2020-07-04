@@ -4,8 +4,8 @@ $this->title = 'لیست گزارش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'گندزدا', 'url' => ['/disinfectant/manage/index']],
-    ['label' => 'بررسی', 'url' => ['/disinfectant/manage/investigation-design']],
+    ['label' => 'گندزدا', 'url' => ['/process/materials/disinfectant/manage/index']],
+    ['label' => 'بررسی', 'url' => ['/process/materials/disinfectant/manage/investigation-design']],
     $this->title
 ];
 

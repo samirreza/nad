@@ -4,8 +4,8 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'جی آر اس', 'url' => ['/grs/manage/index']],
-    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/grs/manage/investigation-design']],
+    ['label' => 'جی آر اس', 'url' => ['/process/materials/grs/manage/index']],
+    ['label' => 'مطالعات کلی و دستورالعمل ها', 'url' => ['/process/materials/grs/manage/investigation-design']],
     'داده گاه روش',
     ['label' => 'لیست داده گاه روش', 'url' => ['archived-index']],
     $this->title
@@ -13,19 +13,19 @@ $this->params['breadcrumbs'] = [
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه روش',
-        'url' => ['/grs/investigationDesign/method/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/method/manage/index']
     ],
     [
         'label' => 'داده گاه روش',
-        'url' => ['/grs/investigationDesign/method/manage/archived-index']
+        'url' => ['/process/materials/grs/investigationDesign/method/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند روش',
-        'url' => ['/grs/investigationDesign/method/manage/index-history']
+        'url' => ['/process/materials/grs/investigationDesign/method/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/grs/investigationDesign/reference/manage/index']
+        'url' => ['/process/materials/grs/investigationDesign/reference/manage/index']
     ]
 ];
 

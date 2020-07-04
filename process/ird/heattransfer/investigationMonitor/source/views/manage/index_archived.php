@@ -4,27 +4,27 @@ $this->title = 'لیست داده گاه منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'انتقال حرارت', 'url' => ['/heattransfer/manage/index']],
-    ['label' => 'بررسی پایش', 'url' => ['/heattransfer/manage/investigation-monitor']],
+    ['label' => 'انتقال حرارت', 'url' => ['/process/ird/heattransfer/manage/index']],
+    ['label' => 'بررسی پایش', 'url' => ['/process/ird/heattransfer/manage/investigation-monitor']],
     'داده گاه منشا',
     $this->title
 ];
 $this->params['horizontalMenuItems'] = [
     [
         'label' => 'برنامه منشا',
-        'url' => ['/heattransfer/investigationMonitor/source/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/index']
     ],
     [
         'label' => 'داده گاه منشا',
-        'url' => ['/heattransfer/investigationMonitor/source/manage/archived-index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/archived-index']
     ],
     [
         'label' => 'داده گاه روند منشا',
-        'url' => ['/heattransfer/investigationMonitor/source/manage/index-history']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/source/manage/index-history']
     ],
     [
         'label' => 'داده گاه منابع',
-        'url' => ['/heattransfer/investigationMonitor/reference/manage/index']
+        'url' => ['/process/ird/heattransfer/investigationMonitor/reference/manage/index']
     ]
 ];
 
