@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'filter',
-    'baseRoute' => '/filter/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/filter/investigationMonitor-monitor'
 ]);

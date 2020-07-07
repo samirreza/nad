@@ -18,5 +18,5 @@ $this->params['breadcrumbs'] = [
     'report' => $report,
     'method' => $method,
     'moduleId' => 'heattransfer',
-    'baseRoute' => '/heattransfer/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/heattransfer/investigationMonitor-monitor'
 ]);

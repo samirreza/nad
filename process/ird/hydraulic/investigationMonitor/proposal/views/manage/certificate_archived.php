@@ -36,5 +36,5 @@ $this->params['horizontalMenuItems'] = [
    'proposal' => $proposal,
    'report' => $report,
     'moduleId' => 'hydraulic',
-    'baseRoute' => '/hydraulic/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/hydraulic/investigationMonitor-monitor'
 ]);

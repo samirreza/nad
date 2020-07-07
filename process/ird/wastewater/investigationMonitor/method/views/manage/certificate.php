@@ -18,5 +18,5 @@ $this->params['breadcrumbs'] = [
     'report' => $report,
     'method' => $method,
     'moduleId' => 'wastewater',
-    'baseRoute' => '/wastewater/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/wastewater/investigationMonitor-monitor'
 ]);

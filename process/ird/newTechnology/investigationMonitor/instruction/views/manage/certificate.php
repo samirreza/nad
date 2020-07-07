@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'newTechnology',
-    'baseRoute' => '/newTechnology/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/newTechnology/investigationMonitor-monitor'
 ]);

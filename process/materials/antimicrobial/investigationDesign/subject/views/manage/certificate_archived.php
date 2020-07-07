@@ -34,5 +34,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/subject/views/subject/certificate_archived', [
    'subject' => $subject,
     'moduleId' => 'antimicrobial',
-    'baseRoute' => '/antimicrobial/investigationDesign'
+    'baseRoute' => '/process/materials/antimicrobial/investigationDesign'
 ]);

@@ -15,5 +15,5 @@ $this->params['breadcrumbs'] = [
 <?= $this->render('@nad/common/modules/investigation/subject/views/subject/certificate', [
     'subject' => $subject,
     'moduleId' => 'sedimentation',
-    'baseRoute' => '/sedimentation/investigation'
+    'baseRoute' => '/process/ird/sedimentation/investigation'
 ]);

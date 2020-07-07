@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigation'
+    'baseRoute' => '/process/ird/cartridge/investigation'
 ]);
