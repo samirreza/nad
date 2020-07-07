@@ -313,19 +313,18 @@ class ProposalCommon extends BaseInvestigationModel
         return $this->source->title;
     }
 
-    // TODO fix this for many reports relation
-    public function getReport()
+    public function getReports()
     {
-        return $this->hasOne(Report::class, ['proposalId' => 'id']);
+        return $this->hasMany(Report::class, ['proposalId' => 'id']);
     }
 
     // TODO fix this for many reports relation
     public function getReportAsString()
     {
-        if (!isset($this->Report)) {
+        if (!isset($this->reports)) {
             return null;
         }
-        return ''; //$this->Report->title;
+        return ''; //$this->report[0]->title;
     }
 
     public function getMethods()
@@ -456,7 +455,7 @@ class ProposalCommon extends BaseInvestigationModel
             return 'منتظر ارسال جهت نگارش گزارش/روش/دستورالعمل';
         } elseif($this->status == self::STATUS_IN_NEXT_STEP){ // report
             // $result = 'منتظر ارسال جهت نگارش روش/دستورالعمل';
-            $result = $this->getExtraStatusLabel('report' , 'گزارش');
+            $result = $this->getExtraStatusLabel('reports' , 'گزارش');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_INSTRUCTION){
             // $result =  'منتظر ارسال جهت نگارش گزارش/روش';
             $result = $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
@@ -469,14 +468,14 @@ class ProposalCommon extends BaseInvestigationModel
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_INSTRUCTION){
             // $result =  'منتظر ارسال جهت نگارش روش';
-            $result = $this->getExtraStatusLabel('report' , 'گزارش');
+            $result = $this->getExtraStatusLabel('reports' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD){
             // $result =  'منتظر ارسال جهت نگارش دستورالعمل';
-            $result = $this->getExtraStatusLabel('report' , 'گزارش');
+            $result = $this->getExtraStatusLabel('reports' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
         } elseif($this->status == self::STATUS_IN_NEXT_STEP_FOR_REPORT_METHOD_INSTRUCTION){
-            $result = $this->getExtraStatusLabel('report' , 'گزارش');
+            $result = $this->getExtraStatusLabel('reports' , 'گزارش');
             $result .= ' - ' . $this->getExtraStatusLabel('methods' , 'روش');
             $result .= ' - ' . $this->getExtraStatusLabel('instructions' , 'دستورالعمل');
         }else{

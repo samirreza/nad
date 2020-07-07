@@ -83,18 +83,19 @@ class ProposalController extends BaseInvestigationController
     public function actionCertificate($id)
     {
         $proposal = $this->findModel($id);
-        $report = $proposal->report;
+        $reports = $proposal->reports;
         $source = $proposal->source;
 
         // TODO find a better way than manually setting this shit
         $source->referenceClassName = $proposal->referenceClassName;
-        if(isset($report))
+        foreach ($reports as $report) {
             $report->referenceClassName = $proposal->referenceClassName;
+        }
 
         return $this->render('certificate', [
             'source' => $source,
             'proposal' => $proposal,
-            'report' => $report
+            'report' => $reports // this should be "reports" but for compability with installed modules in other units, "report" is chosen
         ]);
     }
 
@@ -143,18 +144,19 @@ class ProposalController extends BaseInvestigationController
     public function actionArchivedCertificate($id)
     {
         $proposal = $this->findArchivedModel($id);
-        $report = $proposal->report;
+        $reports = $proposal->reports;
         $source = $proposal->source;
 
         // TODO find a better way than manually setting this shit
         $source->referenceClassName = $proposal->referenceClassName;
-        if(isset($report))
+        foreach ($reports as $report) {
             $report->referenceClassName = $proposal->referenceClassName;
+        }
 
         return $this->render('certificate_archived', [
             'source' => $source,
             'proposal' => $proposal,
-            'report' => $report
+            'report' => $reports
         ]);
     }
 

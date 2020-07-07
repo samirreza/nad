@@ -15,9 +15,9 @@
             'baseRoute' => $baseRoute
         ]) ?>
     <?php endif; ?>
-    <?php if (isset($report)) : ?>
+    <?php if (isset($reports)) : ?>
         <?= $this->render('_base_report_certificate', [
-            'report' => $report,
+            'reports' => $reports,
             'moduleId' => $moduleId,
             'baseRoute' => $baseRoute
         ]) ?>
