@@ -37,5 +37,5 @@ $this->params['horizontalMenuItems'] = [
    'report' => $report,
    'method' => $method,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigation'
+    'baseRoute' => '/process/ird/cartridge/investigation'
 ]);

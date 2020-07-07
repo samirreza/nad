@@ -37,5 +37,5 @@ $this->params['horizontalMenuItems'] = [
    'report' => $report,
    'method' => $method,
     'moduleId' => 'lacquer',
-    'baseRoute' => '/lacquer/investigationDesign'
+    'baseRoute' => '/process/materials/lacquer/investigationDesign'
 ]);

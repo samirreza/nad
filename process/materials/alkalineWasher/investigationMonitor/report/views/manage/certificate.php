@@ -17,5 +17,5 @@ $this->params['breadcrumbs'] = [
     'proposal' => $proposal,
     'report' => $report,
     'moduleId' => 'alkalineWasher',
-    'baseRoute' => '/alkalineWasher/investigationMonitor'
+    'baseRoute' => '/process/materials/alkalineWasher/investigationMonitor'
 ]);

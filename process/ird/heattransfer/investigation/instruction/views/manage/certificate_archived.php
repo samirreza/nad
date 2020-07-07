@@ -38,5 +38,5 @@ $this->params['horizontalMenuItems'] = [
    'method' => $method,
    'instruction' => $instruction,
     'moduleId' => 'heattransfer',
-    'baseRoute' => '/heattransfer/investigation'
+    'baseRoute' => '/process/ird/heattransfer/investigation'
 ]);

@@ -16,5 +16,5 @@ $this->params['breadcrumbs'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate', [
     'source' => $source,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigationDesign'
+    'baseRoute' => '/process/ird/cartridge/investigationDesign'
 ]);

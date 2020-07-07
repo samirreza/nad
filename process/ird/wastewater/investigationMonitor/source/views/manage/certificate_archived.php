@@ -34,5 +34,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate_archived', [
     'source' => $source,
     'moduleId' => 'wastewater',
-    'baseRoute' => '/wastewater/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/wastewater/investigationMonitor-monitor'
 ]);

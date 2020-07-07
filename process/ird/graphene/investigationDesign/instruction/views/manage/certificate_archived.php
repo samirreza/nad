@@ -38,5 +38,5 @@ $this->params['horizontalMenuItems'] = [
    'method' => $method,
    'instruction' => $instruction,
     'moduleId' => 'graphene',
-    'baseRoute' => '/graphene/investigationDesign'
+    'baseRoute' => '/process/ird/graphene/investigationDesign'
 ]);

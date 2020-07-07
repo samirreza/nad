@@ -22,5 +22,5 @@ $this->params['horizontalMenuItems'] = [
 <?= $this->render('@nad/common/modules/investigation/source/views/source/certificate_archived', [
     'source' => $source,
     'moduleId' => 'antisediment',
-    'baseRoute' => '/antisediment/investigation'
+    'baseRoute' => '/process/materials/antisediment/investigation'
 ]);

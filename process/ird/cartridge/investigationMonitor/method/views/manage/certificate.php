@@ -18,5 +18,5 @@ $this->params['breadcrumbs'] = [
     'report' => $report,
     'method' => $method,
     'moduleId' => 'cartridge',
-    'baseRoute' => '/cartridge/investigationMonitor-monitor'
+    'baseRoute' => '/process/ird/cartridge/investigationMonitor-monitor'
 ]);

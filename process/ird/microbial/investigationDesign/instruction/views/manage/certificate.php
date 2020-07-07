@@ -19,5 +19,5 @@ $this->params['breadcrumbs'] = [
     'method' => $method,
     'instruction' => $instruction,
     'moduleId' => 'microbial',
-    'baseRoute' => '/microbial/investigationDesign'
+    'baseRoute' => '/process/ird/microbial/investigationDesign'
 ]);
