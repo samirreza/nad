@@ -34,10 +34,6 @@ $uploadedFiles = $model->getFiles('file');
                         ['prompt'=>'انتخاب کنید']
                     ) ?>
                 </div>
-                <div class="col-md-4">
-                <?= $form->field($model, 'code')->textInput(['maxlength' => 3,
-                        'class' => 'form-control input-large', 'dir' => 'ltr']) ?>
-                </div>
             </div>
             <?php Panel::end() ?>
         </div>

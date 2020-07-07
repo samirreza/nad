@@ -1,6 +1,7 @@
 <?php
 namespace nad\common\modules\device\models;
 
+use Yii;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use nad\common\helpers\Lookup;
@@ -63,10 +64,10 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['title', 'groupId', 'documentType', 'revisionNumber'], 'required'],
+            [['title', 'groupId', 'documentType'], 'required'],
             [['title'], 'trim'],
             [['title', 'producerName', 'verifierName'], 'string', 'max' => 255],
-            [['groupId', 'documentType', 'revisionNumber'], 'integer'],
+            [['groupId', 'documentType'], 'integer'],
             [['description'], 'string'],
             [['title', 'producerName', 'verifierName', 'description'], FarsiCharactersValidator::className()],
         ];
@@ -102,6 +103,7 @@ class DocumentGroupDocument extends \yii\db\ActiveRecord implements Codable
     public function beforeSave($insert)
     {
         if ($insert) {
+            $this->revisionNumber = Yii::$app->db->createCommand('SELECT NEXTVAL(seq_neddgd_counter)')->queryScalar();
             $this->consumer = static::CONSUMER_CODE;
         }
         $this->setUniqueCode();

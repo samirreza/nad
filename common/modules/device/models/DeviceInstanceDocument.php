@@ -1,6 +1,7 @@
 <?php
 namespace nad\common\modules\device\models;
 
+use Yii;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use extensions\file\behaviors\FileBehavior;
@@ -47,24 +48,18 @@ class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
     public function rules()
     {
         return [
-            [['title', 'instanceId', 'code'], 'required'],
+            [['title', 'instanceId'], 'required'],
             [['instanceId'], 'integer'],
-            [['code', 'title'], 'trim'],
-            [['code', 'title'], 'string', 'max' => 255],
-            ['code', 'string', 'max' => 3, 'min' => 1],
-            [['code', 'title'], FarsiCharactersValidator::className()],
-            [
-                'code',
-                'unique',
-                'targetAttribute' => ['code', 'instanceId'],
-                'message' => 'این شناسه پیش تر ثبت شده است.'
-            ],
+            [['title'], 'trim'],
+            [['title'], 'string', 'max' => 255],
+            [['title'], FarsiCharactersValidator::className()],
         ];
     }
 
     public function attributeLabels()
     {
         return [
+            // شمارنده
             'code' => 'شماره گزارش',
             'title' => 'عنوان گزارش',
             'uniqueCode' => 'شناسه یکتا',
@@ -87,6 +82,7 @@ class DeviceInstanceDocument extends \yii\db\ActiveRecord implements Codable
     public function beforeSave($insert)
     {
         if ($insert) {
+            $this->code = Yii::$app->db->createCommand('SELECT NEXTVAL(seq_nedcd_counter)')->queryScalar();
             $this->consumer = static::CONSUMER_CODE;
         }
         $this->setUniqueCode();

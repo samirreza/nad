@@ -39,14 +39,6 @@ $uploadedFiles = $model->getFiles('file');
                     ) ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'revisionNumber')->textInput(
-                        [
-                            'class' => 'form-control',
-                            'dir' => 'ltr'
-                        ]
-                    ) ?>
-                </div>
-                <div class="col-md-4">
                     <?= $model->getAttributeLabel('uniqueCode'); ?>
                     <?=
                     Html::textInput(
