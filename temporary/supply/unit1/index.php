@@ -64,6 +64,14 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => Url::to(['/temporary/supply/unit1/manage/investigation5'])
         ]) ?>
     </div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'فایلهای اکسل',
+            'titleUrl' => Url::to(['/temporary/supply/unit1/excelmanager/manage/index'])
+        ]) ?>
+    </div>
 </div>
 <br><br>
 <br><br>
