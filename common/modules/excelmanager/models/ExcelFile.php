@@ -24,6 +24,11 @@ class ExcelFile extends ActiveRecord
             [
                 'core\behaviors\TimestampBehavior',
                 [
+                    'class' => BlameableBehavior::class,
+                    'createdByAttribute' => 'createdBy',
+                    'updatedByAttribute' => 'updatedBy'
+                ],
+                [
                     'class' => FileBehavior::className(),
                     // 'customModelClassName' => static::CONSUMER_CODE,
                     'groups' => [
