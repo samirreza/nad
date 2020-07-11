@@ -6,6 +6,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use extensions\ExcelReader\ExcelReader;
+use yii\behaviors\BlameableBehavior;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
