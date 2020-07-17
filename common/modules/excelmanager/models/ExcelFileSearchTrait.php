@@ -20,7 +20,7 @@ trait ExcelFileSearchTrait
 
     public function search($params)
     {
-        $query = ExcelFile::find();
+        $query = static::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
