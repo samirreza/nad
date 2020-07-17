@@ -47,11 +47,11 @@ $this->params['breadcrumbs'] = [
         ]) ?>
     </div>
     <div class="col-md-3" style="text-align: center">
-        <?= InfoBox::widget([
+    <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
             'title' => 'پایش',
-            'titleUrl' => '#'
+            'titleUrl' => Url::to(['/process/ird/cartridge/manage/payesh'])
         ]) ?>
     </div>
     <div class="col-md-3"></div>

@@ -56,6 +56,14 @@ class ManageController extends ParentController
                             ],
                             'roles' => ['@']
                             //'roles' => ['stage.investigationDesign']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'payesh'
+                            ],
+                            'roles' => ['@']
+                            //'roles' => ['stage.payesh']
                         ]
                     ]
                 ]
@@ -81,5 +89,10 @@ class ManageController extends ParentController
     public function actionInvestigationDesign()
     {
         return $this->render('@nad/engineering/electricity/stage/investigationDesign');
+    }
+
+    public function actionPayesh()
+    {
+        return $this->render('@nad/engineering/electricity/stage/payesh');
     }
 }
