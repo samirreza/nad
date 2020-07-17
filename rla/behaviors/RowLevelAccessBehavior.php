@@ -20,13 +20,14 @@ class RowLevelAccessBehavior extends Behavior
      public function grantAccess($event) {
         if(!Yii::$app->user->can('superuser')){
            $userId = Yii::$app->user->id;
-           $expireDate = time() + RowLevelAccess::ROW_LEVEL_ACCESS_EXPIRE_DURATION;
+           // as request by Mr Sepahsalari this line is commented
+         //   $expireDate = time() + RowLevelAccess::ROW_LEVEL_ACCESS_EXPIRE__DEFAULT_DURATION;
            $insertSql = 'INSERT INTO row_level_access (seq_access_id, user_id, access_type, expire_date) VALUES (:SEQ_ACCESS_ID, :USER_ID, :ACCESS_TYPE, :EXPIRE_DATE)';
            Yii::$app->db->createCommand($insertSql)->bindValues([
               ':SEQ_ACCESS_ID' => $this->owner->seq_access_id,
               ':USER_ID' => $userId,
-              ':ACCESS_TYPE' => RowLevelAccess::ROW_LEVEL_ACCESS_TYPE_TEMPORARY,
-              ':EXPIRE_DATE' => $expireDate
+              ':ACCESS_TYPE' => RowLevelAccess::ROW_LEVEL_ACCESS_TYPE_PERMANENT,
+              ':EXPIRE_DATE' => null
             ])->execute();
         }
      }
