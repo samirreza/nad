@@ -21,7 +21,7 @@ trait SiteSearchTrait
 
     public function search($params)
     {
-        $query = Site::find();
+        $query = static::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
