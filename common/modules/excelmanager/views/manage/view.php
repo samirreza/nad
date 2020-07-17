@@ -10,11 +10,12 @@ use nad\common\modules\excelmanager\models\ExcelFile;
 
 ?>
 
+
 <?= ActionButtons::widget([
             'modelID' => $model->id,
             'buttons' => [
                 'update' => [
-                    'type' => 'warning'
+                    'type' => 'warning',
                 ],
                 'delete' => [
                     'type' => 'warning'
@@ -76,6 +77,9 @@ use nad\common\modules\excelmanager\models\ExcelFile;
             GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterUrl' => false,
+                'options' =>[
+                    'style' => 'overflow-x:auto;'
+                ],
                 'columns' => array_merge(
                     [[
                         'class' => 'yii\grid\SerialColumn',

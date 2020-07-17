@@ -20,8 +20,7 @@ class Module extends \yii\base\Module
             'investigation2' => 'nad\temporary\supply\unit1\investigation2\Module',
             'investigation3' => 'nad\temporary\supply\unit1\investigation3\Module',
             'investigation4' => 'nad\temporary\supply\unit1\investigation4\Module',
-            'investigation5' => 'nad\temporary\supply\unit1\investigation5\Module',
-            'excelmanager' => 'nad\temporary\supply\unit1\excelmanager\Module',
+            'investigation5' => 'nad\temporary\supply\unit1\investigation5\Module',            
         ];
 
         // $this->horizontalMenuItems = [

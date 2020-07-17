@@ -44,6 +44,14 @@ $this->params['breadcrumbs'] = [
             'titleUrl' => '#' // Url::to(['/engineering/electricity/stage/manage/investigation-design'])
         ]) ?>
     </div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'پایش',
+            'titleUrl' => Url::to(['/engineering/electricity/stage/manage/payesh'])
+        ]) ?>
+    </div>
 </div>
 <br><br>
 

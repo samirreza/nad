@@ -19,7 +19,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
 {
     public const ROW_LEVEL_ACCESS_TYPE_PERMANENT = 1;
     public const ROW_LEVEL_ACCESS_TYPE_TEMPORARY = 2;
-    public const ROW_LEVEL_ACCESS_EXPIRE_DURATION = 24*60*60; // defaults to one day (in seconds)
+    public const ROW_LEVEL_ACCESS_EXPIRE__DEFAULT_DURATION = 24*60*60; // defaults to one day (in seconds)
 
     public $userIds;
     public $seqAccessIds;
@@ -330,6 +330,151 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 ],
                                             ]
                                         ],
+                                        [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\filter\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                    ]
+                                ],
+                                [
+                                    'text' => 'کارتریج',
+                                    'children' => [
+                                        [
+                                            'text' => 'بررسی فرایندی',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigation\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
+                                            'text' => 'بررسی پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationMonitor\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
+                                            'text' => 'بررسی طراحی',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\investigationDesign\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\cartridge\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
                                     ]
                                 ],
                                 [
@@ -451,6 +596,16 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 [
                                                     'id' => 'nad\process\ird\ro\investigationDesign\reference\models\ReferenceSearch',
                                                     'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\ro\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ]
@@ -1672,6 +1827,16 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                             ]
                                         ],
                                         [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\engineering\piping\stage\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
                                             'id' => 'nad\engineering\piping\stage\models\CategorySearch',
                                             'text' => 'مراحل',
                                             'icon' => 'fa fa-arrow-left',
@@ -1681,7 +1846,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                             'id' => 'nad\engineering\piping\site\models\SiteSearch',
                                             'text' => 'مکان ها',
                                             'icon' => 'fa fa-arrow-left',
-                                        ]
+                                        ],
                                     ]
                                 ],
                                 [
@@ -1836,6 +2001,16 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ],
+                                        ],
+                                        [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\engineering\electricity\stage\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
                                         ],
                                         [
                                             'id' => 'nad\engineering\electricity\stage\models\StageSearch',

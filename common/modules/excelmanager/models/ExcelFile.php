@@ -2,15 +2,17 @@
 namespace nad\common\modules\excelmanager\models;
 
 use Yii;
-use yii\db\ActiveRecord;
+use yii\helpers\Html;
+use nad\rla\models\BaseAccessModel;
 use yii\helpers\Json;
+use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use extensions\excelReader\ExcelReader;
 use yii\behaviors\BlameableBehavior;
 use extensions\file\behaviors\FileBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
 
-class ExcelFile extends ActiveRecord
+class ExcelFile extends BaseAccessModel
 {
 
     public static function tableName()
@@ -122,5 +124,69 @@ class ExcelFile extends ActiveRecord
         $jsonData = Json::encode($data);
 
         return $jsonData;
+    }
+
+    public function getRows($modelId){
+        $selectSql = "select JSON_QUERY(fileData, '$.rows') as fileRows from " . ExcelFile::tableName() . ' where id = :id';
+        $rowsRaw = Yii::$app->db->createCommand($selectSql)->bindValues([':id' => $modelId])->queryOne();
+
+        $rows = Json::decode($rowsRaw['fileRows']);
+
+        return isset($rows[0]) ? $rows : [];
+    }
+
+    public function getColumns($rows){
+        $columns = [];
+        if (isset($rows[0])) {
+            $columnNames = array_keys($rows[0]);
+            foreach ($columnNames as $name) {
+                $tmp = [];
+                $tmp['attribute'] = $name;
+
+                $columns[] = $tmp;
+            }
+        }
+
+        return $columns;
+    }
+
+    public function getArrayDataProvider($rows){
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $rows,
+            // 'sort' => [
+            //     'attributes' => ['id', 'username', 'email'],
+            // ],
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
+        return $dataProvider;
+    }
+
+    public function convertToEditableCell($columns){
+        $finalColumns = [];
+        $rownum = 0;
+        foreach ($columns as $column) {
+            $column['value'] = function($model) use ($column){
+                // dd($model);
+                return '
+                <input
+                    class = "form-control"
+                    type = "text"
+                    data-name = "' . Html::encode($column['attribute']) . '"
+                    style = "min-width:80px;direction:ltr"
+                    readonly = "true"
+                    ondblclick = "this.removeAttribute(\'readonly\')"
+                    value = "' . $model[$column['attribute']] . '"
+                />';
+            };
+            $column['format'] = 'raw';
+
+            $finalColumns[] = $column;
+            ++$rownum;
+        }
+
+        return $finalColumns;
     }
 }

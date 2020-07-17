@@ -3,7 +3,7 @@
 namespace nad\common\modules\investigation\common\models;
 
 use Yii;
-use nad\common\models\BaseModel;
+use nad\rla\models\BaseAccessModel;
 use nad\common\code\Codable;
 use nad\common\code\CodableTrait;
 use modules\user\common\models\User;
@@ -11,7 +11,7 @@ use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use nad\common\modules\investigation\reference\behaviors\ReferenceBehavior;
 
-class BaseInvestigationModel extends BaseModel implements Codable
+class BaseInvestigationModel extends BaseAccessModel implements Codable
 {
     use CodableTrait;
 

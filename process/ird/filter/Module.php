@@ -13,7 +13,8 @@ class Module extends \yii\base\Module
         $this->modules = [
             'investigation' => 'nad\process\ird\filter\investigation\Module',
             'investigationMonitor' => 'nad\process\ird\filter\investigationMonitor\Module',
-            'investigationDesign' => 'nad\process\ird\filter\investigationDesign\Module'
+            'investigationDesign' => 'nad\process\ird\filter\investigationDesign\Module',
+            'payesh' => 'nad\process\ird\filter\payesh\Module',
         ];
         parent::init();
     }

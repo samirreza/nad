@@ -16,7 +16,7 @@ trait DocumentSearchTrait
 
     public function search($params)
     {
-        $query = Parent::find();
+        $query = static::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

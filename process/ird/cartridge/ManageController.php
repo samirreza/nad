@@ -41,6 +41,14 @@ class ManageController extends \yii\web\Controller
                             ],
                             'roles' => ['@']
                             //'roles' => ['cartridge.investigationDesign']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'payesh'
+                            ],
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.payesh']
                         ]
                     ]
                 ]
@@ -66,5 +74,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigationDesign()
     {
         return $this->render('@nad/process/ird/cartridge/investigationDesign');
+    }
+
+    public function actionPayesh()
+    {
+        return $this->render('@nad/process/ird/cartridge/payesh');
     }
 }

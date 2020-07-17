@@ -41,6 +41,14 @@ class ManageController extends \yii\web\Controller
                             ],
                             'roles' => ['@']
                             //'roles' => ['filter.investigationDesign']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'payesh'
+                            ],
+                            'roles' => ['@']
+                            //'roles' => ['filter.payesh']
                         ]
                     ]
                 ]
@@ -66,5 +74,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigationDesign()
     {
         return $this->render('@nad/process/ird/filter/investigationDesign');
+    }
+
+    public function actionPayesh()
+    {
+        return $this->render('@nad/process/ird/filter/payesh');
     }
 }

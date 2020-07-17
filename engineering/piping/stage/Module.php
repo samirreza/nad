@@ -19,6 +19,7 @@ class Module extends \yii\base\Module
     {
         $this->modules = [
             'investigationImprovement' => 'nad\engineering\piping\stage\investigationImprovement\Module',
+            'payesh' => 'nad\engineering\piping\stage\payesh\Module',
             // 'investigationMonitorMethods' => 'nad\engineering\piping\stage\investigationMonitorMethods\Module',
             // 'investigationDesign' => 'nad\engineering\piping\stage\investigationDesign\Module',
         ];
