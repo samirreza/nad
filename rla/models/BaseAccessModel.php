@@ -1,16 +1,14 @@
 <?php
 
-namespace nad\common\models;
+namespace nad\rla\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Url;
-use nad\rla\models\RowLevelAccess;
-use nad\rla\models\RowLevelAccessPreview;
 use nad\rla\behaviors\RowLevelAccessBehavior;
 
-class BaseModel extends ActiveRecord
+class BaseAccessModel extends ActiveRecord
 {
     public static function find()
     {
