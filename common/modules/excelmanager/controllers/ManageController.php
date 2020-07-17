@@ -61,9 +61,11 @@ class ManageController extends \core\controllers\AdminController
                 $updateSql = "update " . ExcelFile::tableName() ." set fileData = JSON_REPLACE(fileData, ";
 
                 foreach ($rows as $rowNum => $row) {
-                    foreach ($row as $columnKey => $columnValue) {
-                        $columnName = Html::decode($columnKey);
-                        $updateSql .= "'$.rows[{$rowNum}].\"{$columnName}\"', {$columnValue}, ";
+                    foreach ($row as $key => $value) {
+                        $columnName = Html::decode($key);
+                        $columnValue = $value;
+
+                        $updateSql .= "'$.rows[{$rowNum}].\"{$columnName}\"', '" . $columnValue . "', ";
                     }
                 }
                 $updateSql = trim($updateSql, ', ');
