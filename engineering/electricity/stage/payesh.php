@@ -7,7 +7,7 @@ use theme\widgets\infoBox\InfoBox;
 $this->title = 'پایش';
 $this->params['breadcrumbs'] = [
     'فنی',
-    'لوله کشی',
+    'برق',
     ['label' => 'مراحل', 'url' => ['/engineering/electricity/stage']],
     $this->title
 ];

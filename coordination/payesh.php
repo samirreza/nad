@@ -6,9 +6,8 @@ use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'پایش';
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'آر او', 'url' => ['/process/ird/ro']],
+    'مدیریت',
+    ['label' => 'هماهنگی', 'url' => ['/coordination/manage/index']],
     $this->title
 ];
 
@@ -26,7 +25,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => '',
                 'showCount' => false,
                 'title' => 'انتقال داده',
-                'titleUrl' => Url::to(['/process/ird/ro/payesh/excelmanager/manage/index'])
+                'titleUrl' => Url::to(['/coordination/payesh/excelmanager/manage/index'])
             ]) ?>
         </div>
     </div>

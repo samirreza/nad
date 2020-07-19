@@ -8,7 +8,7 @@ $this->title = 'پایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'آر او', 'url' => ['/process/ird/ro']],
+    ['label' => 'ته نشینی', 'url' => ['/process/ird/sedimentation']],
     $this->title
 ];
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
                 'icon' => '',
                 'showCount' => false,
                 'title' => 'انتقال داده',
-                'titleUrl' => Url::to(['/process/ird/ro/payesh/excelmanager/manage/index'])
+                'titleUrl' => Url::to(['/process/ird/sedimentation/payesh/excelmanager/manage/index'])
             ]) ?>
         </div>
     </div>

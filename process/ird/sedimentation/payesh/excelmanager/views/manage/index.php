@@ -2,10 +2,10 @@
 
 $this->title = 'برنامه انتقال داده';
 $this->params['breadcrumbs'] = [
-    'فنی',
-    'لوله کشی',
-    ['label' => 'مراحل', 'url' => ['/engineering/piping/stage']],
-    ['label' => 'پایش', 'url' => ['/engineering/piping/stage/manage/payesh']],
+    'فرایند',
+    'فرایندها',
+    ['label' => 'ته نشینی', 'url' => ['/process/ird/sedimentation']],
+    ['label' => 'پایش', 'url' => ['/process/ird/sedimentation/manage/payesh']],
     $this->title
 ];
 

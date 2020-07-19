@@ -2,10 +2,11 @@
 
 $this->title = 'افزودن فایل اکسل';
 $this->params['breadcrumbs'] = [
-    'موقت',
-    'تامین',
-    ['label' => 'واحد 1', 'url' => ['/engineering/electricity/stage/payesh/excelmanager/manage/index']],
-    'برنامه فایل اکسل',
+    'فنی',
+    'برق',
+    ['label' => 'مراحل', 'url' => ['/engineering/electricity/stage']],
+    ['label' => 'پایش', 'url' => ['/engineering/electricity/stage/manage/payesh']],
+    ['label' => 'برنامه انتقال داده', 'url' => ['index']],
     $this->title
 ];
 

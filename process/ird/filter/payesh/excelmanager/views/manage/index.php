@@ -1,11 +1,11 @@
 <?php
 
-$this->title = 'لیست فایلهای اکسل';
+$this->title = 'برنامه انتقال داده';
 $this->params['breadcrumbs'] = [
-    'موقت',
-    'تامین',
-    ['label' => 'واحد 1', 'url' => ['/engineering/piping/stage/payesh/excelmanager/manage/index']],
-    'لیست فایل اکسل',
+    'فرایند',
+    'فرایندها',
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter']],
+    ['label' => 'پایش', 'url' => ['/process/ird/filter/manage/payesh']],
     $this->title
 ];
 

@@ -2,10 +2,9 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'فرایند',
-    'فرایندها',
-    ['label' => 'آر او', 'url' => ['/process/ird/ro']],
-    ['label' => 'پایش', 'url' => ['/process/ird/ro/manage/payesh']],
+    'مدیریت',
+    'هماهنگی',
+    ['label' => 'پایش', 'url' => ['/coordination/manage/payesh']],
     ['label' => 'برنامه انتقال داده', 'url' => ['index']],
     $this->title
 ];

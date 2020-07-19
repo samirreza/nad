@@ -6,9 +6,9 @@ use theme\widgets\infoBox\InfoBox;
 
 $this->title = 'پایش';
 $this->params['breadcrumbs'] = [
-    'فنی',
-    'لوله کشی',
-    ['label' => 'مراحل', 'url' => ['/process/ird/filter']],
+    'فرایند',
+    'فرایندها',
+    ['label' => 'فیلترشنی', 'url' => ['/process/ird/filter']],
     $this->title
 ];
 
