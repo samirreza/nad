@@ -21,8 +21,19 @@ class SideMenu extends \theme\widgets\Menu
             [
                 'label' => 'مدیریت',
                 'icon' => 'angle-right',
-                'url' => ['/general/manage/manager-actions'],
-                'visible' =>  $user->can('superuser'),
+                'items' => [
+                    [
+                        'label' => 'هماهنگی',
+                        'icon' => 'angle-right',
+                        'url' => ['/coordination/manage/index']
+                    ],
+                    [
+                        'label' => 'راهبری',
+                        'icon' => 'angle-right',
+                        'url' => ['/general/manage/manager-actions'],
+                        'visible' =>  $user->can('superuser'),
+                    ]
+                ]
             ],
             [
                 'label' => 'فرایند',
