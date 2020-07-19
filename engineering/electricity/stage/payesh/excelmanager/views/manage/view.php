@@ -2,10 +2,11 @@
 
 $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
-    'موقت',
-    'تامین',
-    ['label' => 'واحد 1', 'url' => ['/engineering/electricity/stage/payesh/excelmanager/manage/index']],
-    ['label' => 'لیست فایلهای اکسل', 'url' => ['index']],
+    'فنی',
+    'لوله کشی',
+    ['label' => 'مراحل', 'url' => ['/engineering/electricity/stage']],
+    ['label' => 'پایش', 'url' => ['/engineering/electricity/stage/manage/payesh']],
+    ['label' => 'برنامه انتقال داده', 'url' => ['index']],
     $this->title
 ];
 

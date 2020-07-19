@@ -4,8 +4,9 @@ $this->title = 'روند ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge/payesh/excelmanager/manage/index']],
-    ['label' => 'لیست فایلهای اکسل', 'url' => ['index']],
+    ['label' => 'کارتریج', 'url' => ['/process/ird/cartridge']],
+    ['label' => 'پایش', 'url' => ['/process/ird/cartridge/manage/payesh']],
+    ['label' => 'برنامه انتقال داده', 'url' => ['index']],
     $this->title
 ];
 

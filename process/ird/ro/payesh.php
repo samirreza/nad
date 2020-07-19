@@ -8,7 +8,7 @@ $this->title = 'پایش';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'فرایندها',
-    ['label' => 'ار آو', 'url' => ['/process/ird/ro']],
+    ['label' => 'آر او', 'url' => ['/process/ird/ro']],
     $this->title
 ];
 

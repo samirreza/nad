@@ -2,11 +2,11 @@
 
 $this->title = 'ویرایش مشخصات فایل اکسل';
 $this->params['breadcrumbs'] = [
-    'فرایندها',
     'فرایند',
-    ['label' => 'آر او', 'url' => ['/process/ird/ro/manage/index']],
+    'فرایندها',
+    ['label' => 'آر او', 'url' => ['/process/ird/ro']],
     ['label' => 'پایش', 'url' => ['/process/ird/ro/manage/payesh']],
-    'برنامه انتقال داده',
+    ['label' => 'برنامه انتقال داده', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
     $this->title
 ];
