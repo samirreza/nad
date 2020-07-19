@@ -32,6 +32,14 @@ class ManageController extends \yii\web\Controller
                             ],
                             'roles' => ['@']
                             //'roles' => ['sedimentation.investigationMonitor']
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => [
+                                'payesh'
+                            ],
+                            'roles' => ['@']
+                            //'roles' => ['cartridge.payesh']
                         ]
                     ]
                 ]
@@ -52,5 +60,10 @@ class ManageController extends \yii\web\Controller
     public function actionInvestigationMonitor()
     {
         return $this->render('@nad/process/ird/sedimentation/investigationMonitor');
+    }
+
+    public function actionPayesh()
+    {
+        return $this->render('@nad/process/ird/sedimentation/payesh');
     }
 }
