@@ -76,8 +76,27 @@ class RowLevelAccess extends \yii\db\ActiveRecord
             'state' => ['opened' => true ],
             'children' => [
                 [
+                    'text' => 'مدیریت',
+                    'children' => [
+                        [
+                            'text' => 'راهبری',
+                            'children' => [
+                                [
+                                    'text' => 'پایش',
+                                    'children' => [
+                                        [
+                                            'id' => 'nad\coordination\payesh\excelmanager\models\ExcelFileSearch',
+                                            'text' => 'انتقال داده',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
                     'text' => 'فرایند',
-                    // 'state' => [ 'selected' => true ],
                     'children' => [
                         [
                             'text' => 'فرایندها',
@@ -205,6 +224,16 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 ],
                                             ]
                                         ],
+                                        [
+                                            'text' => 'پایش',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\ird\sedimentation\payesh\excelmanager\models\ExcelFileSearch',
+                                                    'text' => 'انتقال داده',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ]
+                                            ]
+                                        ]
                                     ]
                                 ],
                                 [
@@ -1773,6 +1802,146 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     ]
                                 ],
                             ]
+                        ],
+                        [
+                            'text' => 'آزمایشگاه',
+                            'children' => [
+                                [
+                                    'text' => 'واحد 1',
+                                    'children' => [
+                                        [
+                                            'text' => 'فعالیت بررسی',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit1\investigation1\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    'text' => 'واحد 2',
+                                    'children' => [
+                                        [
+                                            'text' => 'فعالیت بررسی',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit2\investigation1\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    'text' => 'واحد 3',
+                                    'children' => [
+                                        [
+                                            'text' => 'فعالیت بررسی',
+                                            'children' => [
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\source\models\SourceSearch',
+                                                    'text' => 'منشا',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\proposal\models\ProposalSearch',
+                                                    'text' => 'پروپوزال',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\report\models\ReportSearch',
+                                                    'text' => 'گزارش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\method\models\MethodSearch',
+                                                    'text' => 'روش',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\instruction\models\InstructionSearch',
+                                                    'text' => 'دستورالعمل',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\process\laboratory\unit3\investigation1\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
                         ]
                     ]
                 ],
@@ -3182,7 +3351,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                     'text' => 'تامین',
                     'children' => [
                         [
-                            'text' => 'واحد 1',
+                            'text' => 'خرید',
                             'children' => [
                                 [
                                     'text' => 'فعالیت الف',
@@ -3267,7 +3436,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                             ]
                         ],
                         [
-                            'text' => 'واحد 2',
+                            'text' => 'ساخت و تعمیر',
                             'children' => [
                                 [
                                     'text' => 'فعالیت الف',
@@ -3352,7 +3521,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                             ]
                         ],
                         [
-                            'text' => 'واحد 3',
+                            'text' => 'جابجایی',
                             'children' => [
                                 [
                                     'text' => 'فعالیت الف',
