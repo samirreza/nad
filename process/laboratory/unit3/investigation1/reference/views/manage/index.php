@@ -4,7 +4,7 @@ $this->title = 'لیست منابع';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'آزمایشگاه',
-    ['label' => 'واحد 3', 'url' => ['/process/laboratory/unit3/manage/index']],
+    ['label' => 'تجهیزات آزمایشگاهی', 'url' => ['/process/laboratory/unit3/manage/index']],
     ['label' => 'فعالیت بررسی', 'url' => ['/process/laboratory/unit3/manage/investigation1']],
     'داده گاه منابع',
     $this->title

@@ -7,7 +7,7 @@ $this->title = 'ویرایش منشا';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'آزمایشگاه',
-    ['label' => 'واحد 1', 'url' => ['/process/laboratory/unit1/manage/index']],
+    ['label' => 'آزمایش های بهره برداری', 'url' => ['/process/laboratory/unit1/manage/index']],
     ['label' => 'فعالیت بررسی', 'url' => ['/process/laboratory/unit1/manage/investigation1']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],

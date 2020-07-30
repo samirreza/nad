@@ -4,7 +4,7 @@ $this->title = 'شناسنامه ' . $method->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'آزمایشگاه',
-    ['label' => 'واحد 3', 'url' => ['/process/laboratory/unit3/manage/index']],
+    ['label' => 'تجهیزات آزمایشگاهی', 'url' => ['/process/laboratory/unit3/manage/index']],
     ['label' => 'فعالیت بررسی', 'url' => ['/process/laboratory/unit3/manage/investigation1']],
     'داده گاه روش',
     ['label' => 'لیست داده گاه روش', 'url' => ['archived-index']],

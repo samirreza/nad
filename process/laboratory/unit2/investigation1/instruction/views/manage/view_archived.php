@@ -4,7 +4,7 @@ $this->title = 'مدرک ' . $model->title;
 $this->params['breadcrumbs'] = [
     'فرایند',
     'آزمایشگاه',
-    ['label' => 'واحد 2', 'url' => ['/process/laboratory/unit2/manage/index']],
+    ['label' => 'ارزیابی مواد مصرفی', 'url' => ['/process/laboratory/unit2/manage/index']],
     ['label' => 'فعالیت بررسی', 'url' => ['/process/laboratory/unit2/manage/investigation1']],
     'داده گاه دستورالعمل',
     ['label' => 'لیست داده گاه دستورالعمل', 'url' => ['archived-index']],

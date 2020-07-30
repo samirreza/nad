@@ -5,10 +5,10 @@ class Module extends \yii\base\Module
 {
     public $horizontalMenuItems;
 
-    public $title = 'فرایند - آزمایشگاه - واحد 2';
+    public $title = 'فرایند - آزمایشگاه - ارزیابی مواد مصرفی';
     public $department = 'فرایند';
-    public $pluralLabel = 'واحد 2';
-    public $singularLabel = 'واحد 2';
+    public $pluralLabel = 'ارزیابی مواد مصرفی';
+    public $singularLabel = 'ارزیابی مواد مصرفی';
 
     public $defaultRoute = 'manage/index';
     public $controllerNamespace = 'nad\process\laboratory\unit2';

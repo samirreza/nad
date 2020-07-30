@@ -8,7 +8,7 @@ $this->title = 'فعالیت بررسی';
 $this->params['breadcrumbs'] = [
     'فرایند',
     'آزمایشگاه',
-    ['label' => 'واحد 1', 'url' => ['/process/laboratory/unit1']],
+    ['label' => 'آزمایش های بهره برداری', 'url' => ['/process/laboratory/unit1']],
     $this->title
 ];
 
