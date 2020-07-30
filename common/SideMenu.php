@@ -162,17 +162,17 @@ class SideMenu extends \theme\widgets\Menu
                         'icon' => 'angle-right',
                         'items' => [
                             [
-                                'label' => 'واحد 1',
+                                'label' => 'آزمایش های بهره برداری',
                                 'icon' => 'angle-right',
                                 'url' => ['/process/laboratory/unit1']
                             ],
                             [
-                                'label' => 'واحد 2',
+                                'label' => 'ارزیابی مواد مصرفی',
                                 'icon' => 'angle-right',
                                 'url' => ['/process/laboratory/unit2']
                             ],
                             [
-                                'label' => 'واحد 3',
+                                'label' => 'تجهیزات آزمایشگاهی',
                                 'icon' => 'angle-right',
                                 'url' => ['/process/laboratory/unit3']
                             ],
