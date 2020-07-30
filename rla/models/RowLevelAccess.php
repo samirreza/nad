@@ -1807,7 +1807,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                             'text' => 'آزمایشگاه',
                             'children' => [
                                 [
-                                    'text' => 'واحد 1',
+                                    'text' => 'آزمایش های بهره برداری',
                                     'children' => [
                                         [
                                             'text' => 'فعالیت بررسی',
@@ -1852,7 +1852,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     ]
                                 ],
                                 [
-                                    'text' => 'واحد 2',
+                                    'text' => 'ارزیابی مواد مصرفی',
                                     'children' => [
                                         [
                                             'text' => 'فعالیت بررسی',
@@ -1897,7 +1897,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     ]
                                 ],
                                 [
-                                    'text' => 'واحد 3',
+                                    'text' => 'تجهیزات آزمایشگاهی',
                                     'children' => [
                                         [
                                             'text' => 'فعالیت بررسی',
