@@ -51,6 +51,9 @@ use nad\common\modules\investigation\source\models\SourceReason;
                     [
                         'attribute' => 'createdBy',
                         'value' => function ($model) {
+                            if(!isset($model->researcher)
+                               return null;
+                               
                             return $model->researcher->fullName;
                         },
                         'filter' => Select2::widget([
