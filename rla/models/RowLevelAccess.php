@@ -2006,16 +2006,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                             ]
                                         ],
                                         [
-                                            'id' => 'nad\engineering\piping\stage\models\CategorySearch',
+                                            'id' => 'nad\engineering\piping\stage\models\StageSearch',
                                             'text' => 'مراحل',
                                             'icon' => 'fa fa-arrow-left',
 
-                                        ],
-                                        [
-                                            'id' => 'nad\engineering\piping\site\models\SiteSearch',
-                                            'text' => 'مکان ها',
-                                            'icon' => 'fa fa-arrow-left',
-                                        ],
+                                        ]
                                     ]
                                 ],
                                 [
