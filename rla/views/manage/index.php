@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use theme\widgets\Panel;
+use nad\rla\models\RowLevelAccess;
 use theme\widgets\ActionButtons;
 use nad\rla\assetBundles\RlaAssetBundle;
 use nad\common\modules\investigation\common\models\BaseInvestigationModel;
@@ -98,6 +99,12 @@ RlaAssetBundle::register($this);
                                 }
 
                                 return null;
+                            }
+                        ],
+                        [
+                            'label' => 'کاربران دارای دسترسی',
+                            'value' => function($model){
+                                return RowLevelAccess::getUsersList($model->seq_access_id);
                             }
                         ],
                         [

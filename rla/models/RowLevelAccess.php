@@ -4,7 +4,9 @@ namespace nad\rla\models;
 
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use core\behaviors\TimestampBehavior;
+use modules\user\backend\models\User;
 
 /**
  * This is the model class for table "row_level_access".
@@ -1956,6 +1958,12 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     'text' => 'مراحل',
                                     'children' => [
                                         [
+                                            'id' => 'nad\engineering\piping\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+
+                                        ],
+                                        [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
                                                 [
@@ -2005,12 +2013,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 ],
                                             ]
                                         ],
-                                        [
-                                            'id' => 'nad\engineering\piping\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
-
-                                        ]
                                     ]
                                 ],
                                 [
@@ -2127,6 +2129,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     'text' => 'مراحل',
                                     'children' => [
                                         [
+                                            'id' => 'nad\engineering\electricity\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ],
+                                        [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
                                                 [
@@ -2175,11 +2182,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ]
-                                        ],
-                                        [
-                                            'id' => 'nad\engineering\electricity\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
                                         ],
                                     ]
                                 ],
@@ -2242,6 +2244,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     'text' => 'مراحل',
                                     'children' => [
                                         [
+                                            'id' => 'nad\engineering\instrument\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ],
+                                        [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
                                                 [
@@ -2280,11 +2287,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ]
-                                        ],
-                                        [
-                                            'id' => 'nad\engineering\instrument\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
                                         ],
                                     ]
                                 ],
@@ -2347,6 +2349,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     'text' => 'مراحل',
                                     'children' => [
                                         [
+                                            'id' => 'nad\engineering\control\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ],
+                                        [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
                                                 [
@@ -2385,11 +2392,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ]
-                                        ],
-                                        [
-                                            'id' => 'nad\engineering\control\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
                                         ],
                                     ]
                                 ],
@@ -2452,6 +2454,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                     'text' => 'مراحل',
                                     'children' => [
                                         [
+                                            'id' => 'nad\engineering\construction\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ],
+                                        [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
                                                 [
@@ -2491,11 +2498,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 ],
                                             ]
                                         ],
-                                        [
-                                            'id' => 'nad\engineering\construction\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
-                                        ],
                                     ]
                                 ],
                             ]
@@ -2506,6 +2508,11 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                 [
                                     'text' => 'مراحل',
                                     'children' => [
+                                        [
+                                            'id' => 'nad\engineering\geotechnics\stage\models\StageSearch',
+                                            'text' => 'داده گاه مراحل',
+                                            'icon' => 'fa fa-arrow-left',
+                                        ],
                                         [
                                             'text' => 'بررسی بهبود',
                                             'children' => [
@@ -2545,11 +2552,6 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
                                             ]
-                                        ],
-                                        [
-                                            'id' => 'nad\engineering\geotechnics\stage\models\StageSearch',
-                                            'text' => 'مراحل',
-                                            'icon' => 'fa fa-arrow-left',
                                         ],
                                     ]
                                 ],
@@ -5652,6 +5654,18 @@ class RowLevelAccess extends \yii\db\ActiveRecord
         }
 
         return $conditions;
+    }
+
+    public static function getUsersList($seqAccessId){
+        $rlaModels = RowLevelAccess::find()->where(['seq_access_id' => $seqAccessId])->all();
+        $users = User::find()->where(['in', 'id', ArrayHelper::getColumn($rlaModels, 'user_id')])->all();
+
+        $result = '';
+        foreach ($users as $user) {
+            $result .= $user->name . ' ' . $user->surname . ', ';
+        }
+
+        return trim($result, ', ');
     }
 
     /**
