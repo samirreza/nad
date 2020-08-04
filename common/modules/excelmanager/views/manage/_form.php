@@ -72,6 +72,7 @@ if(!$model->isNewRecord){
                                 'group' => 'file',
                             ]) ?>
                     <?php Panel::end() ?>
+                    <div class="alert alert-info" role="alert">توجه: فایل اکسل باید به ساده ترین شکل ممکن باشد، حاوی عکس نبوده و سطر و ستونها نیز ادغام نشده باشند.</div>
                 </div>
             </div>
             <div class="row">
