@@ -38,7 +38,12 @@ use core\widgets\editor\Editor;
                     <?= $form->field($comment, 'content')
                         ->widget(
                             Editor::class,
-                            ['preset' => 'simple']
+                            [
+                                'preset' => 'simple',
+                                'clientOptions' => [
+                                    'contentsCss' => ["body {font-size: 20px;}"],
+                                ]
+                            ]
                         )
                     ?>
                 <?php ActiveForm::end() ?>
