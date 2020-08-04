@@ -362,6 +362,13 @@ use nad\common\modules\investigation\proposal\models\Proposal;
                                     'value' => function ($model) {
                                         return $model->getTagsAsString();
                                     }
+                                ],
+                                [
+                                    'label' => 'فایلها',
+                                    'format' => 'html',
+                                    'value' => function($model){
+                                        return $model->getFilesListAsHtml('file');
+                                    }
                                 ]
                             ]
                         ]) ?>

@@ -316,6 +316,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                                 'style' => 'margin:5px'
                                             ]);
                                     }
+                                ],
+                                [
+                                    'label' => 'فایلها',
+                                    'format' => 'html',
+                                    'value' => function($model){
+                                        return $model->getFilesListAsHtml('file');
+                                    }
                                 ]
                             ]
                         ]) ?>

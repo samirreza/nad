@@ -394,6 +394,13 @@ use nad\extensions\comment\widgets\commentList\CommentList;
                                     'value' => function ($model) {
                                         return $model->getClickableReferencesAsString();
                                     }
+                                ],
+                                [
+                                    'label' => 'فایلها',
+                                    'format' => 'html',
+                                    'value' => function($model){
+                                        return $model->getFilesListAsHtml('file') . $model->getFilesListAsHtml('instructionDoc');
+                                    }
                                 ]
                             ]
                         ]) ?>
