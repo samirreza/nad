@@ -30,7 +30,7 @@ class Source extends SourceCommon
                             'rules' => [
                                 'extensions' => ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'doc', 'xlsx'],
                                 'maxSize' => 5*1024*1024,
-                                'required' => true
+                                // 'required' => true
                             ]
                         ],
                     ]

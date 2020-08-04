@@ -120,7 +120,7 @@ class ProposalCommon extends BaseInvestigationModel
                                     'zip'
                                 ],
                                 'maxSize' => 100 * 1024 * 1024,
-                                'required' => true
+                                // 'required' => true
                             ]
                         ]
                     ]
