@@ -64,7 +64,7 @@ $this->registerJS("$(function(){
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="searchModel">داده گاه مورد نظر خود را انتخاب کنید:</label>
+                <label for="searchModel">درخت زیر را باز کنید تا به داده گاه مورد نظر خود برسید سپس روی آن کلیک کنید:</label>
                 <br>
                 <br>
                 <div id="jstree_container"></div>
