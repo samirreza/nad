@@ -6,7 +6,7 @@ use nad\common\code\Codable;
 use yii\helpers\ArrayHelper;
 use nad\common\code\CodableTrait;
 use extensions\i18n\validators\FarsiCharactersValidator;
-use nad\common\modules\device\models\DeviceDocument;
+use nad\common\modules\device\models\DocumentGroup;
 use nad\common\modules\device\models\DevicePart;
 use nad\common\modules\device\models\DeviceInstance;
 use nad\common\modules\device\models\Category;
@@ -84,9 +84,9 @@ class Device extends BaseAccessModel implements Codable
         return $this->hasMany(DeviceInstance::className(), ['deviceId' => 'id']);
     }
 
-    public function getDocuments()
+    public function getDocumentGroups()
     {
-        return $this->hasMany(DeviceDocument::className(), ['deviceId' => 'id']);
+        return $this->hasMany(DocumentGroup::className(), ['deviceId' => 'id']);
     }
 
     public function beforeValidate()

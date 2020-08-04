@@ -45,9 +45,9 @@ use nad\common\modules\device\models\Device;
                         }
                     ],
                     [
-                        'label' => 'تعداد مدارک',
+                        'label' => 'تعداد بسته های مدارک',
                         'value' => function($model){
-                            return $model->getDocuments()->count();
+                            return $model->getDocumentGroups()->count();
                         }
                     ],
                     'createdAt:date',
