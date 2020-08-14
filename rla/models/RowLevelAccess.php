@@ -1964,7 +1964,7 @@ class RowLevelAccess extends \yii\db\ActiveRecord
 
                                         ],
                                         [
-                                            'text' => 'بررسی بهبود',
+                                            'text' => 'روش  و دستورالعمل',
                                             'children' => [
                                                 [
                                                     'id' => 'nad\engineering\piping\stage\investigationImprovement\source\models\SourceSearch',
@@ -1998,6 +1998,46 @@ class RowLevelAccess extends \yii\db\ActiveRecord
                                                 ],
                                                 [
                                                     'id' => 'nad\engineering\piping\stage\investigationImprovement\reference\models\ReferenceSearch',
+                                                    'text' => 'منابع',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                            ]
+                                        ],
+                                        [
+                                            'text' => 'کنترل کیفیت',
+                                            'children' => [
+                                                // [
+                                                //     'id' => 'nad\engineering\piping\stage\investigation4\source\models\SourceSearch',
+                                                //     'text' => 'منشا',
+                                                //     'icon' => 'fa fa-arrow-left',
+                                                // ],
+                                                // [
+                                                //     'id' => 'nad\engineering\piping\stage\investigation4\proposal\models\ProposalSearch',
+                                                //     'text' => 'پروپوزال',
+                                                //     'icon' => 'fa fa-arrow-left',
+                                                // ],
+                                                // [
+                                                //     'id' => 'nad\engineering\piping\stage\investigation4\report\models\ReportSearch',
+                                                //     'text' => 'گزارش',
+                                                //     'icon' => 'fa fa-arrow-left',
+                                                // ],
+                                                // [
+                                                //     'id' => 'nad\engineering\piping\stage\investigation4\method\models\MethodSearch',
+                                                //     'text' => 'روش',
+                                                //     'icon' => 'fa fa-arrow-left',
+                                                // ],
+                                                // [
+                                                //     'id' => 'nad\engineering\piping\stage\investigation4\instruction\models\InstructionSearch',
+                                                //     'text' => 'دستورالعمل',
+                                                //     'icon' => 'fa fa-arrow-left',
+                                                // ],
+                                                [
+                                                    'id' => 'nad\engineering\piping\stage\investigation4\subject\models\SubjectSearch',
+                                                    'text' => 'سایرگزارشها',
+                                                    'icon' => 'fa fa-arrow-left',
+                                                ],
+                                                [
+                                                    'id' => 'nad\engineering\piping\stage\investigation4\reference\models\ReferenceSearch',
                                                     'text' => 'منابع',
                                                     'icon' => 'fa fa-arrow-left',
                                                 ],
