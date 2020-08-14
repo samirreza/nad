@@ -4,6 +4,7 @@ use yii\web\View;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 use theme\widgets\Panel;
 use nad\rla\models\RowLevelAccess;
 use theme\widgets\ActionButtons;
@@ -54,7 +55,10 @@ RlaAssetBundle::register($this);
             'title' => Html::encode('لیست رکوردهای داده گاه'),
             'showCollapseButton' => true
             ]) ?>
-
+            <?php Pjax::begin([
+                        'id' => 'rla-gridviewpjax',
+                        'enablePushState' => false,
+                    ]); ?>
                 <?= GridView::widget([
                     'id' => 'rla-gridview',
                     'dataProvider' => $dataProvider,
@@ -146,7 +150,7 @@ RlaAssetBundle::register($this);
                         // ]
                     ]
                 ]) ?>
-
+            <?php Pjax::end(); ?>
         <?php Panel::end() ?>
     </div>
 

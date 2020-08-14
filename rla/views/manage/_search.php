@@ -62,7 +62,7 @@ $this->registerJS("$(function(){
     ]); ?>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-10">
             <div class="form-group">
                 <label for="searchModel">درخت زیر را باز کنید تا به داده گاه مورد نظر خود برسید سپس روی آن کلیک کنید:</label>
                 <br>
