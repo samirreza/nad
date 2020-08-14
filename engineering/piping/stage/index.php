@@ -20,8 +20,48 @@ $this->params['breadcrumbs'] = [
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
-            'title' => 'بررسی بهبود',
+            'title' => 'روش  و دستورالعمل',
             'titleUrl' => Url::to(['/engineering/piping/stage/manage/investigation-improvement'])
+        ]) ?>
+    </div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'کنترل کیفیت',
+            'titleUrl' => Url::to(['/engineering/piping/stage/manage/investigation4'])
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'متالوژی',
+            'titleUrl' => '#'
+        ]) ?>
+    </div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'فنی',
+            'titleUrl' => '#'
+        ]) ?>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5" style="text-align: center">
+    <?= InfoBox::widget([
+            'icon' => false,
+            'showCount' => false,
+            'title' => 'پایش',
+            'titleUrl' => Url::to(['/engineering/piping/stage/manage/payesh'])
         ]) ?>
     </div>
     <div class="col-md-5" style="text-align: center">
@@ -40,16 +80,8 @@ $this->params['breadcrumbs'] = [
     <?= InfoBox::widget([
             'icon' => false,
             'showCount' => false,
-            'title' => 'بررسی طراحی',
+            'title' => 'طراحی',
             'titleUrl' => '#' // Url::to(['/engineering/piping/stage/manage/investigation-design'])
-        ]) ?>
-    </div>
-    <div class="col-md-5" style="text-align: center">
-    <?= InfoBox::widget([
-            'icon' => false,
-            'showCount' => false,
-            'title' => 'پایش',
-            'titleUrl' => Url::to(['/engineering/piping/stage/manage/payesh'])
         ]) ?>
     </div>
 </div>

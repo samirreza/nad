@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use theme\widgets\Panel;
 use theme\widgets\infoBox\InfoBox;
 
-$this->title = 'بررسی بهبود';
+$this->title = 'روش  و دستورالعمل';
 $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 
 ?>
 
-<h2 class="nad-page-title">بررسی بهبود</h2>
+<h2 class="nad-page-title">روش  و دستورالعمل</h2>
 <?php Panel::begin([
                     'title' => 'برنامه ها',
                     'showCollapseButton' => true
