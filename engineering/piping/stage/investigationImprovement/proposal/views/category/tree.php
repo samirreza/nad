@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',
     ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
-    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
+    ['label' => 'روش  و دستورالعمل', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     ['label' => 'رده های پروپوزالها', 'url' => ['/engineering/piping/stage/investigationImprovement/proposal/category/index']],
     $this->title
 ];

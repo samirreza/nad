@@ -8,7 +8,7 @@ $this->params['breadcrumbs'] = [
     'فنی',
     'لوله کشی',
     ['label' => 'مراحل', 'url' => ['/engineering/piping/stage/manage/index']],
-    ['label' => 'بررسی بهبود', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
+    ['label' => 'روش  و دستورالعمل', 'url' => ['/engineering/piping/stage/manage/investigation-improvement']],
     'برنامه منشا',
     ['label' => 'لیست منشاهای برنامه', 'url' => ['index']],
     ['label' => $model->title, 'url' => ['view', 'id' => $model->id]],
