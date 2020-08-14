@@ -116,7 +116,6 @@ $reportFiles2 = $model->getFiles('reportFile2');
                                     'group' => 'reportFile2',
                                 ]) ?>
                             <?php Panel::end() ?>
-                            <div class="alert alert-info" role="alert">توجه: آپلود فایل اجباری است</div>
                         </div>
                     <?php endif; ?>
                         <div class="col-md-8">
@@ -140,7 +139,6 @@ $reportFiles2 = $model->getFiles('reportFile2');
                                     'group' => 'subjectFile',
                                 ]) ?>
                             <?php Panel::end() ?>
-                            <div class="alert alert-info" role="alert">توجه: آپلود فایل اجباری است</div>
                         </div>
 
                     </div>
