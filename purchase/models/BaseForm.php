@@ -26,8 +26,7 @@ class BaseForm extends \yii\db\ActiveRecord
             parent::behaviors(),
             [
                 [
-                    'class' => TimestampBehavior::class,
-                    'createdAtAttribute' => true
+                    'class' => TimestampBehavior::class
                 ],
                 [
                     'class' => BlameableBehavior::class,
