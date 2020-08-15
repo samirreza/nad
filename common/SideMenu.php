@@ -36,6 +36,11 @@ class SideMenu extends \theme\widgets\Menu
                 ]
             ],
             [
+                'label' => 'خرید',
+                'icon' => 'angle-right',
+                'url' => ['/purchase/form1/index'],
+            ],
+            [
                 'label' => 'فرایند',
                 'icon' => 'angle-right',
                 'items' => [
