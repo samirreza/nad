@@ -181,4 +181,8 @@ class Expert extends ActiveRecord
     {
         return self::find()->joinWith('user')->where(['<>', 'user.status', User::STATUS_SOFT_DELETED]);
     }
+
+    public function getFullName(){
+        return $this->user->getFullName();
+    }
 }

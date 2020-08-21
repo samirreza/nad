@@ -18,6 +18,10 @@ class CommentController extends AjaxAdminController
 
     public function actionCreate()
     {
+        $showReceiver = Yii::$app->request->get('showReceiver');
+        if(!isset($showReceiver))
+            $showReceiver = "F";
+
         $comment = new Comment([
             'moduleId' => Yii::$app->request->get('moduleId'),
             'modelClassName' => (new \ReflectionClass(Yii::$app->request->get('modelClassName')))
@@ -44,7 +48,8 @@ class CommentController extends AjaxAdminController
         echo Json::encode([
             'content' => $this->renderAjax(
                 '@nad/extensions/comment/views/_form', [
-                    'comment' => $comment
+                    'comment' => $comment,
+                    'showReceiver' => $showReceiver
                 ]
             )
         ]);
@@ -53,6 +58,10 @@ class CommentController extends AjaxAdminController
 
     public function actionUpdate($id)
     {
+        $showReceiver = Yii::$app->request->get('showReceiver');
+        if(!isset($showReceiver))
+            $showReceiver = "F";
+
         $comment = $this->findModel($id);
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
             echo Json::encode([
@@ -64,7 +73,8 @@ class CommentController extends AjaxAdminController
         echo Json::encode([
             'content' => $this->renderAjax(
                 '@nad/extensions/comment/views/_form', [
-                    'comment' => $comment
+                    'comment' => $comment,
+                    'showReceiver' => $showReceiver
                 ]
             )
         ]);

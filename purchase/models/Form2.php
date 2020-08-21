@@ -5,6 +5,7 @@ namespace nad\purchase\models;
 use Yii;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use extensions\i18n\validators\JalaliDateToTimestamp;
+use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 
 /**
  * This is the model class for table "nad_purchase_form2".
@@ -21,6 +22,9 @@ use extensions\i18n\validators\JalaliDateToTimestamp;
  */
 class Form2 extends BaseForm
 {
+    public $moduleId = 'dummy'; // not important
+    public $ownerClassName = __NAMESPACE__ . '\Form2';
+
     /**
      * {@inheritdoc}
      */
@@ -29,13 +33,27 @@ class Form2 extends BaseForm
         return 'nad_purchase_form2';
     }
 
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'comments' => [
+                    'class' => CommentBehavior::class,
+                    'moduleId' => $this->moduleId,
+                    'customOwner' => $this->ownerClassName
+                ],
+            ]
+        );
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['purchaseGlobalId', 'prevFormId', 'prevExpertId'], 'safe'],
+            [['purchaseGlobalId', 'prevFormId', 'prevExpertId', 'prevRecordId'], 'safe'],
             [['title', 'productName', 'productIdentifier'], 'required'],
             [['proposal'], 'string'],
             [['title', 'productName', 'productIdentifier'], 'string', 'max' => 512],
@@ -79,10 +97,10 @@ class Form2 extends BaseForm
             'productName' => 'نام کالا',
             'productIdentifier' => 'شناسه کالا',
             'proposal' => 'پیشنهاد',
-            'nextFormId' => 'فرم بعدی',
-            'nextExpertId' => 'کارشناس فرم بعدی',
-            'prevFormId' => 'فرم قبلی',
-            'prevExpertId' => 'کارشناس فرم قبلی',
+            'nextFormId' => 'اقدام بعدی',
+            'nextExpertId' => 'کارشناس اقدام بعدی',
+            'prevFormId' => 'اقدام قبلی',
+            'prevExpertId' => 'کارشناس اقدام فعلی',
         ];
     }
 }

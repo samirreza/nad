@@ -10,8 +10,11 @@ use nad\purchase\models\FormsLookup;
 use nad\office\modules\expert\models\Expert;
 use yii\widgets\ActiveForm;
 use core\widgets\select2\Select2;
+use modules\user\backend\models\User;
 use theme\widgets\Button;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use nad\extensions\comment\widgets\commentList\CommentList;
 
 /* @var $this yii\web\View */
 /* @var $model nad\purchase\models\Form1 */
@@ -45,18 +48,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form1-view">
 <?php Panel::begin([
-    'title' => 'مشاهده جزئیات',
-    // 'showCloseButton' => true
+    'title' => 'مشخصات کلی درخواست',
+    'showCollapseButton' => true
 ]) ?>
     <div class="row">
         <div class="col-md-12">
             <p>
             <i class="fa fa-hand-o-right"></i>
-            جهت مشاهده یا درج اطلاعات در فرم بعدی روی عنوان آن کلیک کنید.
+            جهت مشاهده یا درج اطلاعات در فرم بعدی روی عنوان آن در ردیف «آخرین اقدام» کلیک کنید.
             </p>
             <p>
             <i class="fa fa-hand-o-right"></i>
-            در صورتی که جلوی عنوان فرم بعدی، تیک سبز رنگ خورده باشد یعنی آن فرم توسط کارشناس پر شده است.
+            در صورتی که جلوی عنوان آخرین اقدام، تیک سبز رنگ خورده باشد یعنی آن فرم توسط کارشناس پر شده است.
             </p>
         </div>
     </div>
@@ -72,16 +75,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'createdAt:date',
                     'updatedAt:datetime',
                     [
-                        'attribute' => 'nextFormId',
+                        'label' => 'آخرین اقدام',
                         'format' => 'html',
                         'value' => function($model){
-                            return FormsLookup::getNextFormAsLink($model->nextFormId, $model->id, $model->createdBy, $model::tableName());
+                            return FormsLookup::getLastFormAsLink($model->nextFormId, $model->id, $model->nextExpertId, $model->id, $model::tableName());
                         }
                     ],
                     [
-                        'attribute' => 'nextExpertId',
+                        'label' => 'کارشناس آخرین اقدام',
                         'value' => function($model){
-                            return FormsLookup::getNextExpertName($model);
+                            return FormsLookup::getLastExpertName($model);
                         }
                     ],
                 ],
@@ -100,10 +103,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 <?php Panel::end() ?>
 </div>
+
 <?php if($model->nextFormId == null || $model->nextExpertId == null): ?>
     <hr/>
     <div class="form1-form">
-        <?php Panel::begin(['title' => 'تعیین فرم بعدی']) ?>
+        <?php Panel::begin([
+            'title' => 'تعیین اقدام بعدی',
+            'showCollapseButton' => true
+            ]) ?>
 
         <?php $form = ActiveForm::begin([
             'action' => ['update', 'id' => $model->id],
@@ -159,3 +166,123 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php Panel::end() ?>
     </div>
 <?php endif; ?>
+
+
+<div class="forms-workflow-view">
+    <?php Panel::begin([
+        'title' => 'گردش کار',
+        'showCollapseButton' => true
+    ]) ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                    $nextFormId = $model->nextFormId;
+                    $prevRecordId = $model->id;
+                    $prevFormId = 1; // Form1
+                    if(isset($nextFormId)):
+                        $currentExpertName = Expert::findOne($model->nextExpertId)->getFullName();
+                ?>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <?php
+                        $counter = 0;
+                        while(isset($nextFormId)){
+                            $nextFormLookup = FormsLookup::findOne($nextFormId);
+
+                            $myClass = new \ReflectionClass($nextFormLookup->className);
+                            $instanceModel = $myClass->newInstance();
+                            $nextModel = $instanceModel::find()->where([
+                                'prevRecordId' => $prevRecordId,
+                                'prevFormId' => $prevFormId,
+                            ])->one();
+
+                            if (isset($nextModel)):
+                        ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading<?= $counter ?>">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <h4 class="panel-title">
+                                                    <?php
+                                                    $panelTitle =
+                                                    '<span class="badge bg-blue badge-menu">'
+                                                    . ($counter + 1)
+                                                    . '</span> '
+                                                    . $nextFormLookup->title
+                                                    . ' ('
+                                                    . '<b>'
+                                                    . 'از '
+                                                    . '</b>'
+                                                     . (($currentExpertName)?$currentExpertName:'مشخص نشده')
+                                                     . '<b>'
+                                                     . ' به '
+                                                     . '</b>'
+                                                     . (Expert::findOne($nextModel->nextExpertId)?Expert::findOne($nextModel->nextExpertId)->getFullName():'مشخص نشده')
+                                                     . ')'
+                                                     . ' - '
+                                                     . ' تاریخ: '
+                                                     . \Yii::$app->formatter->asDate(
+                                                            $nextModel->createdAt,
+                                                            'd-M-Y'
+                                                     );
+                                                    ?>
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?= $counter ?>" aria-expanded="true" aria-controls="collapse<?= $counter ?>">
+                                                    <?= $panelTitle ?>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <?= Html::a(
+                                            'مشاهده جزییات' . '&nbsp; <i class="fa fa-eye"></i>',
+                                                    [
+                                                        $nextFormLookup->baseUrl . '/view',
+                                                        'id' => $nextModel->id
+                                                    ],
+                                                    [
+                                                        'target' => '_blank',
+                                                        'class' => 'btn btn-primary'
+                                                    ]
+                                                )?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="collapse<?= $counter ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?= $counter ?>">
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                            <?= CommentList::widget([
+                                                'readonly' => true,
+                                                'showReceiver' => true,
+                                                'model' => $nextModel,
+                                                'moduleId' => 'dummy',
+                                                'returnUrl' => Url::current()
+                                            ]) ?>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                                $nextFormId = $nextModel->nextFormId;
+                                $prevRecordId = $nextModel->id;
+                                $prevFormId = FormsLookup::find()->andWhere(['tableName' => $nextModel->tableName()])->one()->id;
+                                if(isset($nextModel->nextExpertId))
+                                    $currentExpertName = Expert::findOne($nextModel->nextExpertId)->getFullName();
+                                else
+                                    $currentExpertName = null;
+                                ++$counter;
+                            else:
+                                $nextFormId = null;
+                                $prevRecordId = null;
+                                $prevFormId = null;
+                            endif;
+                        }
+                        ?>
+
+                    </div>
+                <?php
+                    else:
+                        echo '<i class="fa fa-exclamation-triangle"></i>&nbsp;' . 'گردش کاری ثبت نشده است' . '<br><br>';
+                    endif;
+                ?>
+            </div>
+        </div>
+    <?php Panel::end() ?>
+</div>

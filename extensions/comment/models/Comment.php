@@ -4,6 +4,7 @@ namespace nad\extensions\comment\models;
 
 use Yii;
 use modules\user\common\models\User;
+use nad\office\modules\expert\models\Expert;
 use yii\behaviors\BlameableBehavior;
 use core\behaviors\TimestampBehavior;
 use extensions\i18n\validators\FarsiCharactersValidator;
@@ -33,6 +34,7 @@ class Comment extends \yii\db\ActiveRecord
         return [
             ['content', 'required'],
             ['content', 'string'],
+            [['receiverId', 'isSecret'], 'safe'],
             ['content', FarsiCharactersValidator::class]
         ];
     }
@@ -43,7 +45,9 @@ class Comment extends \yii\db\ActiveRecord
             'id' => 'شناسه',
             'content' => 'نظر',
             'insertedBy' => 'درج کننده',
-            'insertedAt' => 'تاریخ درج'
+            'insertedAt' => 'تاریخ درج',
+            'receiverId' => 'گیرنده',
+            'isSecret' => 'محرمانه'
         ];
     }
 
@@ -60,5 +64,10 @@ class Comment extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::class, ['id' => 'insertedBy']);
+    }
+
+    public function getReceiver()
+    {
+        return $this->hasOne(Expert::class, ['id' => 'receiverId']);
     }
 }

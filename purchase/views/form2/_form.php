@@ -26,6 +26,7 @@ $backLink = $model->isNewRecord ? ['index'] : ['view', 'id' => $model->id];
 
             <?= $form->field($model, 'purchaseGlobalId')->hiddenInput()->label(false); ?>
             <?= $form->field($model, 'prevFormId')->hiddenInput()->label(false); ?>
+            <?= $form->field($model, 'prevRecordId')->hiddenInput()->label(false); ?>
             <?= $form->field($model, 'prevExpertId')->hiddenInput()->label(false); ?>
 
             <div class="row">

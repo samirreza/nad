@@ -26,13 +26,18 @@ class FormsLookup extends \yii\db\ActiveRecord
         return 'nad_purchase_forms_lookup';
     }
 
-    public static function getNextFormAsLink($nextFormId, $purchaseGlobalId, $prevExpertId, $tableName){
+    public static function find()
+    {
+        return parent::find()->andWhere(['isActive' => 'T']);
+    }
+
+    public static function getNextFormAsLink($nextFormId, $prevRecordId, $prevExpertId, $purchaseGlobalId, $tableName){
         $prevFormId = FormsLookup::find()->where(['tableName' => $tableName])->one()->id;
         $model = FormsLookup::findOne($nextFormId);
 
         if(isset($model)){
-            $sql = "SELECT * FROM {$model->tableName} WHERE purchaseGlobalId = :purchaseGlobalId";
-            $row = Yii::$app->db->createCommand($sql)->bindValue(':purchaseGlobalId', $purchaseGlobalId)->queryOne();
+            $sql = "SELECT * FROM {$model->tableName} WHERE prevFormId = :prevFormId AND prevRecordId = :prevRecordId";
+            $row = Yii::$app->db->createCommand($sql)->bindValue(':prevFormId', $prevFormId)->bindValue(':prevRecordId', $prevRecordId)->queryOne();
 
             if(isset($row) && !empty($row))
                 return
@@ -54,6 +59,7 @@ class FormsLookup extends \yii\db\ActiveRecord
                         [
                             $model->baseUrl . '/create',
                             'prevFormId' => $prevFormId,
+                            'prevRecordId' => $prevRecordId,
                             'prevExpertId' => $prevExpertId,
                             'purchaseGlobalId' => $purchaseGlobalId
 
@@ -66,18 +72,12 @@ class FormsLookup extends \yii\db\ActiveRecord
         return null;
     }
 
-    public static function getPrevFormAsLink($prevFormId, $purchaseGlobalId, $prevExpertId){
+    public static function getPrevFormAsLink($prevFormId, $prevRecordId){
         $model = FormsLookup::findOne($prevFormId);
 
         if(isset($model)){
-            $columnName = '';
-            if($model->tableName == 'nad_purchase_form1')
-                $columnName = 'id';
-            else
-                $columnName = 'purchaseGlobalId';
-
-            $sql = "SELECT * FROM {$model->tableName} WHERE {$columnName} = :purchaseGlobalId";
-            $row = Yii::$app->db->createCommand($sql)->bindValue(':purchaseGlobalId', $purchaseGlobalId)->queryOne();
+            $sql = "SELECT * FROM {$model->tableName} WHERE id = :prevRecordId";
+            $row = Yii::$app->db->createCommand($sql)->bindValue(':prevRecordId', $prevRecordId)->queryOne();
 
             if(isset($row) && !empty($row))
                 return
@@ -112,5 +112,60 @@ class FormsLookup extends \yii\db\ActiveRecord
             return Expert::findOne($nextModel->nextExpertId)->user->fullName;
 
         return null;
+    }
+
+    public static function getLastFormAsLink($nextFormId, $prevRecordId, $prevExpertId, $purchaseGlobalId, $tableName){
+        while(isset($nextFormId)){
+            $prevFormId = FormsLookup::find()->where(['tableName' => $tableName])->one()->id;
+            $formLookupModel = FormsLookup::findOne($nextFormId);
+
+            $sql = "SELECT * FROM {$formLookupModel->tableName} WHERE prevFormId = :prevFormId AND prevRecordId = :prevRecordId";
+            $nextRecord = Yii::$app->db->createCommand($sql)->bindValue(':prevFormId', $prevFormId)->bindValue(':prevRecordId', $prevRecordId)->queryOne();
+
+            if(isset($nextRecord) && !empty($nextRecord)){
+                $nextFormId = $nextRecord['nextFormId'];
+                if(!isset($nextFormId)){
+                    return
+                        '<u>'
+                        . Html::a(
+                            $formLookupModel->title,
+                            [
+                                $formLookupModel->baseUrl . '/view',
+                                'id' => $nextRecord['id']
+                            ]
+                        )
+                        . '</u>'
+                        .  '&nbsp;&nbsp;<i class="fa fa-check" style="color:green" title="پر شده"></i>';
+                }else{
+                    $prevRecordId = $nextRecord['id'];
+                    $prevExpertId = $nextRecord['nextExpertId'];
+                    $tableName = $formLookupModel->tableName;
+                    continue;
+                }
+            }
+
+            return
+                '<u>'
+                . Html::a(
+                    $formLookupModel->title,
+                    [
+                        $formLookupModel->baseUrl . '/create',
+                        'prevFormId' => $prevFormId,
+                        'prevRecordId' => $prevRecordId,
+                        'prevExpertId' => $prevExpertId,
+                        'purchaseGlobalId' => $purchaseGlobalId
+
+                    ]
+                )
+                . '</u>'
+                . '&nbsp;&nbsp;<i class="fa fa-times" style="color:red" title="پر نشده"></i>';
+        }
+
+        return null;
+    }
+
+    public static function getLastExpertName($nextModel){
+
+        return 'TBD';
     }
 }

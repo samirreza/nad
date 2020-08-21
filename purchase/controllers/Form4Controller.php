@@ -59,6 +59,7 @@ class Form4Controller extends AdminController
         if(Yii::$app->request->get('purchaseGlobalId') != null){
             $model->purchaseGlobalId = intval(Yii::$app->request->get('purchaseGlobalId'));
             $model->prevFormId = intval(Yii::$app->request->get('prevFormId'));
+            $model->prevRecordId = intval(Yii::$app->request->get('prevRecordId'));
             $model->prevExpertId = intval(Yii::$app->request->get('prevExpertId'));
 
             // check expert validation
@@ -68,10 +69,10 @@ class Form4Controller extends AdminController
             if($prevFormTableName == 'nad_purchase_form1')
                 $columnName = 'id';
             else
-                $columnName = 'purchaseGlobalId';
+                $columnName = 'prevRecordId';
 
-            $sql2 = "SELECT * FROM {$prevFormTableName} WHERE {$columnName} = :purchaseGlobalId";
-            $prevFormRecord = \Yii::$app->db->createCommand($sql2)->bindValue(':purchaseGlobalId', $model->purchaseGlobalId)->queryOne();
+            $sql2 = "SELECT * FROM {$prevFormTableName} WHERE {$columnName} = :prevRecordId";
+            $prevFormRecord = \Yii::$app->db->createCommand($sql2)->bindValue(':prevRecordId', $model->prevRecordId)->queryOne();
 
             // if(isset($prevFormRecord) && !empty($prevFormRecord) && $prevFormRecord['nextExpertId'] != \Yii::$app->user->id)
             //     throw new HttpException(403, 'شما دسترسی لازم به صفحه درخواستی را ندارید!');

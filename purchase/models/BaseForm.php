@@ -34,19 +34,9 @@ class BaseForm extends \yii\db\ActiveRecord
                     'updatedByAttribute' => false
                 ],
                 [
-                    'class' => PreventDeleteBehavior::class,
-                    'relations' => [
-                        [
-                            'relationMethod' => 'hasNextForm',
-                            'relationName' => 'فرم بعدی'
-                        ]
-                    ]
+                    'class' => PreventDeleteBehavior::class
                 ],
             ]
         );
-    }
-
-    public function hasNextForm(){
-        return $this->hasOne(FormsLookup::class, ['id' => 'nextFormId']);
     }
 }

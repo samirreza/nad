@@ -14,6 +14,8 @@ class CommentList extends \yii\base\Widget
     public $visible = true;
     public $returnUrl;
     public $comments = null;
+    public $readonly = false;
+    public $showReceiver = false;
 
     public function init()
     {
@@ -34,6 +36,10 @@ class CommentList extends \yii\base\Widget
         if (!$this->visible) {
             return;
         }
-        return $this->render('view', ['comments' => $this->comments]);
+        return $this->render('view', [
+            'comments' => $this->comments,
+            'readonly' => $this->readonly,
+            'showReceiver' => $this->showReceiver
+            ]);
     }
 }

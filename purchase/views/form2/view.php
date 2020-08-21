@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 use core\widgets\select2\Select2;
 use theme\widgets\Button;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use nad\extensions\comment\widgets\commentList\CommentList;
 
 /* @var $this yii\web\View */
 /* @var $model nad\purchase\models\Form2 */
@@ -37,6 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'type' => 'success',
                     'label' => 'لیست درخواستهای خرید',
                     'url' => ['form1/index']
+                ],
+                'comment' => [
+                    'type' => 'info',
+                    'icon' => 'comments',
+                    'label' => 'تبادل نظر',
+                    'url' => '#comment-section'
                 ]
             ]
         ]); ?>
@@ -51,13 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
     <div class="row">
         <div class="col-md-12">
-            <p>
+        <p>
             <i class="fa fa-hand-o-right"></i>
-            جهت مشاهده یا درج اطلاعات در فرم بعدی روی عنوان آن کلیک کنید.
+            جهت مشاهده یا درج اطلاعات در فرم بعدی روی عنوان آن در ردیف «آخرین اقدام» کلیک کنید.
             </p>
             <p>
             <i class="fa fa-hand-o-right"></i>
-            در صورتی که جلوی عنوان فرم بعدی، تیک سبز رنگ خورده باشد یعنی آن فرم توسط کارشناس پر شده است.
+            در صورتی که جلوی عنوان آخرین اقدام، تیک سبز رنگ خورده باشد یعنی آن فرم توسط کارشناس پر شده است.
             </p>
         </div>
     </div>
@@ -78,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'prevFormId',
                         'format' => 'html',
                         'value' => function($model){
-                            return FormsLookup::getPrevFormAsLink($model->prevFormId, $model->purchaseGlobalId, $model->prevExpertId);
+                            return FormsLookup::getPrevFormAsLink($model->prevFormId, $model->prevRecordId);
                         }
                     ],
                     [
@@ -91,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'nextFormId',
                         'format' => 'html',
                         'value' => function($model){
-                            return FormsLookup::getNextFormAsLink($model->nextFormId, $model->purchaseGlobalId, $model->createdBy, $model::tableName());
+                            return FormsLookup::getNextFormAsLink($model->nextFormId, $model->id, $model->nextExpertId, $model->purchaseGlobalId, $model::tableName());
                         }
                     ],
                     [
@@ -119,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if($model->nextFormId == null || $model->nextExpertId == null): ?>
     <hr/>
     <div class="form2-form">
-        <?php Panel::begin(['title' => 'تعیین فرم بعدی']) ?>
+        <?php Panel::begin(['title' => 'تعیین اقدام بعدی']) ?>
 
         <?php $form = ActiveForm::begin([
             'action' => ['update', 'id' => $model->id],
@@ -175,3 +183,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php Panel::end() ?>
     </div>
 <?php endif; ?>
+
+<div id='comment-section'></div>
+<?= CommentList::widget([
+    'model' => $model,
+    'moduleId' => 'dummy',
+    'showReceiver' => true,
+    'returnUrl' => Url::current()
+]) ?>

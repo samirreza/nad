@@ -79,12 +79,12 @@ class Form1 extends BaseForm
             'id' => 'ID',
             'createdBy' => 'تاریخ درج',
             'updatedBy' => 'آخرین ویرایش توسط',
-            'createdAt' => 'تاریخ درج',
+            'createdAt' => 'تاریخ درخواست',
             'updatedAt' => 'آخرین ویرایش',
             'title' => 'عنوان درخواست',
             'reason' => 'علت درخواست',
-            'nextFormId' => 'فرم بعدی',
-            'nextExpertId' => 'کارشناس فرم بعدی',
+            'nextFormId' => 'اقدام بعدی',
+            'nextExpertId' => 'کارشناس اقدام بعدی',
         ];
     }
 }

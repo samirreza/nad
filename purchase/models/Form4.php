@@ -5,6 +5,7 @@ namespace nad\purchase\models;
 use Yii;
 use extensions\i18n\validators\FarsiCharactersValidator;
 use extensions\i18n\validators\JalaliDateToTimestamp;
+use nad\common\modules\investigation\common\behaviors\CommentBehavior;
 
 /**
  * This is the model class for table "nad_purchase_form4".
@@ -23,8 +24,25 @@ use extensions\i18n\validators\JalaliDateToTimestamp;
  * @property string $accountOwnerName
  * @property string $accountBankName
  */
-class Form4 extends \yii\db\ActiveRecord
+class Form4 extends BaseForm
 {
+    public $moduleId = 'dummy'; // not important
+    public $ownerClassName = __NAMESPACE__ . '\Form4';
+
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'comments' => [
+                    'class' => CommentBehavior::class,
+                    'moduleId' => $this->moduleId,
+                    'customOwner' => $this->ownerClassName
+                ],
+            ]
+        );
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -39,7 +57,7 @@ class Form4 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['purchaseGlobalId', 'prevFormId', 'prevExpertId'], 'safe'],
+            [['purchaseGlobalId', 'prevFormId', 'prevExpertId', 'prevRecordId'], 'safe'],
             [['title', 'factorNumber', 'price', 'productName'], 'required'],
             [['price'], 'number'],
             [['title', 'factorNumber', 'productName', 'technicalNumber', 'accountNumber', 'accountOwnerName', 'accountBankName'], 'string', 'max' => 512],
@@ -84,10 +102,10 @@ class Form4 extends \yii\db\ActiveRecord
             'accountNumber' => 'شماره حساب',
             'accountOwnerName' => 'صاحب حساب',
             'accountBankName' => 'نام بانک',
-            'nextFormId' => 'فرم بعدی',
-            'nextExpertId' => 'کارشناس فرم بعدی',
-            'prevFormId' => 'فرم قبلی',
-            'prevExpertId' => 'کارشناس فرم قبلی',
+            'nextFormId' => 'اقدام بعدی',
+            'nextExpertId' => 'کارشناس اقدام بعدی',
+            'prevFormId' => 'اقدام قبلی',
+            'prevExpertId' => 'کارشناس اقدام فعلی',
         ];
     }
 }
