@@ -114,20 +114,20 @@ use nad\extensions\comment\widgets\commentList\CommentList;
         <div class="row">
             <div class="col-md-12">
                 <?php Panel::begin([
-                    'title' => 'سابقه پیدایش',
+                    'title' => Html::activeLabel($model, 'reasonForGenesis'),
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->reasonForGenesis ?>
                     </div>
                 <?php Panel::end() ?>
             </div>
             <div class="col-md-12">
                 <?php Panel::begin([
-                    'title' => 'شرح عنوان',
+                    'title' => Html::activeLabel($model, 'necessity'),
                     'showCollapseButton' => true
                     ]) ?>
-                    <div class="well">
+                    <div>
                         <?= $model->necessity ?>
                     </div>
                 <?php Panel::end() ?>
